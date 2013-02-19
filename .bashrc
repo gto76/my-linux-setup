@@ -52,7 +52,7 @@ lll() {
 }
 
 c() {
-  builtin cd "$*"
+  builtin "$*"
   RESULT=$?
   if [ "$RESULT" -eq 0 ]; then
     l
@@ -102,7 +102,6 @@ alias books="mc $HOME/Desktop/Computers"
 #mashups#
 #########
 alias nba='lynx http://scores.nbcsports.msnbc.com/nba/scoreboard.asp'
-
 #LPP
 alias lpp='lynx http://bus.talktrack.com/'
 #lynx -cmd_script=lppScript http://bus.talktrack.com/ > /dev/null
@@ -194,6 +193,6 @@ wiki() {
 
 
 #from net:
-
 alias kdox='mplayer http://wms2.mainstreamnetwork.com/kdox-am &'
 alias wabc='mplayer http://69.28.128.148:80/stream/citadelcc_WABC-AM &'
+

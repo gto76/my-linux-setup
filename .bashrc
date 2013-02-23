@@ -80,13 +80,37 @@ alias h='history | grep '
 alias df='df -h'
 alias path='echo -e ${PATH//:/\\n}'
 
+alias ch='chmod u+x'
 
 
 alias more='less'
 alias mo='less'
 alias m='less'
 
+#bash
 alias b='bash'
+alias g='gedit $HOME/.bashrc &'
+alias f='firefox &'
+
+#count number of lines in files with extension $1
+noOfLines() {
+	no=0
+	for file in *; do
+		if [[ $file == *."$1" ]]; then
+			let no=$no+`cat "$file" | wc -l`	
+		fi
+	done 
+	echo $no
+}
+
+
+#make bash script , make it executable, and open it in gedit
+bs() {
+	fName="$1.sh"
+	touch $fName
+	chmod u+x $fName
+	gedit $fName
+}
 
 alias Pico="pico `ls -t | head -1`" #Open last modified file in pico
 
@@ -97,6 +121,9 @@ alias mac='ifconfig | grep HWaddr'
 
 # Specific
 alias books="mc $HOME/Desktop/Computers"
+
+#shutdown
+alias hib='sudo pm-hibernate'
 
 #########
 #mashups#

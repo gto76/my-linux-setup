@@ -59,6 +59,16 @@ c() {
   fi
 }
 
+find1() {
+	tmp=`find . | grep --color=always "$1"`
+	noOfLines=`echo "$tmp" | wc -l`
+	if [ $LINES -gt $noOfLines ]; then
+		echo "$tmp"
+	else
+		echo "$tmp" | less -R    
+	fi
+}
+
 
 # Make grep more user friendly by highlighting matches
 # and exclude grepping through .svn folders.
@@ -89,7 +99,8 @@ alias m='less'
 
 #bash
 alias b='bash'
-alias g='gedit $HOME/.bashrc &'
+alias g='gedit'
+alias gg='gedit $HOME/.bashrc &'
 alias f='firefox &'
 
 #count number of lines in files with extension $1

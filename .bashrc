@@ -1,12 +1,15 @@
 # Make some possibly destructive commands more interactive.
+alias rmdir='rm -rI'
+
 alias rm='rm -i'
 alias mv='mv -iv'
 alias cp='cp -iv'
 
+
 alias less='less -Q'
  
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
-alias ls='ls -AFXC --color=auto --group-directories-first'
+alias ls='ls -FXC --color=auto --group-directories-first'
 
 alias listShort='ls'
 #listShort() {
@@ -74,13 +77,16 @@ find1() {
 # and exclude grepping through .svn folders.
 alias grep='grep --color=auto --exclude-dir=\.svn'
 
-alias ...='cd ../..; ls'
-alias ..='cd ..; ls'
+alias ...='cd ../..'
+alias ..='cd ..'
 alias .='echo $PWD'
 alias p='echo $PWD'
 alias cd..='cd ..'
 
 alias canhaz='sudo apt-get install'
+apropos1() {
+	apt-cache search $*
+}
 
 alias cls=clear
 
@@ -96,6 +102,9 @@ alias ch='chmod u+x'
 alias more='less'
 alias mo='less'
 alias m='less'
+
+alias tar1='tar xvf'
+alias tarz='tar xzvf'
 
 #bash
 alias b='bash'
@@ -129,6 +138,10 @@ alias Pico="pico `ls -t | head -1`" #Open last modified file in pico
 alias ping1='ping -c 4 www.google.com'
 alias ping2='ping -c 4 192.168.0.1'
 alias mac='ifconfig | grep HWaddr'
+
+function myip () { 
+	lynx --dump http://ipecho.net/plain; 
+}
 
 # Specific
 alias books="mc $HOME/Desktop/Computers"

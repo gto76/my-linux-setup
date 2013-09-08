@@ -1,0 +1,98 @@
+ctrl+alt+t - start terminal
+ctrl+alt+f - start firefox
+ctrl+alt+h - start home
+
+ctrl+shift+n - new folder
+ctrl+h - show hidden files
+
+alt+F10 - toggle maximize window
+alt+F11 - minimize window
+alt+F12 - toggle full screen
+
+ctrl+alt+F1 do F6 terminali
+ctrl+alt+F7 do F12 xwindovi
+
+ctrl+shift+c - copy in terminal
+ctrl+shift+v - paste in terminal
+
+HUDI TERMINAL UKAZI:
+apropos -a - all keywords
+whatis - short description of app
+apptitude - browse packages
+apt-cache search - search packages
+lynx - web browser
+elinks - web browser
+alias - shrani alias ($HOME/.bashrc)
+mc - midnight commander
+mutt - mail client
+cmus - music
+xargs - output from one command to arguments of another
+wget - zdownloada webpage
+df - disc fulness
+mplayer - multimedia player
+git commit -a -m "Message"
+libreoffice - novi openoffice
+read - reads from file line by line
+tr - translate or delete characters (-d for delete)
+locate - isto kot find samo z indexom
+find . | grep bla - preišče rekurzivno tudi poddirektorije
+dpkg -l - lists installed packages
+zeitgeist - activity logger
+tail -f - do not stop printing
+tar xvzf xxx.tar.gz - decompress and detar
+tar xvjf xxx.tar.bz2 - decompress and detar
+wget <location> - The non-interactive network downloader.
+ccsm - additional settings (compiz config setings menager - BAD)
+md5sum - checks md5 sum hash
+appletviewer Race.htm - run java applet
+diakonos - simple terminal text editor with ctrl-c for copy
+ls ./* - ls one level deep
+noip2 - dynamic dns update client
+winetricks - install wine aplications
+sh - run script even if not executable
+nmap -sP 192.168.0.1-254 - ip scanning with range
+nmap 192.168.0.3 -p100-139 - port scanning
+sudo nmap -O 192.168.0.3 - scanning os
+sshd - ssh server deamon
+whois - info about domain
+cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
+users - trenutno ulogirani userji
+sudo /etc/init.d/ssh restart - restrt sshh deamon
+uname -a - print system info
+df - disc free
+scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp
+
+HUDE DATOTEKE:
+/etc/mailcap - default programi za extensne
+$HOME/.bashrc - mesto za bash aliase in funkcije
+/var/log/auth.log - logini
+/etc/passwd - userji
+/etc/ssh/sshd_config - sshd config
+
+
+BASH BLIZNJICE: 
+alt . - zadnji argument
+ctrl r - išče nazaj po historiju
+tab tab - displays all posibilities
+alt * - prikaže vse matche za reg izraz
+ctrl alt e - shows curent line as when passed through alias, history and shell expansion
+ctrl x, ctrl e - edit command in editor
+cd - Go to last dir
+bash -n <Script> - check for errors
+ctrl a - go to begining of line
+ctrl e - end of line
+ctrl d - EOF
+
+INSTALL MANTRA:
+./configure
+make
+make install (as su!)
+
+GIT MANTRA:
+git init
+git add index.html ali git add .
+git status
+git commit (-a) -m "Initial contents of public_html"
+
+PIRATEBAY:
+torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file

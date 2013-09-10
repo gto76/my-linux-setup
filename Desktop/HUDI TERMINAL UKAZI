@@ -69,6 +69,8 @@ gitk - git explorer
 transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
 du -s <folderName> - folder size
 !<term> - zadnji ukaz ki se je zacel na term.
+ssh-keygen -t rsa -C "email address" - generate rsa key pair
+xclip - copies to clipboard
 
 HUDE DATOTEKE:
 /etc/mailcap - default programi za extensne

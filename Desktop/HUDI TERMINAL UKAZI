@@ -42,7 +42,7 @@ dpkg -l - lists installed packages
 zeitgeist - activity logger
 tail -f - do not stop printing
 tar xvzf xxx.tar.gz - decompress and detar
-tar xvjf xxx.tar.bz2 - decompress and detar
+	tar xvjf xxx.tar.bz2 - decompress and detar
 wget <location> - The non-interactive network downloader.
 ccsm - additional settings (compiz config setings menager - BAD)
 md5sum - checks md5 sum hash
@@ -53,11 +53,11 @@ noip2 - dynamic dns update client
 winetricks - install wine aplications
 sh - run script even if not executable
 nmap -sP 192.168.2.1-3 - network sxanning
-nmap 192.168.0.3 -p100-139 - port scanning
-nmap 192.168.0.3 -p100-139 - port scanning
-sudo nmap -O 192.168.0.3 - scanning os
+	nmap 192.168.0.3 -p100-139 - port scanning
+	nmap 192.168.0.3 -p100-139 - port scanning
+	sudo nmap -O 192.168.0.3 - scanning os
 sshd - ssh server deamon
-/etc/init.d/ssh restart - sshd restart
+	/etc/init.d/ssh restart - sshd restart
 whois - info about domain
 cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
 users - trenutno ulogirani userji
@@ -71,6 +71,21 @@ du -s <folderName> - folder size
 !<term> - zadnji ukaz ki se je zacel na term.
 ssh-keygen -t rsa -C "email address" - generate rsa key pair
 xclip - copies to clipboard
+screen - switch between multiple virtual terminals (useful in ssh)
+	ctrl+a: c - new terminal, n - next, p - previous
+man section_number (1 - commands, 2 -libraries!!) tool_name
+<command> 2> /dev/null - redirect error output
+<command> &> /dev/null - redirect both standard and error output
+tee - Sends output of a program to a file and to standard output
+$(command) - same as `command`
+ls -S - sort by size, ls -t - sort by time
+locate <word> - find with db?
+	sudo updatedb OR sudo locate -u - update database
+whereis <command> - locates where command resides (which - only executable)
+cp -R - copy recursively
+shred - securely remove files
+
+
 
 HUDE DATOTEKE:
 /etc/mailcap - default programi za extensne
@@ -108,6 +123,13 @@ git status
 git commit -am "Initial contents of public_html"
 -
 git rm --cached mylogfile.log - untrack file withouth deleting it.
+
+ADD TO GITHUB:
+git remote add origin git@github.com:/youruser/somename.git
+git pull origin master
+git push origin master
+After your first push, you can simply type:
+git push
 
 PIRATEBAY:
 torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file

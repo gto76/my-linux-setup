@@ -6,7 +6,9 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 
 alias less='less -Q'
- 
+
+
+#LS
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
 alias ls='ls -FXC --color=auto --group-directories-first'
 
@@ -53,13 +55,15 @@ lll() {
 	fi
 }
 
-c() {
-  builtin "$*"
-  RESULT=$?
-  if [ "$RESULT" -eq 0 ]; then
-    l
-  fi
-}
+alias c='cat'
+#???
+#c() {
+#  builtin "$*"
+#  RESULT=$?
+#  if [ "$RESULT" -eq 0 ]; then
+#    l
+#  fi
+#}
 
 find1() {
 	tmp=`find . | grep --color=always "$1"`
@@ -113,8 +117,6 @@ sg() {
 	sudo gedit $*
 }
 
-alias f='firefox'
-
 #count number of lines in files with extension $1
 noOfLines() {
 	no=0
@@ -126,7 +128,6 @@ noOfLines() {
 	echo $no
 }
 
-
 #make bash script , make it executable, and open it in gedit
 bs() {
 	fName="$1.sh"
@@ -137,11 +138,49 @@ bs() {
 
 alias Pico="pico `ls -t | head -1`" #Open last modified file in pico
 
-# Networking
+#ZAPISKI
+export TODO="/home/minerva/Desktop/TODO"
+export HUD="/home/minerva/Desktop/HUDI\ TERMINAL\ UKAZI"
+export TMP="/home/minerva/Desktop/tmp"
+export TORD="/home/minerva/Desktop/toread"
+
+#Append line to todo file
+ztodo() { 
+	echo "$@" >> $TODO 
+}
+#Append line to HUDI TERMINAL UKAZI file
+zhud() { 
+	echo "$@" >> $HUD 
+}
+#Append line to tmp file
+ztmp() { 
+	echo "$@" >> $TMP 
+}
+#Append line to toread file
+ztord() { 
+	echo "$@" >> $TORD 
+}
+#write out zapiksi
+alias ctodo='catOrLess $TODO'
+alias chud='catOrLess $HUD'
+alias ctmp='catOrLess $TMP'
+alias ctord='catOrLess $TORD'
+#utility
+catOrLess() {
+	noOfLines=`cat "$1" | wc -l`
+	if [ $LINES -gt $noOfLines ]; then
+		cat "$1"	
+	else
+		less "$1" 
+	fi
+}
+
+
+# NETWORKING
+alias f='firefox'
 alias ping1='ping -c 4 www.google.com'
 alias ping2='ping -c 4 192.168.0.1'
 alias mac='ifconfig | grep HWaddr'
-
 
 #whats my internal ip - ifconfig
 alias ip1='echo `ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]*`'
@@ -164,6 +203,8 @@ alias d='cd /media/sda3'
 
 #shutdown
 alias hib='sudo pm-hibernate'
+alias sus='sudo pm-suspend'
+
 
 #########
 #mashups#
@@ -172,7 +213,6 @@ alias nba='lynx http://scores.nbcsports.msnbc.com/nba/scoreboard.asp'
 #LPP
 alias lpp='lynx http://bus.talktrack.com/'
 #lynx -cmd_script=lppScript http://bus.talktrack.com/ > /dev/null
-
 
 #linxUberSkriptInterpreter(String source) {
 #  outScr=""
@@ -191,8 +231,6 @@ alias lpp='lynx http://bus.talktrack.com/'
 #
 #  return outScr
 #}
-
-
 
 #STACK OVERFLOW
 alias so='stack'

@@ -106,6 +106,8 @@ git init
 git add index.html ALI git add .
 git status
 git commit -am "Initial contents of public_html"
+-
+git rm --cached mylogfile.log - untrack file withouth deleting it.
 
 PIRATEBAY:
 torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file

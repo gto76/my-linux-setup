@@ -5,7 +5,6 @@ alias rm='rm -i'
 alias mv='mv -iv'
 alias cp='cp -iv'
 
-
 alias less='less -Q'
  
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
@@ -110,7 +109,11 @@ alias tarz='tar xzvf'
 alias b='bash'
 alias g='gedit'
 alias gg='gedit $HOME/.bashrc &'
-alias f='firefox &'
+sg() {
+	sudo gedit $*
+}
+
+alias f='firefox'
 
 #count number of lines in files with extension $1
 noOfLines() {
@@ -139,12 +142,25 @@ alias ping1='ping -c 4 www.google.com'
 alias ping2='ping -c 4 192.168.0.1'
 alias mac='ifconfig | grep HWaddr'
 
-function myip () { 
-	lynx --dump http://ipecho.net/plain; 
+
+#whats my internal ip - ifconfig
+alias ip1='echo `ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]*`'
+
+#whats my external ip - ifconfig
+alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]*`'
+
+#how many people on network beside you (number of hosts)
+noh() {
+	thirdNumberOfIp=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+	command="nmap -sP 192.168.$thirdNumberOfIp.0-254"
+	noOfHosts=`$command | grep -o "[0-9]* hosts up" | grep -o [0-9]*`
+	noOfOtherUsers=`expr $noOfHosts - 2`
+	echo $noOfOtherUsers
 }
 
 # Specific
 alias books="mc $HOME/Desktop/Computers"
+alias d='cd /media/sda3'
 
 #shutdown
 alias hib='sudo pm-hibernate'
@@ -242,8 +258,8 @@ wiki() {
   eval "lynx $url"
 }
 
-
 #from net:
 alias kdox='mplayer http://wms2.mainstreamnetwork.com/kdox-am &'
 alias wabc='mplayer http://69.28.128.148:80/stream/citadelcc_WABC-AM &'
+
 

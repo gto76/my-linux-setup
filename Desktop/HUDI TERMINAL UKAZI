@@ -2,9 +2,6 @@ ctrl+alt+t - start terminal
 ctrl+alt+f - start firefox
 ctrl+alt+h - start home
 
-ctrl+shift+n - new folder
-ctrl+h - show hidden files
-
 alt+F10 - toggle maximize window
 alt+F11 - minimize window
 alt+F12 - toggle full screen
@@ -14,6 +11,11 @@ ctrl+alt+F7 do F12 xwindovi
 
 ctrl+shift+c - copy in terminal
 ctrl+shift+v - paste in terminal
+
+in explorer:
+ctrl+l - location
+ctrl+shift+n - new folder
+ctrl+h - show hidden files
 
 HUDI TERMINAL UKAZI:
 apropos -a - all keywords
@@ -50,10 +52,12 @@ ls ./* - ls one level deep
 noip2 - dynamic dns update client
 winetricks - install wine aplications
 sh - run script even if not executable
-nmap -sP 192.168.0.1-254 - ip scanning with range
+nmap -sP 192.168.2.1-3 - network sxanning
+nmap 192.168.0.3 -p100-139 - port scanning
 nmap 192.168.0.3 -p100-139 - port scanning
 sudo nmap -O 192.168.0.3 - scanning os
 sshd - ssh server deamon
+/etc/init.d/ssh restart - sshd restart
 whois - info about domain
 cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
 users - trenutno ulogirani userji
@@ -61,6 +65,10 @@ sudo /etc/init.d/ssh restart - restrt sshh deamon
 uname -a - print system info
 df - disc free
 scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp
+gitk - git explorer
+transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
+du -s <folderName> - folder size
+!<term> - zadnji ukaz ki se je zacel na term.
 
 HUDE DATOTEKE:
 /etc/mailcap - default programi za extensne
@@ -68,7 +76,10 @@ $HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
 /etc/passwd - userji
 /etc/ssh/sshd_config - sshd config
-
+~/.bash_profile  - for PATH, JAVA_HOME (ali .bashrc) for one user
+ /etc/profile OR /etc/bash.bashrc - for all users
+source /etc/profile OR . /etc/profile to activate
+/usr/lib/jvm - java jres and jdks
 
 BASH BLIZNJICE: 
 alt . - zadnji argument
@@ -86,13 +97,42 @@ ctrl d - EOF
 INSTALL MANTRA:
 ./configure
 make
-make install (as su!)
+sudo make install
 
 GIT MANTRA:
 git init
-git add index.html ali git add .
+git add index.html ALI git add .
 git status
-git commit (-a) -m "Initial contents of public_html"
+git commit -am "Initial contents of public_html"
 
 PIRATEBAY:
 torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file
+
+MAVEN:
+mvn / maven2 / m2e
+
+(bin - sh skripte (run.sh))
+src/main/java/com... - source
+src/test/java/com... - test source (junits)
+src/test/resources/images/ - test images
+(test-data/)
+target/classes - compiled classes
+pom.xml - build commands file
+
+"from manual:"
+----------------------------------------------------
+src/main/java 	Application/Library sources
+src/main/resources 	Application/Library resources
+src/main/filters 	Resource filter files
+src/main/assembly 	Assembly descriptors
+src/main/config 	Configuration files
+src/main/scripts 	Application/Library scripts
+src/main/webapp 	Web application sources
+src/test/java 	Test sources
+src/test/resources 	Test resources
+src/test/filters 	Test resource filter files
+src/site 	Site
+LICENSE.txt 	Project's license
+NOTICE.txt 	Notices and attributions required by libraries that the project depends on
+README.txt 	Project's readme
+---------------------------------------------------

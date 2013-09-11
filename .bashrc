@@ -5,7 +5,7 @@ alias rm='rm -i'
 alias mv='mv -iv'
 alias cp='cp -iv'
 
-alias less='less -Q'
+alias less='less -Q~P%db/%D'
 
 
 #LS
@@ -21,13 +21,13 @@ alias listMed='ls -lGgh --time-style="+%b %d %Y %H:%M"'
 alias listLong='ls -l'
 
 listShortLess() { 
-  listShort --color=always $* | less -R 
+  listShort --color=always $* | less -R+G
 }
 listMedLess() { 
-  listMed --color=always $* | less -R 
+  listMed --color=always $* | less -R+G 
 }
 listLongLess() { 
-  listLong --color=always $* | less -R 
+  listLong --color=always $* | less -R+G 
 }
 
 l() {
@@ -167,16 +167,49 @@ alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]*`'
 
 #how many people on network beside you (number of hosts)
 noh() {
+	if [ $# -gt 0 ]
+	then
+		forth="$1"
+	else
+		forth="254"
+	fi
 	thirdNumberOfIp=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
-	command="nmap -sP 192.168.$thirdNumberOfIp.0-254"
+	command="nmap -sP 192.168.$thirdNumberOfIp.0-$forth"
 	noOfHosts=`$command | grep -o "[0-9]* hosts up" | grep -o [0-9]*`
 	noOfOtherUsers=`expr $noOfHosts - 2`
 	echo $noOfOtherUsers
 }
 
+#scans local network
+nmap1() {
+  if [ $# -eq 0 ]
+  then
+    third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+    forth="254"
+  fi
+  if [ $# -eq 1 ]
+  then
+    third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+    forth="$1"
+  fi
+  if [ $# -gt 1 ]
+  then
+    third="$1"
+    forth="$2"
+  fi
+  nmap -sP 192.168.$third.0-$forth
+}
+
 #plays song in background
-muska() {
-	mplayer -slave "$@" &> /dev/null &
+spilej() {
+	if [ -f "$1" ]
+	then
+		echo "obstaja file"
+		mplayer -slave "$@" &> /dev/null &
+	else
+		echo "ne obstaja file - iscem"
+		mplayer "`	locate ".*$*.*mp3" --regex --quiet --ignore-case --limit 1 | sed 's/\(.*\)\r/"\1"/g'  `" &> /dev/null
+	fi
 }
 
 #ZAPISKI
@@ -207,6 +240,7 @@ alias ctodo='catOrLess $TODO'
 alias chud='catOrLess $HUD'
 alias ctmp='catOrLess $TMP'
 alias ctord='catOrLess $TORD'
+alias tz='gedit $TODO'
 
 # Specific
 alias books="mc $HOME/Desktop/Computers"

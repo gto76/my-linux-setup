@@ -242,6 +242,14 @@ alias ctmp='catOrLess $TMP'
 alias ctord='catOrLess $TORD'
 alias tz='gedit $TODO'
 
+#git
+alias gitc='git commit -am "standard"'
+
+
+#shutdown
+alias hib='sudo pm-hibernate'
+alias sus='sudo pm-suspend'
+
 # Specific
 alias books="mc $HOME/Desktop/Computers"
 alias d='cdd'
@@ -249,11 +257,6 @@ alias cdd='cd /media/sda3'
 
 export TORRENTS="/media/sda3/torentz"
 export MUSIC="/media/sda3/music"
-
-
-#shutdown
-alias hib='sudo pm-hibernate'
-alias sus='sudo pm-suspend'
 
 
 #########

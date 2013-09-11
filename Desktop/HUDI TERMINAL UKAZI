@@ -54,8 +54,8 @@ du -s <folderName> - folder size
 screen - switch between multiple virtual terminals (useful in ssh)
 	ctrl+a: c - new terminal, n - next, p - previous
 man section_number (1 - commands, 2 -libraries!!) tool_name
-<command> 2> /dev/null - redirect error output
-<command> &> /dev/null - redirect both standard and error output
+2> /dev/null - redirect error output
+&> /dev/null - redirect both standard and error output
 tee - Sends output of a program to a file and to standard output
 $(command) - same as `command`
 ls -S - sort by size, ls -t - sort by time

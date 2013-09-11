@@ -17,60 +17,39 @@ ctrl+l - location
 ctrl+shift+n - new folder
 ctrl+h - show hidden files
 
+###################
 HUDI TERMINAL UKAZI:
+###################
+PACKAGES:
 apropos -a - all keywords
 whatis - short description of app
 apptitude - browse packages
 apt-cache search - search packages
-lynx - web browser
-elinks - web browser
+dpkg -l - lists installed packages
+winetricks - install wine aplications
+
+BASIC:
 alias - shrani alias ($HOME/.bashrc)
 mc - midnight commander
-mutt - mail client
-cmus - music
-xargs - output from one command to arguments of another
-wget - zdownloada webpage
-df - disc fulness
-mplayer - multimedia player
-git commit -a -m "Message"
-libreoffice - novi openoffice
+xargs - output from one command to arguments of another (hard)
+df - disc fulness / disc free
 read - reads from file line by line
 tr - translate or delete characters (-d for delete)
-locate - isto kot find samo z indexom
 find . | grep bla - preišče rekurzivno tudi poddirektorije
-dpkg -l - lists installed packages
-zeitgeist - activity logger
+locate <word>  - isto kot find samo z indexom
+	sudo updatedb OR sudo locate -u - update database
+whereis <command> - locates where command resides (which - only executable)
 tail -f - do not stop printing
 tar xvzf xxx.tar.gz - decompress and detar
 	tar xvjf xxx.tar.bz2 - decompress and detar
-wget <location> - The non-interactive network downloader.
 ccsm - additional settings (compiz config setings menager - BAD)
 md5sum - checks md5 sum hash
 appletviewer Race.htm - run java applet
-diakonos - simple terminal text editor with ctrl-c for copy
+java -jar "bla.jar" - execute jar
 ls ./* - ls one level deep
-noip2 - dynamic dns update client
-winetricks - install wine aplications
 sh - run script even if not executable
-nmap -sP 192.168.2.1-3 - network sxanning
-	nmap 192.168.0.3 -p100-139 - port scanning
-	nmap 192.168.0.3 -p100-139 - port scanning
-	sudo nmap -O 192.168.0.3 - scanning os
-sshd - ssh server deamon
-	/etc/init.d/ssh restart - sshd restart
-whois - info about domain
-cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
-users - trenutno ulogirani userji
-sudo /etc/init.d/ssh restart - restrt sshh deamon
-uname -a - print system info
-df - disc free
-scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp
-gitk - git explorer
-transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
 du -s <folderName> - folder size
 !<term> - zadnji ukaz ki se je zacel na term.
-ssh-keygen -t rsa -C "email address" - generate rsa key pair
-xclip - copies to clipboard
 screen - switch between multiple virtual terminals (useful in ssh)
 	ctrl+a: c - new terminal, n - next, p - previous
 man section_number (1 - commands, 2 -libraries!!) tool_name
@@ -79,13 +58,78 @@ man section_number (1 - commands, 2 -libraries!!) tool_name
 tee - Sends output of a program to a file and to standard output
 $(command) - same as `command`
 ls -S - sort by size, ls -t - sort by time
-locate <word> - find with db?
-	sudo updatedb OR sudo locate -u - update database
-whereis <command> - locates where command resides (which - only executable)
 cp -R - copy recursively
 shred - securely remove files
+date - tells you date and time, also can set
+cal - calendar
+sudo fdisk -l - show partitions
+shutdown now - take you to single user mode
+	shutdown -h now -  begins the shutdown procedure (OR halt OR poweroff)
+	shutdown -h 11:50 - when
+	shutdown -r now - reboot (OR reboot)
+
+	
+PROCESSES:
+ps --forest - wiev hierarchical view of processes
+pstree - similar
+pgrep <string> - returns PIDS of processes containing string (-l to print process name)
+kill $(pgrep mozilla) - kills everithing mozilla
+pkill - same
+kill -kill pid - force quit, data will be lost
+killall - uses name instead of pid
+pkill - similar but with regex
+skill - sends signals to command/user/tty
+	skill -STOP user_name - stop all of the users processes
+	skill -CONT user_name
+jobs - Prints currently running job
+bg <job number> - Backgrounds a process
+fg <job number> - Bring a process to the foreground
+nice - Sets the priority for a process (from -20 MAX to 20 MIN priority)
+	nice -20 make - Would execute make and it would run at maximum priority.
+renice - Changes the priority of an existing command
+	renice +20 2222
+snice - snice works very similarly to skill
+	snice -10 -u root - increase the priority of all root’s processes.
 
 
+
+NETWORK:
+nmap -sP 192.168.2.1-3 - network scanning
+	nmap 192.168.0.3 -p100-139 - port scanning
+	nmap 192.168.0.3 -p100-139 - port scanning
+	sudo nmap -O 192.168.0.3 - scanning os
+sshd - ssh server deamon
+	/etc/init.d/ssh restart - sshd restart
+ssh-keygen -t rsa -C "email address" - generate rsa key pair
+whois - info about domain
+scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp
+transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
+noip2 - dynamic dns update client
+wget <location> - The non-interactive network downloader.
+lynx - web browser
+elinks - web browser
+mutt - mail client
+
+SYSTEM:
+time <command> - kolk cajta se je ukaz izvaju
+cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
+users - trenutno ulogirani userji (samo imena)
+who - podobno, več podatkov
+w - podobno, še kaj izvajajo
+sudo /etc/init.d/ssh restart - restrt sshh deamon
+uname -a - print system info
+last - when various users have logged in or out. This includes information on when the computer was rebooted.
+lastlog - Displays a list of users and what day/time they logged into the system
+free -tm - Displays memory statistics
+zeitgeist - activity logger
+
+MISC:
+cmus - music (can be controled from outside)
+mplayer - movie/music player
+libreoffice - novi openoffice
+diakonos - simple terminal text editor with ctrl-c for copy
+xclip - copies to clipboard
+display - displays an image
 
 HUDE DATOTEKE:
 /etc/mailcap - default programi za extensne
@@ -97,6 +141,18 @@ $HOME/.bashrc - mesto za bash aliase in funkcije
  /etc/profile OR /etc/bash.bashrc - for all users
 source /etc/profile OR . /etc/profile to activate
 /usr/lib/jvm - java jres and jdks
+/proc - The files under the /proc show various information
+about the system
+/proc/cpuinfo - information about the CPU
+/proc/modules -  information about what kernel-modules are loaded on your
+system
+dmesg - print the contents of your bootup messages displayed by the kernel. This is often useful
+when debugging problems
+
+
+######
+######
+
 
 BASH BLIZNJICE: 
 alt . - zadnji argument
@@ -123,6 +179,7 @@ git status
 git commit -am "Initial contents of public_html"
 -
 git rm --cached mylogfile.log - untrack file withouth deleting it.
+gitk - repo explorer
 
 ADD TO GITHUB:
 git remote add origin git@github.com:/youruser/somename.git

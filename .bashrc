@@ -55,7 +55,7 @@ lll() {
 	fi
 }
 
-alias c='cat'
+
 #???
 #c() {
 #  builtin "$*"
@@ -91,27 +91,51 @@ apropos1() {
 	apt-cache search $*
 }
 
-alias cls=clear
+alias clr=clear
 
 alias his=history
-alias pf='ps -e | grep $1'
 alias h='history | grep '
+alias pf='ps -e | grep $1'
 alias df='df -h'
 alias path='echo -e ${PATH//:/\\n}'
 
 alias ch='chmod u+x'
 
 
-alias more='less'
-alias mo='less'
+##TEXT
+alias c='cat'
 alias m='less'
+alias n='nano'
+alias g='gedit'
+alias more='less'
+
+#Open last modified file in pico
+alias Pico="pico `ls -t | head -1`" 
+
+#open cat or less, depending on no of lines of file
+catOrLess() {
+	noOfLines=`cat "$1" | wc -l`
+	if [ $LINES -gt $noOfLines ]; then
+		cat "$1"	
+	else
+		less "$1" 
+	fi
+}
+
+#make bash script , make it executable, and open it in gedit
+bs() {
+	fName="$1.sh"
+	touch $fName
+	chmod u+x $fName
+	gedit $fName
+}
+
 
 alias tar1='tar xvf'
 alias tarz='tar xzvf'
 
 #bash
 alias b='bash'
-alias g='gedit'
 alias gg='gedit $HOME/.bashrc &'
 sg() {
 	sudo gedit $*
@@ -126,53 +150,6 @@ noOfLines() {
 		fi
 	done 
 	echo $no
-}
-
-#make bash script , make it executable, and open it in gedit
-bs() {
-	fName="$1.sh"
-	touch $fName
-	chmod u+x $fName
-	gedit $fName
-}
-
-alias Pico="pico `ls -t | head -1`" #Open last modified file in pico
-
-#ZAPISKI
-export TODO="/home/minerva/Desktop/TODO"
-export HUD="/home/minerva/Desktop/HUDI\ TERMINAL\ UKAZI"
-export TMP="/home/minerva/Desktop/tmp"
-export TORD="/home/minerva/Desktop/toread"
-
-#Append line to todo file
-ztodo() { 
-	echo "$@" >> $TODO 
-}
-#Append line to HUDI TERMINAL UKAZI file
-zhud() { 
-	echo "$@" >> $HUD 
-}
-#Append line to tmp file
-ztmp() { 
-	echo "$@" >> $TMP 
-}
-#Append line to toread file
-ztord() { 
-	echo "$@" >> $TORD 
-}
-#write out zapiksi
-alias ctodo='catOrLess $TODO'
-alias chud='catOrLess $HUD'
-alias ctmp='catOrLess $TMP'
-alias ctord='catOrLess $TORD'
-#utility
-catOrLess() {
-	noOfLines=`cat "$1" | wc -l`
-	if [ $LINES -gt $noOfLines ]; then
-		cat "$1"	
-	else
-		less "$1" 
-	fi
 }
 
 
@@ -197,9 +174,48 @@ noh() {
 	echo $noOfOtherUsers
 }
 
+#plays song in background
+muska() {
+	mplayer -slave "$@" &> /dev/null &
+}
+
+#ZAPISKI
+export TODO="/home/minerva/Desktop/TODO"
+export HUD="/home/minerva/Desktop/HUDI\ TERMINAL\ UKAZI"
+export TMP="/home/minerva/Desktop/tmp"
+export TORD="/home/minerva/Desktop/toread"
+
+#Append line to todo file
+alias zt='ztodo'
+ztodo() { 
+	echo "$@" >> $TODO 
+}
+#Append line to HUDI TERMINAL UKAZI file
+zhud() { 
+	echo "$@" >> $HUD 
+}
+#Append line to tmp file
+ztmp() { 
+	echo "$@" >> $TMP 
+}
+#Append line to toread file
+ztord() { 
+	echo "$@" >> $TORD 
+}
+#write out zapiksi
+alias ctodo='catOrLess $TODO'
+alias chud='catOrLess $HUD'
+alias ctmp='catOrLess $TMP'
+alias ctord='catOrLess $TORD'
+
 # Specific
 alias books="mc $HOME/Desktop/Computers"
-alias d='cd /media/sda3'
+alias d='cdd'
+alias cdd='cd /media/sda3'
+
+export TORRENTS="/media/sda3/torentz"
+export MUSIC="/media/sda3/music"
+
 
 #shutdown
 alias hib='sudo pm-hibernate'

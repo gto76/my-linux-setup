@@ -164,6 +164,7 @@ alias f='firefox'
 alias ping1='ping -c 4 www.google.com'
 alias ping2='ping -c 4 192.168.0.1'
 alias mac='ifconfig | grep HWaddr'
+alias dell='ssh jure@gto76.no-ip.biz'
 
 #whats my internal ip - ifconfig
 alias ip1='echo `ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]*`'
@@ -264,6 +265,7 @@ alias books="mc $HOME/Desktop/Computers"
 alias d='cdd'
 alias cdd='cd /media/sda3'
 
+export DELL="gto76.no-ip.biz"
 export TORRENTS="/media/sda3/torentz"
 export MUSIC="/media/sda3/music"
 

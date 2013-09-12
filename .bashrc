@@ -1,5 +1,6 @@
 # Make some possibly destructive commands more interactive.
 alias rmdir='rm -rI'
+alias cpdir='cp -arv'
 
 alias rm='rm -i'
 alias mv='mv -iv'
@@ -87,6 +88,7 @@ alias p='echo $PWD'
 alias cd..='cd ..'
 
 alias canhaz='sudo apt-get install'
+alias update='sudo apt-get update'
 apropos1() {
 	apt-cache search $*
 }
@@ -122,12 +124,17 @@ catOrLess() {
 	fi
 }
 
+alias gg='gedit $HOME/.bashrc &'
+alias tz='gedit "$TODO" &'
+alias htu='gedit "$HUD" &'
+alias ggg='gedit "$HUD" $HOME/.bashrc &'
+
 #make bash script , make it executable, and open it in gedit
 bs() {
 	fName="$1.sh"
-	touch $fName
-	chmod u+x $fName
-	gedit $fName
+	touch "$fName"
+	chmod u+x "$fName"
+	gedit "$fName"
 }
 
 
@@ -136,9 +143,8 @@ alias tarz='tar xzvf'
 
 #bash
 alias b='bash'
-alias gg='gedit $HOME/.bashrc &'
 sg() {
-	sudo gedit $*
+	sudo gedit "$*"
 }
 
 #count number of lines in files with extension $1
@@ -180,6 +186,8 @@ noh() {
 	echo $noOfOtherUsers
 }
 
+alias noh1='noh 10'
+
 #scans local network
 nmap1() {
   if [ $# -eq 0 ]
@@ -200,6 +208,8 @@ nmap1() {
   nmap -sP 192.168.$third.0-$forth
 }
 
+alias nmap2='nmap1 10'
+
 #plays song in background
 spilej() {
 	if [ -f "$1" ]
@@ -214,33 +224,32 @@ spilej() {
 
 #ZAPISKI
 export TODO="/home/minerva/Desktop/TODO"
-export HUD="/home/minerva/Desktop/HUDI\ TERMINAL\ UKAZI"
+export HUD="/home/minerva/Desktop/HUDI TERMINAL UKAZI"
 export TMP="/home/minerva/Desktop/tmp"
 export TORD="/home/minerva/Desktop/toread"
 
 #Append line to todo file
 alias zt='ztodo'
 ztodo() { 
-	echo "$@" >> $TODO 
+	echo "$@" >> "$TODO" 
 }
 #Append line to HUDI TERMINAL UKAZI file
 zhud() { 
-	echo "$@" >> $HUD 
+	echo "$@" >> "$HUD" 
 }
 #Append line to tmp file
 ztmp() { 
-	echo "$@" >> $TMP 
+	echo "$@" >> "$TMP" 
 }
 #Append line to toread file
 ztord() { 
-	echo "$@" >> $TORD 
+	echo "$@" >> "$TORD" 
 }
 #write out zapiksi
-alias ctodo='catOrLess $TODO'
-alias chud='catOrLess $HUD'
-alias ctmp='catOrLess $TMP'
-alias ctord='catOrLess $TORD'
-alias tz='gedit $TODO'
+alias ctodo='catOrLess "$TODO"'
+alias chud='catOrLess "$HUD"'
+alias ctmp='catOrLess "$TMP"'
+alias ctord='catOrLess "$TORD"'
 
 #git
 alias gitc='git commit -am "standard"'

@@ -27,9 +27,14 @@ apptitude - browse packages
 apt-cache search - search packages
 dpkg -l - lists installed packages
 winetricks - install wine aplications
+whereis <command> - locates where command resides 
+which - similar only executable
 
-BASIC:
-alias - shrani alias ($HOME/.bashrc)
+GENERAL:
+alias - shrani alias ($HOME/.bashrc) / show aliases
+\<command> - temporarily disable alias (call original)
+command <command> - executes original command, ignoring shell functions
+type <command> - will tell you what is command alliased to
 mc - midnight commander
 df - disc fulness / disc free
 read - reads from file line by line
@@ -40,7 +45,7 @@ locate -0 | xargs -0 - uses NUL character as separator, necesary for filenames w
 xargs - output from one command to arguments of another
 	-t echoes the command before executing it, and -p echoes it and asks for confirmation
 	
-whereis <command> - locates where command resides (which - only executable)
+
 tar xvzf xxx.tar.gz - decompress and detar
 	tar xvjf xxx.tar.bz2 - decompress and detar
 ccsm - additional settings (compiz config setings menager - BAD)
@@ -70,7 +75,9 @@ shutdown now - take you to single user mode
 	shutdown -r now - reboot (OR reboot)
 cmp - compares two files, similar do diff but also for binaries
 $* - bash: zdruzi vse argumente v enga!!!!!!!!	
-
+"$x" - bash: vedno dvojni oklepaji okrog dolarja!!!!!!!!
+acpi - check battery
+xclip - copies to clipboard
 
 
 TEXT:
@@ -87,6 +94,11 @@ enscript - Converts text files to postscript, rtf, HTML
 figlet - display large characters made up of ordinary screen characters
 grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before,
 	-r recursive
+pdftohtml - pdf to html
+pdftotext - pdf to text
+libreoffice - novi openoffice
+diakonos - simple terminal text editor with ctrl-c for copy
+rel - analyze text files for relevance to a given set of keywords
 
 	
 PROCESSES:
@@ -160,13 +172,18 @@ vipw - edit password file
 vigr - edit groups file
 passwd - change password
 
-MISC:
+MULTIMEDIA:
 cmus - music (can be controled from outside)
 mplayer - movie/music player
-libreoffice - novi openoffice
-diakonos - simple terminal text editor with ctrl-c for copy
-xclip - copies to clipboard
+mpg321 - plays mp3
+ogg123 - plays ogg
 display - displays an image
+montage - Creates a montage from images
+convert - To convert the file format
+import - Captures screen-shots from the X server
+mogrify - edit image
+
+
 
 HUDE DATOTEKE:
 /etc/mailcap - default programi za extensne
@@ -218,6 +235,7 @@ git commit -am "Initial contents of public_html"
 -
 git rm --cached mylogfile.log - untrack file withouth deleting it.
 gitk - repo explorer
+git clone location - download source
 
 ADD TO GITHUB:
 git remote add origin git@github.com:/youruser/somename.git

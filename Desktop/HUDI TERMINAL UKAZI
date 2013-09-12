@@ -145,6 +145,7 @@ at - executes a command once on a particular day, at a particular time.
 	at 21:30 / at now + time /at -f shell_script now + 1 hour
 atq - list jobs currently in queue
 atrm - Will remove a job from the ’at’ queue.
+
 cron - schedule a particular function to occur every minute, hour, day, week, or month
 crontab - util
 anacron - catches up with tasks next time the computer is on
@@ -205,6 +206,8 @@ vigr - edit groups file
 passwd - change password
 chattr - Change file system attributes
 lsattr - list attributes
+dmesg - print the contents of your bootup messages displayed by the kernel. This is often useful
+when debugging problems
 
 
 AUDIO:
@@ -227,26 +230,38 @@ import - Captures screen-shots from the X server
 mogrify - edit image
 
 
-
+#############
 HUDE DATOTEKE:
+#############
+
+EDIT TO CONFIGURE / "editable text configuration" (etc):
 /etc/mailcap - default programi za extensne
 $HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
 /etc/passwd - userji
 /etc/groups - grupe
+/etc/init.d/ - direktorij z nastavitvenimi datotekami
 /etc/ssh/sshd_config - sshd config
 ~/.bash_profile  - for PATH, JAVA_HOME (ali .bashrc) for one user
- /etc/profile OR /etc/bash.bashrc - for all users
-source /etc/profile OR . /etc/profile to activate
-/usr/lib/jvm - java jres and jdks
+/etc/profile OR /etc/bash.bashrc - for all users
+source 
+/etc/profile OR . /etc/profile to activate
+
 /proc - The files under the /proc show various information
 about the system
 /proc/cpuinfo - information about the CPU
-/proc/modules -  information about what kernel-modules are loaded on your
-system
-dmesg - print the contents of your bootup messages displayed by the kernel. This is often useful
-when debugging problems
+/proc/modules -  information about what kernel-modules are loaded on your system
 
+UNIX SYSTEM RESOURCES (usr):
+/usr/lib/jvm - java jres and jdks
+
+/sbin: the "system-administrator's bin file", which hosts programs that would be in /bin if they didn't have "root-only"
+access permissions.
+
+VARIABLE (var):
+/var/log/ - System logs in here
+/var/log/auth.log - log loginov
+/var/spool - contains data which is awaiting some kind of later processing
 
 ######
 ######

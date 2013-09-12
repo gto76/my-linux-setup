@@ -102,7 +102,7 @@ pdftotext - pdf to text
 libreoffice - novi openoffice
 diakonos - simple terminal text editor with ctrl-c for copy
 rel - analyze text files for relevance to a given set of keywords
-
+$? - exit code of last command (0 - ok)
 	
 PROCESSES:
 ps --forest - wiev hierarchical view of processes

@@ -147,8 +147,9 @@ atq - list jobs currently in queue
 atrm - Will remove a job from the ’at’ queue.
 
 cron - schedule a particular function to occur every minute, hour, day, week, or month
-crontab - util
+crontab - util for editing crons (-l list, -e edit)
 anacron - catches up with tasks next time the computer is on
+
 
 
 NETWORK:

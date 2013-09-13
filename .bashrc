@@ -97,7 +97,7 @@ alias clr=clear
 
 alias his=history
 alias h='history | grep '
-alias pse='ps -e | grep $1'
+alias pse='ps -e'
 alias df='df -h'
 alias path='echo -e ${PATH//:/\\n}'
 

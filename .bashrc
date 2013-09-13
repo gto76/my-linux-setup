@@ -56,6 +56,10 @@ lll() {
 	fi
 }
 
+alias la='l -A'
+alias lla='ll -A'
+alias llla='lll -A'
+
 
 #???
 #c() {
@@ -89,6 +93,8 @@ alias cd..='cd ..'
 
 alias canhaz='sudo apt-get install'
 alias update='sudo apt-get update'
+alias remove='sudo apt-get remove'
+
 apropos1() {
 	apt-cache search $*
 }
@@ -103,10 +109,11 @@ alias path='echo -e ${PATH//:/\\n}'
 
 alias ch='chmod u+x'
 
+alias ap='apropos'
 
 ##TEXT
 alias c='cat'
-alias m='less'
+alias m='less' 
 alias n='nano'
 alias g='gedit'
 alias more='less'
@@ -114,15 +121,27 @@ alias more='less'
 #Open last modified file in pico
 alias Pico="pico `ls -t | head -1`" 
 
-#open cat or less, depending on no of lines of file
+#open cat or less, depending on no of lines of file or input
 catOrLess() {
-	noOfLines=`cat "$1" | wc -l`
-	if [ $LINES -gt $noOfLines ]; then
-		cat "$1"	
+	if [ $# -gt 0 ]
+	then
+		noOfLines=`cat "$1" | wc -l`
+		if [ $LINES -gt $noOfLines ]; then
+			cat "$1"	
+		else
+			less "$1" 
+		fi
 	else
-		less "$1" 
+		input=`cat`
+		noOfLines=`echo "$input" | wc -l`
+		if [ $LINES -gt $noOfLines ]; then
+			echo "$input" | cat	
+		else
+			echo "$input" | less 
+		fi
 	fi
 }
+
 
 alias gg='gedit $HOME/.bashrc &'
 alias tz='gedit "$TODO" &'
@@ -221,6 +240,80 @@ spilej() {
 		echo "ne obstaja file - iscem"
 		mplayer "`	locate ".*$*.*mp3" --regex --quiet --ignore-case --limit 1 | sed 's/\(.*\)\r/"\1"/g'  `" &> /dev/null
 	fi
+}
+
+#plays song in background (Downloads from youtube if nothing found localy)
+spilej2() {
+	if [ -f "$1" ]
+	then
+		echo "obstaja file"
+		mplayer -slave "$@" &> /dev/null &
+	else
+		#search filesystem
+		echo "fila ni v direktoriju - iscem disk"
+		listOfFiles=`locate ".*$*.*mp3" --regex --quiet --ignore-case`
+		noOfFiles=`echo "$listOfFiles" | wc -l`
+		echo "stevilo datotek na disku je $noOfFiles"
+		if [ "$noOfFiles" -gt 1 ]
+		then
+			#echo "file je na disku"
+			let chosenNumber="$RANDOM"%"$noOfFiles"
+			echo "Izbrano stevilo je $chosenNumber"
+			echo "fajli so $listOfFiles"
+			fileName=`echo "$listOfFiles" | sed "$chosenNumber!d" | sed 's/\(.*\)\r/"\1"/g' `
+			echo "Filename je $fileName"
+			mplayer "$fileName" &> /dev/null
+		else
+			echo "fila ni na disku - grem na youtube"
+			spilejYoutube "$*"
+		fi
+		
+	fi
+}
+
+spilejYoutube() {	
+			cd /tmp; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube
+			#zgeneriraj skripto in jo sprevi v tmp
+			lynxYoutubeSkripta "$*" > spilejLinxSkripta
+			#zazeni lynx z skripto
+			echo "Iscem link."
+			lynx -cmd_script=/tmp/spilejYoutube/spilejLinxSkripta www.youtube.com &>/dev/null
+			#uzami zadnji bookmark
+			url=`cut --delimiter='"' -f 2 $HOME/lynx_bookmarks.html | tail -n1 | sed s/";".*$//`
+			echo "url:$url"
+			#zdaunloudaj video iz youtuba
+			youtube-dl "$url"
+			#ga pretvori v mp3			
+			fileId=`echo $url | sed 's/.*=\(.*\)&.*/\1/g'`
+			videoFilename=`ls *$fileId.flv`
+			audioFilename=`echo "$videoFilename" | sed 's/\(.*\)-$fileId.flv/\1/g'`.wav
+			echo "filename:$audioFilename"
+			ffmpeg -i "$videoFilename" "$audioFilename" &> /dev/null
+			#izbrisi video
+			\rm "$videoFilename"
+			#play audio
+			mplayer "$audioFilename" &>/dev/null
+}
+
+#serches youtube for arguments and (hopefuly) returns first match
+lynxYoutubeSkripta() {
+	echo "key v"
+	for i in {1..8}
+	do
+		echo "key Down Arrow"
+	done
+	echo "`echo "$*" | sed 's/\(.\)/\1\n/g' | sed 's/[ ]/<space>/g' | sed 's/^/key /g' | head -n -1`"
+	echo "key Up Arrow"
+	echo "key Right Arrow"
+	for i in {1..20}
+	do
+		echo "key Down Arrow"
+	done
+	echo "key a
+key l
+key ^J
+key q
+key y"
 }
 
 #ZAPISKI

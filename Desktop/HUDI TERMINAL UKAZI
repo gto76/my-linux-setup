@@ -12,10 +12,23 @@ ctrl+alt+F7 do F12 xwindovi
 ctrl+shift+c - copy in terminal
 ctrl+shift+v - paste in terminal
 
-in explorer:
+explorer:
 ctrl+l - location
 ctrl+shift+n - new folder
 ctrl+h - show hidden files
+
+gedit:
+ctrl+g - find the next instance of the string.
+ctrl+shft+g - find the previous instance of the string. 
+Ctrl+Shft+K - Clear highlight 
+
+terminal:
+Shift+Ctrl+t	new tab	 
+Shift+Ctrl+w	close tab	 
+Ctrl+{PgUp,PgDown} change tabs
+
+firefox:
+about:config - layout.css.devPixelsPerPx default zoom (-1.0)
 
 ###################
 HUDI TERMINAL UKAZI:
@@ -44,7 +57,6 @@ locate <word>  - isto kot find samo z indexom
 locate -0 | xargs -0 - uses NUL character as separator, necesary for filenames with spaces	
 xargs - output from one command to arguments of another
 	-t echoes the command before executing it, and -p echoes it and asks for confirmation
-	
 
 tar xvzf xxx.tar.gz - decompress and detar
 	tar xvjf xxx.tar.bz2 - decompress and detar
@@ -81,7 +93,10 @@ xclip - copies to clipboard
 mkfifo <pipename> - creates named pipe
 umask -  The umask is a value set by the shell. It controls the default permissions of any file created
 during that shell session.
-rsync — a fast, versatile, remote (and local) file-copying tool
+rsync - a fast, versatile, remote (and local) file-copying tool
+$RANDOM - 0 - 32767
+wall - interconsole instant messenger (e "bla" | wall)
+	mesg n - turn off
 
 TEXT:
 tr - translate or delete characters (-d for delete)
@@ -146,9 +161,9 @@ at - executes a command once on a particular day, at a particular time.
 atq - list jobs currently in queue
 atrm - Will remove a job from the ’at’ queue.
 
-cron - schedule a particular function to occur every minute, hour, day, week, or month
-crontab - util for editing crons (-l list, -e edit)
-anacron - catches up with tasks next time the computer is on
+crontab -e - schedule commands for repeating execution 
+	cron - daemon that executes scheduled commands
+	anacron - catches up with tasks next time the computer is on
 
 
 
@@ -160,6 +175,8 @@ nmap -sP 192.168.2.1-3 - network scanning
 sshd - ssh server deamon
 	/etc/init.d/ssh restart - sshd restart
 ssh-keygen -t rsa -C "email address" - generate rsa key pair
+~/.ssh - location for your keys
+
 whois - info about domain
 scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp
 transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))

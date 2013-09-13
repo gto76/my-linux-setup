@@ -7,7 +7,7 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 
 alias less='less -Q~P%db/%D'
-
+alias e='echo'
 
 #LS
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
@@ -97,7 +97,7 @@ alias clr=clear
 
 alias his=history
 alias h='history | grep '
-alias pf='ps -e | grep $1'
+alias pse='ps -e | grep $1'
 alias df='df -h'
 alias path='echo -e ${PATH//:/\\n}'
 
@@ -167,7 +167,7 @@ alias mac='ifconfig | grep HWaddr'
 alias dell='ssh jure@gto76.no-ip.biz'
 
 #whats my internal ip - ifconfig
-alias ip1='echo `ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]*`'
+alias ip1='echo `/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]*`'
 
 #whats my external ip - ifconfig
 alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]*`'

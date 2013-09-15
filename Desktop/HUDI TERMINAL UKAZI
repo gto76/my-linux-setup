@@ -40,6 +40,8 @@ apropos -a - all keywords
 whatis - short description of app
 apptitude - browse packages
 apt-cache search - search packages
+apt-get autoremove - remove unneded packages
+apt-get install - also update single package
 dpkg -l - lists installed packages
 winetricks - install wine aplications
 whereis <command> - locates where command resides 
@@ -176,6 +178,7 @@ crontab -e - schedule commands for repeating execution
 
 
 NETWORK:
+whois - info about domain
 nmap -sP 192.168.2.1-3 - network scanning
 	nmap 192.168.0.3 -p100-139 - port scanning
 	nmap 192.168.0.3 -p100-139 - port scanning
@@ -184,8 +187,6 @@ sshd - ssh server deamon
 	/etc/init.d/ssh restart - sshd restart
 ssh-keygen -t rsa -C "email address" - generate rsa key pair
 ~/.ssh - location for your keys
-
-whois - info about domain
 scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp
 transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
 noip2 - dynamic dns update client
@@ -228,13 +229,13 @@ mtr google.com - mtr combines the functionality of the traceroute and ping
 
 
 SYSTEM:
+uname -a - print system info
 time <command> - kolk cajta se je ukaz izvaju
 cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
 users - trenutno ulogirani userji (samo imena)
 who - podobno, več podatkov
 w - podobno, še kaj izvajajo
 sudo /etc/init.d/ssh restart - restrt sshh deamon
-uname -a - print system info
 last - when various users have logged in or out. This includes information on when the computer was rebooted.
 lastlog - Displays a list of users and what day/time they logged into the system
 free -tm - Displays memory statistics
@@ -254,8 +255,9 @@ mplayer - movie/music player
 mpg321 - plays mp3
 ogg123 - plays ogg
 aplay - plays
+
 alsamixer - audio in out volumes
-amixer
+	amixer
 arecord -f filequality -d seconds <filename>
 arecord -f cd -d numberofseconds -t raw | lame -x -r – out.mp3 - Arecord captures the audio that goes through your computer and pipes it to the lame encoder
 

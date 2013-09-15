@@ -9,6 +9,8 @@ alias cp='cp -iv'
 alias less='less -Q~P%db/%D'
 alias e='echo'
 
+alias ba='acpi'
+
 #LS
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
 alias ls='ls -FXC --color=auto --group-directories-first'
@@ -146,7 +148,7 @@ catOrLess() {
 alias gg='gedit $HOME/.bashrc &'
 alias tz='gedit "$TODO" &'
 alias htu='gedit "$HUD" &'
-alias ggg='gedit "$HUD" $HOME/.bashrc &'
+alias ggg='gedit "$HUD" $HOME/.bashrc "$TODO" &'
 
 #make bash script , make it executable, and open it in gedit
 bs() {
@@ -250,49 +252,54 @@ spilej2() {
 		mplayer -slave "$@" &> /dev/null &
 	else
 		#search filesystem
+		#TODO check mp3.part
 		echo "fila ni v direktoriju - iscem disk"
 		listOfFiles=`locate ".*$*.*mp3" --regex --quiet --ignore-case`
 		noOfFiles=`echo "$listOfFiles" | wc -l`
-		echo "stevilo datotek na disku je $noOfFiles"
+		#echo "stevilo datotek na disku je $noOfFiles"
 		if [ "$noOfFiles" -gt 1 ]
 		then
 			#echo "file je na disku"
 			let chosenNumber="$RANDOM"%"$noOfFiles"
-			echo "Izbrano stevilo je $chosenNumber"
-			echo "fajli so $listOfFiles"
+			#echo "Izbrano stevilo je $chosenNumber"
+			#echo "fajli so $listOfFiles"
 			fileName=`echo "$listOfFiles" | sed "$chosenNumber!d" | sed 's/\(.*\)\r/"\1"/g' `
 			echo "Filename je $fileName"
 			mplayer "$fileName" &> /dev/null
 		else
-			echo "fila ni na disku - grem na youtube"
+			echo "fila ni na disku - iscem youtube"
 			spilejYoutube "$*"
 		fi
 		
 	fi
 }
 
-spilejYoutube() {	
-			cd /tmp; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube
-			#zgeneriraj skripto in jo sprevi v tmp
-			lynxYoutubeSkripta "$*" > spilejLinxSkripta
-			#zazeni lynx z skripto
-			echo "Iscem link."
-			lynx -cmd_script=/tmp/spilejYoutube/spilejLinxSkripta www.youtube.com &>/dev/null
-			#uzami zadnji bookmark
-			url=`cut --delimiter='"' -f 2 $HOME/lynx_bookmarks.html | tail -n1 | sed s/";".*$//`
-			echo "url:$url"
-			#zdaunloudaj video iz youtuba
-			youtube-dl "$url"
-			#ga pretvori v mp3			
-			fileId=`echo $url | sed 's/.*=\(.*\)&.*/\1/g'`
-			videoFilename=`ls *$fileId.flv`
-			audioFilename=`echo "$videoFilename" | sed 's/\(.*\)-$fileId.flv/\1/g'`.wav
-			echo "filename:$audioFilename"
-			ffmpeg -i "$videoFilename" "$audioFilename" &> /dev/null
-			#izbrisi video
-			\rm "$videoFilename"
-			#play audio
-			mplayer "$audioFilename" &>/dev/null
+spilejYoutube() {
+	#TODO efikasnejse iskanje linkov	
+	#TODO MP4
+	#TODO stop executing if one step fails
+	cd /tmp; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube
+	#zgeneriraj skripto in jo sprevi v tmp
+	lynxYoutubeSkripta "$*" > spilejLinxSkripta
+	#zazeni lynx z skripto
+	#echo "Iscem link."
+	lynx -cmd_script=/tmp/spilejYoutube/spilejLinxSkripta www.youtube.com &>/dev/null
+	#uzami zadnji bookmark
+	url=`cut --delimiter='"' -f 2 $HOME/lynx_bookmarks.html | tail -n1 | sed s/";".*$//`
+	#echo "url:$url"
+	#zdaunloudaj video iz youtuba
+	echo "Zacenjam download: $url"
+	youtube-dl -q "$url"
+	#ga pretvori v mp3			
+	fileId=`echo $url | sed 's/.*=\(.*\)&.*/\1/g'`
+	videoFilename=`ls *$fileId.flv`
+	audioFilename=`echo "$videoFilename" | sed 's/\(.*\)-$fileId.flv/\1/g'`.wav
+	echo "filename:$audioFilename"
+	ffmpeg -i "$videoFilename" "$audioFilename" &> /dev/null
+	#izbrisi video
+	\rm "$videoFilename"
+	#play audio
+	mplayer "$audioFilename" &>/dev/null
 }
 
 #serches youtube for arguments and (hopefuly) returns first match
@@ -332,6 +339,7 @@ zhud() {
 	echo "$@" >> "$HUD" 
 }
 #Append line to tmp file
+alias zt1='ztmp'
 ztmp() { 
 	echo "$@" >> "$TMP" 
 }
@@ -346,7 +354,7 @@ alias ctmp='catOrLess "$TMP"'
 alias ctord='catOrLess "$TORD"'
 
 #git
-alias gitc='git commit -am "standard"'
+alias commit='git commit -am "standard"'
 
 
 #shutdown

@@ -339,7 +339,7 @@ zhud() {
 	echo "$@" >> "$HUD" 
 }
 #Append line to tmp file
-alias zt1='ztmp'
+alias ztt='ztmp'
 ztmp() { 
 	echo "$@" >> "$TMP" 
 }

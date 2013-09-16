@@ -5,6 +5,7 @@ ctrl+alt+h - start home
 alt+F10 - minimize window
 alt+F11 - toggle maximize window
 alt+F12 - toggle full screen
+ctrl+alt+d - minimize all windows
 
 ctrl+alt+F1 do F6 terminali
 ctrl+alt+F7 do F12 xwindovi
@@ -30,6 +31,10 @@ Ctrl+{PgUp,PgDown} change tabs
 firefox:
 about:config - layout.css.devPixelsPerPx default zoom (-1.0)
 
+bash:
+ctrl+c - canlel, erase line
+ctrl a - go to begining of line
+ctrl e - end of line
 pgdn - ~
 
 ###################
@@ -106,6 +111,9 @@ $? - exit code of last command (0 - ok)
 sudo !! - Run the last command as root 
 cd - - go to last dir
 <space>command - Execute a command without saving it in the history
+bash -n <Script> - check for errors
+
+
 
 TEXT:
 tr - translate or delete characters (-d for delete)
@@ -315,9 +323,6 @@ alt * - prikaže vse matche za reg izraz
 ctrl alt e - shows curent line as when passed through alias, history and shell expansion
 ctrl x, ctrl e - edit command in editor
 cd - Go to last dir
-bash -n <Script> - check for errors
-ctrl a - go to begining of line
-ctrl e - end of line
 ctrl d - EOF
 
 INSTALL MANTRA:

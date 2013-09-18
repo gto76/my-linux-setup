@@ -10,6 +10,8 @@ alias less='less -Q~P%db/%D'
 alias e='echo'
 
 alias ba='acpi'
+alias batt='acpi'
+alias battery='acpi'
 
 #LS
 # Add some easy shortcuts for formatted directory listings and add a touch of color.

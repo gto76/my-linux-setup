@@ -6,12 +6,15 @@ alias rm='rm -i'
 alias mv='mv -iv'
 alias cp='cp -iv'
 
-alias less='less -Q~P%db/%D'
+alias less='less -Q~P"%db/%D %f"'
 alias e='echo'
 
 alias ba='acpi'
 alias batt='acpi'
 alias battery='acpi'
+
+alias run='go run'
+alias go='go run'
 
 #LS
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
@@ -120,7 +123,6 @@ alias c='cat'
 alias m='less' 
 alias n='nano'
 alias g='gedit'
-alias more='less'
 
 #Open last modified file in pico
 alias Pico="pico `ls -t | head -1`" 
@@ -356,7 +358,15 @@ alias ctmp='catOrLess "$TMP"'
 alias ctord='catOrLess "$TORD"'
 
 #git
-alias commit='git commit -am "standard"'
+commit() {
+  if [ $# -eq 0 ]
+  then
+    message="regular commit"
+  else
+  	message="$*"
+  fi
+  git commit -am "$message"
+}
 
 
 #shutdown

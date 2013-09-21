@@ -367,6 +367,7 @@ commit() {
   fi
   git commit -am "$message"
 }
+alias push='git push'
 
 
 #shutdown

@@ -1,10 +1,11 @@
 ctrl+alt+t - start terminal
 ctrl+alt+f - start firefox
 ctrl+alt+h - start home
+alt+F12 - run command
 
-alt+F10 - minimize window
-alt+F11 - toggle maximize window
-alt+F12 - toggle full screen
+alt+F1 - minimize window
+alt+F2 - toggle maximize window
+alt+F3 - toggle full screen
 ctrl+alt+d - minimize all windows
 
 ctrl+alt+F1 do F6 terminali
@@ -35,7 +36,10 @@ bash:
 ctrl+c - canlel, erase line
 ctrl a - go to begining of line
 ctrl e - end of line
+ctrl u - copy line
+ctrl y - paste line
 pgdn - ~
+``
 
 ###################
 HUDI TERMINAL UKAZI:
@@ -112,8 +116,8 @@ sudo !! - Run the last command as root
 cd - - go to last dir
 <space>command - Execute a command without saving it in the history
 bash -n <Script> - check for errors
-
-
+- in place of a file name means standard in or out
+wmctrl - X Window Manager
 
 TEXT:
 tr - translate or delete characters (-d for delete)
@@ -135,7 +139,6 @@ libreoffice - novi openoffice
 diakonos - simple terminal text editor with ctrl-c for copy
 rel - analyze text files for relevance to a given set of keywords
 
-	
 PROCESSES:
 ps --forest - wiev hierarchical view of processes
 pstree - similar
@@ -276,7 +279,9 @@ montage - Creates a montage from images
 convert - To convert the file format
 import - Captures screen-shots from the X server
 mogrify - edit image
-
+gocr - command line text recognition tool
+ocrad - command line text recognition tool
+	
 
 #############
 HUDE DATOTEKE:
@@ -288,7 +293,8 @@ $HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
 /etc/passwd - userji
 /etc/groups - grupe
-/etc/init.d/ - direktorij z nastavitvenimi datotekami
+/etc/init.d/ - direktorij z nastavitvenimi datotekami ki se zazenejo ob zacetku
+/etc/init/ssh.conf - sshd config
 /etc/ssh/sshd_config - sshd config
 ~/.bash_profile  - for PATH, JAVA_HOME (ali .bashrc) for one user
 /etc/profile OR /etc/bash.bashrc - for all users

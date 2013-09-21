@@ -13,7 +13,7 @@ alias ba='acpi'
 alias batt='acpi'
 alias battery='acpi'
 
-alias run='go run'
+#alias run='go run'
 alias go='go run'
 
 #LS

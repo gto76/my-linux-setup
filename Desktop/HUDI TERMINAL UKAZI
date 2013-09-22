@@ -141,6 +141,8 @@ rel - analyze text files for relevance to a given set of keywords
 
 PROCESSES:
 ps --forest - wiev hierarchical view of processes
+	v - virtual memory 
+	--sort - sort by field 
 pstree - similar
 pgrep <string> - returns PIDS of processes containing string (-l to print process name)
 kill $(pgrep mozilla) - kills everithing mozilla
@@ -164,6 +166,8 @@ less - &phrase - display only lines with
 	-N show line numbers
 	-~ do not show ~ after EOF
 	+G tells less to start at the end of the file
+pmap - report memory map of a process (maped file)
+	
 		
 
 DEAMONS:
@@ -235,8 +239,15 @@ LYNX_PRINT_URL
 Press a to save the address of a document or link to a (Netscape-alike) bookmark file, by default ~/lynx_bookmarks.html. You can open this in a different browser, it's just HTML.
     l Add the current link to your bookmark file 
 youtube-dl - download from youtube
-
 mtr google.com - mtr combines the functionality of the traceroute and ping
+arp - manipulate the system ARP cache (IP - mac)
+
+HACKING:
+ettercap - Multipurpose sniffer/interceptor/logger for switched LAN
+kismet - Wireless 802.11b monitoring tool
+aircrack-ng - wireless WEP/WPA cracking utilities
+driftnet - Picks out and displays images from network traffic
+Cain & Abel - password recovery tool for Microsoft Operating Systems
 
 
 SYSTEM:

@@ -63,11 +63,13 @@ alias p='echo $PWD'
 alias cd..='cd ..'
 
 alias less='less -Q~P"%db/%D %f"'
+
 alias e='echo'
 alias c='cat'
 alias m='less' 
 alias n='nano'
 alias g='gedit'
+alias f='firefox'
 
 alias clr=clear
 
@@ -76,8 +78,6 @@ alias h='history | grep '
 
 alias pse='ps -e'
 alias df='df -h'
-
-alias f='firefox'
 
 alias hib='sudo pm-hibernate'
 alias sus='sudo pm-suspend'
@@ -91,22 +91,6 @@ alias grep='grep --color=auto --exclude-dir=\.svn'
 alias canhaz='sudo apt-get install'
 alias update='sudo apt-get update'
 alias remove='sudo apt-get remove'
-
-apropos1() {
-	apt-cache search $*
-}
-
-#git
-commit() {
-  if [ $# -eq 0 ]
-  then
-    message="regular commit"
-  else
-  	message="$*"
-  fi
-  git commit -am "$message"
-}
-alias push='git push'
 
 #make bash script , make it executable, and open it in gedit
 bs() {
@@ -122,6 +106,23 @@ alias tarz='tar xzvf'
 sg() {
 	sudo gedit "$*"
 }
+
+apropos1() {
+	apt-cache search $*
+}
+
+#git
+commit() {
+  if [ $# -eq 0 ]
+  then
+    message="regular commit"
+  else
+  	message="$*"
+  fi
+  git commit -am "$message"
+}
+
+alias push='git push'
 
 alias run='go run'
 

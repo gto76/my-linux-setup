@@ -83,4 +83,35 @@ A call to free() frees the memory at ptr. The parameter ptr must have been previ
 returned by malloc(), calloc(), or realloc(). That is, you cannot use free() to free
 partial chunks of memory—say, half of a chunk of memory—by passing in a pointer
 halfway into an allocated block
+...............
+...............
+.. M A V E N ..
+...............
+...............
+mvn / maven2 / m2e
 
+(bin - sh skripte (run.sh))
+src/main/java/com... - source
+src/test/java/com... - test source (junits)
+src/test/resources/images/ - test images
+(test-data/)
+target/classes - compiled classes
+pom.xml - build commands file
+
+"from manual:"
+----------------------------------------------------
+src/main/java 	Application/Library sources
+src/main/resources 	Application/Library resources
+src/main/filters 	Resource filter files
+src/main/assembly 	Assembly descriptors
+src/main/config 	Configuration files
+src/main/scripts 	Application/Library scripts
+src/main/webapp 	Web application sources
+src/test/java 	Test sources
+src/test/resources 	Test resources
+src/test/filters 	Test resource filter files
+src/site 	Site
+LICENSE.txt 	Project's license
+NOTICE.txt 	Notices and attributions required by libraries that the project depends on
+README.txt 	Project's readme
+---------------------------------------------------

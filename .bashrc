@@ -13,8 +13,8 @@ alias ba='acpi'
 alias batt='acpi'
 alias battery='acpi'
 
-#alias run='go run'
-alias go='go run'
+alias run='go run'
+#alias go='go run'
 
 #LS
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
@@ -183,6 +183,8 @@ noOfLines() {
 	echo $no
 }
 
+#display free memory
+alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
 
 # NETWORKING
 alias f='firefox'

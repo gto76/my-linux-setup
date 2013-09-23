@@ -1,0 +1,86 @@
+ _   _                __   __            _  __                    
+| \ | | _____      __ \ \ / /__  _   _  | |/ /_ __   _____      __
+|  \| |/ _ \ \ /\ / /  \ V / _ \| | | | | ' /| '_ \ / _ \ \ /\ / /
+| |\  | (_) \ V  V /    | | (_) | |_| | | . \| | | | (_) \ V  V / 
+|_| \_|\___/ \_/\_/     |_|\___/ \__,_| |_|\_\_| |_|\___/ \_/\_/  
+
+.........................
+.. D I S T R I B U T E ..
+........ J A V A ........
+........ A P P S ........
+.........................
+DISTRIBUTE JAVA APPS:
+1. Just use jar.
+2. Use launch4j and an installer like NSIS.
+3. Use Webstart.
+4. Use a native-code compiler like Excelsior JET and distribute as a executable, or wrap it up in an installer.
+-----
+Java desktop app:
+On Windows this means .exe, start menu links, control panel integration and specific task manager process for example with minimal overhead start time for a small app (still waiting for update 10 here...) and a shiny own icon in the taskbar when they launch it, not a Java icon.
+----
+JNLP / webstart / RCP (eclipse) / InstallBuilder (for adding jre to install)
+If you're building an application atop SWT/JFace/RCP rather than Swing, you can create and run a product build in the Eclipse IDE, which results in an executable, making something like exe4j unnecessary
+----
+Convert Jar file to EXE executable:
+JSmooth .exe wrapper (2007)
+JarToExe 1.8
+Executor
+Advanced Installer
+LaunchAnywhere
+JexePack (Class to EXE)
+Launch4j
+----
+.........................
+....... L I N U X .......
+...... S Y S T E M ......
+. P R O G R A M M I N G .
+.........................
+LINUX ABSTRACTIONS:
+1.FILE
+2.PROCESS
+triplet of the Linux kernel (the heart of
+the operating system), the GNU C library (glibc), and the GNU C Compiler
+
+ABI (application binary interface):
+Thus, each machine architecture has its
+own ABI on Linux. In fact, we tend to call a particular ABI by its machine name, such
+as Alpha, or x86-64. Thus, the ABI is a function of both the operating system (say, Linux)
+and the architecture (say, x86-64)
+
+SPECIAL FILES:
+Linux supports four: block device
+files (disk), character device files (keyboard), named pipes, and Unix domain sockets.
+
+INTERPROCESS COMMUNICATION:
+mechanisms supported by Linux incqqlude pipes, named pipes, semaphores, message
+queues, shared memory, and futexes.
+
+Modern operating systems provide two fundamental virtualized abstractions to user-space: virtual memory and a virtualized processor.
+
+MEMORY:
+Unlike malloc(), which makes no such guarantees about the contents of allocated memory, calloc() zeros all bytes in the returned chunk of memory.
+
+/* like malloc(), but zeros memory and terminates on failure */
+void * xmalloc0 (size_t size) {
+	void *p;
+	p = calloc (1, size);
+	if (!p) {
+		perror ("xmalloc0");
+		exit (EXIT_FAILURE);
+	}
+	return p;
+}
+
+APPROACH  | PROS						    |CONS
+----------+---------------------------------+----------------------------------------------
+malloc()  |	Easy, simple, common. 			|Returned memory not necessarily zeroed.
+calloc()  |	Makes allocating arrays simple, |Convoluted interface if not allocating arrays.
+          |	zeros returned memory. 			|
+realloc() |	Resizes existing allocations. 	|Useful only for resizing existing allocations.
+
+void free (void *ptr);
+A call to free() frees the memory at ptr. The parameter ptr must have been previously
+returned by malloc(), calloc(), or realloc(). That is, you cannot use free() to free
+partial chunks of memory—say, half of a chunk of memory—by passing in a pointer
+halfway into an allocated block
+

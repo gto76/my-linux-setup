@@ -1,4 +1,5 @@
 # Make some possibly destructive commands more interactive.
+
 alias rmdir='rm -rI'
 alias cpdir='cp -arv'
 
@@ -6,28 +7,13 @@ alias rm='rm -i'
 alias mv='mv -iv'
 alias cp='cp -iv'
 
-alias less='less -Q~P"%db/%D %f"'
-alias e='echo'
-
-alias ba='acpi'
-alias batt='acpi'
-alias battery='acpi'
-
-alias run='go run'
-#alias go='go run'
-
 #LS
+
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
 alias ls='ls -FXC --color=auto --group-directories-first'
-
 alias listShort='ls'
-#listShort() {
-#  echo "executing: ls $*"
-#	ls $*
-#}
 alias listMed='ls -lGgh --time-style="+%b %d %Y %H:%M"'
 alias listLong='ls -l'
-
 listShortLess() { 
   listShort --color=always $* | less -R+G
 }
@@ -37,7 +23,6 @@ listMedLess() {
 listLongLess() { 
   listLong --color=always $* | less -R+G 
 }
-
 l() {
 	noOfLines=`listShort "$@" | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
@@ -62,41 +47,46 @@ lll() {
 		listLongLess "$@"    
 	fi
 }
-
 alias la='l -A'
 alias lla='ll -A'
 alias llla='lll -A'
 
+#BASICS
 
-#???
-#c() {
-#  builtin "$*"
-#  RESULT=$?
-#  if [ "$RESULT" -eq 0 ]; then
-#    l
-#  fi
-#}
-
-find1() {
-	tmp=`find . | grep --color=always "$1"`
-	noOfLines=`echo "$tmp" | wc -l`
-	if [ $LINES -gt $noOfLines ]; then
-		echo "$tmp"
-	else
-		echo "$tmp" | less -R    
-	fi
-}
-
-
-# Make grep more user friendly by highlighting matches
-# and exclude grepping through .svn folders.
-alias grep='grep --color=auto --exclude-dir=\.svn'
+alias b='bash'
+alias gg='gedit $HOME/.bashrc &'
 
 alias ...='cd ../..'
 alias ..='cd ..'
 alias .='echo $PWD'
 alias p='echo $PWD'
 alias cd..='cd ..'
+
+alias less='less -Q~P"%db/%D %f"'
+alias e='echo'
+alias c='cat'
+alias m='less' 
+alias n='nano'
+alias g='gedit'
+
+alias clr=clear
+
+alias his=history
+alias h='history | grep '
+
+alias pse='ps -e'
+alias df='df -h'
+
+alias f='firefox'
+
+alias hib='sudo pm-hibernate'
+alias sus='sudo pm-suspend'
+
+#USEFUL
+
+# Make grep more user friendly by highlighting matches
+# and exclude grepping through .svn folders.
+alias grep='grep --color=auto --exclude-dir=\.svn'
 
 alias canhaz='sudo apt-get install'
 alias update='sudo apt-get update'
@@ -106,26 +96,34 @@ apropos1() {
 	apt-cache search $*
 }
 
-alias clr=clear
+#git
+commit() {
+  if [ $# -eq 0 ]
+  then
+    message="regular commit"
+  else
+  	message="$*"
+  fi
+  git commit -am "$message"
+}
+alias push='git push'
 
-alias his=history
-alias h='history | grep '
-alias pse='ps -e'
-alias df='df -h'
-alias path='echo -e ${PATH//:/\\n}'
+#make bash script , make it executable, and open it in gedit
+bs() {
+	fName="$1.sh"
+	touch "$fName"
+	chmod u+x "$fName"
+	gedit "$fName"
+}
 
-alias ch='chmod u+x'
+alias tar1='tar xvf'
+alias tarz='tar xzvf'
 
-alias ap='apropos'
+sg() {
+	sudo gedit "$*"
+}
 
-##TEXT
-alias c='cat'
-alias m='less' 
-alias n='nano'
-alias g='gedit'
-
-#Open last modified file in pico
-alias Pico="pico `ls -t | head -1`" 
+alias run='go run'
 
 #open cat or less, depending on no of lines of file or input
 catOrLess() {
@@ -148,50 +146,21 @@ catOrLess() {
 	fi
 }
 
-
-alias gg='gedit $HOME/.bashrc &'
-alias tz='gedit "$TODO" &'
-alias htu='gedit "$HUD" &'
-alias ggg='gedit "$HUD" $HOME/.bashrc "$TODO" &'
-
-#make bash script , make it executable, and open it in gedit
-bs() {
-	fName="$1.sh"
-	touch "$fName"
-	chmod u+x "$fName"
-	gedit "$fName"
+find1() {
+	tmp=`find . | grep --color=always "$1"`
+	noOfLines=`echo "$tmp" | wc -l`
+	if [ $LINES -gt $noOfLines ]; then
+		echo "$tmp"
+	else
+		echo "$tmp" | less -R    
+	fi
 }
-
-
-alias tar1='tar xvf'
-alias tarz='tar xzvf'
-
-#bash
-alias b='bash'
-sg() {
-	sudo gedit "$*"
-}
-
-#count number of lines in files with extension $1
-noOfLines() {
-	no=0
-	for file in *; do
-		if [[ $file == *."$1" ]]; then
-			let no=$no+`cat "$file" | wc -l`	
-		fi
-	done 
-	echo $no
-}
-
-#display free memory
-alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
 
 # NETWORKING
-alias f='firefox'
+
 alias ping1='ping -c 4 www.google.com'
 alias ping2='ping -c 4 192.168.0.1'
 alias mac='ifconfig | grep HWaddr'
-alias dell='ssh jure@gto76.no-ip.biz'
 
 #whats my internal ip - ifconfig
 alias ip1='echo `/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]*`'
@@ -237,6 +206,103 @@ nmap1() {
 }
 
 alias nmap2='nmap1 10'
+
+#INTERNET
+
+alias nba='lynx http://scores.nbcsports.msnbc.com/nba/scoreboard.asp'
+alias lpp='lynx http://bus.talktrack.com/'
+
+alias kdox='mplayer http://wms2.mainstreamnetwork.com/kdox-am &'
+alias wabc='mplayer http://69.28.128.148:80/stream/citadelcc_WABC-AM &'
+
+#stack overflow
+alias so='stack'
+stack() {
+
+  if [ $# -eq 0 ]
+  then
+    url='http://stackoverflow.com/'
+  fi
+
+  if [ $# -eq 1 ]
+  then
+    url="http://stackoverflow.com/search?q=$1"
+  fi
+
+  if [ $# -gt 1 ]
+  then
+    url="http://stackoverflow.com/search?q=$1"
+    i=0
+    for var in "$@"
+    do
+      if [ $i -gt 0 ]
+      then
+        url=$url+$var
+      fi
+      let i=$i+1
+    done
+  fi
+
+  eval "lynx $url"
+}
+
+#wikipedia
+wiki() {
+  if [ $# -eq 0 ]
+  then
+    url='http://en.wikipedia.org/wiki/'
+  fi
+
+  if [ $# -eq 1 ]
+  then
+    url="http://en.wikipedia.org/wiki/$1"
+  fi
+
+  if [ $# -gt 1 ]
+  then
+    url="http://en.wikipedia.org/wiki/$1"
+    i=0
+    for var in "$@"
+    do
+      if [ $i -gt 0 ]
+      then
+        url="${url}_${var}"
+      fi
+      let i=$i+1
+    done
+  fi
+
+  eval "lynx $url"
+}
+
+#NOT_SO_NECESARY
+
+alias path='echo -e ${PATH//:/\\n}'
+alias ch='chmod u+x'
+alias ap='apropos'
+
+alias ba='acpi'
+alias batt='acpi'
+alias battery='acpi'
+
+#display free memory
+alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
+
+#count number of lines in files with extension $1
+noOfLines() {
+	no=0
+	for file in *; do
+		if [[ $file == *."$1" ]]; then
+			let no=$no+`cat "$file" | wc -l`	
+		fi
+	done 
+	echo $no
+}
+
+#Open last modified file in pico
+alias Pico="pico `ls -t | head -1`" 
+
+#AUDIO PLAYER
 
 #plays song in background
 spilej() {
@@ -329,11 +395,16 @@ key q
 key y"
 }
 
-#ZAPISKI
+#PERSONAL
+
 export TODO="/home/minerva/Desktop/TODO"
 export HUD="/home/minerva/Desktop/HUDI TERMINAL UKAZI"
 export TMP="/home/minerva/Desktop/tmp"
 export TORD="/home/minerva/Desktop/toread"
+
+alias tz='gedit "$TODO" &'
+alias htu='gedit "$HUD" &'
+alias ggg='gedit "$HUD" $HOME/.bashrc "$TODO" &'
 
 #Append line to todo file
 alias zt='ztodo'
@@ -359,23 +430,6 @@ alias chud='catOrLess "$HUD"'
 alias ctmp='catOrLess "$TMP"'
 alias ctord='catOrLess "$TORD"'
 
-#git
-commit() {
-  if [ $# -eq 0 ]
-  then
-    message="regular commit"
-  else
-  	message="$*"
-  fi
-  git commit -am "$message"
-}
-alias push='git push'
-
-
-#shutdown
-alias hib='sudo pm-hibernate'
-alias sus='sudo pm-suspend'
-
 # Specific
 alias books="mc $HOME/Desktop/Computers"
 alias d='cdd'
@@ -385,99 +439,5 @@ export DELL="gto76.no-ip.biz"
 export TORRENTS="/media/sda3/torentz"
 export MUSIC="/media/sda3/music"
 
-
-#########
-#mashups#
-#########
-alias nba='lynx http://scores.nbcsports.msnbc.com/nba/scoreboard.asp'
-#LPP
-alias lpp='lynx http://bus.talktrack.com/'
-#lynx -cmd_script=lppScript http://bus.talktrack.com/ > /dev/null
-
-#linxUberSkriptInterpreter(String source) {
-#  outScr=""
-#  za vsako vrstico com = ...
-#    if $com="up"
-#    then
-#      outScr=$outScr+"key up\n"
-#    fi
-    #up
-    #down
-    #left
-    #right
-    #string
-#      for all leters letter = ...
-#        outScr=$outScr+"key $letter"
-#
-#  return outScr
-#}
-
-#STACK OVERFLOW
-alias so='stack'
-stack() {
-
-  if [ $# -eq 0 ]
-  then
-    url='http://stackoverflow.com/'
-  fi
-
-  if [ $# -eq 1 ]
-  then
-    url="http://stackoverflow.com/search?q=$1"
-  fi
-
-  if [ $# -gt 1 ]
-  then
-    url="http://stackoverflow.com/search?q=$1"
-    i=0
-    for var in "$@"
-    do
-      if [ $i -gt 0 ]
-      then
-        url=$url+$var
-      fi
-      let i=$i+1
-    done
-  fi
-
-  eval "lynx $url"
-}
-
-#wiki() { dig +short txt "$*".wp.dg.cx; }
-#function wiki() #check wikipedia
-#{ dig +short txt "${@}".wp.dg.cx | awk 'BEGIN{RS="\" \"";ORS=""} // {gsub("\"",""); sub("htt","\nhtt"); print}';}
-
-wiki() {
-
-  if [ $# -eq 0 ]
-  then
-    url='http://en.wikipedia.org/wiki/'
-  fi
-
-  if [ $# -eq 1 ]
-  then
-    url="http://en.wikipedia.org/wiki/$1"
-  fi
-
-  if [ $# -gt 1 ]
-  then
-    url="http://en.wikipedia.org/wiki/$1"
-    i=0
-    for var in "$@"
-    do
-      if [ $i -gt 0 ]
-      then
-        url="${url}_${var}"
-      fi
-      let i=$i+1
-    done
-  fi
-
-  eval "lynx $url"
-}
-
-#from net:
-alias kdox='mplayer http://wms2.mainstreamnetwork.com/kdox-am &'
-alias wabc='mplayer http://69.28.128.148:80/stream/citadelcc_WABC-AM &'
-
+alias dell='ssh jure@gto76.no-ip.biz'
 

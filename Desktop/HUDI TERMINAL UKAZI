@@ -137,7 +137,6 @@ cut <filename> - removes certain sections of a line
 	cut -d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
 ispell/aspell - checks spelling
 look - utput a list of words in the system dictionary that begin with a given string
-figlet - display large characters made up of ordinary screen characters
 grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
 enscript - Converts text files to postscript, rtf, HTML
 pdftohtml - pdf to html
@@ -145,6 +144,7 @@ pdftotext - pdf to text
 libreoffice - novi openoffice
 diakonos - simple terminal text editor with ctrl-c for copy
 rel - analyze text files for relevance to a given set of keywords
+figlet - display large characters made up of ordinary screen characters
 
 PROCESSES:
 

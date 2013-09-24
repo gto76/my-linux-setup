@@ -82,6 +82,8 @@ alias df='df -h'
 alias hib='sudo pm-hibernate'
 alias sus='sudo pm-suspend'
 
+alias du='du -sh'
+
 #USEFUL
 
 # Make grep more user friendly by highlighting matches

@@ -268,6 +268,11 @@ chattr - Change file system attributes
 lsattr - list attributes
 dmesg - print the contents of your bootup messages displayed by the kernel. This is often useful
 when debugging problems
+mount device mountpoint - mount /dev/hdc2 /mymedia
+Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk
+mkisofs - create a DVD/CD image
+cdrecord - write to a CD/DVD
+Mono - .NET support
 
 AUDIO:
 
@@ -310,6 +315,8 @@ $HOME/.bashrc - mesto za bash aliase in funkcije
 /etc/profile OR /etc/bash.bashrc - for all users
 source 
 /etc/profile OR . /etc/profile to activate
+/etc/fstab - Automatic mounts are handled by configuring the file
+
 
 /proc - The files under the /proc show various information
 about the system

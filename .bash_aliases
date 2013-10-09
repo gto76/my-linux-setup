@@ -162,7 +162,10 @@ find1() {
 # NETWORKING
 
 alias ping1='ping -c 4 www.google.com'
-alias ping2='ping -c 4 192.168.0.1'
+#get gateway
+alias gateway='route -n | grep "192.168." | head -n1 | grep -o "192.168.[0-9.]*"'
+#ping gateway
+alias ping2='ping -c 4 `gateway`'
 alias mac='ifconfig | grep HWaddr'
 
 #whats my internal ip - ifconfig

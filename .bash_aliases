@@ -401,13 +401,6 @@ key q
 key y"
 }
 
-#PERSONAL
-
-export TODO="/home/minerva/Desktop/TODO"
-export HUD="/home/minerva/Desktop/HUDI TERMINAL UKAZI"
-export TMP="/home/minerva/Desktop/tmp"
-export TORD="/home/minerva/Desktop/toread"
-
 alias tz='gedit "$TODO" &'
 alias htu='gedit "$HUD" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
@@ -436,14 +429,4 @@ alias chud='catOrLess "$HUD"'
 alias ctmp='catOrLess "$TMP"'
 alias ctord='catOrLess "$TORD"'
 
-# Specific
-alias books="mc $HOME/Desktop/Computers"
-alias d='cdd'
-alias cdd='cd /media/sda3'
-
-export DELL="gto76.no-ip.biz"
-export TORRENTS="/media/sda3/torentz"
-export MUSIC="/media/sda3/music"
-
-alias dell='ssh jure@gto76.no-ip.biz'
 

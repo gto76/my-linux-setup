@@ -54,7 +54,7 @@ alias llla='lll -A'
 #BASICS
 
 alias b='bash'
-alias gg='gedit $HOME/.bashrc &'
+alias gg='gedit $HOME/.bash_aliases &'
 
 alias ...='cd ../..'
 alias ..='cd ..'
@@ -407,7 +407,7 @@ export TORD="/home/minerva/Desktop/toread"
 
 alias tz='gedit "$TODO" &'
 alias htu='gedit "$HUD" &'
-alias ggg='gedit "$HUD" $HOME/.bashrc "$TODO" &'
+alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
 
 #Append line to todo file
 alias zt='ztodo'

@@ -161,11 +161,12 @@ find1() {
 
 # NETWORKING
 
-alias ping1='ping -c 4 www.google.com'
 #get gateway
 alias gateway='route -n | grep "192.168." | head -n1 | grep -o "192.168.[0-9.]*"'
 #ping gateway
-alias ping2='ping -c 4 `gateway`'
+alias ping1='ping -c 4 `gateway`'
+alias ping2='ping -c 4 www.google.com'
+alias ping3='ping -c 4 8.23.224.107'
 alias mac='ifconfig | grep HWaddr'
 
 #whats my internal ip - ifconfig
@@ -429,4 +430,11 @@ alias chud='catOrLess "$HUD"'
 alias ctmp='catOrLess "$TMP"'
 alias ctord='catOrLess "$TORD"'
 
-
+######## NEW / NOT SORTED #########
+alias t='date'
+alias ....='cd ..; cd ..; cd ..;'
+alias .....='cd ..; cd ..; cd ..; cd..'
+alias ..l='cd ..; l'
+cdl() {	
+	cd "$@"; l 
+}

@@ -379,7 +379,7 @@ sudo add-apt-repository ppa:n-muench/vlc
 PIRATEBAY:
 torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file
 
-####### NEW / NOT SORTED ###########
+######## NEW / NOT SORTED #########
 less v - opens file in editor defined in $VISUAL or $EDITOR
 man (stevilka poglavja) ukaz
 /etc/nanorc - nano config

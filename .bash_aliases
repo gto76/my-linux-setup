@@ -329,43 +329,27 @@ noOfLines() {
 alias Pico="pico `ls -t | head -1`" 
 
 #AUDIO PLAYER
-
-#plays song in background
+#plays song (Downloads from youtube if nothing found localy)
 spilej() {
 	if [ -f "$1" ]
 	then
-		echo "obstaja file"
-		mplayer -slave "$@" &> /dev/null &
-	else
-		echo "ne obstaja file - iscem"
-		mplayer "`	locate ".*$*.*mp3" --regex --quiet --ignore-case --limit 1 | sed 's/\(.*\)\r/"\1"/g'  `" &> /dev/null
-	fi
-}
-
-#plays song in background (Downloads from youtube if nothing found localy)
-spilej2() {
-	if [ -f "$1" ]
-	then
-		echo "obstaja file"
-		mplayer -slave "$@" &> /dev/null &
+		echo "Playing \"$1\""
+		mplayer -slave "$@" &> /dev/null
 	else
 		#search filesystem
-		#TODO check mp3.part
-		echo "fila ni v direktoriju - iscem disk"
+		#TODO check that it's not mp3.part file
+		echo "No file in folder. Scanning filesystem..."
 		listOfFiles=`locate ".*$*.*mp3" --regex --quiet --ignore-case`
 		noOfFiles=`echo "$listOfFiles" | wc -l`
-		#echo "stevilo datotek na disku je $noOfFiles"
 		if [ "$noOfFiles" -gt 1 ]
 		then
-			#echo "file je na disku"
+			#echo "File found."
 			let chosenNumber="$RANDOM"%"$noOfFiles"
-			#echo "Izbrano stevilo je $chosenNumber"
-			#echo "fajli so $listOfFiles"
 			fileName=`echo "$listOfFiles" | sed "$chosenNumber!d" | sed 's/\(.*\)\r/"\1"/g' `
-			echo "Filename je $fileName"
+			echo "Playing \"$fileName\""
 			mplayer "$fileName" &> /dev/null
 		else
-			echo "fila ni na disku - iscem youtube"
+			echo "No file in filesystem. Searching Youtube..."
 			spilejYoutube "$*"
 		fi
 		
@@ -424,6 +408,7 @@ key y"
 alias tz='gedit "$TODO" &'
 alias htu='gedit "$HUD" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
+alias nnn='nano "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
 
 #Append line to todo file
 alias zt='ztodo'
@@ -466,3 +451,22 @@ cdl() {
 weathr() {
 	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" | awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
 }
+
+#Sets master volume from 0 to 100
+vol() {
+	amixer set Master playback "$1"
+}
+
+q() {
+	vol "6dB+" | tail -n 1
+}
+a() {
+	vol "6dB-" | tail -n 1
+}
+qq() {
+	vol "2dB+" | tail -n 1
+}
+aa() {
+	vol "2dB-" | tail -n 1
+}
+

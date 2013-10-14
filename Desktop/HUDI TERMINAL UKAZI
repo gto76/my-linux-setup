@@ -213,7 +213,7 @@ traceroute / traceroute6 / traceroute6.iputils
 	mtr - combines the functionality of the traceroute and ping
 findsmb - list info about machines that respond to SMB name queries - windows based machines sharing their hard disk’s
 	
-NET-TOOLS:
+INTERNET:
 
 lynx - web browser 
 	-cmd_log=FILENAME / -cmd_script=FILENAME
@@ -391,3 +391,9 @@ screen: al shortcuts begin with ctrl+a
 	tab - move to next region
 	Q - close all but selected region
 	X - kill the curent region
+	esc - enter copy/scrollback mode -> space: start/stop marking
+	] - paste
+
+lynx:
+	ctrl+n - scroll down two lines
+	ctrl+p - scroll up two lines

@@ -385,3 +385,9 @@ man (stevilka poglavja) ukaz
 /etc/nanorc - nano config
 	/usr/share/nano/JEZIK.nanorc - syntax highlights
 
+screen: al shortcuts begin with ctrl+a
+	| - new region werticaly
+	S - new region horizontaly
+	tab - move to next region
+	Q - close all but selected region
+	X - kill the curent region

@@ -124,7 +124,7 @@ sg() {
 apropos1() {
 	apt-cache search $*
 }
-
+ 
 #git
 commit() {
   if [ $# -eq 0 ]

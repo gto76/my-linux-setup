@@ -384,3 +384,4 @@ less v - opens file in editor defined in $VISUAL or $EDITOR
 man (stevilka poglavja) ukaz
 /etc/nanorc - nano config
 	/usr/share/nano/JEZIK.nanorc - syntax highlights
+

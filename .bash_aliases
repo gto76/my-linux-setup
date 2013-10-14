@@ -53,7 +53,7 @@ alias llla='lll -A'
 
 #BASICS
 
-alias b='bash'
+alias ba='bash'
 alias gg='gedit $HOME/.bash_aliases &'
 
 alias ...='cd ../..'
@@ -97,11 +97,23 @@ alias remove='sudo apt-get remove'
 #make bash script , make it executable, and open it in gedit
 bs() {
 	fName="$1.sh"
-	touch "$fName"
-	chmod u+x "$fName"
+	createExecutable "$fName"
 	gedit "$fName"
 }
 
+#make bash script , make it executable, and open it in nano
+bsn() {
+    fName="$1.sh"
+	createExecutable "$fName"
+    nano "$fName"
+}
+
+createExecutable() {
+	touch "$1"
+	chmod u+x "$1"        
+}
+alias ce=createExecutable
+            
 alias tar1='tar xvf'
 alias tarz='tar xzvf'
 
@@ -165,9 +177,16 @@ find1() {
 alias gateway='route -n | grep "192.168." | head -n1 | grep -o "192.168.[0-9.]*"'
 #ping gateway
 alias ping1='ping -c 4 `gateway`'
-alias ping2='ping -c 4 www.google.com'
-alias ping3='ping -c 4 8.23.224.107'
+alias ping2='ping -c 4 8.23.224.107'
+alias ping3='ping -c 4 www.google.com'
 alias mac='ifconfig | grep HWaddr'
+
+pingAll() {
+	ping -c 1 -q `gateway` | grep --color=never -A 1 statistics
+	ping -c 1 -q 8.23.224.107 | grep --color=never -A 1 statistics
+	ping -c 1 -q www.google.com | grep --color=never -A 1 statistics
+}
+alias pa=pingAll
 
 #whats my internal ip - ifconfig
 alias ip1='echo `/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]*`'
@@ -288,7 +307,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ch='chmod u+x'
 alias ap='apropos'
 
-alias ba='acpi'
+alias b='acpi'
 alias batt='acpi'
 alias battery='acpi'
 
@@ -377,7 +396,7 @@ spilejYoutube() {
 	ffmpeg -i "$videoFilename" "$audioFilename" &> /dev/null
 	#izbrisi video
 	\rm "$videoFilename"
-	#play audio
+    #play audio
 	mplayer "$audioFilename" &>/dev/null
 }
 
@@ -432,9 +451,18 @@ alias ctord='catOrLess "$TORD"'
 
 ######## NEW / NOT SORTED #########
 alias t='date'
+
 alias ....='cd ..; cd ..; cd ..;'
 alias .....='cd ..; cd ..; cd ..; cd..'
+alias ......='cd ..; cd ..; cd ..; cd..; cd..'
+alias .......='cd ..; cd ..; cd ..; cd..; cd..; cd..'
+
 alias ..l='cd ..; l'
 cdl() {	
-	cd "$@"; l 
+	cd "$@"; l
+}
+
+#Shows weather for city specified by citycode defined by yahoo weather
+weathr() {
+	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" | awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
 }

@@ -317,7 +317,7 @@ $HOME/.bashrc - mesto za bash aliase in funkcije
 source 
 /etc/profile OR . /etc/profile to activate
 /etc/fstab - Automatic mounts are handled by configuring the file
-
+/etc/services - list of services with their port numbers
 
 /proc - The files under the /proc show various information
 about the system
@@ -334,6 +334,10 @@ VARIABLE (var):
 /var/log/ - System logs in here
 /var/log/auth.log - log loginov
 /var/spool - contains data which is awaiting some kind of later processing
+
+BOOT:
+/boot/grub/menu.lst - Grub configuration file
+
 
 
 ############
@@ -394,13 +398,13 @@ screen: al shortcuts begin with ctrl+a
 	X - kill the curent region
 	esc - enter copy/scrollback mode -> space: start/stop marking
 	] - paste
+	k - kill window
+	t - show time and avg cpu load
 
 lynx:
 	ctrl+n - scroll down two lines
 	ctrl+p - scroll up two lines
 
 fte - cool text editor with CUA (IBM)-shortcuts
-
-KERNEL:
 
 

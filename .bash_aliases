@@ -24,7 +24,7 @@ listLongLess() {
   listLong --color=always $* | less -R+G 
 }
 l() {
-	noOfLines=`listShort "$@" | wc -l`
+	noOfLines=`listShort "$@" 2> /dev/null | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
 		listShort "$@"	
 	else
@@ -32,7 +32,7 @@ l() {
 	fi
 }
 ll() {
-	noOfLines=`listMed "$@" | wc -l`
+	noOfLines=`listMed "$@" 2> /dev/null | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
 		listMed "$@"
 	else
@@ -40,7 +40,7 @@ ll() {
 	fi
 }
 lll() {
-	noOfLines=`listLong "$@" | wc -l`
+	noOfLines=`listLong "$@" 2> /dev/null | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
 		listLong "$@"
 	else
@@ -56,8 +56,14 @@ alias llla='lll -A'
 alias ba='bash'
 alias gg='gedit $HOME/.bash_aliases &'
 
-alias ...='cd ../..'
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ..; cd ..; cd ..;'
+alias .....='cd ..; cd ..; cd ..; cd..'
+alias ......='cd ..; cd ..; cd ..; cd..; cd..'
+alias .......='cd ..; cd ..; cd ..; cd..; cd..; cd..'
+
+alias ,,='cd ..'
 alias .='echo $PWD'
 alias p='echo $PWD'
 alias cd..='cd ..'
@@ -119,6 +125,10 @@ alias tarz='tar xzvf'
 
 sg() {
 	sudo gedit "$*"
+}
+
+sn() {
+	sudo nano "$*"
 }
 
 apropos1() {
@@ -187,6 +197,7 @@ pingAll() {
 	ping -c 1 -q www.google.com | grep --color=never -A 1 statistics
 }
 alias pa=pingAll
+alias pa1='pingAll; pingAll'
 
 #whats my internal ip - ifconfig
 alias ip1='echo `/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]*`'
@@ -436,11 +447,6 @@ alias ctord='catOrLess "$TORD"'
 
 ######## NEW / NOT SORTED #########
 alias t='date'
-
-alias ....='cd ..; cd ..; cd ..;'
-alias .....='cd ..; cd ..; cd ..; cd..'
-alias ......='cd ..; cd ..; cd ..; cd..; cd..'
-alias .......='cd ..; cd ..; cd ..; cd..; cd..; cd..'
 
 alias ..l='cd ..; l'
 cdl() {	

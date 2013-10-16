@@ -351,6 +351,7 @@ cd - Go to last dir
 ctrl d - EOF
 
 INSTALL MANTRA:
+./configure --help
 ./configure
 make
 sudo make install
@@ -397,3 +398,9 @@ screen: al shortcuts begin with ctrl+a
 lynx:
 	ctrl+n - scroll down two lines
 	ctrl+p - scroll up two lines
+
+fte - cool text editor with CUA (IBM)-shortcuts
+
+KERNEL:
+
+

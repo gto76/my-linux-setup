@@ -126,9 +126,11 @@ alias tarz='tar xzvf'
 sg() {
 	sudo gedit "$*"
 }
-
 sn() {
 	sudo nano "$*"
+}
+sm() {
+	sudo less "$*"
 }
 
 apropos1() {

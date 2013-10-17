@@ -59,9 +59,11 @@ dpkg -l - lists installed packages
 winetricks - install wine aplications
 whereis <command> - locates where command resides 
 which - similar only executable
+apt-cache show - get info about package
 
 GENERAL:
 
+ls -d - list directory names instead of contents
 alias - shrani alias ($HOME/.bashrc) / show aliases
 \<command> - temporarily disable alias (call original)
 command <command> - executes original command, ignoring shell functions
@@ -122,6 +124,7 @@ cd - - go to last dir
 bash -n <Script> - check for errors
 - in place of a file name means standard in or out
 wmctrl - X Window Manager
+run-parts - run all scripts or programs in a directory
 
 TEXT:
 
@@ -199,12 +202,14 @@ host <ip_address/hostname> - DNS lookup utility
 	nslookup - same interactively
 	dig - same, lot of options
 hostname - name of host
-netstat - Displays contents of /proc/net files,  status of ports
+netstat - Displays contents of /proc/net files,  status of ports...
+	-r - routing table
+	-i - interfaces
 arp - manipulate the system ARP cache (IP - mac)
 route - The route command is the tool used to display or modify the routing table
 should DNS not be configured correctly on your machine, you need to edit
 “/etc/resolv.conf” to make things work
-ifconfig eth0 down / up
+ifconfig eth0 <ip> <down / up>
 	ifup eth0 - Will bring eth0 up if it is currently down.
 	ifcfg - Use ifcfg to configure a particular interface
 traceroute / traceroute6 / traceroute6.iputils
@@ -212,6 +217,14 @@ traceroute / traceroute6 / traceroute6.iputils
 	-> iputils package
 	mtr - combines the functionality of the traceroute and ping
 findsmb - list info about machines that respond to SMB name queries - windows based machines sharing their hard disk’s
+
+WIRELESS:
+
+iwconfig - Sets the wireless configuration options basic to most wireless devices.
+iwlist <interface> <option> - Displays current status information of a device. (more detailed then iwconfig)
+iwspy - Sets the list of IP addresses in a wireless network and checks the quality of
+     their connections.
+iwpriv - Accesses configuration options specific to a particular device.
 	
 INTERNET:
 
@@ -243,7 +256,7 @@ nmap -sP 192.168.2.1-3 - network scanning
 	nmap 192.168.0.3 -p100-139 - port scanning
 	sudo nmap -O 192.168.0.3 - scanning os
 tcpdump - sniffer
-ettercap - Multipurpose sniffer/interceptor/logger for switched LAN
+ettercap - Multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
 driftnet - Picks out and displays images from network traffic
 kismet - Wireless 802.11b monitoring tool
 aircrack-ng - wireless WEP/WPA cracking utilities
@@ -252,6 +265,7 @@ Cain & Abel - password recovery tool for Microsoft Operating Systems
 SYSTEM:
 
 uname -a - print system info
+init - Upstart init daemon job configuration
 time <command> - kolk cajta se je ukaz izvaju
 cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
 users - trenutno ulogirani userji (samo imena)
@@ -274,6 +288,7 @@ Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk
 mkisofs - create a DVD/CD image
 cdrecord - write to a CD/DVD
 Mono - .NET support
+telinit - change system runlevel
 
 AUDIO:
 
@@ -303,12 +318,13 @@ HUDE DATOTEKE:
 #############
 
 
-EDIT TO CONFIGURE / "editable text configuration" (etc):
+ETC / "Edit To Configure" / "Editable Text Configuration":
 /etc/mailcap - default programi za extensne
 $HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
 /etc/passwd - userji
 /etc/groups - grupe
+/etc/init/
 /etc/init.d/ - direktorij z nastavitvenimi datotekami ki se zazenejo ob zacetku
 /etc/init/ssh.conf - sshd config
 /etc/ssh/sshd_config - sshd config
@@ -318,26 +334,33 @@ source
 /etc/profile OR . /etc/profile to activate
 /etc/fstab - Automatic mounts are handled by configuring the file
 /etc/services - list of services with their port numbers
+/etc/sudoers - lists of users and the commands they can run with sudo
+/etc/crontab - system-wide crontab
+/etc/cron.hourly|daily|weekly|monthly/ - links to scripts that will execute periodicaly. Scripts within a cron directory are run alphabetically.
 
-/proc - The files under the /proc show various information
-about the system
+PROC / The files under the /proc show various information
+about the system:
 /proc/cpuinfo - information about the CPU
 /proc/modules -  information about what kernel-modules are loaded on your system
+/proc/net/ - network related
+	/proc/net/route - routing table
+	netstat - Displays contents of /proc/net files
 
-UNIX SYSTEM RESOURCES (usr):
+USR - "Unix System Resources":
 /usr/lib/jvm - java jres and jdks
+/usr/share/man - man pages
 
-/sbin: the "system-administrator's bin file", which hosts programs that would be in /bin if they didn't have "root-only"
+SBIN - the "system-administrator's bin file", which hosts programs that would be in /bin if they didn't have "root-only"
 access permissions.
 
-VARIABLE (var):
+VAR - "variable":
 /var/log/ - System logs in here
+/var/log/syslog - razni logi
 /var/log/auth.log - log loginov
 /var/spool - contains data which is awaiting some kind of later processing
 
-BOOT:
+BOOT (kernels):
 /boot/grub/menu.lst - Grub configuration file
-
 
 
 ############
@@ -359,6 +382,14 @@ INSTALL MANTRA:
 ./configure
 make
 sudo make install
+
+SYSTEM RUNLEVELS:
+0 Shuts down the system
+1 Administrative single-user mode
+2 Same as 3 but withouth networking
+3 Text mode state (ctrl+alt+F1)
+5 X-window mode (ctrl+alt+F7)
+6 Reboots
 
 GIT MANTRA:
 git init

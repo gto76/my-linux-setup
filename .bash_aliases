@@ -7,6 +7,8 @@ alias rm='rm -i'
 alias mv='mv -iv'
 alias cp='cp -iv'
 
+alias less='less -Q~P"%db/%D %f"'
+
 #LS
 
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
@@ -68,7 +70,6 @@ alias .='echo $PWD'
 alias p='echo $PWD'
 alias cd..='cd ..'
 
-alias less='less -Q~P"%db/%D %f"'
 
 alias e='echo'
 alias c='cat'
@@ -82,7 +83,8 @@ alias clr=clear
 alias his=history
 alias h='history | grep '
 
-alias pse='ps -e'
+alias pse='ps -e | catOrLess'
+
 alias df='df -h'
 
 alias hib='sudo pm-hibernate'
@@ -145,10 +147,10 @@ commit() {
   else
   	message="$*"
   fi
-  git commit -am "$message"
+  sudo git commit -am "$message"
 }
 
-alias push='git push'
+alias push='sudo git push'
 
 alias run='go run'
 
@@ -172,6 +174,7 @@ catOrLess() {
 		fi
 	fi
 }
+alias com='catOrLess'
 
 find1() {
 	tmp=`find . | grep --color=always "$1"`

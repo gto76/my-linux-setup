@@ -125,6 +125,8 @@ bash -n <Script> - check for errors
 - in place of a file name means standard in or out
 wmctrl - X Window Manager
 run-parts - run all scripts or programs in a directory
+mkisofs - create a DVD/CD image
+cdrecord - write to a CD/DVD
 
 TEXT:
 
@@ -156,9 +158,8 @@ ps --forest - wiev hierarchical view of processes
 	v - virtual memory 
 	--sort - sort by field 
 	pstree - similar
-	pgrep <string> - returns PIDS of processes containing string (-l to 	print process name)
-kill $(pgrep mozilla) - kills everithing mozilla
-	pkill - same
+pgrep <string> - returns PIDS of processes containing string (-l to 	print process name)
+pkill = kill $(pgrep mozilla) - kills everithing mozilla
 	kill -kill pid - force quit, data will be lost
 	killall - uses name instead of pid
 	skill - sends signals to command/user/tty
@@ -273,10 +274,11 @@ cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
 users - trenutno ulogirani userji (samo imena)
 who - podobno, več podatkov
 w - podobno, še kaj izvajajo
-sudo /etc/init.d/ssh restart - restrt sshh deamon
-last - when various users have logged in or out. This includes information on when the computer was rebooted.
-lastlog - Displays a list of users and what day/time they logged into the system
 free -tm - Displays memory statistics (-s continuously display)
+vmstat - Performance of system components / virtual memory statistics
+sar - System activity information
+iostat - Disk usage
+sudo /etc/init.d/ssh restart - restrt sshh deamon
 zeitgeist - activity logger
 vipw - edit password file
 vigr - edit groups file
@@ -287,13 +289,16 @@ dmesg - print the contents of your bootup messages displayed by the kernel. This
 when debugging problems
 mount device mountpoint - mount /dev/hdc2 /mymedia
 Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk
-mkisofs - create a DVD/CD image
-cdrecord - write to a CD/DVD
 Mono - .NET support
 telinit - change system runlevel
-closelog, openlog, syslog, vsyslog - send messages to the system logger
+last - when various users have logged in or out. This includes information on when the computer was rebooted.
+lastlog - Displays a list of users and what day/time they logged into the system
+closelog, openlog, syslog, vsyslog - send messages to the system logger, ...
 	rsyslogd - reliable and extended syslogd
-
+auditd - system call auditing
+	ausearch - querys the audit logs
+	autrace - traces a specific process
+	auditctl - controls the behavior of the auditd server 
 
 AUDIO:
 
@@ -331,18 +336,17 @@ $HOME/.bashrc - mesto za bash aliase in funkcije
 /etc/groups - grupe
 /etc/init/
 /etc/init.d/ - direktorij z nastavitvenimi datotekami ki se zazenejo ob zacetku
+/etc/rc.d - Startup scripts for different runlevels
 /etc/init/ssh.conf - sshd config
 /etc/ssh/sshd_config - sshd config
 ~/.bash_profile  - for PATH, JAVA_HOME (ali .bashrc) for one user
-/etc/profile OR /etc/bash.bashrc - for all users
-source 
-/etc/profile OR . /etc/profile to activate
+	/etc/profile OR /etc/bash.bashrc - for all users 
 /etc/fstab - Automatic mounts are handled by configuring the file
 /etc/services - list of services with their port numbers
 /etc/sudoers - lists of users and the commands they can run with sudo
 /etc/crontab - system-wide crontab
 /etc/cron.hourly|daily|weekly|monthly/ - links to scripts that will execute periodicaly. Scripts within a cron directory are run alphabetically.
-/etc/rsyslog.conf|rsyslog.d - log conf (need to restart rsyslogd after edit)
+/etc/rsyslog.conf|rsyslog.d/50-default.conf - log conf (need to restart rsyslogd after edit)
 
 PROC / The files under the /proc show various information
 about the system:
@@ -363,8 +367,8 @@ access permissions.
 
 VAR - "variable":
 /var/log/ - System logs in here
-/var/log/syslog - razni logi
 /var/log/auth.log - log loginov
+/var/log/syslog - večina ostalih logov
 /var/spool - contains data which is awaiting some kind of later processing
 
 BOOT (kernels):

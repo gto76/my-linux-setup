@@ -183,6 +183,8 @@ service - allows you to perform various tasks on services
 You may also execute the shell script directly from /etc/init.d . Simply go to that directory
 then type ./script name.
 	restart, start, stop, status
+syslogd - manages all the logs on your system
+
 
 SCHEDULED COMMANDS:
 
@@ -289,6 +291,9 @@ mkisofs - create a DVD/CD image
 cdrecord - write to a CD/DVD
 Mono - .NET support
 telinit - change system runlevel
+closelog, openlog, syslog, vsyslog - send messages to the system logger
+	rsyslogd - reliable and extended syslogd
+
 
 AUDIO:
 
@@ -337,6 +342,7 @@ source
 /etc/sudoers - lists of users and the commands they can run with sudo
 /etc/crontab - system-wide crontab
 /etc/cron.hourly|daily|weekly|monthly/ - links to scripts that will execute periodicaly. Scripts within a cron directory are run alphabetically.
+/etc/rsyslog.conf|rsyslog.d - log conf (need to restart rsyslogd after edit)
 
 PROC / The files under the /proc show various information
 about the system:
@@ -345,6 +351,8 @@ about the system:
 /proc/net/ - network related
 	/proc/net/route - routing table
 	netstat - Displays contents of /proc/net files
+/etc/syslog.conf - Configuration information for syslogd 
+
 
 USR - "Unix System Resources":
 /usr/lib/jvm - java jres and jdks

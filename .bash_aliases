@@ -73,7 +73,7 @@ alias less='less -Q~P"%db/%D %f"'
 alias e='echo'
 alias c='cat'
 alias m='less' 
-alias n='nano'
+alias n='nano -u'
 alias g='gedit'
 alias f='firefox'
 

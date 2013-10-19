@@ -425,6 +425,12 @@ key q
 key y"
 }
 
+spilej3() {
+	spilej "$@"
+	spilej "$@"
+	spilej "$@"
+}
+
 alias tz='gedit "$TODO" &'
 alias htu='gedit "$HUD" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'

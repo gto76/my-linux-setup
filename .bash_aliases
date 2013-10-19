@@ -136,7 +136,11 @@ sm() {
 }
 
 apropos1() {
-	apt-cache search $*
+	apt-cache search "$*"
+}
+
+whatis1() {
+	apt-cache show "$*"
 }
  
 #git

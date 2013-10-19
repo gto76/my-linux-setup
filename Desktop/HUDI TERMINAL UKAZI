@@ -39,8 +39,6 @@ ctrl a - go to begining of line
 ctrl e - end of line
 ctrl u - copy line
 ctrl y - paste line
-pgdn - ~
-``
 
 ###################
 HUDI TERMINAL UKAZI:
@@ -57,9 +55,9 @@ apt-get autoremove - remove unneded packages
 apt-get install - also update single package
 dpkg -l - lists installed packages
 winetricks - install wine aplications
+apt-cache show - get info about package
 whereis <command> - locates where command resides 
 which - similar only executable
-apt-cache show - get info about package
 
 GENERAL:
 
@@ -334,9 +332,13 @@ $HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
 /etc/passwd - userji
 /etc/groups - grupe
-/etc/init/
+
+/etc/init/, $HOME/.init/ - init - Upstart init daemon job configuration
 /etc/init.d/ - direktorij z nastavitvenimi datotekami ki se zazenejo ob zacetku
-/etc/rc.d - Startup scripts for different runlevels
+/etc/init.d/halt - se zazene ob koncu
+/etc/rc<NUM>.d - Startup scripts for different runlevels - links to scripts in /etc/init.d
+/etc/rc.local - last initialization file executed - put your commands here
+
 /etc/init/ssh.conf - sshd config
 /etc/ssh/sshd_config - sshd config
 ~/.bash_profile  - for PATH, JAVA_HOME (ali .bashrc) for one user

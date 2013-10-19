@@ -1,15 +1,28 @@
-# Make some possibly destructive commands more interactive.
-
-alias rmdir='rm -rI'
-alias cpdir='cp -arv'
-
-alias rm='rm -i'
-alias mv='mv -iv'
-alias cp='cp -iv'
-
 alias less='less -Q~P"%db/%D %f"'
 
-#LS
+#open cat or less, depending on no of lines of file or input
+catOrLess() {
+	if [ $# -gt 0 ]
+	then
+		noOfLines=`cat "$1" | wc -l`
+		if [ $LINES -gt $noOfLines ]; then
+			cat "$1"	
+		else
+			less "$1" 
+		fi
+	else
+		input=`cat`
+		noOfLines=`echo "$input" | wc -l`
+		if [ $LINES -gt $noOfLines ]; then
+			echo "$input" | cat	
+		else
+			echo "$input" | less 
+		fi
+	fi
+}
+alias m='catOrLess'
+
+# LS
 
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
 alias ls='ls -FXC --color=auto --group-directories-first'
@@ -53,10 +66,14 @@ alias la='l -A'
 alias lla='ll -A'
 alias llla='lll -A'
 
-#BASICS
+# BASICS
 
-alias ba='bash'
-alias gg='gedit $HOME/.bash_aliases &'
+# Make some possibly destructive commands more interactive.
+alias rmdir='rm -rI'
+alias cpdir='cp -arv'
+alias rm='rm -i'
+alias mv='mv -iv'
+alias cp='cp -iv'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -66,21 +83,29 @@ alias ......='cd ..; cd ..; cd ..; cd..; cd..'
 alias .......='cd ..; cd ..; cd ..; cd..; cd..; cd..'
 
 alias ,,='cd ..'
+alias cd..='cd ..'
+alias ..l='cd ..; l'
+cdl() {	
+	cd "$@"; l
+}
+
 alias .='echo $PWD'
 alias p='echo $PWD'
-alias cd..='cd ..'
 
-
+alias ba='bash'
+alias bax='exit; bash'
 alias e='echo'
 alias c='cat'
-alias m='less' 
+#alias m='less' 
 alias n='nano -u'
 alias g='gedit'
 alias f='firefox'
+alias scr='screen'
+alias t='date'
 
-alias clr=clear
+alias clr='clear'
 
-alias his=history
+alias his='history'
 alias h='history | grep '
 
 alias pse='ps -e | catOrLess'
@@ -92,7 +117,9 @@ alias sus='sudo pm-suspend'
 
 alias du='du -sh'
 
-#USEFUL
+alias gg='gedit $HOME/.bash_aliases &'
+
+# USEFUL
 
 # Make grep more user friendly by highlighting matches
 # and exclude grepping through .svn folders.
@@ -139,8 +166,14 @@ apropos1() {
 	apt-cache search "$*"
 }
 
+# Searches apt for name
 whatis1() {
-	apt-cache show "$*"
+	apt-cache show "$*" | grep "^ " | catOrLess
+}
+
+# Searches aliases for name
+whatis2() {
+	type "$*" | catOrLess
 }
  
 #git
@@ -158,31 +191,9 @@ alias push='sudo git push'
 
 alias run='go run'
 
-#open cat or less, depending on no of lines of file or input
-catOrLess() {
-	if [ $# -gt 0 ]
-	then
-		noOfLines=`cat "$1" | wc -l`
-		if [ $LINES -gt $noOfLines ]; then
-			cat "$1"	
-		else
-			less "$1" 
-		fi
-	else
-		input=`cat`
-		noOfLines=`echo "$input" | wc -l`
-		if [ $LINES -gt $noOfLines ]; then
-			echo "$input" | cat	
-		else
-			echo "$input" | less 
-		fi
-	fi
-}
-alias com='catOrLess'
-
 find1() {
 	tmp=`find . | grep --color=always "$1"`
-	noOfLines=`echo "$tmp" | wc -l`
+	noOfLines	=`echo "$tmp" | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
 		echo "$tmp"
 	else
@@ -190,7 +201,36 @@ find1() {
 	fi
 }
 
-# NETWORKING
+# NOT_SO_NECESARY
+
+alias path='echo -e ${PATH//:/\\n}'
+alias ch='chmod u+x'
+alias ap='apropos'
+
+alias b='acpi'
+alias batt='acpi'
+alias battery='acpi'
+
+#display free memory
+alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
+
+#count number of lines in files with extension $1
+noOfLines() {
+	no=0
+	for file in *; do
+		if [[ $file == *."$1" ]]; then
+			let no=$no+`cat "$file" | wc -l`	
+		fi
+	done 
+	echo $no
+}
+
+#Open last modified file in pico
+alias Pico="pico `ls -t | head -1`" 
+
+#            #
+# NETWORKING #
+#            #
 
 #get gateway
 alias gateway='route -n | grep "192.168." | head -n1 | grep -o "192.168.[0-9.]*"'
@@ -253,7 +293,9 @@ nmap1() {
 
 alias nmap2='nmap1 10'
 
-#INTERNET
+#          #
+# INTERNET #
+#          #
 
 alias nba='lynx http://scores.nbcsports.msnbc.com/nba/scoreboard.asp'
 alias lpp='lynx http://bus.talktrack.com/'
@@ -321,32 +363,14 @@ wiki() {
   eval "lynx $url"
 }
 
-#NOT_SO_NECESARY
-
-alias path='echo -e ${PATH//:/\\n}'
-alias ch='chmod u+x'
-alias ap='apropos'
-
-alias b='acpi'
-alias batt='acpi'
-alias battery='acpi'
-
-#display free memory
-alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
-
-#count number of lines in files with extension $1
-noOfLines() {
-	no=0
-	for file in *; do
-		if [[ $file == *."$1" ]]; then
-			let no=$no+`cat "$file" | wc -l`	
-		fi
-	done 
-	echo $no
+#Shows weather for city specified by citycode defined by yahoo weather
+weathr() {
+	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" | awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
 }
 
-#Open last modified file in pico
-alias Pico="pico `ls -t | head -1`" 
+#       #
+# AUDIO #
+#       #
 
 #AUDIO PLAYER
 #plays song (Downloads from youtube if nothing found localy)
@@ -425,16 +449,39 @@ key q
 key y"
 }
 
+#TODO da ne igra istih komadov
 spilej3() {
 	spilej "$@"
 	spilej "$@"
 	spilej "$@"
 }
 
+#Sets master volume from 0 to 100
+vol() {
+	amixer set Master playback "$1"
+}
+
+q() {
+	vol "6dB+" | tail -n 1
+}
+a() {
+	vol "6dB-" | tail -n 1
+}
+qq() {
+	vol "2dB+" | tail -n 1
+}
+aa() {
+	vol "2dB-" | tail -n 1
+}
+
+#      #
+# TEXT #
+#      #
+
 alias tz='gedit "$TODO" &'
 alias htu='gedit "$HUD" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
-alias nnn='nano "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
+alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
 
 #Append line to todo file
 alias zt='ztodo'
@@ -460,34 +507,11 @@ alias chud='catOrLess "$HUD"'
 alias ctmp='catOrLess "$TMP"'
 alias ctord='catOrLess "$TORD"'
 
+
 ######## NEW / NOT SORTED #########
-alias t='date'
 
-alias ..l='cd ..; l'
-cdl() {	
-	cd "$@"; l
+ps1() {
+	ps "$@" | catOrLess
 }
-
-#Shows weather for city specified by citycode defined by yahoo weather
-weathr() {
-	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" | awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
-}
-
-#Sets master volume from 0 to 100
-vol() {
-	amixer set Master playback "$1"
-}
-
-q() {
-	vol "6dB+" | tail -n 1
-}
-a() {
-	vol "6dB-" | tail -n 1
-}
-qq() {
-	vol "2dB+" | tail -n 1
-}
-aa() {
-	vol "2dB-" | tail -n 1
-}
+alias ps='ps1'
 

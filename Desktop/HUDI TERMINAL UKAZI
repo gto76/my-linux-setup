@@ -87,7 +87,9 @@ du -s <folderName> - folder size
 !<term> - zadnji ukaz ki se je zacel na term.
 screen - switch between multiple virtual terminals (useful in ssh)
 	ctrl+a: c - new terminal, n - next, p - previous
-man section_number (1 - commands, 2 -libraries!!) tool_name
+man section_number tool_name
+	1 programs 2 System calls 3 Library calls 4 Special files 5 File formats 7 Miscellaneous 8 System administration commands
+	-a shows all sections
 2> /dev/null - redirect error output
 &> /dev/null - redirect both standard and error output
 tee - Sends output of a program to a file and to standard output
@@ -210,6 +212,12 @@ traceroute / traceroute6 / traceroute6.iputils
 	-> iputils package
 	mtr - combines the functionality of the traceroute and ping
 findsmb - list info about machines that respond to SMB name queries - windows based machines sharing their hard disk’s
+/etc/services - list of services with their port numbers
+NetworkManager - network management daemon
+	nm-tool(1) - prints info 
+	nm-online(1) - is network connected 
+	nmcli(1) - command-line tool for controlling NetworkManager
+	NetworkManager.conf(5) - configuration file
 
 WIRELESS:
 
@@ -358,11 +366,12 @@ SERVICES:
 ~/.bash_profile  - for PATH, JAVA_HOME (ali .bashrc) for one user
 	/etc/profile OR /etc/bash.bashrc - for all users 
 /etc/fstab - Automatic mounts are handled by configuring the file
-/etc/services - list of services with their port numbers
 /etc/sudoers - lists of users and the commands they can run with sudo
 /etc/crontab - system-wide crontab
 /etc/cron.hourly|daily|weekly|monthly/ - links to scripts that will execute periodicaly. Scripts within a cron directory are run alphabetically.
 /etc/rsyslog.conf|rsyslog.d/50-default.conf - log conf (need to restart rsyslogd after edit)
+/etc/services - list of services with their port numbers
+/etc/resolv.conf - dns information
 
 PROC / The files under the /proc show various information
 about the system:

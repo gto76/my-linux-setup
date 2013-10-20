@@ -162,8 +162,13 @@ sm() {
 	sudo less "$*"
 }
 
+aproposM() {
+	apropos "$*" | catOrLess
+}
+alias apropos='aproposM'
+
 apropos1() {
-	apt-cache search "$*"
+	apt-cache search "$*" | catOrLess
 }
 
 # Searches apt for name
@@ -510,8 +515,8 @@ alias ctord='catOrLess "$TORD"'
 
 ######## NEW / NOT SORTED #########
 
-ps1() {
+psM() {
 	ps "$@" | catOrLess
 }
-alias ps='ps1'
+alias ps='psM'
 

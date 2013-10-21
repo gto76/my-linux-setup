@@ -129,6 +129,9 @@ alias gg='gedit $HOME/.bash_aliases &'
 # and exclude grepping through .svn folders.
 alias grep='grep --color=auto --exclude-dir=\.svn'
 
+alias b='acpi'
+alias battery='acpi'
+
 alias canhaz='sudo apt-get install'
 alias update='sudo apt-get update'
 alias remove='sudo apt-get remove'
@@ -216,10 +219,6 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ch='chmod u+x'
 alias ap='apropos'
 
-alias b='acpi'
-alias batt='acpi'
-alias battery='acpi'
-
 #display free memory
 alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
 
@@ -237,9 +236,9 @@ noOfLines() {
 # Open last modified file in nano
 alias Nano="nano `ls -t | head -1`" 
 
-# Print all commands
+# Print majority of commands
 commands() {
-	whatis `ls -1 /usr/share/man/man1/ | sed 's/\..*$//' | sed 's/-.*$//' |  sed 's/_.*$//' | uniq` 2>/dev/null | grep \(1\) | sed 's/(1)//' | m
+	whatis `ls -1 /usr/share/man/man1/ | sed 's/\..*$//' | sed 's/-.*$//' |  sed 's/_.*$//' | uniq` 2>/dev/null | grep \(1\) | sed 's/(1)//' | grep -v DOS -i | grep -v anymap | grep -v ppm | m
 }
 
 # Size of a command
@@ -249,6 +248,8 @@ bsize() {
 		ls -Hlh "$loc" | sed 's/^[^ ]* [^ ]* [^ ]* [^ ]* \([^ ]*\).*/\1/'
 	fi
 }
+
+alias picture='display'
 
 #            #
 # NETWORKING #

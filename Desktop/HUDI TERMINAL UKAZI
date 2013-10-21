@@ -93,7 +93,7 @@ man section_number tool_name
 	-a shows all sections
 2> /dev/null - redirect error output
 &> /dev/null - redirect both standard and error output
-tee - Sends output of a program to a file and to standard output
+tee - Sends output of a program to a file and to a standard output
 $(command) - same as `command`
 ls -S - sort by size, ls -t - sort by time
 cp -R - copy recursively
@@ -131,6 +131,12 @@ cdrecord - write to a CD/DVD
 watch - execute a program periodically, showing output fullscreen
 zcat - catz gziped file
 line - read one line
+mktemp - create a temporary file or directory
+	tempfile
+rename - renames multiple files using sed syntax
+sleep - delay for a specified amount of time
+test <expression> - same as [ <expression> ], -gt, -d,...
+whiptail - display dialog boxes from shell scripts
 
 TEXT:
 
@@ -144,8 +150,6 @@ less - 	&phrase - display only lines with
 		+G tells less to start at the end of the file
 		-F or --quit-if-one-screen
 		v - opens editor defined in $VISUAL or $EDITOR
-nano - 	/etc/nanorc - nano config
-		/usr/share/nano/JEZIK.nanorc - syntax highlights
 sdiff - two files side by side
 cut <filename> - removes certain sections of a line
 	cut -d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
@@ -156,14 +160,20 @@ enscript - Converts text files to postscript, rtf, HTML
 pdftohtml - pdf to html
 pdftotext - pdf to text
 libreoffice - novi openoffice
-diakonos - simple terminal text editor with ctrl-c for copy
 fte - cool text editor with CUA (IBM)-shortcuts
 rel - analyze text files for relevance to a given set of keywords
 figlet - display large characters made up of ordinary screen characters
 sort - sorts
-uniq - removes adjesant duplicates
+uniq - removes adjacent duplicates
 column - columnate text
 	t - create a table
+shuf - shuffle input lines
+tac - concatenate and print files in reverse (reverse cat)
+EDITORS:
+pyroom - distraction free writing
+diakonos - simple terminal text editor with ctrl-c for copy
+nano - 	/etc/nanorc - nano config
+		/usr/share/nano/JEZIK.nanorc - syntax highlights
 
 
 PROCESSES:
@@ -225,10 +235,12 @@ traceroute / traceroute6 / traceroute6.iputils
 findsmb - list info about machines that respond to SMB name queries - windows based machines sharing their hard disk’s
 /etc/services - list of services with their port numbers
 NetworkManager - network management daemon
-	nm-tool(1) - prints info 
-	nm-online(1) - is network connected 
-	nmcli(1) - command-line tool for controlling NetworkManager
-	NetworkManager.conf(5) - configuration file
+	nm-tool - prints info 
+	nm-online - is network connected 
+	nmcli - command-line tool for controlling NetworkManager
+	NetworkManager.conf - configuration file
+nc - (netcat) arbitrary TCP and UDP connections and listens
+ncat - Concatenate and redirect sockets
 
 WIRELESS:
 
@@ -262,6 +274,7 @@ wget -c	continue downloading unfinished file. Can also use wildcards, but use si
 transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
 youtube-dl - download from youtube
 noip2 - dynamic dns update client
+rdesktop - Remote Desktop Protocol client
 
 HACKING:
 
@@ -315,7 +328,8 @@ busybox <command> - combines tiny versions of many common UNIX utilities into a 
 getconf -a - print all system configuration variables
 lscpu - print CPU information
 lshw - lists all hardware
- 
+strace - trace system calls and signals
+tload - "graphic" representation od system load
 	
 SERVICES:
 	
@@ -360,7 +374,7 @@ import - Captures screen-shots from the X server
 mogrify - edit image
 gocr - command line text recognition tool
 ocrad - command line text recognition tool
-	
+ppmforge - creates picture of random planet or clowds
 
 #############
 HUDE DATOTEKE:

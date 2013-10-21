@@ -61,7 +61,8 @@ which - similar only executable
 
 GENERAL:
 
-ls -d - list directory names instead of contents
+ls 	-d - list directory names instead of contents
+	-1 - one file per line
 alias - shrani alias ($HOME/.bashrc) / show aliases
 \<command> - temporarily disable alias (call original)
 command <command> - executes original command, ignoring shell functions
@@ -128,19 +129,23 @@ run-parts - run all scripts or programs in a directory
 mkisofs - create a DVD/CD image
 cdrecord - write to a CD/DVD
 watch - execute a program periodically, showing output fullscreen
+zcat - catz gziped file
+line - read one line
 
 TEXT:
 
 tr - translate or delete characters (-d for delete)
 tail -f - do not stop printing
 cat -n - number all lines
-	nl - similar
-less - &phrase - display only lines with
-	-N show line numbers
-	-~ do not show ~ after EOF
-	+G tells less to start at the end of the file
-	-F or --quit-if-one-screen
-	v - opens editor defined in $VISUAL or $EDITOR
+	-nl - similar
+less - 	&phrase - display only lines with
+		-N show line numbers
+		-~ do not show ~ after EOF
+		+G tells less to start at the end of the file
+		-F or --quit-if-one-screen
+		v - opens editor defined in $VISUAL or $EDITOR
+nano - 	/etc/nanorc - nano config
+		/usr/share/nano/JEZIK.nanorc - syntax highlights
 sdiff - two files side by side
 cut <filename> - removes certain sections of a line
 	cut -d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
@@ -152,8 +157,14 @@ pdftohtml - pdf to html
 pdftotext - pdf to text
 libreoffice - novi openoffice
 diakonos - simple terminal text editor with ctrl-c for copy
+fte - cool text editor with CUA (IBM)-shortcuts
 rel - analyze text files for relevance to a given set of keywords
 figlet - display large characters made up of ordinary screen characters
+sort - sorts
+uniq - removes adjesant duplicates
+column - columnate text
+	t - create a table
+
 
 PROCESSES:
 
@@ -234,6 +245,8 @@ lynx - web browser
 	-syslog-urls - log requested URLs with syslog.
 	-Press a to save the address of a document or link to a (Netscape-alike) bookmark file, by default ~/lynx_bookmarks.html. You can open this in a different browser, it's just HTML.
     -l Add the current link to your bookmark file 
+	ctrl+n - scroll down two lines
+	ctrl+p - scroll up two lines
 	elinks - web browser (looks better)
 mutt - mail client
 sftp - secure ftp
@@ -287,16 +300,22 @@ dmesg - print the contents of your bootup messages displayed by the kernel. This
 when debugging problems
 mount device mountpoint - mount /dev/hdc2 /mymedia
 Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk
-Mono - .NET support
+mono - .NET support
 telinit - change system runlevel
 last - when various users have logged in or out. This includes information on when the computer was rebooted.
 lastlog - Displays a list of users and what day/time they logged into the system
 rsyslogd -  manages all the logs on your system
 	closelog, openlog, syslog, vsyslog -> send 		messages to the system logger
+logger - makes entries in the system log
 auditd - system call auditing
 	ausearch - querys the audit logs
 	autrace - traces a specific process
 	auditctl - controls the behavior of the auditd server
+busybox <command> - combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)
+getconf -a - print all system configuration variables
+lscpu - print CPU information
+lshw - lists all hardware
+ 
 	
 SERVICES:
 	
@@ -330,6 +349,7 @@ alsamixer - audio in out volumes
 	amixer
 arecord -f filequality -d seconds <filename>
 arecord -f cd -d numberofseconds -t raw | lame -x -r – out.mp3 - Arecord captures the audio that goes through your computer and pipes it to the lame encoder
+id3v2 -l - lists all files tags
 
 VIDEO:
 
@@ -381,7 +401,6 @@ about the system:
 	/proc/net/route - routing table
 	netstat - Displays contents of /proc/net files
 /etc/syslog.conf - Configuration information for syslogd 
-
 
 USR - "Unix System Resources":
 /usr/lib/jvm - java jres and jdks
@@ -446,10 +465,6 @@ torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file
 
 ######## NEW / NOT SORTED #########
 
-man (stevilka poglavja) ukaz
-/etc/nanorc - nano config
-	/usr/share/nano/JEZIK.nanorc - syntax highlights
-
 screen: al shortcuts begin with ctrl+a
 	| - new region werticaly
 	S - new region horizontaly
@@ -460,11 +475,3 @@ screen: al shortcuts begin with ctrl+a
 	] - paste
 	k - kill window
 	t - show time and avg cpu load
-
-lynx:
-	ctrl+n - scroll down two lines
-	ctrl+p - scroll up two lines
-
-fte - cool text editor with CUA (IBM)-shortcuts
-
-

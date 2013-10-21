@@ -95,6 +95,7 @@ alias p='echo $PWD'
 alias ba='bash'
 alias bax='exit; bash'
 alias e='echo'
+alias ee='echo -e'
 alias c='cat'
 #alias m='less' 
 alias n='nano -u'
@@ -102,12 +103,15 @@ alias g='gedit'
 alias f='firefox'
 alias scr='screen'
 alias t='date'
-
 alias clr='clear'
-
 alias his='history'
 alias h='history | grep '
+alias xx='exit'
 
+psM() {
+	ps "$@" | catOrLess
+}
+alias ps='psM'
 alias pse='ps -e | catOrLess'
 
 alias df='df -h'
@@ -230,8 +234,21 @@ noOfLines() {
 	echo $no
 }
 
-#Open last modified file in pico
-alias Pico="pico `ls -t | head -1`" 
+# Open last modified file in nano
+alias Nano="nano `ls -t | head -1`" 
+
+# Print all commands
+commands() {
+	whatis `ls -1 /usr/share/man/man1/ | sed 's/\..*$//' | sed 's/-.*$//' |  sed 's/_.*$//' | uniq` 2>/dev/null | grep \(1\) | sed 's/(1)//' | m
+}
+
+# Size of a command
+bsize() {
+	loc=`which "$1"`
+	if [ $? -eq 0 ]; then
+		ls -Hlh "$loc" | sed 's/^[^ ]* [^ ]* [^ ]* [^ ]* \([^ ]*\).*/\1/'
+	fi
+}
 
 #            #
 # NETWORKING #
@@ -514,9 +531,4 @@ alias ctord='catOrLess "$TORD"'
 
 
 ######## NEW / NOT SORTED #########
-
-psM() {
-	ps "$@" | catOrLess
-}
-alias ps='psM'
 

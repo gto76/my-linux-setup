@@ -58,6 +58,7 @@ winetricks - install wine aplications
 apt-cache show - get info about package
 whereis <command> - locates where command resides 
 which - similar only executable
+apt-get source <package> - download code
 
 GENERAL:
 
@@ -275,6 +276,7 @@ transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
 youtube-dl - download from youtube
 noip2 - dynamic dns update client
 rdesktop - Remote Desktop Protocol client
+tin, nn - usenet client
 
 HACKING:
 

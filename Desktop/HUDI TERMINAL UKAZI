@@ -138,6 +138,7 @@ rename - renames multiple files using sed syntax
 sleep - delay for a specified amount of time
 test <expression> - same as [ <expression> ], -gt, -d,...
 whiptail - display dialog boxes from shell scripts
+paste - glue two documents side by side
 
 TEXT:
 
@@ -157,6 +158,7 @@ cut <filename> - removes certain sections of a line
 ispell/aspell - checks spelling
 look - utput a list of words in the system dictionary that begin with a given string
 grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
+	-o, --only-matching (count ocurances with | wc -l)
 enscript - Converts text files to postscript, rtf, HTML
 pdftohtml - pdf to html
 pdftotext - pdf to text
@@ -367,7 +369,7 @@ arecord -f filequality -d seconds <filename>
 arecord -f cd -d numberofseconds -t raw | lame -x -r – out.mp3 - Arecord captures the audio that goes through your computer and pipes it to the lame encoder
 id3v2 -l - lists all files tags
 
-VIDEO:
+VIDEO/BITMAP:
 
 display - displays an image
 montage - Creates a montage from images
@@ -377,6 +379,8 @@ mogrify - edit image
 gocr - command line text recognition tool
 ocrad - command line text recognition tool
 ppmforge - creates picture of random planet or clowds
+gnuplot - interactive plotter: plot [-10:10] sin(x)
+
 
 #############
 HUDE DATOTEKE:

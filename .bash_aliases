@@ -136,18 +136,22 @@ alias canhaz='sudo apt-get install'
 alias update='sudo apt-get update'
 alias remove='sudo apt-get remove'
 
-#make bash script , make it executable, and open it in gedit
+#make bash script , make it executable
 bs() {
+	fName="$1.sh"
+	createExecutable "$fName"
+}
+#make bash script , make it executable, and open it in gedit
+bsg() {
 	fName="$1.sh"
 	createExecutable "$fName"
 	gedit "$fName"
 }
-
 #make bash script , make it executable, and open it in nano
 bsn() {
     fName="$1.sh"
 	createExecutable "$fName"
-    nano "$fName"
+    n "$fName"
 }
 
 createExecutable() {

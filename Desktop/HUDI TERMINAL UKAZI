@@ -64,6 +64,8 @@ GENERAL:
 
 ls 	-d - list directory names instead of contents
 	-1 - one file per line
+echo -n - no newline at the end
+	 -e - enable interpretation of backslashed letters
 alias - shrani alias ($HOME/.bashrc) / show aliases
 \<command> - temporarily disable alias (call original)
 command <command> - executes original command, ignoring shell functions
@@ -152,6 +154,7 @@ less - 	&phrase - display only lines with
 		+G tells less to start at the end of the file
 		-F or --quit-if-one-screen
 		v - opens editor defined in $VISUAL or $EDITOR
+		:n - examine the next file
 sdiff - two files side by side
 cut <filename> - removes certain sections of a line
 	cut -d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
@@ -380,7 +383,7 @@ gocr - command line text recognition tool
 ocrad - command line text recognition tool
 ppmforge - creates picture of random planet or clowds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
-
+	-p	leawe plots open after exit
 
 #############
 HUDE DATOTEKE:

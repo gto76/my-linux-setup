@@ -141,6 +141,7 @@ sleep - delay for a specified amount of time
 test <expression> - same as [ <expression> ], -gt, -d,...
 whiptail - display dialog boxes from shell scripts
 paste - glue two documents side by side
+sed 's///g' - substitute every occurance in line, not just the first one
 
 TEXT:
 

@@ -4,7 +4,7 @@ alias less='less -Q~P"%db/%D %f"'
 catOrLess() {
 	if [ $# -gt 0 ]
 	then
-		noOfLines=`cat "$1" | wc -l`
+		noOfLines=`cat "$1" 2>/dev/null | wc -l`
 		if [ $LINES -gt $noOfLines ]; then
 			cat "$1"	
 		else
@@ -159,6 +159,8 @@ createExecutable() {
 	chmod u+x "$1"        
 }
 alias ce=createExecutable
+#make executeble
+alias me=createExecutable    
             
 alias tar1='tar xvf'
 alias tarz='tar xzvf'

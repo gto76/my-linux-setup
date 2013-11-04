@@ -127,7 +127,7 @@ alias gg='gedit $HOME/.bash_aliases &'
 
 # Make grep more user friendly by highlighting matches
 # and exclude grepping through .svn folders.
-alias grep='grep --color=auto --exclude-dir=\.svn'
+alias grep='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
 
 alias b='acpi'
 alias battery='acpi'
@@ -217,6 +217,11 @@ find1() {
 	else
 		echo "$tmp" | less -R    
 	fi
+}
+
+mkdir1() {
+	mkdir "$1"
+	cd "$1"
 }
 
 # NOT_SO_NECESARY

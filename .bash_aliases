@@ -128,6 +128,9 @@ alias gg='gedit $HOME/.bash_aliases &'
 # Make grep more user friendly by highlighting matches
 # and exclude grepping through .svn folders.
 alias grep='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
+gr() {
+	grep "$1" --color=always | catOrLess
+}
 
 alias b='acpi'
 alias battery='acpi'
@@ -179,10 +182,12 @@ aproposM() {
 	apropos "$*" | catOrLess
 }
 alias apropos='aproposM'
+alias ap='apropos'
 
 apropos1() {
 	apt-cache search "$*" | catOrLess
 }
+alias ap1='apropos1'
 
 # Searches apt for name
 whatis1() {
@@ -228,7 +233,6 @@ mkdir1() {
 
 alias path='echo -e ${PATH//:/\\n}'
 alias ch='chmod u+x'
-alias ap='apropos'
 
 #display free memory
 alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
@@ -544,3 +548,9 @@ alias ctord='catOrLess "$TORD"'
 
 ######## NEW / NOT SORTED #########
 
+# Se pozene iz lessa ce pritisnemo v
+export EDITOR="nano"
+
+# Syntax highligh za less
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '

@@ -62,6 +62,7 @@ apt-get source <package> - download code
 
 GENERAL:
 
+cd - - go to last dir
 ls 	-d - list directory names instead of contents
 	-1 - one file per line
 echo -n - no newline at the end

@@ -107,6 +107,8 @@ alias clr='clear'
 alias his='history'
 alias h='history | grep '
 alias xx='exit'
+alias he='head'
+alias ta='tail'
 
 psM() {
 	ps "$@" | catOrLess
@@ -129,7 +131,7 @@ alias gg='gedit $HOME/.bash_aliases &'
 # and exclude grepping through .svn folders.
 alias grep='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
 gr() {
-	grep "$1" --color=always | catOrLess
+	grep "$@" --color=always | catOrLess
 }
 
 alias b='acpi'

@@ -126,7 +126,7 @@ $? - exit code of last command (0 - ok)
 sudo !! - Run the last command as root 
 cd - - go to last dir
 <space>command - Execute a command without saving it in the history
-bash -n <Script> - check for errors
+bash -n <script> - check for errors
 - in place of a file name means standard in or out
 wmctrl - X Window Manager
 run-parts - run all scripts or programs in a directory
@@ -158,7 +158,7 @@ less - 	&phrase - display only lines with
 		v - opens editor defined in $VISUAL or $EDITOR
 		:n - examine the next file
 sdiff - two files side by side
-cut <filename> - removes certain sections of a line
+cut <filename> - remove sections from each line of files
 	cut -d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
 ispell/aspell - checks spelling
 look - utput a list of words in the system dictionary that begin with a given string
@@ -172,6 +172,7 @@ fte - cool text editor with CUA (IBM)-shortcuts
 rel - analyze text files for relevance to a given set of keywords
 figlet - display large characters made up of ordinary screen characters
 sort - sorts
+	-u - uniq
 uniq - removes adjacent duplicates
 column - columnate text
 	t - create a table
@@ -451,12 +452,9 @@ BOOT (kernels):
 BASH BLIZNJICE: 
 alt . - zadnji argument
 ctrl r - išče nazaj po historiju
-tab tab - displays all posibilities
 alt * - prikaže vse matche za reg izraz
 ctrl alt e - shows curent line as when passed through alias, history and shell expansion
 ctrl x, ctrl e - edit command in editor
-cd - Go to last dir
-ctrl d - EOF
 
 INSTALL MANTRA:
 ./configure --help
@@ -475,6 +473,7 @@ gitk - repo explorer
 git clone git://github.com/USER/REPOSITORY.git - download source (kasneje z git pull osvezujes)
 
 ADD TO GITHUB:
+Create the remote repository
 git remote add origin git@github.com:/youruser/somename.git
 git pull origin master
 git push origin master

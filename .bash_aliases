@@ -211,9 +211,10 @@ commit() {
   fi
   sudo git commit -am "$message"
 }
-
 alias push='sudo git push'
+alias gits='git status'
 
+#go
 alias run='go run'
 
 find1() {
@@ -229,6 +230,16 @@ find1() {
 mkdir1() {
 	mkdir "$1"
 	cd "$1"
+}
+
+sed1() {
+	input=`cat`
+	echo "$input" | sed "s/$1/$2/"
+}
+
+sed1g() {
+	input=`cat`
+	echo "$input" | sed "s/$1/$2/g"
 }
 
 # NOT_SO_NECESARY

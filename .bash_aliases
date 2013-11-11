@@ -213,6 +213,7 @@ commit() {
 }
 alias push='sudo git push'
 alias gits='git status'
+alias gita='git add src/*'
 
 #go
 alias run='go run'
@@ -237,10 +238,15 @@ sed1() {
 	echo "$input" | sed "s/$1/$2/"
 }
 
-sed1g() {
+sed2() {
 	input=`cat`
 	echo "$input" | sed "s/$1/$2/g"
 }
+
+# Print clipboard
+alias xo='xclip -o'
+# Put in clipboard
+alias xi='xclip -i'
 
 # NOT_SO_NECESARY
 
@@ -533,6 +539,10 @@ alias tz='gedit "$TODO" &'
 alias htu='gedit "$HUD" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
 alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
+alias n1='n "$HUD"'
+alias n2='n $HOME/.bash_aliases'
+alias n3='n $HOME/.bashrc'
+alias n4='n "$TODO"'
 
 #Append line to todo file
 alias zt='ztodo'

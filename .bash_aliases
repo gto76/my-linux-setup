@@ -1,5 +1,5 @@
 alias less='less -Q~P"%db/%D %f"'
-
+  
 #open cat or less, depending on no of lines of file or input
 catOrLess() {
 	if [ $# -gt 0 ]
@@ -212,8 +212,8 @@ commit() {
   sudo git commit -am "$message"
 }
 alias push='sudo git push'
-alias gits='git status'
-alias gita='git add src/*'
+alias gits='git status | catOrLess'
+alias gita='sudo git add src/*'
 
 #go
 alias run='go run'
@@ -391,6 +391,36 @@ stack() {
   eval "lynx $url"
 }
 
+#super user
+suser() {
+
+  if [ $# -eq 0 ]
+  then
+    url='http://superuser.com/'
+  fi
+
+  if [ $# -eq 1 ]
+  then
+    url="http://superuser.com/search?q=$1"
+  fi
+
+  if [ $# -gt 1 ]
+  then
+    url="http://superuser.com/search?q=$1"
+    i=0
+    for var in "$@"
+    do
+      if [ $i -gt 0 ]
+      then
+        url=$url+$var
+      fi
+      let i=$i+1
+    done
+  fi
+
+  eval "lynx $url"
+}
+
 #wikipedia
 wiki() {
   if [ $# -eq 0 ]
@@ -535,7 +565,7 @@ aa() {
 # TEXT #
 #      #
 
-alias tz='gedit "$TODO" &'
+alias tz='tail "$TODO"'
 alias htu='gedit "$HUD" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
 alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
@@ -543,6 +573,11 @@ alias n1='n "$HUD"'
 alias n2='n $HOME/.bash_aliases'
 alias n3='n $HOME/.bashrc'
 alias n4='n "$TODO"'
+
+alias m1='m "$HUD"'
+alias m2='m $HOME/.bash_aliases'
+alias m3='m $HOME/.bashrc'
+alias m4='m "$TODO"'
 
 #Append line to todo file
 alias zt='ztodo'
@@ -577,3 +612,10 @@ export EDITOR="nano"
 # Syntax highligh za less
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
+
+alias de='cd ~/Desktop; ls'
+alias code='cd ~/code; ls'
+
+alias rss='nrss'
+alias rss1='newsbeuter'
+alias rss2='canto'

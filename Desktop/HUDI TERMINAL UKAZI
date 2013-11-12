@@ -29,6 +29,7 @@ terminal:
 Shift+Ctrl+t	new tab	 
 Shift+Ctrl+w	close tab	 
 Ctrl+{PgUp,PgDown} change tabs
+ctrl -, + 		zoom
 
 firefox:
 about:config - layout.css.devPixelsPerPx default zoom (-1.0)
@@ -183,7 +184,7 @@ pyroom - distraction free writing
 diakonos - simple terminal text editor with ctrl-c for copy
 nano - 	/etc/nanorc - nano config
 		/usr/share/nano/JEZIK.nanorc - syntax highlights
-
+		alt - / or ? go to last line
 
 PROCESSES:
 
@@ -503,3 +504,9 @@ screen: al shortcuts begin with ctrl+a
 xrandr --output VGA1 --primary - zamena primarni zaslon
 xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their ralative positions
 
+nrss - rss feed reader
+	newsbeuter - same
+
+vim: help: 	ctrl ] - folow link
+			ctrl o - go back
+			:q     - exit help		

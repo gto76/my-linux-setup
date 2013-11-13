@@ -269,6 +269,8 @@ lynx - web browser
     -l Add the current link to your bookmark file 
 	ctrl+n - scroll down two lines
 	ctrl+p - scroll up two lines
+	-dumb prints txt to stdout
+	-source prints html to stdout
 	elinks - web browser (looks better)
 mutt - mail client
 sftp - secure ftp

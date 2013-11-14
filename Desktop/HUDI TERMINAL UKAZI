@@ -269,8 +269,8 @@ lynx - web browser
     -l Add the current link to your bookmark file 
 	ctrl+n - scroll down two lines
 	ctrl+p - scroll up two lines
-	-dumb prints txt to stdout
-	-source prints html to stdout
+	-dumb - prints txt to stdout (-crawl - turn numbers off)
+	-source - prints html to stdout
 	elinks - web browser (looks better)
 mutt - mail client
 sftp - secure ftp
@@ -467,22 +467,24 @@ sudo make install
 
 GIT MANTRA:
 git init
-git add index.html ALI git add .
+git add <filename> OR git add .
 git status
-git commit -am "Initial contents of public_html"
+git commit -am "Commit message goes here."
 -
-git rm --cached mylogfile.log - untrack file withouth deleting it.
-gitk - repo explorer
-git clone git://github.com/USER/REPOSITORY.git - download source (kasneje z git pull osvezujes)
-
 ADD TO GITHUB:
-Create the remote repository
-git remote add origin git@github.com:/youruser/somename.git
+Create remote repository on website
+git remote add origin git@github.com:/your-username/project-name.git
 git pull origin master
 git push origin master
 After your first push, you can simply type:
 git push
-
+--
+Also useful:
+git rm --cached mylogfile.log - untrack file withouth deleting it.
+gitk - repo explorer
+git clone git://github.com/USER/REPOSITORY.git - download source (kasneje z git pull osvezujes)
+git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
+git tag - list local tags
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily
 sudo add-apt-repository ppa:n-muench/vlc
@@ -512,3 +514,6 @@ nrss - rss feed reader
 vim: help: 	ctrl ] - folow link
 			ctrl o - go back
 			:q     - exit help		
+
+bc - calculator [echo 1+1 | bc -> 2]
+

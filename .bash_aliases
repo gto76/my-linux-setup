@@ -22,6 +22,28 @@ catOrLess() {
 }
 alias m='catOrLess'
 
+#open cat or less +G, depending on no of lines of file or input
+catOrLessG() {
+	if [ $# -gt 0 ]
+	then
+		noOfLines=`cat "$1" 2>/dev/null | wc -l`
+		if [ $LINES -gt $noOfLines ]; then
+			cat "$1"	
+		else
+			less "$1" +G 
+		fi
+	else
+		input=`cat`
+		noOfLines=`echo "$input" | wc -l`
+		if [ $LINES -gt $noOfLines ]; then
+			echo "$input" | cat	
+		else
+			echo "$input" | less +G 
+		fi
+	fi
+}
+alias m1='catOrLessG'
+
 # LS
 
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
@@ -104,11 +126,12 @@ alias f='firefox'
 alias scr='screen'
 alias t='date'
 alias clr='clear'
-alias his='history'
+alias his='history | catOrLessG'
 alias h='history | grep '
 alias xx='exit'
 alias he='head'
 alias ta='tail'
+alias s='screen'
 
 psM() {
 	ps "$@" | catOrLess
@@ -124,6 +147,21 @@ alias sus='sudo pm-suspend'
 alias du='du -sh'
 
 alias gg='gedit $HOME/.bash_aliases &'
+
+# SUDO
+alias srm='sudo rm -i'
+alias scp='sudo cp -iv'
+alias smv='sudo mv -iv'
+
+sg() {
+	sudo gedit "$*"
+}
+sn() {
+	sudo nano "$*"
+}
+sm() {
+	sudo less "$*"
+}
 
 # USEFUL
 
@@ -170,15 +208,6 @@ alias me=createExecutable
 alias tar1='tar xvf'
 alias tarz='tar xzvf'
 
-sg() {
-	sudo gedit "$*"
-}
-sn() {
-	sudo nano "$*"
-}
-sm() {
-	sudo less "$*"
-}
 
 aproposM() {
 	apropos "$*" | catOrLess
@@ -350,15 +379,54 @@ nmap1() {
 
 alias nmap2='nmap1 10'
 
+# Shrani output od nmap1 v file poimenovan po trenutnem času
+# [leto-mesec-dan-ura-minuta:teden v letu-dan v tednu]
+networkLogger() {
+	destDir="~/networkLogger"
+	mkdir "$destDir"
+	third=`/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]* | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+	forth="20"
+	nmap -sP 192.168.$third.0-$forth > "$destDir"/`date +%y-%m-%d-%H-%M:%W-%u`]
+}
+
+niceDisplay() {
+	cd "~/networkLogger/logs"
+	# For all uniqe host names,
+	for n in `cat * | grep Host | sort | uniq | grep -v Gateway | sed 's/^Host \([^ ]*\).*$/\1/'`; do
+		printf "$n:\t"
+		# check every log file if it contains it
+		for f in *; do
+			cat "$f" | grep -q "$n"
+			if [ $? -eq 0 ]; then
+				# and print a * if it does.
+				printf "*"
+			else
+				printf " "
+			fi
+		done
+		echo ""
+	done
+}
+
 #          #
 # INTERNET #
 #          #
 
-alias nba='lynx http://scores.nbcsports.msnbc.com/nba/scoreboard.asp'
 alias lpp='lynx http://bus.talktrack.com/'
 
 alias kdox='mplayer http://wms2.mainstreamnetwork.com/kdox-am &'
 alias wabc='mplayer http://69.28.128.148:80/stream/citadelcc_WABC-AM &'
+
+#nba
+alias nbaScoreboard="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/scoreboard.asp | grep -w '北京时\|Tot' -A11 | grep -v 'STATS LLC\|Any commercial\|NBC Sports\|NBC Universal' | grep -v MST | sed 's/^.*ET\([0-9:]*\).*$/   \1/' | grep -v Preview | sed '/^$/N;/^\n$/D' | m"
+alias nbaStandings="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/standings_conference.asp | grep 'Eastern Conference' -A39 | gr _ -v | sed 's/New York/New=York/g' | sed 's/San Antonio/San=Antonio/g' | sed 's/Oklahoma City/Oklahoma=City/g' | sed 's/Trail Blazers/Trail=Blazers/g' | sed 's/Los Angeles/Los=Angeles/g' | sed 's/Golden State/Golden=State/g' | sed 's/New Orleans/New=Orleans/g' | sed 's/Conf GB/Conf=GB/g' | sed 's/Last 10/Last=10/g' | sed 's/\([0-9]*\) \([W\|L]\)$/\1=\2/g' | sed 's/W L/= = = W L/' | sed 's/Eastern Conference/€/g' | sed 's/Western Conference/ħ/g' | column -t | tr '=' ' ' | sed 's/€/Eastern Conference/' | sed 's/ħ/\nWestern Conference/' | m"
+
+nba() {
+	e -n '   ';	t; e 
+	nbaScoreboard
+}
+alias nba1='e; nbaStandings; e'
+alias nba2='lynx http://scores.nbcsports.msnbc.com/nba/scoreboard.asp'
 
 #stack overflow
 alias so='stack'

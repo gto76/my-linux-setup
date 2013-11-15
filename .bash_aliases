@@ -687,3 +687,6 @@ alias code='cd ~/code; ls'
 alias rss='nrss'
 alias rss1='newsbeuter'
 alias rss2='canto'
+
+# Count lines in git repo
+alias gitl='git ls-files | xargs wc -l'

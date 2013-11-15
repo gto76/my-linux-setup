@@ -21,4 +21,4 @@ Besides a lot of useful aliases, there are also a some interesting functions, su
 
 *weathr <city id> - Weather report. Needs city ID -> Go to yahoo weather, search your location, and copy its id from address bar.
 
-*spilej <artist/song/album..> - Plays a track. First looks in pwd, then runs locate, to search whole filesistem. At the end it tries to find it on Youtoube and download the video and convert it to audio and play it. Most of the problems occur at search phase.
+*spilej <artist/song/album..> - Plays a track. First looks in pwd, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems occur at search phase.

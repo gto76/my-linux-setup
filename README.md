@@ -7,7 +7,7 @@ Besides a lot of useful aliases, there are also a some interesting functions, su
 
 *catOrLess - Opens either cat or less, depending on size of input data. Works with files or input stream.
 
-*pingAll - Pings gateway, 8.23.224.10 and www.google.com.
+*pingAll - Pings gateway, 8.23.224.10 and google.
 
 *ip1 - What's my internal ip.
 

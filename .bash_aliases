@@ -313,6 +313,7 @@ bsize() {
 }
 
 alias picture='display'
+alias image='display'
 
 #            #
 # NETWORKING #

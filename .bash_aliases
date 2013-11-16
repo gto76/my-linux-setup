@@ -169,7 +169,7 @@ sm() {
 # and exclude grepping through .svn folders.
 alias grep='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
 gr() {
-	grep "$@" --color=always | catOrLess
+	grep "$@" -i --color=always | catOrLess
 }
 
 alias b='acpi'

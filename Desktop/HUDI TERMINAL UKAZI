@@ -507,6 +507,17 @@ screen: al shortcuts begin with ctrl+a
 
 xrandr --output VGA1 --primary - zamena primarni zaslon
 xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their ralative positions
+xrandr -q - list devices
+
+# reset 
+xrandr --auto
+
+# turn off laptop screen
+xrandr --output LVDS1 --off
+
+# 24" 16x12 on
+xrandr --output VGA --mode 1600x1200
+
 
 nrss - rss feed reader
 	newsbeuter - same
@@ -516,4 +527,5 @@ vim: help: 	ctrl ] - folow link
 			:q     - exit help		
 
 bc - calculator [echo 1+1 | bc -> 2]
+
 

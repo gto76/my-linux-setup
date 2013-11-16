@@ -336,10 +336,10 @@ alias pa=pingAll
 alias pa1='pingAll; pingAll'
 
 #whats my internal ip - ifconfig
-alias ip1='echo `/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]*`'
+alias ip1='echo `/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]\*`'
 
 #whats my external ip - ifconfig
-alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]*`'
+alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]\*`'
 
 #how many people on network beside you (number of hosts)
 noh() {
@@ -535,11 +535,15 @@ spilej() {
 	then
 		echo "Playing \"$1\""
 		mplayer -slave "$@" &> /dev/null
+	#else if
+		# TODO: check temp folder
+		#foundFiles=`find /tmp/spilejYoutube/ -iname '*$1*.wav' -o -iname '*$1*.mp3'-o -iname '*$2*.mp3'-o -iname '*$2*.mp3'`
+		#if [ $foundFiles == "" ]
 	else
 		#search filesystem
 		#TODO check that it's not mp3.part file
 		echo "No file in folder. Scanning filesystem..."
-		listOfFiles=`locate ".*$*.*mp3" --regex --quiet --ignore-case`
+		listOfFiles=`locate ".*$*.*mp3" ".*$*.*wav" --regex --quiet --ignore-case`
 		noOfFiles=`echo "$listOfFiles" | wc -l`
 		if [ "$noOfFiles" -gt 1 ]
 		then
@@ -551,8 +555,7 @@ spilej() {
 		else
 			echo "No file in filesystem. Searching Youtube..."
 			spilejYoutube "$*"
-		fi
-		
+		fi		
 	fi
 }
 
@@ -560,23 +563,24 @@ spilejYoutube() {
 	#TODO efikasnejse iskanje linkov	
 	#TODO MP4
 	#TODO stop executing if one step fails
-	cd /tmp; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube
+	cd ~/Music; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube
 	#zgeneriraj skripto in jo sprevi v tmp
+	#echo "Generating search script."
 	lynxYoutubeSkripta "$*" > spilejLinxSkripta
 	#zazeni lynx z skripto
-	#echo "Iscem link."
-	lynx -cmd_script=/tmp/spilejYoutube/spilejLinxSkripta www.youtube.com &>/dev/null
+	#echo "Searching."
+	lynx -cmd_script=~/Music/spilejYoutube/spilejLinxSkripta www.youtube.com &>/dev/null
 	#uzami zadnji bookmark
 	url=`cut --delimiter='"' -f 2 $HOME/lynx_bookmarks.html | tail -n1 | sed s/";".*$//`
 	#echo "url:$url"
 	#zdaunloudaj video iz youtuba
-	echo "Zacenjam download: $url"
+	echo "Downloading: $url"
 	youtube-dl -q "$url"
 	#ga pretvori v mp3			
-	fileId=`echo $url | sed 's/.*=\(.*\)&.*/\1/g'`
-	videoFilename=`ls *$fileId.flv`
-	audioFilename=`echo "$videoFilename" | sed 's/\(.*\)-$fileId.flv/\1/g'`.wav
-	echo "filename:$audioFilename"
+	fileId=`echo $url | sed 's/^.*=//'`
+	videoFilename=`ls *$fileId.*`
+	audioFilename=`echo "$videoFilename" | sed 's/\..*$//g'`.wav
+	echo "filename: $audioFilename"
 	ffmpeg -i "$videoFilename" "$audioFilename" &> /dev/null
 	#izbrisi video
 	\rm "$videoFilename"
@@ -594,7 +598,7 @@ lynxYoutubeSkripta() {
 	echo "`echo "$*" | sed 's/\(.\)/\1\n/g' | sed 's/[ ]/<space>/g' | sed 's/^/key /g' | head -n -1`"
 	echo "key Up Arrow"
 	echo "key Right Arrow"
-	for i in {1..20}
+	for i in {1..44}
 	do
 		echo "key Down Arrow"
 	done

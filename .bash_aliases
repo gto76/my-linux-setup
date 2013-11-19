@@ -220,15 +220,17 @@ apropos1() {
 }
 alias ap1='apropos1'
 
+alias wi='whatis'
 # Searches apt for name
 whatis1() {
 	apt-cache show "$*" | grep "^ " | catOrLess
 }
-
+alias wi1='whatis1'
 # Searches aliases for name
 whatis2() {
 	type "$*" | catOrLess
 }
+alias wi2='whatis2'
  
 #git
 commit() {

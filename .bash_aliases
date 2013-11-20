@@ -421,7 +421,7 @@ alias kdox='mplayer http://wms2.mainstreamnetwork.com/kdox-am &'
 alias wabc='mplayer http://69.28.128.148:80/stream/citadelcc_WABC-AM &'
 
 #nba
-alias nbaScoreboard="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/scoreboard.asp | grep -w '北京时\|Tot' -A11 | grep -v 'STATS LLC\|Any commercial\|NBC Sports\|NBC Universal' | grep -v MST | sed 's/^.*ET\([0-9:]*\).*$/   \1/' | grep -v Preview | sed '/^$/N;/^\n$/D' | m"
+alias nbaScoreboard="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/scoreboard.asp | grep -w 'PM' -A10 | grep -v 'STATS LLC\|Any commercial\|NBC Sports\|NBC Universal' | grep -v MST | sed 's/^.*ET\([0-9:]*\).*$/   \1/' | grep -v Preview | sed '/^$/N;/^\n$/D' | m"
 alias nbaStandings="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/standings_conference.asp | grep 'Eastern Conference' -A39 | gr _ -v | sed 's/New York/New=York/g' | sed 's/San Antonio/San=Antonio/g' | sed 's/Oklahoma City/Oklahoma=City/g' | sed 's/Trail Blazers/Trail=Blazers/g' | sed 's/Los Angeles/Los=Angeles/g' | sed 's/Golden State/Golden=State/g' | sed 's/New Orleans/New=Orleans/g' | sed 's/Conf GB/Conf=GB/g' | sed 's/Last 10/Last=10/g' | sed 's/\([0-9]*\) \([W\|L]\)$/\1=\2/g' | sed 's/W L/= = = W L/' | sed 's/Eastern Conference/€/g' | sed 's/Western Conference/ħ/g' | column -t | tr '=' ' ' | sed 's/€/Eastern Conference/' | sed 's/ħ/\nWestern Conference/' | m"
 
 nba() {

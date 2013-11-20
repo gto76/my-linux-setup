@@ -485,6 +485,8 @@ gitk - repo explorer
 git clone git://github.com/USER/REPOSITORY.git - download source (kasneje z git pull osvezujes)
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
+sudo chown -R yourname:yourgroup * - in .git/objects
+
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily
 sudo add-apt-repository ppa:n-muench/vlc

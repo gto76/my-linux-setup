@@ -530,4 +530,8 @@ vim: help: 	ctrl ] - folow link
 
 bc - calculator [echo 1+1 | bc -> 2]
 
+mount iso:
+	sudo mkdir /media/x
+	sudo mount -o loop <PATH_ISO> /media/x
 
+winecfg -> drives tab to set drive

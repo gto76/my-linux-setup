@@ -535,3 +535,10 @@ mount iso:
 	sudo mount -o loop <PATH_ISO> /media/x
 
 winecfg -> drives tab to set drive
+
+wine explorer /desktop=abalaba,1024x768 app.exe - run wine app in virtual desktop
+
+reason on wine:
+	down alt down - open menu
+
+unzip \*.zip - Backslash mora bit da ga bash ne expenda

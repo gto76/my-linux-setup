@@ -520,7 +520,6 @@ xrandr --output LVDS1 --off
 # 24" 16x12 on
 xrandr --output VGA --mode 1600x1200
 
-
 nrss - rss feed reader
 	newsbeuter - same
 
@@ -534,11 +533,13 @@ mount iso:
 	sudo mkdir /media/x
 	sudo mount -o loop <PATH_ISO> /media/x
 
+WINE:
 winecfg -> drives tab to set drive
-
 wine explorer /desktop=abalaba,1024x768 app.exe - run wine app in virtual desktop
-
 reason on wine:
 	down alt down - open menu
+regedit - Registry editor
 
 unzip \*.zip - Backslash mora bit da ga bash ne expenda
+
+lsof - list open files

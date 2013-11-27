@@ -532,6 +532,7 @@ weathr() {
 
 #AUDIO PLAYER
 #plays song (Downloads from youtube if nothing found localy)
+#TODO doesen't fint file in filesystem
 spilej() {
 	if [ -f "$1" ]
 	then

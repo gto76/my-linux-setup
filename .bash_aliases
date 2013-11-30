@@ -178,6 +178,7 @@ alias battery='acpi'
 alias canhaz='sudo apt-get install'
 alias update='sudo apt-get update'
 alias remove='sudo apt-get remove'
+alias purge='sudo apt-get purge'
 
 #make bash script , make it executable
 bs() {

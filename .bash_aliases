@@ -322,6 +322,10 @@ alias image='display'
 # NETWORKING #
 #            #
 
+#wlan up/down
+alias up='sudo ifconfig wlan0 up'
+alias down='sudo ifconfig wlan0 down'
+
 #get gateway
 alias gateway='route -n | grep "192.168." | head -n1 | grep -o "192.168.[0-9.]*"'
 #ping gateway

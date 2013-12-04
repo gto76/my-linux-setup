@@ -132,6 +132,7 @@ alias xx='exit'
 alias he='head'
 alias ta='tail'
 alias s='screen'
+alias pgrep1='pgrep -l'
 
 psM() {
 	ps "$@" | catOrLess

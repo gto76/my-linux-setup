@@ -133,6 +133,7 @@ alias he='head'
 alias ta='tail'
 alias s='screen'
 alias pgrep1='pgrep -l'
+alias bc1='gcalccmd'
 
 psM() {
 	ps "$@" | catOrLess

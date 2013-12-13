@@ -173,6 +173,10 @@ alias grep='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
 gr() {
 	grep "$@" -i --color=always | catOrLess
 }
+gr1() {
+	egrep "$@" -i --color=always --exclude-dir=\.svn --exclude-dir=\.git | catOrLess
+}
+
 
 alias b='acpi'
 alias battery='acpi'
@@ -335,6 +339,13 @@ alias ping1='ping -c 4 `gateway`'
 alias ping2='ping -c 4 8.23.224.107'
 alias ping3='ping -c 4 www.google.com'
 alias mac='ifconfig | grep HWaddr'
+
+whois1() {
+	whois "$@" | catOrLess
+}
+whois2() {
+	whois "$@" | grep -i country
+}
 
 pingAll() {
 	ping -c 1 -q `gateway` | grep --color=never -A 1 statistics

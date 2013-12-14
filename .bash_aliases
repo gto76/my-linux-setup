@@ -347,16 +347,19 @@ countryN=""
 # Print countries on the route to host.
 traceroute1() {	
 	echo -n "$@: "
+	i=1
 	traceroute "$@" | while read line
 	do
 		if [ $i -gt 2 ]; then
-			#echo -n " C_S "
     		ip=`echo $line | grep \([0-9\.]*\) -o | tr -d '(' | tr -d ')' | head -n1` 
     		# Country data from whois:
     		# countryN=`echo "$ip" | xargs whois 2>/dev/null | grep -i country |  sed 's/country: //I' | tr -d ' ' | head -n1` 
     		# Country data from wipmania:
-    		countryN=`wget -qO- http://api.wipmania.com/"$ip"`
-			#echo -n " C_E "
+    		if [ "$ip" != "" ]; then
+    			countryN=`wget -qO- http://api.wipmania.com/"$ip"`
+    		else
+    			countryN=""
+    		fi
 			if [ "$countryN" != "$countryO" ]; then
 				if [ $i -gt 3 ]; then
 					echo -n " -> "
@@ -370,6 +373,9 @@ traceroute1() {
 			fi
 		fi
 		let i=$i+1
+		if [ $i -gt 31 ]; then
+			echo -n " ->"
+		fi
 	done
 	echo
 }

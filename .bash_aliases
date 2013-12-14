@@ -48,7 +48,7 @@ alias m1='catOrLessG'
 
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
 alias ls='ls -FXC --color=auto --group-directories-first'
-alias listShort='ls'
+alias listShort='ls -w 80'
 alias listMed='ls -lGgh --time-style="+%b %d %Y %H:%M"'
 alias listLong='ls -l'
 listShortLess() { 
@@ -339,6 +339,81 @@ alias ping1='ping -c 4 `gateway`'
 alias ping2='ping -c 4 8.23.224.107'
 alias ping3='ping -c 4 www.google.com'
 alias mac='ifconfig | grep HWaddr'
+
+i=1
+countryO=""
+countryN=""
+
+# Print countries on the route to host.
+traceroute1() {	
+	echo -n "$@: "
+	traceroute "$@" | while read line
+	do
+		if [ $i -gt 2 ]; then
+			#echo -n " C_S "
+    		ip=`echo $line | grep \([0-9\.]*\) -o | tr -d '(' | tr -d ')' | head -n1` 
+    		# Country data from whois:
+    		# countryN=`echo "$ip" | xargs whois 2>/dev/null | grep -i country |  sed 's/country: //I' | tr -d ' ' | head -n1` 
+    		# Country data from wipmania:
+    		countryN=`wget -qO- http://api.wipmania.com/"$ip"`
+			#echo -n " C_E "
+			if [ "$countryN" != "$countryO" ]; then
+				if [ $i -gt 3 ]; then
+					echo -n " -> "
+				fi
+				if [ "$countryN" == "" ]; then
+					echo -n "?"
+				else 
+					echo -n "$countryN"
+				fi
+				countryO="$countryN"
+			fi
+		fi
+		let i=$i+1
+	done
+	echo
+}
+
+# Prints urls of universities, one per country
+universities() {
+	# get all country codes from index site, together with country name
+	wget -qO - http://univ.cc/world.php | grep -o 'option value=\"[a-z]*\">[A-Za-z ]*(' | grep -o \".* | tr -d "\"" | tr -d "(" | while read ccc
+	do
+		country=`echo $ccc | sed 's/>.*//'`
+		countryName=`echo $ccc | sed 's/.*>//'`
+		if [ "$country" != "world" ]; then
+			# use them to get to country subsites and print url of random university that has country code for tld
+			urls=`wget -qO - "http://univ.cc/search.php?dom=$country&key=&start=1" | grep -o "'http:[^ ]*\.$country/[^ ]*'" | tr -d "'" | shuf`
+			url=""
+			while [ "$urls" != "" ]; do
+				url=`echo "$urls" | head -n1`
+				wget --timeout=3 --tries=1 -qO- "$url" >/dev/null
+				if [ $? -eq 0 ]; then
+					break
+				fi
+				urls=`echo "$urls" | tail -n +2`
+			done
+			
+			if [ "$url" != "" ]; then
+				echo "$countryName>$url"
+			fi
+		fi
+	done
+}
+
+# Traceroute all countries
+www() {
+	universities | while read nameAndUrl
+	do
+		countryName=`echo $nameAndUrl | sed 's/>.*//'`
+		url=`echo $nameAndUrl | sed 's/.*>//' | sed 's/http://' | tr -d '/'`
+		echo -n "$countryName - "
+		#echo -n " TRACEROUTE_START "
+		traceroute1 "$url"
+		#echo  " TRACEROUTE_END "
+	done
+}
+
 
 whois1() {
 	whois "$@" | catOrLess

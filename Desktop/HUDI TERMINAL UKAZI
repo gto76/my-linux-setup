@@ -144,6 +144,7 @@ test <expression> - same as [ <expression> ], -gt, -d,...
 whiptail - display dialog boxes from shell scripts
 paste - glue two documents side by side
 sed 's///g' - substitute every occurance in line, not just the first one
+	's///I' - ignore case
 
 TEXT:
 
@@ -283,6 +284,7 @@ sshd - ssh server deamon
 wget -c	continue downloading unfinished file. Can also use wildcards, but use single quotes around url. 
 	-r -l1 --no-parent -A.gif - recursively to the depth of one ignoring references to the parent directory and all gifs.
 	curl - similar
+	"-qO -" - writes to standard output + quiet 
 transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
 youtube-dl - download from youtube
 noip2 - dynamic dns update client

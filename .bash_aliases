@@ -22,7 +22,7 @@ catOrLess() {
 }
 alias m='catOrLess'
 
-#open cat or less +G, depending on no of lines of file or input
+#open cat or less +G (starts at the end of file), depending on no of lines of file or input
 catOrLessG() {
 	if [ $# -gt 0 ]
 	then
@@ -30,7 +30,7 @@ catOrLessG() {
 		if [ $LINES -gt $noOfLines ]; then
 			cat "$1"	
 		else
-			less "$1" +G 
+			cat "$1" | less +G 
 		fi
 	else
 		input=`cat`
@@ -134,6 +134,7 @@ alias ta='tail'
 alias s='screen'
 alias pgrep1='pgrep -l'
 alias bc1='gcalccmd'
+alias trd='tr -d'
 
 psM() {
 	ps "$@" | catOrLess
@@ -346,12 +347,17 @@ countryN=""
 
 # Print countries on the route to host.
 traceroute1() {	
-	echo -n "$@: "
+	echo -n "$@; "
+	echo -n `date --rfc-3339=seconds`
+	echo -n "; "
 	i=1
 	traceroute "$@" | while read line
 	do
 		if [ $i -gt 2 ]; then
     		ip=`echo $line | grep \([0-9\.]*\) -o | tr -d '(' | tr -d ')' | head -n1` 
+			if [ $i -eq 3 ]; then
+				echo -n "$ip; "
+			fi
     		# Country data from whois:
     		# countryN=`echo "$ip" | xargs whois 2>/dev/null | grep -i country |  sed 's/country: //I' | tr -d ' ' | head -n1` 
     		# Country data from wipmania:
@@ -362,10 +368,10 @@ traceroute1() {
     		fi
 			if [ "$countryN" != "$countryO" ]; then
 				if [ $i -gt 3 ]; then
-					echo -n " -> "
+					echo -n " > "
 				fi
 				if [ "$countryN" == "" ]; then
-					echo -n "?"
+					echo -n "??"
 				else 
 					echo -n "$countryN"
 				fi
@@ -374,11 +380,13 @@ traceroute1() {
 		fi
 		let i=$i+1
 		if [ $i -gt 31 ]; then
-			echo -n " ->"
+			echo -n " > .."
 		fi
 	done
 	echo
 }
+
+
 
 # Prints urls of universities, one per country
 universities() {
@@ -413,10 +421,8 @@ www() {
 	do
 		countryName=`echo $nameAndUrl | sed 's/>.*//'`
 		url=`echo $nameAndUrl | sed 's/.*>//' | sed 's/http://' | tr -d '/'`
-		echo -n "$countryName - "
-		#echo -n " TRACEROUTE_START "
+		echo -n "$countryName; "
 		traceroute1 "$url"
-		#echo  " TRACEROUTE_END "
 	done
 }
 

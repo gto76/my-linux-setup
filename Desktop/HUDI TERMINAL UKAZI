@@ -35,7 +35,7 @@ firefox:
 about:config - layout.css.devPixelsPerPx default zoom (-1.0)
 
 bash:
-ctrl+c - canlel, erase line
+ctrl c - cancel, erase line
 ctrl a - go to begining of line
 ctrl e - end of line
 ctrl u - copy line
@@ -92,7 +92,7 @@ sh - run script even if not executable
 du -s <folderName> - folder size
 !<term> - zadnji ukaz ki se je zacel na term.
 screen - switch between multiple virtual terminals (useful in ssh)
-	ctrl+a: c - new terminal, n - next, p - previous
+	ctrl+a: c - new terminal, n - next, p - previous, a - go to begining of line
 man section_number tool_name
 	1 programs 2 System calls 3 Library calls 4 Special files 5 File formats 7 Miscellaneous 8 System administration commands
 	-a shows all sections
@@ -145,6 +145,9 @@ whiptail - display dialog boxes from shell scripts
 paste - glue two documents side by side
 sed 's///g' - substitute every occurance in line, not just the first one
 	's///I' - ignore case
+	-r - extended syntax, for +, ?,... , also you shouldnt escape the parenthesis
+reset - initializes terminal, useful after printing binary file
+strings - print all text parts of binary file
 
 TEXT:
 
@@ -180,6 +183,10 @@ column - columnate text
 	t - create a table
 shuf - shuffle input lines
 tac - concatenate and print files in reverse (reverse cat)
+join - join lines of two files on a common field
+comm - compare two sorted files line by line
+colrm <from <to>> - removes columns
+
 EDITORS:
 pyroom - distraction free writing
 diakonos - simple terminal text editor with ctrl-c for copy

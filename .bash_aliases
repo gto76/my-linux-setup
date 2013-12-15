@@ -135,6 +135,15 @@ alias s='screen'
 alias pgrep1='pgrep -l'
 alias bc1='gcalccmd'
 alias trd='tr -d'
+alias table='column -t -s'
+
+cut1() {
+	cut -d "$1" -f "$2" 
+}
+
+sort1() { 
+	sort -t "$1" -k "$2"
+}
 
 psM() {
 	ps "$@" | catOrLess
@@ -386,7 +395,38 @@ traceroute1() {
 	echo
 }
 
+# Print country code and ip of first server on the route that is outside home country
+traceroute2() {
+	echo -n "$@; "
+	echo -n `date --rfc-3339=seconds`
+	echo -n "; "
+	traceroute "$@" | while read line 
+	do 
+		ip=`echo $line | grep \([0-9\.]*\) -o | tr -d '(' | tr -d ')' | head -n1`
+		if [ "$ip" != "" ]; then
+	    	country=`wget -qO- http://api.wipmania.com/"$ip"`
+		else
+	    	country=""
+		fi
 
+		if [ $i -eq 3 ]; then
+			home="$country"
+			echo -n "$ip; "
+			echo -n "$home; "
+		fi
+	
+		if [ $i -gt 3 ]; then
+			if [ "$country" != "" ]; then
+				if [ "$country" != "$home" ]; then
+					echo -n "$ip; $country"
+					break
+				fi
+			fi
+		fi
+		let i=$i+1
+	done
+	echo
+}
 
 # Prints urls of universities, one per country
 universities() {
@@ -415,7 +455,7 @@ universities() {
 	done
 }
 
-# Traceroute all countries
+# Traceroute1 all countries.
 www() {
 	universities | while read nameAndUrl
 	do
@@ -426,6 +466,17 @@ www() {
 	done
 }
 
+
+# Traceroute2 all countries
+www2() {
+	universities | while read nameAndUrl
+	do
+		countryName=`echo $nameAndUrl | sed 's/>.*//'`
+		url=`echo $nameAndUrl | sed 's/.*>//' | sed 's/http://' | tr -d '/'`
+		echo -n "$countryName; "
+		traceroute2 "$url"
+	done
+}
 
 whois1() {
 	whois "$@" | catOrLess

@@ -178,6 +178,8 @@ rel - analyze text files for relevance to a given set of keywords
 figlet - display large characters made up of ordinary screen characters
 sort - sorts
 	-u - uniq
+	-t - set delimiter for fields (default is space)
+	-k - select by which field to sort 
 uniq - removes adjacent duplicates
 column - columnate text
 	t - create a table

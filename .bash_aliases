@@ -47,10 +47,10 @@ alias m1='catOrLessG'
 # LS
 
 # Add some easy shortcuts for formatted directory listings and add a touch of color.
-alias ls='ls -FXC --color=auto --group-directories-first'
-alias listShort='ls -w 80'
-alias listMed='ls -lGgh --time-style="+%b %d %Y %H:%M"'
-alias listLong='ls -l'
+alias ls1='ls -FXC --color=auto --group-directories-first'
+alias listShort='ls1 -w 80'
+alias listMed='ls1 -lGgh --time-style="+%b %d %Y %H:%M"'
+alias listLong='ls1 -l'
 listShortLess() { 
   listShort --color=always $* | less -R+G
 }

@@ -149,7 +149,9 @@ sed 's///g' - substitute every occurance in line, not just the first one
 reset - initializes terminal, useful after printing binary file
 strings - print all text parts of binary file
 
+####
 TEXT:
+####
 
 tr - translate or delete characters (-d for delete)
 tail -f - do not stop printing
@@ -168,7 +170,7 @@ cut <filename> - remove sections from each line of files
 ispell/aspell - checks spelling
 look - utput a list of words in the system dictionary that begin with a given string
 grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
-	-o, --only-matching (count ocurances with | wc -l)
+	-o, --only-matching (count ocurances with | wc -l), -P perl notation (if you need \t)
 enscript - Converts text files to postscript, rtf, HTML
 pdftohtml - pdf to html
 pdftotext - pdf to text
@@ -231,7 +233,9 @@ crontab -e - schedule commands for repeating execution
 	cron - daemon that executes scheduled commands
 	anacron - catches up with tasks next time the computer is on
 
+#######
 NETWORK:
+#######
 
 whois - info about domain
 host <ip_address/hostname> - DNS lookup utility
@@ -270,10 +274,13 @@ iwspy - Sets the list of IP addresses in a wireless network and checks the quali
      their connections.
 iwpriv - Accesses configuration options specific to a particular device.
 	
+########	
 INTERNET:
+########
 
 lynx - web browser 
-	-cmd_log=FILENAME / -cmd_script=FILENAME
+	-cmd_log=FILENAME - write keystrokes to script
+	-cmd_script=FILENAME - read keystrokes from script
 	-syslog-urls - log requested URLs with syslog.
 	-Press a to save the address of a document or link to a (Netscape-alike) bookmark file, by default ~/lynx_bookmarks.html. You can open this in a different browser, it's just HTML.
     -l Add the current link to your bookmark file 

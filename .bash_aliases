@@ -117,7 +117,7 @@ alias p='echo $PWD'
 alias ba='bash'
 alias bax='exit; bash'
 alias e='echo'
-alias ee='echo -e'
+alias e1='echo -e'
 alias c='cat'
 #alias m='less' 
 alias n='nano -u'
@@ -181,7 +181,7 @@ sm() {
 # and exclude grepping through .svn folders.
 alias grep='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
 gr() {
-	grep "$@" -i --color=always | catOrLess
+	grep "$@" -iP --color=always | catOrLess
 }
 gr1() {
 	egrep "$@" -i --color=always --exclude-dir=\.svn --exclude-dir=\.git | catOrLess
@@ -357,8 +357,6 @@ countryN=""
 # Print countries on the route to host.
 traceroute1() {	
 	echo -n "$@; "
-	echo -n `date --rfc-3339=seconds`
-	echo -n "; "
 	i=1
 	traceroute "$@" | while read line
 	do
@@ -398,8 +396,6 @@ traceroute1() {
 # Print country code and ip of first server on the route that is outside home country
 traceroute2() {
 	echo -n "$@; "
-	echo -n `date --rfc-3339=seconds`
-	echo -n "; "
 	traceroute "$@" | while read line 
 	do 
 		ip=`echo $line | grep \([0-9\.]*\) -o | tr -d '(' | tr -d ')' | head -n1`
@@ -462,21 +458,14 @@ www() {
 		countryName=`echo $nameAndUrl | sed 's/>.*//'`
 		url=`echo $nameAndUrl | sed 's/.*>//' | sed 's/http://' | tr -d '/'`
 		echo -n "$countryName; "
-		traceroute1 "$url"
+		echo -n `date --rfc-3339=seconds`
+		echo -n "; "
+		traceroute"$1" "$url"
 	done
 }
 
-
-# Traceroute2 all countries
-www2() {
-	universities | while read nameAndUrl
-	do
-		countryName=`echo $nameAndUrl | sed 's/>.*//'`
-		url=`echo $nameAndUrl | sed 's/.*>//' | sed 's/http://' | tr -d '/'`
-		echo -n "$countryName; "
-		traceroute2 "$url"
-	done
-}
+alias www1='www 1'
+alias www2='www 2'
 
 whois1() {
 	whois "$@" | catOrLess
@@ -847,10 +836,9 @@ export LESS=' -R '
 
 alias de='cd ~/Desktop; ls'
 alias code='cd ~/code; ls'
+alias data='cd ~/data; ls'
 
 alias rss='nrss'
-alias rss1='newsbeuter'
-alias rss2='canto'
 
 # Count lines in git repo
 alias gitl='git ls-files | xargs wc -l'

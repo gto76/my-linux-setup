@@ -136,6 +136,7 @@ alias pgrep1='pgrep -l'
 alias bc1='gcalccmd'
 alias trd='tr -d'
 alias table='column -t -s'
+alias sub='sublime_text'
 
 cut1() {
 	cut -d "$1" -f "$2" 

@@ -350,29 +350,34 @@ alias ping2='ping -c 4 8.23.224.107'
 alias ping3='ping -c 4 www.google.com'
 alias mac='ifconfig | grep HWaddr'
 
-i=1
-countryO=""
-countryN=""
 
 # Print countries on the route to host.
-traceroute1() {	
-	echo -n "$@; "
+# Ex wget -qO- http://api.wipmania.com/"$ip"
+traceroute1() {
 	i=1
+	echo -n "$@; "
 	traceroute "$@" | while read line
 	do
 		if [ $i -gt 2 ]; then
-    		ip=`echo $line | grep \([0-9\.]*\) -o | tr -d '(' | tr -d ')' | head -n1` 
+		
+			url=`echo "$line" | sed -r 's/^[ ]*[0-9]+  ([^ ]+) .*$/\1/'`
+			cc=`echo "$url" | grep -o '\.[a-z][a-z][ ]*$' | tr -d '.' | tr 'a-z' 'A-Z'`
+			
 			if [ $i -eq 3 ]; then
-				echo -n "$ip; "
+				echo -n "$url; "
 			fi
-    		# Country data from whois:
-    		# countryN=`echo "$ip" | xargs whois 2>/dev/null | grep -i country |  sed 's/country: //I' | tr -d ' ' | head -n1` 
-    		# Country data from wipmania:
-    		if [ "$ip" != "" ]; then
-    			countryN=`wget -qO- http://api.wipmania.com/"$ip"`
-    		else
-    			countryN=""
-    		fi
+
+			if [[ "$cc" != "" && "$cc" != "EU" ]]; then
+				countryN="$cc"
+			else
+				countryN=`echo "$url" | urlToCountry | sed -r 's/.*\.([a-z][a-z])\.geant\.net/\1/'`
+			fi
+
+			isIp=`echo "$countryN" | grep -P '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'`
+			if [ "$isIp" != "" ]; then
+				countryN="$countryO"
+			fi
+		
 			if [ "$countryN" != "$countryO" ]; then
 				if [ $i -gt 3 ]; then
 					echo -n " > "
@@ -383,45 +388,91 @@ traceroute1() {
 					echo -n "$countryN"
 				fi
 				countryO="$countryN"
-			fi
+			fi			
+			
 		fi
 		let i=$i+1
 		if [ $i -gt 31 ]; then
 			echo -n " > .."
-		fi
+		fi	
 	done
 	echo
 }
 
-# Print country code and ip of first server on the route that is outside home country
-traceroute2() {
-	echo -n "$@; "
-	traceroute "$@" | while read line 
-	do 
-		ip=`echo $line | grep \([0-9\.]*\) -o | tr -d '(' | tr -d ')' | head -n1`
-		if [ "$ip" != "" ]; then
-	    	country=`wget -qO- http://api.wipmania.com/"$ip"`
-		else
-	    	country=""
-		fi
+urlToCountry() {
+	input=`cat`
+	echo "$input" | 
+	callSed DE gw-hetzner fra frankfurt ffm frnk frf "f\.de" hbg nue Dusseldorf Berlin |
+	callSed AT win wien vienna vie grz |
+	callSed CZ prag |
+	callSed US Houston 10ge4-2\.core1\.slc1\.he\.net ace-data-centers-inc\.10gigabitethernet1-4\.core1\.slc1\.he\.net -orl- -dc- "\.usa\." "\.us\." den nyc nyk NewYork ash asb chi chichago wdc Washington dal dlls sjo SanJose sjc phx phoenix atl mia mai lax [^t]las LosAngeles sttl |	#New York
+	callSed GB "\.us\." lon ldn lnd |
+	callSed DK kbn cop dk-| 
+	callSed FR "\.fr\." par prs Paris mrs mei Marseille mars |
+	callSed NE ams adm amd |
+	callSed BU sfia |
+	callSed HU szekesfehervar |
+	callSed PL poz pzn poznan Warsaw | 
+	callSed NL amsterdam |
+	callSed BA travnik |
+	callSed HU bud bpt Budapest |
+	callSed JP osak tok |
+	callSed TZ dar | 
+	callSed IN mba | 
+	callSed MZ mpm | 
+	callSed PT lis | 
+	callSed ES mad bcn |
+	callSed IT mil Milan rom palermo |
+	callSed SG sng sing \.sg\. | 
+	callSed BE Brussels belnet |
+	callSed EE tal | 
+	callSed LV rig latvija | 
+	callSed CA Montreal | 
+	callSed LT kau | 		
+	callSed GR ath |	
+	callSed IE Dublin |
+	callSed AU nsw |	
+	callSed RU spb |	
+	callSed RO buc roedu |	
+	callSed ZA mtz |	
+	callSed CL Santiago |	
+	callSed CA tor |		
+	callSed CN macau | 	
+	callSed AR bue baires | 
+	callSed CI IRVOCA |
+	callSed DJ dji | 
+	callSed SI siol |
+	callSed KZ Kaza | 
+	callSed LU lxb | 
+	callSed CY cypr | 
+	callSed LK srilanka |
+	callSed BM north-rock-communications
+	callSed HR zag |
+	callSed IS is- |
+	callSed IL bezeqint |
+	callSed JM flowja |
+	callSed CH zrh [^r]gen |
+	callSed LY libia |
+	callSed SK \.sk\. |
+	callSed SE se- |
+	callSed TR \.tr\. |
+	callSed  |
+	callSed  |
+	callSed
+	# te2-2.ccr01.zag01.atlas.cogentco.com -> US!!!
+	#./callSed.sh CH gen | #ARGENTINA!
+}
 
-		if [ $i -eq 3 ]; then
-			home="$country"
-			echo -n "$ip; "
-			echo -n "$home; "
-		fi
-	
-		if [ $i -gt 3 ]; then
-			if [ "$country" != "" ]; then
-				if [ "$country" != "$home" ]; then
-					echo -n "$ip; $country"
-					break
-				fi
-			fi
+callSed() {
+	input=`cat`
+	i=1
+	for arg in "$@"; do
+		if [ $i -gt 1 ]; then
+			input=`echo "$input" | sed "s/[^ ]*$arg[^ ]*/$1/I"`
 		fi
 		let i=$i+1
 	done
-	echo
+	echo "$input"
 }
 
 # Prints urls of universities, one per country
@@ -465,7 +516,6 @@ www() {
 }
 
 alias www1='www 1'
-alias www2='www 2'
 
 whois1() {
 	whois "$@" | catOrLess

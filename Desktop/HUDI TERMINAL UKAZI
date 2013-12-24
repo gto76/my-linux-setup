@@ -148,6 +148,7 @@ sed 's///g' - substitute every occurance in line, not just the first one
 	-r - extended syntax, for +, ?,... , also you shouldnt escape the parenthesis
 reset - initializes terminal, useful after printing binary file
 strings - print all text parts of binary file
+hexdump, hd — ASCII, decimal, hexadecimal, octal dump
 
 ####
 TEXT:

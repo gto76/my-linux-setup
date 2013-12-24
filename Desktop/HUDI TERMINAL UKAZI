@@ -301,6 +301,7 @@ wget -c	continue downloading unfinished file. Can also use wildcards, but use si
 	-r -l1 --no-parent -A.gif - recursively to the depth of one ignoring references to the parent directory and all gifs.
 	curl - similar
 	"-qO -" - writes to standard output + quiet 
+	-i-  downloads image from standard input
 transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
 youtube-dl - download from youtube
 noip2 - dynamic dns update client

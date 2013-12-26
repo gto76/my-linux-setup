@@ -402,6 +402,7 @@ VIDEO/BITMAP:
 
 display - displays an image
 montage - Creates a montage from images
+	<input file/s> -set label '%t' <output file/s> - labels images
 convert - To convert the file format
 import - Captures screen-shots from the X server
 mogrify - edit image

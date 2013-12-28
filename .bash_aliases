@@ -240,18 +240,38 @@ apropos1() {
 }
 alias ap1='apropos1'
 
-alias wi='whatis'
+alias wi1='whatis'
 # Searches apt for name
 whatis1() {
 	apt-cache show "$*" | grep "^ " | catOrLess
 }
-alias wi1='whatis1'
+alias wi2='whatis1'
 # Searches aliases for name
 whatis2() {
 	type "$*" | catOrLess
 }
-alias wi2='whatis2'
- 
+alias wi3='whatis2'
+
+wi() {
+	call1=`whatis "$@" 2> /dev/null`
+	if [ "$?" == "0" ]; then
+		echo "$call1"
+		return
+	fi
+
+	call2=`apt-cache show "$*" 2> /dev/null | grep "^ "`
+	if [ "$?" == "0" ]; then
+		echo "$call2"
+		return
+	fi
+
+	call3=`type "$*" 2> /dev/null`
+	if [ "$?" == "0" ]; then
+		echo "$call3"
+		return
+	fi
+}
+
 #git
 commit() {
   if [ $# -eq 0 ]

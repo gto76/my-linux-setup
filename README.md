@@ -22,3 +22,4 @@ Besides a lot of useful aliases, there are also a some interesting functions, su
 
 *gi <phrase> - Downloads small google image of phrase.
 
+*wi <command> - Tries to find description of a command using "whatis", "apt-cache show" and "type". Returns first match.

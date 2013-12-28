@@ -507,6 +507,11 @@ git clone git://github.com/USER/REPOSITORY.git - download source (kasneje z git 
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
 sudo chown -R yourname:yourgroup * - in .git/objects
+--
+Checkout:
+git log > ../gitLog - first save log to file
+git checkout hash - then checkout previous versions
+Refresh project in eclipse
 
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily

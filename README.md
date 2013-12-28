@@ -20,5 +20,5 @@ Besides a lot of useful aliases, there are also a some interesting functions, su
 
 *pingAll - Pings gateway, 8.23.224.10 and Google.
 
-
+*gi <phrase> - Downloads small google image of phrase.
 

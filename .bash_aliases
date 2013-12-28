@@ -725,6 +725,28 @@ weathr() {
 	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" | awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
 }
 
+# For every input line it downloads first google image match and saves it in pwd
+gimage() {
+	cat | while read line
+	do 
+		gi1 "$line" > "$line"
+		sleep 3
+	done
+}
+
+gi1() {
+	wget -qO- "http://images.google.com/images?q=$(echo "$@" | sed 's/ /+/g')" -U "Firefox on Ubuntu Gutsy: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.14) Gecko/20080418 Ubuntu/7.10 (gutsy) Firefox/2.0.0.14" | 
+	grep -o '<img[^>]*>' | 
+	head -n1 | 
+	grep "src=\"[^\"]*" -o | 
+	sed 's/src=\"//' | 
+	wget -i- -O-
+}
+
+gi() {
+	gi1 "$@" 2> /dev/null | display &
+}
+
 #       #
 # AUDIO #
 #       #

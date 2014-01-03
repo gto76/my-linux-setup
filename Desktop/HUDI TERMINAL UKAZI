@@ -411,6 +411,7 @@ ocrad - command line text recognition tool
 ppmforge - creates picture of random planet or clowds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
 	-p	leawe plots open after exit
+	plot file.dat - plot data from dat file
 
 #############
 HUDE DATOTEKE:

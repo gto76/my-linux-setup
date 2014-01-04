@@ -156,6 +156,7 @@ TEXT:
 
 tr - translate or delete characters (-d for delete)
 tail -f - do not stop printing
+	-n +<line number> - start at line number
 cat -n - number all lines
 	-nl - similar
 less - 	&phrase - display only lines with

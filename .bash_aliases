@@ -42,7 +42,7 @@ catOrLessG() {
 		fi
 	fi
 }
-alias m1='catOrLessG'
+alias mEnd='catOrLessG'
 
 # LS
 
@@ -228,6 +228,9 @@ alias me=createExecutable
 alias tar1='tar xvf'
 alias tarz='tar xzvf'
 
+hd1() {
+	hd "$*" | catOrLess
+}
 
 aproposM() {
 	apropos "$*" | catOrLess
@@ -891,10 +894,10 @@ alias n2='n $HOME/.bash_aliases'
 alias n3='n $HOME/.bashrc'
 alias n4='n "$TODO"'
 
-alias l1='m "$HUD"'
-alias l2='m $HOME/.bash_aliases'
-alias l3='m $HOME/.bashrc'
-alias l4='m "$TODO"'
+alias m1='m "$HUD"'
+alias m2='m $HOME/.bash_aliases'
+alias m3='m $HOME/.bashrc'
+alias m4='m "$TODO"'
 
 #Append line to todo file
 alias zt='ztodo'

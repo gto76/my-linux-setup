@@ -535,6 +535,8 @@ screen: al shortcuts begin with ctrl+a
 	k - kill window
 	t - show time and avg cpu load
 
+tmux - terminal multiplexer
+
 xrandr --output VGA1 --primary - zamena primarni zaslon
 xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their ralative positions
 xrandr -q - list devices

@@ -522,6 +522,11 @@ sudo add-apt-repository ppa:n-muench/vlc
 PIRATEBAY:
 torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file
 
+JAVA:
+jps -lvm - list java processes
+jmap -histo:live <pid> - memory map
+java -Xmx6g myprogram - reserve 6g for process
+
 ######## NEW / NOT SORTED #########
 
 screen: al shortcuts begin with ctrl+a

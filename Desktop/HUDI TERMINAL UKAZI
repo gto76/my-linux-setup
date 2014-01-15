@@ -526,6 +526,7 @@ JAVA:
 jps -lvm - list java processes
 jmap -histo:live <pid> - memory map
 java -Xmx6g myprogram - reserve 6g for process
+jvisualvm - profiler
 
 ######## NEW / NOT SORTED #########
 

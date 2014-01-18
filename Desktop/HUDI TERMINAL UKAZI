@@ -514,6 +514,8 @@ Checkout:
 git log > ../gitLog - first save log to file
 git checkout hash - then checkout previous versions
 Refresh project in eclipse
+--
+gitstats
 
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily

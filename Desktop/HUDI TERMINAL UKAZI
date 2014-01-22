@@ -581,3 +581,7 @@ regedit - Registry editor
 unzip \*.zip - Backslash mora bit da ga bash ne expenda
 
 lsof - list open files
+
+ECLIPSE:
+ctrl-1 - quick fix
+alt-shift-s - source submenu

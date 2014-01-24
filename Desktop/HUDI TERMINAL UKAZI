@@ -41,6 +41,8 @@ ctrl e - end of line
 ctrl u - copy line
 ctrl y - paste line
 
+ctrl alt backspace - restart X
+
 ###################
 HUDI TERMINAL UKAZI:
 ###################

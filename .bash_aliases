@@ -889,15 +889,15 @@ alias tz='tail "$TODO"'
 alias htu='gedit "$HUD" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
 alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
-alias n1='n "$HUD"'
-alias n2='n $HOME/.bash_aliases'
-alias n3='n $HOME/.bashrc'
-alias n4='n "$TODO"'
+alias m1='n "$HUD"'
+alias m2='n $HOME/.bash_aliases'
+alias m3='n $HOME/.bashrc'
+alias m4='n "$TODO"'
 
-alias m1='m "$HUD"'
-alias m2='m $HOME/.bash_aliases'
-alias m3='m $HOME/.bashrc'
-alias m4='m "$TODO"'
+alias n1='m "$HUD"'
+alias n2='m $HOME/.bash_aliases'
+alias n3='m $HOME/.bashrc'
+alias n4='m "$TODO"'
 
 #Append line to todo file
 alias zt='ztodo'
@@ -941,3 +941,13 @@ alias rss='nrss'
 
 # Count lines in git repo
 alias gitl='git ls-files | xargs wc -l'
+
+vga() {
+	#turn off laptop monitor if external is conected
+	xrandr | grep VGA | grep " connected " > /dev/null
+	if [ $? -eq 0 ]; then
+    	xrandr --output LVDS1 --off
+		killall nautilus
+		nautilus -n &
+	fi
+}

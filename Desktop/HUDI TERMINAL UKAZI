@@ -100,6 +100,7 @@ man section_number tool_name
 	-a shows all sections
 2> /dev/null - redirect error output
 &> /dev/null - redirect both standard and error output
+>&2 - write to stderr
 tee - Sends output of a program to a file and to a standard output
 $(command) - same as `command`
 ls -S - sort by size, ls -t - sort by time

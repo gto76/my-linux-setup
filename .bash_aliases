@@ -330,14 +330,24 @@ alias ch='chmod u+x'
 #display free memory
 alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
 
-#count number of lines in files with extension $1
+# Count number of lines in files with extension $1 
+# in current and sub directories.
 noOfLines() {
+	rootDir="$PWD"
 	no=0
 	for file in *; do
-		if [[ $file == *."$1" ]]; then
+		if [ -d "$file" ]; then
+			#echo "entering $file" >&2
+			cd "$file"
+			recRes=`noOfLines "$1"`
+			#echo "recRes is $recRes" >&2
+			let no=$no+"$recRes"
+			cd "$rootDir"
+		fi
+		if [[ "$file" == *."$1" ]]; then
 			let no=$no+`cat "$file" | wc -l`	
 		fi
-	done 
+	done
 	echo $no
 }
 

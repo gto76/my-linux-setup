@@ -112,7 +112,13 @@ cdl() {
 }
 
 alias .='echo $PWD'
-alias p='echo $PWD'
+p() {
+	if [ $# -eq 0 ]; then
+		echo "$PWD"
+	else
+		echo `echo "$PWD"`/"$@"
+	fi		
+}
 
 alias ba='bash'
 alias bax='exit; bash'

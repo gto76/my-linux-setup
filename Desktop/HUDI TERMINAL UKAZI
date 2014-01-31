@@ -350,6 +350,7 @@ dmesg - print the contents of your bootup messages displayed by the kernel. This
 when debugging problems
 mount device mountpoint - mount /dev/hdc2 /mymedia
 Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk
+parted -l - list partitions (sudo)
 mono - .NET support
 telinit - change system runlevel
 last - when various users have logged in or out. This includes information on when the computer was rebooted.

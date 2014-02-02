@@ -115,3 +115,89 @@ LICENSE.txt 	Project's license
 NOTICE.txt 	Notices and attributions required by libraries that the project depends on
 README.txt 	Project's readme
 ---------------------------------------------------
+.................
+.. C O D E R S ..
+...... A T ......
+.... W O R K ....
+.................
+
+JAMIE ZAWINSKI - NETSCAPE
+- If you don't understand how something works, ask someone who does. -> communication
+
+BRAD FITZPATRICK - YOUNG GUY
+- Google app engime -> basic of today
+- Sideprojects -> hiring
+- Strace -> favourite tool
+- Higher order perl -> book
+- Python -> language
+- Write to mantainer: "I want to add feature X. I was thinking something like the attached patch", which is totaly wrong but say, "but I think It's totally wrong.I'm thinking the right way might be to do X." which is some more complex way.
+
+DOUGLAS CROCKFORD - JSON, JAVASCRIPT: THE GOOD PARTS, KILLED JS4
+- Regular code readings in team -> communication
+- Art of computer programming -> book
+- Being literate -> hiring
+- Javascript -> new lego paradigm of programming (now we're in object era)
+- Bring your piece of code ande walk me trough. I'm looking for how effectively can you comunicate. -> hiring
+
+BRENDAN EICH - JAVASCRIPT, NETSCAPE, FIREFOX, WAS PUSHING JS4
+- Ocaml intern -> hiring
+- Let people talk about their own project -> hiring
+
+JASHUA BLOCH - JAVA5, EFFECTIVE JAVA, JAVA PUZZLERS
+- Elements of style -> book
+- Java concurency in practice -> book
+- Write the code that uses the api before you write the code that implements it. In fact, write it even before you flash out the spec.
+- Use asserts -> information is too valuable to lose.
+
+JOE ARMSTRONG - ERLANG
+- Writing erlang graphics library by bypassing X -> turned out to be easy
+- "I've got to choose between A and B", and you describe A and B  to them and then halfway trough that you go, "Yeah B. Thank you, thank you very much." -> explaining to coworkers
+- What are the inputs to your problem? What are the outputs to your problem? What is the functional relationship between the two? -> guru answer
+- If you want to understand c, write a c compiler.
+- Documentation states the problem, code gives the answer.
+- Also doesen't use logic puzzles for hiring. 
+
+SIMON PEYTON JONES - HASKELL
+- "Just start something, no matter how humble", write a paper about it. -> advice for research students
+- Programming pearls -> book
+- Purely functional data structures -> book
+
+PETER NORVIG - GOOGLE, NASA, AI PROFESSOR
+- Problem when new guys don't check in their experimental branch for weeks.
+
+GUY STEELE - COMMON LISP, SCHEME
+- If I could go back and change one thing, I might try to interest some early preliterate people in not using their thumbs when they count.
+
+DAN INGALLS - SMALLTALK
+- Be clear about what you're trying to do. -> Being a good technical leader
+
+L PETER DEUTSCH - GHOSTSCRIPT
+- "Fast, cheap, good - pick any two." -> old saying in the buissines
+- Things that are getting reused this days are either very large (mozilla, apache) or very small (icons, web page designs)
+- Every programming language in substantial use today has the concept of pointer. This holds languages back. Problem is the lack of overview. All the connections (referencess) are made localy inside classes.
+- Language systems stand on a tripod: Language, Libraries and Tools.
+
+KEN THOMPSON - UNIX
+- I only write down data structures. -> design
+- It's just enthusiasm. -> identifiying good programmers
+- I love yacc, lex is horrible. I write my lexers by hand.
+- Computers are played out.
+
+FRAN ALLEN - IBM
+- Trying to find out what they are excited about. -> hiring
+- Motivation for the design of C was three problems they couldn't solve in the higher level languages: Interrupt handling, Scheaduling resources (Taking over machine and scheduling a process that was in thw queue) and Memory allocation.
+- We in the field have to make it more appealing. We have to give rhe field an identity that expands it further than the identity it seems to have now - a much more human identity.
+- C is bad because it makes impossible to write highly optimizing compilers.
+
+BERNIE COSELL - ARPANET
+- Programms ought to make sense and there are very, very few inherently hard problems. -> two convictions he had from the start of his career and showed to be true
+- I could write some wery complicated code, but it was always in an encapsulated place.
+- I'm a big fan of call-once subrotines, where the only function of the subrotine is to abstract some little part of a parent subrotine.
+- If the open brace is too far from close brace, then often it's doing too much.
+- C: security hazzard
+
+DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
+- I couldn't teach classes full-time and write software fuul-time. I could teach classes full-time and write a book full-time.
+- One of the most important revolutions in programming languages was the use of pointers in the C language. When X is a pointer and you say x+1, that doesen't mean one more byte, but one more node after X.
+
+	

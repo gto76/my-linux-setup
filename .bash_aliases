@@ -20,7 +20,7 @@ catOrLess() {
 		fi
 	fi
 }
-alias m='catOrLess'
+alias n='catOrLess'
 
 #open cat or less +G (starts at the end of file), depending on no of lines of file or input
 catOrLessG() {
@@ -42,7 +42,7 @@ catOrLessG() {
 		fi
 	fi
 }
-alias mEnd='catOrLessG'
+alias nEnd='catOrLessG'
 
 # LS
 
@@ -126,8 +126,7 @@ alias e='echo'
 alias ee='echo -e'
 alias en='echo -n'
 alias c='cat'
-#alias m='less' 
-alias n='nano -u'
+alias m='nano -u'
 alias g='gedit'
 alias f='firefox'
 alias scr='screen'
@@ -146,6 +145,10 @@ alias bc1='gcalccmd'
 alias trd='tr -d'
 alias table='column -t -s'
 alias sub='sublime_text'
+#alias v='vim'
+alias v='vim -c "set nu" -c "set tabstop=4"'
+alias ?="echo $?"
+alias mk="make"
 
 cut1() {
 	cut -d "$1" -f "$2" 
@@ -908,15 +911,15 @@ alias tz='tail "$TODO"'
 alias htu='gedit "$HUD" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
 alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
-alias m1='n "$HUD"'
-alias m2='n $HOME/.bash_aliases'
-alias m3='n $HOME/.bashrc'
-alias m4='n "$TODO"'
+alias m1='m "$HUD"'
+alias m2='m $HOME/.bash_aliases'
+alias m3='m $HOME/.bashrc'
+alias m4='m "$TODO"'
 
-alias n1='m "$HUD"'
-alias n2='m $HOME/.bash_aliases'
-alias n3='m $HOME/.bashrc'
-alias n4='m "$TODO"'
+alias n1='n "$HUD"'
+alias n2='n $HOME/.bash_aliases'
+alias n3='n $HOME/.bashrc'
+alias n4='n "$TODO"'
 
 #Append line to todo file
 alias zt='ztodo'

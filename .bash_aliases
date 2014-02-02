@@ -829,7 +829,7 @@ spilej() {
 }
 
 spilejYoutube() {
-	#TODO efikasnejse iskanje linkov	
+	#TODO More reliable search	
 	#TODO MP4
 	#TODO stop executing if one step fails
 	cd ~/Music; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube

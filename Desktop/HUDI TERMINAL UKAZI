@@ -366,7 +366,9 @@ busybox <command> - combines tiny versions of many common UNIX utilities into a 
 getconf -a - print all system configuration variables
 lscpu - print CPU information
 lshw - lists all hardware
-strace - trace system calls and signals
+strace <program name and its parameters> - trace system calls and signals. All printed system calls can be looked up by man!
+	-s - maximum string size we want printed (default is to short, 2000 ok)
+	-f - also folow children
 tload - "graphic" representation od system load
 	
 SERVICES:

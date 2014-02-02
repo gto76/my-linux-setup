@@ -123,7 +123,8 @@ p() {
 alias ba='bash'
 alias bax='exit; bash'
 alias e='echo'
-alias e1='echo -e'
+alias ee='echo -e'
+alias en='echo -n'
 alias c='cat'
 #alias m='less' 
 alias n='nano -u'
@@ -168,6 +169,8 @@ alias sus='sudo pm-suspend'
 alias du='du -sh'
 
 alias gg='gedit $HOME/.bash_aliases &'
+
+alias strace1='strace -s 2000 -f'
 
 # SUDO
 alias srm='sudo rm -i'

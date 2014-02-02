@@ -1,4 +1,4 @@
-my-aliases
+My Aliases
 ==========
 
 My own .bash_aliases and a list of interesting linux commands (Desktop/HUDI TERMINAL UKAZI).

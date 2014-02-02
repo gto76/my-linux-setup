@@ -4,7 +4,9 @@ my-aliases
 My own .bash_aliases and a list of interesting linux commands.
 Besides a lot of useful aliases, there are also a some interesting functions, such as:
 
-* www - Traceroutes all countries, prints locations of servers on path. 
+* teaceroute1 - Prints coutry codes of hosts on path.
+
+* www - Traceroutes one server per country, prints country codes of hosts on path. 
 
 * spilej <artist/song/album..> - Plays a track. First looks in pwd, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems occur at search phase.
 

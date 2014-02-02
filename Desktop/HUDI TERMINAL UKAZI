@@ -11,37 +11,38 @@ ctrl+alt+d - minimize all windows
 
 ctrl+alt+F1 do F6 terminali
 ctrl+alt+F7 do F12 xwindovi
+ctrl alt backspace - restart X
 
-ctrl+shift+c - copy in terminal
-ctrl+shift+v - paste in terminal
-
-explorer:
+NAUTILUS:
 ctrl+l - location
 ctrl+shift+n - new folder
 ctrl+h - show hidden files
 
-gedit:
+GEDIT:
 ctrl+g - find the next instance of the string.
 ctrl+shft+g - find the previous instance of the string. 
 Ctrl+Shft+K - Clear highlight 
 
-terminal:
-Shift+Ctrl+t	new tab	 
-Shift+Ctrl+w	close tab	 
-Ctrl+{PgUp,PgDown} change tabs
-ctrl -, + 		zoom
+TERMINAL:
+ctrl+shift+c - copy in terminal
+ctrl+shift+v - paste in terminal
+shift+ctrl+t - new tab	 
+shift+ctrl+w - close tab	 
+ctrl PgUp/PgDown - change tabs
+ctrl -/+ - zoom
 
-firefox:
-about:config - layout.css.devPixelsPerPx default zoom (-1.0)
-
-bash:
+BASH:
 ctrl c - cancel, erase line
 ctrl a - go to begining of line
 ctrl e - end of line
 ctrl u - copy line
 ctrl y - paste line
+alt . - last argument
+ctrl r - search trough history
+alt * - show all matches for regular expression
+ctrl alt e - shows curent line as when passed through alias, history and shell expansion
+ctrl x, ctrl e - edit command in editor
 
-ctrl alt backspace - restart X
 
 ###################
 HUDI TERMINAL UKAZI:
@@ -95,6 +96,7 @@ du -s <folderName> - folder size
 !<term> - zadnji ukaz ki se je zacel na term.
 screen - switch between multiple virtual terminals (useful in ssh)
 	ctrl+a: c - new terminal, n - next, p - previous, a - go to begining of line
+tmux - terminal multiplexer, better screen
 man section_number tool_name
 	1 programs 2 System calls 3 Library calls 4 Special files 5 File formats 7 Miscellaneous 8 System administration commands
 	-a shows all sections
@@ -152,6 +154,9 @@ sed 's///g' - substitute every occurance in line, not just the first one
 reset - initializes terminal, useful after printing binary file
 strings - print all text parts of binary file
 hexdump, hd — ASCII, decimal, hexadecimal, octal dump
+bc - calculator [echo 1+1 | bc -> 2]
+unzip \*.zip - backslash mora bit da ga bash ne expenda!
+
 
 ####
 TEXT:
@@ -312,6 +317,7 @@ youtube-dl - download from youtube
 noip2 - dynamic dns update client
 rdesktop - Remote Desktop Protocol client
 tin, nn - usenet client
+nrss - rss feed reader
 
 HACKING:
 
@@ -369,6 +375,11 @@ lshw - lists all hardware
 strace <program name and its parameters> - trace system calls and signals. All printed system calls can be looked up by man!
 	-s - maximum string size we want printed (default is to short, 2000 ok)
 	-f - also folow children
+	-p <pid> - attach to process
+	-o <log file>
+	-c - count/agregate
+	-T time the execution of each call
+lsof - list open files with file descriptors
 tload - "graphic" representation od system load
 	
 SERVICES:
@@ -419,6 +430,7 @@ ppmforge - creates picture of random planet or clowds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
 	-p	leawe plots open after exit
 	plot file.dat - plot data from dat file
+
 
 #############
 HUDE DATOTEKE:
@@ -480,14 +492,6 @@ BOOT (kernels):
 ############
 ############
 
-
-BASH BLIZNJICE: 
-alt . - zadnji argument
-ctrl r - išče nazaj po historiju
-alt * - prikaže vse matche za reg izraz
-ctrl alt e - shows curent line as when passed through alias, history and shell expansion
-ctrl x, ctrl e - edit command in editor
-
 INSTALL MANTRA:
 ./configure --help
 ./configure
@@ -536,9 +540,8 @@ jmap -histo:live <pid> - memory map
 java -Xmx6g myprogram - reserve 6g for process
 jvisualvm - profiler
 
-######## NEW / NOT SORTED #########
-
-screen: al shortcuts begin with ctrl+a
+SCREEN: 
+All shortcuts begin with ctrl+a
 	| - new region werticaly
 	S - new region horizontaly
 	tab - move to next region
@@ -549,33 +552,35 @@ screen: al shortcuts begin with ctrl+a
 	k - kill window
 	t - show time and avg cpu load
 
-tmux - terminal multiplexer, better screen
+FIREFOX:
+about:config - layout.css.devPixelsPerPx default zoom (-1.0)
 
+XRANDR:
 xrandr --output VGA1 --primary - zamena primarni zaslon
 xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their ralative positions
 xrandr -q - list devices
-
+--
 # reset 
 xrandr --auto
-
+--
 # turn off laptop screen
 xrandr --output LVDS1 --off
-
+--
 # 24" 16x12 on
 xrandr --output VGA --mode 1600x1200
 
-nrss - rss feed reader
-	newsbeuter - same
+VIM: 
+help: 	ctrl ] - folow link
+		ctrl o - go back
+		:q     - exit help		
 
-vim: help: 	ctrl ] - folow link
-			ctrl o - go back
-			:q     - exit help		
+MOUNT ISO:
+sudo mkdir /media/x
+sudo mount -o loop <PATH_ISO> /media/x
 
-bc - calculator [echo 1+1 | bc -> 2]
-
-mount iso:
-	sudo mkdir /media/x
-	sudo mount -o loop <PATH_ISO> /media/x
+ECLIPSE:
+ctrl-1 - quick fix
+alt-shift-s - source submenu
 
 WINE:
 winecfg -> drives tab to set drive
@@ -584,10 +589,13 @@ reason on wine:
 	down alt down - open menu
 regedit - Registry editor
 
-unzip \*.zip - Backslash mora bit da ga bash ne expenda
+######## NEW / NOT SORTED #########
 
-lsof - list open files
 
-ECLIPSE:
-ctrl-1 - quick fix
-alt-shift-s - source submenu
+
+
+
+
+
+
+

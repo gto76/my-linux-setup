@@ -126,7 +126,7 @@ alias e='echo'
 alias ee='echo -e'
 alias en='echo -n'
 alias c='cat'
-alias m='nano -u'
+alias m='nano -uicHFwST 4'
 alias g='gedit'
 alias f='firefox'
 alias scr='screen'
@@ -183,10 +183,10 @@ alias smv='sudo mv -iv'
 sg() {
 	sudo gedit "$*"
 }
-sn() {
-	sudo nano "$*"
-}
 sm() {
+	sudo nano -icHFwST 4 "$*"
+}
+sn() {
 	sudo less "$*"
 }
 
@@ -362,6 +362,7 @@ noOfLines() {
 	done
 	echo $no
 }
+alias loc='noOfLines'
 
 # Open last modified file in nano
 alias Nano="nano `ls -t | head -1`" 

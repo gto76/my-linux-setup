@@ -156,7 +156,8 @@ strings - print all text parts of binary file
 hexdump, hd — ASCII, decimal, hexadecimal, octal dump
 bc - calculator [echo 1+1 | bc -> 2]
 unzip \*.zip - backslash mora bit da ga bash ne expenda!
-
+lpstat - show printing jobs
+cancel <id> - cancel printing job
 
 ####
 TEXT:
@@ -462,6 +463,7 @@ SERVICES:
 /etc/rsyslog.conf|rsyslog.d/50-default.conf - log conf (need to restart rsyslogd after edit)
 /etc/services - list of services with their port numbers
 /etc/resolv.conf - dns information
+/etc/syslog.conf - Configuration information for syslogd 
 
 PROC / The files under the /proc show various information
 about the system:
@@ -470,7 +472,7 @@ about the system:
 /proc/net/ - network related
 	/proc/net/route - routing table
 	netstat - Displays contents of /proc/net files
-/etc/syslog.conf - Configuration information for syslogd 
+/proc/iomem - neat memory map
 
 USR - "Unix System Resources":
 /usr/lib/jvm - java jres and jdks

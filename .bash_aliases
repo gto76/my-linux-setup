@@ -226,7 +226,7 @@ bsg() {
 bsn() {
     fName="$1.sh"
 	createExecutable "$fName"
-    n "$fName"
+    nano "$fName"
 }
 
 createExecutable() {
@@ -363,6 +363,30 @@ noOfLines() {
 	echo $no
 }
 alias loc='noOfLines'
+
+# Run loc for all projects in folder - also pass extension
+locall() {
+	table=$(for project in *; do 
+		cd "$project"
+		echo -n "$project;" 
+		lines=`loc "$1"`
+		echo "$lines" 
+		cd..
+	done)
+	sum=`echo "$table" | grep -o [0-9]*$ |sumall` 
+	folder=`echo $PWD | grep -o "[^/]*$" | tr [a-z] [A-Z]`
+	echo "$folder;$sum"
+	echo "$table"
+}
+
+sumall() {
+	in=`cat`
+	sum=0
+	for line in `echo "$in"`; do 
+		let sum=sum+"$line"
+	done
+	echo "$sum"
+}
 
 # Open last modified file in nano
 alias Nano="nano `ls -t | head -1`" 

@@ -528,6 +528,8 @@ git checkout hash - then checkout previous versions
 Refresh project in eclipse
 --
 gitstats
+--
+git log --name-only --author=jure - print changed files by commit
 
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily

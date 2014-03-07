@@ -88,6 +88,9 @@ alias la='l -A'
 alias lla='ll -A'
 alias llla='lll -A'
 
+alias l1='l -1'
+alias la1='la -1'
+
 # BASICS
 
 # Make some possibly destructive commands more interactive.
@@ -998,3 +1001,5 @@ vga() {
 		nautilus -n &
 	fi
 }
+
+alias tt='gtypist'

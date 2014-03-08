@@ -42,7 +42,7 @@ ctrl r - search trough history
 alt * - show all matches for regular expression
 ctrl alt e - shows curent line as when passed through alias, history and shell expansion
 ctrl x, ctrl e - edit command in editor
-
+ctrl p - show last command (same as up arrow)
 
 ###################
 HUDI TERMINAL UKAZI:

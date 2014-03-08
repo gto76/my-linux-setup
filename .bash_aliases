@@ -307,6 +307,7 @@ alias gita='sudo git add src/*'
 #go
 alias run='go run'
 
+#find
 find1() {
 	tmp=`find . | grep --color=always "$1"`
 	noOfLines	=`echo "$tmp" | wc -l`
@@ -316,6 +317,8 @@ find1() {
 		echo "$tmp" | less -R    
 	fi
 }
+
+alias findd='find . -name .git -prune -o -type d | n'
 
 mkdir1() {
 	mkdir "$1"

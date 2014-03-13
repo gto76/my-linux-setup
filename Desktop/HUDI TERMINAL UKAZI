@@ -284,6 +284,8 @@ iwlist <interface> <option> - Displays current status information of a device. (
 iwspy - Sets the list of IP addresses in a wireless network and checks the quality of
      their connections.
 iwpriv - Accesses configuration options specific to a particular device.
+rfkill list - show wireless adapters (wifi and bluetooth)
+rfkill block/unblock <dev num> - block/unblock wireless device
 	
 ########	
 INTERNET:
@@ -506,6 +508,8 @@ git add <filename> OR git add .
 git status
 git commit -am "Commit message goes here."
 -
+git clone git://github.com/USER/REPOSITORY.git - download repo (kasneje z git pull osvezujes)
+--
 ADD TO GITHUB:
 Create remote repository on website
 git remote add origin git@github.com:/your-username/project-name.git
@@ -517,7 +521,6 @@ git push
 Also useful:
 git rm --cached mylogfile.log - untrack file withouth deleting it.
 gitk - repo explorer
-git clone git://github.com/USER/REPOSITORY.git - download source (kasneje z git pull osvezujes)
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
 sudo chown -R yourname:yourgroup * - in .git/objects

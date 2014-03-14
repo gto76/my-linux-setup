@@ -238,6 +238,12 @@ bsn() {
 	createExecutable "$fName"
     nano "$fName"
 }
+#make bash script , make it executable, and open it in vim
+bsv() {
+    fName="$1.sh"
+	createExecutable "$fName"
+    vim "$fName"
+}
 
 createExecutable() {
 	touch "$1"

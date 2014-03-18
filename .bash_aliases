@@ -185,6 +185,7 @@ alias strace1='strace -s 2000 -f'
 alias woff='rfkill block `rfkill list | grep Wireless | grep ^[0-9] -o`'
 # Unblock wireless device
 alias won='rfkill unblock `rfkill list | grep Wireless | grep ^[0-9] -o`'
+alias wr='woff; won'
 
 # SUDO
 alias srm='sudo rm -i'

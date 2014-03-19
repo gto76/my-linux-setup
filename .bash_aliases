@@ -363,6 +363,11 @@ alias ch='chmod u+x'
 #display free memory
 alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
 
+noOfPages() {
+	echo $(wc -w "$@" | grep -o ^[0-9]*) / 500 | bc	
+}
+alias pot='noOfPages'
+
 # Count number of lines in files with extension $1 
 # in current and sub directories.
 noOfLines() {

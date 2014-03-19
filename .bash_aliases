@@ -123,13 +123,12 @@ p() {
 	fi		
 }
 
-alias c='cd'
 alias ba='bash'
 alias bax='exit; bash'
 alias e='echo'
 alias ee='echo -e'
 alias en='echo -n'
-alias ca='cat'
+alias c='cat'
 alias m='nano -uicHFwST 4'
 alias g='gedit'
 alias f='firefox'
@@ -216,6 +215,7 @@ gr1() {
 
 
 alias b='acpi'
+alias batt='acpi'
 alias battery='acpi'
 
 alias canhaz='sudo apt-get install'

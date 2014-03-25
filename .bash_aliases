@@ -153,6 +153,7 @@ alias v='vim -c "set nu" -c "set tabstop=4"'
 alias ?="echo $?"
 alias mk="make"
 alias df1='df | grep "sda\|Size" | cat'
+alias pdf='evince'
 
 cut1() {
 	cut -d "$1" -f "$2" 

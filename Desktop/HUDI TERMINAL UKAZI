@@ -32,6 +32,8 @@ ctrl PgUp/PgDown - change tabs
 ctrl -/+ - zoom
 
 BASH:
+set -o vi - set line editing to vi mode
+
 ctrl c - cancel, erase line
 ctrl a - go to begining of line
 ctrl e - end of line

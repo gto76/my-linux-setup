@@ -236,7 +236,7 @@ bsg() {
 	gedit "$fName"
 }
 #make bash script , make it executable, and open it in nano
-bsn() {
+bsm() {
     fName="$1.sh"
 	createExecutable "$fName"
     nano "$fName"

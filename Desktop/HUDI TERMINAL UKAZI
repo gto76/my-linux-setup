@@ -590,6 +590,7 @@ sudo mount -o loop <PATH_ISO> /media/x
 ECLIPSE:
 ctrl-1 - quick fix
 alt-shift-s - source submenu
+ctrl - F7, esc - close pop-up console window
 
 WINE:
 winecfg -> drives tab to set drive

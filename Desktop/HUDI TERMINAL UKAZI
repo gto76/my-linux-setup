@@ -386,6 +386,7 @@ strace <program name and its parameters> - trace system calls and signals. All p
 	-T time the execution of each call
 lsof - list open files with file descriptors
 tload - "graphic" representation od system load
+xmodmap - remap keys
 	
 SERVICES:
 	

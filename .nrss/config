@@ -1,0 +1,29 @@
+#Add some feeds
+
+add "http://programming.reddit.com/.rss" "Reddit Programming"
+
+add "http://rss.slashdot.org/Slashdot/slashdot" "Slashdot"
+
+#add "http://news.sciencemag.org/rss/weekly_news_email.xml" "Science"
+add "http://feeds.nature.com/news/rss/news" "Nature"
+
+add "http://basketball.realgm.com/rss/wiretap/0/0.xml" "RealGm"
+
+add "http://www.mladina.si/media/rss/rss-fb-mladina.xml" "Mladina"
+
+#add "http://feeds.bbci.co.uk/news/technology/rss.xml" "BBC Tech"
+#add "http://www.delo.si/rss/" "Delo"
+#add "http://newsrss.bbc.co.uk/rss/newsonline_world_edition/front_page/rss.xml" "BBC"
+#add "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml" "BBC Science"
+#add "http://www.theserverside.com/rss/forum.tss?forum_id=2" "The Server Side"
+#add "http://www.vice.com/rss" "Vice"
+#add "http://netsec.reddit.com/.rss" "Internet Security"
+#add "http://www.renesys.com/feed/" "Internet Blog"
+#add "http://www.digg.com/rss/index.xml" "Digg All"
+#add "http://www.damninteresting.com/?feed=rss2" "Damn Interesting"
+
+
+browser "/usr/bin/firefox -new-tab %u"
+       
+#Text browsers should enable this
+#browser_wait "1"

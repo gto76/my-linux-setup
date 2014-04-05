@@ -963,6 +963,7 @@ alias tz='tail "$TODO"'
 alias htu='gedit "$HUD" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
 alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
+
 alias m1='m "$HUD"'
 alias m2='m $HOME/.bash_aliases'
 alias m3='m $HOME/.bashrc'
@@ -972,6 +973,11 @@ alias n1='n "$HUD"'
 alias n2='n $HOME/.bash_aliases'
 alias n3='n $HOME/.bashrc'
 alias n4='n "$TODO"'
+
+alias v1='v "$HUD"'
+alias v2='v $HOME/.bash_aliases'
+alias v3='v $HOME/.bashrc'
+alias v4='v "$TODO"'
 
 #Append line to todo file
 alias zt='ztodo'

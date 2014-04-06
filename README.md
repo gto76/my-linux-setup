@@ -2,7 +2,7 @@ My Aliases
 ==========
 
 My own .bash_aliases and a list of interesting linux commands (Desktop/HUDI TERMINAL UKAZI).
-Besides a lot of useful aliases, there are also a some interesting functions, such as:
+Besides a lot of useful aliases, there are also some interesting functions, such as:
 
 * **teaceroute1** - Prints country codes of hosts on path.
 

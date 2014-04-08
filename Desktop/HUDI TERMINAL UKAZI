@@ -350,7 +350,7 @@ nmap -sP 192.168.2.1-3 - network scanning
 	nmap 192.168.0.3 -p100-139 - port scanning
 	nmap 192.168.0.3 -p100-139 - port scanning
 	sudo nmap -O 192.168.0.3 - scanning os
-tcpdump - sniffer
+tcpdump - sniffer (Show network trafic)
 ettercap - Multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
 driftnet - Picks out and displays images from network traffic
 kismet - Wireless 802.11b monitoring tool
@@ -360,6 +360,7 @@ Cain & Abel - password recovery tool for Microsoft Operating Systems
 SYSTEM:
 
 uname -a - print system info
+cat /etc/issue - show name and version of distribution
 init - Upstart init daemon job configuration
 time <command> - kolk cajta se je ukaz izvaju
 cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
@@ -404,10 +405,19 @@ strace <program name and its parameters> - trace system calls and signals. All p
 	-o <log file>
 	-c - count/agregate
 	-T time the execution of each call
+ltrace - list library calls made bt command
 lsof - list open files with file descriptors
+	-p <pid> - open files by process
+	<path> - open files in path
 tload - "graphic" representation od system load
 xmodmap - remap keys
 xev - get keycodes of pressed keys
+lspci [-tv] - show pci info
+lsusb [-tv] - show usb info
+dmidecode -q - display bios/dmi information
+smartctl -A /dev/sda - show disk usage info
+hdparm -tT /dev/sda - do a read speed test
+badblocks -s /dev/sda - check for bad blocks
 	
 SERVICES:
 	
@@ -501,6 +511,9 @@ about the system:
 	/proc/net/route - routing table
 	netstat - Displays contents of /proc/net files
 /proc/iomem - neat memory map
+/proc/partitions - partitions info
+/proc/acpi/battery/BAT1/info - battery info
+/proc/acpi/ac_adapter/ACAD/state - addapter info
 
 USR - "Unix System Resources":
 /usr/lib/jvm - java jres and jdks

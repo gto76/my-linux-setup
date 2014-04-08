@@ -169,6 +169,12 @@ psM() {
 alias ps='psM'
 alias pse='ps -e | catOrLess'
 alias psa='ps -e | catOrLess'
+alias ps1='ps -e | catOrLess'
+
+alias lspci1='lspci -v | catOrLess'
+
+#run last command as su
+alias sudo1='sudo `!-1`'
 
 alias df='df -h'
 
@@ -180,6 +186,8 @@ alias du='du -sh'
 alias gg='gedit $HOME/.bash_aliases &'
 
 alias strace1='strace -s 2000 -f'
+
+alias uname1='uname -a'
 
 # Block wireless device
 alias woff='rfkill block `rfkill list | grep Wireless | grep ^[0-9] -o`'
@@ -361,8 +369,11 @@ alias xi='xclip -i'
 alias path='echo -e ${PATH//:/\\n}'
 alias ch='chmod u+x'
 
+#display total memory
+alias mem="free -m | grep Mem | sed 's/^Mem: *\([0-9]*\).*/\1/'"
+
 #display free memory
-alias fr="free | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'"
+alias fr="echo -n $(free -m | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'); echo ' / $(mem)'"
 
 noOfPages() {
 	echo $(wc -w "$@" | grep -o ^[0-9]*) / 500 | bc	

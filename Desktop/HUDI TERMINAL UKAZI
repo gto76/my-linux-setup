@@ -200,6 +200,8 @@ sort - sorts
 	-t - set delimiter for fields (default is space)
 	-k - select by which field to sort 
 uniq - removes adjacent duplicates
+	-d - intersection
+	-u - difference
 column - columnate text
 	t - create a table
 shuf - shuffle input lines
@@ -207,6 +209,7 @@ tac - concatenate and print files in reverse (reverse cat)
 join - join lines of two files on a common field
 comm - compare two sorted files line by line
 colrm <from <to>> - removes columns
+seq <number> - output numbers from 1 to number
 
 EDITORS:
 pyroom - distraction free writing
@@ -269,6 +272,10 @@ should DNS not be configured correctly on your machine, you need to edit
 ifconfig eth0 <ip> <down / up>
 	ifup eth0 - Will bring eth0 up if it is currently down.
 	ifcfg - Use ifcfg to configure a particular interface
+ip link show - list network interfaces
+		set dev eth0 up - bring interface eth0 up or down
+	addr show - list addresses of interfaces
+	route add default via 1.2.3.254 - set default gateway
 traceroute / traceroute6 / traceroute6.iputils
 	tracepath / tracepath6 - similar
 	-> iputils package
@@ -282,6 +289,11 @@ NetworkManager - network management daemon
 	NetworkManager.conf - configuration file
 nc - (netcat) arbitrary TCP and UDP connections and listens
 ncat - Concatenate and redirect sockets
+ethtool eth0 - show status of eth0
+	-S - statistics
+	-s - change settings (speed, duplex,...)
+ss -tupl - list internet services on a system
+ss -tuo - list active connections to/from system
 
 WIRELESS:
 
@@ -292,6 +304,10 @@ iwspy - Sets the list of IP addresses in a wireless network and checks the quali
 iwpriv - Accesses configuration options specific to a particular device.
 rfkill list - show wireless adapters (wifi and bluetooth)
 rfkill block/unblock <dev num> - block/unblock wireless device
+iw dev wlan0 link - show link status of wlan0
+	set biterates legacy-2.4 1	- manualy set interface speed
+	scan - list wireless networks in range
+
 	
 ########	
 INTERNET:

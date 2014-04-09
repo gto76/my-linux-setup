@@ -174,7 +174,7 @@ alias ps1='ps -e | catOrLess'
 alias lspci1='lspci -v | catOrLess'
 
 #run last command as su
-alias sudo1='sudo `!-1`'
+#alias sudo1='sudo `!-1'
 
 alias df='df -h'
 
@@ -281,6 +281,11 @@ apropos1() {
 	apt-cache search "$*" | catOrLess
 }
 alias ap1='apropos1'
+
+apropos2() {
+	apt-cache search "$*" | gr "$*"
+}
+alias ap2='apropos2'
 
 alias wi1='whatis'
 # Searches apt for name

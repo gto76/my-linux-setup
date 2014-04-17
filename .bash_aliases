@@ -1036,7 +1036,14 @@ alias data='cd ~/data; ls'
 alias rss='nrss'
 
 # Count lines in git repo
-alias gitl='git ls-files | xargs wc -l'
+alias gitl='git ls-files | xargs file | grep text | grep -o ^.*: | tr -d ":" | grep ^src/.* | xargs wc -l'
+
+# Plot distribution of file lenghts in git repo
+gitplot() {
+	gitl | head -n-1 | sort -n | grep -o '^ *[0-9]* ' | tr -d ' ' > /tmp/gitlTmpFile 
+	echo "unset key; plot '/tmp/gitlTmpFile'" | gnuplot -p 
+	\rm /tmp/gitlTmpFile
+}
 
 vga() {
 	#turn off laptop monitor if external is conected

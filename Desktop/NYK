@@ -83,6 +83,7 @@ A call to free() frees the memory at ptr. The parameter ptr must have been previ
 returned by malloc(), calloc(), or realloc(). That is, you cannot use free() to free
 partial chunks of memory—say, half of a chunk of memory—by passing in a pointer
 halfway into an allocated block
+----
 ...............
 ...............
 .. M A V E N ..
@@ -199,5 +200,17 @@ BERNIE COSELL - ARPANET
 DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
 - I couldn't teach classes full-time and write software fuul-time. I could teach classes full-time and write a book full-time.
 - One of the most important revolutions in programming languages was the use of pointers in the C language. When X is a pointer and you say x+1, that doesen't mean one more byte, but one more node after X.
+----
+.................
+.................
+..... G I T .....
+.................
+.................
 
-	
+Global Git configurations are stored in $HOME/.gitconfig
+
+CREATE:
+From existing
+
+
+

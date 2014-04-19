@@ -209,6 +209,9 @@ sm() {
 sn() {
 	sudo less "$*"
 }
+sv() {
+	sudo vim "$*"
+}
 
 # USEFUL
 

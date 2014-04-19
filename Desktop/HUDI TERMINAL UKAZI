@@ -175,6 +175,7 @@ tail -f - do not stop printing
 	-n +<line number> - start at line number
 cat -n - number all lines
 	-nl - similar
+	>> file - simplest text editor (great for pasting)
 less - 	&phrase - display only lines with
 		-N show line numbers
 		-~ do not show ~ after EOF

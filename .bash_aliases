@@ -1059,3 +1059,12 @@ vga() {
 }
 
 alias tt='gtypist'
+
+tohungarian() {
+	cat | sed 's/\([A-Z]\)/_\1/g' | tr [a-z] [A-Z]
+}
+
+tocamel() {
+	cat | tr [A-Z] [a-z] | sed 's/_\([a-z]\)/\U\1/g'
+}
+

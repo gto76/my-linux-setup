@@ -642,6 +642,10 @@ reason on wine:
 	down alt down - open menu
 regedit - Registry editor
 
+VIM:
+ctrl-[ - escape
+alt-<normal mode key> - escape, key
+
 ######## NEW / NOT SORTED #########
 
 

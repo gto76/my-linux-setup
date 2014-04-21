@@ -174,7 +174,7 @@ alias ps1='ps -e | catOrLess'
 alias lspci1='lspci -v | catOrLess'
 
 #run last command as su
-#alias sudo1='sudo `!-1'
+#alias sudo1='sudo !!'
 
 alias df='df -h'
 

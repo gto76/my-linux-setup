@@ -165,6 +165,7 @@ cancel <id> - cancel printing job
 gpg <filename> - decript file with password
 	-c <filename> encript
 file <filename> - determine file type
+sudo !! - run last command as super user
 
 ####
 TEXT:

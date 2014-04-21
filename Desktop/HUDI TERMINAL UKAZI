@@ -57,6 +57,7 @@ PACKAGES:
 
 apropos -a - all keywords
 whatis - short description of app
+wtf - check which command the acronim represents
 aptitude - browse packages
 apt-cache search - search packages
 apt-get autoremove - remove unneded packages

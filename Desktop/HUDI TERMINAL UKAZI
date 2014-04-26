@@ -309,8 +309,10 @@ iwpriv - Accesses configuration options specific to a particular device.
 rfkill list - show wireless adapters (wifi and bluetooth)
 rfkill block/unblock <dev num> - block/unblock wireless device
 iw dev wlan0 link - show link status of wlan0
-	set biterates legacy-2.4 1	- manualy set interface speed
-	scan - list wireless networks in range
+			 set biterates legacy-2.4 1	- manualy set interface speed
+sudo iw dev wlan0 scan - list wireless networks in range
+sudo iwlist wlan0 scan - similar
+wavemon - monitor wireless connection link quality
 
 	
 ########	
@@ -479,6 +481,7 @@ HUDE DATOTEKE:
 
 HOME:
 ~/.Xmodmap - keyboard map
+~/.bash_profile OR .bashrc - bash script for setting PATH, JAVA_HOME.. 
 
 ETC / "Edit To Configure" / "Editable Text Configuration":
 /etc/mailcap - default programi za extensne
@@ -486,6 +489,7 @@ $HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
 /etc/passwd - userji
 /etc/groups - grupe
+/etc/bash.bashrc OR etc/profile - Bashrc for all users 
 
 SERVICES:
 /etc/init/, $HOME/.init/ - init - Upstart init daemon job configuration
@@ -496,8 +500,6 @@ SERVICES:
 
 /etc/init/ssh.conf - sshd config
 /etc/ssh/sshd_config - sshd config
-~/.bash_profile  - for PATH, JAVA_HOME (ali .bashrc) for one user
-	/etc/profile OR /etc/bash.bashrc - for all users 
 /etc/fstab - Automatic mounts are handled by configuring the file
 /etc/sudoers - lists of users and the commands they can run with sudo
 /etc/crontab - system-wide crontab
@@ -518,6 +520,7 @@ about the system:
 /proc/partitions - partitions info
 /proc/acpi/battery/BAT1/info - battery info
 /proc/acpi/ac_adapter/ACAD/state - addapter info
+/proc/net/wireless - wireless connection info
 
 USR - "Unix System Resources":
 /usr/lib/jvm - java jres and jdks

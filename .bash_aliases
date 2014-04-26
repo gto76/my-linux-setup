@@ -155,6 +155,7 @@ alias mk="make"
 alias df1='df | grep "sda\|Size" | cat'
 alias pdf='evince'
 
+
 cut1() {
 	cut -d "$1" -f "$2" 
 }
@@ -470,6 +471,10 @@ alias ping2='ping -c 4 8.23.224.107'
 alias ping3='ping -c 4 www.google.com'
 alias mac='ifconfig | grep HWaddr'
 
+# Displays wireless networks in range
+wlan() {
+	sudo iwlist wlan0 scan | grep Quality -A2 | tr -d "\n" | sed 's/--/\n/g' | sed -e 's/ \+/ /g' | sort -r | sed 's/ Quality=//g' | sed 's/\/70 Signal level=-[0-9]* dBm Encryption key:/ /g' | sed 's/ ESSID:/ /g'
+}
 
 # Print countries on the route to host.
 # Ex wget -qO- http://api.wipmania.com/"$ip"

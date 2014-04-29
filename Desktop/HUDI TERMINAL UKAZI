@@ -473,7 +473,7 @@ ppmforge - creates picture of random planet or clowds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
 	-p	leawe plots open after exit
 	plot file.dat - plot data from dat file
-
+ffmpeg -i <fileNameIn> <fileNameOut> - video and audio format converter
 
 #############
 HUDE DATOTEKE:
@@ -520,6 +520,8 @@ about the system:
 /proc/partitions - partitions info
 /proc/acpi/battery/BAT1/info - battery info
 /proc/acpi/ac_adapter/ACAD/state - addapter info
+/proc/acpi/wakeup - list of devices that can wake up your machine via acpi
+	sudo sh -c "echo USB1 > /proc/acpi/wakeup" - enable device USB1
 /proc/net/wireless - wireless connection info
 
 USR - "Unix System Resources":

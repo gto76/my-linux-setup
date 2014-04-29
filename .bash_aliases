@@ -20,7 +20,7 @@ catOrLess() {
 		fi
 	fi
 }
-alias n='catOrLess'
+alias m='catOrLess'
 
 #open cat or less +G (starts at the end of file), depending on no of lines of file or input
 catOrLessG() {
@@ -42,7 +42,7 @@ catOrLessG() {
 		fi
 	fi
 }
-alias nEnd='catOrLessG'
+alias mEnd='catOrLessG'
 
 # LS
 
@@ -88,6 +88,10 @@ alias la='l -A'
 alias lla='ll -A'
 alias llla='lll -A'
 
+alias dl='l -d'
+alias dll='ll -d'
+alias dlll='lll -d'
+
 alias l1='l -1'
 alias la1='la -1'
 
@@ -129,7 +133,7 @@ alias e='echo'
 alias ee='echo -e'
 alias en='echo -n'
 alias c='cat'
-alias m='nano -uicHFwST 4'
+alias n='nano -uicHFwST 4'
 alias g='gedit'
 alias f='firefox'
 alias scr='screen'
@@ -155,6 +159,7 @@ alias mk="make"
 alias df1='df | grep "sda\|Size" | cat'
 alias pdf='evince'
 
+alias temp='acpi -t'
 
 cut1() {
 	cut -d "$1" -f "$2" 
@@ -204,10 +209,10 @@ alias smv='sudo mv -iv'
 sg() {
 	sudo gedit "$*"
 }
-sm() {
+sn() {
 	sudo nano -icHFwST 4 "$*"
 }
-sn() {
+sm() {
 	sudo less "$*"
 }
 sv() {
@@ -248,7 +253,7 @@ bsg() {
 	gedit "$fName"
 }
 #make bash script , make it executable, and open it in nano
-bsm() {
+bsn() {
     fName="$1.sh"
 	createExecutable "$fName"
     nano "$fName"
@@ -673,7 +678,7 @@ noh() {
 	fi
 	thirdNumberOfIp=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
 	command="nmap -sP 192.168.$thirdNumberOfIp.0-$forth"
-	noOfHosts=`$command | grep -o "[0-9]* hosts up" | grep -o [0-9]*`
+	noOfHosts=`$command | grep -o "[0-9]* hosts up" | grep -o "[0-9]*"`
 	noOfOtherUsers=`expr $noOfHosts - 2`
 	echo $noOfOtherUsers
 }
@@ -954,7 +959,7 @@ key q
 key y"
 }
 
-#TODO da ne igra istih komadov
+#TODO Should not play same songs.
 spilej3() {
 	spilej "$@"
 	spilej "$@"

@@ -1,6 +1,20 @@
-remove Lock = Caps_Lock
-remove Control = Insert
+keycode 31 = i I Up
+keycode 44 = j J Left
+keycode 45 = k K Down
+keycode 46 = l L Right
+keycode 30 = u U Home
+keycode 58 = m M End
+keycode 32 = o O Page_Up
+keycode 59 = comma less Down
+keycode 60 = period greater Page_Down
+keycode 47 = semicolon colon Return 
+keycode 61 = slash question Delete 
+keycode 33 = p P BackSpace 
+keycode 86 = plus plus Right
+keycode 22 = BackSpace BackSpace Delete
+keycode 49 = grave asciitilde Escape
+keycode 65 = space space Return
+
 keysym Insert = Caps_Lock
-keysym Caps_Lock = Escape
-add Lock = Caps_Lock
-add Control = Insert
+keysym Caps_Lock = Mode_switch
+

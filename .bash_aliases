@@ -158,6 +158,7 @@ alias ?="echo $?"
 alias mk="make"
 alias df1='df | grep "sda\|Size" | cat'
 alias pdf='evince'
+alias mixer='alsamixer'
 
 alias temp='acpi -t'
 

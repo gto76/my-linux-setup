@@ -365,7 +365,7 @@ Cain & Abel - password recovery tool for Microsoft Operating Systems
 
 SYSTEM:
 
-uname -a - print system info
+uname -a - print system info, kernel version
 cat /etc/issue - show name and version of distribution
 init - Upstart init daemon job configuration
 time <command> - kolk cajta se je ukaz izvaju
@@ -415,8 +415,9 @@ ltrace - list library calls made bt command
 lsof - list open files with file descriptors
 	-p <pid> - open files by process
 	<path> - open files in path
-tload - "graphic" representation od system load
+tload - "graphic" representation of system load
 xmodmap - remap keys
+setxkbmap -layout us - set us keyboard layout
 xev - get keycodes of pressed keys
 lspci [-tv] - show pci info
 lsusb [-tv] - show usb info
@@ -521,7 +522,7 @@ about the system:
 /proc/acpi/battery/BAT1/info - battery info
 /proc/acpi/ac_adapter/ACAD/state - addapter info
 /proc/acpi/wakeup - list of devices that can wake up your machine via acpi
-	sudo sh -c "echo USB1 > /proc/acpi/wakeup" - enable device USB1
+	sudo sh -c "echo USB1 > /proc/acpi/wakeup" - enable device USB1 to wakeup computer from sleep/suspend
 /proc/net/wireless - wireless connection info
 
 USR - "Unix System Resources":

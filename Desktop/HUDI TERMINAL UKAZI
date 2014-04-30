@@ -421,7 +421,8 @@ setxkbmap -layout us - set us keyboard layout
 xev - get keycodes of pressed keys
 lspci [-tv] - show pci info
 lsusb [-tv] - show usb info
-dmidecode -q - display bios/dmi information
+dmidecode -q - display bios/dmi information like ram size/type,
+	max ram, computer model name, cpu information..
 smartctl -A /dev/sda - show disk usage info
 hdparm -tT /dev/sda - do a read speed test
 badblocks -s /dev/sda - check for bad blocks

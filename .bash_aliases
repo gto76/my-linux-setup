@@ -8,7 +8,7 @@ catOrLess() {
 		if [ $LINES -gt $noOfLines ]; then
 			cat "$1"	
 		else
-			less "$1" 
+			less "$1" 2>/dev/null 
 		fi
 	else
 		input=`cat`
@@ -16,7 +16,7 @@ catOrLess() {
 		if [ $LINES -gt $noOfLines ]; then
 			echo "$input" | cat	
 		else
-			echo "$input" | less 
+			echo "$input" | less 2>/dev/null 
 		fi
 	fi
 }
@@ -30,7 +30,7 @@ catOrLessG() {
 		if [ $LINES -gt $noOfLines ]; then
 			cat "$1"	
 		else
-			cat "$1" | less +G 
+			cat "$1" | less +G 2>/dev/null
 		fi
 	else
 		input=`cat`
@@ -38,7 +38,7 @@ catOrLessG() {
 		if [ $LINES -gt $noOfLines ]; then
 			echo "$input" | cat	
 		else
-			echo "$input" | less +G 
+			echo "$input" | less +G 2>/dev/null
 		fi
 	fi
 }
@@ -159,6 +159,11 @@ alias mk="make"
 alias df1='df | grep "sda\|Size" | cat'
 alias pdf='evince'
 alias mixer='alsamixer'
+alias c1='m1 | c | gr' 
+alias c2='m2 | c | gr'
+
+alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
+alias resetkeys='resetkey'
 
 alias temp='acpi -t'
 

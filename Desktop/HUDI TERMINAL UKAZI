@@ -102,6 +102,10 @@ du -s <folderName> - folder size
 screen - switch between multiple virtual terminals (useful in ssh)
 	ctrl+a: c - new terminal, n - next, p - previous, a - go to begining of line
 tmux - terminal multiplexer, better screen
+tmux ls - shows running sessions
+tmux attach (-t <session no>) - attach to running session
+	ctrl-b d - exit session	
+
 man section_number tool_name
 	1 programs 2 System calls 3 Library calls 4 Special files 5 File formats 7 Miscellaneous 8 System administration commands
 	-a shows all sections
@@ -144,6 +148,7 @@ run-parts - run all scripts or programs in a directory
 mkisofs - create a DVD/CD image
 cdrecord - write to a CD/DVD
 watch - execute a program periodically, showing output fullscreen
+watch bash -i -c '<alias>' - execute alias periodicaly
 zcat - catz gziped file
 line - read one line
 mktemp - create a temporary file or directory
@@ -198,7 +203,8 @@ pdftotext - pdf to text
 libreoffice - novi openoffice
 fte - cool text editor with CUA (IBM)-shortcuts
 rel - analyze text files for relevance to a given set of keywords
-figlet - display large characters made up of ordinary screen characters
+figlet - display large characters made up of ordinary screen characters (ascii art)
+aview, asciiview - ASCII art image viewer and video player
 sort - sorts
 	-u - uniq
 	-t - set delimiter for fields (default is space)
@@ -416,9 +422,6 @@ lsof - list open files with file descriptors
 	-p <pid> - open files by process
 	<path> - open files in path
 tload - "graphic" representation of system load
-xmodmap - remap keys
-setxkbmap -layout us - set us keyboard layout
-xev - get keycodes of pressed keys
 lspci [-tv] - show pci info
 lsusb [-tv] - show usb info
 dmidecode -q - display bios/dmi information like ram size/type,
@@ -427,6 +430,16 @@ smartctl -A /dev/sda - show disk usage info
 hdparm -tT /dev/sda - do a read speed test
 badblocks -s /dev/sda - check for bad blocks
 	
+KEYS/CHARACTERS/FONTS:
+xmodmap - remap keys
+setxkbmap -layout us - set us keyboard layout
+xev - get keycodes of pressed keys
+showkey - same, when not in X
+loadkeys <country code> - load key mapping when not in X
+setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz - choose terminal font
+/etc/default/console-setup - file with default font settings
+jfbterm - enable unicode characters in terminal
+
 SERVICES:
 	
 service - allows you to start, stop or restart a service (/etc/init.d script)
@@ -454,7 +467,7 @@ cmus - music (can be controled from outside)
 mplayer - movie/music player
 mpg321 - plays mp3
 ogg123 - plays ogg
-aplay - plays
+aplay - plays audio
 alsamixer - audio in out volumes
 	amixer
 arecord -f filequality -d seconds <filename>
@@ -484,6 +497,8 @@ HUDE DATOTEKE:
 HOME:
 ~/.Xmodmap - keyboard map
 ~/.bash_profile OR .bashrc - bash script for setting PATH, JAVA_HOME.. 
+/etc/bash.bashrc OR etc/profile - Bashrc for all users, runs commands as user
+/etc/rc.local - last startup script executed, runs command as su
 
 ETC / "Edit To Configure" / "Editable Text Configuration":
 /etc/mailcap - default programi za extensne
@@ -491,7 +506,7 @@ $HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
 /etc/passwd - userji
 /etc/groups - grupe
-/etc/bash.bashrc OR etc/profile - Bashrc for all users 
+/etc/default/console-setup - set (tty) console character set, font size...
 
 SERVICES:
 /etc/init/, $HOME/.init/ - init - Upstart init daemon job configuration

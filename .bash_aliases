@@ -162,6 +162,9 @@ alias mixer='alsamixer'
 alias c1='m1 | c | gr' 
 alias c2='m2 | c | gr'
 alias keycode='xev';
+alias watch1='watch bash -i -c'
+alias watch2='watch -n 10 bash -i -c'
+alias watch3='watch -n 30 bash -i -c'
 
 alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
 alias resetkeys='resetkey'
@@ -293,15 +296,20 @@ aproposM() {
 alias apropos='aproposM'
 alias ap='apropos'
 
+aproposMG() {
+	apropos "$*" | gr "$*" 
+}
+alias apg='aproposMG'
+
 apropos1() {
 	apt-cache search "$*" | catOrLess
 }
 alias ap1='apropos1'
 
-apropos2() {
+apropos1G() {
 	apt-cache search "$*" | gr "$*"
 }
-alias ap2='apropos2'
+alias ap1g='apropos1G'
 
 alias wi1='whatis'
 # Searches apt for name

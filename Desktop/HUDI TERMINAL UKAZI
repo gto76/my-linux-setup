@@ -641,7 +641,7 @@ ECLIPSE:
 ctrl-1 - quick fix
 alt-shift-s - source submenu
 ctrl - F7, esc - close pop-up console window
-ctrl-7 - toggle comment
+ctrl-7, ctrl-/ - toggle comment
 F3 - goto definition
 
 WINE:

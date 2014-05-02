@@ -161,6 +161,7 @@ alias pdf='evince'
 alias mixer='alsamixer'
 alias c1='m1 | c | gr' 
 alias c2='m2 | c | gr'
+alias keycode='xev';
 
 alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
 alias resetkeys='resetkey'

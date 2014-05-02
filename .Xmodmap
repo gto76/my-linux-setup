@@ -1,3 +1,4 @@
+!right part of keyboard changes to num pad when caps lock is pressed
 keycode 31 = i I Up
 keycode 44 = j J Left
 keycode 45 = k K Down
@@ -15,6 +16,12 @@ keycode 22 = BackSpace BackSpace Delete
 keycode 49 = grave asciitilde Escape
 keycode 65 = space space BackSpace 
 
+!numpad keys
+keycode 82 = Escape Escape Escape
+keycode 84 = Down Down Down
+keycode 86 = BackSpace BackSpace BackSpace
+
+!caps lock plus number key equals F key
 keycode 10 = 1 exclam F1
 keycode 11 = 2 at F2
 keycode 12 = 3 numbersign F3
@@ -28,11 +35,13 @@ keycode 19 = 0 parenright F10
 keycode 20 = minus underscore F11
 keycode 21 = equal plus F12
 
+!make context menu button into another control key
 remove Control = Control_R
 keycode 105 = Control_R NoSymbol Control_R
 keycode 135 = Control_R NoSymbol Control_R
 add Control = Control_R
 
+!make caps lock special modifier key
 keysym Insert = Caps_Lock
 keysym Caps_Lock = Mode_switch
 

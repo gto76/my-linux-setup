@@ -165,6 +165,7 @@ alias keycode='xev';
 alias watch1='watch bash -i -c'
 alias watch2='watch -n 10 bash -i -c'
 alias watch3='watch -n 30 bash -i -c'
+alias asci='asciiview'
 
 alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
 alias resetkeys='resetkey'

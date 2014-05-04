@@ -190,6 +190,7 @@ less - 	&phrase - display only lines with
 		-F or --quit-if-one-screen
 		v - opens editor defined in $VISUAL or $EDITOR
 		:n - examine the next file
+		<,> - go to home, end
 sdiff - two files side by side
 cut <filename> - remove sections from each line of files
 	cut -d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
@@ -429,6 +430,8 @@ dmidecode -q - display bios/dmi information like ram size/type,
 smartctl -A /dev/sda - show disk usage info
 hdparm -tT /dev/sda - do a read speed test
 badblocks -s /dev/sda - check for bad blocks
+top - show processes by resource consumption
+	<, > - change resource
 	
 KEYS/CHARACTERS/FONTS:
 xmodmap - remap keys

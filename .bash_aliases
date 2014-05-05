@@ -889,6 +889,10 @@ gi() {
 	gi1 "$@" 2> /dev/null | display &
 }
 
+gi2() {
+	gi1 "$@" 2> /dev/null | display
+}
+
 #       #
 # AUDIO #
 #       #

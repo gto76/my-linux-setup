@@ -10,7 +10,7 @@ Besides a lot of useful aliases, there are also some interesting functions, such
 
 * **spilej** - Plays an artist/song/album. First looks in pwd, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems occur at search phase.
 
-* **catOrLess** - Runs either cat or less, depending on size of input data. Works with files or input stream.
+* **catOrLess** - Runs either cat or less, depending on size of output. Works with files or input stream.
 
 * **weathr** - Weather report. Needs city ID -> Go to yahoo weather, search your location, and copy its id from address bar.
 

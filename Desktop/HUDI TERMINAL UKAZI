@@ -37,6 +37,7 @@ BASH:
 set -o vi - set line editing to vi mode
 pushd . - put current dir on stack
 popd - pop dir from stack
+source <script> - run script: for examle source /etc/profile
 
 ctrl c - cancel, erase line
 ctrl a - go to begining of line
@@ -65,6 +66,7 @@ apt-cache search - search packages
 apt-get autoremove - remove unneded packages
 apt-get install - also update single package
 dpkg -l - lists installed packages
+aptitude search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
 winetricks - install wine aplications
 apt-cache show - get info about package
 whereis <command> - locates where command resides 

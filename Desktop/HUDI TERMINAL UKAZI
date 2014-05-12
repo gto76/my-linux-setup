@@ -587,6 +587,7 @@ Create remote repository on website
 git remote add origin git@github.com:/your-username/project-name.git
 git pull origin master
 git push origin master
+(git push --force)
 After your first push, you can simply type:
 git push
 --

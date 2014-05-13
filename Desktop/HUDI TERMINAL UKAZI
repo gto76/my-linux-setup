@@ -655,6 +655,13 @@ help: 	ctrl ] - folow link
 		ctrl o - go back
 		:q     - exit help		
 \c - case insensitive search
+? - search backward
+V - linewise visual mode
+~ - cwitch case
+> - tab right 
+P - paset before cursor
+x - delete character
+:%s/old/new/gc - sed, c means with conformations
 
 MOUNT ISO:
 sudo mkdir /media/x

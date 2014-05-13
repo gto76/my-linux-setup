@@ -14,7 +14,7 @@ keycode 33 = p P BackSpace
 keycode 86 = plus plus Right
 keycode 22 = BackSpace BackSpace Delete
 keycode 49 = grave asciitilde Escape
-keycode 65 = space space BackSpace 
+keycode 65 = space space Return 
 
 !numpad keys
 keycode 82 = Escape Escape Escape

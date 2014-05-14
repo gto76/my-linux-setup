@@ -388,6 +388,7 @@ free -tm - Displays memory statistics (-s continuously display)
 vmstat - Performance of system components / virtual memory statistics
 sar - System activity information
 iostat - Disk usage
+perf - profiler
 sudo /etc/init.d/ssh restart - restrt sshh deamon
 zeitgeist - activity logger
 vipw - edit password file

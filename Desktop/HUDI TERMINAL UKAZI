@@ -282,11 +282,13 @@ netstat - Displays contents of /proc/net files,  status of ports...
 	-i - interfaces
 arp - manipulate the system ARP cache (IP - mac)
 route - The route command is the tool used to display or modify the routing table
+route add default gw 192.168.1.10 - change the default gateway
 should DNS not be configured correctly on your machine, you need to edit
 “/etc/resolv.conf” to make things work
 ifconfig eth0 <ip> <down / up>
 	ifup eth0 - Will bring eth0 up if it is currently down.
 	ifcfg - Use ifcfg to configure a particular interface
+	ifconfig eth0 192.168.1.4 netmask 255.255.255.0 up - set ip and mask
 ip link show - list network interfaces
 		set dev eth0 up - bring interface eth0 up or down
 	addr show - list addresses of interfaces

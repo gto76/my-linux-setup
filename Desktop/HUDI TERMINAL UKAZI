@@ -85,6 +85,7 @@ alias - shrani alias ($HOME/.bashrc) / show aliases
 command <command> - executes original command, ignoring shell functions
 type <command> - will tell you what is command alliased to
 mc - midnight commander
+	alt o - open parent dir in another panel
 df - disc fulness / disc free
 read - reads from file line by line
 find . | grep bla - preišče rekurzivno tudi poddirektorije
@@ -95,6 +96,7 @@ xargs - output from one command to arguments of another
 	-t echoes the command before executing it, and -p echoes it and asks for confirmation
 tar xvzf xxx.tar.gz - decompress and detar
 	tar xvjf xxx.tar.bz2 - decompress and detar
+	tar -cf archiveName.tar files.. - compress
 ccsm - additional settings (compiz config setings menager - BAD)
 md5sum - checks md5 sum hash
 appletviewer Race.htm - run java applet
@@ -106,6 +108,8 @@ du -s <folderName> - folder size
 screen - switch between multiple virtual terminals (useful in ssh)
 	ctrl+a: c - new terminal, n - next, p - previous, a - go to begining of line
 tmux - terminal multiplexer, better screen
+	ctrl+b: pgup - enter in copy mode and pageup, [ - copy mode, ] - paste,	
+	" - split horizontaly,	% - split verticaly 
 tmux ls - shows running sessions
 tmux attach (-t <session no>) - attach to running session
 	ctrl-b d - exit session	
@@ -276,7 +280,7 @@ whois - info about domain
 host <ip_address/hostname> - DNS lookup utility
 	nslookup - same interactively
 	dig - same, lot of options
-hostname - name of host
+hostname - prints computer name
 netstat - Displays contents of /proc/net files,  status of ports...
 	-r - routing table
 	-i - interfaces
@@ -345,12 +349,12 @@ lynx - web browser
 	elinks - web browser (looks better)
 mutt - mail client
 sftp - secure ftp
-sshd - ssh server deamon
+sshd - (openssh-server) ssh server deamon
 	/etc/init.d/ssh restart - sshd restart
 	ssh-keygen -t rsa -C "email address" - generate rsa key pair
 	~/.ssh - location for your keys
-	scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp
-	ssh [user]@[address] "mpg321 -" < [file].mp3 - stream audio over ssh
+scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp, (ssh)
+ssh [user]@[address] "mpg321 -" < [file].mp3 - stream audio over ssh
 wget -c	continue downloading unfinished file. Can also use wildcards, but use single quotes around url. 
 	-r -l1 --no-parent -A.gif - recursively to the depth of one ignoring references to the parent directory and all gifs.
 	curl - similar
@@ -376,7 +380,9 @@ kismet - Wireless 802.11b monitoring tool
 aircrack-ng - wireless WEP/WPA cracking utilities
 Cain & Abel - password recovery tool for Microsoft Operating Systems
 
+#######
 SYSTEM:
+#######
 
 uname -a - print system info, kernel version
 cat /etc/issue - show name and version of distribution
@@ -439,6 +445,8 @@ hdparm -tT /dev/sda - do a read speed test
 badblocks -s /dev/sda - check for bad blocks
 top - show processes by resource consumption
 	<, > - change resource
+sensors - (lm-sensors) hardware monitoring tool, temperature, fan speed
+pwmconfig - (fancontrol) set fan speed
 	
 KEYS/CHARACTERS/FONTS:
 xmodmap - remap keys

@@ -1098,3 +1098,12 @@ tocamel() {
 	cat | tr [A-Z] [a-z] | sed 's/_\([a-z]\)/\U\1/g'
 }
 
+# Moves file to directory and creates hard link back
+mvln() {
+	originalFile="$1"
+	destination="$2"
+	fileAtNewDest="$destination"/`basename "$originalFile"`
+
+	mv "$originalFile" "$destination"
+	ln "$fileAtNewDest" "$originalFile" 
+}

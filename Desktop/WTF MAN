@@ -512,15 +512,15 @@ ffmpeg -i <fileNameIn> <fileNameOut> - video and audio format converter
 HUDE DATOTEKE:
 #############
 
-HOME:
-~/.Xmodmap - keyboard map
-~/.bash_profile OR .bashrc - bash script for setting PATH, JAVA_HOME.. 
-/etc/bash.bashrc OR etc/profile - Bashrc for all users, runs commands as user. Profile ok for PATHS
-/etc/rc.local - last startup script executed, runs command as su
+BASH:
+~/.bashrc - executed at every shell startup, user specific
+/etc/bash.bashrc - executed at every shell startup, all users
+~/.profile - executed at login, user specific 
+/etc/profile - executed at login, all users (put PATHS here)
 
 ETC / "Edit To Configure" / "Editable Text Configuration":
+etc/rc.local - last startup script executed, runs command as su
 /etc/mailcap - default programi za extensne
-$HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
 /etc/passwd - userji
 /etc/groups - grupe
@@ -575,6 +575,8 @@ VAR - "variable":
 BOOT (kernels):
 /boot/grub/menu.lst - Grub configuration file
 
+HOME:
+~/.Xmodmap - keyboard map
 
 ############
 ############

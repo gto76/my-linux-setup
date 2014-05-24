@@ -23,7 +23,8 @@ add "http://www.mladina.si/media/rss/rss-fb-mladina.xml" "Mladina"
 #add "http://www.damninteresting.com/?feed=rss2" "Damn Interesting"
 
 
-browser "/usr/bin/firefox -new-tab %u"
+#browser "/usr/bin/firefox -new-tab %u"
+browser "/usr/bin/google-chrome %u"
        
 #Text browsers should enable this
 #browser_wait "1"

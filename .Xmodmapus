@@ -15,6 +15,7 @@ keycode 86 = plus plus Right
 keycode 22 = BackSpace BackSpace Delete
 keycode 49 = grave asciitilde Escape
 keycode 65 = space space Return 
+keycode 48 = apostrophe quotedbl Escape
 
 !numpad keys
 keycode 82 = Escape Escape Escape
@@ -35,10 +36,10 @@ keycode 19 = 0 parenright F10
 keycode 20 = minus underscore F11
 keycode 21 = equal plus F12
 
-!make context menu button into another control key
+!switch context menu botton with right control
 remove Control = Control_R
-keycode 105 = Control_R NoSymbol Control_R
-keycode 135 = Control_R NoSymbol Control_R
+keysym Control_R = Menu
+keysym Menu = Control_R
 add Control = Control_R
 
 !make caps lock special modifier key

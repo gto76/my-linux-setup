@@ -23,8 +23,11 @@ function createLink {
 	fi
 }
 
-createLink ~ .Xmodmap 
+createLink ~ .bashrc
 createLink ~ .bash_aliases
+createLink ~ .Xmodmapus
+createLink ~ .Xmodmapsi
+
 (cd .nrss 
 createLink ~/.nrss config)
 (cd Desktop 

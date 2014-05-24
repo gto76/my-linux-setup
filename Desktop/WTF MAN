@@ -515,7 +515,7 @@ HUDE DATOTEKE:
 HOME:
 ~/.Xmodmap - keyboard map
 ~/.bash_profile OR .bashrc - bash script for setting PATH, JAVA_HOME.. 
-/etc/bash.bashrc OR etc/profile - Bashrc for all users, runs commands as user
+/etc/bash.bashrc OR etc/profile - Bashrc for all users, runs commands as user. Profile ok for PATHS
 /etc/rc.local - last startup script executed, runs command as su
 
 ETC / "Edit To Configure" / "Editable Text Configuration":
@@ -609,6 +609,7 @@ git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
 sudo chown -R yourname:yourgroup * - in .git/objects
 git reset --hard HEAD~1 - delete last commit
+git remote set-url origin git@github.com:my_user_name/my_repo.git - change the url of origin
 --
 Checkout:
 git log > ../gitLog - first save log to file

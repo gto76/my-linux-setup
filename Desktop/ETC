@@ -1,0 +1,64 @@
+.bash_rc, bash.bashrc, local, rc.profile, rc.local
+american layout with slovenian letters (z and y are changed)
+less syntax highlight
+home git repo - switch right control and context menu
+desktop text files
+////
+X:
+ctrl+alt+f - firefox
+ctrl+alt+h - home
+ctrl+alt+g - gedit
+ctrl+alt+c - chrome
+ctrl+alt+jkli... - position window acordingly
+alt+F12 - run command
+alt+F1 - minimize window
+alt+F2 - toggle maximize window
+alt+F3 - toggle full screen
+----
+disable default ctrl+alt+F1:
+run dconf-editor
+navigate to org.cinnamon.muffin.keybindings
+for panel-main-menu, replace ['<Alt>F1'] with []
+logout & login
+////
+.BASHRC:
+set "$HUD"
+set -o vi
+export EDITOR="vim"
+///
+FIREFOX:
+vim keysj -> adblock, vimium, disable ctrl-q
+google home page, google search engine
+remove bookmarks toolbar
+/////
+INSTALL:
+vim -> tabwidth 4, line numbers
+mc
+git
+openssh-server
+nrss
+chrome -> adblock, 
+	vimium -> switch J and K:
+		unmap J
+		unmap K
+		map J nextTab
+		map K previousTab
+eclipse -> scala
+vine -> reaper, fl studio
+=======
+in order of installment:
+nmap
+/////
+/etc/profile:
+export JAVA_HOME="/usr/lib/jvm/java-6-openjdk"
+export PATH=$PATH:$JAVA_HOME/bin
+export PATH=/home/minerva/dev/maven/apache-maven-3.1.0/bin:$PATH
+export GOPATH=/home/minerva/dev/gopackages
+export PATH=$PATH:/home/minerva/dev/peg-markdown/peg-markdown
+setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz
+/////
+/etc/rclocal:
+loadkeys us
+/etc/init.d/ssh restart
+exit 0
+/////

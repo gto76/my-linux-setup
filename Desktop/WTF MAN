@@ -618,6 +618,7 @@ Refresh project in eclipse
 gitstats
 --
 git log --name-only --author=jure - print changed files by commit
+git ls-files - list files
 
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily

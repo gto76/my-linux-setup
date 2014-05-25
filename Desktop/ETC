@@ -44,8 +44,8 @@ chrome -> adblock,
 		unmap K
 		map J nextTab
 		map K previousTab
-eclipse -> scala
-vine -> reaper, fl studio
+eclipse -> scala, maven
+wine -> reaper -> keys, licence; fl studio
 =======
 in order of installment:
 nmap
@@ -63,3 +63,4 @@ loadkeys us
 /etc/init.d/ssh restart
 exit 0
 /////
+

@@ -58,20 +58,23 @@ HUDI TERMINAL UKAZI:
 
 PACKAGES:
 
+dpkg -l - lists installed packages
+apt - skin for dpkg
+apt-get autoremove - remove unneded packages
+		install - also update single package
+		source <package> - download code
+		purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
+apt-cache search <keyword> - search packeges, like apropos, but global
+		show - get info about package
+aptitude - browse packages (skin for apt-get)
+		search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
+winetricks - install wine aplications
+
 apropos -a - all keywords
 whatis - short description of app
-wtf - check which command the acronim represents
-aptitude - browse packages
-apt-cache search - search packages
-apt-get autoremove - remove unneded packages
-apt-get install - also update single package
-dpkg -l - lists installed packages
-aptitude search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
-winetricks - install wine aplications
-apt-cache show - get info about package
 whereis <command> - locates where command resides 
 which - similar only executable
-apt-get source <package> - download code
+wtf - looks up filename suffixes database
 
 GENERAL:
 

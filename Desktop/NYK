@@ -29,7 +29,7 @@ Advanced Installer
 LaunchAnywhere
 JexePack (Class to EXE)
 Launch4j
-----
+
 .........................
 ....... L I N U X .......
 ...... S Y S T E M ......
@@ -83,7 +83,7 @@ A call to free() frees the memory at ptr. The parameter ptr must have been previ
 returned by malloc(), calloc(), or realloc(). That is, you cannot use free() to free
 partial chunks of memory—say, half of a chunk of memory—by passing in a pointer
 halfway into an allocated block
-----
+
 ...............
 ...............
 .. M A V E N ..
@@ -115,7 +115,7 @@ src/site 	Site
 LICENSE.txt 	Project's license
 NOTICE.txt 	Notices and attributions required by libraries that the project depends on
 README.txt 	Project's readme
----------------------------------------------------
+
 .................
 .. C O D E R S ..
 ...... A T ......
@@ -200,14 +200,12 @@ BERNIE COSELL - ARPANET
 DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
 - I couldn't teach classes full-time and write software fuul-time. I could teach classes full-time and write a book full-time.
 - One of the most important revolutions in programming languages was the use of pointers in the C language. When X is a pointer and you say x+1, that doesen't mean one more byte, but one more node after X.
-----
 
 .................
 .................
 .... W E K A ....
 .................
 .................
-
 ----------------
 FORMATING INPUT:
 ----------------
@@ -248,7 +246,6 @@ SHEMA:
 ...... J A V A ......
 .....................
 .....................
-
 --------------------------------
 CREATING AND DESTROYING OBJECTS:
 --------------------------------
@@ -394,9 +391,9 @@ SERIALIZATION:
 --------------------------------
 NEW COLLECTINON INTERFACES IN 6.0:
 --------------------------------
-	Deque -> Double ended queue. (ArrayDeque, LinkedList)
-	NavigableSet -> SortedSet extended. (TreeSet)
-	NavigableMap -> SortedMap extended. (TreeMap)
+Deque -> Double ended queue. (ArrayDeque, LinkedList)
+NavigableSet -> SortedSet extended. (TreeSet)
+NavigableMap -> SortedMap extended. (TreeMap)
 
 
 

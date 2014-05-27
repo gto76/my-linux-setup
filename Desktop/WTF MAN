@@ -1,3 +1,10 @@
+          _    __                          
+__      _| |_ / _|   _ __ ___   __ _ _ __  
+\ \ /\ / / __| |_   | '_ ` _ \ / _` | '_ \ 
+ \ V  V /| |_|  _|  | | | | | | (_| | | | |
+  \_/\_/  \__|_|    |_| |_| |_|\__,_|_| |_|
+
+
 ctrl+alt+t - start terminal
 ctrl+alt+f - start firefox
 ctrl+alt+h - start home
@@ -58,23 +65,20 @@ HUDI TERMINAL UKAZI:
 
 PACKAGES:
 
-dpkg -l - lists installed packages
-apt - skin for dpkg
-apt-get autoremove - remove unneded packages
-		install - also update single package
-		source <package> - download code
-		purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
-apt-cache search <keyword> - search packeges, like apropos, but global
-		show - get info about package
-aptitude - browse packages (skin for apt-get)
-		search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
-winetricks - install wine aplications
-
 apropos -a - all keywords
 whatis - short description of app
+wtf - check which command the acronim represents
+aptitude - browse packages
+apt-cache search - search packages
+apt-get autoremove - remove unneded packages
+apt-get install - also update single package
+dpkg -l - lists installed packages
+aptitude search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
+winetricks - install wine aplications
+apt-cache show - get info about package
 whereis <command> - locates where command resides 
 which - similar only executable
-wtf - looks up filename suffixes database
+apt-get source <package> - download code
 
 GENERAL:
 
@@ -98,8 +102,9 @@ locate -0 | xargs -0 - uses NUL character as separator, necesary for filenames w
 xargs - output from one command to arguments of another
 	-t echoes the command before executing it, and -p echoes it and asks for confirmation
 tar xvzf xxx.tar.gz - decompress and detar
-	tar xvjf xxx.tar.bz2 - decompress and detar
-	tar -cf archiveName.tar files.. - compress
+	xvjf xxx.tar.bz2 - decompress and detar
+	-cf archiveName.tar files.. - compress
+tar cvf - ./SOURCEDIR_OR_FILES | ssh user@host 'cat > newfile.tar' - send tar archive over network
 ccsm - additional settings (compiz config setings menager - BAD)
 md5sum - checks md5 sum hash
 appletviewer Race.htm - run java applet
@@ -232,7 +237,6 @@ join - join lines of two files on a common field
 comm - compare two sorted files line by line
 colrm <from <to>> - removes columns
 seq <number> - output numbers from 1 to number
-tree - ls in a tree-like (hierarchical) format
 
 EDITORS:
 pyroom - distraction free writing
@@ -516,15 +520,15 @@ ffmpeg -i <fileNameIn> <fileNameOut> - video and audio format converter
 HUDE DATOTEKE:
 #############
 
-BASH:
-~/.bashrc - executed at every shell startup, user specific
-/etc/bash.bashrc - executed at every shell startup, all users
-~/.profile - executed at login, user specific 
-/etc/profile - executed at login, all users (put PATHS here)
+HOME:
+~/.Xmodmap - keyboard map
+~/.bash_profile OR .bashrc - bash script for setting PATH, JAVA_HOME.. 
+/etc/bash.bashrc OR etc/profile - Bashrc for all users, runs commands as user. Profile ok for PATHS
+/etc/rc.local - last startup script executed, runs command as su
 
 ETC / "Edit To Configure" / "Editable Text Configuration":
-etc/rc.local - last startup script executed, runs command as su
 /etc/mailcap - default programi za extensne
+$HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
 /etc/passwd - userji
 /etc/groups - grupe
@@ -579,8 +583,6 @@ VAR - "variable":
 BOOT (kernels):
 /boot/grub/menu.lst - Grub configuration file
 
-HOME:
-~/.Xmodmap - keyboard map
 
 ############
 ############
@@ -591,6 +593,9 @@ INSTALL MANTRA:
 make
 sudo make install
 
+#############
+##  G I T  ##
+#############
 GIT MANTRA:
 git init
 git add <filename> OR git add .
@@ -625,7 +630,6 @@ Refresh project in eclipse
 gitstats
 --
 git log --name-only --author=jure - print changed files by commit
-git ls-files - list files
 
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily
@@ -669,18 +673,114 @@ xrandr --output LVDS1 --off
 # 24" 16x12 on
 xrandr --output VGA --mode 1600x1200
 
-VIM: 
+#############
+##  V I M  ##
+#############
 help: 	ctrl ] - folow link
 		ctrl o - go back
 		:q     - exit help		
 \c - case insensitive search
 ? - search backward
 V - linewise visual mode
-~ - cwitch case
+~ - switch case
 > - tab right 
-P - paset before cursor
+P - paste before cursor
 x - delete character
 :%s/old/new/gc - sed, c means with conformations
+ctrl-[ - escape
+alt-<normal mode key> - escape, key
+///
+MOVEMENT
+e - end of word
+E - end of WORD
+W - start of WORD
+ge - end of previous word
+),( - sentence
+{,} - paragraph
+]],[[ - section
+
+LINES
+0 - start of line
+^,_ - first non-blank of line
++,- - first non-blank of next/previous line
+Enter - first nonblank of next line
+
+SCREEN LINES
+g0, g$ - start/end of screen line
+gm - middle of screen line
+gk, gj - up/down one screen line
+
+SCREENS
+H,M,L - go to top/middle/bottom of screen
+ctrl F,B - page up/down
+ctrl D,U - half page up/down
+ctrl E,Y - one more line at bottom/top 
+z Enter,z.,z- - reposition line with cursor at top/middle/bottom
+
+SEARCH
+*,# - search forward/backward for exact word under cursor
+g*,g# - same, but even when word is embeded
+% - find match of current brace, apostrof,...
+fx,Fx - move cursor forward/backward to x on current line
+tx,Tx - same, but to one char before x
+;/, - repeat/reverse last
+
+LINE NUMBERING
+numG,:num - goto line number
+
+MARKS
+'" - move to position of last edit of file
+`. - move to last change in file
+`0 - position where you last exited vim
+
+INSERT MODE COMMANDS
+ctrl h - backspace
+ctrl u - delete line
+ctrl w - delete previous word
+
+MACROS
+qx - record characters into x
+q - stop recording
+@ - execute x
+
+MISC
+>>,<< - shift line one tab
+K - look up word under cursor in man pages
+
+SET COMMAND
+:set x,nox,x=value,all,x? - set x/unset x/assign x/print all values/print x
+command (short)	| default	| explanation
+----------------+-----------+-------------------------------------
+autoident (ai)	| noai		| 
+backup (bk)		| nobackup 	| back file up before overwrite
+ignorecase (ic)	| noic 		| ignore case in search
+number (nu)		| nonu 		| display line numbers
+shiftwidth= (sw)| 8 		| number of spaces added when identing
+tabstop= (ts)	| 8 		| tab witdth
+wrap			| wrap		| wrap lines
+wrapscan (ws)	| ws 		| search wraps around file
+
+EDIT COMMANDS
+[n] operation [m] motion - if both n and m are specified then n x m
+c - CHANGE, d - DELETE, y - YANK 
+--------------------------------
+C,D,Y - till the end of line
+cc,dd,yy - curent line
+cf<x>,df<x>,yf<x> - forward up to x
+c),d),y) - sentence
+----------
+g~w - switch case of a word
+gu, gU - to fower/upper case
+----------
+[p - paste but match curent identation
+r - replace character
+S - substitute entire line
+x,X - delete charecter/delete back
+. - repeate last change
+~ - change case of character
+ctrl a,x - increment/decrement number under cursor
+
+///////////
 
 MOUNT ISO:
 sudo mkdir /media/x
@@ -698,11 +798,10 @@ winecfg -> drives tab to set drive
 wine explorer /desktop=abalaba,1024x768 app.exe - run wine app in virtual desktop
 reason on wine:
 	down alt down - open menu
-regedit - registry editor
+regedit - Registry editor
 
-VIM:
-ctrl-[ - escape
-alt-<normal mode key> - escape, key
+CYGWIN:
+[cygwin] ssh-host-cofig, [command prompt] net start sshd, [any] ssh <windows username - CASE MATTERS!>@<host>, using windows password - run sshd
 
 ######## NEW / NOT SORTED #########
 

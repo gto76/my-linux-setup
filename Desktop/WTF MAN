@@ -232,6 +232,7 @@ join - join lines of two files on a common field
 comm - compare two sorted files line by line
 colrm <from <to>> - removes columns
 seq <number> - output numbers from 1 to number
+tree - ls in a tree-like (hierarchical) format
 
 EDITORS:
 pyroom - distraction free writing
@@ -697,7 +698,7 @@ winecfg -> drives tab to set drive
 wine explorer /desktop=abalaba,1024x768 app.exe - run wine app in virtual desktop
 reason on wine:
 	down alt down - open menu
-regedit - Registry editor
+regedit - registry editor
 
 VIM:
 ctrl-[ - escape

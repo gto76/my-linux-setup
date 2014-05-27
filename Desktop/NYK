@@ -249,5 +249,175 @@ SHEMA:
 .....................
 .....................
 
+--------------------------------
+CREATING AND DESTROYING OBJECTS:
+--------------------------------
+1. Consider static factory methods instead of Constructors:
+	+ They have names.
+	+ They are not required to create a new object each time they're invoked.
+	+ They can return an object of any subtype of their return type.
+	- Classes withouth public or protected constructors cannot be subclassed.
+	- They are not readily distinguishable from other static methods.
+2. Consider a builder when faced with many constructor parameters.
+3. Enforce the singleton property with a private constructor or an enum type. 
+	Single-element enum is the best way to implement a singleton.
+4. Enforce noninstantiability with a private constructor.
+7. Avoid finalizers. 
+	Never do anyting time-critical in a finalizer. 
+	Provide an explict termination method.
+
+------------------------------
+METHODS COMMON TO ALL OBJECTS:
+------------------------------
+8. Obbey the general contract when overriding equals.
+	1. Use the == operator to check if the argument is a refference to this object.
+	2. Use the instanceof operator to check if the argument has the correct type.
+	3. Cast the argument to correct type.
+	4. For each "significant" field in the class, check if that field of the argument matches.
+	5. Ask yourself three questions: Is it symmetric? Is it transitive? Is it consistent?
+9. Always override hashcode when you override equals. 
+	Equal objects must have equal hash codes.
+
+-----------------------
+CLASSES AND INTERFACES: 
+-----------------------
+13. Minimize the accessibility of classes and members. 
+	It is wrong for a class to have a public static final array field, or an accessor that returns such a field. Use UnmodifiableList.
+15. Minimize mutability. 
+	Classes should be immutable unless there's a very good reason to make them mutable. 
+	Make every field final unless there is a compeling reason to make it nonfinal.
+16. Favor composition over inheritance. 
+	Inheritance violates encapsulation.
+17. Design and document for inheritance or else prohibit it. 
+	The class must document its self-use of overridabl methods. 
+	Constructors must not involve overridable methods. 
+	Neither clone nor readObject may invoke an overridable method directly of inderectly.
+18. Prefer interfaces to abstract classes. 
+	You can combine the virtues of interfaces and abstract classes by providing an abstract skeletal implementation class to go  with each nontrivial interface that you export.
+
+---------
+GENERICS:
+---------
+Parametrized type		| List<String>
+Actual type parameter	| String
+Genaric type			| List<E>	
+Formal type parameter	| E
+Unbounded wildcard type	| List<?>
+Raw type				| List
+Bounded type parameter	| <E extends Number>
+Recursive type bound	| <T extends Comparable<T>>
+Bounded wildcard type	| List<? extends Number>
+Generic Method			| static <E> List<E> asList(E[] a)
+Type token				| Strung.class
+
+If a type parameter appears only once in a method declaration, replace it with a wildcard.
+
+----------------------
+ENUMS AND ANNOTATIONS:
+----------------------
+32. Use EnumSet instead of bit fields.
+33. Use EnumMap instead of ordinal indexing.
+34. Emulate extensible enums with interfaces. 
+	Enums can implement original enums interface and be used in place of original enum.
+
+--------
+METHODS:
+--------
+38. Check paramaeters for validity.
+39. Make defensive copies when needed.
+	Defensive copies are made before checking the validity of the parameters, and the validity check is performed on the copies.
+43. Return empty arrays or collections, not nulls.
+44. Write doc comments for all exposed API elements. 
+	Use {a code} for code in doc comments
+
+--------------------
+GENERAL PROGRAMMING:
+--------------------
+49. Prefer primitive types to boxed primitives. 
+	Applaying the == operator to boxed primitives is almost always wrong. When you mix primitives and boxed primitives in a single operation, the boxed primitive is auto-unboxed.
+
+-----------
+EXCEPTIONS:
+-----------
+58. Use checkedd exceptions for recoverable conditions and runtime exceptions for programing errors. 
+	All of the unchecked throwables you implement should sublcass RuntimeException.
+60. Favor the use of standard exceptions: IllegalArgumentExceptin, IllegalStateException, NullPointerException, IndexOutOfBoundsException, ConcurentModificationException, UnsupportedOperationException
+61. Throw exceptions appropriate to the abstraction. 
+	Higher layers should catch lower-leel exceptions and, in their place, throw exceptions that can be expained in terms of the higher-level abstraction. (Exception translation)
+62. Document all exceptions thrown by each method.
+63. Include failure-capture information indetail messges. 
+	Should contain all parameters and fields that contributed to the exception.
+64. Strive for failure atomicity. 
+	A failed method invocation shoul leave the object in the state that it was in prior to invocation.
+
+------------
+CONCURRENCY:
+------------
+66. Synchronize access to shared mutable date. 
+	Synchronnyzation has no effect unless both read and write operations are synchronized. 
+	Confine mutable data to a single thread.
+67. Avoid excessive synchronization. 
+	As a rule, you should do as little work as possible inside synchronized regions.
+68. Prefer executors and tasks to threads.
+69. Prefer concurrency utilities to wait and notify. 
+	Use ConcurentHashMap in preference to synchronyzedMap or HashTable. 
+	For interval timing, always use System.nanoTime in preference to System.currentTimeMillis.
+70. Document thread safety. 
+	To enable safe concurrent use, a class must clearly document what level of thread safety it supports. 
+	Leveld of thread safety:
+		1. Immutable
+		2. Unconditionally thread-safe -> No need for external synchronization.
+		3. Conditionally thread-safe -> Some methods require external synchronization.
+		4. Non thread-safe -> All methods require external synchronization.
+		5. Thread hostile.
+71. Use lazy initialization judiciously.
+72. Don't depend on thread scheduler. 
+	Threads should not run if they aren't doing useful work. 
+	Thread priorities are among the least portable features of the Java platform.
+73. Avoid thread groups. 
+	Thread groups are obsolete.
+
+--------------
+SERIALIZATION:
+--------------
+74. Implement Serializable judiciusly.
+75. Consider using custom serialized form. 
+	Defauld serialized form is likely to be appropriate if an object's physical rpresentation is identical to its logical content. 
+	Even if you decide that the default serialized form is appropriate, you often must provide readObject method to ensure invariants and security.
+	Before deciding to make a field nontranzient, convince yourself that its value is part of the logical state of the object.
+	You must impose any synchronization on object serialization that you would impose on any other method that reads the entire state of the object.
+	Declare UID.
+76. Write read Object methods defensively. Defensive copy.
+77. For instance control, prefer enum types to readResolve.
+78. Consider serialization proxies insted of serialized instance.
+
+--------------------------------
+NEW COLLECTINON INTERFACES IN 6.0:
+--------------------------------
+	Deque -> Double ended queue. (ArrayDeque, LinkedList)
+	NavigableSet -> SortedSet extended. (TreeSet)
+	NavigableMap -> SortedMap extended. (TreeMap)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

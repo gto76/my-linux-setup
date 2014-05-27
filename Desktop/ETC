@@ -39,13 +39,14 @@ git
 openssh-server
 nrss
 chrome -> adblock, 
-	vimium -> switch J and K:
+	vimium -> remove f from characters used for links, switch J and K:
 		unmap J
 		unmap K
 		map J nextTab
 		map K previousTab
-eclipse -> scala, maven
-wine -> reaper -> keys, licence; fl studio
+scala ide -> mysql, guava, junit
+wine 	-> reaper 32 -> keys, licence, (lexicon PCM native, BaxterEQ, dirthead, dlM sixtyfive, sumo, Volume Eleven II, VoxengoMSED)
+	-> fl studio 11 -> install arial and times new roman font for wine:sudo apt-get install winetricks; winetricks corefonts
 =======
 in order of installment:
 nmap

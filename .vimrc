@@ -1,4 +1,5 @@
 set tabstop=4
 set shiftwidth=4
+set number
 set ignorecase
 colorscheme darkblue

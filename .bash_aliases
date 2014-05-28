@@ -1,10 +1,10 @@
-alias less='less -Q~P"%db/%D %f"'
-  
+alias less='less -Q~P"%db/%D %f" -x4'
+#
 #open cat or less, depending on no of lines of file or input
 catOrLess() {
 	if [ $# -gt 0 ]
 	then
-		noOfLines=`cat "$1" 2>/dev/null | wc -l`
+		noOfLines=`cat "$1" 2>/dev/null | fold -w"$COLUMNS" | wc -l`
 		if [ $LINES -gt $noOfLines ]; then
 			cat "$1"	
 		else
@@ -12,7 +12,7 @@ catOrLess() {
 		fi
 	else
 		input=`cat`
-		noOfLines=`echo "$input" | wc -l`
+		noOfLines=`echo "$input" | fold -w"$COLUMNS" | wc -l`
 		if [ $LINES -gt $noOfLines ]; then
 			echo "$input" | cat	
 		else
@@ -26,7 +26,7 @@ alias m='catOrLess'
 catOrLessG() {
 	if [ $# -gt 0 ]
 	then
-		noOfLines=`cat "$1" 2>/dev/null | wc -l`
+		noOfLines=`cat "$1" 2>/dev/null | fold -w"$COLUMNS" | wc -l`
 		if [ $LINES -gt $noOfLines ]; then
 			cat "$1"	
 		else
@@ -34,7 +34,7 @@ catOrLessG() {
 		fi
 	else
 		input=`cat`
-		noOfLines=`echo "$input" | wc -l`
+		noOfLines=`echo "$input" | fold -w"$COLUMNS" | wc -l`
 		if [ $LINES -gt $noOfLines ]; then
 			echo "$input" | cat	
 		else
@@ -248,6 +248,7 @@ alias batt='acpi'
 alias battery='acpi'
 
 alias canhaz='sudo apt-get install'
+alias ch='canhaz'
 alias update='sudo apt-get update'
 alias remove='sudo apt-get remove'
 alias purge='sudo apt-get purge'
@@ -397,7 +398,6 @@ alias xi='xclip -i'
 # NOT_SO_NECESARY
 
 alias path='echo -e ${PATH//:/\\n}'
-alias ch='chmod u+x'
 
 #display total memory
 alias mem="free -m | grep Mem | sed 's/^Mem: *\([0-9]*\).*/\1/'"
@@ -1098,12 +1098,3 @@ tocamel() {
 	cat | tr [A-Z] [a-z] | sed 's/_\([a-z]\)/\U\1/g'
 }
 
-# Moves file to directory and creates hard link back
-mvln() {
-	originalFile="$1"
-	destination="$2"
-	fileAtNewDest="$destination"/`basename "$originalFile"`
-
-	mv "$originalFile" "$destination"
-	ln "$fileAtNewDest" "$originalFile" 
-}

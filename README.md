@@ -1,6 +1,33 @@
 My Aliases
 ==========
 
+Basicly my config files, three handy text files and an install script to put them all in a right place.
+
+quick overwiev:
+---
+
+```
+.
+├── Desktop
+│   ├── ETC - List of thigs I first set up on a fresh install
+│   ├── NYK - Summaries of interesting computer topics
+│   └── WTF MAN - Long list of unix commands
+├── .nrss
+│   └── config - List of few rss feeds
+├── reaper
+│   └── Reaper Shortcuts Jure 04.ReaperKeyMap - My Reaper DAW keymap
+├── .bash_aliases - My bash aliases and functions
+├── .bashrc - Few aliases that are locale specific
+├── install.sh - Installs links to files to coresponding directories
+├── README.md - You are here
+├── .vimrc - Few vim configurations
+├── .Xmodmapsi - Special keymap with capslock as additional modifier
+└── .Xmodmapus - Same, but for american layout
+```
+
+
+.bash_aliases:
+----
 My own .bash_aliases and a list of interesting linux commands (Desktop/HUDI TERMINAL UKAZI).
 Besides a lot of useful aliases, there are also some interesting functions, such as:
 
@@ -25,3 +52,5 @@ Besides a lot of useful aliases, there are also some interesting functions, such
 * **gi** - Downloads small image of a phrase from google images.
 
 * **wi** - Tries to find description of a command using "whatis", "apt-cache show" and "type". Returns first match.
+
+

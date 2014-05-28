@@ -666,48 +666,6 @@ gitstats
 git log --name-only --author=jure - print changed files by commit
 git ls-files - list files
 
-VLC:
-sudo add-apt-repository ppa:videolan/stable-daily
-sudo add-apt-repository ppa:n-muench/vlc
-
-PIRATEBAY:
-torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file
-
-JAVA:
-jps -lvm - list java processes
-jmap -histo:live <pid> - memory map
-java -Xmx6g myprogram - reserve 6g for process
-jvisualvm - profiler
-
-SCREEN: 
-All shortcuts begin with ctrl+a
-	| - new region werticaly
-	S - new region horizontaly
-	tab - move to next region
-	Q - close all but selected region
-	X - kill the curent region
-	esc - enter copy/scrollback mode -> space: start/stop marking
-	] - paste
-	k - kill window
-	t - show time and avg cpu load
-
-FIREFOX:
-about:config - layout.css.devPixelsPerPx default zoom (-1.0)
-
-XRANDR:
-xrandr --output VGA1 --primary - zamena primarni zaslon
-xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their ralative positions
-xrandr -q - list devices
---
-# reset 
-xrandr --auto
---
-# turn off laptop screen
-xrandr --output LVDS1 --off
---
-# 24" 16x12 on
-xrandr --output VGA --mode 1600x1200
-
 ###########
 ##  VIM  ##
 ###########
@@ -820,7 +778,49 @@ COLORSCHEME:
 			 default, slate - less contrast
 
 ///////////
+///////////
 
+VLC:
+sudo add-apt-repository ppa:videolan/stable-daily
+sudo add-apt-repository ppa:n-muench/vlc
+
+PIRATEBAY:
+torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file
+
+JAVA:
+jps -lvm - list java processes
+jmap -histo:live <pid> - memory map
+java -Xmx6g myprogram - reserve 6g for process
+jvisualvm - profiler
+
+SCREEN: 
+All shortcuts begin with ctrl+a
+	| - new region werticaly
+	S - new region horizontaly
+	tab - move to next region
+	Q - close all but selected region
+	X - kill the curent region
+	esc - enter copy/scrollback mode -> space: start/stop marking
+	] - paste
+	k - kill window
+	t - show time and avg cpu load
+
+FIREFOX:
+about:config - layout.css.devPixelsPerPx default zoom (-1.0)
+
+XRANDR:
+xrandr --output VGA1 --primary - zamena primarni zaslon
+xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their ralative positions
+xrandr -q - list devices
+--
+# reset 
+xrandr --auto
+--
+# turn off laptop screen
+xrandr --output LVDS1 --off
+--
+# 24" 16x12 on
+xrandr --output VGA --mode 1600x1200
 MOUNT ISO:
 sudo mkdir /media/x
 sudo mount -o loop <PATH_ISO> /media/x

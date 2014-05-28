@@ -67,10 +67,12 @@ PACKAGES:
 
 dpkg -l - lists installed packages
 apt - skin for dpkg
-apt-get autoremove - remove unneded packages
+apt-get	update - update local list of existing packages
+		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade)
 		install - also update single package
-		source <package> - download code
+		autoremove - remove unneded packages
 		purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
+		source <package> - download code
 apt-cache search <keyword> - search packeges, like apropos, but global
 		show - get info about package
 aptitude - browse packages (skin for apt-get)
@@ -87,7 +89,11 @@ GENERAL:
 
 cd - - go to last dir
 ls 	-d - list directory names instead of contents
+	-S - sort by size 
+	-t - sort by time
 	-1 - one file per line
+	./* - ls one level deep
+	-i - get inode number of file (file id). Use sudo find / -inum <number> to find all links that point to same file.
 echo -n - no newline at the end
 	 -e - enable interpretation of backslashed letters
 alias - shrani alias ($HOME/.bashrc) / show aliases
@@ -112,7 +118,6 @@ ccsm - additional settings (compiz config setings menager - BAD)
 md5sum - checks md5 sum hash
 appletviewer Race.htm - run java applet
 java -jar "bla.jar" - execute jar
-ls ./* - ls one level deep
 sh - run script even if not executable
 du -s <folderName> - folder size
 !<term> - zadnji ukaz ki se je zacel na term.
@@ -133,7 +138,6 @@ man section_number tool_name
 >&2 - write to stderr
 tee - Sends output of a program to a file and to a standard output
 $(command) - same as `command`
-ls -S - sort by size, ls -t - sort by time
 cp -R - copy recursively
 shred - securely remove files
 date - tells you date and time, also can set
@@ -181,7 +185,6 @@ sed 's///g' - substitute every occurance in line, not just the first one
 	's///I' - ignore case
 	-r - extended syntax, for +, ?,... , also you shouldnt escape the parenthesis
 reset - initializes terminal, useful after printing binary file
-strings - print all text parts of binary file
 hexdump, hd — ASCII, decimal, hexadecimal, octal dump
 bc - calculator [echo 1+1 | bc -> 2]
 unzip \*.zip - backslash mora bit da ga bash ne expenda!
@@ -191,12 +194,14 @@ gpg <filename> - decript file with password
 	-c <filename> encript
 file <filename> - determine file type
 sudo !! - run last command as super user
+tree - ls in a tree-like (hierarchical) format
+find <dir> -xdev -samefile <filename> - find all hard links of a file
 
 ####
 TEXT:
 ####
 
-tr - translate or delete characters (-d for delete)
+PRINT:
 tail -f - do not stop printing
 	-n +<line number> - start at line number
 cat -n - number all lines
@@ -210,21 +215,11 @@ less - 	&phrase - display only lines with
 		v - opens editor defined in $VISUAL or $EDITOR
 		:n - examine the next file
 		<,> - go to home, end
-sdiff - two files side by side
+
+EDIT:
+tr - translate or delete characters (-d for delete)
 cut <filename> - remove sections from each line of files
-	cut -d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
-ispell/aspell - checks spelling
-look - output a list of words in the system dictionary that begin with a given string
-grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
-	-o, --only-matching (count ocurances with | wc -l), -P perl notation (if you need \t)
-enscript - Converts text files to postscript, rtf, HTML
-pdftohtml - pdf to html
-pdftotext - pdf to text
-libreoffice - novi openoffice
-fte - cool text editor with CUA (IBM)-shortcuts
-rel - analyze text files for relevance to a given set of keywords
-figlet - display large characters made up of ordinary screen characters (ascii art)
-aview, asciiview - ASCII art image viewer and video player
+		-d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
 sort - sorts
 	-u - uniq
 	-t - set delimiter for fields (default is space)
@@ -237,19 +232,39 @@ column - columnate text
 shuf - shuffle input lines
 tac - concatenate and print files in reverse (reverse cat)
 join - join lines of two files on a common field
-comm - compare two sorted files line by line
 colrm <from <to>> - removes columns
 seq <number> - output numbers from 1 to number
-tree - ls in a tree-like (hierarchical) format
+ispell/aspell - interactive spell checker
+
+DIFF:
+comm - compare two sorted files line by line
+sdiff - two files side by side
+patch - apply a diff file to original
+
+SEARCH:
+grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
+	-o, --only-matching (count ocurances with | wc -l), -P perl notation (if you need \t)
+look - display lines beginning with a given string
+strings - print all text parts of binary file
+
+CONVERT:
+enscript - Converts text files to postscript, rtf, HTML
+pdftohtml - pdf to html
+pdftotext - pdf to text
+libreoffice - novi openoffice
+figlet - display large characters made up of ordinary screen characters (ascii art)
 
 EDITORS:
-pyroom - distraction free writing
-diakonos - simple terminal text editor with ctrl-c for copy
 nano - 	/etc/nanorc - nano config
 		/usr/share/nano/JEZIK.nanorc - syntax highlights
 		alt - / or ? go to last line
+fte - cool text editor with CUA (IBM)-shortcuts
+diakonos - simple terminal text editor with ctrl-c for copy
+pyroom - distraction free writing (gui)
 
+#########
 PROCESSES:
+#########
 
 ps --forest - wiev hierarchical view of processes
 	v - virtual memory 
@@ -519,6 +534,7 @@ gnuplot - interactive plotter: plot [-10:10] sin(x)
 	-p	leawe plots open after exit
 	plot file.dat - plot data from dat file
 ffmpeg -i <fileNameIn> <fileNameOut> - video and audio format converter
+aview, asciiview - ASCII art image viewer and video player
 
 #############
 HUDE DATOTEKE:
@@ -682,9 +698,9 @@ xrandr --output LVDS1 --off
 # 24" 16x12 on
 xrandr --output VGA --mode 1600x1200
 
-#############
-##  V I M  ##
-#############
+###########
+##  VIM  ##
+###########
 ctrl-[ - escape
 alt-<normal mode key> - escape, key
 help: 	ctrl ] - folow link
@@ -788,6 +804,9 @@ x,X - delete charecter/delete back
 . - repeate last change
 ~ - change case of character
 ctrl a,x - increment/decrement number under cursor
+
+COLORSCHEME:
+:colorscheme darkblue, slate, torte, default, evening 
 
 ///////////
 

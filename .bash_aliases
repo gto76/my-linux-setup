@@ -1,5 +1,5 @@
 alias less='less -Q~P"%db/%D %f" -x4'
-#
+
 #open cat or less, depending on no of lines of file or input
 catOrLess() {
 	if [ $# -gt 0 ]

@@ -44,6 +44,7 @@ gto76@gto76-computer ~ $ ./install.sh
 Of course you can also create links yourself, or even just copy the files if you don't intend to commit.
 
 ### .Xmodmapus, .Xmodmapsi:
+![alt text][doc/keymap.png]
 
 ### .reaper/Reaper Shortcuts Jure 04.ReaperKeyMap:
 

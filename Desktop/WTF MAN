@@ -65,20 +65,23 @@ HUDI TERMINAL UKAZI:
 
 PACKAGES:
 
+dpkg -l - lists installed packages
+apt - skin for dpkg
+apt-get autoremove - remove unneded packages
+		install - also update single package
+		source <package> - download code
+		purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
+apt-cache search <keyword> - search packeges, like apropos, but global
+		show - get info about package
+aptitude - browse packages (skin for apt-get)
+		search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
+winetricks - install wine aplications
+
 apropos -a - all keywords
 whatis - short description of app
-wtf - check which command the acronim represents
-aptitude - browse packages
-apt-cache search - search packages
-apt-get autoremove - remove unneded packages
-apt-get install - also update single package
-dpkg -l - lists installed packages
-aptitude search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
-winetricks - install wine aplications
-apt-cache show - get info about package
 whereis <command> - locates where command resides 
 which - similar only executable
-apt-get source <package> - download code
+wtf - looks up filename suffixes database
 
 GENERAL:
 
@@ -237,6 +240,7 @@ join - join lines of two files on a common field
 comm - compare two sorted files line by line
 colrm <from <to>> - removes columns
 seq <number> - output numbers from 1 to number
+tree - ls in a tree-like (hierarchical) format
 
 EDITORS:
 pyroom - distraction free writing
@@ -520,13 +524,17 @@ ffmpeg -i <fileNameIn> <fileNameOut> - video and audio format converter
 HUDE DATOTEKE:
 #############
 
+BASH:
+~/.bashrc - executed at every shell startup, user specific
+/etc/bash.bashrc - executed at every shell startup, all users
+~/.profile - executed at login, user specific 
+/etc/profile - executed at login, all users (put PATHS here)
+
 HOME:
 ~/.Xmodmap - keyboard map
-~/.bash_profile OR .bashrc - bash script for setting PATH, JAVA_HOME.. 
-/etc/bash.bashrc OR etc/profile - Bashrc for all users, runs commands as user. Profile ok for PATHS
-/etc/rc.local - last startup script executed, runs command as su
 
 ETC / "Edit To Configure" / "Editable Text Configuration":
+/etc/rc.local - last startup script executed, runs command as su
 /etc/mailcap - default programi za extensne
 $HOME/.bashrc - mesto za bash aliase in funkcije
 /var/log/auth.log - logini
@@ -630,6 +638,7 @@ Refresh project in eclipse
 gitstats
 --
 git log --name-only --author=jure - print changed files by commit
+git ls-files - list files
 
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily
@@ -676,6 +685,8 @@ xrandr --output VGA --mode 1600x1200
 #############
 ##  V I M  ##
 #############
+ctrl-[ - escape
+alt-<normal mode key> - escape, key
 help: 	ctrl ] - folow link
 		ctrl o - go back
 		:q     - exit help		
@@ -687,8 +698,6 @@ V - linewise visual mode
 P - paste before cursor
 x - delete character
 :%s/old/new/gc - sed, c means with conformations
-ctrl-[ - escape
-alt-<normal mode key> - escape, key
 ///
 MOVEMENT
 e - end of word
@@ -798,7 +807,7 @@ winecfg -> drives tab to set drive
 wine explorer /desktop=abalaba,1024x768 app.exe - run wine app in virtual desktop
 reason on wine:
 	down alt down - open menu
-regedit - Registry editor
+regedit - registry editor
 
 CYGWIN:
 [cygwin] ssh-host-cofig, [command prompt] net start sshd, [any] ssh <windows username - CASE MATTERS!>@<host>, using windows password - run sshd

@@ -1,7 +1,7 @@
 My Aliases
 ==========
-
-Basicly my config files, three handy text files and an install script to put them all in a right place.
+==========
+Basicly my linux config files, three handy text files and an install script to put them all in a right place. 
 
 quick overwiev:
 ---
@@ -13,7 +13,7 @@ quick overwiev:
 │   ├── NYK - Summaries of interesting computer topics
 │   └── WTF MAN - Long list of unix commands
 ├── .nrss
-│   └── config - List of few rss feeds
+│   └── config - Few rss feeds
 ├── reaper
 │   └── Reaper Shortcuts Jure 04.ReaperKeyMap - My Reaper DAW keymap
 ├── .bash_aliases - My bash aliases and functions
@@ -25,11 +25,40 @@ quick overwiev:
 └── .Xmodmapus - Same, but for american layout
 ```
 
+The two biggest and most important files are .bash_aliases and ./Desktop/WTF MAN. The first one contains my handy bash scripts and aliases. You need .bashrc with this line: `. ~/.bash_aliases` in your home folder, for it to get loaded at console startup. Other big file WTF MAN, contains short explanations and examples of useful unix command. Once installed, they are easyli accesible with this commands: 
+	`m1` -> less WTF, `m2` -> less .bash_alisases
+	`v1` -> vim WTF, `v2` -> vim .bash_aliases
+	`n1` -> nano WTF, `n2` -> nano .bash_aliases
+Also note that if you change anything in .bash_aliases, you need to restart bash with `bash` command, or its `ba` alias.
 
-.bash_aliases:
+files in detail:
 ----
-My own .bash_aliases and a list of interesting linux commands (Desktop/HUDI TERMINAL UKAZI).
-Besides a lot of useful aliases, there are also some interesting functions, such as:
+----
+### .install.sh:
+----
+Executable bash script that creates hard links to all files of the project and places them in home directory. All files that are not at root of a project get their links created in coresponding directories of home directory. If directories don't yet exist, they get created. If file with same name already exists, it is not overwriten, only a warning gets printed. 
+To execute it run:
+```
+gto76@gto76-computer ~ $ ./install.sh
+```
+Of course you can also create links yourself, or even just copy the files if you don't intend to commit.
+
+### .Xmodmapus, .Xmodmapsi:
+
+### .reaper/Reaper Shortcuts Jure 04.ReaperKeyMap:
+
+
+### .Desktop/WTF MAN:
+
+### .bashrc:
+* Exports path to WTF MAN. It is set to `$HOME/my-aliases/Desktop/WTF MAN`.
+* Defines aliases **us** and **si**, that set up my custom keymaps. (see .Xmodmapus, .Xmodmapsi)
+* Sets bash to vi mode, makes vim default editor...
+
+
+###.bash_aliases:
+----
+My own .bash_aliases. Besides a lot of useful aliases, there are also some interesting functions, such as:
 
 * **teaceroute1** - Prints country codes of hosts on path.
 

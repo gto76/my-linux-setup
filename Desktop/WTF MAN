@@ -144,9 +144,9 @@ date - tells you date and time, also can set
 cal - calendar
 sudo fdisk -l - show partitions
 shutdown now - take you to single user mode
-	shutdown -h now -  begins the shutdown procedure (OR halt OR poweroff)
-	shutdown -h 11:50 - when
-	shutdown -r now - reboot (OR reboot)
+	-h now -  begins the shutdown procedure (OR halt OR poweroff)
+	-h 11:50 - when
+	-r now - reboot (OR reboot)
 cmp - compares two files, similar do diff but also for binaries
 $* - bash: zdruzi vse argumente v enga!!!!!!!!	
 "$x" - bash: vedno dvojni oklepaji okrog dolarja!!!!!!!!
@@ -235,6 +235,11 @@ join - join lines of two files on a common field
 colrm <from <to>> - removes columns
 seq <number> - output numbers from 1 to number
 ispell/aspell - interactive spell checker
+basename <filename> - strip directory from filenames
+		-s <.suffix> - also strip suffix
+dirname <filename> - strip last component from file name
+fmt - produce roughly uniform line lengths
+fold - wrap each input line to fit in specified width
 
 DIFF:
 comm - compare two sorted files line by line
@@ -249,6 +254,7 @@ strings - print all text parts of binary file
 
 CONVERT:
 enscript - Converts text files to postscript, rtf, HTML
+gs - ghostscript: postscript and PDF language interpreter and prewiever
 pdftohtml - pdf to html
 pdftotext - pdf to text
 libreoffice - novi openoffice
@@ -313,7 +319,7 @@ netstat - Displays contents of /proc/net files,  status of ports...
 	-i - interfaces
 arp - manipulate the system ARP cache (IP - mac)
 route - The route command is the tool used to display or modify the routing table
-route add default gw 192.168.1.10 - change the default gateway
+	add default gw 192.168.1.10 - change the default gateway
 should DNS not be configured correctly on your machine, you need to edit
 “/etc/resolv.conf” to make things work
 ifconfig eth0 <ip> <down / up>
@@ -351,7 +357,7 @@ iwspy - Sets the list of IP addresses in a wireless network and checks the quali
      their connections.
 iwpriv - Accesses configuration options specific to a particular device.
 rfkill list - show wireless adapters (wifi and bluetooth)
-rfkill block/unblock <dev num> - block/unblock wireless device
+		block/unblock <dev num> - block/unblock wireless device
 iw dev wlan0 link - show link status of wlan0
 			 set biterates legacy-2.4 1	- manualy set interface speed
 sudo iw dev wlan0 scan - list wireless networks in range
@@ -414,11 +420,11 @@ SYSTEM:
 uname -a - print system info, kernel version
 cat /etc/issue - show name and version of distribution
 init - Upstart init daemon job configuration
-time <command> - kolk cajta se je ukaz izvaju
-cat /var/log/auth.log | grep "failed password" -i - preveri napacne logine
-users - trenutno ulogirani userji (samo imena)
-who - podobno, več podatkov
-w - podobno, še kaj izvajajo
+time <command> - time a execution of a command
+cat /var/log/auth.log | grep "failed password" -i - print all failed logins
+users - prints logged in users
+who - logged in users, more data
+w - logged in users, also what are they running
 free -tm - Displays memory statistics (-s continuously display)
 vmstat - Performance of system components / virtual memory statistics
 sar - System activity information
@@ -474,7 +480,11 @@ top - show processes by resource consumption
 	<, > - change resource
 sensors - (lm-sensors) hardware monitoring tool, temperature, fan speed
 pwmconfig - (fancontrol) set fan speed
-	
+nohup - run a command immune to hangups
+tty - print the file name of the terminal connected to standard input
+openvt -  run a programm on a next available tty
+script - makes a typescript of everything printed on your terminal. Ctrl-D to stop recording.
+
 KEYS/CHARACTERS/FONTS:
 xmodmap - remap keys
 setxkbmap -layout us - set us keyboard layout
@@ -543,7 +553,7 @@ HUDE DATOTEKE:
 BASH:
 ~/.bashrc - executed at every shell startup, user specific
 /etc/bash.bashrc - executed at every shell startup, all users
-~/.profile - executed at login, user specific 
+~/.profile, .bash_profile, .bash_login - first file found executed at login, user specific 
 /etc/profile - executed at login, all users (put PATHS here)
 
 HOME:
@@ -806,7 +816,8 @@ x,X - delete charecter/delete back
 ctrl a,x - increment/decrement number under cursor
 
 COLORSCHEME:
-:colorscheme darkblue, slate, torte, default, evening 
+:colorscheme darkblue, torte - nice, darker
+			 default, slate - less contrast
 
 ///////////
 

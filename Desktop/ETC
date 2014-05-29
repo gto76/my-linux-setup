@@ -4,58 +4,85 @@
 |  __/ || (__ 
  \___|\__\___|
 
-.bash_rc, bash.bashrc, local, rc.profile, rc.local
-american layout with slovenian letters (z and y are changed)
-less syntax highlight
-home git repo - switch right control and context menu
-desktop text files
-put among startup programs with 2 second delay: xmodmap /home/jure/.Xmodmapus
-////
-X:
-ctrl+alt+f - firefox
+
+# UPDATE:
+sudo apt-get update
+sudo apt-get -u dist-upgrade
+# INSTALL APPS:
+sudo apt-get install vim mc git openssh-server nrss nmap wine
+# REMOVE DEFAULT ll ALIAS
+sudo sed -e 's/\(^alias ll\)/#\1/' bash.bashrc > /tmp/bash.bashrc.tmp
+sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc
+# INSTALL MY CONF FILES:
+cd ~
+git clone https://github.com/gto76/my-aliases.git
+cd my-aliases
+./install.sh
+
+#
+# MOUSEJOBS:
+#
+
+# SET KEYMAP ON STARTUP:
+press windows key, type 'startup', press enter
+press add button
+Name: xmodmap
+Command: xmodmap $HOME/.Xmodmapus
+Startup Delay: 2s
+
+# INSTALL CHROME:
+Open firefox, go to chrome download page, download and install.
+press windows key, type 'chrome', drag and drop icon to quickstart toolbar, remove firefox from quickstart.
+Start chrome, set as default browser.
+Install adblock. 
+Install vimium. Go to vimium advanced settings. 
+Remove f from link hints characters.
+To switch J and K paste this into custom keymapings textbox:
+	unmap J
+	unmap K
+	map J nextTab
+	map K previousTab
+
+# DISABLE DEFAULT BEHAVIOUR FOR alt+F1:
+sudo apt-get install dconf-editor
+dconf-editor > navigate to org.cinnamon.muffin.keybindings
+for panel-main-menu, replace ['<Alt>F1'] with []
+logout & login (ctrl+alt+del)
+
+# SET KEYBOARD SHORTCUTS:
+System setings > Keyboard > Keyboard shortcuts:
+# LAUNCHERS:
 ctrl+alt+h - home
-ctrl+alt+g - gedit
-ctrl+alt+c - chrome
-ctrl+alt+jkli... - position window acordingly
-alt+F12 - run command
+ctrl+alt+c - web browser
+# WINDOWS:
 alt+F1 - minimize window
 alt+F2 - toggle maximize window
 alt+F3 - toggle full screen
-----
-disable default ctrl+alt+F1:
-run dconf-editor
-navigate to org.cinnamon.muffin.keybindings
-for panel-main-menu, replace ['<Alt>F1'] with []
-logout & login
-////
-.BASHRC:
-set "$HUD"
-set -o vi
-export EDITOR="vim"
-///
-FIREFOX:
-vim keysj -> adblock, vimium, disable ctrl-q
-google home page, google search engine
+//ctrl+alt+jkli... - position window acordingly
+# CUSTOM SHORTCUTS:
+ctrl+alt+f - firefox
+ctrl+alt+g - gedit
+
+# FIREFOX:
 remove bookmarks toolbar
-/////
-INSTALL:
-vim -> tabwidth 4, line numbers
-mc
-git
-openssh-server
-nrss
-chrome -> adblock, 
-	vimium -> remove f from characters used for links, switch J and K:
-		unmap J
-		unmap K
-		map J nextTab
-		map K previousTab
-scala ide -> mysql, guava, junit
-wine 	-> reaper 32 -> keys, licence, (lexicon PCM native, BaxterEQ, dirthead, dlM sixtyfive, sumo, Volume Eleven II, VoxengoMSED)
-	-> fl studio 11 -> install arial and times new roman font for wine:sudo apt-get install winetricks; winetricks corefonts
+set google home page
+
+# ECLIPSE:
+download scala ide complete bundle -> mysql, guava, junit
+
+# REAPER: 
+download and install reaper 32
+import key shortcuts from my-aliases/reaper, 
+import licence,
+make VstPlugins folder in program files (x68)
+install plugins (lexicon PCM native, BaxterEQ, dirthead, dlM sixtyfive, sumo, Volume Eleven II, VoxengoMSED)
+set plugins folder
+
+# FRUITY LOOPS: 
+fl studio 11 -> install arial and times new roman font for wine:sudo apt-get install winetricks; winetricks corefonts
+run regedit from terminal to import registry file
+(less syntax highlight)
 =======
-in order of installment:
-nmap
 /////
 /etc/profile:
 export JAVA_HOME="/usr/lib/jvm/java-6-openjdk"
@@ -66,8 +93,8 @@ export PATH=$PATH:/home/minerva/dev/peg-markdown/peg-markdown
 setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz
 /////
 /etc/rclocal:
-loadkeys us
 /etc/init.d/ssh restart
 exit 0
 /////
+
 

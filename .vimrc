@@ -3,3 +3,7 @@ set shiftwidth=4
 set number
 set ignorecase
 colorscheme darkblue
+syntax on
+syntax on
+syntax on
+syntax on

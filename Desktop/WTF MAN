@@ -81,7 +81,7 @@ winetricks - install wine aplications
 
 apropos -a - all keywords
 whatis - short description of app
-whereis <command> - locates where command resides 
+whereis - locates where command resides 
 which - similar only executable
 wtf - looks up filename suffixes database
 
@@ -841,6 +841,24 @@ regedit - registry editor
 
 CYGWIN:
 [cygwin] ssh-host-cofig, [command prompt] net start sshd, [any] ssh <windows username - CASE MATTERS!>@<host>, using windows password - run sshd
+
+GOLANG:
+go	build       compile packages and dependencies
+	clean       remove object files
+	env         print Go environment information
+	fix         run go tool fix on packages
+	fmt         run gofmt on package sources
+	get         download and install packages and dependencies (first you need to set GOPATH to dir where packages will get downloaded)
+	install     compile and install packages and dependencies
+	list        list packages
+	run         compile and run Go program
+	test        test packages
+	tool        run specified go tool
+	version     print Go version
+	vet         run go tool vet on packages
+
+syntax highlight - https://github.com/jnwhiteh/vim-golang 
+simple ncurses - go get github.com/nsf/termbox-go
 
 ######## NEW / NOT SORTED #########
 

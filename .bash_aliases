@@ -239,8 +239,12 @@ gr() {
 	grep1 "$@" -iP --color=always | catOrLess
 }
 gr1() {
+	gr "$@" -ioP | catOrLess
+}
+gr2() {
 	egrep "$@" -i --color=always --exclude-dir=\.svn --exclude-dir=\.git | catOrLess
 }
+
 
 
 alias b='acpi'

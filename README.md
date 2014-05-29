@@ -32,6 +32,8 @@ The two biggest and most important files are .bash_aliases and ./Desktop/WTF MAN
 Also note that if you change anything in .bash_aliases, you need to restart bash with `bash` command, or its `ba` alias.
 
 files in detail:
+---
+
 ### .install.sh:
 Executable bash script that creates hard links to all files of the project and places them in home directory. All files that are not at root of a project get their links created in coresponding directories of home directory. If directories don't yet exist, they get created. If file with same name already exists, it is not overwriten, only a warning gets printed. 
 To execute it run:
@@ -41,7 +43,7 @@ gto76@gto76-computer ~ $ ./install.sh
 Of course you can also create links yourself, or even just copy the files if you don't intend to commit.
 
 ### .Xmodmapus, .Xmodmapsi:
-![Alt text](/doc/keymap.png?raw=true "Picture of Keyboard")
+![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
 ### .reaper/Reaper Shortcuts Jure 04.ReaperKeyMap:
 
 

@@ -16,8 +16,8 @@ alt+F2 - toggle maximize window
 alt+F3 - toggle full screen
 ctrl+alt+d - minimize all windows
 
-ctrl+alt+F1 do F6 terminali
-ctrl+alt+F7 do F12 xwindovi
+ctrl+alt+F1 to F6 terminals
+ctrl+alt+F7 to F12 Xwindows
 ctrl alt backspace - restart X
 
 middle mouse button - paste selected text
@@ -40,23 +40,20 @@ shift+ctrl+w - close tab
 ctrl PgUp/PgDown - change tabs
 ctrl -/+ - zoom
 
-BASH:
-set -o vi - set line editing to vi mode
-pushd . - put current dir on stack
-popd - pop dir from stack
-source <script> - run script: for examle source /etc/profile
-
+BASH (emacs mode, you can switch to vi mode with: set -o vi)
 ctrl c - cancel, erase line
-ctrl a - go to begining of line
+ctrl a - go to beginning of line
 ctrl e - end of line
 ctrl u - copy line
 ctrl y - paste line
 alt . - last argument
 ctrl r - search trough history
 alt * - show all matches for regular expression
-ctrl alt e - shows curent line as when passed through alias, history and shell expansion
+ctrl alt e - shows current line as when passed through alias, history and shell expansion
 ctrl x, ctrl e - edit command in editor
 ctrl p - show last command (same as up arrow)
+
+
 
 ###################
 HUDI TERMINAL UKAZI:
@@ -70,14 +67,14 @@ apt - skin for dpkg
 apt-get	update - update local list of existing packages
 		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade)
 		install - also update single package
-		autoremove - remove unneded packages
+		autoremove - remove unneeded packages
 		purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
 		source <package> - download code
-apt-cache search <keyword> - search packeges, like apropos, but global
+apt-cache search <keyword> - search packages, like apropos, but global
 		show - get info about package
 aptitude - browse packages (skin for apt-get)
 		search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
-winetricks - install wine aplications
+winetricks - install wine applications
 
 apropos -a - all keywords
 whatis - short description of app
@@ -85,47 +82,66 @@ whereis - locates where command resides
 which - similar only executable
 wtf - looks up filename suffixes database
 
+HISTORY:
+
+sudo !! - Run the last command as root 
+<space>command - Execute a command without saving it in the history
+!<term> - last command that starts with term
+
+BASH:
+
+test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
+[[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more)
+$* - bash: combines all the arguments into one!!!!!!!
+$? - exit code of last command (0 - ok)
+"$x" - bash: always put double quotes around variable!!!!!!
+2> /dev/null - redirect error output
+&> /dev/null - redirect both standard and error output
+>&2 - write to stderr
+$(command) - same as `command`
+$RANDOM - 0 - 32767
+input=`cat` - getting standard input
+- in place of a file name means standard in or out
+
 GENERAL:
 
 cd - - go to last dir
+echo -n - no newline at the end
+	 -e - enable interpretation of backslashed letters
+source <script> - run script: for example source /etc/profile (same as . <command>)
+set -o vi - set line editing to vi mode
+pushd . - put current dir on stack
+popd - pop dir from stack
+read - reads from file line by line
+umask -  The umask is a value set by the shell. It controls the default permissions of any file created
 ls 	-d - list directory names instead of contents
 	-S - sort by size 
 	-t - sort by time
 	-1 - one file per line
 	./* - ls one level deep
 	-i - get inode number of file (file id). Use sudo find / -inum <number> to find all links that point to same file.
-echo -n - no newline at the end
-	 -e - enable interpretation of backslashed letters
-alias - shrani alias ($HOME/.bashrc) / show aliases
-\<command> - temporarily disable alias (call original)
-command <command> - executes original command, ignoring shell functions
-type <command> - will tell you what is command alliased to
 mc - midnight commander
 	alt o - open parent dir in another panel
-df - disc fulness / disc free
-read - reads from file line by line
-find . | grep bla - preišče rekurzivno tudi poddirektorije
-locate <word>  - isto kot find samo z indexom
+df - disc fullness / disc free
+find . | grep bla - serarches also subdirectories recursively
+locate <word>  - same as find but using index
 	sudo updatedb OR sudo locate -u - update database
-locate -0 | xargs -0 - uses NUL character as separator, necesary for filenames with spaces	
+locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
 xargs - output from one command to arguments of another
 	-t echoes the command before executing it, and -p echoes it and asks for confirmation
 tar xvzf xxx.tar.gz - decompress and detar
 	xvjf xxx.tar.bz2 - decompress and detar
 	-cf archiveName.tar files.. - compress
 tar cvf - ./SOURCEDIR_OR_FILES | ssh user@host 'cat > newfile.tar' - send tar archive over network
-ccsm - additional settings (compiz config setings menager - BAD)
+ccsm - additional settings (compiz config settings manager - BAD)
 md5sum - checks md5 sum hash
-appletviewer Race.htm - run java applet
-java -jar "bla.jar" - execute jar
 sh - run script even if not executable
 du -s <folderName> - folder size
-!<term> - zadnji ukaz ki se je zacel na term.
 screen - switch between multiple virtual terminals (useful in ssh)
-	ctrl+a: c - new terminal, n - next, p - previous, a - go to begining of line
+	ctrl+a: c - new terminal, n - next, p - previous, a - go to beginning of line
 tmux - terminal multiplexer, better screen
 	ctrl+b: pgup - enter in copy mode and pageup, [ - copy mode, ] - paste,	
-	" - split horizontaly,	% - split verticaly 
+	" - split horizontally,	% - split vertically 
 tmux ls - shows running sessions
 tmux attach (-t <session no>) - attach to running session
 	ctrl-b d - exit session	
@@ -133,11 +149,7 @@ tmux attach (-t <session no>) - attach to running session
 man section_number tool_name
 	1 programs 2 System calls 3 Library calls 4 Special files 5 File formats 7 Miscellaneous 8 System administration commands
 	-a shows all sections
-2> /dev/null - redirect error output
-&> /dev/null - redirect both standard and error output
->&2 - write to stderr
 tee - Sends output of a program to a file and to a standard output
-$(command) - same as `command`
 cp -R - copy recursively
 shred - securely remove files
 date - tells you date and time, also can set
@@ -148,54 +160,50 @@ shutdown now - take you to single user mode
 	-h 11:50 - when
 	-r now - reboot (OR reboot)
 cmp - compares two files, similar do diff but also for binaries
-$* - bash: zdruzi vse argumente v enga!!!!!!!!	
-"$x" - bash: vedno dvojni oklepaji okrog dolarja!!!!!!!!
 acpi - check battery
 xclip - copies to clipboard
 mkfifo <pipename> - creates named pipe
-umask -  The umask is a value set by the shell. It controls the default permissions of any file created
 during that shell session.
 rsync - a fast, versatile, remote (and local) file-copying tool
-$RANDOM - 0 - 32767
 wall - interconsole instant messenger (e "bla" | wall)
 	mesg n - turn off
-input=`cat` - getting standard input
-$? - exit code of last command (0 - ok)
-sudo !! - Run the last command as root 
-cd - - go to last dir
-<space>command - Execute a command without saving it in the history
-bash -n <script> - check for errors
-- in place of a file name means standard in or out
 wmctrl - X Window Manager
 run-parts - run all scripts or programs in a directory
 mkisofs - create a DVD/CD image
 cdrecord - write to a CD/DVD
 watch - execute a program periodically, showing output fullscreen
-watch bash -i -c '<alias>' - execute alias periodicaly
+watch bash -i -c '<alias>' - execute alias periodically
 zcat - catz gziped file
 line - read one line
 mktemp - create a temporary file or directory
 	tempfile
 rename - renames multiple files using sed syntax
 sleep - delay for a specified amount of time
-test <expression> - same as [ <expression> ], -gt, -d,...
 whiptail - display dialog boxes from shell scripts
 paste - glue two documents side by side
-sed 's///g' - substitute every occurance in line, not just the first one
+sed 's///g' - substitute every occurrence in line, not just the first one
 	's///I' - ignore case
-	-r - extended syntax, for +, ?,... , also you shouldnt escape the parenthesis
+	-r - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis
 reset - initializes terminal, useful after printing binary file
 hexdump, hd — ASCII, decimal, hexadecimal, octal dump
 bc - calculator [echo 1+1 | bc -> 2]
-unzip \*.zip - backslash mora bit da ga bash ne expenda!
+unzip \*.zip - backslash is necessary so that bash doesn't expand the * 
 lpstat - show printing jobs
 cancel <id> - cancel printing job
-gpg <filename> - decript file with password
-	-c <filename> encript
+gpg <filename> - decrypt file with password
+	-c <filename> encrypt
 file <filename> - determine file type
-sudo !! - run last command as super user
 tree - ls in a tree-like (hierarchical) format
 find <dir> -xdev -samefile <filename> - find all hard links of a file
+
+ALIASES:
+alias - print all aliases
+	<name> - print alias
+	<name>='cmd' - set alias
+command <command> - executes original command, bypassing any aliases or shell functions that may be defined for command
+\<command> - temporarily disable alias (call original)
+type <command> - will tell you what is command aliased to
+bash -n <script> - check for errors
 
 ####
 TEXT:
@@ -248,13 +256,13 @@ patch - apply a diff file to original
 
 SEARCH:
 grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
-	-o, --only-matching (count ocurances with | wc -l), -P perl notation (if you need \t)
+	-o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t)
 look - display lines beginning with a given string
 strings - print all text parts of binary file
 
 CONVERT:
 enscript - Converts text files to postscript, rtf, HTML
-gs - ghostscript: postscript and PDF language interpreter and prewiever
+gs - ghostscript: postscript and PDF language interpreter and previewer
 pdftohtml - pdf to html
 pdftotext - pdf to text
 libreoffice - novi openoffice
@@ -262,7 +270,7 @@ figlet - display large characters made up of ordinary screen characters (ascii a
 
 EDITORS:
 nano - 	/etc/nanorc - nano config
-		/usr/share/nano/JEZIK.nanorc - syntax highlights
+		/usr/share/nano/LANGUAGE.nanorc - syntax highlights
 		alt - / or ? go to last line
 fte - cool text editor with CUA (IBM)-shortcuts
 diakonos - simple terminal text editor with ctrl-c for copy
@@ -272,20 +280,26 @@ pyroom - distraction free writing (gui)
 PROCESSES:
 #########
 
-ps --forest - wiev hierarchical view of processes
+ctrl-z - put job in background
+jobs - Prints currently running job
+bg <job number> - Backgrounds a process
+fg <job number> - Bring a process to the foreground
+%n - job number n
+%s - job whose command line starts with s
+%% - current job
+%- - previous job
+
+ps --forest - view hierarchical view of processes
 	v - virtual memory 
 	--sort - sort by field 
 	pstree - similar
 pgrep <string> - returns PIDS of processes containing string (-l to 	print process name)
-pkill = kill $(pgrep mozilla) - kills everithing mozilla
+pkill = kill $(pgrep mozilla) - kills everything mozilla
 	kill -kill pid - force quit, data will be lost
 	killall - uses name instead of pid
 	skill - sends signals to command/user/tty
 		skill -STOP user_name - stop all of the users processes
 		skill -CONT user_name
-jobs - Prints currently running job
-bg <job number> - Backgrounds a process
-fg <job number> - Bring a process to the foreground
 nice - Sets the priority for a process (from -20 MAX to 20 MIN priority)
 	nice -20 make - Would execute make and it would run at maximum 			priority.
 	renice - Changes the priority of an existing command
@@ -359,7 +373,7 @@ iwpriv - Accesses configuration options specific to a particular device.
 rfkill list - show wireless adapters (wifi and bluetooth)
 		block/unblock <dev num> - block/unblock wireless device
 iw dev wlan0 link - show link status of wlan0
-			 set biterates legacy-2.4 1	- manualy set interface speed
+			 set biterates legacy-2.4 1	- manually set interface speed
 sudo iw dev wlan0 scan - list wireless networks in range
 sudo iwlist wlan0 scan - similar
 wavemon - monitor wireless connection link quality
@@ -406,7 +420,7 @@ nmap -sP 192.168.2.1-3 - network scanning
 	nmap 192.168.0.3 -p100-139 - port scanning
 	nmap 192.168.0.3 -p100-139 - port scanning
 	sudo nmap -O 192.168.0.3 - scanning os
-tcpdump - sniffer (Show network trafic)
+tcpdump - sniffer (Show network traffic)
 ettercap - Multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
 driftnet - Picks out and displays images from network traffic
 kismet - Wireless 802.11b monitoring tool
@@ -430,7 +444,7 @@ vmstat - Performance of system components / virtual memory statistics
 sar - System activity information
 iostat - Disk usage
 perf - profiler
-sudo /etc/init.d/ssh restart - restrt sshh deamon
+sudo /etc/init.d/ssh restart - restart sshh deamon
 zeitgeist - activity logger
 vipw - edit password file
 vigr - edit groups file
@@ -458,11 +472,11 @@ getconf -a - print all system configuration variables
 lscpu - print CPU information
 lshw - lists all hardware
 strace <program name and its parameters> - trace system calls and signals. All printed system calls can be looked up by man!
-	-s - maximum string size we want printed (default is to short, 2000 ok)
-	-f - also folow children
+	-s - maximum string size we want printed (default is too short, 2000 ok)
+	-f - also follow children
 	-p <pid> - attach to process
 	-o <log file>
-	-c - count/agregate
+	-c - count/aggregate
 	-T time the execution of each call
 ltrace - list library calls made bt command
 lsof - list open files with file descriptors
@@ -482,7 +496,8 @@ sensors - (lm-sensors) hardware monitoring tool, temperature, fan speed
 pwmconfig - (fancontrol) set fan speed
 nohup - run a command immune to hangups
 tty - print the file name of the terminal connected to standard input
-openvt -  run a programm on a next available tty
+stty - change and print terminal line settings
+openvt -  run a program on a next available tty
 script - makes a typescript of everything printed on your terminal. Ctrl-D to stop recording.
 
 KEYS/CHARACTERS/FONTS:
@@ -509,7 +524,7 @@ runlevel - output previous and current runlevel
 SYSTEM RUNLEVELS: RedHat / Debian
 0 Shuts down the system
 1 Administrative single-user mode
-2 Same as 3 but withouth networking / multiuser with X server
+2 Same as 3 but without networking / multiuser with X server
 3 Text mode state (ctrl+alt+F1) / User defined
 4 User defined
 5 X-window mode (ctrl+alt+F7) / User defined
@@ -518,7 +533,7 @@ S Single user mode
 
 AUDIO:
 
-cmus - music (can be controled from outside)
+cmus - music (can be controlled from outside)
 mplayer - movie/music player
 mpg321 - plays mp3
 ogg123 - plays ogg
@@ -539,9 +554,9 @@ import - Captures screen-shots from the X server
 mogrify - edit image
 gocr - command line text recognition tool
 ocrad - command line text recognition tool
-ppmforge - creates picture of random planet or clowds
+ppmforge - creates picture of random planet or clouds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
-	-p	leawe plots open after exit
+	-p	leave plots open after exit
 	plot file.dat - plot data from dat file
 ffmpeg -i <fileNameIn> <fileNameOut> - video and audio format converter
 aview, asciiview - ASCII art image viewer and video player
@@ -561,17 +576,17 @@ HOME:
 
 ETC / "Edit To Configure" / "Editable Text Configuration":
 /etc/rc.local - last startup script executed, runs command as su
-/etc/mailcap - default programi za extensne
-$HOME/.bashrc - mesto za bash aliase in funkcije
-/var/log/auth.log - logini
-/etc/passwd - userji
-/etc/groups - grupe
+/etc/mailcap - default programs for extensions 
+$HOME/.bashrc - place for bash aliases and functions 
+/var/log/auth.log - logins 
+/etc/passwd - users 
+/etc/groups - groups 
 /etc/default/console-setup - set (tty) console character set, font size...
 
 SERVICES:
 /etc/init/, $HOME/.init/ - init - Upstart init daemon job configuration
-/etc/init.d/ - direktorij z service skriptami ki se zazenejo ob zacetku in koncu
-/etc/init.d/halt - se zazene ob koncu
+/etc/init.d/ - folder with service scripts, that get executed at start and end
+/etc/init.d/halt - runs at the end 
 /etc/rc<NUM>.d - Startup scripts for different runlevels - links to scripts in /etc/init.d - S85httpd -> S means startup, K is for stop. (To disable service just change S for K)
 /etc/rc.local - last initialization file executed - put your commands here
 
@@ -580,7 +595,7 @@ SERVICES:
 /etc/fstab - Automatic mounts are handled by configuring the file
 /etc/sudoers - lists of users and the commands they can run with sudo
 /etc/crontab - system-wide crontab
-/etc/cron.hourly|daily|weekly|monthly/ - links to scripts that will execute periodicaly. Scripts within a cron directory are run alphabetically.
+/etc/cron.hourly|daily|weekly|monthly/ - links to scripts that will execute periodically. Scripts within a cron directory are run alphabetically.
 /etc/rsyslog.conf|rsyslog.d/50-default.conf - log conf (need to restart rsyslogd after edit)
 /etc/services - list of services with their port numbers
 /etc/resolv.conf - dns information
@@ -596,7 +611,7 @@ about the system:
 /proc/iomem - neat memory map
 /proc/partitions - partitions info
 /proc/acpi/battery/BAT1/info - battery info
-/proc/acpi/ac_adapter/ACAD/state - addapter info
+/proc/acpi/ac_adapter/ACAD/state - adapter info
 /proc/acpi/wakeup - list of devices that can wake up your machine via acpi
 	sudo sh -c "echo USB1 > /proc/acpi/wakeup" - enable device USB1 to wakeup computer from sleep/suspend
 /proc/net/wireless - wireless connection info
@@ -610,8 +625,8 @@ access permissions.
 
 VAR - "variable":
 /var/log/ - System logs in here
-/var/log/auth.log - log loginov
-/var/log/syslog - večina ostalih logov
+/var/log/auth.log - log of logins
+/var/log/syslog - most of the rest of the logs 
 /var/spool - contains data which is awaiting some kind of later processing
 
 BOOT (kernels):
@@ -636,7 +651,7 @@ git add <filename> OR git add .
 git status
 git commit -am "Commit message goes here."
 -
-git clone git://github.com/USER/REPOSITORY.git - download repo (kasneje z git pull osvezujes)
+git clone git://github.com/USER/REPOSITORY.git - download repo (later you keep refreshing with 'git pull')
 --
 ADD TO GITHUB:
 Create remote repository on website
@@ -648,7 +663,7 @@ After your first push, you can simply type:
 git push
 --
 Also useful:
-git rm --cached mylogfile.log - untrack file withouth deleting it.
+git rm --cached mylogfile.log - untrack file without deleting it.
 gitk - repo explorer
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
@@ -663,7 +678,7 @@ Refresh project in eclipse
 --
 gitstats
 --
-git log --name-only --author=jure - print changed files by commit
+git log --name-only --author=<name> - print changed files by commit
 git ls-files - list files
 
 ###########
@@ -671,7 +686,7 @@ git ls-files - list files
 ###########
 ctrl-[ - escape
 alt-<normal mode key> - escape, key
-help: 	ctrl ] - folow link
+help: 	ctrl ] - follow link
 		ctrl o - go back
 		:q     - exit help		
 \c - case insensitive search
@@ -712,8 +727,8 @@ z Enter,z.,z- - reposition line with cursor at top/middle/bottom
 
 SEARCH
 *,# - search forward/backward for exact word under cursor
-g*,g# - same, but even when word is embeded
-% - find match of current brace, apostrof,...
+g*,g# - same, but even when word is embedded
+% - find match of current brace, quote,...
 fx,Fx - move cursor forward/backward to x on current line
 tx,Tx - same, but to one char before x
 ;/, - repeat/reverse last
@@ -749,7 +764,7 @@ backup (bk)		| nobackup 	| back file up before overwrite
 ignorecase (ic)	| noic 		| ignore case in search
 number (nu)		| nonu 		| display line numbers
 shiftwidth= (sw)| 8 		| number of spaces added when identing
-tabstop= (ts)	| 8 		| tab witdth
+tabstop= (ts)	| 8 		| tab width
 wrap			| wrap		| wrap lines
 wrapscan (ws)	| ws 		| search wraps around file
 
@@ -758,24 +773,29 @@ EDIT COMMANDS
 c - CHANGE, d - DELETE, y - YANK 
 --------------------------------
 C,D,Y - till the end of line
-cc,dd,yy - curent line
+cc,dd,yy - current line
 cf<x>,df<x>,yf<x> - forward up to x
 c),d),y) - sentence
 ----------
 g~w - switch case of a word
-gu, gU - to fower/upper case
+gu, gU - to lower/upper case
 ----------
-[p - paste but match curent identation
+[p - paste but match current indentation
 r - replace character
 S - substitute entire line
-x,X - delete charecter/delete back
-. - repeate last change
+x,X - delete character/delete back
+. - repeat last change
 ~ - change case of character
 ctrl a,x - increment/decrement number under cursor
 
 COLORSCHEME:
 :colorscheme darkblue, torte - nice, darker
 			 default, slate - less contrast
+
+SPELLCHECK:
+:set spell spelllang=en_us
+:setlocal spell spelllang=en_us
+:set nospell
 
 ///////////
 ///////////
@@ -788,18 +808,20 @@ PIRATEBAY:
 torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file
 
 JAVA:
+java -Xmx6g myprogram - reserve 6 giga for process
+appletviewer Race.html - run java applet
+java -jar "bla.jar" - execute jar
 jps -lvm - list java processes
 jmap -histo:live <pid> - memory map
-java -Xmx6g myprogram - reserve 6g for process
 jvisualvm - profiler
 
 SCREEN: 
 All shortcuts begin with ctrl+a
-	| - new region werticaly
-	S - new region horizontaly
+	| - new region vertically
+	S - new region horizontally
 	tab - move to next region
 	Q - close all but selected region
-	X - kill the curent region
+	X - kill the current region
 	esc - enter copy/scrollback mode -> space: start/stop marking
 	] - paste
 	k - kill window
@@ -809,8 +831,8 @@ FIREFOX:
 about:config - layout.css.devPixelsPerPx default zoom (-1.0)
 
 XRANDR:
-xrandr --output VGA1 --primary - zamena primarni zaslon
-xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their ralative positions
+xrandr --output VGA1 --primary - changes primary screen 
+xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their relative positions
 xrandr -q - list devices
 --
 # reset 

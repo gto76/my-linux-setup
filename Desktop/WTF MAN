@@ -90,11 +90,12 @@ sudo !! - Run the last command as root
 
 BASH:
 
+"$x" - ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! 
+"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!!!
+"$@" - Use this instead!
 test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
 [[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more)
-$* - bash: combines all the arguments into one!!!!!!!
 $? - exit code of last command (0 - ok)
-"$x" - bash: always put double quotes around variable!!!!!!
 2> /dev/null - redirect error output
 &> /dev/null - redirect both standard and error output
 >&2 - write to stderr
@@ -684,8 +685,8 @@ git ls-files - list files
 ###########
 ##  VIM  ##
 ###########
+alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
 ctrl-[ - escape
-alt-<normal mode key> - escape, key
 help: 	ctrl ] - follow link
 		ctrl o - go back
 		:q     - exit help		

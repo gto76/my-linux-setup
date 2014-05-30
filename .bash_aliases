@@ -1,6 +1,20 @@
-alias less='less -iQ~P"%db/%D %f" -x4'
 
-#open cat or less, depending on no of lines of file or input
+#    _               _              _ _                     
+#   | |__   __ _ ___| |__      __ _| (_) __ _ ___  ___  ___ 
+#   | '_ \ / _` / __| '_ \    / _` | | |/ _` / __|/ _ \/ __|
+#  _| |_) | (_| \__ \ | | |  | (_| | | | (_| \__ \  __/\__ \
+# (_)_.__/ \__,_|___/_| |_|   \__,_|_|_|\__,_|___/\___||___/
+#
+
+
+########
+# LESS #
+########
+
+# Run less with: ingnore case when searching, do not ring a bell, do not mark empty lines with ~, format promp as 'page number'/'all pages' 'filename', set tabs to 4 spaces.
+alias less='less --ignore-case --QUIET --tilde -P"%db/%D %f" --tabs=4'
+
+# Open cat or less, depending on no of lines of file or input.
 catOrLess() {
 	if [ $# -gt 0 ]
 	then
@@ -22,7 +36,7 @@ catOrLess() {
 }
 alias m='catOrLess'
 
-#open cat or less +G (starts at the end of file), depending on no of lines of file or input
+# Open cat or less +G (starts at the end of file), depending on no of lines of file or input.
 catOrLessG() {
 	if [ $# -gt 0 ]
 	then
@@ -44,24 +58,35 @@ catOrLessG() {
 }
 alias mEnd='catOrLessG'
 
-# LS
 
-# Add some easy shortcuts for formatted directory listings and add a touch of color.
-alias ls1='ls -FXC --color=auto --group-directories-first'
-alias listShort='ls1 -w 80'
-alias listMed='ls1 -lGgh --time-style="+%b %d %Y %H:%M"'
+######
+# LS #
+######
+
+# All other list directory aliases end up calling this one. It runs ls with: append indicator, sort alphabeticaly by extension, list by columns, use color when stdout is connected to terminal, group directories before files.
+alias ls1='ls --classify -X -C --color=auto --group-directories-first'
+
+# Calls ls1 with: assumes screen width to be 80, so there aren't too many columns.
+alias listShort='ls1 --width=80'
+# Calls ls1 with: use long listing format, do not print groups, do not list owner, print sizes in human readable format, print date as: 'month by word, day of month, year, hour:minute'.
+alias listMed='ls1 -l --no-group -g --human-readable --time-style="+%b %d %Y %H:%M"'
+# Calls ls1 with: use long listing format. 
 alias listLong='ls1 -l'
+
+# Functions that call aliases above, and pipe output to less. They override color option of ls to always and add RAW-CONTROL-CHARS option to less alias. This enables the transfer of colors from ls to less. Also start less at end of file.
 listShortLess() { 
-  listShort --color=always $* | less -R+G
+  listShort --color=always $* | less --RAW-CONTROL-CHARS +G
 }
 listMedLess() { 
-  listMed --color=always $* | less -R+G 
+  listMed --color=always $* | less --RAW-CONTROL-CHARS +G 
 }
 listLongLess() { 
-  listLong --color=always $* | less -R+G 
+  listLong --color=always $* | less --RAW-CONTROL-CHARS +G 
 }
+
+# This functions decide weather they will call basic or less version of the listShort/Med/Long function. It depends on wether the output of ls will fit on screen.
 l() {
-	noOfLines=`listShort "$@" 2> /dev/null | wc -l`
+	noOfLines=`listShort "$@" 2> /dev/null | fold -w"$COLUMNS" |  wc -l`
 	if [ $LINES -gt $noOfLines ]; then
 		listShort "$@"	
 	else
@@ -69,7 +94,7 @@ l() {
 	fi
 }
 ll() {
-	noOfLines=`listMed "$@" 2> /dev/null | wc -l`
+	noOfLines=`listMed "$@" 2> /dev/null | fold -w"$COLUMNS" | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
 		listMed "$@"
 	else
@@ -77,25 +102,30 @@ ll() {
 	fi
 }
 lll() {
-	noOfLines=`listLong "$@" 2> /dev/null | wc -l`
+	noOfLines=`listLong "$@" 2> /dev/null | fold -w"$COLUMNS" | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
 		listLong "$@"
 	else
 		listLongLess "$@"    
 	fi
 }
-alias la='l -A'
-alias lla='ll -A'
-alias llla='lll -A'
 
-alias dl='l -d'
-alias dll='ll -d'
-alias dlll='lll -d'
-
+# Variations of above function, that also display hidden files, but not . and ..
+alias la='l --almost-all'
+alias lla='ll --almost-all'
+alias llla='lll --almost-all'
+# Variations, that list directory entries instead of contents.
+alias dl='l --directory'
+alias dll='ll --directory'
+alias dlll='lll --directory'
+# Variations of listShort that list one entry per line.
 alias l1='l -1'
 alias la1='la -1'
 
-# BASICS
+
+##########
+# BASICS #
+##########
 
 # Make some possibly destructive commands more interactive.
 alias rmdir='rm -rI'

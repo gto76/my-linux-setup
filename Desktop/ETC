@@ -11,13 +11,19 @@ sudo apt-get -u dist-upgrade
 # INSTALL APPS:
 sudo apt-get install vim mc git openssh-server nrss nmap wine
 # REMOVE DEFAULT ll ALIAS
-sudo sed -e 's/\(^alias ll\)/#\1/' bash.bashrc > /tmp/bash.bashrc.tmp
+sudo sed -e 's/\(^alias ll\)/#\1/' /etc/bash.bashrc > /tmp/bash.bashrc.tmp
 sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc
 # INSTALL MY CONF FILES:
 cd ~
 git clone https://github.com/gto76/my-aliases.git
 cd my-aliases
 ./install.sh
+# SET UP GIT
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+(less syntax highlight)
+(tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
 
 #
 # MOUSEJOBS:
@@ -51,13 +57,15 @@ logout & login (ctrl+alt+del)
 
 # SET KEYBOARD SHORTCUTS:
 System setings > Keyboard > Keyboard shortcuts:
-# LAUNCHERS:
-ctrl+alt+h - home
-ctrl+alt+c - web browser
+# CINNAMON:
+remove Run dialog shortcut (backspace)
 # WINDOWS:
 alt+F1 - minimize window
 alt+F2 - toggle maximize window
 alt+F3 - toggle full screen
+# LAUNCHERS:
+ctrl+alt+h - home
+ctrl+alt+c - web browser
 //ctrl+alt+jkli... - position window acordingly
 # CUSTOM SHORTCUTS:
 ctrl+alt+f - firefox
@@ -81,7 +89,8 @@ set plugins folder
 # FRUITY LOOPS: 
 fl studio 11 -> install arial and times new roman font for wine:sudo apt-get install winetricks; winetricks corefonts
 run regedit from terminal to import registry file
-(less syntax highlight)
+
+# DISABLE SYSTEM SOUNDS
 =======
 /////
 /etc/profile:

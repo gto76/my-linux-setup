@@ -501,6 +501,8 @@ tty - print the file name of the terminal connected to standard input
 stty - change and print terminal line settings
 openvt -  run a program on a next available tty
 script - makes a typescript of everything printed on your terminal. Ctrl-D to stop recording.
+disks - nice gui partition tool
+gparted - more advanced
 
 KEYS/CHARACTERS/FONTS:
 xmodmap - remap keys

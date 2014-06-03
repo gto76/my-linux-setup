@@ -121,6 +121,7 @@ ls 	-d - list directory names instead of contents
 	-1 - one file per line
 	./* - ls one level deep
 	-i - get inode number of file (file id). Use sudo find / -inum <number> to find all links that point to same file.
+rm -f - force remove (do not prompt)
 mc - midnight commander
 	alt o - open parent dir in another panel
 df - disc fullness / disc free
@@ -796,6 +797,7 @@ ctrl a,x - increment/decrement number under cursor
 AUTOMATIC LINEBRAKE:
 :set tw=80 - set text width
 gq - formats selected text
+:set tw=0 - stop formating
 
 COLORSCHEME:
 :colorscheme darkblue, torte - nice, darker

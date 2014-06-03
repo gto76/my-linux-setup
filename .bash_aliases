@@ -11,7 +11,7 @@
 # LESS #
 ########
 
-# Run less with: ingnore case when searching, do not ring a bell, do not mark empty lines with ~, format promp as 'page number'/'all pages' 'filename', set tabs to 4 spaces.
+# Run less with: ignore case when searching, do not ring a bell, do not mark empty lines with ~, format prompt as 'page number'/'all pages' 'filename', set tabs to 4 spaces.
 alias less='less --ignore-case --QUIET --tilde -P"%db/%D %f" --tabs=4'
 
 # Open cat or less, depending on no of lines of file or input.
@@ -63,7 +63,7 @@ alias mEnd='catOrLessG'
 # LS #
 ######
 
-# All other list directory aliases end up calling this one. It runs ls with: append indicator, sort alphabeticaly by extension, list by columns, use color when stdout is connected to terminal, group directories before files.
+# All other list directory aliases end up calling this one. It runs ls with: append indicator, sort alphabetically by extension, list by columns, use color when stdout is connected to terminal, group directories before files.
 alias ls1='ls --classify -X -C --color=auto --group-directories-first'
 
 # Calls ls1 with: assumes screen width to be 80, so there aren't too many columns.
@@ -84,7 +84,7 @@ listLongLess() {
   listLong --color=always $* | less --RAW-CONTROL-CHARS +G 
 }
 
-# This functions decide weather they will call basic or less version of the listShort/Med/Long function. It depends on wether the output of ls will fit on screen.
+# This functions decide weather they will call basic or less version of the listShort/Med/Long function. It depends on whether the output of ls will fit on screen.
 l() {
 	noOfLines=`listShort "$@" 2> /dev/null | fold -w"$COLUMNS" |  wc -l`
 	if [ $LINES -gt $noOfLines ]; then
@@ -192,7 +192,7 @@ alias pdf='evince'
 alias mixer='alsamixer'
 # Get keycode for pressed key.
 alias keycode='xev';
-# Ececute command periodicaly every 2 seconds. Aliases can be also used.
+# Execute command periodically every 2 seconds. Aliases can be also used.
 alias watch1='watch bash -i -c'
 # Every 10 seconds.
 alias watch2='watch -n 10 bash -i -c'
@@ -266,12 +266,12 @@ alias table='column -t -s'
 # Delete specified characters.
 alias trd='tr --delete'
 
-# Change input strings notation from camel to hungarian.
-tohungarian() {
+# Change input strings notation from CamelCase to underscore.
+toUnderscore() {
 	cat | sed 's/\([A-Z]\)/_\1/g' | tr [a-z] [A-Z]
 }
 # Vice versa.
-tocamel() {
+toCamel() {
 	cat | tr [A-Z] [a-z] | sed 's/_\([a-z]\)/\U\1/g'
 }
 
@@ -293,7 +293,7 @@ alias b='acpi'
 alias batt='acpi'
 alias battery='acpi'
 
-# Turn off laptop monitor if external is conected.
+# Turn off laptop monitor if external is connected.
 vga() {
 	xrandr | grep VGA | grep " connected " > /dev/null
 	if [ $? -eq 0 ]; then
@@ -373,7 +373,7 @@ hd1() {
 alias run='go run'
 
 #FIND
-# Recursively search for files containing patern in their names.
+# Recursively search for files containing pattern in their names.
 find1() {
 	find . | grep --color=always "$1" | catOrLess
 }
@@ -386,7 +386,7 @@ mkdir1() {
 	cd "$1"
 }
 
-# Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarante all the quotations and expansions will stay intact. It just seams like playing with fire.
+# Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seams like playing with fire.
 sed1() {
 	input=`cat`
 	echo "$input" | sed "s/$1/$2/" | catOrLess
@@ -440,7 +440,7 @@ whatis2() {
 	type "$*" | catOrLess
 }
 alias wi3='whatis2'
-# Universal command description search function. First tries whatis, then apt-cache show and finaly type. When one of them suceeds in finding the description the function returns.
+# Universal command description search function. First tries whatis, then apt-cache show and finally type. When one of them succeeds in finding the description the function returns.
 wi() {
 	call1=`whatis "$@" 2> /dev/null`
 	if [ "$?" == "0" ]; then
@@ -487,9 +487,9 @@ gitl() {
 		| grep -o ^.*: \
 		| tr -d ":" \
 		| grep ^src/.* \
-		| xargs wc -l 
+	  	| xargs wc -l 
 }
-# Plot distribution of file lenghts in git repo. Gnuplot and gnuplot-x11 packages need to be installed.
+# Plot distribution of file lengths in git repo. Gnuplot and gnuplot-x11 packages need to be installed.
 gitplot() {
 	gitl | head -n-1 | sort -n | grep -o '^ *[0-9]* ' | tr -d ' ' > /tmp/gitlTmpFile 
 	echo "unset key; plot '/tmp/gitlTmpFile'" | gnuplot -p 
@@ -515,9 +515,9 @@ fr() {
 	echo " / $(mem)"
 }
 
-# Open last modified file in nano
+# Open last modified file in nano.
 alias Nano="nano `ls -t | head -1`" 
-# Open last modified file in vim
+# Open last modified file in vim.
 alias Vim="vim `ls -t | head -1`" 
 
 # Print majority of commands
@@ -589,12 +589,12 @@ locall() {
 		echo "$lines" 
 		cd..
 	done)
-	sum=`echo "$table" | grep -o [0-9]*$ |sumall` 
+	sum=`echo "$table" | grep -o [0-9]*$ | sumall` 
 	folder=`echo $PWD | grep -o "[^/]*$" | tr [a-z] [A-Z]`
 	echo "$folder;$sum"
 	echo "$table"
 }
-# Summs all the the numbers.
+# Sums all the numbers.
 sumall() {
 	in=`cat`
 	sum=0
@@ -609,8 +609,20 @@ sumall() {
 # NETWORK #
 ###########
 
-# Print ip of the gateway.
+# Whats my internal ip.
+ip1() {
+	/sbin/ifconfig \
+		| grep "inet addr:192.168" \
+		| grep -o addr:[0-9.]* \
+		| grep -o [0-9.]\* \
+		| cat 
+}
+# Whats my external ip. 
+alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]\*`'
+# Whats gateways ip.
 alias gateway='route -n | grep "192.168." | head -n1 | grep -o "192.168.[0-9.]*"'
+# Whats my mac address.
+alias mac='ifconfig | grep HWaddr | cat'
 
 # Ping gateway.
 alias ping1='ping -c 4 `gateway`'
@@ -626,22 +638,6 @@ pingAll() {
 }
 alias pa=pingAll
 alias pa1='pingAll; pingAll'
-
-# Print your mac address.
-alias mac='ifconfig | grep HWaddr | cat'
-
-# Whats my internal ip.
-#alias ip1='echo `/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]\*`'
-ip1() {
-	/sbin/ifconfig \
-		| grep "inet addr:192.168" \
-		| grep -o addr:[0-9.]* \
-		| grep -o [0-9.]\* \
-		| cat 
-}
-
-# Whats my external ip. 
-alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]\*`'
 
 # How many people are on network beside you (number of hosts).
 noh() {
@@ -685,9 +681,13 @@ alias nmap2='nmap1 20'
 # Saves output of nmap1 in file named after current time (year-month-day-hour-minute: week of the year-day of the week).
 networkLogger() {
 	destDir="."
-	third=`/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]* | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+	third=`/sbin/ifconfig \
+		| grep "inet addr:192.168" \
+		| grep -o addr:[0-9.]* \
+		| grep -o "[0-9.]*" \
+		| sed -e :a -e "s/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta"`
 	forth="20"
-	nmap -sP 192.168.$third.0-$forth > "$destDir"/`date +%y-%m-%d-%H-%M:%W-%u`
+	nmap -sP 192.168.$third.0-$forth > "$destDir"/`date +%y-%m-%d-%H-%M:%W-%u`]
 }
 
 # Should create some kind of a timeline from files created by notworkLogger, displaying when which machine was online.
@@ -719,7 +719,7 @@ niceDisplay() {
 alias woff='rfkill block `rfkill list | grep Wireless | grep ^[0-9] -o`'
 # Unblock wireless device.
 alias won='rfkill unblock `rfkill list | grep Wireless | grep ^[0-9] -o`'
-# Reset wireles device.
+# Reset wireless device.
 alias wr='woff; won'
 # Wlan up/down.
 alias up='sudo ifconfig wlan0 up'
@@ -727,9 +727,17 @@ alias down='sudo ifconfig wlan0 down'
 
 # Displays wireless networks in range.
 wlan() {
-	sudo iwlist wlan0 scan | grep Quality -A2 | tr -d "\n" | sed 's/--/\n/g' | sed -e 's/ \+/ /g' | sort -r | sed 's/ Quality=//g' | sed 's/\/70 Signal level=-[0-9]* dBm Encryption key:/ /g' | sed 's/ ESSID:/ /g'
+	sudo iwlist wlan0 scan \
+		| grep Quality -A2 \
+		| tr -d "\n" \
+		| sed 's/--/\n/g' \
+		| sed -e 's/ \+/ /g' \
+		| sort -r \
+		| sed 's/ Quality=//g' \
+		| sed 's/\/70 Signal level=-[0-9]* dBm Encryption key:/ /g' \
+		| sed 's/ ESSID:/ /g'
 }
-# Whois piped to less if necesary.
+# Whois piped to less if necessary.
 whois1() {
 	whois "$@" | catOrLess
 }
@@ -742,14 +750,36 @@ whois1() {
 # Rss feed reader.
 alias rss='nrss'
 
-# Prints nba scores. Not totaly reliable, as pages tend to change.
+# Prints nba scores. Not totally reliable, as pages tend to change.
 alias nbaScoreboard="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/scoreboard.asp | grep -w 'PM' -A10 | grep -v 'STATS LLC\|Any commercial\|NBC Sports\|NBC Universal' | grep -v MST | sed 's/^.*ET\([0-9:]*\).*$/   \1/' | grep -v Preview | sed '/^$/N;/^\n$/D' | m"
 nba() {
 	e -n '   ';	t; e 
 	nbaScoreboard
 }
 # Prints nba standings. A bit more reliable. 
-alias nbaStandings="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/standings_conference.asp | grep 'Eastern Conference' -A39 | gr _ -v | sed 's/New York/New=York/g' | sed 's/San Antonio/San=Antonio/g' | sed 's/Oklahoma City/Oklahoma=City/g' | sed 's/Trail Blazers/Trail=Blazers/g' | sed 's/Los Angeles/Los=Angeles/g' | sed 's/Golden State/Golden=State/g' | sed 's/New Orleans/New=Orleans/g' | sed 's/Conf GB/Conf=GB/g' | sed 's/Last 10/Last=10/g' | sed 's/\([0-9]*\) \([W\|L]\)$/\1=\2/g' | sed 's/W L/= = = W L/' | sed 's/Eastern Conference/€/g' | sed 's/Western Conference/ħ/g' | column -t | tr '=' ' ' | sed 's/€/Eastern Conference/' | sed 's/ħ/\nWestern Conference/' | m"
+nbaStandings() {
+	lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/standings_conference.asp \
+		| grep 'Eastern Conference' -A39 \
+		| gr _ -v \
+		| sed 's/New York/New=York/g' \
+		| sed 's/San Antonio/San=Antonio/g' \
+		| sed 's/Oklahoma City/Oklahoma=City/g' \
+		| sed 's/Trail Blazers/Trail=Blazers/g' \
+		| sed 's/Los Angeles/Los=Angeles/g' \
+		| sed 's/Golden State/Golden=State/g' \
+		| sed 's/New Orleans/New=Orleans/g' \
+		| sed 's/Conf GB/Conf=GB/g' \
+		| sed 's/Last 10/Last=10/g' \
+		| sed 's/\([0-9]*\) \([W\|L]\)$/\1=\2/g' \
+		| sed 's/W L/= = = W L/' \
+		| sed 's/Eastern Conference/€/g' \
+		| sed 's/Western Conference/ħ/g' \
+		| column -t \
+		| tr '=' ' ' \
+		| sed 's/€/Eastern Conference/' \
+		| sed 's/ħ/\nWestern Conference/' \
+		| catOrLess
+}
 alias nba1='e; nbaStandings; e'
 
 
@@ -773,11 +803,10 @@ searchWebpage() {
       let i=$i+1
     done
   fi
-
   eval "lynx $url"
 }
 
-# Opens lynx browser with search results for $@ in stackowerflow.com. Not realy useful, you get better results using Google.
+# Opens lynx browser with search results for $@ in stackoverflow.com. Not really useful, you get better results using Google.
 alias so='stack'
 alias stack='searchWebpage http://stackoverflow.com'
 # Opens lynx browser with search results for $@ in superuser.com. 
@@ -808,8 +837,7 @@ wiki() {
       let i=$i+1
     done
   fi
-
-  echo "lynx $url"
+  eval "lynx $url"
 }
 
 
@@ -819,7 +847,8 @@ wiki() {
 
 # Aliases for weather conditions at specific locations. City ids can be found at yahoo weather, just find page of the city and copy id from url.
 weathr() {
-	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" | awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
+	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" \
+	| awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
 }
 alias wea1='weathr 531951' # Weather for Trzic.
 alias wea2='weathr 530634' # Weather for Ljubljana.
@@ -830,15 +859,15 @@ alias wea='wea1; wea2'
 # IMAGE DOWNLOAD #
 ##################
 
-# Get google image thumbnail for the passed phrase.
+# Gets google image thumbnail for the passed phrase, and sends it to stdout.
 gi1() {
 	# Wget needs to introduce itself as a browser.
-	wget -qO- "http://images.google.com/images?q=$(echo "$@" | sed 's/ /+/g')" -U "Firefox on Ubuntu Gutsy: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.14) Gecko/20080418 Ubuntu/7.10 (gutsy) Firefox/2.0.0.14" | 
-	grep -o '<img[^>]*>' | 
-	head -n1 | 
-	grep "src=\"[^\"]*" -o | 
-	sed 's/src=\"//' | 
-	wget -i- -O-
+	wget -qO- "http://images.google.com/images?q=$(echo "$@" | sed 's/ /+/g')" -U "Firefox on Ubuntu Gutsy: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.14) Gecko/20080418 Ubuntu/7.10 (gutsy) Firefox/2.0.0.14" \
+		| grep -o '<img[^>]*>' \
+		| head -n1 \
+		| grep "src=\"[^\"]*" -o \
+		| sed 's/src=\"//' \
+		| wget -i- -O-
 }
 # Download image and instantly display it.
 gi() {
@@ -853,7 +882,7 @@ gimage() {
 	cat | while read line
 	do 
 		gi1 "$line" > "$line"
-		# Wait 3 seconds between downloads, so we appear more humanlike. If no sleep is used, your ip will get banned when reaching arond 1000 or 2000 downloads. Of course if you have dynamic ip, reseting connection to your internet provider will fix the problem. I did't try to find out what happens if you repeat the process:)
+		# Wait 3 seconds between downloads, so we appear more humanlike. If no sleep is used, your ip will get banned when reaching around 1000 or 2000 downloads. Of course if you have dynamic ip, reseting connection to your internet provider will fix the problem. I didn't try to find out what happens if you repeat the process:)
 		sleep 3
 	done
 }
@@ -889,8 +918,8 @@ aa() {
 # AUDIO PLAYER #
 ################
 
-# Plays song. (Downloads from youtube if nothing found localy)
-# TODO: Doesen't find file in a filesystem.
+# Plays song. (Downloads from youtube if nothing found locally)
+# TODO: Doesn't find file in a filesystem.
 spilej() {
 	if [ -f "$1" ]
 	then
@@ -950,7 +979,7 @@ spilejYoutube() {
 	mplayer "$audioFilename" &>/dev/null
 }
 
-# Serches youtube for arguments and (hopefuly) returns first match.
+# Searches youtube for arguments and (hopefully) returns first match.
 lynxYoutubeSkripta() {
 	echo "key v"
 	for i in {1..8}
@@ -985,7 +1014,7 @@ spilej3() {
 #################################
 
 # Print country codes on the route to host.
-# This is one option, but doesent work correctly: wget -qO- http://api.wipmania.com/"$ip",
+# This is one option, but doesn't work correctly: wget -qO- http://api.wipmania.com/"$ip",
 # because it mostly just returns the location of the seat of company that owns the router.
 traceroute1() {
 	i=1
@@ -1033,7 +1062,7 @@ traceroute1() {
 	echo
 }
 
-# Prints asumed location of the router.
+# Prints assumed location of the router.
 urlToCountry() {
 	input=`cat`
 	echo "$input" | 

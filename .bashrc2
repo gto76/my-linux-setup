@@ -1,0 +1,17 @@
+# Aliases that are depending on my taste, local files, or other services of local nature.
+
+# Set vi keys for bash. 
+set -o vi 
+# Default text editor. 
+export EDITOR="vim" 
+
+# Few shortcuts to frequently used directories.
+alias code='cd ~/code; l'
+alias data='cd ~/data; l'
+alias test='cd ~/test; l'
+alias de='cd ~/Desktop; l'
+
+# Ljubljana public transit tracker.
+alias lpp='lynx http://bus.talktrack.com/'
+
+

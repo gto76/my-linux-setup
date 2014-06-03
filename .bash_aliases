@@ -134,21 +134,21 @@ alias rm='rm -i'
 alias mv='mv -iv'
 alias cp='cp -iv'
 
+# Simplify going up in directory hierarchy.
+alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ..; cd ..; cd ..;'
 alias .....='cd ..; cd ..; cd ..; cd..'
 alias ......='cd ..; cd ..; cd ..; cd..; cd..'
 alias .......='cd ..; cd ..; cd ..; cd..; cd..; cd..'
-
-alias ,,='cd ..'
-alias cd..='cd ..'
 alias ..l='cd ..; l'
+# Combine cd and ls.
 cdl() {	
 	cd "$@"; l
 }
-
 alias .='echo $PWD'
+# If no file specified, print PWD, else full path of the file.
 p() {
 	if [ $# -eq 0 ]; then
 		echo "$PWD"
@@ -158,14 +158,18 @@ p() {
 }
 
 alias ba='bash'
-alias bax='exit; bash'
 alias e='echo'
+# Echo with backslash escapes (\n,...)
 alias ee='echo -e'
+# Echo withouth new line at the end.
 alias en='echo -n'
 alias c='cat'
-alias n='nano -uicHFwST 4'
-alias g='gedit'
-alias f='firefox'
+alias v='vim'
+# Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
+alias n='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
+alias g='gedit &'
+alias f='firefox &'
+alias sub='sublime_text &'
 alias scr='screen'
 alias t='date'
 alias clr='clear'
@@ -176,76 +180,43 @@ alias he='head'
 alias he1='head -n1'
 alias ta='tail'
 alias ta1='tail -n1'
-alias s='screen'
-alias pgrep1='pgrep -l'
+# Console calculator with float.
 alias bc1='gcalccmd'
-alias trd='tr -d'
-alias table='column -t -s'
-alias sub='sublime_text'
-#alias v='vim'
-alias v='vim -c "set nu" -c "set tabstop=4"'
+# Print exit status of last command.
 alias ?="echo $?"
 alias mk="make"
-alias df1='df | grep "sda\|Size" | cat'
+# Report disk space of main partitions in human readable form.
+alias df1='df -h | grep "sda\|Size" | cat'
 alias pdf='evince'
+# Set volume in console for all audio channels.
 alias mixer='alsamixer'
-alias c1='m1 | c | gr' 
-alias c2='m2 | c | gr'
+# Get keycode for pressed key.
 alias keycode='xev';
+# Ececute command periodicaly every 2 seconds. Aliases can be also used.
 alias watch1='watch bash -i -c'
+# Every 10 seconds.
 alias watch2='watch -n 10 bash -i -c'
+# 30 seconds.
 alias watch3='watch -n 30 bash -i -c'
+# Open picture in console as ascii art.
 alias asci='asciiview'
-
+# Set keyboard layout to us and run xmodmap.
 alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
 alias resetkeys='resetkey'
+# Display disk space used by a folder or a file in human readable form.
+alias du='du --summarize --human-readable'
 
-alias temp='acpi -t'
 
-cut1() {
-	cut -d "$1" -f "$2" 
-}
+########
+# SUDO #
+########
 
-sort1() { 
-	sort -t "$1" -k "$2"
-}
-
-psM() {
-	ps "$@" | catOrLess
-}
-alias ps='psM'
-alias pse='ps -e | catOrLess'
-alias psa='ps -e | catOrLess'
-alias ps1='ps -e | catOrLess'
-
-alias lspci1='lspci -v | catOrLess'
-
-alias df='df -h'
-
-alias hib='sudo pm-hibernate'
-alias sus='sudo pm-suspend'
-
-alias du='du -sh'
-
-alias gg='gedit $HOME/.bash_aliases &'
-
-alias strace1='strace -s 2000 -f'
-
-alias uname1='uname -a'
-
-# Block wireless device
-alias woff='rfkill block `rfkill list | grep Wireless | grep ^[0-9] -o`'
-# Unblock wireless device
-alias won='rfkill unblock `rfkill list | grep Wireless | grep ^[0-9] -o`'
-alias wr='woff; won'
-
-# SUDO
 alias srm='sudo rm -i'
 alias scp='sudo cp -iv'
 alias smv='sudo mv -iv'
 
 sg() {
-	sudo gedit "$*"
+	sudo gedit "$*" 
 }
 sn() {
 	sudo nano -icHFwST 4 "$*"
@@ -257,95 +228,209 @@ sv() {
 	sudo vim "$*"
 }
 
-# USEFUL
 
-# Make grep more user friendly by highlighting matches
-# and exclude grepping through .svn folders.
-alias grep1='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
-gr() {
-	grep1 "$@" -iP --color=always | catOrLess
+######
+# PS #
+######
+
+# Pipe output of ps to catOrLess.
+psM() {
+	ps "$@" | catOrLess
 }
-gr1() {
-	gr "$@" -ioP | catOrLess
+alias ps='psM'
+# Print every process on the system.
+alias pse='ps -e | catOrLess'
+alias psa='ps -e | catOrLess'
+alias ps1='ps -e | catOrLess'
+
+alias hib='sudo pm-hibernate'
+alias sus='sudo pm-suspend'
+# Print matching processes and their pids.
+alias pgrep1='pgrep --list-name'
+
+
+########
+# TEXT #
+########
+
+# Removes columns specified by second argument. Specify delimiter with first argument.
+cut1() {
+	cut --delimiter="$1" --fields="$2" 
 }
-gr2() {
-	egrep "$@" -i --color=always --exclude-dir=\.svn --exclude-dir=\.git | catOrLess
+# Sort lines of file. Specify separator and key. Key is used to specify number of field you want lines to be sorted by.
+sort1() { 
+	sort --field-separator="$1" --key="$2"
+}
+# Makes table out of input data. You need to specify column separator.
+alias table='column -t -s'
+# Delete specified characters.
+alias trd='tr --delete'
+
+# Change input strings notation from camel to hungarian.
+tohungarian() {
+	cat | sed 's/\([A-Z]\)/_\1/g' | tr [a-z] [A-Z]
+}
+# Vice versa.
+tocamel() {
+	cat | tr [A-Z] [a-z] | sed 's/_\([a-z]\)/\U\1/g'
 }
 
 
+##########
+# SYSTEM #
+##########
 
+# Trace system calls and signals. Print strings of maximum 2000 chars, and also trace child processes.
+alias strace1='strace -s 2000 -f'
+# Print all system information.
+alias uname1='uname -all'
+# Print verbose information of all PCI devices.
+alias lspci1='lspci -v | catOrLess'
+# Display cpu temperature.
+alias temp='acpi -t'
+# Print battery status.
 alias b='acpi'
 alias batt='acpi'
 alias battery='acpi'
 
+# Turn off laptop monitor if external is conected.
+vga() {
+	xrandr | grep VGA | grep " connected " > /dev/null
+	if [ $? -eq 0 ]; then
+    	xrandr --output LVDS1 --off
+		killall nautilus
+		nautilus -n &
+	fi
+}
+
+
+##########
+# USEFUL #
+##########
+
+# Make grep more user friendly by highlighting matches
+# and exclude grepping through .svn and .git folders.
+alias grep1='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
+gr() {
+	grep1 "$@" --ignore-case --perl-regexp --color=always | catOrLess
+}
+gr1() {
+	gr "$@" --ignore-case --perl-regexp --only-matching | catOrLess
+}
+gr2() {
+	egrep "$@" --ignore-case --color=always --exclude-dir=\.svn --exclude-dir=\.git | catOrLess
+}
+
+# Apt-get.
 alias canhaz='sudo apt-get install'
 alias ch='canhaz'
 alias update='sudo apt-get update'
 alias remove='sudo apt-get remove'
 alias purge='sudo apt-get purge'
 
-#make bash script , make it executable
+# Create executable file
+createExecutable() {
+	touch "$1"
+	chmod u+x "$1"        
+}
+alias ce=createExecutable
+alias me=createExecutable    
+# Create executable file with sh extension.
 bs() {
 	fName="$1.sh"
 	createExecutable "$fName"
 }
-#make bash script , make it executable, and open it in gedit
+# Create executable bash script. Open it in gedit.
 bsg() {
 	fName="$1.sh"
 	createExecutable "$fName"
-	gedit "$fName"
+	gedit "$fName" &
 }
-#make bash script , make it executable, and open it in nano
+# Create executable bash script. Open it in nano.
 bsn() {
     fName="$1.sh"
 	createExecutable "$fName"
     nano "$fName"
 }
-#make bash script , make it executable, and open it in vim
+# Create executable bash script. Open it in vim.
 bsv() {
     fName="$1.sh"
 	createExecutable "$fName"
     vim "$fName"
 }
 
-createExecutable() {
-	touch "$1"
-	chmod u+x "$1"        
-}
-alias ce=createExecutable
-#make executeble
-alias me=createExecutable    
-            
-alias tar1='tar xvf'
-alias tarz='tar xzvf'
+# Untar file. (tar xvf)
+alias tar1='tar --extract --verbose --file'
+# Untar and unzip file. (tar xzvf)
+alias tarz='tar --extract --verbose -gunzip --file'
 
+# Hexadecimal dump.
 hd1() {
 	hd "$*" | catOrLess
 }
 
+# GO
+alias run='go run'
+
+#FIND
+# Recursively search for files containing patern in their names.
+find1() {
+	find . | grep --color=always "$1" | catOrLess
+}
+# Print all directories recursively.
+alias findd='find . -name .git -prune -o -type d | catOrLess'
+
+# Make directory and go into.
+mkdir1() {
+	mkdir "$1"
+	cd "$1"
+}
+
+# Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarante all the quotations and expansions will stay intact. It just seams like playing with fire.
+sed1() {
+	input=`cat`
+	echo "$input" | sed "s/$1/$2/" | catOrLess
+}
+# Same but with g option.
+sed2() {
+	input=`cat`
+	echo "$input" | sed "s/$1/$2/g" | catOrLess
+}
+
+# Print clipboard
+alias xo='xclip -o'
+# Put in clipboard
+alias xi='xclip -i'
+
+
+##########################
+# COMMAND/PACKAGE SEARCH #
+##########################
+
+# Apropos.
 aproposM() {
 	apropos "$*" | catOrLess
 }
 alias apropos='aproposM'
 alias ap='apropos'
-
+# Run apropos with passed string, then grep output with same string.
 aproposMG() {
 	apropos "$*" | gr "$*" 
 }
 alias apg='aproposMG'
-
+# Search packages, that can be installed with apt-get.
 apropos1() {
 	apt-cache search "$*" | catOrLess
 }
 alias ap1='apropos1'
-
+# Same, but grep output with same string.
 apropos1G() {
 	apt-cache search "$*" | gr "$*"
 }
 alias ap1g='apropos1G'
 
 alias wi1='whatis'
-# Searches apt for name
+# Prints package description. (Few lines)
 whatis1() {
 	apt-cache show "$*" | grep "^ " | catOrLess
 }
@@ -355,7 +440,7 @@ whatis2() {
 	type "$*" | catOrLess
 }
 alias wi3='whatis2'
-
+# Universal command description search function. First tries whatis, then apt-cache show and finaly type. When one of them suceeds in finding the description the function returns.
 wi() {
 	call1=`whatis "$@" 2> /dev/null`
 	if [ "$?" == "0" ]; then
@@ -376,7 +461,11 @@ wi() {
 	fi
 }
 
-#git
+
+#######
+# GIT #
+#######
+
 commit() {
   if [ $# -eq 0 ]
   then
@@ -384,64 +473,93 @@ commit() {
   else
   	message="$*"
   fi
-  sudo git commit -am "$message"
+  git commit -am "$message"
 }
-alias push='sudo git push'
+alias push='git push'
+alias pull='git pull'
 alias gits='git status | catOrLess'
-alias gita='sudo git add src/*'
+alias gita='git add src/*'
+# Displays lines of code per file in git repo and sum of all. Only looks for files in src repo.
+gitl() {
+	git ls-files \
+		| xargs file \
+		| grep text \
+		| grep -o ^.*: \
+		| tr -d ":" \
+		| grep ^src/.* \
+		| xargs wc -l 
+}
+# Plot distribution of file lenghts in git repo. Gnuplot and gnuplot-x11 packages need to be installed.
+gitplot() {
+	gitl | head -n-1 | sort -n | grep -o '^ *[0-9]* ' | tr -d ' ' > /tmp/gitlTmpFile 
+	echo "unset key; plot '/tmp/gitlTmpFile'" | gnuplot -p 
+	\rm /tmp/gitlTmpFile
+}
 
-#go
-alias run='go run'
 
-#find
-find1() {
-	tmp=`find . | grep --color=always "$1"`
-	noOfLines	=`echo "$tmp" | wc -l`
-	if [ $LINES -gt $noOfLines ]; then
-		echo "$tmp"
-	else
-		echo "$tmp" | less -R    
+###################
+# NOT SO NECESARY #
+###################
+
+# Print PATH variable, but substitute colon with new line.
+alias path='echo -e ${PATH//:/\\n}'
+
+# Print total memory in megabytes.
+alias mem="free -m | grep Mem | sed 's/^Mem: *\([0-9]*\).*/\1/'"
+
+# Print free memory in megabytes.
+fr() {
+	echo -n	$(free -m \
+		| grep Mem \
+	  	| sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/') 
+	echo " / $(mem)"
+}
+
+# Open last modified file in nano
+alias Nano="nano `ls -t | head -1`" 
+# Open last modified file in vim
+alias Vim="vim `ls -t | head -1`" 
+
+# Print majority of commands
+commands() {
+	whatis `ls -1 /usr/share/man/man1/ \
+		| sed 's/\..*$//' \
+		| sed 's/-.*$//' \
+		| sed 's/_.*$//' \
+		| uniq` 2>/dev/null \
+		| grep \(1\) \
+		| sed 's/(1)//' \
+		| grep -v DOS -i \
+		| grep -v anymap \
+		| grep -v ppm \
+		| catOrLess
+}
+
+# Size of a command
+bsize() {
+	loc=`which "$1"`
+	if [ $? -eq 0 ]; then
+		ls -Hlh "$loc" | sed 's/^[^ ]* [^ ]* [^ ]* [^ ]* \([^ ]*\).*/\1/'
 	fi
 }
 
-alias findd='find . -name .git -prune -o -type d | n'
+alias picture='display'
+alias image='display'
+alias img='display'
 
-mkdir1() {
-	mkdir "$1"
-	cd "$1"
-}
+alias tt='gtypist'
 
-sed1() {
-	input=`cat`
-	echo "$input" | sed "s/$1/$2/"
-}
+######################
+# PAGE/LINE COUNTING #
+######################
 
-sed2() {
-	input=`cat`
-	echo "$input" | sed "s/$1/$2/g"
-}
-
-# Print clipboard
-alias xo='xclip -o'
-# Put in clipboard
-alias xi='xclip -i'
-
-# NOT_SO_NECESARY
-
-alias path='echo -e ${PATH//:/\\n}'
-
-#display total memory
-alias mem="free -m | grep Mem | sed 's/^Mem: *\([0-9]*\).*/\1/'"
-
-#display free memory
-alias fr="echo -n $(free -m | grep Mem | sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/'); echo ' / $(mem)'"
-
+# Prints how many pages roughly will text occupy in a smaller format (~A5) book.
 noOfPages() {
 	echo $(wc -w "$@" | grep -o ^[0-9]*) / 500 | bc	
 }
 alias pot='noOfPages'
 
-# Count number of lines in files with extension $1 
+# Counts number of lines in files with extension $1 
 # in current and sub directories.
 noOfLines() {
 	rootDir="$PWD"
@@ -462,8 +580,7 @@ noOfLines() {
 	echo $no
 }
 alias loc='noOfLines'
-
-# Run loc for all projects in folder - also pass extension
+# Same as noOfLines, but prints results per top directory.
 locall() {
 	table=$(for project in *; do 
 		cd "$project"
@@ -477,7 +594,7 @@ locall() {
 	echo "$folder;$sum"
 	echo "$table"
 }
-
+# Summs all the the numbers.
 sumall() {
 	in=`cat`
 	sum=0
@@ -487,49 +604,389 @@ sumall() {
 	echo "$sum"
 }
 
-# Open last modified file in nano
-alias Nano="nano `ls -t | head -1`" 
 
-# Print majority of commands
-commands() {
-	whatis `ls -1 /usr/share/man/man1/ | sed 's/\..*$//' | sed 's/-.*$//' |  sed 's/_.*$//' | uniq` 2>/dev/null | grep \(1\) | sed 's/(1)//' | grep -v DOS -i | grep -v anymap | grep -v ppm | m
+###########
+# NETWORK #
+###########
+
+# Print ip of the gateway.
+alias gateway='route -n | grep "192.168." | head -n1 | grep -o "192.168.[0-9.]*"'
+
+# Ping gateway.
+alias ping1='ping -c 4 `gateway`'
+# Ping ip address of noip.com.
+alias ping2='ping -c 4 8.23.224.107'
+# Ping google.
+alias ping3='ping -c 4 www.google.com'
+# Ping all of the above.
+pingAll() {
+	ping -c 1 -q `gateway` | grep --color=never -A 1 statistics
+	ping -c 1 -q 8.23.224.107 | grep --color=never -A 1 statistics
+	ping -c 1 -q www.google.com | grep --color=never -A 1 statistics
+}
+alias pa=pingAll
+alias pa1='pingAll; pingAll'
+
+# Print your mac address.
+alias mac='ifconfig | grep HWaddr | cat'
+
+# Whats my internal ip.
+#alias ip1='echo `/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]\*`'
+ip1() {
+	/sbin/ifconfig \
+		| grep "inet addr:192.168" \
+		| grep -o addr:[0-9.]* \
+		| grep -o [0-9.]\* \
+		| cat 
 }
 
-# Size of a command
-bsize() {
-	loc=`which "$1"`
-	if [ $? -eq 0 ]; then
-		ls -Hlh "$loc" | sed 's/^[^ ]* [^ ]* [^ ]* [^ ]* \([^ ]*\).*/\1/'
+# Whats my external ip. 
+alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]\*`'
+
+# How many people are on network beside you (number of hosts).
+noh() {
+	if [ $# -gt 0 ]
+	then
+		forth="$1"
+	else
+		forth="254"
 	fi
+	thirdNumberOfIp=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+	command="nmap -sP 192.168.$thirdNumberOfIp.0-$forth"
+	noOfHosts=`$command | grep -o "[0-9]* hosts up" | grep -o "[0-9]*"`
+	noOfOtherUsers=`expr $noOfHosts - 2`
+	echo $noOfOtherUsers
+}
+# Check only first 10 addreses.
+alias noh1='noh 10'
+
+# Scans first $1 addreses of local network.
+nmap1() {
+  if [ $# -eq 0 ]
+  then
+    third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+    forth="254"
+  fi
+  if [ $# -eq 1 ]
+  then
+    third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+    forth="$1"
+  fi
+  if [ $# -gt 1 ]
+  then
+    third="$1"
+    forth="$2"
+  fi
+  nmap -sP 192.168.$third.0-$forth
+}
+# Scan first 20 addreses of local network.
+alias nmap2='nmap1 20'
+
+# Saves output of nmap1 in file named after current time (year-month-day-hour-minute: week of the year-day of the week).
+networkLogger() {
+	destDir="."
+	third=`/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]* | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+	forth="20"
+	nmap -sP 192.168.$third.0-$forth > "$destDir"/`date +%y-%m-%d-%H-%M:%W-%u`
 }
 
-alias picture='display'
-alias image='display'
-alias img='display'
+# Should create some kind of a timeline from files created by notworkLogger, displaying when which machine was online.
+niceDisplay() {
+	cd "~/networkLogger/logs"
+	# For all uniqe host names,
+	for n in `cat * | grep Host | sort | uniq | grep -v Gateway | sed 's/^Host \([^ ]*\).*$/\1/'`; do
+		printf "$n:\t"
+		# check every log file if it contains it
+		for f in *; do
+			cat "$f" | grep -q "$n"
+			if [ $? -eq 0 ]; then
+				# and print a * if it does.
+				printf "*"
+			else
+				printf " "
+			fi
+		done
+		echo ""
+	done
+}
 
-#            #
-# NETWORKING #
-#            #
 
-#wlan up/down
+############
+# WIRELESS #
+############
+
+# Block wireless device.
+alias woff='rfkill block `rfkill list | grep Wireless | grep ^[0-9] -o`'
+# Unblock wireless device.
+alias won='rfkill unblock `rfkill list | grep Wireless | grep ^[0-9] -o`'
+# Reset wireles device.
+alias wr='woff; won'
+# Wlan up/down.
 alias up='sudo ifconfig wlan0 up'
 alias down='sudo ifconfig wlan0 down'
 
-#get gateway
-alias gateway='route -n | grep "192.168." | head -n1 | grep -o "192.168.[0-9.]*"'
-#ping gateway
-alias ping1='ping -c 4 `gateway`'
-alias ping2='ping -c 4 8.23.224.107'
-alias ping3='ping -c 4 www.google.com'
-alias mac='ifconfig | grep HWaddr'
-
-# Displays wireless networks in range
+# Displays wireless networks in range.
 wlan() {
 	sudo iwlist wlan0 scan | grep Quality -A2 | tr -d "\n" | sed 's/--/\n/g' | sed -e 's/ \+/ /g' | sort -r | sed 's/ Quality=//g' | sed 's/\/70 Signal level=-[0-9]* dBm Encryption key:/ /g' | sed 's/ ESSID:/ /g'
 }
+# Whois piped to less if necesary.
+whois1() {
+	whois "$@" | catOrLess
+}
 
-# Print countries on the route to host.
-# Ex wget -qO- http://api.wipmania.com/"$ip"
+
+############
+# INTERNET #
+############
+
+# Rss feed reader.
+alias rss='nrss'
+
+# Prints nba scores. Not totaly reliable, as pages tend to change.
+alias nbaScoreboard="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/scoreboard.asp | grep -w 'PM' -A10 | grep -v 'STATS LLC\|Any commercial\|NBC Sports\|NBC Universal' | grep -v MST | sed 's/^.*ET\([0-9:]*\).*$/   \1/' | grep -v Preview | sed '/^$/N;/^\n$/D' | m"
+nba() {
+	e -n '   ';	t; e 
+	nbaScoreboard
+}
+# Prints nba standings. A bit more reliable. 
+alias nbaStandings="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/standings_conference.asp | grep 'Eastern Conference' -A39 | gr _ -v | sed 's/New York/New=York/g' | sed 's/San Antonio/San=Antonio/g' | sed 's/Oklahoma City/Oklahoma=City/g' | sed 's/Trail Blazers/Trail=Blazers/g' | sed 's/Los Angeles/Los=Angeles/g' | sed 's/Golden State/Golden=State/g' | sed 's/New Orleans/New=Orleans/g' | sed 's/Conf GB/Conf=GB/g' | sed 's/Last 10/Last=10/g' | sed 's/\([0-9]*\) \([W\|L]\)$/\1=\2/g' | sed 's/W L/= = = W L/' | sed 's/Eastern Conference/€/g' | sed 's/Western Conference/ħ/g' | column -t | tr '=' ' ' | sed 's/€/Eastern Conference/' | sed 's/ħ/\nWestern Conference/' | m"
+alias nba1='e; nbaStandings; e'
+
+
+# Opens linx browser with search results for passed arguments except the first one which specifies the webpage. 
+searchWebpage() {
+  if [ $# -eq 1 ]; then
+    url="$1"
+  fi
+
+  if [ $# -eq 2 ]; then
+    url="$1/search?q=$2" 
+  fi
+
+  if [ $# -gt 2 ]; then
+    url="$1/search?q=$2"
+    i=0
+    for var in "$@"; do
+      if [ $i -gt 1 ];  then
+        url=$url+$var
+      fi
+      let i=$i+1
+    done
+  fi
+
+  eval "lynx $url"
+}
+
+# Opens lynx browser with search results for $@ in stackowerflow.com. Not realy useful, you get better results using Google.
+alias so='stack'
+alias stack='searchWebpage http://stackoverflow.com'
+# Opens lynx browser with search results for $@ in superuser.com. 
+alias suser='http://superuser.com'
+
+# Opens lynx browser with search result for $@ in wikipedia.org. 
+wiki() {
+  if [ $# -eq 0 ]
+  then
+    url='http://en.wikipedia.org/wiki/'
+  fi
+
+  if [ $# -eq 1 ]
+  then
+    url="http://en.wikipedia.org/wiki/$1"
+  fi
+
+  if [ $# -gt 1 ]
+  then
+    url="http://en.wikipedia.org/wiki/$1"
+    i=0
+    for var in "$@"
+    do
+      if [ $i -gt 0 ]
+      then
+        url="${url}_${var}"
+      fi
+      let i=$i+1
+    done
+  fi
+
+  echo "lynx $url"
+}
+
+
+###########
+# WEATHER #
+###########
+
+# Aliases for weather conditions at specific locations. City ids can be found at yahoo weather, just find page of the city and copy id from url.
+weathr() {
+	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" | awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
+}
+alias wea1='weathr 531951' # Weather for Trzic.
+alias wea2='weathr 530634' # Weather for Ljubljana.
+alias wea='wea1; wea2'
+
+
+##################
+# IMAGE DOWNLOAD #
+##################
+
+# Get google image thumbnail for the passed phrase.
+gi1() {
+	# Wget needs to introduce itself as a browser.
+	wget -qO- "http://images.google.com/images?q=$(echo "$@" | sed 's/ /+/g')" -U "Firefox on Ubuntu Gutsy: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.14) Gecko/20080418 Ubuntu/7.10 (gutsy) Firefox/2.0.0.14" | 
+	grep -o '<img[^>]*>' | 
+	head -n1 | 
+	grep "src=\"[^\"]*" -o | 
+	sed 's/src=\"//' | 
+	wget -i- -O-
+}
+# Download image and instantly display it.
+gi() {
+	gi1 "$@" 2> /dev/null | display &
+}
+# Same but as background process.
+gi2() {
+	gi1 "$@" 2> /dev/null | display
+}
+# For every input line it downloads first google image match (thumbnail) and saves it in PWD.
+gimage() {
+	cat | while read line
+	do 
+		gi1 "$line" > "$line"
+		# Wait 3 seconds between downloads, so we appear more humanlike. If no sleep is used, your ip will get banned when reaching arond 1000 or 2000 downloads. Of course if you have dynamic ip, reseting connection to your internet provider will fix the problem. I did't try to find out what happens if you repeat the process:)
+		sleep 3
+	done
+}
+
+
+#########
+# AUDIO #
+#########
+
+# Set master volume in rage of 0 to 100.
+vol() {
+	amixer set Master playback "$1"
+}
+# Volume up 6dB.
+q() {
+	vol "6dB+" | tail -n 1
+}
+# Volume down 6dB.
+a() {
+	vol "6dB-" | tail -n 1
+}
+# Volume up 2 dB.
+qq() {
+	vol "2dB+" | tail -n 1
+}
+# Volume down 2 dB.
+aa() {
+	vol "2dB-" | tail -n 1
+}
+
+
+################
+# AUDIO PLAYER #
+################
+
+# Plays song. (Downloads from youtube if nothing found localy)
+# TODO: Doesen't find file in a filesystem.
+spilej() {
+	if [ -f "$1" ]
+	then
+		echo "Playing \"$1\""
+		mplayer -slave "$@" &> /dev/null
+	#else if
+		# TODO: check temp folder
+		#foundFiles=`find /tmp/spilejYoutube/ -iname '*$1*.wav' -o -iname '*$1*.mp3'-o -iname '*$2*.mp3'-o -iname '*$2*.mp3'`
+		#if [ $foundFiles == "" ]
+	else
+		#search filesystem
+		#TODO check that it's not mp3.part file
+		echo "No file in folder. Scanning filesystem..."
+		listOfFiles=`locate ".*$*.*mp3" ".*$*.*wav" --regex --quiet --ignore-case`
+		noOfFiles=`echo "$listOfFiles" | wc -l`
+		if [ "$noOfFiles" -gt 1 ]
+		then
+			#echo "File found."
+			let chosenNumber="$RANDOM"%"$noOfFiles"
+			fileName=`echo "$listOfFiles" | sed "$chosenNumber!d" | sed 's/\(.*\)\r/"\1"/g' `
+			echo "Playing \"$fileName\""
+			mplayer "$fileName" &> /dev/null
+		else
+			echo "No file in filesystem. Searching Youtube..."
+			spilejYoutube "$*"
+		fi		
+	fi
+}
+
+# Try to find song on Youtube. Download video, convert it to audio and play.
+spilejYoutube() {
+	#TODO More reliable search	
+	#TODO MP4
+	#TODO Stop executing if one step fails
+	cd ~/Music; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube
+	# Generate script that will try to input string into youtubes search box, and then somehow navigate to the search results, choose one hit and bookmark it in $HOME/lynx_bookmarks.
+	#echo "Generating search script."
+	lynxYoutubeSkripta "$*" > spilejLinxSkripta
+	# Run lynx with that script.
+	#echo "Searching."
+	lynx -cmd_script=~/Music/spilejYoutube/spilejLinxSkripta www.youtube.com &>/dev/null
+	# Use last bookmark.
+	url=`cut --delimiter='"' -f 2 $HOME/lynx_bookmarks.html | tail -n1 | sed s/";".*$//`
+	#echo "url:$url"
+	# Download video using youtube-dl.
+	echo "Downloading: $url"
+	youtube-dl -q "$url"
+	# Convert it into mp3.
+	fileId=`echo $url | sed 's/^.*=//'`
+	videoFilename=`ls *$fileId.*`
+	audioFilename=`echo "$videoFilename" | sed 's/\..*$//g'`.wav
+	echo "filename: $audioFilename"
+	ffmpeg -i "$videoFilename" "$audioFilename" &> /dev/null
+	# Delete the video.
+	\rm "$videoFilename"
+    # Play the audio.
+	mplayer "$audioFilename" &>/dev/null
+}
+
+# Serches youtube for arguments and (hopefuly) returns first match.
+lynxYoutubeSkripta() {
+	echo "key v"
+	for i in {1..8}
+	do
+		echo "key Down Arrow"
+	done
+	echo "`echo "$*" | sed 's/\(.\)/\1\n/g' | sed 's/[ ]/<space>/g' | sed 's/^/key /g' | head -n -1`"
+	echo "key Up Arrow"
+	echo "key Right Arrow"
+	for i in {1..44}
+	do
+		echo "key Down Arrow"
+	done
+	echo "key a
+key l
+key ^J
+key q
+key y"
+}
+
+# Plays three songs that match the search pattern in a row. 
+#TODO Should not play same songs.
+spilej3() {
+	spilej "$@"
+	spilej "$@"
+	spilej "$@"
+}
+
+
+#################################
+# TRACEROUTE WITH COUNTRY CODES #
+#################################
+
+# Print country codes on the route to host.
+# This is one option, but doesent work correctly: wget -qO- http://api.wipmania.com/"$ip",
+# because it mostly just returns the location of the seat of company that owns the router.
 traceroute1() {
 	i=1
 	echo -n "$@; "
@@ -576,6 +1033,7 @@ traceroute1() {
 	echo
 }
 
+# Prints asumed location of the router.
 urlToCountry() {
 	input=`cat`
 	echo "$input" | 
@@ -652,7 +1110,7 @@ callSed() {
 	echo "$input"
 }
 
-# Prints urls of universities, one per country
+# Prints urls of random universities, one per country.
 universities() {
 	# get all country codes from index site, together with country name
 	wget -qO - http://univ.cc/world.php | grep -o 'option value=\"[a-z]*\">[A-Za-z ]*(' | grep -o \".* | tr -d "\"" | tr -d "(" | while read ccc
@@ -679,7 +1137,7 @@ universities() {
 	done
 }
 
-# Traceroute1 all countries.
+# Traceroutes one university per country. If as argument "1" is passed, then it calls traceroute1 instead. That variation prints country codes of routers on path, instead of their urls.
 www() {
 	universities | while read nameAndUrl
 	do
@@ -694,438 +1152,5 @@ www() {
 
 alias www1='www 1'
 
-whois1() {
-	whois "$@" | catOrLess
-}
-whois2() {
-	whois "$@" | grep -i country
-}
-
-pingAll() {
-	ping -c 1 -q `gateway` | grep --color=never -A 1 statistics
-	ping -c 1 -q 8.23.224.107 | grep --color=never -A 1 statistics
-	ping -c 1 -q www.google.com | grep --color=never -A 1 statistics
-}
-alias pa=pingAll
-alias pa1='pingAll; pingAll'
-
-#whats my internal ip - ifconfig
-alias ip1='echo `/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]\*`'
-
-#whats my external ip - ifconfig
-alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]\*`'
-
-#how many people on network beside you (number of hosts)
-noh() {
-	if [ $# -gt 0 ]
-	then
-		forth="$1"
-	else
-		forth="254"
-	fi
-	thirdNumberOfIp=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
-	command="nmap -sP 192.168.$thirdNumberOfIp.0-$forth"
-	noOfHosts=`$command | grep -o "[0-9]* hosts up" | grep -o "[0-9]*"`
-	noOfOtherUsers=`expr $noOfHosts - 2`
-	echo $noOfOtherUsers
-}
-
-alias noh1='noh 10'
-
-#scans local network
-nmap1() {
-  if [ $# -eq 0 ]
-  then
-    third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
-    forth="254"
-  fi
-  if [ $# -eq 1 ]
-  then
-    third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
-    forth="$1"
-  fi
-  if [ $# -gt 1 ]
-  then
-    third="$1"
-    forth="$2"
-  fi
-  nmap -sP 192.168.$third.0-$forth
-}
-
-alias nmap2='nmap1 10'
-
-# Shrani output od nmap1 v file poimenovan po trenutnem času
-# [leto-mesec-dan-ura-minuta:teden v letu-dan v tednu]
-networkLogger() {
-	destDir="~/networkLogger"
-	mkdir "$destDir"
-	third=`/sbin/ifconfig | grep "inet addr:192.168" | grep -o addr:[0-9.]* | grep -o [0-9.]* | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
-	forth="20"
-	nmap -sP 192.168.$third.0-$forth > "$destDir"/`date +%y-%m-%d-%H-%M:%W-%u`]
-}
-
-niceDisplay() {
-	cd "~/networkLogger/logs"
-	# For all uniqe host names,
-	for n in `cat * | grep Host | sort | uniq | grep -v Gateway | sed 's/^Host \([^ ]*\).*$/\1/'`; do
-		printf "$n:\t"
-		# check every log file if it contains it
-		for f in *; do
-			cat "$f" | grep -q "$n"
-			if [ $? -eq 0 ]; then
-				# and print a * if it does.
-				printf "*"
-			else
-				printf " "
-			fi
-		done
-		echo ""
-	done
-}
-
-#          #
-# INTERNET #
-#          #
-
-alias lpp='lynx http://bus.talktrack.com/'
-
-alias kdox='mplayer http://wms2.mainstreamnetwork.com/kdox-am &'
-alias wabc='mplayer http://69.28.128.148:80/stream/citadelcc_WABC-AM &'
-
-#nba
-alias nbaScoreboard="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/scoreboard.asp | grep -w 'PM' -A10 | grep -v 'STATS LLC\|Any commercial\|NBC Sports\|NBC Universal' | grep -v MST | sed 's/^.*ET\([0-9:]*\).*$/   \1/' | grep -v Preview | sed '/^$/N;/^\n$/D' | m"
-alias nbaStandings="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/standings_conference.asp | grep 'Eastern Conference' -A39 | gr _ -v | sed 's/New York/New=York/g' | sed 's/San Antonio/San=Antonio/g' | sed 's/Oklahoma City/Oklahoma=City/g' | sed 's/Trail Blazers/Trail=Blazers/g' | sed 's/Los Angeles/Los=Angeles/g' | sed 's/Golden State/Golden=State/g' | sed 's/New Orleans/New=Orleans/g' | sed 's/Conf GB/Conf=GB/g' | sed 's/Last 10/Last=10/g' | sed 's/\([0-9]*\) \([W\|L]\)$/\1=\2/g' | sed 's/W L/= = = W L/' | sed 's/Eastern Conference/€/g' | sed 's/Western Conference/ħ/g' | column -t | tr '=' ' ' | sed 's/€/Eastern Conference/' | sed 's/ħ/\nWestern Conference/' | m"
-
-nba() {
-	e -n '   ';	t; e 
-	nbaScoreboard
-}
-alias nba1='e; nbaStandings; e'
-alias nba2='lynx http://scores.nbcsports.msnbc.com/nba/scoreboard.asp'
-
-#stack overflow
-alias so='stack'
-stack() {
-
-  if [ $# -eq 0 ]
-  then
-    url='http://stackoverflow.com/'
-  fi
-
-  if [ $# -eq 1 ]
-  then
-    url="http://stackoverflow.com/search?q=$1"
-  fi
-
-  if [ $# -gt 1 ]
-  then
-    url="http://stackoverflow.com/search?q=$1"
-    i=0
-    for var in "$@"
-    do
-      if [ $i -gt 0 ]
-      then
-        url=$url+$var
-      fi
-      let i=$i+1
-    done
-  fi
-
-  eval "lynx $url"
-}
-
-#super user
-suser() {
-
-  if [ $# -eq 0 ]
-  then
-    url='http://superuser.com/'
-  fi
-
-  if [ $# -eq 1 ]
-  then
-    url="http://superuser.com/search?q=$1"
-  fi
-
-  if [ $# -gt 1 ]
-  then
-    url="http://superuser.com/search?q=$1"
-    i=0
-    for var in "$@"
-    do
-      if [ $i -gt 0 ]
-      then
-        url=$url+$var
-      fi
-      let i=$i+1
-    done
-  fi
-
-  eval "lynx $url"
-}
-
-#wikipedia
-wiki() {
-  if [ $# -eq 0 ]
-  then
-    url='http://en.wikipedia.org/wiki/'
-  fi
-
-  if [ $# -eq 1 ]
-  then
-    url="http://en.wikipedia.org/wiki/$1"
-  fi
-
-  if [ $# -gt 1 ]
-  then
-    url="http://en.wikipedia.org/wiki/$1"
-    i=0
-    for var in "$@"
-    do
-      if [ $i -gt 0 ]
-      then
-        url="${url}_${var}"
-      fi
-      let i=$i+1
-    done
-  fi
-
-  eval "lynx $url"
-}
-
-#Shows weather for city specified by citycode defined by yahoo weather
-weathr() {
-	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" | awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
-}
-
-# For every input line it downloads first google image match and saves it in pwd
-gimage() {
-	cat | while read line
-	do 
-		gi1 "$line" > "$line"
-		sleep 3
-	done
-}
-
-gi1() {
-	wget -qO- "http://images.google.com/images?q=$(echo "$@" | sed 's/ /+/g')" -U "Firefox on Ubuntu Gutsy: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.14) Gecko/20080418 Ubuntu/7.10 (gutsy) Firefox/2.0.0.14" | 
-	grep -o '<img[^>]*>' | 
-	head -n1 | 
-	grep "src=\"[^\"]*" -o | 
-	sed 's/src=\"//' | 
-	wget -i- -O-
-}
-
-gi() {
-	gi1 "$@" 2> /dev/null | display &
-}
-
-gi2() {
-	gi1 "$@" 2> /dev/null | display
-}
-
-#       #
-# AUDIO #
-#       #
-
-#AUDIO PLAYER
-#plays song (Downloads from youtube if nothing found localy)
-#TODO doesen't fint file in filesystem
-spilej() {
-	if [ -f "$1" ]
-	then
-		echo "Playing \"$1\""
-		mplayer -slave "$@" &> /dev/null
-	#else if
-		# TODO: check temp folder
-		#foundFiles=`find /tmp/spilejYoutube/ -iname '*$1*.wav' -o -iname '*$1*.mp3'-o -iname '*$2*.mp3'-o -iname '*$2*.mp3'`
-		#if [ $foundFiles == "" ]
-	else
-		#search filesystem
-		#TODO check that it's not mp3.part file
-		echo "No file in folder. Scanning filesystem..."
-		listOfFiles=`locate ".*$*.*mp3" ".*$*.*wav" --regex --quiet --ignore-case`
-		noOfFiles=`echo "$listOfFiles" | wc -l`
-		if [ "$noOfFiles" -gt 1 ]
-		then
-			#echo "File found."
-			let chosenNumber="$RANDOM"%"$noOfFiles"
-			fileName=`echo "$listOfFiles" | sed "$chosenNumber!d" | sed 's/\(.*\)\r/"\1"/g' `
-			echo "Playing \"$fileName\""
-			mplayer "$fileName" &> /dev/null
-		else
-			echo "No file in filesystem. Searching Youtube..."
-			spilejYoutube "$*"
-		fi		
-	fi
-}
-
-spilejYoutube() {
-	#TODO More reliable search	
-	#TODO MP4
-	#TODO stop executing if one step fails
-	cd ~/Music; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube
-	#zgeneriraj skripto in jo sprevi v tmp
-	#echo "Generating search script."
-	lynxYoutubeSkripta "$*" > spilejLinxSkripta
-	#zazeni lynx z skripto
-	#echo "Searching."
-	lynx -cmd_script=~/Music/spilejYoutube/spilejLinxSkripta www.youtube.com &>/dev/null
-	#uzami zadnji bookmark
-	url=`cut --delimiter='"' -f 2 $HOME/lynx_bookmarks.html | tail -n1 | sed s/";".*$//`
-	#echo "url:$url"
-	#zdaunloudaj video iz youtuba
-	echo "Downloading: $url"
-	youtube-dl -q "$url"
-	#ga pretvori v mp3			
-	fileId=`echo $url | sed 's/^.*=//'`
-	videoFilename=`ls *$fileId.*`
-	audioFilename=`echo "$videoFilename" | sed 's/\..*$//g'`.wav
-	echo "filename: $audioFilename"
-	ffmpeg -i "$videoFilename" "$audioFilename" &> /dev/null
-	#izbrisi video
-	\rm "$videoFilename"
-    #play audio
-	mplayer "$audioFilename" &>/dev/null
-}
-
-#serches youtube for arguments and (hopefuly) returns first match
-lynxYoutubeSkripta() {
-	echo "key v"
-	for i in {1..8}
-	do
-		echo "key Down Arrow"
-	done
-	echo "`echo "$*" | sed 's/\(.\)/\1\n/g' | sed 's/[ ]/<space>/g' | sed 's/^/key /g' | head -n -1`"
-	echo "key Up Arrow"
-	echo "key Right Arrow"
-	for i in {1..44}
-	do
-		echo "key Down Arrow"
-	done
-	echo "key a
-key l
-key ^J
-key q
-key y"
-}
-
-#TODO Should not play same songs.
-spilej3() {
-	spilej "$@"
-	spilej "$@"
-	spilej "$@"
-}
-
-#Sets master volume from 0 to 100
-vol() {
-	amixer set Master playback "$1"
-}
-
-q() {
-	vol "6dB+" | tail -n 1
-}
-a() {
-	vol "6dB-" | tail -n 1
-}
-qq() {
-	vol "2dB+" | tail -n 1
-}
-aa() {
-	vol "2dB-" | tail -n 1
-}
-
-#      #
-# TEXT #
-#      #
-
-alias tz='tail "$TODO"'
-alias htu='gedit "$HUD" &'
-alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
-alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
-
-alias m1='m "$HUD"'
-alias m2='m $HOME/.bash_aliases'
-alias m3='m $HOME/.bashrc'
-alias m4='m "$TODO"'
-
-alias n1='n "$HUD"'
-alias n2='n $HOME/.bash_aliases'
-alias n3='n $HOME/.bashrc'
-alias n4='n "$TODO"'
-
-alias v1='v "$HUD"'
-alias v2='v $HOME/.bash_aliases'
-alias v3='v $HOME/.bashrc'
-alias v4='v "$TODO"'
-
-#Append line to todo file
-alias zt='ztodo'
-ztodo() { 
-	echo "$@" >> "$TODO" 
-}
-#Append line to HUDI TERMINAL UKAZI file
-zhud() { 
-	echo "$@" >> "$HUD" 
-}
-#Append line to tmp file
-alias ztt='ztmp'
-ztmp() { 
-	echo "$@" >> "$TMP" 
-}
-#Append line to toread file
-ztord() { 
-	echo "$@" >> "$TORD" 
-}
-#write out zapiksi
-alias ctodo='catOrLess "$TODO"'
-alias chud='catOrLess "$HUD"'
-alias ctmp='catOrLess "$TMP"'
-alias ctord='catOrLess "$TORD"'
-
 
 ######## NEW / NOT SORTED #########
-
-# Se pozene iz lessa ce pritisnemo v
-export EDITOR="nano"
-
-# Syntax highligh za less
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R '
-
-alias de='cd ~/Desktop; ls'
-alias code='cd ~/code; ls'
-alias data='cd ~/data; ls'
-
-alias rss='nrss'
-
-# Count lines in git repo
-alias gitl='git ls-files | xargs file | grep text | grep -o ^.*: | tr -d ":" | grep ^src/.* | xargs wc -l'
-
-# Plot distribution of file lenghts in git repo
-gitplot() {
-	gitl | head -n-1 | sort -n | grep -o '^ *[0-9]* ' | tr -d ' ' > /tmp/gitlTmpFile 
-	echo "unset key; plot '/tmp/gitlTmpFile'" | gnuplot -p 
-	\rm /tmp/gitlTmpFile
-}
-
-vga() {
-	#turn off laptop monitor if external is conected
-	xrandr | grep VGA | grep " connected " > /dev/null
-	if [ $? -eq 0 ]; then
-    	xrandr --output LVDS1 --off
-		killall nautilus
-		nautilus -n &
-	fi
-}
-
-alias tt='gtypist'
-
-tohungarian() {
-	cat | sed 's/\([A-Z]\)/_\1/g' | tr [a-z] [A-Z]
-}
-
-tocamel() {
-	cat | tr [A-Z] [a-z] | sed 's/_\([a-z]\)/\U\1/g'
-}
-

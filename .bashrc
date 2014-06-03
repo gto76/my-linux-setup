@@ -1,21 +1,67 @@
+# Loads my personal aliases.
 if [ -f ~/.bashrc2 ]; then
 	. ~/.bashrc2
 fi
-
+# Loads useful public aliases.
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-set -o vi
-export EDITOR="vim"
- 
-export HUD="$HOME/my-aliases/Desktop/WTF MAN"
-
+# Keyboard layouts with additional keybindings, see README.md.
 alias us='setxkbmap -layout us; xmodmap ~/.Xmodmapus'
 alias si='setxkbmap -layout si; xmodmap ~/.Xmodmapsi'
 
-alias wea1='weathr 531951'
-alias wea2='weathr 530634'
-alias wea='wea1; wea2'
+# Syntax highligh for less
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
 
 
+###################################################
+# ALIASES FOR EASY AND QUICK ACCESS TO THE FILES: #
+#  .bashrc,  .bash_aliases,  WTF MAN, and  TOD0   #
+###################################################
+
+# Location of text file with useful unix command descriptions.
+export HUD="$HOME/Desktop/WTF MAN"
+# Location of TOD0 text file.
+export TODO="$HOME/Desktop/TODO"
+
+# Opens file in less.
+alias m1='m "$HUD"'
+alias m2='m $HOME/.bash_aliases'
+alias m3='m $HOME/.bashrc'
+alias m4='m "$TODO"'
+# Opens file in nano.
+alias n1='n "$HUD"'
+alias n2='n $HOME/.bash_aliases'
+alias n3='n $HOME/.bashrc'
+alias n4='n "$TODO"'
+alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
+# Opens file in vim.
+alias v1='v "$HUD"'
+alias v2='v $HOME/.bash_aliases'
+alias v3='v $HOME/.bashrc'
+alias v4='v "$TODO"'
+# Opens file in gedit.
+alias g1='g "$HUD" &'
+alias g2='g $HOME/.bash_aliases &'
+alias g3='g $HOME/.bashrc &'
+alias g4='g "$TODO" &'
+alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
+# Greps file for passed phrase.
+alias c1='m1 | c | gr'
+alias c2='m2 | c | gr'
+alias c3='m3 | c | gr'
+alias c4='m4 | c | gr'
+
+# Append line to TOD0 file. 
+alias zt='ztodo'
+ztodo() {
+    echo "$@" >> "$TODO"
+}
+# Append line to WTF MAN file.
+zhud() {
+    echo "$@" >> "$HUD"
+}
+
+alias tz='tail "$TODO"'

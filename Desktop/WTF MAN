@@ -559,7 +559,10 @@ ppmforge - creates picture of random planet or clouds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
 	-p	leave plots open after exit
 	plot file.dat - plot data from dat file
-ffmpeg -i <fileNameIn> <fileNameOut> - video and audio format converter
+ffmpeg -i <fileNameIn> <fileNameOut> - Video and audio format converter. Has been replaced by:
+libav-tools: avconv - video and audio format converter
+openshot - gui movie editor
+openmovieeditor - gui movie editor
 aview, asciiview - ASCII art image viewer and video player
 
 #############
@@ -687,6 +690,7 @@ git ls-files - list files
 ###########
 alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
 ctrl-[ - escape
+. - execute last command again
 help: 	ctrl ] - follow link
 		ctrl o - go back
 		:q     - exit help		
@@ -757,7 +761,7 @@ MISC
 K - look up word under cursor in man pages
 
 SET COMMAND
-:set x,nox,x=value,all,x? - set x/unset x/assign x/print all values/print x
+:set x,nox (also x!),x=value,all,x? - set x/unset x/assign x/print all values/print x
 command (short)	| default	| explanation
 ----------------+-----------+-------------------------------------
 autoident (ai)	| noai		| 
@@ -788,6 +792,10 @@ x,X - delete character/delete back
 . - repeat last change
 ~ - change case of character
 ctrl a,x - increment/decrement number under cursor
+
+AUTOMATIC LINEBRAKE:
+:set tw=80 - set text width
+gq - formats selected text
 
 COLORSCHEME:
 :colorscheme darkblue, torte - nice, darker

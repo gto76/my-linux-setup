@@ -329,7 +329,7 @@ whois - info about domain
 host <ip_address/hostname> - DNS lookup utility
 	nslookup - same interactively
 	dig - same, lot of options
-hostname - prints computer name
+hostname - prints/sets computer name
 netstat - Displays contents of /proc/net files,  status of ports...
 	-r - routing table
 	-i - interfaces
@@ -402,6 +402,7 @@ sshd - (openssh-server) ssh server deamon
 	/etc/init.d/ssh restart - sshd restart
 	ssh-keygen -t rsa -C "email address" - generate rsa key pair
 	~/.ssh - location for your keys
+	CYGWIN sshd - name of the service on windows
 scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp, (ssh)
 ssh [user]@[address] "mpg321 -" < [file].mp3 - stream audio over ssh
 wget -c	continue downloading unfinished file. Can also use wildcards, but use single quotes around url. 
@@ -658,7 +659,14 @@ git add <filename> OR git add .
 git status
 git commit -am "Commit message goes here."
 -
-git clone git://github.com/USER/REPOSITORY.git - download repo (later you keep refreshing with 'git pull')
+git clone git://github.com/USER/REPOSITORY.git - download repo (later you keep refreshing with 'git pull') -> You need SSH key. If you don't want, use https://github.com/USER/REPOSITORY.git for address.
+--
+GENERATE SSH KEY:
+1. Check for existing keys: cd ~/.ssh; ls -al
+2. Generate new key: ssh-keygen -t rsa -X "your_email@example.com"
+3. Add your key to the ssh-agent: ssh-add ~/.ssh/id_rsa
+4. Add your key to GitHub: copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key.
+
 --
 ADD TO GITHUB:
 Create remote repository on website
@@ -687,6 +695,10 @@ gitstats
 --
 git log --name-only --author=<name> - print changed files by commit
 git ls-files - list files
+--
+GITHUB md format:
+insert picture:
+![Alt text](/doc/basket-stats.png?raw=true "<Description>")
 
 ###########
 ##  VIM  ##
@@ -803,7 +815,7 @@ gq - formats selected text
 
 COLORSCHEME:
 :colorscheme darkblue, torte - nice, darker
-			 default, slate - less contrast
+	slate, default - less contrast
 
 SPELLCHECK:
 :set spell spelllang=en_us

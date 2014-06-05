@@ -31,6 +31,7 @@ function createLink {
 createLink ~ .bashrc
 createLink ~ .bash_aliases
 createLink ~ .bashrc2
+createLink ~ .vimrc
 createLink ~ .Xmodmapus
 createLink ~ .Xmodmapsi
 

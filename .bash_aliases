@@ -180,13 +180,15 @@ alias he='head'
 alias he1='head -n1'
 alias ta='tail'
 alias ta1='tail -n1'
+# Force remove
+alias rm1='rm -f'
 # Console calculator with float.
 alias bc1='gcalccmd'
 # Print exit status of last command.
 alias ?="echo $?"
 alias mk="make"
 # Report disk space of main partitions in human readable form.
-alias df1='df -h | grep "sda\|Size" | cat'
+alias df1='df -h | grep "sd\|Size" | cat'
 alias pdf='evince'
 # Set volume in console for all audio channels.
 alias mixer='alsamixer'

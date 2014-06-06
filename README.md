@@ -60,40 +60,11 @@ To execute it run:
 ```
 Of course you can also create links yourself, or even just copy the files if you don't intend to commit.
 
-### .Xmodmapus, .Xmodmapsi:
-Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. Here is the american version - .Xmodmapus:
-
-![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
-Also present is slovenian version - .Xmodmapsi.
-
-Warning: For keymaps to work, it is mandatory that layout for that language is set before xmodmap is run. For example if American layout is selected and we want Slovenian we need to type:
-```
-	setxkbmap -layout si
-	xmodmap ~/.Xmodmapsi
-```
-In .bashrc there are already two aliases that do this, namely `us` for American and `si` for Slovenian layout. If you want keymaps to get loaded when X starts (at least for Mint/Debian), go to Startup Applications and add new aplication: "xmodmap $HOME/.Xmodmapus" with 2 second delay.
-
-### .reaper/Reaper Shortcuts Jure 04.ReaperKeyMap:
-Custom shortcuts for Reaper DAW (digital audio workstation).
-
-![Alt text](/doc/reaper-keyboard-shortcuts.png?raw=true "Picture of Keyboard")
-Mind that there are a lot of other shortcuts not on picture, that use modifiers.
-
-### .Desktop/WTF MAN:
-Long list of unix commands with short descriptions. Useful for quick search before you start googling. In .bashrc there are few aliases defined that enable quick access, namely:
-```
-	m1 -> less .Desktop/WTF MAN
-	c1 -> grep .Desktop/WTF MAN
-	v1 -> vim .Desktop/WTF MAN
-	n1 -> nano .Desktop/WTF MAN
-```
-
 ### .bashrc:
 My own .bashrc. Kind of ties everything together. Useles without .bash_aliases, WTF MAN and .Xmodmapus. In detail:
 * Exports path of WTF MAN. It is set to `$HOME/my-aliases/Desktop/WTF MAN`.
 * Defines aliases **us** and **si**, that set up my custom keymaps. (see .Xmodmapus, .Xmodmapsi)
 * Defines aliases that enable easy access to .bash_aliases (2), WTF MAN (1), TODO (4) and to itself (3). They are composed out of a letter and a number. Letter signifies a program (m - less, v - vim, n - nano, g - gedit) and number a file.
-
 
 ###.bash_aliases:
 My own .bash_aliases. Besides a lot of useful aliases, there are also some interesting functions, such as:
@@ -119,4 +90,32 @@ My own .bash_aliases. Besides a lot of useful aliases, there are also some inter
 * **gi** - Downloads small image of a phrase from google images.
 
 * **wi** - Tries to find description of a command using "whatis", "apt-cache show" and "type". Returns first match.
+
+### .Desktop/WTF MAN:
+Long list of unix commands with short descriptions. Useful for quick search before you start googling. In .bashrc there are few aliases defined that enable quick access, namely:
+```
+	m1 -> less .Desktop/WTF MAN
+	c1 -> grep .Desktop/WTF MAN
+	v1 -> vim .Desktop/WTF MAN
+	n1 -> nano .Desktop/WTF MAN
+```
+
+### .Xmodmapus, .Xmodmapsi:
+Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. Here is the american version - .Xmodmapus:
+
+![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
+Also present is slovenian version - .Xmodmapsi.
+
+Warning: For keymaps to work, it is mandatory that layout for that language is set before xmodmap is run. For example if American layout is selected and we want Slovenian we need to type:
+```
+	setxkbmap -layout si
+	xmodmap ~/.Xmodmapsi
+```
+In .bashrc there are already two aliases that do this, namely `us` for American and `si` for Slovenian layout. If you want keymaps to get loaded when X starts (at least for Mint/Debian), go to Startup Applications and add new aplication: "xmodmap $HOME/.Xmodmapus" with 2 second delay.
+
+### .reaper/Reaper Shortcuts Jure 04.ReaperKeyMap:
+Custom shortcuts for Reaper DAW (digital audio workstation).
+
+![Alt text](/doc/reaper-keyboard-shortcuts.png?raw=true "Picture of Keyboard")
+Mind that there are a lot of other shortcuts not on picture, that use modifiers.
 

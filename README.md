@@ -32,11 +32,11 @@ The first one contains handy bash scripts and aliases. You need .bashrc with thi
 
 Other big file `WTF MAN`, contains short explanations and examples of useful Unix commands. Once installed, they are easily accessible with the following commands: 
 ```
-	m1 -> less WTF, 
+	m1 -> less WTF MAN, 
     m2 -> less .bash_alisases
-	v1 -> vim WTF, 
+	v1 -> vim WTF MAN, 
     v2 -> vim .bash_aliases
-	n1 -> nano WTF, 
+	n1 -> nano WTF MAN, 
     n2 -> nano .bash_aliases
 ```
 Also note that if you change anything in .bash_aliases, you need to restart bash with `bash` command, or its `ba` alias.
@@ -62,6 +62,7 @@ Of course you can also create links yourself, or even just copy the files if you
 
 ### .Xmodmapus, .Xmodmapsi:
 Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. Here is the american version - .Xmodmapus:
+
 ![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
 Also present is slovenian version - .Xmodmapsi.
 
@@ -75,7 +76,8 @@ In .bashrc there are already two aliases that do this, namely `us` for American 
 ### .reaper/Reaper Shortcuts Jure 04.ReaperKeyMap:
 Custom shortcuts for Reaper DAW (digital audio workstation).
 
-![Alt text](/doc/reaper-keymap.png?raw=true "Picture of Keyboard")
+![Alt text](/doc/reaper-keyboard-shortcuts.png?raw=true "Picture of Keyboard")
+Mind that there are a lot of other shortcuts not on picture, that use modifiers.
 
 ### .Desktop/WTF MAN:
 Long list of unix commands with short descriptions. Useful for quick search before you start googling. In .bashrc there are few aliases defined that enable quick access, namely:

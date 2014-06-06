@@ -329,7 +329,7 @@ whois - info about domain
 host <ip_address/hostname> - DNS lookup utility
 	nslookup - same interactively
 	dig - same, lot of options
-hostname - prints/sets computer name
+hostname - prints/sets computer name, to set it permanently edit /etc/hostname and /etc/hosts
 netstat - Displays contents of /proc/net files,  status of ports...
 	-r - routing table
 	-i - interfaces
@@ -503,7 +503,7 @@ stty - change and print terminal line settings
 openvt -  run a program on a next available tty
 script - makes a typescript of everything printed on your terminal. Ctrl-D to stop recording.
 disks - nice gui partition tool
-gparted - more advanced
+fstrim -v / - discard unused blocks, useful for ssd-s
 
 KEYS/CHARACTERS/FONTS:
 xmodmap - remap keys
@@ -578,12 +578,13 @@ BASH:
 /etc/bash.bashrc - executed at every shell startup, all users
 ~/.profile, .bash_profile, .bash_login - first file found executed at login, user specific 
 /etc/profile - executed at login, all users (put PATHS here)
+--
+/etc/rc.local - last startup script executed, runs command as su
 
 HOME:
 ~/.Xmodmap - keyboard map
 
 ETC / "Edit To Configure" / "Editable Text Configuration":
-/etc/rc.local - last startup script executed, runs command as su
 /etc/mailcap - default programs for extensions 
 $HOME/.bashrc - place for bash aliases and functions 
 /var/log/auth.log - logins 

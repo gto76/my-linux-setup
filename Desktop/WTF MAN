@@ -252,9 +252,12 @@ fmt - produce roughly uniform line lengths
 fold - wrap each input line to fit in specified width
 
 DIFF:
+diff -u - unuified format
 comm - compare two sorted files line by line
 sdiff - two files side by side
 patch - apply a diff file to original
+	patch < patch.diff - apply patch
+	diff -u <old-filename> <new-filename> > patch.diff - create patch
 
 SEARCH:
 grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
@@ -277,49 +280,6 @@ nano - 	/etc/nanorc - nano config
 fte - cool text editor with CUA (IBM)-shortcuts
 diakonos - simple terminal text editor with ctrl-c for copy
 pyroom - distraction free writing (gui)
-
-#########
-PROCESSES:
-#########
-
-ctrl-z - put job in background
-jobs - Prints currently running job
-bg <job number> - Backgrounds a process
-fg <job number> - Bring a process to the foreground
-%n - job number n
-%s - job whose command line starts with s
-%% - current job
-%- - previous job
-
-ps --forest - view hierarchical view of processes
-	v - virtual memory 
-	--sort - sort by field 
-	pstree - similar
-pgrep <string> - returns PIDS of processes containing string (-l to 	print process name)
-pkill = kill $(pgrep mozilla) - kills everything mozilla
-	kill -kill pid - force quit, data will be lost
-	killall - uses name instead of pid
-	skill - sends signals to command/user/tty
-		skill -STOP user_name - stop all of the users processes
-		skill -CONT user_name
-nice - Sets the priority for a process (from -20 MAX to 20 MIN priority)
-	nice -20 make - Would execute make and it would run at maximum 			priority.
-	renice - Changes the priority of an existing command
-		renice +20 2222
-	snice - snice works very similarly to skill
-		snice -10 -u root - increase the priority of all root’s processes.
-pmap - report memory map of a process (maped file)
-
-SCHEDULED COMMANDS:
-
-at - executes a command once on a particular day, at a particular time.
-	at 21:30 / at now + time /at -f shell_script now + 1 hour
-	echo "ls -l" | at midnight
-atq - list jobs currently in queue
-atrm - Will remove a job from the ’at’ queue.
-crontab -e - schedule commands for repeating execution 
-	cron - daemon that executes scheduled commands
-	anacron - catches up with tasks next time the computer is on
 
 #######
 NETWORK:
@@ -379,7 +339,6 @@ iw dev wlan0 link - show link status of wlan0
 sudo iw dev wlan0 scan - list wireless networks in range
 sudo iwlist wlan0 scan - similar
 wavemon - monitor wireless connection link quality
-
 	
 ########	
 INTERNET:
@@ -454,7 +413,7 @@ vigr - edit groups file
 passwd - change password
 chattr - Change file system attributes
 lsattr - list attributes
-dmesg - print the contents of your bootup messages displayed by the kernel. This is often useful
+dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful
 when debugging problems
 mount device mountpoint - mount /dev/hdc2 /mymedia
 Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk
@@ -481,7 +440,7 @@ strace <program name and its parameters> - trace system calls and signals. All p
 	-o <log file>
 	-c - count/aggregate
 	-T time the execution of each call
-ltrace - list library calls made bt command
+ltrace - list library calls made by command
 lsof - list open files with file descriptors
 	-p <pid> - open files by process
 	<path> - open files in path
@@ -515,6 +474,49 @@ setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz - choose terminal font
 /etc/default/console-setup - file with default font settings
 jfbterm - enable unicode characters in terminal
 
+#########
+PROCESSES:
+#########
+
+ctrl-z - put job in background
+jobs - Prints currently running job
+bg <job number> - Backgrounds a process
+fg <job number> - Bring a process to the foreground
+%n - job number n
+%s - job whose command line starts with s
+%% - current job
+%- - previous job
+
+ps --forest - view hierarchical view of processes
+	v - virtual memory 
+	--sort - sort by field 
+	pstree - similar
+pgrep <string> - returns PIDS of processes containing string (-l to 	print process name)
+pkill = kill $(pgrep mozilla) - kills everything mozilla
+	kill -kill pid - force quit, data will be lost
+	killall - uses name instead of pid
+	skill - sends signals to command/user/tty
+		skill -STOP user_name - stop all of the users processes
+		skill -CONT user_name
+nice - Sets the priority for a process (from -20 MAX to 20 MIN priority)
+	nice -20 make - Would execute make and it would run at maximum 			priority.
+	renice - Changes the priority of an existing command
+		renice +20 2222
+	snice - snice works very similarly to skill
+		snice -10 -u root - increase the priority of all root’s processes.
+pmap - report memory map of a process (maped file)
+
+SCHEDULED COMMANDS:
+
+at - executes a command once on a particular day, at a particular time.
+	at 21:30 / at now + time /at -f shell_script now + 1 hour
+	echo "ls -l" | at midnight
+atq - list jobs currently in queue
+atrm - Will remove a job from the ’at’ queue.
+crontab -e - schedule commands for repeating execution 
+	cron - daemon that executes scheduled commands
+	anacron - catches up with tasks next time the computer is on
+
 SERVICES:
 	
 service - allows you to start, stop or restart a service (/etc/init.d script)
@@ -536,6 +538,10 @@ SYSTEM RUNLEVELS: RedHat / Debian
 6 Reboots
 S Single user mode
 
+######
+MEDIA:
+######
+
 AUDIO:
 
 cmus - music (can be controlled from outside)
@@ -549,7 +555,7 @@ arecord -f filequality -d seconds <filename>
 arecord -f cd -d numberofseconds -t raw | lame -x -r – out.mp3 - Arecord captures the audio that goes through your computer and pipes it to the lame encoder
 id3v2 -l - lists all files tags
 
-VIDEO/BITMAP:
+BITMAP:
 
 display - displays an image
 montage - Creates a montage from images
@@ -563,11 +569,15 @@ ppmforge - creates picture of random planet or clouds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
 	-p	leave plots open after exit
 	plot file.dat - plot data from dat file
+
+VIDEO:
+
 ffmpeg -i <fileNameIn> <fileNameOut> - Video and audio format converter. Has been replaced by:
 libav-tools: avconv - video and audio format converter
-openshot - gui movie editor
-openmovieeditor - gui movie editor
+openshot - gui movie editor (video)
+openmovieeditor - gui movie editor (video)
 aview, asciiview - ASCII art image viewer and video player
+
 
 #############
 HUDE DATOTEKE:

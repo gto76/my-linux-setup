@@ -33,7 +33,7 @@ git config --global user.name "Your Name"
 press windows key, type 'startup', press enter
 press add button
 Name: xmodmap
-Command: xmodmap $HOME/.Xmodmapus
+Command: /usr/bin/xmodmap /home/<username>/.Xmodmapus
 Startup Delay: 2s
 
 # INSTALL CHROME:
@@ -77,6 +77,29 @@ set google home page
 
 # ECLIPSE:
 download scala ide complete bundle -> mysql, guava, junit
+set preferences>general>apperance>colors and fonts>basic>text font size to 9
+If gui looks broken add to /usr/share/themes/Mint-X/gtk-2.0/gtkrc
+these lines:
+``` 
+include "Apps/gimp.rc"
+include "Apps/inkscape.rc"
+include "Apps/panel.rc"
+
+style "null"
+{
+        engine "pixmap"
+        {
+        image
+        {
+            function    = BOX
+            file        = "Null/null.png"
+            stretch     = TRUE
+        }
+        }
+}
+
+widget "*swt*toolbar-flat"                  style "null"
+```
 
 # REAPER: 
 download and install reaper 32

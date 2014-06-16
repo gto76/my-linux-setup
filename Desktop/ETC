@@ -8,12 +8,12 @@
 # UPDATE:
 sudo apt-get update
 sudo apt-get -u dist-upgrade
-# INSTALL APPS:
+# INSTALL APPS
 sudo apt-get install vim mc git openssh-server nrss nmap wine
 # REMOVE DEFAULT ll ALIAS
 sudo sed -e 's/\(^alias ll\)/#\1/' /etc/bash.bashrc > /tmp/bash.bashrc.tmp
 sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc
-# INSTALL MY CONF FILES:
+# INSTALL MY CONF FILES
 cd ~
 git clone https://github.com/gto76/my-aliases.git
 cd my-aliases
@@ -21,6 +21,9 @@ cd my-aliases
 # SET UP GIT
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
+# MOUNT OTHER DRIVES
+mkdir /media/data
+sudo sh -c 'echo "/dev/<device id>   /media/data   <filesystem type>   user,fmask=0111,dmask=0000   0   2" >> /etc/fstab'
 
 (less syntax highlight)
 (tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)

@@ -327,8 +327,9 @@ gr2() {
 alias canhaz='sudo apt-get install'
 alias ch='canhaz'
 alias update='sudo apt-get update'
-alias remove='sudo apt-get remove'
-alias purge='sudo apt-get purge'
+alias remove='sudo apt-get remove && autoremove'
+alias purge='sudo apt-get purge && autoremove'
+alias autoremove='sudo apt-get autoremove'
 
 # Create executable file
 createExecutable() {

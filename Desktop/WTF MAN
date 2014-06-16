@@ -197,6 +197,7 @@ gpg <filename> - decrypt file with password
 file <filename> - determine file type
 tree - ls in a tree-like (hierarchical) format
 find <dir> -xdev -samefile <filename> - find all hard links of a file
+sudo sh -c 'echo "bla bla bla" >> <filename>' - append lines to systam configuration file
 
 ALIASES:
 alias - print all aliases
@@ -538,9 +539,9 @@ SYSTEM RUNLEVELS: RedHat / Debian
 6 Reboots
 S Single user mode
 
-######
-MEDIA:
-######
+###########
+MULTI-MEDIA:
+###########
 
 AUDIO:
 
@@ -594,13 +595,13 @@ BASH:
 HOME:
 ~/.Xmodmap - keyboard map
 
-ETC / "Edit To Configure" / "Editable Text Configuration":
+ETC: ( "Edit To Configure" / "Editable Text Configuration" )
 /etc/mailcap - default programs for extensions 
-$HOME/.bashrc - place for bash aliases and functions 
-/var/log/auth.log - logins 
 /etc/passwd - users 
 /etc/groups - groups 
 /etc/default/console-setup - set (tty) console character set, font size...
+/etc/fstab - Filesystam table. To mount drive at startup create folder in /media and add line like this (see man fstab for details):
+	/dev/sda1   /media/data   ntfs   user,fmask=0111,dmask=0000   0   2
 
 SERVICES:
 /etc/init/, $HOME/.init/ - init - Upstart init daemon job configuration
@@ -647,6 +648,7 @@ VAR - "variable":
 /var/log/auth.log - log of logins
 /var/log/syslog - most of the rest of the logs 
 /var/spool - contains data which is awaiting some kind of later processing
+/var/log/auth.log - logins 
 
 BOOT (kernels):
 /boot/grub/menu.lst - Grub configuration file
@@ -794,6 +796,8 @@ autoident (ai)	| noai		|
 backup (bk)		| nobackup 	| back file up before overwrite
 ignorecase (ic)	| noic 		| ignore case in search
 number (nu)		| nonu 		| display line numbers
+relativenumber	| nornu		| display relative numbers
+(rnu)			|			|
 shiftwidth= (sw)| 8 		| number of spaces added when identing
 tabstop= (ts)	| 8 		| tab width
 wrap			| wrap		| wrap lines

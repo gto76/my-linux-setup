@@ -1,6 +1,6 @@
 # Loads my personal aliases.
-if [ -f ~/.bashrc2 ]; then
-	. ~/.bashrc2
+if [ -f ~/.bashrc-personal ]; then
+	. ~/.bashrc-personal
 fi
 # Loads useful public aliases.
 if [ -f ~/.bash_aliases ]; then

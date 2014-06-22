@@ -5,3 +5,4 @@ set ignorecase
 set background=light
 colorscheme darkblue
 syntax on
+set autoindent

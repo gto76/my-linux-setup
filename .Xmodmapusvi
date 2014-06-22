@@ -1,0 +1,51 @@
+! American keymap with caps lock as meta key that changes keys under right arm into vim like keys 
+! Picture of keymap accesible at: http://www.keyboard-layout-editor.com/#/layouts/af9acb28d70c08e347da4ea5664a24f8
+!right part of keyboard changes to num pad when caps lock is pressed
+keycode 31 = i I End
+keycode 44 = j J Down 
+keycode 45 = k K Up
+keycode 46 = l L Right
+keycode 43 = h H Left
+keycode 30 = u U Home
+keycode 58 = m M Page_Down 
+keycode 32 = o O End
+keycode 59 = comma less Page_Up
+keycode 60 = period greater Delete 
+keycode 47 = semicolon colon Return 
+keycode 61 = slash question Delete 
+keycode 33 = p P BackSpace 
+keycode 86 = plus plus Right
+keycode 22 = BackSpace BackSpace Delete
+keycode 49 = grave asciitilde Escape
+keycode 65 = space space Return 
+keycode 48 = apostrophe quotedbl Escape
+
+!numpad keys
+keycode 82 = Escape Escape Escape
+keycode 84 = Down Down Down
+keycode 86 = BackSpace BackSpace BackSpace
+
+!caps lock plus number key equals F key
+keycode 10 = 1 exclam F1
+keycode 11 = 2 at F2
+keycode 12 = 3 numbersign F3
+keycode 13 = 4 dollar F4
+keycode 14 = 5 percent F5
+keycode 15 = 6 asciicircum F6
+keycode 16 = 7 ampersand F7
+keycode 17 = 8 asterisk F8
+keycode 18 = 9 parenleft F9
+keycode 19 = 0 parenright F10
+keycode 20 = minus underscore F11
+keycode 21 = equal plus F12
+
+!switch context menu botton with right control
+remove Control = Control_R
+keysym Control_R = Menu
+keysym Menu = Control_R
+add Control = Control_R
+
+!make caps lock special modifier key
+keysym Insert = Caps_Lock
+keysym Caps_Lock = Mode_switch
+

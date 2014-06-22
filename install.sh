@@ -38,6 +38,6 @@ createLink ~ .Xmodmapsi
 (cd .nrss 
 createLink ~/.nrss config)
 (cd Desktop 
-createLink ~/Desktop WTF\ MAN
+createLink ~/Desktop WTF-MAN
 createLink ~/Desktop NYK)
   

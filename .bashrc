@@ -9,6 +9,7 @@ fi
 
 # Keyboard layouts with additional keybindings, see README.md.
 alias us='setxkbmap -layout us; xmodmap ~/.Xmodmapus'
+alias usvi='setxkbmap -layout us; xmodmap ~/.Xmodmapusvi'
 alias si='setxkbmap -layout si; xmodmap ~/.Xmodmapsi'
 
 # Syntax highligh for less
@@ -22,7 +23,7 @@ export LESS=' -R '
 ###################################################
 
 # Location of text file with useful unix command descriptions.
-export HUD="$HOME/Desktop/WTF MAN"
+export HUD="$HOME/Desktop/WTF-MAN"
 # Location of TOD0 text file.
 export TODO="$HOME/Desktop/TODO"
 
@@ -59,7 +60,7 @@ alias zt='ztodo'
 ztodo() {
     echo "$@" >> "$TODO"
 }
-# Append line to WTF MAN file.
+# Append line to WTF-MAN file.
 zhud() {
     echo "$@" >> "$HUD"
 }

@@ -131,6 +131,7 @@ alias la1='la -1'
 alias rmdir='rm -rI'
 alias cpdir='cp -arv'
 alias rm='rm -i'
+alias rm1='rm'
 alias mv='mv -iv'
 alias cp='cp -iv'
 
@@ -294,6 +295,8 @@ alias temp='acpi -t'
 alias b='acpi'
 alias batt='acpi'
 alias battery='acpi'
+# Trim SSD disk
+alias trim='sudo fstrim -v /'
 
 # Turn off laptop monitor if external is connected.
 vga() {
@@ -330,6 +333,9 @@ alias update='sudo apt-get update'
 alias remove='sudo apt-get remove && autoremove'
 alias purge='sudo apt-get purge && autoremove'
 alias autoremove='sudo apt-get autoremove'
+# Print installed packages
+alias packages='dpkg --get-selections | grep -v deinstall'
+alias installed='packages'
 
 # Create executable file
 createExecutable() {

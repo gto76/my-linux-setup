@@ -70,6 +70,7 @@ apt-get	update - update local list of existing packages
 		autoremove - remove unneeded packages
 		purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
 		source <package> - download code
+		build-dep <package> - install the build dependencies
 apt-cache search <keyword> - search packages, like apropos, but global
 		show - get info about package
 aptitude - browse packages (skin for apt-get)
@@ -103,16 +104,16 @@ $(command) - same as `command`
 $RANDOM - 0 - 32767
 input=`cat` - getting standard input
 - in place of a file name means standard in or out
-
-GENERAL:
-
-cd - - go to last dir
-echo -n - no newline at the end
-	 -e - enable interpretation of backslashed letters
-source <script> - run script: for example source /etc/profile (same as . <command>)
 set -o vi - set line editing to vi mode
 pushd . - put current dir on stack
 popd - pop dir from stack
+cd - - go to last dir
+source <script> - run script: for example source /etc/profile (same as . <command>)
+
+GENERAL:
+
+echo -n - no newline at the end
+	 -e - enable interpretation of backslashed letters
 read - reads from file line by line
 umask -  The umask is a value set by the shell. It controls the default permissions of any file created
 ls 	-d - list directory names instead of contents
@@ -189,6 +190,7 @@ sed 's///g' - substitute every occurrence in line, not just the first one
 reset - initializes terminal, useful after printing binary file
 hexdump, hd — ASCII, decimal, hexadecimal, octal dump
 bc - calculator [echo 1+1 | bc -> 2]
+zip -g <archive> <file> - grow/add to existing archive
 unzip \*.zip - backslash is necessary so that bash doesn't expand the * 
 lpstat - show printing jobs
 cancel <id> - cancel printing job
@@ -697,7 +699,8 @@ git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
 sudo chown -R yourname:yourgroup * - in .git/objects
 git reset --hard HEAD~1 - delete last commit
-git remote set-url origin git@github.com:my_user_name/my_repo.git - change the url of origin
+git remote set-url origin git@github.com:my_user_name/my_repo.git - change the url of origin, ssh key needed
+git remote set-url origin https://www.github.com/my_user_name/my_repo.git - same, but withouth key
 --
 Checkout:
 git log > ../gitLog - first save log to file
@@ -710,8 +713,7 @@ git log --name-only --author=<name> - print changed files by commit
 git ls-files - list files
 --
 GITHUB md format:
-insert picture:
-![Alt text](/doc/basket-stats.png?raw=true "<Description>")
+![Alt text](/doc/basket-stats.png?raw=true "<Description>") - insert image
 
 ###########
 ##  VIM  ##
@@ -893,6 +895,7 @@ alt-shift-s - source submenu
 ctrl - F7, esc - close pop-up console window
 ctrl-7, ctrl-/ - toggle comment
 F3 - goto definition
+objectaid - UML plugin 
 
 WINE:
 winecfg -> drives tab to set drive

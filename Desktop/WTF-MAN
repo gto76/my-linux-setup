@@ -678,7 +678,7 @@ git clone git://github.com/USER/REPOSITORY.git - download repo (later you keep r
 --
 GENERATE SSH KEY:
 1. Check for existing keys: cd ~/.ssh; ls -al
-2. Generate new key: ssh-keygen -t rsa -X "your_email@example.com"
+2. Generate new key: ssh-keygen -t rsa -C "your_email@example.com"
 3. Add your key to the ssh-agent: ssh-add ~/.ssh/id_rsa
 4. Add your key to GitHub: copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key.
 
@@ -926,12 +926,5 @@ syntax highlight - https://github.com/jnwhiteh/vim-golang
 simple ncurses - go get github.com/nsf/termbox-go
 
 ######## NEW / NOT SORTED #########
-
-
-
-
-
-
-
 
 

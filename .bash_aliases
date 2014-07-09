@@ -121,7 +121,8 @@ alias dlll='lll --directory'
 # Variations of listShort that list one entry per line.
 alias l1='l -1'
 alias la1='la -1'
-
+# Display tree structure of folders belove PWD
+alias tree1='tree -C | catOrLess'
 
 ##########
 # BASICS #
@@ -208,6 +209,8 @@ alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
 alias resetkeys='resetkey'
 # Display disk space used by a folder or a file in human readable form.
 alias du='du --summarize --human-readable'
+# Set bash to vi mode.
+alias vimode='set -o vi'
 
 
 ########
@@ -297,6 +300,9 @@ alias batt='acpi'
 alias battery='acpi'
 # Trim SSD disk
 alias trim='sudo fstrim -v /'
+alias ssd='trim'
+# Change blue color to blueberry in tty
+alias blue='echo -en "\e]PC7373C9"'
 
 # Turn off laptop monitor if external is connected.
 vga() {
@@ -333,6 +339,8 @@ alias update='sudo apt-get update'
 alias remove='sudo apt-get remove && autoremove'
 alias purge='sudo apt-get purge && autoremove'
 alias autoremove='sudo apt-get autoremove'
+# Show installed and remote version.
+alias ve='apt-cache policy'
 # Print installed packages
 alias packages='dpkg --get-selections | grep -v deinstall'
 alias installed='packages'
@@ -394,6 +402,8 @@ mkdir1() {
 	mkdir "$1"
 	cd "$1"
 }
+# Make directory and its subdirectories
+alias mkdir2="mkdir -p"
 
 # Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seams like playing with fire.
 sed1() {
@@ -487,6 +497,8 @@ commit() {
 alias push='git push'
 alias pull='git pull'
 alias gits='git status | catOrLess'
+alias status='gits'
+alias s='git status'
 alias gita='git add src/*'
 # Displays lines of code per file in git repo and sum of all. Only looks for files in src repo.
 gitl() {
@@ -555,6 +567,7 @@ bsize() {
 alias picture='display'
 alias image='display'
 alias img='display'
+alias d='display'
 
 alias tt='gtypist'
 
@@ -756,6 +769,9 @@ whois1() {
 # INTERNET #
 ############
 
+# Lynx accepting cookies, starting in Google, and in vim mode.
+alias lynx1='lynx -accept_all_cookies -vikeys www.google.com'
+
 # Rss feed reader.
 alias rss='nrss'
 
@@ -921,6 +937,8 @@ qq() {
 aa() {
 	vol "2dB-" | tail -n 1
 }
+
+alias pl='mplayer'
 
 
 ################

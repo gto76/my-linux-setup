@@ -21,7 +21,7 @@ keycode 48 = apostrophe quotedbl Escape
 
 !numpad keys
 keycode 82 = Escape Escape Escape
-keycode 84 = Down Down Down
+!keycode 84 = Down Down Down
 keycode 86 = BackSpace BackSpace BackSpace
 
 !caps lock plus number key equals F key

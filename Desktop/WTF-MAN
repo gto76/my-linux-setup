@@ -19,6 +19,8 @@ ctrl+alt+d - minimize all windows
 ctrl+alt+F1 to F6 terminals
 ctrl+alt+F7 to F12 Xwindows
 ctrl alt backspace - restart X
+ctrl alt del - log out
+ctrl alt end - shutdown
 
 middle mouse button - paste selected text
 
@@ -68,14 +70,17 @@ apt-get	update - update local list of existing packages
 		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade)
 		install - also update single package
 		autoremove - remove unneeded packages
+		remove - remove package, leave configurations
 		purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
 		source <package> - download code
 		build-dep <package> - install the build dependencies
 apt-cache search <keyword> - search packages, like apropos, but global
 		show - get info about package
+		policy <package> - show installed and remote version
 aptitude - browse packages (skin for apt-get)
 		search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
 winetricks - install wine applications
+update-alternatives - maintain symbolic links determining default commands
 
 apropos -a - all keywords
 whatis - short description of app
@@ -209,6 +214,7 @@ command <command> - executes original command, bypassing any aliases or shell fu
 \<command> - temporarily disable alias (call original)
 type <command> - will tell you what is command aliased to
 bash -n <script> - check for errors
+mkdir -p - make parents if needed
 
 ####
 TEXT:
@@ -255,7 +261,7 @@ fmt - produce roughly uniform line lengths
 fold - wrap each input line to fit in specified width
 
 DIFF:
-diff -u - unuified format
+diff -u <files> - unuified format
 comm - compare two sorted files line by line
 sdiff - two files side by side
 patch - apply a diff file to original
@@ -357,7 +363,10 @@ lynx - web browser
 	ctrl+p - scroll up two lines
 	-dumb - prints txt to stdout (-crawl - turn numbers off)
 	-source - prints html to stdout
-	elinks - web browser (looks better)
+	o - options (you can select vim mode)
+	ctrl p - previous line
+	crrl n - next line
+elinks - web browser (looks better)
 mutt - mail client
 sftp - secure ftp
 sshd - (openssh-server) ssh server deamon
@@ -396,6 +405,7 @@ Cain & Abel - password recovery tool for Microsoft Operating Systems
 SYSTEM:
 #######
 
+meta, system info - in cinnamon
 uname -a - print system info, kernel version
 cat /etc/issue - show name and version of distribution
 init - Upstart init daemon job configuration
@@ -415,7 +425,6 @@ vipw - edit password file
 vigr - edit groups file
 passwd - change password
 chattr - Change file system attributes
-lsattr - list attributes
 dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful
 when debugging problems
 mount device mountpoint - mount /dev/hdc2 /mymedia
@@ -434,8 +443,6 @@ auditd - system call auditing
 	auditctl - controls the behavior of the auditd server
 busybox <command> - combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)
 getconf -a - print all system configuration variables
-lscpu - print CPU information
-lshw - lists all hardware
 strace <program name and its parameters> - trace system calls and signals. All printed system calls can be looked up by man!
 	-s - maximum string size we want printed (default is too short, 2000 ok)
 	-f - also follow children
@@ -447,9 +454,14 @@ ltrace - list library calls made by command
 lsof - list open files with file descriptors
 	-p <pid> - open files by process
 	<path> - open files in path
-tload - "graphic" representation of system load
+lsmod - show which kernel modules (drivers) are loaded
+modinfo <driver-name> - get more information about kernel module
+lsattr - list attributes
+lshw - lists all hardware
 lspci [-tv] - show pci info
 lsusb [-tv] - show usb info
+lscpu - print CPU information
+tload - "graphic" representation of system load
 dmidecode -q - display bios/dmi information like ram size/type,
 	max ram, computer model name, cpu information..
 smartctl -A /dev/sda - show disk usage info
@@ -466,16 +478,20 @@ openvt -  run a program on a next available tty
 script - makes a typescript of everything printed on your terminal. Ctrl-D to stop recording.
 disks - nice gui partition tool
 fstrim -v / - discard unused blocks, useful for ssd-s
+setterm - set terminal atributes
 
 KEYS/CHARACTERS/FONTS:
+IN X:
 xmodmap - remap keys
 setxkbmap -layout us - set us keyboard layout
 xev - get keycodes of pressed keys
-showkey - same, when not in X
-loadkeys <country code> - load key mapping when not in X
+X NOT NECESSARY:
+loadkeys <country code> - load key mapping 
+showkey - get keycodes of pressed keys
 setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz - choose terminal font
 /etc/default/console-setup - file with default font settings
 jfbterm - enable unicode characters in terminal
+echo -en "\e]PC7373C9" - change blue color in tty (first numeral after P means slot, and others shade)
 
 #########
 PROCESSES:
@@ -604,6 +620,7 @@ ETC: ( "Edit To Configure" / "Editable Text Configuration" )
 /etc/default/console-setup - set (tty) console character set, font size...
 /etc/fstab - Filesystam table. To mount drive at startup create folder in /media and add line like this (see man fstab for details):
 	/dev/sda1   /media/data   ntfs   user,fmask=0111,dmask=0000   0   2
+/etc/alternatives - links to default application versions (here you can change the default java jdk)
 
 SERVICES:
 /etc/init/, $HOME/.init/ - init - Upstart init daemon job configuration
@@ -699,13 +716,23 @@ git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
 sudo chown -R yourname:yourgroup * - in .git/objects
 git reset --hard HEAD~1 - delete last commit
+git format-patch -1 <sha> - generate patch file
+git rev-parse HEAD - get sha of head
+git reset --hard <sha> - trash the changes
+git reset HEAD^
+git revert
+--
+Remote:
+git remote update - get info about state of remote
+git status -uno - check if everything up-to-date
+git remote show origin - print address of the origin
 git remote set-url origin git@github.com:my_user_name/my_repo.git - change the url of origin, ssh key needed
 git remote set-url origin https://www.github.com/my_user_name/my_repo.git - same, but withouth key
 --
 Checkout:
 git log > ../gitLog - first save log to file
-git checkout hash - then checkout previous versions
-Refresh project in eclipse
+git checkout <hash> - then checkout previous versions
+git checkout head - return to head
 --
 gitstats
 --
@@ -714,12 +741,22 @@ git ls-files - list files
 --
 GITHUB md format:
 ![Alt text](/doc/basket-stats.png?raw=true "<Description>") - insert image
+--
+Bisect:
+git bisect start
+git bisect bad - tell git that current version is bad
+git bisect good v25.0.2 - tell git the last good version you know about
+now git will checkout a version in between, so you can check it and tell:
+git bisect bad/good - this will countinue untill the first bad version is found
+git bisect reset - exit bisect mode
 
 ###########
 ##  VIM  ##
 ###########
++<linenum> - open file at line number
 alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
 ctrl-[ - escape
+gF - open file under cursor
 . - execute last command again
 help: 	ctrl ] - follow link
 		ctrl o - go back
@@ -857,6 +894,12 @@ jps -lvm - list java processes
 jmap -histo:live <pid> - memory map
 jvisualvm - profiler
 
+Install oracle jdk:
+sudo apt-get remove openjdk*
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+
 SCREEN: 
 All shortcuts begin with ctrl+a
 	| - new region vertically
@@ -923,6 +966,7 @@ go	build       compile packages and dependencies
 	vet         run go tool vet on packages
 
 syntax highlight - https://github.com/jnwhiteh/vim-golang 
+	- for gedit: sudo cp /usr/share/gtksourceview-3.0/language-specs/go.lang /usr/share/gtksourceview-2.0/language-specs/
 simple ncurses - go get github.com/nsf/termbox-go
 
 ######## NEW / NOT SORTED #########

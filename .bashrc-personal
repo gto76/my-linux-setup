@@ -8,7 +8,6 @@ export EDITOR="vim"
 # Few shortcuts to frequently used directories.
 alias code='cd ~/code; l'
 alias data='cd ~/data; l'
-alias test='cd ~/test; l'
 alias de='cd ~/Desktop; l'
 alias des='cd ~/Desktop; l'
 

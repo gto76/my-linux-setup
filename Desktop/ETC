@@ -27,6 +27,7 @@ sudo sh -c 'echo "/dev/<device id>   /media/data   <filesystem type>   user,fmas
 
 (less syntax highlight)
 (tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
+remove totem and banshee media players
 
 #
 # MOUSEJOBS:
@@ -43,6 +44,7 @@ Startup Delay: 2s
 Open firefox, go to chrome download page, download and install.
 press windows key, type 'chrome', drag and drop icon to quickstart toolbar, remove firefox from quickstart.
 Start chrome, set as default browser.
+Settings > passwords > do not offer to save password
 Install adblock. 
 Install vimium. Go to vimium advanced settings. 
 Remove f from link hints characters.
@@ -62,6 +64,8 @@ logout & login (ctrl+alt+del)
 System setings > Keyboard > Keyboard shortcuts:
 # CINNAMON:
 remove Run dialog shortcut (backspace)
+alt+ctrl+j - goto left workspace
+alt+ctrl+k - goto right workspace
 # WINDOWS:
 alt+F1 - minimize window
 alt+F2 - toggle maximize window

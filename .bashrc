@@ -31,29 +31,34 @@ export TODO="$HOME/Desktop/TODO"
 alias m1='m "$HUD"'
 alias m2='m $HOME/.bash_aliases'
 alias m3='m $HOME/.bashrc'
-alias m4='m "$TODO"'
+alias m4='m $HOME/my-aliases/Desktop/ETC'
+alias m5='m "$TODO"'
 # Opens file in nano.
 alias n1='n "$HUD"'
 alias n2='n $HOME/.bash_aliases'
 alias n3='n $HOME/.bashrc'
-alias n4='n "$TODO"'
+alias n4='n $HOME/my-aliases/Desktop/ETC'
+alias n5='n "$TODO"'
 alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
 # Opens file in vim.
 alias v1='v "$HUD"'
 alias v2='v $HOME/.bash_aliases'
 alias v3='v $HOME/.bashrc'
-alias v4='v "$TODO"'
+alias v4='v $HOME/my-aliases/Desktop/ETC'
+alias v5='v "$TODO"'
 # Opens file in gedit.
 alias g1='g "$HUD" &'
 alias g2='g $HOME/.bash_aliases &'
 alias g3='g $HOME/.bashrc &'
-alias g4='g "$TODO" &'
+alias g4='g $HOME/my-aliases/Desktop/ETC'
+alias g5='g "$TODO" &'
 alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
 # Greps file for passed phrase.
 alias c1='m1 | c | gr'
 alias c2='m2 | c | gr'
 alias c3='m3 | c | gr'
 alias c4='m4 | c | gr'
+alias c5='m5 | c | gr'
 
 # Append line to TOD0 file. 
 alias zt='ztodo'

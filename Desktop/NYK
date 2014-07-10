@@ -413,24 +413,53 @@ NavigableSet -> SortedSet extended. (TreeSet)
 NavigableMap -> SortedMap extended. (TreeMap)
 
 
+.....................
+.....................
+....... S B T .......
+.....................
+.....................
+Installing Scala
+----------------
+export SCALA_VERSION=2.11.1
+wget http://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz
+tar xvzf scala-$SCALA_VERSION.tgz
+sudo sh -c 'echo "export SCALA_HOME=\"$PWD/scala-$SCALA_VERSION\"" >> /etc/profile'
+sudo sh -c 'echo "export PATH=\"\$PATH:\$SCALA_HOME/bin\"" >> /etc/profile'
 
+Installing sbt
+--------------
+export SBT_VERSION=0.13.5
+wget http://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb
+sudo dpkg -i sbt-$SBT_VERSION.deb
 
+To Run Project
+--------------
+1. In project root create file "build.sbt" containing: 
+```
+name := "<project name>"
 
+version := "0.9.0"
 
+scalaVersion := "2.11.1"
+```
+2. Run: "sbt run"
 
+To Build fat jar (executable with java -jar, and containing all dependencies)
+-----------------
+1. Create file "project/assembly.sbt" containing:
+```
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.11.2")
+```
+2. In project root create file "assembly.sbt" containing:
+```
+import AssemblyKeys._ // put this at the top of the file
 
+assemblySettings
 
-
-
-
-
-
-
-
-
-
-
-
+// your assembly settings here
+```
+3. Run: "sbt assembly"
+4. Run: "java -jar target/scala-x.x.x/<jar name>.jar"
 
 
 

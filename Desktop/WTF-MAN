@@ -691,7 +691,7 @@ git add <filename> OR git add .
 git status
 git commit -am "Commit message goes here."
 -
-git clone git://github.com/USER/REPOSITORY.git - download repo (later you keep refreshing with 'git pull') -> You need SSH key. If you don't want, use https://github.com/USER/REPOSITORY.git for address.
+git clone git://github.com/USER/REPOSITORY.git - download repo (later you keep refreshing with 'git pull origin master') -> You need SSH key. If you don't want, use https://github.com/USER/REPOSITORY.git for address.
 --
 GENERATE SSH KEY:
 1. Check for existing keys: cd ~/.ssh; ls -al

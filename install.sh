@@ -33,11 +33,13 @@ createLink ~ .bash_aliases
 createLink ~ .bashrc-personal
 createLink ~ .vimrc
 createLink ~ .Xmodmapus
+createLink ~ .Xmodmapusvi
 createLink ~ .Xmodmapsi
 
 (cd .nrss 
 createLink ~/.nrss config)
 (cd Desktop 
 createLink ~/Desktop WTF-MAN
+createLink ~/Desktop INSTALL 
 createLink ~/Desktop NYK)
   

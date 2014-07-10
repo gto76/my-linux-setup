@@ -24,6 +24,8 @@ export LESS=' -R '
 
 # Location of text file with useful unix command descriptions.
 export HUD="$HOME/Desktop/WTF-MAN"
+# Location of text file with general configuration and instalation instructions.
+export INS="$HOME/Desktop/INSTALL"
 # Location of TOD0 text file.
 export TODO="$HOME/Desktop/TODO"
 
@@ -31,7 +33,7 @@ export TODO="$HOME/Desktop/TODO"
 alias m1='m "$HUD"'
 alias m2='m $HOME/.bash_aliases'
 alias m3='m $HOME/.bashrc'
-alias m4='m $HOME/my-aliases/Desktop/ETC'
+alias m4='m "$INS"'
 alias m5='m "$TODO"'
 # Opens file in nano.
 alias n1='n "$HUD"'

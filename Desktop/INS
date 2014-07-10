@@ -1,0 +1,142 @@
+      ___           _        _ _ 
+     / (_)_ __  ___| |_ __ _| | |
+    / /| | '_ \/ __| __/ _` | | |
+ _ / / | | | | \__ \ || (_| | | |
+(_)_/  |_|_| |_|___/\__\__,_|_|_|
+
+
+# UPDATE:
+sudo apt-get update
+sudo apt-get -u dist-upgrade
+# INSTALL APPS
+sudo apt-get install vim mc git openssh-server nrss nmap wine
+# REMOVE DEFAULT ll ALIAS
+sudo sed -e 's/\(^alias ll\)/#\1/' /etc/bash.bashrc > /tmp/bash.bashrc.tmp
+sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc
+# INSTALL MY CONF FILES
+cd ~
+git clone https://github.com/gto76/my-aliases.git
+cd my-aliases
+./install.sh
+# SET UP GIT
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+# MOUNT OTHER DRIVES
+mkdir /media/data
+sudo sh -c 'echo "/dev/<device id>   /media/data   <filesystem type>   user,fmask=0111,dmask=0000   0   2" >> /etc/fstab'
+
+(less syntax highlight)
+(tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
+remove totem and banshee media players
+
+#
+# MOUSEJOBS:
+#
+
+# SET KEYMAP ON STARTUP:
+press windows key, type 'startup', press enter
+press add button
+Name: xmodmap
+Command: /usr/bin/xmodmap /home/<username>/.Xmodmapus
+Startup Delay: 2s
+
+# INSTALL CHROME:
+Open firefox, go to chrome download page, download and install.
+press windows key, type 'chrome', drag and drop icon to quickstart toolbar, remove firefox from quickstart.
+Start chrome, set as default browser.
+Settings > passwords > do not offer to save password
+Install adblock. 
+Install vimium. Go to vimium advanced settings. 
+Remove f from link hints characters.
+To switch J and K paste this into custom keymapings textbox:
+	unmap J
+	unmap K
+	map J nextTab
+	map K previousTab
+
+# DISABLE DEFAULT BEHAVIOUR FOR alt+F1:
+sudo apt-get install dconf-editor
+dconf-editor > navigate to org.cinnamon.muffin.keybindings
+for panel-main-menu, replace ['<Alt>F1'] with []
+logout & login (ctrl+alt+del)
+
+# SET KEYBOARD SHORTCUTS:
+System setings > Keyboard > Keyboard shortcuts:
+# CINNAMON:
+remove Run dialog shortcut (backspace)
+alt+ctrl+j - goto left workspace
+alt+ctrl+k - goto right workspace
+# WINDOWS:
+alt+F1 - minimize window
+alt+F2 - toggle maximize window
+alt+F3 - toggle full screen
+ctrl+alt+d - show desktop
+# LAUNCHERS:
+ctrl+alt+h - home
+ctrl+alt+c - web browser
+//ctrl+alt+jkli... - position window acordingly
+# CUSTOM SHORTCUTS:
+ctrl+alt+f - firefox
+ctrl+alt+g - gedit
+
+# FIREFOX:
+remove bookmarks toolbar
+set google home page
+
+# ECLIPSE:
+download scala ide complete bundle -> mysql, guava, junit
+set preferences>general>apperance>colors and fonts>basic>text font size to 9
+set preferences>general>editors>text editors> show line numbers
+If gui looks broken add to /usr/share/themes/Mint-X/gtk-2.0/gtkrc
+these lines:
+``` 
+include "Apps/gimp.rc"
+include "Apps/inkscape.rc"
+include "Apps/panel.rc"
+
+style "null"
+{
+        engine "pixmap"
+        {
+        image
+        {
+            function    = BOX
+            file        = "Null/null.png"
+            stretch     = TRUE
+        }
+        }
+}
+
+widget "*swt*toolbar-flat"                  style "null"
+```
+and change Preferences>General>Apperance>Theme to Classic.
+
+# REAPER: 
+download and install reaper 32
+import key shortcuts from my-aliases/reaper, 
+import licence,
+make VstPlugins folder in program files (x68)
+install plugins (lexicon PCM native, BaxterEQ, dirthead, dlM sixtyfive, sumo, Volume Eleven II, VoxengoMSED)
+set plugins folder
+
+# FRUITY LOOPS: 
+fl studio 11 -> install arial and times new roman font for wine:sudo apt-get install winetricks; winetricks corefonts
+run regedit from terminal to import registry file
+
+# DISABLE SYSTEM SOUNDS
+=======
+/////
+/etc/profile:
+export JAVA_HOME="/usr/lib/jvm/java-6-openjdk"
+export PATH=$PATH:$JAVA_HOME/bin
+export PATH=/home/minerva/dev/maven/apache-maven-3.1.0/bin:$PATH
+export GOPATH=/home/minerva/dev/gopackages
+export PATH=$PATH:/home/minerva/dev/peg-markdown/peg-markdown
+setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz
+/////
+/etc/rclocal:
+/etc/init.d/ssh restart
+exit 0
+/////
+
+

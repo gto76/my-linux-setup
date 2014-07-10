@@ -25,7 +25,7 @@ export LESS=' -R '
 # Location of text file with useful unix command descriptions.
 export HUD="$HOME/Desktop/WTF-MAN"
 # Location of text file with general configuration and instalation instructions.
-export INS="$HOME/Desktop/INSTALL"
+export INS="$HOME/Desktop/INS"
 # Location of TOD0 text file.
 export TODO="$HOME/Desktop/TODO"
 

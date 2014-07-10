@@ -40,6 +40,6 @@ createLink ~ .Xmodmapsi
 createLink ~/.nrss config)
 (cd Desktop 
 createLink ~/Desktop WTF-MAN
-createLink ~/Desktop INSTALL 
+createLink ~/Desktop INS 
 createLink ~/Desktop NYK)
   

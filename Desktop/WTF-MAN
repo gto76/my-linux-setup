@@ -300,8 +300,8 @@ host <ip_address/hostname> - DNS lookup utility
 	dig - same, lot of options
 hostname - prints/sets computer name, to set it permanently edit /etc/hostname and /etc/hosts
 netstat - Displays contents of /proc/net files,  status of ports...
-	-r - routing table
-	-i - interfaces
+	-r - show routing table
+	-i - show interfaces
 arp - manipulate the system ARP cache (IP - mac)
 route - The route command is the tool used to display or modify the routing table
 	add default gw 192.168.1.10 - change the default gateway

@@ -63,7 +63,7 @@ alias mEnd='catOrLessG'
 # LS #
 ######
 
-# All other list directory aliases end up calling this one. It runs ls with: append indicator, sort alphabetically by extension, list by columns, use color when stdout is connected to terminal, group directories before files.
+# All other ls aliases end up calling this one. It runs ls with: append indicator, sort alphabetically by extension, list by columns, use color when stdout is connected to terminal, group directories before files.
 alias ls1='ls --classify -X -C --color=auto --group-directories-first'
 
 # Calls ls1 with: assumes screen width to be 80, so there aren't too many columns.
@@ -118,11 +118,16 @@ alias llla='lll --almost-all'
 alias dl='l --directory'
 alias dll='ll --directory'
 alias dlll='lll --directory'
+# Variations that sort files by date
+alias lt='l -t'
+alias llt='ll -t'
+alias lllt='lll -t'
 # Variations of listShort that list one entry per line.
 alias l1='l -1'
 alias la1='la -1'
 # Display tree structure of folders belove PWD
 alias tree1='tree -C | catOrLess'
+alias t='tree1'
 
 ##########
 # BASICS #
@@ -130,6 +135,7 @@ alias tree1='tree -C | catOrLess'
 
 # Make some possibly destructive commands more interactive.
 alias rmdir='rm -rI'
+alias rmd='rmdir'
 alias cpdir='cp -arv'
 alias rm='rm -i'
 alias rm1='rm'
@@ -173,7 +179,6 @@ alias g='gedit &'
 alias f='firefox &'
 alias sub='sublime_text &'
 alias scr='screen'
-alias t='date'
 alias clr='clear'
 alias his='history | catOrLessG'
 alias h='history | grep '
@@ -211,6 +216,8 @@ alias resetkeys='resetkey'
 alias du='du --summarize --human-readable'
 # Set bash to vi mode.
 alias vimode='set -o vi'
+# Start a new terminal.
+alias gt='gnome-terminal'
 
 
 ########
@@ -340,6 +347,7 @@ alias remove='sudo apt-get remove && autoremove'
 alias purge='sudo apt-get purge && autoremove'
 alias autoremove='sudo apt-get autoremove'
 # Show installed and remote version.
+alias apt-version='apt-cache policy'
 alias ve='apt-cache policy'
 # Print installed packages
 alias packages='dpkg --get-selections | grep -v deinstall'
@@ -397,13 +405,18 @@ find1() {
 # Print all directories recursively.
 alias findd='find . -name .git -prune -o -type d | catOrLess'
 
-# Make directory and go into.
+# Make directory and descend into.
 mkdir1() {
 	mkdir "$1"
 	cd "$1"
 }
 # Make directory and its subdirectories
 alias mkdir2="mkdir -p"
+# Make directory and its subdirectories, and descend into.
+mkdir3() {
+	mkdir -p "$1"
+	cd "$1"
+}
 
 # Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seams like playing with fire.
 sed1() {
@@ -541,7 +554,7 @@ alias Nano="nano `ls -t | head -1`"
 # Open last modified file in vim.
 alias Vim="vim `ls -t | head -1`" 
 
-# Print majority of commands
+# Print majority of commands.
 commands() {
 	whatis `ls -1 /usr/share/man/man1/ \
 		| sed 's/\..*$//' \
@@ -556,7 +569,7 @@ commands() {
 		| catOrLess
 }
 
-# Size of a command
+# Size of a command.
 bsize() {
 	loc=`which "$1"`
 	if [ $? -eq 0 ]; then
@@ -564,11 +577,13 @@ bsize() {
 	fi
 }
 
+# Display an image.
 alias picture='display'
 alias image='display'
 alias img='display'
 alias d='display'
 
+# Run a typing tutor.
 alias tt='gtypist'
 
 ######################

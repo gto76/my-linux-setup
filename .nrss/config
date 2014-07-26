@@ -28,3 +28,4 @@ browser "/usr/bin/google-chrome %u"
        
 #Text browsers should enable this
 #browser_wait "1"
+

@@ -78,6 +78,7 @@ ctrl+alt+c - web browser
 # CUSTOM SHORTCUTS:
 ctrl+alt+f - firefox
 ctrl+alt+g - gedit
+ctrl+alt+r - nrss (gnome-terminal -e nrss)
 
 # FIREFOX:
 remove bookmarks toolbar

@@ -20,9 +20,9 @@ keycode 65 = space space Return
 keycode 48 = apostrophe quotedbl Escape
 
 !numpad keys
-keycode 82 = Escape Escape Escape
+!keycode 82 = Escape Escape Escape
 !keycode 84 = Down Down Down
-keycode 86 = BackSpace BackSpace BackSpace
+!keycode 86 = BackSpace BackSpace BackSpace
 
 !caps lock plus number key equals F key
 keycode 10 = 1 exclam F1
@@ -39,10 +39,10 @@ keycode 20 = minus underscore F11
 keycode 21 = equal plus F12
 
 !switch context menu botton with right control
-remove Control = Control_R
-keysym Control_R = Menu
-keysym Menu = Control_R
-add Control = Control_R
+!remove Control = Control_R
+!keysym Control_R = Menu
+!keysym Menu = Control_R
+!add Control = Control_R
 
 !make caps lock special modifier key
 keysym Insert = Caps_Lock

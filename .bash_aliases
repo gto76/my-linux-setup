@@ -509,12 +509,16 @@ commit() {
 }
 alias push='git push'
 alias pull='git pull'
-alias gits='git status | catOrLess'
-alias status='gits'
-alias s='git status'
-alias gita='git add src/*'
+alias checkout='git checkout'
+
+alias gis='git status | catOrLess'
+alias gits='gis'
+# Prints nice log with graph on the side.
+alias gil='git log --graph --decorate --all'
+alias gitl='gil'
+
 # Displays lines of code per file in git repo and sum of all. Only looks for files in src repo.
-gitl() {
+giloc() {
 	git ls-files \
 		| xargs file \
 		| grep text \
@@ -523,8 +527,9 @@ gitl() {
 		| grep ^src/.* \
 	  	| xargs wc -l 
 }
+
 # Plot distribution of file lengths in git repo. Gnuplot and gnuplot-x11 packages need to be installed.
-gitplot() {
+giplot() {
 	gitl | head -n-1 | sort -n | grep -o '^ *[0-9]* ' | tr -d ' ' > /tmp/gitlTmpFile 
 	echo "unset key; plot '/tmp/gitlTmpFile'" | gnuplot -p 
 	\rm /tmp/gitlTmpFile
@@ -954,6 +959,25 @@ aa() {
 }
 
 alias pl='mplayer'
+
+# Copies all files that are referenced in playlist to desired directory.
+# Also removes their track numbers from filenames (if any) and replaces 
+# them with the numbers that corespond to order the songs are featured 
+# in the playlist. 
+#
+# Usage: cp-m3u <m3u playlist> <destination directory>
+cp-m3u() {
+	IFS=$'\n'
+	i=1
+	for a in `cat "$1" | grep ^[^#]`; do
+    	doubleDigitNumber="$i"
+		if [ "$i" -lt 10 ]; then 
+			doubleDigitNumber=0"$i"
+		fi  
+		cp "$a" "$2"/"$doubleDigitNumber"`basename "$a"| sed 's/^[0-9]*//'`
+		let i=i+1
+	done
+}
 
 
 ################

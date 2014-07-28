@@ -21,15 +21,15 @@ keycode 52 = z
 keycode 29 = y
 
 !numpad keys
-keycode 82 = Escape Escape Escape
-keycode 84 = Down Down Down
-keycode 86 = BackSpace BackSpace BackSpace
+!keycode 82 = Escape Escape Escape
+!keycode 84 = Down Down Down
+!keycode 86 = BackSpace BackSpace BackSpace
 
 !switch context menu botton with right control
-remove Control = Control_R
-keysym Control_R = Menu
-keysym Menu = Control_R
-add Control = Control_R
+!remove Control = Control_R
+!keysym Control_R = Menu
+!keysym Menu = Control_R
+!add Control = Control_R
 
 !make caps lock special modifier key
 keysym Insert = Caps_Lock

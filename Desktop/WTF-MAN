@@ -97,10 +97,12 @@ sudo !! - Run the last command as root
 BASH:
 
 "$x" - ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! 
-"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!!!
-"$@" - Use this instead!
+"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!!
+"$@" - Use this instead!!!!! Will retain arguments as-is, so no args provided will result in no args being passed on. This is in most cases what you want to use for passing on arguments.
+Google: "$@" is right almost everytime, and $* is wrong almost everytime.
+$'\n' - string literal with escape seqences
 test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
-[[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more)
+[[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
 $? - exit code of last command (0 - ok)
 2> /dev/null - redirect error output
 &> /dev/null - redirect both standard and error output
@@ -114,6 +116,7 @@ pushd . - put current dir on stack
 popd - pop dir from stack
 cd - - go to last dir
 source <script> - run script: for example source /etc/profile (same as . <command>)
+
 
 GENERAL:
 
@@ -586,6 +589,8 @@ alsamixer - audio in out volumes
 arecord -f filequality -d seconds <filename>
 arecord -f cd -d numberofseconds -t raw | lame -x -r – out.mp3 - Arecord captures the audio that goes through your computer and pipes it to the lame encoder
 id3v2 -l - lists all files tags
+sound-juicer - cd ripper
+xfburn - cd burner
 
 BITMAP:
 
@@ -724,7 +729,6 @@ git push
 --
 Also useful:
 git rm --cached mylogfile.log - untrack file without deleting it.
-gitk - repo explorer
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
 sudo chown -R yourname:yourgroup * - in .git/objects
@@ -763,6 +767,11 @@ git bisect good v25.0.2 - tell git the last good version you know about
 now git will checkout a version in between, so you can check it and tell:
 git bisect bad/good - this will countinue untill the first bad version is found
 git bisect reset - exit bisect mode
+
+Tools:
+gitk - repo explorer
+tig - text based repo explorer
+
 
 ###########
 ##  VIM  ##

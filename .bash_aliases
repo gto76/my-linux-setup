@@ -174,7 +174,7 @@ alias en='echo -n'
 alias c='cat'
 alias v='vim'
 # Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
-alias n='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
+alias na='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
 alias g='gedit &'
 alias f='firefox &'
 alias sub='sublime_text &'
@@ -218,6 +218,8 @@ alias du='du --summarize --human-readable'
 alias vimode='set -o vi'
 # Start a new terminal.
 alias gt='gnome-terminal'
+# Start a file explorer
+alias n='nemo .'
 
 
 ########

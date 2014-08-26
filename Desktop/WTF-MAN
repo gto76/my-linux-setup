@@ -97,7 +97,7 @@ sudo !! - Run the last command as root
 BASH:
 
 "$x" - ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! 
-"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!!
+"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! If you want IFS to be a new line you need to: IFS=$'\n' - the dollar forces substitution.
 "$@" - Use this instead!!!!! Will retain arguments as-is, so no args provided will result in no args being passed on. This is in most cases what you want to use for passing on arguments.
 Google: "$@" is right almost everytime, and $* is wrong almost everytime.
 $'\n' - string literal with escape seqences
@@ -584,6 +584,7 @@ mplayer - movie/music player
 mpg321 - plays mp3
 ogg123 - plays ogg
 aplay - plays audio
+play - plays audio
 alsamixer - audio in out volumes
 	amixer
 arecord -f filequality -d seconds <filename>

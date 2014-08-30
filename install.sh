@@ -1,12 +1,11 @@
-# Creates hard links to all the files. All the links are in the same 
-# directories as the files only one level higher in the file hierarchy. 
-# If creates destination folder if it doesn't exist. If file already exists 
-# then link is not created. Only thing that needs to be done manualy is 
-# create file .bashrc in home directory if it doesent exist, and paste 
-# into it this lines :
-# if [ -f ~/.bash_aliases ]; then
-#	. ~/.bash_aliases
-# fi
+# Install script that creates simbolic links to the files of the repository.
+# All links to the dotfiles are created in the home directory, except the
+# config file of the .nrss directory, which is created if it doesent exist.
+# All links to the text files are created in the ~/Desktop directory.
+# Link is not created if file with same name already exists and warning is
+# printed. Also line that loads .my_bashrc is added to the end of the .bashrc,
+# if it doesen't exist yet. Similary the line that loads .my_vimrc is added
+# to the end of .vimrc.
 
 function createLink {
 	directory="$1"
@@ -22,20 +21,20 @@ function createLink {
 	# Create link if file doesn't exist
 	if [[ ! -f "$fullPath" ]]; then
 		echo "install.sh: Creating link $fullPath"
-		ln "$file"  "$fullPath"
+		ln -s `pwd`/"$file" "$fullPath" 
 	else
 		echo "install.sh: WARNING: File $fullPath already exists. You will have to merge or overvrite it manualy."
 	fi	
 }
 
-createLink ~ .bashrc
-createLink ~ .bash_aliases
-createLink ~ .bashrc-personal
-createLink ~ .vimrc
+# create links
+createLink ~ .my_bashrc
+createLink ~ .my_bash_aliases
+createLink ~ .my_bashrc_personal
+createLink ~ .my_vimrc
 createLink ~ .Xmodmapus
 createLink ~ .Xmodmapusvi
 createLink ~ .Xmodmapsi
-
 (cd .nrss 
 createLink ~/.nrss config)
 (cd Desktop 
@@ -43,3 +42,15 @@ createLink ~/Desktop WTF-MAN
 createLink ~/Desktop INS 
 createLink ~/Desktop NYK)
   
+# add statement to .bashrc that will load .my_bashrc, if it doesent already exist
+if [[ -z `grep ". ~/.my_bashrc" ~/.bashrc` ]]; then
+	echo "if [ -f ~/.my_bashrc ]; then" >> ~/.bashrc
+	echo "   . ~/.my_bashrc" >> ~/.bashrc
+	echo "fi" >> ~/.bashrc
+fi
+
+# add statement to .vimrc that will load .my_vimrc, if it doesent already exist 
+if [[ -z `grep "so ~/.my_vimrc" ~/.vimrc` ]]; then
+	echo "so ~/.my_vimrc" >> ~/.vimrc
+fi
+

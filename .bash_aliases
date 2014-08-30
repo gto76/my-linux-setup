@@ -173,6 +173,8 @@ alias ee='echo -e'
 alias en='echo -n'
 alias c='cat'
 alias v='vim'
+# Read only vim
+alias vv='view'
 # Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
 alias na='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
 alias g='gedit &'
@@ -513,11 +515,18 @@ alias push='git push'
 alias pull='git pull'
 alias checkout='git checkout'
 
-alias gis='git status | catOrLess'
-alias gits='gis'
-# Prints nice log with graph on the side.
-alias gil='git log --graph --decorate --all'
-alias gitl='gil'
+alias gc='git checkout'
+alias gs='git status'
+# Nicely decorated graph of commits
+alias gl='git log --decorate --graph --all'
+# Update information about state of the origin.
+alias gu='git remote update'
+alias gd='git diff'
+
+# GIT MISC:
+
+# For all projects in the directory print the labaels of the last commit
+alias ga='for a in *; do cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..; done'
 
 # Displays lines of code per file in git repo and sum of all. Only looks for files in src repo.
 giloc() {

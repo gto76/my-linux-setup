@@ -9,7 +9,7 @@
 sudo apt-get update
 sudo apt-get -u dist-upgrade
 # INSTALL APPS
-sudo apt-get install vim mc git openssh-server nrss nmap wine
+sudo apt-get install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
 # REMOVE DEFAULT ll ALIAS
 sudo sed -e 's/\(^alias ll\)/#\1/' /etc/bash.bashrc > /tmp/bash.bashrc.tmp
 sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc

@@ -290,6 +290,7 @@ pdftohtml - pdf to html
 pdftotext - pdf to text
 libreoffice - novi openoffice
 figlet - display large characters made up of ordinary screen characters (ascii art)
+toilet - similar (ascii art)
 
 EDITORS:
 nano - 	/etc/nanorc - nano config
@@ -495,6 +496,9 @@ script - makes a typescript of everything printed on your terminal. Ctrl-D to st
 disks - nice gui partition tool
 fstrim -v / - discard unused blocks, useful for ssd-s
 setterm - set terminal atributes
+xset - user preference utility for X
+   -r - turn key autorepeat off
+   r - turn key autorepeat on
 
 KEYS/CHARACTERS/FONTS:
 IN X:

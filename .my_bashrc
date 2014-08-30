@@ -8,12 +8,12 @@
 
 
 # Loads my personal aliases.
-if [ -f ~/.bashrc-personal ]; then
-	. ~/.bashrc-personal
+if [ -f ~/.my_bashrc_personal ]; then
+	. ~/.my_bashrc_personal
 fi
 # Loads useful public aliases.
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f ~/.my_bash_aliases ]; then
+	. ~/.my_bash_aliases
 fi
 
 # Keyboard layouts with additional keybindings, see README.md.
@@ -32,38 +32,38 @@ export LESS=' -R '
 ###################################################
 
 # Location of text file with useful unix command descriptions.
-export HUD="$HOME/Desktop/WTF-MAN"
+export WTF-MAN="$HOME/Desktop/WTF-MAN"
 # Location of text file with general configuration and instalation instructions.
 export INS="$HOME/Desktop/INS"
 # Location of TOD0 text file.
 export TODO="$HOME/Desktop/TODO"
 
 # Opens file in less.
-alias m1='m "$HUD"'
-alias m2='m $HOME/.bash_aliases'
-alias m3='m $HOME/.bashrc'
+alias m1='m "$WTF-MAN"'
+alias m2='m $HOME/.my_bash_aliases'
+alias m3='m $HOME/.my_bashrc'
 alias m4='m "$INS"'
 alias m5='m "$TODO"'
 # Opens file in nano.
-alias n1='n "$HUD"'
-alias n2='n $HOME/.bash_aliases'
-alias n3='n $HOME/.bashrc'
-alias n4='n "$INS"'
-alias n5='n "$TODO"'
-alias nnn='n "$HUD" $HOME/.bash_aliases $HOME/.bashrc "$TODO"'
+alias n1='nano "$HWTF-MANUD"'
+alias n2='nano $HOME/.my_bash_aliases'
+alias n3='nano $HOME/.my_bashrc'
+alias n4='nano "$INS"'
+alias n5='nano "$TODO"'
+alias nnn='nano "$WTF-MAN" $HOME/.my_bash_aliases $HOME/.my_bashrc "$TODO"'
 # Opens file in vim.
-alias v1='v "$HUD"'
-alias v2='v $HOME/.bash_aliases'
-alias v3='v $HOME/.bashrc'
+alias v1='v "$WTF-MAN"'
+alias v2='v $HOME/.my_bash_aliases'
+alias v3='v $HOME/.my_bashrc'
 alias v4='v $"$INS"'
 alias v5='v "$TODO"'
 # Opens file in gedit.
-alias g1='g "$HUD" &'
-alias g2='g $HOME/.bash_aliases &'
-alias g3='g $HOME/.bashrc &'
+alias g1='g "$WTF-MAN" &'
+alias g2='g $HOME/.my_bash_aliases &'
+alias g3='g $HOME/.my_bashrc &'
 alias g4='g $"$INS"'
 alias g5='g "$TODO" &'
-alias ggg='gedit "$HUD" $HOME/.bash_aliases "$TODO" &'
+alias ggg='gedit "$WTF-MAN" $HOME/.my_bash_aliases "$TODO" &'
 # Greps file for passed phrase.
 alias c1='m1 | c | gr'
 alias c2='m2 | c | gr'
@@ -78,7 +78,7 @@ ztodo() {
 }
 # Append line to WTF-MAN file.
 zhud() {
-    echo "$@" >> "$HUD"
+    echo "$@" >> "$WTF-MAN"
 }
 
 alias tz='tail "$TODO"'

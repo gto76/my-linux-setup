@@ -102,6 +102,11 @@ BASH:
 Google: "$@" is right almost everytime, and $* is wrong almost everytime.
 $'\n' - string literal with escape seqences
 test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
+	-n - is string non empty, -z - is string empty, -a - and, -o - or,
+	= - strings are equal, -nt - file newer than, -ot - older then,
+	-d - directory exists, -e - file exists, -f - is a regular file,
+	-h - its a symbolic link, -r - has read permission,
+	-w - has write permission, -x - has execute permission
 [[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
 $? - exit code of last command (0 - ok)
 2> /dev/null - redirect error output
@@ -140,11 +145,13 @@ locate <word>  - same as find but using index
 	sudo updatedb OR sudo locate -u - update database
 locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
 xargs - output from one command to arguments of another
-	-t echoes the command before executing it, and -p echoes it and asks for confirmation
+	-t - echoes the command before executing it, and -p echoes it and asks for confirmation
 tar xvzf xxx.tar.gz - decompress and detar
 	xvjf xxx.tar.bz2 - decompress and detar
 	-cf archiveName.tar files.. - compress
 tar cvf - ./SOURCEDIR_OR_FILES | ssh user@host 'cat > newfile.tar' - send tar archive over network
+ln - makes links between files
+	-s <file> <link> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!
 ccsm - additional settings (compiz config settings manager - BAD)
 md5sum - checks md5 sum hash
 sh - run script even if not executable
@@ -210,7 +217,14 @@ gpg <filename> - decrypt file with password
 	-c <filename> encrypt
 file <filename> - determine file type
 tree - ls in a tree-like (hierarchical) format
-find <dir> -xdev -samefile <filename> - find all hard links of a file
+find <dir> -name <filename>
+	-samefile <filename> - find all hard links of a file
+	-xdev - don't descend directories on other filesystems
+	-inum <inum> - find files with the inode number
+	-type <f|...> - find files of type
+	-delete - delete found files
+	-exec <command> {} ; - command is executed for every found file. {} is replaced with filename
+	-exec <command> {} + - same, only that {} is replaced with all the filenames
 sudo sh -c 'echo "bla bla bla" >> <filename>' - append lines to systam configuration file
 
 
@@ -280,6 +294,7 @@ patch - apply a diff file to original
 SEARCH:
 grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
 	-o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t)
+	-I - do not process binary files
 look - display lines beginning with a given string
 strings - print all text parts of binary file
 
@@ -402,7 +417,6 @@ HACKING:
 
 nmap -sP 192.168.2.1-3 - network scanning
 	nmap 192.168.0.3 -p100-139 - port scanning
-	nmap 192.168.0.3 -p100-139 - port scanning
 	sudo nmap -O 192.168.0.3 - scanning os
 tcpdump - sniffer (Show network traffic), sudo
 ettercap - Multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
@@ -429,7 +443,8 @@ cat /var/log/auth.log | grep "failed password" -i - print all failed logins
 users - prints logged in users
 who - logged in users, more data
 w - logged in users, also what are they running
-free -tm - Displays memory statistics (-s continuously display)
+free -tm - Displays memory statistics 
+	-s continuously display
 vmstat - Performance of system components / virtual memory statistics
 sar - System activity information
 iostat - Disk usage
@@ -440,8 +455,7 @@ vipw - edit password file
 vigr - edit groups file
 passwd - change password
 chattr - Change file system attributes
-dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful
-when debugging problems
+dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful when debugging problems
 mount device mountpoint - mount /dev/hdc2 /mymedia
 mount - list all mounted devices
 Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk

@@ -526,6 +526,17 @@ alias ga='git add'
 
 # GIT MISC:
 
+# Push every project in the directory
+pushall() {
+	for a in *; do 
+		(if [ -d "$a" ]; then 
+			cd $a 
+			echo "$a" 
+			git push 
+		fi) 
+	done
+}
+
 # For all projects in the directory print the labaels of the last commit
 alias gista='for a in *; do cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..; done'
 

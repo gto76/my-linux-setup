@@ -29,7 +29,7 @@ My Linux config files, three handy text files, and an install script to put them
 
 Two biggest and most important files are:
 
-* [**`./dotfiles/.my_bash_aliases`**](../dotfiles/.my_bash_aliases) and 
+* [**`./dotfiles/.my_bash_aliases`**](dotfiles/.my_bash_aliases) and 
 * **`./textfiles/WTF-MAN`**. 
     
 The first one contains handy bash functions and aliases. It can be used without other files in a project; just copy it in home directory and add this line: `. ~/.my_bash_aliases` to `.bashrc` (which is also located in home directory, if not create it). If you want to use the whole project then instead use install script (see below).

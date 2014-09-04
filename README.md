@@ -7,7 +7,7 @@ My Linux config files, three handy text files, and an install script to put them
 ```
 .
 ├── dotfiles
-│   ├── .nrss
+│   ├── **.nrss**
 │   │   └── config - Few rss feeds.
 │   ├── .my_bash_aliases - My aliases and functions. Can be used alone.
 │   ├── .my_bashrc - Aliases that only work with other files in a project.

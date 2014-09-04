@@ -58,7 +58,7 @@ Also note that if you change anything in [**`.my_bash_aliases`**](dotfiles/.my_b
 
 ## Files in detail:
 
-#### [`install`](install):
+#### [**`install`**](install):
 Executable bash script that creates symbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
 ``` bash
 if [ -f ~/.my_bashrc ]; then

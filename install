@@ -36,6 +36,7 @@ createLink ~ .my_vimrc
 createLink ~ .Xmodmapus
 createLink ~ .Xmodmapusvi
 createLink ~ .Xmodmapsi
+createLink ~ .Xmodmapsivi
 (cd .nrss 
 createLink ~/.nrss config)
 cd ..

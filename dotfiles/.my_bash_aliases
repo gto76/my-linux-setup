@@ -184,11 +184,11 @@ alias v='vim -p'
 # Read only vim
 alias vv='view'
 # Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
-alias na='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
+alias n='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
 g() {
 	gedit "$@" &
 }
-alias f='firefox &'
+alias fire='firefox &'
 alias sub='sublime_text &'
 alias scr='screen'
 alias clr='clear'
@@ -231,7 +231,7 @@ alias vimode='set -o vi'
 # Start a new terminal.
 alias gt='gnome-terminal'
 # Start a file explorer
-alias n='nemo .'
+alias f='nemo .'
 
 ########
 # SUDO #

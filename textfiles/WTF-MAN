@@ -638,9 +638,9 @@ openmovieeditor - gui movie editor (video)
 aview, asciiview - ASCII art image viewer and video player
 
 
-###################
-AWESOME UNIX FILES:
-###################
+####################
+AWESOME LINUX FILES:
+####################
 
 BASH:
 ~/.bashrc - executed at every shell startup, user specific

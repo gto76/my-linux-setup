@@ -1,0 +1,38 @@
+!right part of keyboard changes to num pad when caps lock is pressed
+keycode 31 = i I End
+keycode 44 = j J Down
+keycode 45 = k K Up
+keycode 46 = l L Right
+keycode 43 = h H Left
+keycode 30 = u U Home
+keycode 58 = m M Page_Down
+keycode 32 = o O End
+keycode 59 = comma semicolon Page_Up
+keycode 60 = period colon Delete
+keycode 47 = ccaron Ccaron Return 
+keycode 61 = minus underscore Delete 
+keycode 33 = p P BackSpace 
+keycode 48 = cacute Cacute Escape
+keycode 22 = BackSpace BackSpace Delete
+keycode 49 = cedilla diaeresis Escape
+keycode 65 = space space Return 
+
+!swap y an z
+keycode 52 = z
+keycode 29 = y
+
+!numpad keys
+!keycode 82 = Escape Escape Escape
+!keycode 84 = Down Down Down
+!keycode 86 = BackSpace BackSpace BackSpace
+
+!switch context menu botton with right control
+!remove Control = Control_R
+!keysym Control_R = Menu
+!keysym Menu = Control_R
+!add Control = Control_R
+
+!make caps lock special modifier key
+keysym Insert = Caps_Lock
+keysym Caps_Lock = Mode_switch
+

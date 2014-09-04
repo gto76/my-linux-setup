@@ -20,6 +20,7 @@ fi
 alias us='setxkbmap -layout us; xmodmap ~/.Xmodmapus'
 alias usvi='setxkbmap -layout us; xmodmap ~/.Xmodmapusvi'
 alias si='setxkbmap -layout si; xmodmap ~/.Xmodmapsi'
+alias sivi='setxkbmap -layout si; xmodmap ~/.Xmodmapsivi'
 
 # Syntax highligh for less
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"

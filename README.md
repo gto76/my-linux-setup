@@ -74,12 +74,13 @@ To execute it run:
 Of course you can also create links yourself, or even just copy the files if you don't intend to commit changes.
 
 ### .my_bashrc:
-My own .bashrc. Kind of ties everything together. Useles without .bash_aliases, WTF MAN and .Xmodmapus. In detail:
-* Exports path of WTF MAN. It is set to `$HOME/my-aliases/Desktop/WTF MAN`.
-* Defines aliases **us** and **si**, that set up my custom keymaps. (see .Xmodmapus, .Xmodmapsi)
-* Defines aliases that enable easy access to .bash_aliases (2), WTF MAN (1), TODO (4) and to itself (3). They are composed out of a letter and a number. Letter signifies a program (m - less, v - vim, n - nano, g - gedit) and number a file.
+Includes aliases and functions that need other files from the project to function. In detail:
+* Loads aliases and functions from `.my_bash_aliases` and `.my_bashrc_personal`.
+* Exports path of WTF-MAN and INS files. Thet are set to `$HOME/Desktop/WTF-MAN` and `$HOME/Desktop/INS`.
+* Defines aliases **us**, **usvi**, **sivi** and **si**, that set up my custom keymaps defined in .Xmodmapus, .Xmodmapusvi, .Xmodmapsi and .Xmodmapsivi (see below for details).
+* Defines aliases that enable easy access to .my_bash_aliases (2), WTF-MAN (1), INS (4) and to itself - .my_bashrc (3). They are composed out of a letter and a number. Letter signifies a program (m - less, v - vim, n - nano, g - gedit) and number a file. So for exampl alias `g4` opens INS with gedit.
 
-###.bash_aliases:
+###.my_bash_aliases:
 My own .bash_aliases. Besides a lot of useful aliases, there are also some interesting functions, such as:
 
 * **teaceroute1** - Prints country codes of hosts on path.
@@ -98,23 +99,23 @@ My own .bash_aliases. Besides a lot of useful aliases, there are also some inter
 
 * **ip2** - What's my external ip.
 
-* **pingAll** - Pings gateway, 8.23.224.10 and Google.
+* **pingAll** - Pings gateway, 8.23.224.10 (www.no-ip.com) and Google.
 
 * **gi** - Downloads small image of a phrase from google images.
 
 * **wi** - Tries to find description of a command using "whatis", "apt-cache show" and "type". Returns first match.
 
-### Desktop/WTF MAN:
-Long list of unix commands with short descriptions. Useful for quick search before you start googling. In .bashrc there are few aliases that enable quick access, namely:
+### WTF-MAN:
+Long list of unix commands with short descriptions. Useful for quick search before you start googling. In .my_bashrc there are few aliases that enable quick access, namely:
 ```
-	m1 -> less .Desktop/WTF MAN
-	c1 -> grep .Desktop/WTF MAN
-	v1 -> vim .Desktop/WTF MAN
-	n1 -> nano .Desktop/WTF MAN
+	m1 -> less ~/Desktop/WTF-MAN
+	c1 -> grep ~/Desktop/WTF-MAN
+	v1 -> vim ~/Desktop/WTF-MAN
+	n1 -> nano ~/Desktop/WTF-MAN
 ```
 
-### .Xmodmapus, .Xmodmapusvi, .Xmodmapsi:
-Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and Home, End, PgUp, PgDn keys a little shifted around. Here are the two american versions 
+### .Xmodmapus, .Xmodmapusvi, .Xmodmapsi and .Xmodmapsivi:
+Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Arrows, Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and Home, End, PgUp, PgDn keys a little shifted around. Here are the two american versions 
 - .Xmodmapus:
 
 ![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
@@ -123,16 +124,23 @@ Keymaps that make CapsLock an additional modifier key. With it pressed, the keys
 
 ![Alt text](/doc/Xmodmapusvi.png?raw=true "Picture of Keyboard")
 
-Also present is slovenian version: .Xmodmapsi.
+Also present are Slovenian versions: .Xmodmapsi, .Xmodmapsi. Slovenian layout is basicaly the same as German with letters 'čćšđž' in place of 'umlauted' letters. 
 
+## How to set keymap:
 Warning: For keymaps to work, it is mandatory that layout for that language is set before xmodmap is run. For example if American layout is selected and we want Slovenian we need to type:
 ```
 	setxkbmap -layout si
 	xmodmap ~/.Xmodmapsi
 ```
-In .bashrc there are already two aliases that do this, namely `us` for American and `si` for Slovenian layout. If you want keymaps to get loaded when X starts (at least for Mint/Debian), go to Startup Applications and add new aplication: "xmodmap $HOME/.Xmodmapus" with 2 second delay.
+In .my_bashrc there are aliases that do this for you:
+* `us` for American layout,
+* `usvi` for vi variation of American layout,
+* `si` for Slovenian layout and
+* `sivi` for vi variation of Slovenian layout.
 
-### reaper/Reaper Shortcuts Jure 04.ReaperKeyMap:
+If you want a particular keymap to get loaded when X starts (at least for Mint/Debian), go to Startup Applications and add new aplication: "xmodmap $HOME/.Xmodmapus" with 2 second delay.
+
+### Reaper Shortcuts Jure 04.ReaperKeyMap:
 Custom shortcuts for Reaper DAW (digital audio workstation).
 
 ![Alt text](/doc/reaper-keyboard-shortcuts.png?raw=true "Picture of Keyboard")

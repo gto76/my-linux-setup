@@ -29,14 +29,13 @@ My Linux config files, three handy text files, and an install script to put them
 
 Two biggest and most important files are:
 
-* [**`./dotfiles/.my_bash_aliases`**](.my_bash_aliases) and 
-* **`./textfiles/WTF-MAN`**. 
+* [**`./dotfiles/.my_bash_aliases`**](dotfiles/.my_bash_aliases) and 
+* [**`./textfiles/WTF-MAN`**](textfiles/WTF-MAN). 
     
-[.my_bash_aliases]: dotfiles/.my_bash_aliases
 
 The first one contains handy bash functions and aliases. It can be used without other files in a project; just copy it in home directory and add this line: `. ~/.my_bash_aliases` to `.bashrc` (which is also located in home directory, if not create it). If you want to use the whole project then instead use install script (see below).
 
-Other big file **`WTF-MAN`**, contains short explanations and examples of useful Unix commands. 
+Other big file [**`WTF-MAN`**](textfiles/WTF-MAN), contains short explanations and examples of useful Unix commands. 
 
 Once everything is installed, they are easily accessible with the following commands: 
 ```
@@ -47,7 +46,7 @@ Once everything is installed, they are easily accessible with the following comm
 	n1 -> nano WTF-MAN 
     n2 -> nano .bash_aliases
 ```
-Also note that if you change anything in **`.bash_aliases`**, you need to restart bash with `bash` command, or its `ba` alias.
+Also note that if you change anything in [**`.my_bash_aliases`**](dotfiles/.my_bash_aliases), you need to restart bash with `bash` command, or its `ba` alias.
 
 ## How to install:
 ```
@@ -59,7 +58,7 @@ Also note that if you change anything in **`.bash_aliases`**, you need to restar
 
 ## Files in detail:
 
-#### `install`:
+#### [`install`](install):
 Executable bash script that creates symbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
 ``` bash
 if [ -f ~/.my_bashrc ]; then

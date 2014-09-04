@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install script that creates simbolic links to the files of the repository.
 # All links to the dotfiles are created in the home directory, except the
 # config file of the .nrss directory, which is created if it doesent exist.

@@ -118,6 +118,7 @@ pushd . - put current dir on stack
 popd - pop dir from stack
 cd - - go to last dir
 source <script> - run script: for example source /etc/profile (same as . <command>)
+#!/bin/bash - good practice to insert at begining of a bash script
 
 REDIRECTIONS:
 <command> 2> /dev/null - redirect error output
@@ -894,6 +895,7 @@ shiftwidth= (sw)| 8 		| number of spaces added when identing
 tabstop= (ts)	| 8 		| tab width
 wrap			| wrap		| wrap lines
 wrapscan (ws)	| ws 		| search wraps around file
+mouse=a			|			| mouse mode (use shift when selecting to copy to clipboard)
 
 EDIT COMMANDS
 [n] operation [m] motion - if both n and m are specified then n x m

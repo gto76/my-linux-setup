@@ -1,8 +1,35 @@
 set tabstop=4
 set shiftwidth=4
 set number
+" Use case insensitive search, except when using capital letters
 set ignorecase
-set background=light
+set smartcase
+set background=dark
 colorscheme darkblue
 syntax on
 set autoindent
+set smartindent
+" set mouse mode
+set mouse=a
+" F11 to toggle paste mode
+map <F10> :set invpaste<CR>
+set pastetoggle=<F10>
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
+
+" Configure backspace so it acts as it should act
+"set backspace=eol,start,indent
+"set whichwrap+=<,>,h,l
+
+" Remap VIM 0 to first non-blank character
+"map 0 ^
+
+" Pressing ,ss will toggle and untoggle spell checking
+"map <leader>ss :setlocal spell!<cr>
+
+" Shortcuts using <leader>
+"map <leader>sn ]s
+"map <leader>sp [s
+"map <leader>sa zg
+"map <leader>s? z=

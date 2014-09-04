@@ -13,38 +13,39 @@ My Linux config files, three handy text files, and an install script to put them
 │   ├── .my_bashrc - Aliases that only work with other files in a project.
 │   ├── .my_bashrc_personal - Few aliases that are locale specific.
 │   ├── .my_vimrc - My vim configuration.
-│   ├── .Xmodmapsi - 'jikl' become arrow keys when capslock is pressed
-│   ├── .Xmodmapus - Same, but for american layout.
-│   └── .Xmodmapusvi - Same, but with 'hjkl'.
+│   ├── .Xmodmapus - Keymap. 'jikl' become arrow keys when capslock is pressed.
+│   └── .Xmodmapusvi - Same, but with 'hjkl' for arrows.
+│   ├── .Xmodmapsi - Slovenian version of .Xmodmapus.
+│   ├── .Xmodmapsivi - Same, but with 'hjkl' for arrows.
 ├── keymaps
 │   └── Reaper Shortcuts Jure 04.ReaperKeyMap - My Reaper DAW keymap.
 ├── textfiles
-│   ├── INS - List of thigs I first set up on a fresh install.
+│   ├── INS - List of things I first set up on a fresh install.
 │   ├── NYK - Summaries of interesting computer topics.
-│   └── WTF-MAN - Long list of unix commands.
+│   └── WTF-MAN - Long list of Unix commands.
 ├── install - Links dotfiles to HOME and textfiles to Desktop.
 └── README.md - You are here.
 ```
 
-The two biggest and most important files are:
+Two biggest and most important files are:
 
 * `./dotfiles/.my_bash_aliases` and 
 * `./textfiles/WTF-MAN`. 
     
-The first one contains handy bash scripts and aliases. It can be used withouth other files in a project, just copy it in home directory and add this line: `. ~/.my_bash_aliases` to .bashrc (also located in home directory, if not create it). If you also want other files then use install script (see below).
+The first one contains handy bash functions and aliases. It can be used without other files in a project; just copy it in home directory and add this line: `. ~/.my_bash_aliases` to `.bashrc` (which is also located in home directory, if not create it). If you want to use the whole project then instead use install script (see below).
 
-Other big file `WTF MAN`, contains short explanations and examples of useful Unix commands. 
+Other big file `WTF-MAN`, contains short explanations and examples of useful Unix commands. 
 
 Once everything is installed, they are easily accessible with the following commands: 
 ```
-	m1 -> less WTF MAN, 
+	m1 -> less WTF-MAN
     m2 -> less .bash_alisases
-	v1 -> vim WTF MAN, 
+	v1 -> vim WTF-MAN 
     v2 -> vim .bash_aliases
-	n1 -> nano WTF MAN, 
+	n1 -> nano WTF-MAN 
     n2 -> nano .bash_aliases
 ```
-Also note that if you change anything in .bash_aliases, you need to restart bash with `bash` command, or its `ba` alias.
+Also note that if you change anything in `.bash_aliases`, you need to restart bash with `bash` command, or its `ba` alias.
 
 ## How to install:
 ```
@@ -53,12 +54,11 @@ Also note that if you change anything in .bash_aliases, you need to restart bash
 	cd my-aliases
     ./install
 ```
-For details about install script see next section.
 
 ## Files in detail:
 
-### install:
-Executable bash script that creates simbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
+### `install`:
+Executable bash script that creates symbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
 ``` bash
 if [ -f ~/.my_bashrc ]; then
    . ~/.my_bashrc
@@ -76,9 +76,9 @@ Of course you can also create links yourself, or even just copy the files if you
 ### .my_bashrc:
 Includes aliases and functions that need other files from the project to function. In detail:
 * Loads aliases and functions from `.my_bash_aliases` and `.my_bashrc_personal`.
-* Exports path of WTF-MAN and INS files. Thet are set to `$HOME/Desktop/WTF-MAN` and `$HOME/Desktop/INS`.
-* Defines aliases **us**, **usvi**, **sivi** and **si**, that set up my custom keymaps defined in .Xmodmapus, .Xmodmapusvi, .Xmodmapsi and .Xmodmapsivi (see below for details).
-* Defines aliases that enable easy access to .my_bash_aliases (2), WTF-MAN (1), INS (4) and to itself - .my_bashrc (3). They are composed out of a letter and a number. Letter signifies a program (m - less, v - vim, n - nano, g - gedit) and number a file. So for exampl alias `g4` opens INS with gedit.
+* Exports path of WTF-MAN and INS files. That are set to `$HOME/Desktop/WTF-MAN` and `$HOME/Desktop/INS`.
+* Defines aliases **`us`**, **`usvi`**, **`si`** and **`sivi`**, that set up my custom keymaps defined in .Xmodmapus, .Xmodmapusvi, .Xmodmapsi and .Xmodmapsivi (see below for details).
+* Defines aliases that enable easy access to .my_bash_aliases (2), WTF-MAN (1), INS (4) and to itself - .my_bashrc (3). They are composed out of a letter and a number. Letter signifies a program (m - less, v - vim, n - nano, g - gedit) and number a file. So for example alias `g4` opens INS with gedit.
 
 ###.my_bash_aliases:
 My own .bash_aliases. Besides a lot of useful aliases, there are also some interesting functions, such as:
@@ -101,12 +101,12 @@ My own .bash_aliases. Besides a lot of useful aliases, there are also some inter
 
 * **pingAll** - Pings gateway, 8.23.224.10 (www.no-ip.com) and Google.
 
-* **gi** - Downloads small image of a phrase from google images.
+* **gi** - Downloads small image of a phrase from Google images.
 
 * **wi** - Tries to find description of a command using "whatis", "apt-cache show" and "type". Returns first match.
 
 ### WTF-MAN:
-Long list of unix commands with short descriptions. Useful for quick search before you start googling. In .my_bashrc there are few aliases that enable quick access, namely:
+Long list of Unix commands with short descriptions. Useful for quick search before you start googling. In .my_bashrc there are few aliases that enable quick access, namely:
 ```
 	m1 -> less ~/Desktop/WTF-MAN
 	c1 -> grep ~/Desktop/WTF-MAN
@@ -115,7 +115,7 @@ Long list of unix commands with short descriptions. Useful for quick search befo
 ```
 
 ### .Xmodmapus, .Xmodmapusvi, .Xmodmapsi and .Xmodmapsivi:
-Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Arrows, Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and Home, End, PgUp, PgDn keys a little shifted around. Here are the two american versions 
+Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Arrows, Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and Home, End, PgUp, PgDn keys a little shifted around. Here are the two American versions 
 - .Xmodmapus:
 
 ![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
@@ -138,7 +138,7 @@ In .my_bashrc there are aliases that do this for you:
 * `si` for Slovenian layout and
 * `sivi` for vi variation of Slovenian layout.
 
-If you want a particular keymap to get loaded when X starts (at least for Mint/Debian), go to Startup Applications and add new aplication: "xmodmap $HOME/.Xmodmapus" with 2 second delay.
+If you want a particular keymap to get loaded when X starts (at least for Mint/Debian), go to Startup Applications and add new application: "xmodmap $HOME/.Xmodmapus" with 2 second delay.
 
 ### Reaper Shortcuts Jure 04.ReaperKeyMap:
 Custom shortcuts for Reaper DAW (digital audio workstation).

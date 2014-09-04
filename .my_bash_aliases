@@ -172,12 +172,15 @@ alias ee='echo -e'
 # Echo withouth new line at the end.
 alias en='echo -n'
 alias c='cat'
-alias v='vim'
+# Vim - open one tab per file
+alias v='vim -p'
 # Read only vim
 alias vv='view'
 # Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
 alias na='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
-alias g='gedit &'
+g() {
+	gedit "$@" &
+}
 alias f='firefox &'
 alias sub='sublime_text &'
 alias scr='screen'
@@ -222,7 +225,6 @@ alias vimode='set -o vi'
 alias gt='gnome-terminal'
 # Start a file explorer
 alias n='nemo .'
-
 
 ########
 # SUDO #
@@ -438,6 +440,10 @@ alias xo='xclip -o'
 # Put in clipboard
 alias xi='xclip -i'
 
+# Turn key input repeat off
+alias norepeat='xset -r'
+# Turn key input repeat on
+alias repeat='xset r'
 
 ##########################
 # COMMAND/PACKAGE SEARCH #
@@ -523,6 +529,7 @@ alias gl='git log --decorate --graph --all'
 alias gu='git remote update'
 alias gd='git diff'
 alias ga='git add'
+alias gm='git mv'
 
 # GIT MISC:
 
@@ -538,10 +545,10 @@ pushall() {
 }
 
 # For all projects in the directory print the labaels of the last commit
-alias gista='for a in *; do cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..; done'
+alias gsta='for a in *; do cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..; done'
 
-# Displays lines of code per file in git repo and sum of all. Only looks for files in src repo.
-giloc() {
+# Displays lines of code per file in git repo and sum of all. Only looks for files in src directory.
+gloc() {
 	git ls-files \
 		| xargs file \
 		| grep text \
@@ -549,6 +556,25 @@ giloc() {
 		| tr -d ":" \
 		| grep ^src/.* \
 	  	| xargs wc -l 
+}
+
+# Runs gloc in all subfolders and only displays totals.
+glocall() {
+	sum=0
+	for a in *; do 
+		if [ -d "$a" ]; then 
+			cd "$a"
+			tot=`gloc | grep total | grep -o [0-9]*`
+			if [ -n "$tot" ]; then
+				echo "$a"
+				echo "$tot"
+				let sum=$sum+"$tot"
+			fi
+			cd ..
+		fi
+	done
+	echo "============="
+	echo "$sum"
 }
 
 # Plot distribution of file lengths in git repo. Gnuplot and gnuplot-x11 packages need to be installed.
@@ -606,10 +632,13 @@ bsize() {
 }
 
 # Display an image.
-alias picture='display'
-alias image='display'
-alias img='display'
-alias d='display'
+picture() {
+	eog "$@" &
+}
+#alias picture='eog'
+alias image='picture'
+alias img='picture'
+alias d='picture'
 
 # Run a typing tutor.
 alias tt='gtypist'

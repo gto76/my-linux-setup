@@ -109,9 +109,6 @@ test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit stat
 	-w - has write permission, -x - has execute permission
 [[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
 $? - exit code of last command (0 - ok)
-2> /dev/null - redirect error output
-&> /dev/null - redirect both standard and error output
->&2 - write to stderr
 $(command) - same as `command`
 $RANDOM - 0 - 32767
 input=`cat` - getting standard input
@@ -122,6 +119,11 @@ popd - pop dir from stack
 cd - - go to last dir
 source <script> - run script: for example source /etc/profile (same as . <command>)
 
+REDIRECTIONS:
+<command> 2> /dev/null - redirect error output
+<command> &> /dev/null - redirect both standard and error output
+<command> >&2 - write to stderr
+<command> 2>&1 | less - add stderr to stdout and print it with less (useful for gcc)
 
 GENERAL:
 
@@ -226,6 +228,8 @@ find <dir> -name <filename>
 	-exec <command> {} ; - command is executed for every found file. {} is replaced with filename
 	-exec <command> {} + - same, only that {} is replaced with all the filenames
 sudo sh -c 'echo "bla bla bla" >> <filename>' - append lines to systam configuration file
+gcc - gnu c compiler
+	-w - supress warnings (only print errors) 
 
 
 ALIASES:
@@ -292,9 +296,7 @@ patch - apply a diff file to original
 	diff -u <old-filename> <new-filename> > patch.diff - create patch
 
 SEARCH:
-grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
-	-o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t)
-	-I - do not process binary files
+grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t), -I - do not process binary files
 look - display lines beginning with a given string
 strings - print all text parts of binary file
 
@@ -510,6 +512,7 @@ script - makes a typescript of everything printed on your terminal. Ctrl-D to st
 disks - nice gui partition tool
 fstrim -v / - discard unused blocks, useful for ssd-s
 setterm - set terminal atributes
+	-cursor off/on
 xset - user preference utility for X
    -r - turn key autorepeat off
    r - turn key autorepeat on
@@ -796,6 +799,7 @@ tig - text based repo explorer
 ###########
 ##  VIM  ##
 ###########
+
 +<linenum> - open file at line number
 alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
 ctrl-[ - escape
@@ -867,6 +871,11 @@ qx - record characters into x
 q - stop recording
 @ - execute x
 
+REGISTERS
+"ayy - copy line into register a
+"ap - paste register a
+:reg - access all registers
+
 MISC
 >>,<< - shift line one tab
 K - look up word under cursor in man pages
@@ -919,6 +928,12 @@ SPELLCHECK:
 :set spell spelllang=en_us
 :setlocal spell spelllang=en_us
 :set nospell
+
+TABS:
+:tabe <filename> - open new tab
+ctrl + pgup/pgdn - switch tab
+vim -p - open one tab page per file
+ZZ - save and close tab (same as :wq)
 
 ///////////
 ///////////

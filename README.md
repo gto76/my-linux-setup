@@ -100,10 +100,15 @@ Long list of unix commands with short descriptions. Useful for quick search befo
 	n1 -> nano .Desktop/WTF MAN
 ```
 
-### .Xmodmapus, .Xmodmapsi:
-Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. Here is the american version - .Xmodmapus:
+### .Xmodmapus, .Xmodmapusvi, .Xmodmapsi:
+Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and other keys a little shifted around. Here are the american versions - .Xmodmapus:
 
 ![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
+
+- .Xmodmapusvi:
+
+![Alt text](/doc/Xmodmapusvi.png?raw=true "Picture of Keyboard")
+
 Also present is slovenian version: .Xmodmapsi.
 
 Warning: For keymaps to work, it is mandatory that layout for that language is set before xmodmap is run. For example if American layout is selected and we want Slovenian we need to type:

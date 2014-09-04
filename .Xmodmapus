@@ -1,5 +1,5 @@
 ! American keymap with caps lock as meta key that changes keys under right arm into keypad
-! Picture of keymap accesible at: http://www.keyboard-layout-editor.com/#/layouts/af9acb28d70c08e347da4ea5664a24f8
+
 !right part of keyboard changes to num pad when caps lock is pressed
 keycode 31 = i I Up
 keycode 44 = j J Left

@@ -126,8 +126,14 @@ alias lllt='lll -t'
 alias l1='l -1'
 alias la1='la -1'
 # Display tree structure of folders belove PWD
-alias tree1='tree -C | catOrLess'
+tree1() {
+	tree -C -I .git --dirsfirst "$@" | catOrLess
+}
 alias t='tree1'
+# Same, but all files
+alias tree2='tree1 -a'
+alias t1='tree2'
+
 
 ##########
 # BASICS #
@@ -141,6 +147,7 @@ alias rm='rm -i'
 alias rm1='rm'
 alias mv='mv -iv'
 alias cp='cp -iv'
+alias mvdir='mv'
 
 # Simplify going up in directory hierarchy.
 alias cd..='cd ..'

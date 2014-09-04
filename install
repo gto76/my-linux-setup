@@ -27,7 +27,8 @@ function createLink {
 	fi	
 }
 
-# create links
+# create links to dotfiles
+cd dotfiles
 createLink ~ .my_bashrc
 createLink ~ .my_bash_aliases
 createLink ~ .my_bashrc_personal
@@ -37,10 +38,13 @@ createLink ~ .Xmodmapusvi
 createLink ~ .Xmodmapsi
 (cd .nrss 
 createLink ~/.nrss config)
-(cd Desktop 
+cd ..
+# create links to textfiles
+cd textfiles
 createLink ~/Desktop WTF-MAN
 createLink ~/Desktop INS 
-createLink ~/Desktop NYK)
+createLink ~/Desktop NYK
+cd ..
   
 # add statement to .bashrc that will load .my_bashrc, if it doesent already exist
 if [[ -z `grep ". ~/.my_bashrc" ~/.bashrc` ]]; then

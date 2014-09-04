@@ -24,7 +24,7 @@ ctrl alt end - shutdown
 
 middle mouse button - paste selected text
 
-NAUTILUS:
+NAUTILUS/NEMO:
 ctrl+l - location
 ctrl+shift+n - new folder
 ctrl+h - show hidden files
@@ -57,9 +57,9 @@ ctrl p - show last command (same as up arrow)
 
 
 
-###################
-HUDI TERMINAL UKAZI:
-###################
+##########################
+AWESOME TERMINAL COMMANDS:
+##########################
 
 
 PACKAGES:
@@ -638,9 +638,9 @@ openmovieeditor - gui movie editor (video)
 aview, asciiview - ASCII art image viewer and video player
 
 
-#############
-HUDE DATOTEKE:
-#############
+###################
+AWESOME UNIX FILES:
+###################
 
 BASH:
 ~/.bashrc - executed at every shell startup, user specific

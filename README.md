@@ -6,31 +6,36 @@ My Linux config files, three handy text files, and an install script to put them
 
 ```
 .
-├── Desktop
-│   ├── ETC - List of thigs I first set up on a fresh install.
-│   ├── NYK - Summaries of interesting computer topics.
-│   └── WTF MAN - Long list of unix commands.
-├── .nrss
-│   └── config - Few rss feeds.
-├── reaper
+├── dotfiles
+│   ├── .nrss
+│   │   └── config - Few rss feeds.
+│   ├── .my_bash_aliases - My aliases and functions. Can be used alone.
+│   ├── .my_bashrc - Aliases that only work with other files in a project.
+│   ├── .my_bashrc_personal - Few aliases that are locale specific.
+│   ├── .my_vimrc - My vim configuration.
+│   ├── .Xmodmapsi - 'jikl' become arrow keys when capslock is pressed
+│   ├── .Xmodmapus - Same, but for american layout.
+│   └── .Xmodmapusvi - Same, but with 'hjkl'.
+├── keymaps
 │   └── Reaper Shortcuts Jure 04.ReaperKeyMap - My Reaper DAW keymap.
-├── .bash_aliases - My bash aliases and functions.
-├── .bashrc - Few aliases that are locale specific.
-├── install.sh - Installs links to files to coresponding directories.
-├── README.md - You are here.
-├── .vimrc - Few vim configurations.
-├── .Xmodmapsi - Special keymap with capslock as additional modifier.
-└── .Xmodmapus - Same, but for american layout.
+├── textfiles
+│   ├── INS - List of thigs I first set up on a fresh install.
+│   ├── NYK - Summaries of interesting computer topics.
+│   └── WTF-MAN - Long list of unix commands.
+├── install - Links dotfiles to HOME and textfiles to Desktop.
+└── README.md - You are here.
 ```
 
 The two biggest and most important files are:
 
-* `.bash_aliases` and 
-* `./Desktop/WTF MAN`. 
+* `./dotfiles/.my_bash_aliases` and 
+* `./textfiles/WTF-MAN`. 
     
-The first one contains handy bash scripts and aliases. You need .bashrc with this line: `. ~/.bash_aliases` in your home directory, for it to get loaded at console startup. 
+The first one contains handy bash scripts and aliases. It can be used withouth other files in a project, just copy it in home directory and add this line: `. ~/.my_bash_aliases` to .bashrc (also located in home directory, if not create it). If you also want other files then use install script (see below).
 
-Other big file `WTF MAN`, contains short explanations and examples of useful Unix commands. Once installed, they are easily accessible with the following commands: 
+Other big file `WTF MAN`, contains short explanations and examples of useful Unix commands. 
+
+Once everything is installed, they are easily accessible with the following commands: 
 ```
 	m1 -> less WTF MAN, 
     m2 -> less .bash_alisases
@@ -41,26 +46,34 @@ Other big file `WTF MAN`, contains short explanations and examples of useful Uni
 ```
 Also note that if you change anything in .bash_aliases, you need to restart bash with `bash` command, or its `ba` alias.
 
-## How to run:
+## How to install:
 ```
 	cd $HOME
 	git clone https://github.com/gto76/my-aliases.git
 	cd my-aliases
-    ./install.sh
+    ./install
 ```
 For details about install script see next section.
 
 ## Files in detail:
 
-### install.sh:
-Executable bash script that creates hard links to all files of the project and places them in home directory. All files that are not at root of a project get their links created in corresponding directories of home directory. If directories don't yet exist, they get created. If file with same name already exists, it is not overwritten, only a warning gets printed. 
+### install:
+Executable bash script that creates simbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
+``` bash
+if [ -f ~/.my_bashrc ]; then
+   . ~/.my_bashrc
+fi
+```
+This way aliases and functions in `.my_bashrc` get loaded at terminal startup. `.my_bashrc` then loads other two files (`.my_bash_aliases` and `.my_bashrc_personal`) in a same manner.
+Also following line: `so ~/.my_vimrc` is added to the end of a .vimrc file, which loads `.my_vimrc` at vim startup. 
+
 To execute it run:
 ```
-    ./install.sh
+    ./install
 ```
-Of course you can also create links yourself, or even just copy the files if you don't intend to commit.
+Of course you can also create links yourself, or even just copy the files if you don't intend to commit changes.
 
-### .bashrc:
+### .my_bashrc:
 My own .bashrc. Kind of ties everything together. Useles without .bash_aliases, WTF MAN and .Xmodmapus. In detail:
 * Exports path of WTF MAN. It is set to `$HOME/my-aliases/Desktop/WTF MAN`.
 * Defines aliases **us** and **si**, that set up my custom keymaps. (see .Xmodmapus, .Xmodmapsi)
@@ -101,7 +114,7 @@ Long list of unix commands with short descriptions. Useful for quick search befo
 ```
 
 ### .Xmodmapus, .Xmodmapusvi, .Xmodmapsi:
-Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and other keys a little shifted around. Here are the two american versions 
+Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and Home, End, PgUp, PgDn keys a little shifted around. Here are the two american versions 
 - .Xmodmapus:
 
 ![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")

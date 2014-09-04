@@ -101,7 +101,8 @@ Long list of unix commands with short descriptions. Useful for quick search befo
 ```
 
 ### .Xmodmapus, .Xmodmapusvi, .Xmodmapsi:
-Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and other keys a little shifted around. Here are the american versions - .Xmodmapus:
+Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and other keys a little shifted around. Here are the two american versions 
+- .Xmodmapus:
 
 ![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
 

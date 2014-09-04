@@ -29,8 +29,8 @@ My Linux config files, three handy text files, and an install script to put them
 
 Two biggest and most important files are:
 
-* `./dotfiles/.my_bash_aliases` and 
-* `./textfiles/WTF-MAN`. 
+* **`./dotfiles/.my_bash_aliases`** and 
+* **`./textfiles/WTF-MAN`**. 
     
 The first one contains handy bash functions and aliases. It can be used without other files in a project; just copy it in home directory and add this line: `. ~/.my_bash_aliases` to `.bashrc` (which is also located in home directory, if not create it). If you want to use the whole project then instead use install script (see below).
 
@@ -57,7 +57,7 @@ Also note that if you change anything in `.bash_aliases`, you need to restart ba
 
 ## Files in detail:
 
-### `install`:
+#### `install`:
 Executable bash script that creates symbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
 ``` bash
 if [ -f ~/.my_bashrc ]; then

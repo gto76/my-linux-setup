@@ -7,7 +7,7 @@ My Linux config files, three handy text files, and an install script to put them
 ```
 .
 ├── dotfiles
-│   ├── **.nrss**
+│   ├── .nrss
 │   │   └── config - Few rss feeds.
 │   ├── .my_bash_aliases - My aliases and functions. Can be used alone.
 │   ├── .my_bashrc - Aliases that only work with other files in a project.
@@ -29,12 +29,12 @@ My Linux config files, three handy text files, and an install script to put them
 
 Two biggest and most important files are:
 
-* **`./dotfiles/.my_bash_aliases`** and 
+* [**`./dotfiles/.my_bash_aliases`**](../dotfiles/.my_bash_aliases) and 
 * **`./textfiles/WTF-MAN`**. 
     
 The first one contains handy bash functions and aliases. It can be used without other files in a project; just copy it in home directory and add this line: `. ~/.my_bash_aliases` to `.bashrc` (which is also located in home directory, if not create it). If you want to use the whole project then instead use install script (see below).
 
-Other big file `WTF-MAN`, contains short explanations and examples of useful Unix commands. 
+Other big file **`WTF-MAN`**, contains short explanations and examples of useful Unix commands. 
 
 Once everything is installed, they are easily accessible with the following commands: 
 ```
@@ -45,7 +45,7 @@ Once everything is installed, they are easily accessible with the following comm
 	n1 -> nano WTF-MAN 
     n2 -> nano .bash_aliases
 ```
-Also note that if you change anything in `.bash_aliases`, you need to restart bash with `bash` command, or its `ba` alias.
+Also note that if you change anything in **`.bash_aliases`**, you need to restart bash with `bash` command, or its `ba` alias.
 
 ## How to install:
 ```
@@ -64,7 +64,7 @@ if [ -f ~/.my_bashrc ]; then
    . ~/.my_bashrc
 fi
 ```
-This way aliases and functions in `.my_bashrc` get loaded at terminal startup. `.my_bashrc` then loads other two files (`.my_bash_aliases` and `.my_bashrc_personal`) in a same manner.
+This way aliases and functions in **`.my_bashrc`** get loaded at terminal startup. `.my_bashrc` then loads other two files (`.my_bash_aliases` and `.my_bashrc_personal`) in a same manner.
 Also following line: `so ~/.my_vimrc` is added to the end of a .vimrc file, which loads `.my_vimrc` at vim startup. 
 
 To execute it run:

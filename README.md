@@ -58,15 +58,15 @@ Also note that if you change anything in [**`.my_bash_aliases`**](dotfiles/.my_b
 
 ## Files in detail:
 
-#### [**`install`**](install):
+#### [`install`](install):
 Executable bash script that creates symbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
 ``` bash
 if [ -f ~/.my_bashrc ]; then
    . ~/.my_bashrc
 fi
 ```
-This way aliases and functions in **`.my_bashrc`** get loaded at terminal startup. `.my_bashrc` then loads other two files (`.my_bash_aliases` and `.my_bashrc_personal`) in a same manner.
-Also following line: `so ~/.my_vimrc` is added to the end of a .vimrc file, which loads `.my_vimrc` at vim startup. 
+This way aliases and functions in [**`.my_bashrc`**](dotfiles/.my_bashrc) get loaded at terminal startup. [**`.my_bashrc`**](dotfiles/.my_bashrc) then loads other two files ([**`.my_bash_aliases`**](dotfiles/.my_bash_aliases) and [**`.my_bashrc_personal`**](dotfiles/.my_bashrc_personal)) in a same manner.
+Also following line: `so ~/.my_vimrc` is added to the end of a `.vimrc` file, which loads [**`.my_vimrc`**](dotfiles/.my_vimrc) at vim startup. 
 
 To execute it run:
 ```
@@ -74,46 +74,44 @@ To execute it run:
 ```
 Of course you can also create links yourself, or even just copy the files if you don't intend to commit changes.
 
-### .my_bashrc:
+#### [**`.my_bashrc`**](dotfiles/.my_bashrc):
 Includes aliases and functions that need other files from the project to function. In detail:
-* Loads aliases and functions from `.my_bash_aliases` and `.my_bashrc_personal`.
-* Exports path of WTF-MAN and INS files. That are set to `$HOME/Desktop/WTF-MAN` and `$HOME/Desktop/INS`.
-* Defines aliases **`us`**, **`usvi`**, **`si`** and **`sivi`**, that set up my custom keymaps defined in .Xmodmapus, .Xmodmapusvi, .Xmodmapsi and .Xmodmapsivi (see below for details).
-* Defines aliases that enable easy access to .my_bash_aliases (2), WTF-MAN (1), INS (4) and to itself - .my_bashrc (3). They are composed out of a letter and a number. Letter signifies a program (m - less, v - vim, n - nano, g - gedit) and number a file. So for example alias `g4` opens INS with gedit.
+* Loads aliases and functions from [**`.my_bash_aliases`**](dotfiles/.my_bash_aliases) and [**`.my_bashrc_personal`**](dotfiles/.my_bashrc_personal).
+* Exports path of [**`WTF-MAN`**](textfiles/WTF-MAN) and [**`INS`**](textfiles/INS) files. That are set to `$HOME/Desktop/WTF-MAN` and `$HOME/Desktop/INS`.
+* Defines aliases **`us`**, **`usvi`**, **`si`** and **`sivi`**, that set up my custom keymaps defined in [**`.Xmodmapus`**](dotfiles/.Xmodmapus), [**`.Xmodmapusvi`**](dotfiles/.Xmodmapusvi), [**`.Xmodmapsi`**](dotfiles/.Xmodmapsi) and [**`.Xmodmapsivi`**](dotfiles/.Xmodmapsivi) (see below for details).
+* Defines aliases that enable easy access to [**`.my_bash_aliases`**](dotfiles/.my_bash_aliases) (2), [**`WTF-MAN`**](textfiles/WTF-MAN) (1), [**`INS`**](textfiles/INS) (4) and to itself -> [**`.my_bashrc`**](dotfiles/.my_bashrc) (3). They are composed out of a letter and a number. Letter signifies a program (m - less, v - vim, n - nano, g - gedit) and number a file. So for example alias **`g4`** opens [**`INS`**](textfiles/INS) with gedit.
 
-###.my_bash_aliases:
-My own .bash_aliases. Besides a lot of useful aliases, there are also some interesting functions, such as:
+#### [`.my_bash_aliases`](dotfiles/.my_bash_aliases):
+My own `.bash_aliases`. Besides a lot of useful aliases, there are also some interesting functions, such as:
 
-* **teaceroute1** - Prints country codes of hosts on path.
+* **`teaceroute1`** - Prints country codes of hosts on path.
 
-* **www** - Traceroutes one server per country, prints country codes of hosts on path. 
+* **`www`** - Traceroutes one server per country, prints country codes of hosts on path. 
 
-* **spilej** - Plays an artist/song/album. First looks in pwd, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems occur at search phase.
+* **`spilej`** - Plays an artist/song/album. First looks in pwd, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems occur at search phase.
 
-* **catOrLess** - Runs either cat or less, depending on size of output. Works with files or input stream.
+* **`catOrLess`** - Runs either cat or less, depending on size of output. Works with files or input stream.
 
-* **weathr** - Weather report. Needs city ID -> Go to yahoo weather, search your location, and copy its id from address bar.
+* **`weathr`** - Weather report. Needs city ID -> Go to yahoo weather, search your location, and copy its id from address bar.
 
-* **noh** - How many people are on network beside you (number of hosts).
+* **`noh`** - How many people are on network beside you (number of hosts).
 
-* **ip1** - What's my internal ip.
+* **`ip1`** - What's my internal ip.
 
-* **ip2** - What's my external ip.
+* **`ip2`** - What's my external ip.
 
-* **pingAll** - Pings gateway, 8.23.224.10 (www.no-ip.com) and Google.
+* **`pingAll`** - Pings gateway, 8.23.224.10 (website of no-ip) and Google.
 
-* **gi** - Downloads small image of a phrase from Google images.
+* **`gi`** - Downloads small image of a phrase from Google images.
 
-* **wi** - Tries to find description of a command using "whatis", "apt-cache show" and "type". Returns first match.
+* **`wi`** - Tries to find description of a command using `whatis`, `apt-cache show` and `type`. Returns first match.
 
-### WTF-MAN:
-Long list of Unix commands with short descriptions. Useful for quick search before you start googling. In .my_bashrc there are few aliases that enable quick access, namely:
-```
-	m1 -> less ~/Desktop/WTF-MAN
-	c1 -> grep ~/Desktop/WTF-MAN
-	v1 -> vim ~/Desktop/WTF-MAN
-	n1 -> nano ~/Desktop/WTF-MAN
-```
+### [`WTF-MAN`](textfiles/WTF-MAN):
+Long list of Unix commands with short descriptions. Useful for quick search before you start googling. In [**`.my_bashrc`**](dotfiles/.my_bashrc) there are few aliases that enable quick access, namely:
+* **`m1`** `-> less ~/Desktop/WTF-MAN`
+* **`c1`** `-> grep ~/Desktop/WTF-MAN`
+* **`v1`** `-> vim ~/Desktop/WTF-MAN`
+* **`n1`** `-> nano ~/Desktop/WTF-MAN`
 
 ### .Xmodmapus, .Xmodmapusvi, .Xmodmapsi and .Xmodmapsivi:
 Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Arrows, Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and Home, End, PgUp, PgDn keys a little shifted around. Here are the two American versions 

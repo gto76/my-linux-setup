@@ -38,12 +38,12 @@ The first one contains handy bash functions and aliases. It can be used without 
 Other big file [**`WTF-MAN`**](textfiles/WTF-MAN), contains short explanations and examples of useful Unix commands. 
 
 Once everything is installed, they are easily accessible with the following commands: 
-**`m1`** - `less WTF-MAN`
-**`m2`** - `less .bash_alisases`
-**`v1`** - `vim WTF-MAN`
-**`v2`** - `vim .bash_aliases`
-**`n1`** - `nano WTF-MAN`
-**`n2`** - `nano .bash_aliases`
+* **`m1`** - `less WTF-MAN`
+* **`m2`** - `less .bash_alisases`
+* **`v1`** - `vim WTF-MAN`
+* **`v2`** - `vim .bash_aliases`
+* **`n1`** - `nano WTF-MAN`
+* **`n2`** - `nano .bash_aliases`
 
 Also note that if you change anything in [**`.my_bash_aliases`**](dotfiles/.my_bash_aliases), you need to restart bash with `bash` command, or its `ba` alias.
 

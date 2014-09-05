@@ -58,7 +58,7 @@ Also note that if you change anything in [**`.my_bash_aliases`**](dotfiles/.my_b
 
 ## Files in detail:
 
-#### [`install`](install):
+#### [`install`](install)
 Executable bash script that creates symbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
 ``` bash
 if [ -f ~/.my_bashrc ]; then
@@ -81,7 +81,7 @@ Includes aliases and functions that need other files from the project to functio
 * Defines aliases **`us`**, **`usvi`**, **`si`** and **`sivi`**, that set up my custom keymaps defined in [**`.Xmodmapus`**](dotfiles/.Xmodmapus), [**`.Xmodmapusvi`**](dotfiles/.Xmodmapusvi), [**`.Xmodmapsi`**](dotfiles/.Xmodmapsi) and [**`.Xmodmapsivi`**](dotfiles/.Xmodmapsivi) (see below for details).
 * Defines aliases that enable easy access to [**`.my_bash_aliases`**](dotfiles/.my_bash_aliases) `(2)`, [**`WTF-MAN`**](textfiles/WTF-MAN) `(1)`, [**`INS`**](textfiles/INS) `(4)` and to itself [**`.my_bashrc`**](dotfiles/.my_bashrc) `(3)`. They are composed out of a letter and a number. Letter signifies a program (m - less, v - vim, n - nano, g - gedit) and number a file. So for example alias **`g4`** opens [**`INS`**](textfiles/INS) with gedit.
 
-#### [`.my_bash_aliases`](dotfiles/.my_bash_aliases):
+#### [`.my_bash_aliases`](dotfiles/.my_bash_aliases)
 My own `.bash_aliases`. Besides a lot of useful aliases, there are also some interesting functions, such as:
 
 * **`teaceroute1`** - Prints country codes of hosts on path.
@@ -113,31 +113,31 @@ Long list of Unix commands with short descriptions. Useful for quick search befo
 * **`v1`** calls `vim ~/Desktop/WTF-MAN`
 * **`n1`** calls `nano ~/Desktop/WTF-MAN`
 
-#### .Xmodmapus, .Xmodmapusvi, .Xmodmapsi and .Xmodmapsivi:
-Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Arrows, Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, and all the number keys their corresponding F keys. There is also vi variation, which has directional keys in vi order and Home, End, PgUp, PgDn keys a little shifted around. Here are the two American versions 
-- .Xmodmapus:
+#### [**`.Xmodmapus`**](dotfiles/.Xmodmapus), [**`.Xmodmapusvi`**](dotfiles/.Xmodmapusvi), [**`.Xmodmapsi`**](dotfiles/.Xmodmapsi) and [**`.Xmodmapsivi`**](dotfiles/.Xmodmapsivi)
+Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Arrows, Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, all the number keys their corresponding F keys and Insert key becomes CapsLock. There is also a Vi variation, which has directional keys positioned in Vi style and Home, End, PgUp, PgDn keys a little shifted around. Here are the two American versions:
+- [**`.Xmodmapus`**](dotfiles/.Xmodmapus):
 
 ![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
 
-- .Xmodmapusvi:
+- [**`.Xmodmapusvi`**](dotfiles/.Xmodmapusvi):
 
 ![Alt text](/doc/Xmodmapusvi.png?raw=true "Picture of Keyboard")
 
-Also present are Slovenian versions: .Xmodmapsi, .Xmodmapsi. Slovenian layout is basicaly the same as German with letters 'čćšđž' in place of 'umlauted' letters. 
+Also present are Slovenian versions: [**`.Xmodmapsi`**](dotfiles/.Xmodmapsi) and [**`.Xmodmapsivi`**](dotfiles/.Xmodmapsivi). Slovenian layout is basically the same as German with letters 'čćšđž' in place of 'umlauted' letters. 
 
 ## How to set keymap:
-Warning: For keymaps to work, it is mandatory that layout for that language is set before xmodmap is run. For example if American layout is selected and we want Slovenian we need to type:
+Warning: For keymaps to work, it is mandatory that layout for that language is set before `xmodmap` is run. For example if American layout is selected and we want Slovenian we need to type:
 ```
 	setxkbmap -layout si
 	xmodmap ~/.Xmodmapsi
 ```
-In .my_bashrc there are aliases that do this for you:
-* `us` for American layout,
-* `usvi` for vi variation of American layout,
-* `si` for Slovenian layout and
-* `sivi` for vi variation of Slovenian layout.
+In [**`.my_bashrc`**](dotfiles/.my_bashrc) there are aliases that do this for you:
+* **`us`** for American layout,
+* **`usvi`** for vi variation of American layout,
+* **`si`** for Slovenian layout and
+* **`sivi`** for vi variation of Slovenian layout.
 
-If you want a particular keymap to get loaded when X starts (at least for Mint/Debian), go to Startup Applications and add new application: "xmodmap $HOME/.Xmodmapus" with 2 second delay.
+If you want a particular keymap to get loaded when X starts (at least for Mint/Debian), go to Startup Applications and add new application: `xmodmap $HOME/.Xmodmapus` with 2 second delay.
 
 ### Reaper Shortcuts Jure 04.ReaperKeyMap:
 Custom shortcuts for Reaper DAW (digital audio workstation).

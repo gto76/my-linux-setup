@@ -94,7 +94,7 @@ My own `.bash_aliases`. Besides a lot of useful aliases, there are also some int
 
 * **`weathr`** - Weather report. Needs city ID -> Go to yahoo weather, search your location, and copy its id from address bar.
 
-* **`noh`** - How many people are on network beside you (number of hosts).
+* ***`noh`*** - How many people are on network beside you (number of hosts).
 
 * **`ip1`** - What's my internal ip.
 

@@ -74,7 +74,7 @@ To execute it run:
 ```
 Of course you can also create links yourself, or even just copy the files if you don't intend to commit changes.
 
-#### [**`.my_bashrc`**](dotfiles/.my_bashrc):
+#### [**`.my_bashrc`**](dotfiles/.my_bashrc)
 Includes aliases and functions that need other files from the project to function. In detail:
 * Loads aliases and functions from [**`.my_bash_aliases`**](dotfiles/.my_bash_aliases) and [**`.my_bashrc_personal`**](dotfiles/.my_bashrc_personal).
 * Exports path of [**`WTF-MAN`**](textfiles/WTF-MAN) and [**`INS`**](textfiles/INS) files. That are set to `$HOME/Desktop/WTF-MAN` and `$HOME/Desktop/INS`.
@@ -106,7 +106,7 @@ My own `.bash_aliases`. Besides a lot of useful aliases, there are also some int
 
 * **`wi`** - Tries to find description of a command using `whatis`, `apt-cache show` and `type`. Returns first match.
 
-#### [`WTF-MAN`](textfiles/WTF-MAN):
+#### [`WTF-MAN`](textfiles/WTF-MAN)
 Long list of Unix commands with short descriptions. Useful for quick search before you start googling. In [**`.my_bashrc`**](dotfiles/.my_bashrc) there are a few aliases that enable quick access, namely:
 * **`m1`** calls `less ~/Desktop/WTF-MAN`
 * **`c1`** calls `grep ~/Desktop/WTF-MAN`

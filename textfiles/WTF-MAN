@@ -933,6 +933,7 @@ SPELLCHECK:
 
 TABS:
 :tabe <filename> - open new tab
+gt, gT - go to next/previous tab
 ctrl + pgup/pgdn - switch tab
 vim -p - open one tab page per file
 ZZ - save and close tab (same as :wq)

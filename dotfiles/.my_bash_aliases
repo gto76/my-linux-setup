@@ -231,6 +231,7 @@ alias du='du --summarize --human-readable'
 alias vimode='set -o vi'
 # Start a new terminal.
 alias gt='gnome-terminal'
+alias term='gnome-terminal'
 # Start a file explorer
 alias f='nemo .'
 

@@ -9,19 +9,158 @@
 ...... C ......
 ...............
 ...............
-Q: I declared a 2-dimensional array like this:
 
+STRLEN VS SIZEOF
+A: const char *str = "foo";
+is the same as
+const char *str = {'f', 'o', 'o', 0};
+
+strlen ("hello, world") ⇒ 12 // (one less than the amount of space it takes)
+
+char string[32] = "hello, world";
+sizeof (string) ⇒ 32
+strlen (string) ⇒ 12
+
+But beware, this will not work unless string is the character array itself, not a pointer to it. For example:
+
+char string[32] = "hello, world";
+char *ptr = string;
+sizeof (string) ⇒ 32
+sizeof (ptr) ⇒ 4  /* (on a machine with 4 byte pointers) */
+
+This is an easy mistake to make when you are working with functions that take string arguments; those arguments are always pointers, not arrays.
+
+Q: I declared a 2-dimensional array like this:
 char *array[][3] = {
     {"a", "b", "c"},
     {"d", "e", "f"},
     {"u", "v", "w"},
     {"x", "y", "z"}};
 How do I find out the first dimension?
-
 A: sizeof array / sizeof array[0]
 
+Q: Are all char arrays automatically null-terminated?
+A: Only string literals get null-terminated, and that means that char x[]="asdf" is an array of 5 elements.
 
+Q: How to automaticaly initialize array?
+A: int arr[10] = {0} ⇒ This will initialized the first value to zero, and all subsequent values to 0. If you put a 1 between the curly braces, it would initialize the first value to 1, and all subsequent values to 0. 
 
+Q: In C, I can do like this:
+char s[]="hello"; or
+char *s ="hello";
+So I wonder what is the difference?
+
+A:The difference here is that
+char *s = "Hello world";
+will place Hello world in the read-only parts of the memory and making s a pointer to that, making any writing operation on this memory illegal. While doing:
+
+char s[] = "Hello world";
+puts the literal string in read-only memory and copies the string to newly allocated memory on the stack. Thus making
+s[0] = 'J';
+legal. 
+
+POINTER ARITHMETIC
+------------------
+When arithmetic is performed with a pointer and an integer quantity, the integer is always scaled to the size of type the pointer is pointing to.
+
+Two forms are allowed:
+pointer +/- integer and
+pointer - pointer (only if they point to the same array)
+
+============
+ARRAYS
+============
+
+One-dimensional Arrays
+
+Array Names
+-----------
+IN C, when name of an array is used in almost any expression, the value of the name is a pointer constant that is the address of the first element of the array. 
+Do not conclude from this that arrays and pointers are the same. Ana array has quite different characteristics than a pointer , for example, an array has a certain number of elements, while a pointer is a scalar. The compiler uses the array name to keep track of these properties. It is only what the array name is used in an expression that the compiler generates the pointer constant.
+There are only two places where this pointer substitution does not occur - when an array name is an operand of either sizeof or the unary operator &. sizeof returns the size of the entire array, not the size of pointer to the array. Taking the address of an array name gives a pointer to the first element in the array, not a pointer to some substituted pointer constant value.
+
+Subscripts
+----------
+array[subscript] gets translated into (is same as)
+*( array + (subscript) )
+
+The fact that subscripts can be applied to arbitrary pointer, not just array names, makes subscript checking difficult task.
+
+Arrays and Pointers
+-------------------
+Pointers and arrays are not equivalent.
+Declaring an array sets aside space in memory for the indicated number of elements, and than creates array name whose value is a constant that points to the beginning of this space. Declaring a pointer variable reserves space for the pointer itself but that is all. 
+
+Array Names as Function Arguments
+----------------------------------
+What happens when an array name is passed as an argument to a function? You mow know that the value of an array name is a pointer to the first element of the array, so it makes sense that a copy of this pointer value is passed to the function. A subscript used in the function will perform indirection on this pointer, and it is through this indirection that the function can success or modify the elements of the calling program's array.
+There are two other points about this function that are worth mentioning (or reiterating). First, the parameter is declared as a pointer to const characters. Why is this declaration important for a function that is not going to modify the characters in the first place? There are at least three reasons. First, it is good documentation. Someone wishing to use this function can see from the prototype that the data will not be changed, without reading the code (which might not be available). Second, the compiler will be able to catch any programming error that causes accidental modification. Lastly, the declaration allows const arguments to be passed to the function.
+
+Declaring Array Parameters
+--------------------------
+The following function prototypes are equivalent:
+int strlen(char *string);
+int strlen(char string[]);
+This two declarations are equivalent in this context only! Everywhere else they are quite different, as discussed earlier But for array parameters, you may use either declaration.
+You can use either declaration,but which is "more correct?" The pointer.
+The argument is really a pointer, not the array. Also the expression sizeof string will produce the size of pointer to a character not the size of array.
+On the other hand, this implementation makes it impossible for the function to determine the size of the array. If the array size is needed in the function, it must be passed as an explicit argument.
+
+Initialization
+--------------
+If static array was not initialized, the initial values will be zero.
+
+Character Array Initialization
+-----------------------------
+char message1[] = "Hello";
+char *message2 = "Hello";
+The initializers look alike, but they have different meanings. The first initializes the elements of  character array, but the second is a true string literal. The pointer variable is initialized to point to wherever the literal is stored.
+
+Pointers to Arrays
+------------------
+int (*p)[10];
+Adding initialization to the declaration gives us:
+int (*p)[10] = matrix;
+which makes p point to the first row of matrix.
+What should you do if you want a pointer that will go through the matrix integer by integer rather than row by row?
+int *pi = &matrix[0][0];
+int *pi = matrix[0];
+Both point to the first integer in the matrix. 
+If you intend to perform any arithmetic with the pointer avoid this kind of declaration:
+int (*p)[] = matrix;
+p is still a pointer to an array of integers, but the array size is missing. Integers involved in pointer arithmetic with this variable will be scaled by the size of an empty array (that is, multiplied by zero).
+
+Multidimensional Arrays as Function Arguments
+--------------------------------------------
+Either of the following forms could be used:
+void func2 (int (*mat)[10]);
+void func2 (int mat[][10]);
+
+The key here is that the compiler must know the sizes of the second and subsequent dimensions in order to evaluate subscripts, thus the prototype must declare these dimensions.
+Specifically, it is incorrect to prototype func2 like this:
+void func2 (int **mat);
+This example declares mat to be a pointer to a pointer to an integer, which is not at all the same ting as a pointer to an array of ten integers.
+
+Automatic Array Sizing
+----------------------
+With multidimensional arrays, only the first dimension of the array can be implied by the initializer list. The remaining ones are needed so that the compiler can determine the size of each subordinate dimension. For example:
+int two_dim[][5] = {
+	{ 00, 01, 02 },
+	{ 10, 11},
+	{ 20, 21, 22, 23 }
+};
+
+Arrays of Pointers
+------------------
+int *api[10];
+
+char const *keyword[] = {
+	"do",
+	"for",
+	"if",
+	"register",
+	NULL
+};
 
 
 .........................

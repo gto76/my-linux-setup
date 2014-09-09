@@ -220,7 +220,8 @@ gpg <filename> - decrypt file with password
 	-c <filename> encrypt
 file <filename> - determine file type
 tree - ls in a tree-like (hierarchical) format
-find <dir> -name <filename>
+find <dir> -name <filename> - search by name
+	-not - insert before other options to negate
 	-samefile <filename> - find all hard links of a file
 	-xdev - don't descend directories on other filesystems
 	-inum <inum> - find files with the inode number

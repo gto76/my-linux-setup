@@ -1,3 +1,4 @@
+#!/bin/bash
 
 #    _               _              _ _                     
 #   | |__   __ _ ___| |__      __ _| (_) __ _ ___  ___  ___ 
@@ -126,8 +127,14 @@ alias lllt='lll -t'
 alias l1='l -1'
 alias la1='la -1'
 # Display tree structure of folders belove PWD
-alias tree1='tree -C | catOrLess'
+tree1() {
+	tree -C -I .git --dirsfirst "$@" | catOrLess
+}
 alias t='tree1'
+# Same, but all files
+alias tree2='tree1 -a'
+alias t1='tree2'
+
 
 ##########
 # BASICS #
@@ -141,6 +148,7 @@ alias rm='rm -i'
 alias rm1='rm'
 alias mv='mv -iv'
 alias cp='cp -iv'
+alias mvdir='mv'
 
 # Simplify going up in directory hierarchy.
 alias cd..='cd ..'
@@ -172,11 +180,16 @@ alias ee='echo -e'
 # Echo withouth new line at the end.
 alias en='echo -n'
 alias c='cat'
-alias v='vim'
+# Vim - open one tab per file
+alias v='vim -p'
+# Read only vim
+alias vv='view'
 # Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
-alias na='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
-alias g='gedit &'
-alias f='firefox &'
+alias n='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
+g() {
+	gedit "$@" &
+}
+alias fire='firefox &'
 alias sub='sublime_text &'
 alias scr='screen'
 alias clr='clear'
@@ -218,9 +231,9 @@ alias du='du --summarize --human-readable'
 alias vimode='set -o vi'
 # Start a new terminal.
 alias gt='gnome-terminal'
+alias term='gnome-terminal'
 # Start a file explorer
-alias n='nemo .'
-
+alias f='nemo .'
 
 ########
 # SUDO #
@@ -436,6 +449,10 @@ alias xo='xclip -o'
 # Put in clipboard
 alias xi='xclip -i'
 
+# Turn key input repeat off
+alias norepeat='xset -r'
+# Turn key input repeat on
+alias repeat='xset r'
 
 ##########################
 # COMMAND/PACKAGE SEARCH #
@@ -513,23 +530,34 @@ alias push='git push'
 alias pull='git pull'
 alias checkout='git checkout'
 
-alias gis='git status | catOrLess'
-alias gits='gis'
+alias gc='git checkout'
 alias gs='git status'
-
-# Prints nice log with graph on the side.
-alias gl='git log --graph --decorate --all'
-
-# Updates information about remotes state.
+# Nicely decorated graph of commits
+alias gl='git log --decorate --graph --all'
+# Update information about state of the origin.
 alias gu='git remote update'
-
-# Status about the difference between remote and local?
-alias gsu='git status -uno'
-
 alias gd='git diff'
+alias ga='git add'
+alias gm='git mv'
 
-# Displays lines of code per file in git repo and sum of all. Only looks for files in src repo.
-giloc() {
+# GIT MISC:
+
+# Push every project in the directory
+pushall() {
+	for a in *; do 
+		(if [ -d "$a" ]; then 
+			cd $a 
+			echo "$a" 
+			git push 
+		fi) 
+	done
+}
+
+# For all projects in the directory print the labaels of the last commit
+alias gsta='for a in *; do cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..; done'
+
+# Displays lines of code per file in git repo and sum of all. Only looks for files in src directory.
+gloc() {
 	git ls-files \
 		| xargs file \
 		| grep text \
@@ -537,6 +565,25 @@ giloc() {
 		| tr -d ":" \
 		| grep ^src/.* \
 	  	| xargs wc -l 
+}
+
+# Runs gloc in all subfolders and only displays totals.
+glocall() {
+	sum=0
+	for a in *; do 
+		if [ -d "$a" ]; then 
+			cd "$a"
+			tot=`gloc | grep total | grep -o [0-9]*`
+			if [ -n "$tot" ]; then
+				echo "$a"
+				echo "$tot"
+				let sum=$sum+"$tot"
+			fi
+			cd ..
+		fi
+	done
+	echo "============="
+	echo "$sum"
 }
 
 # Plot distribution of file lengths in git repo. Gnuplot and gnuplot-x11 packages need to be installed.
@@ -594,10 +641,13 @@ bsize() {
 }
 
 # Display an image.
-alias picture='display'
-alias image='display'
-alias img='display'
-alias d='display'
+picture() {
+	eog "$@" &
+}
+#alias picture='eog'
+alias image='picture'
+alias img='picture'
+alias d='picture'
 
 # Run a typing tutor.
 alias tt='gtypist'

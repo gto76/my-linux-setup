@@ -9,7 +9,7 @@
 sudo apt-get update
 sudo apt-get -u dist-upgrade
 # INSTALL APPS
-sudo apt-get install vim mc git openssh-server nrss nmap wine
+sudo apt-get install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
 # REMOVE DEFAULT ll ALIAS
 sudo sed -e 's/\(^alias ll\)/#\1/' /etc/bash.bashrc > /tmp/bash.bashrc.tmp
 sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc
@@ -73,12 +73,14 @@ alt+F3 - toggle full screen
 ctrl+alt+d - show desktop
 # LAUNCHERS:
 ctrl+alt+h - home
-ctrl+alt+c - web browser
+ctrl+alt+f - web browser
 //ctrl+alt+jkli... - position window acordingly
 # CUSTOM SHORTCUTS:
-ctrl+alt+f - firefox
 ctrl+alt+g - gedit
-ctrl+alt+r - nrss (gnome-terminal -e nrss)
+ctrl+alt+i - IDEA
+ctrl+alt+r - nrss (command: gnome-terminal -e nrss)
+ctrl+alt+m - midnight commander (command: gnome-terminal -e mc)
+ctrl+alt+c - console calculator (command: gnome-terminal -e gcalccmd)
 
 # FIREFOX:
 remove bookmarks toolbar

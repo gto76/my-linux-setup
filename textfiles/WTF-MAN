@@ -24,7 +24,7 @@ ctrl alt end - shutdown
 
 middle mouse button - paste selected text
 
-NAUTILUS:
+NAUTILUS/NEMO:
 ctrl+l - location
 ctrl+shift+n - new folder
 ctrl+h - show hidden files
@@ -57,9 +57,9 @@ ctrl p - show last command (same as up arrow)
 
 
 
-###################
-HUDI TERMINAL UKAZI:
-###################
+##########################
+AWESOME TERMINAL COMMANDS:
+##########################
 
 
 PACKAGES:
@@ -102,11 +102,13 @@ BASH:
 Google: "$@" is right almost everytime, and $* is wrong almost everytime.
 $'\n' - string literal with escape seqences
 test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
+	-n - is string non empty, -z - is string empty, -a - and, -o - or,
+	= - strings are equal, -nt - file newer than, -ot - older then,
+	-d - directory exists, -e - file exists, -f - is a regular file,
+	-h - its a symbolic link, -r - has read permission,
+	-w - has write permission, -x - has execute permission
 [[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
 $? - exit code of last command (0 - ok)
-2> /dev/null - redirect error output
-&> /dev/null - redirect both standard and error output
->&2 - write to stderr
 $(command) - same as `command`
 $RANDOM - 0 - 32767
 input=`cat` - getting standard input
@@ -116,7 +118,13 @@ pushd . - put current dir on stack
 popd - pop dir from stack
 cd - - go to last dir
 source <script> - run script: for example source /etc/profile (same as . <command>)
+#!/bin/bash - good practice to insert at begining of a bash script
 
+REDIRECTIONS:
+<command> 2> /dev/null - redirect error output
+<command> &> /dev/null - redirect both standard and error output
+<command> >&2 - write to stderr
+<command> 2>&1 | less - add stderr to stdout and print it with less (useful for gcc)
 
 GENERAL:
 
@@ -140,11 +148,13 @@ locate <word>  - same as find but using index
 	sudo updatedb OR sudo locate -u - update database
 locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
 xargs - output from one command to arguments of another
-	-t echoes the command before executing it, and -p echoes it and asks for confirmation
+	-t - echoes the command before executing it, and -p echoes it and asks for confirmation
 tar xvzf xxx.tar.gz - decompress and detar
 	xvjf xxx.tar.bz2 - decompress and detar
 	-cf archiveName.tar files.. - compress
 tar cvf - ./SOURCEDIR_OR_FILES | ssh user@host 'cat > newfile.tar' - send tar archive over network
+ln - makes links between files
+	-s <file> <link> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!
 ccsm - additional settings (compiz config settings manager - BAD)
 md5sum - checks md5 sum hash
 sh - run script even if not executable
@@ -210,8 +220,18 @@ gpg <filename> - decrypt file with password
 	-c <filename> encrypt
 file <filename> - determine file type
 tree - ls in a tree-like (hierarchical) format
-find <dir> -xdev -samefile <filename> - find all hard links of a file
+find <dir> -name <filename> - search by name
+	-not - insert before other options to negate
+	-samefile <filename> - find all hard links of a file
+	-xdev - don't descend directories on other filesystems
+	-inum <inum> - find files with the inode number
+	-type <f|...> - find files of type
+	-delete - delete found files
+	-exec <command> {} ; - command is executed for every found file. {} is replaced with filename
+	-exec <command> {} + - same, only that {} is replaced with all the filenames
 sudo sh -c 'echo "bla bla bla" >> <filename>' - append lines to systam configuration file
+gcc - gnu c compiler
+	-w - supress warnings (only print errors) 
 
 
 ALIASES:
@@ -278,8 +298,7 @@ patch - apply a diff file to original
 	diff -u <old-filename> <new-filename> > patch.diff - create patch
 
 SEARCH:
-grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive
-	-o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t)
+grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t), -I - do not process binary files
 look - display lines beginning with a given string
 strings - print all text parts of binary file
 
@@ -290,6 +309,7 @@ pdftohtml - pdf to html
 pdftotext - pdf to text
 libreoffice - novi openoffice
 figlet - display large characters made up of ordinary screen characters (ascii art)
+toilet - similar (ascii art)
 
 EDITORS:
 nano - 	/etc/nanorc - nano config
@@ -401,7 +421,6 @@ HACKING:
 
 nmap -sP 192.168.2.1-3 - network scanning
 	nmap 192.168.0.3 -p100-139 - port scanning
-	nmap 192.168.0.3 -p100-139 - port scanning
 	sudo nmap -O 192.168.0.3 - scanning os
 tcpdump - sniffer (Show network traffic), sudo
 ettercap - Multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
@@ -428,7 +447,8 @@ cat /var/log/auth.log | grep "failed password" -i - print all failed logins
 users - prints logged in users
 who - logged in users, more data
 w - logged in users, also what are they running
-free -tm - Displays memory statistics (-s continuously display)
+free -tm - Displays memory statistics 
+	-s continuously display
 vmstat - Performance of system components / virtual memory statistics
 sar - System activity information
 iostat - Disk usage
@@ -439,8 +459,7 @@ vipw - edit password file
 vigr - edit groups file
 passwd - change password
 chattr - Change file system attributes
-dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful
-when debugging problems
+dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful when debugging problems
 mount device mountpoint - mount /dev/hdc2 /mymedia
 mount - list all mounted devices
 Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk
@@ -495,6 +514,10 @@ script - makes a typescript of everything printed on your terminal. Ctrl-D to st
 disks - nice gui partition tool
 fstrim -v / - discard unused blocks, useful for ssd-s
 setterm - set terminal atributes
+	-cursor off/on
+xset - user preference utility for X
+   -r - turn key autorepeat off
+   r - turn key autorepeat on
 
 KEYS/CHARACTERS/FONTS:
 IN X:
@@ -617,9 +640,9 @@ openmovieeditor - gui movie editor (video)
 aview, asciiview - ASCII art image viewer and video player
 
 
-#############
-HUDE DATOTEKE:
-#############
+####################
+AWESOME LINUX FILES:
+####################
 
 BASH:
 ~/.bashrc - executed at every shell startup, user specific
@@ -727,6 +750,7 @@ git push origin master
 (git push --force)
 After your first push, you can simply type:
 git push
+sometimes also: git push --set-upstream origin master
 --
 Also useful:
 git rm --cached mylogfile.log - untrack file without deleting it.
@@ -777,6 +801,7 @@ tig - text based repo explorer
 ###########
 ##  VIM  ##
 ###########
+
 +<linenum> - open file at line number
 alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
 ctrl-[ - escape
@@ -848,6 +873,11 @@ qx - record characters into x
 q - stop recording
 @ - execute x
 
+REGISTERS
+"ayy - copy line into register a
+"ap - paste register a
+:reg - access all registers
+
 MISC
 >>,<< - shift line one tab
 K - look up word under cursor in man pages
@@ -866,6 +896,7 @@ shiftwidth= (sw)| 8 		| number of spaces added when identing
 tabstop= (ts)	| 8 		| tab width
 wrap			| wrap		| wrap lines
 wrapscan (ws)	| ws 		| search wraps around file
+mouse=a			|			| mouse mode (use shift when selecting to copy to clipboard)
 
 EDIT COMMANDS
 [n] operation [m] motion - if both n and m are specified then n x m
@@ -900,6 +931,13 @@ SPELLCHECK:
 :set spell spelllang=en_us
 :setlocal spell spelllang=en_us
 :set nospell
+
+TABS:
+:tabe <filename> - open new tab
+gt, gT - go to next/previous tab
+ctrl + pgup/pgdn - switch tab
+vim -p - open one tab page per file
+ZZ - save and close tab (same as :wq)
 
 ///////////
 ///////////

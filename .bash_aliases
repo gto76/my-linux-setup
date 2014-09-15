@@ -515,9 +515,18 @@ alias checkout='git checkout'
 
 alias gis='git status | catOrLess'
 alias gits='gis'
+alias gs='git status'
+
 # Prints nice log with graph on the side.
-alias gil='git log --graph --decorate --all'
-alias gitl='gil'
+alias gl='git log --graph --decorate --all'
+
+# Updates information about remotes state.
+alias gu='git remote update'
+
+# Status about the difference between remote and local?
+alias gsu='git status -uno'
+
+alias gd='git diff'
 
 # Displays lines of code per file in git repo and sum of all. Only looks for files in src repo.
 giloc() {

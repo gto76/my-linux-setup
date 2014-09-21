@@ -76,7 +76,7 @@ One-dimensional Arrays
 Array Names
 -----------
 IN C, when name of an array is used in almost any expression, the value of the name is a pointer constant that is the address of the first element of the array. 
-Do not conclude from this that arrays and pointers are the same. Ana array has quite different characteristics than a pointer , for example, an array has a certain number of elements, while a pointer is a scalar. The compiler uses the array name to keep track of these properties. It is only what the array name is used in an expression that the compiler generates the pointer constant.
+Do not conclude from this that arrays and pointers are the same. An array has quite different characteristics than a pointer, for example, an array has a certain number of elements, while a pointer is a scalar. The compiler uses the array name to keep track of these properties. It is only what the array name is used in an expression that the compiler generates the pointer constant.
 There are only two places where this pointer substitution does not occur - when an array name is an operand of either sizeof or the unary operator &. sizeof returns the size of the entire array, not the size of pointer to the array. Taking the address of an array name gives a pointer to the first element in the array, not a pointer to some substituted pointer constant value.
 
 Subscripts
@@ -93,7 +93,7 @@ Declaring an array sets aside space in memory for the indicated number of elemen
 
 Array Names as Function Arguments
 ----------------------------------
-What happens when an array name is passed as an argument to a function? You mow know that the value of an array name is a pointer to the first element of the array, so it makes sense that a copy of this pointer value is passed to the function. A subscript used in the function will perform indirection on this pointer, and it is through this indirection that the function can success or modify the elements of the calling program's array.
+What happens when an array name is passed as an argument to a function? You now know that the value of an array name is a pointer to the first element of the array, so it makes sense that a copy of this pointer value is passed to the function. A subscript used in the function will perform indirection on this pointer, and it is through this indirection that the function can success or modify the elements of the calling program's array.
 There are two other points about this function that are worth mentioning (or reiterating). First, the parameter is declared as a pointer to const characters. Why is this declaration important for a function that is not going to modify the characters in the first place? There are at least three reasons. First, it is good documentation. Someone wishing to use this function can see from the prototype that the data will not be changed, without reading the code (which might not be available). Second, the compiler will be able to catch any programming error that causes accidental modification. Lastly, the declaration allows const arguments to be passed to the function.
 
 Declaring Array Parameters
@@ -131,7 +131,9 @@ int (*p)[] = matrix;
 p is still a pointer to an array of integers, but the array size is missing. Integers involved in pointer arithmetic with this variable will be scaled by the size of an empty array (that is, multiplied by zero).
 
 Multidimensional Arrays as Function Arguments
---------------------------------------------
+---------------------------------------------
+The value of a multidimensional array name is a pointer to its first element, which will be a pointer to an array. Arithmetic with this pointer will be scaled by the size of the array.
+x
 Either of the following forms could be used:
 void func2 (int (*mat)[10]);
 void func2 (int mat[][10]);
@@ -161,6 +163,14 @@ char const *keyword[] = {
 	"register",
 	NULL
 };
+
+Print Contents:
+int printPointerArray(char const *keyword[]) {
+	char const **kwp;
+	for (kwp = keyword_table; *kwp != NULL; kwp++) {
+		printf("%s", *kwp);
+	}
+}
 
 
 .........................

@@ -97,10 +97,14 @@ sudo !! - Run the last command as root
 BASH:
 
 "$x" - ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! 
-"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! If you want IFS to be a new line you need to: IFS=$'\n' - the dollar forces substitution.
+"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! 
 "$@" - Use this instead!!!!! Will retain arguments as-is, so no args provided will result in no args being passed on. This is in most cases what you want to use for passing on arguments.
 Google: "$@" is right almost everytime, and $* is wrong almost everytime.
+"$#" - number of arguments
+"$1" - first argument
+"$0" - name of the script
 $'\n' - string literal with escape seqences
+If you want IFS to be a new line (useful with for loop) you need to: IFS=$'\n' - the dollar forces substitution!!!!!
 test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
 	-n - is string non empty, -z - is string empty, -a - and, -o - or,
 	= - strings are equal, -nt - file newer than, -ot - older then,
@@ -108,6 +112,7 @@ test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit stat
 	-h - its a symbolic link, -r - has read permission,
 	-w - has write permission, -x - has execute permission
 [[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
+let <expression> - executes expression
 $? - exit code of last command (0 - ok)
 $(command) - same as `command`
 $RANDOM - 0 - 32767
@@ -119,6 +124,10 @@ popd - pop dir from stack
 cd - - go to last dir
 source <script> - run script: for example source /etc/profile (same as . <command>)
 #!/bin/bash - good practice to insert at begining of a bash script
+export PATH="$PATH:<your-dir>" - add new directory to path variable
+while read -r line; do
+    echo "... $line ..."
+done <<< "$list" - reading line by line from variable
 
 REDIRECTIONS:
 <command> 2> /dev/null - redirect error output
@@ -203,10 +212,6 @@ mktemp - create a temporary file or directory
 rename - renames multiple files using sed syntax
 sleep - delay for a specified amount of time
 whiptail - display dialog boxes from shell scripts
-paste - glue two documents side by side
-sed 's///g' - substitute every occurrence in line, not just the first one
-	's///I' - ignore case
-	-r - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis
 reset - initializes terminal, useful after printing binary file
 hexdump, hd — ASCII, decimal, hexadecimal, octal dump
 bc - calculator [echo 1+1 | bc -> 2]
@@ -227,12 +232,13 @@ find <dir> -name <filename> - search by name
 	-inum <inum> - find files with the inode number
 	-type <f|...> - find files of type
 	-delete - delete found files
-	-exec <command> {} ; - command is executed for every found file. {} is replaced with filename
-	-exec <command> {} + - same, only that {} is replaced with all the filenames
+	-exec <command> {} ; - find files and execute command for every found file. {} is replaced with filename
+	-exec <command> {} + - find files and execute command with all filenames in place of {}
+	-atime +/-n - find files that were last acessed less or more than n days.
 sudo sh -c 'echo "bla bla bla" >> <filename>' - append lines to systam configuration file
 gcc - gnu c compiler
 	-w - supress warnings (only print errors) 
-
+install - copy files and set attributes
 
 ALIASES:
 alias - print all aliases
@@ -287,6 +293,10 @@ basename <filename> - strip directory from filenames
 dirname <filename> - strip last component from file name
 fmt - produce roughly uniform line lengths
 fold - wrap each input line to fit in specified width
+paste - glue two documents side by side
+sed 's///g' - substitute every occurrence in line, not just the first one
+	's///I' - ignore case
+	-r - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis
 
 DIFF:
 diff -u <files> - unified format
@@ -298,7 +308,7 @@ patch - apply a diff file to original
 	diff -u <old-filename> <new-filename> > patch.diff - create patch
 
 SEARCH:
-grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t), -I - do not process binary files
+grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t or .+), -I - do not process binary files, -l - just print files with matches, -L - just print files wihouth matches -e <pattern> - specify pattern (needed if it starts with -)
 look - display lines beginning with a given string
 strings - print all text parts of binary file
 
@@ -405,7 +415,9 @@ sshd - (openssh-server) ssh server deamon
 	CYGWIN sshd - name of the service on windows
 scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp, (ssh)
 ssh [user]@[address] "mpg321 -" < [file].mp3 - stream audio over ssh
-wget -c	continue downloading unfinished file. Can also use wildcards, but use single quotes around url. 
+wget - download files from WWW
+	-O - specify output file
+	-c - continue downloading unfinished file. Can also use wildcards, but use single quotes around url. 
 	-r -l1 --no-parent -A.gif - recursively to the depth of one ignoring references to the parent directory and all gifs.
 	curl - similar
 	"-qO -" - writes to standard output + quiet 
@@ -938,6 +950,13 @@ gt, gT - go to next/previous tab
 ctrl + pgup/pgdn - switch tab
 vim -p - open one tab page per file
 ZZ - save and close tab (same as :wq)
+
+SPLITS:
+:vsp - split verticaly
+ctrl-w, direction - move to split
+
+AUTOCOMPLETE:
+ctrl+n - show autocomplete suggestions
 
 ///////////
 ///////////

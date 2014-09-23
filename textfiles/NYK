@@ -646,4 +646,89 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
 - One of the most important revolutions in programming languages was the use of pointers in the C language. When X is a pointer and you say x+1, that doesn't mean one more byte, but one more node after X.
 
 
+.................
+.................
+..... G I T .....
+.................
+.................
+[Notes from "Git for ages 4 and up" video]
+
+===========================================================================
+
+
+    ( ) <--------- ADD - Writes files to the repo. (Into the staging area.)
+     |  
+    ---
+
+  
+   +------------+
+   v            |          
+ HEAD *MASTER <-+- COMMIT - Creates commit object for added files, which     
+    \ /         |           has an id, and then puts labels on it [HEAD,  
+    (A) <-------+           MASTER] (or moves them from previous commit).             
+     |                      (Prints branch label that it's advancing and     
+    ---                     objects hash)
+
+    
+ HEAD  LABEL <---- BRANCH <LABEL> - Stucks a new label on HEAD (withouth                    
+    \ /                             parameter it prints local branches). 
+    (A)-*MASTER                      (With -r will print remote branches/ 
+     |                              all the references that you have.)
+    ---    
+
+
+ HEAD *LABEL <---- CHECKOUT <LABEL> - 
+    \ /            
+    (A)-MASTER     
+     |             
+    ---    
+
+
+
+
+
+
+
+    (B)(C)
+     | / 
+    (A)
+     |      
+    ---    
+                            HEAD
+                             |
+ LABEL HEAD           LABEL (D)-MASTER
+    \   |                \ / | 
+    (B)(C)-*MASTER ___\  (B)(C)
+     | /              /   | / 
+    (A)                  (A)
+     |                    |      
+    ---                  ---    
+
+   HEAD  *MASTER
+     +-(D)-+
+LABEL / | 
+  +-(B)(C)
+     | / 
+    (A)
+     
+
+
+      LABEL
+   HEAD | *MASTER
+     +-(D)-+
+      / |
+    (B)(C)
+     | / 
+    (A)
+     |      
+    ---    
+
+   HEAD  *LABEL
+     +-(D)-+
+      / | 
+    (B)(C)-MASTER
+     | / 
+    (A)
+     |      
+    ---    
 

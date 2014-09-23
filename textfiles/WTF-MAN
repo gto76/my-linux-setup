@@ -214,7 +214,7 @@ sleep - delay for a specified amount of time
 whiptail - display dialog boxes from shell scripts
 reset - initializes terminal, useful after printing binary file
 hexdump, hd — ASCII, decimal, hexadecimal, octal dump
-bc - calculator [echo 1+1 | bc -> 2]
+bc - calculator [echo 1+1 | bc -> 2, echo "scale=5;3/4" | bc -> .75000]
 zip -g <archive> <file> - grow/add to existing archive
 unzip \*.zip - backslash is necessary so that bash doesn't expand the * 
 	-d <dirname> - extract into directory (create if doesent exist)

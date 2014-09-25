@@ -652,7 +652,6 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
 .................
 .................
 [Notes from "Git for ages 4 and up" video]
-
 ===========================================================================
 
 
@@ -677,58 +676,114 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
     ---    
 
 
- HEAD *LABEL <---- CHECKOUT <LABEL> - 
-    \ /            
-    (A)-MASTER     
-     |             
-    ---    
+ HEAD *LABEL <---- CHECKOUT <LABEL> - Switches which branch it's going to
+    \ /                               advance at commit (from master to
+    (A)-MASTER                        label). (If the labels were pointing
+     |                                to different commits it would also
+    ---                               get the files)
+
+
+                   MERGE <LABEL> - Merge contents of <LABEL> branch into 
+                                   HEAD. Also second <LABEL> parameter 
+                                   possible -> will merge into it instead
+                                   of current branch. There are two
+                                   strategys in which git will merge two
+                                   branches:
+
+                                   FAST FORWARD
+                                   ------------
+                                   If the <LABEL> is reachable from HEAD
+                                   and its above it.
+                                                        LABEL
+                                       LABEL         HEAD | *MASTER       
+                                         |              \ | /        
+                                   HEAD (B) *MASTER      (B)
+                                       \ | /      ___\    |
+                                        (A)          /   (A)
+                                         |                | 
+                                        ---              ---
+
+                                   RECURSIVE STRATEGY
+                                   ------------------ 
+                                   Merges contents and creates new commit 
+                                   that has two parents (it can have any 
+                                   number of parents). Moves currnet branch
+                                   and HEAD labels to it (label LABEL stays 
+                                   behind).
+                                                              HEAD
+                                                               |
+                                   LABEL HEAD          LABEL (D)-MASTER
+                                       \   |               \ / |          
+                                       (B)(C)-*MASTER      (B)(C)
+                                        | /         ___\    | / 
+                                       (A)             /   (A)
+                                        |                   |      
+                                       ---                 ---    
+                                   
+  
+
+                   RESET -hard HEAD^ - Move current label to commit HEAD-1,
+                                       and also do checkout (--hard)
+
+
+                   LOG --graph --decorate --all - Shows nice history with
+                                                  graph
+
+
+TODO graph!        DETACHED HEAD STATE:
+                   TAG v1.0 <hash> -> CHECKOUT v1.0 - If no branch label is
+                   on this commit you get message: "You are in detached
+                   head state", meaning that if you want to keep your
+                   commits, you need to create a new branch.
+
+
+===========================================================================
+TO MERGE NEW FEATURE INTO MASTER:
+    
+                                           HEAD *LABEL        HEAD LABEL
+                                              \ /                \ /
+ LABEL HEAD          HEAD *LABEL              (D)                (D)-*MASTER
+    \   |               \ /                  / |                / |        
+    (B)(C)-*MASTER      (B)(C)-MASTER      (B)(C)-MASTER      (B)(C)
+     | /         ___\    | /        ___\    | /        ___\    | / 
+    (A)             /   (A)            /   (A)            /   (A)
+     |                   |                  |                  |      
+    ---                 ---                ---                ---    
+                    1. CHECKOUT       2. MERGE MASTER    3. CHECKOUT MASTER,
+                       LABEL             (recursive),       MERGE LABEL
+                                         test               (fast forward)
+
+===========================================================================
+WORKING WITH REMOTE REPOSITORIES:
+
+                   CLONE <url or path of origin> <optional different name>
+                         - Makes a copy of remote repository. State of our 
+                         repo after clone:
+
+    +--------------------+----+- TRACKING BRANCHES - they mean: last time I
+    v ORIGIN/LABEL <-----+    |  talked with origin, thats where its label
+ORIGIN/HEAD | ORIGIN/MASTER <-+  was.
+           \|/ 
+     HEAD--(D)--*MASTER <------- Also it did not pull over LABEL branch,
+          / |                    because it pulls over only the default
+        (B)(C)                   branch, which is master (note that origin
+         | /                     and master are just names, they have no 
+        (A)                      segnificance).
+         |      
+        ---    
+
+                   CLONE --bare <url or path of origin> <optional different
+                         name> - Make a copy of repo, containing only
+                                 contents of .git directory (there is no
+                                 checkout.
+
+                   REMOTE -v - List remotes (defaultly named origin)
+
+                   PULL - Same as FETCH + MERGE
+
+                   PUSH <origin> <local branch> - Pushes changes made to the
+                                                  local branch to origin repo.
 
 
 
-
-
-
-
-    (B)(C)
-     | / 
-    (A)
-     |      
-    ---    
-                            HEAD
-                             |
- LABEL HEAD           LABEL (D)-MASTER
-    \   |                \ / | 
-    (B)(C)-*MASTER ___\  (B)(C)
-     | /              /   | / 
-    (A)                  (A)
-     |                    |      
-    ---                  ---    
-
-   HEAD  *MASTER
-     +-(D)-+
-LABEL / | 
-  +-(B)(C)
-     | / 
-    (A)
-     
-
-
-      LABEL
-   HEAD | *MASTER
-     +-(D)-+
-      / |
-    (B)(C)
-     | / 
-    (A)
-     |      
-    ---    
-
-   HEAD  *LABEL
-     +-(D)-+
-      / | 
-    (B)(C)-MASTER
-     | / 
-    (A)
-     |      
-    ---    
 

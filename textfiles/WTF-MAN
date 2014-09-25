@@ -105,6 +105,8 @@ Google: "$@" is right almost everytime, and $* is wrong almost everytime.
 "$0" - name of the script
 $'\n' - string literal with escape seqences
 If you want IFS to be a new line (useful with for loop) you need to: IFS=$'\n' - the dollar forces substitution!!!!!
+$? - exit code of last command (0 - ok)
+
 test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
 	-n - is string non empty, -z - is string empty, -a - and, -o - or,
 	= - strings are equal, -nt - file newer than, -ot - older then,
@@ -113,7 +115,7 @@ test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit stat
 	-w - has write permission, -x - has execute permission
 [[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
 let <expression> - executes expression
-$? - exit code of last command (0 - ok)
+
 $(command) - same as `command`
 $RANDOM - 0 - 32767
 input=`cat` - getting standard input
@@ -125,9 +127,18 @@ cd - - go to last dir
 source <script> - run script: for example source /etc/profile (same as . <command>)
 #!/bin/bash - good practice to insert at begining of a bash script
 export PATH="$PATH:<your-dir>" - add new directory to path variable
+All variables in bash are global !!!!!!!
+
+ARRAYS AND LINES:
 while read -r line; do
     echo "... $line ..."
 done <<< "$list" - reading line by line from variable
+${a[1]} - value of the second element of the array
+for c in ${a[@]} - iterate over array
+${varname:offset:length} - get substring: s="aeiou"; ${s:3:1} -> o
+${#var} - length of a var 
+${#name[subscript]} - length  of the element
+${#name[@]} - length  of the array
 
 REDIRECTIONS:
 <command> 2> /dev/null - redirect error output
@@ -137,6 +148,7 @@ REDIRECTIONS:
 
 GENERAL:
 
+expr - evaluate expressions (expr 1 + 1 -> 2)
 echo -n - no newline at the end
 	 -e - enable interpretation of backslashed letters
 read - reads from file line by line

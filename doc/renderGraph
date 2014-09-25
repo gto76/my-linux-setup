@@ -1,0 +1,129 @@
+#!/bin/bash
+
+USAGE=`basename "$0"`" [ASCII GRAPH FILE]"
+DESCRIPTION="Reads a graph from ascii drawing and draws it to png file using image magic programm."
+
+if [[ "$#" -ne 1 || "$1" == "--help" ]]; then
+	echo -e "Usage: $USAGE"; echo -e "$DESCRIPTION"; exit
+fi
+
+#########
+
+#### PROCESS LABEL ####
+
+# Reads label until it reaches connector or space
+# Draws rectangle and label on it.
+processLabel() {
+	restOfLine=${lines[$y]:$x}
+	label=`echo "$restOfLine" | grep -o "^[^ \n]*"`
+	length=${#label}
+	let newX="$x"+"$length"
+	let yPlus1="$y"+1
+
+	instruction="rectangle $x $y $newX $yPlus1\ntext $label $x $y"
+	instructions="$instructions""$instruction"'\n'
+
+	x="$newX"
+}
+
+#### PROCESS NODE ####
+
+# Draws a circle and nodes label on it.
+processNode() {
+	let xPlus1="$x"+1
+	label=${lines[$y]:$xPlus1:1}
+
+	instruction="circle $x $y 1 1\ntext $label $xPlus1 $y"
+	instructions="$instructions""$instruction"'\n'
+
+	let x="$x"+2
+}
+
+#### PROCESS EDGE ####
+
+# Investigates where does edge lead and draws a line between the ends.
+processEdge() {
+	local char=${lines[$y]:$x:1}
+	if [[ "$char" == '|' ]]; then
+		findEdgesEndpoints 0 -1 0 1 "$char"
+	elif [[ "$char" == '-' ]]; then
+		findEdgesEndpoints -1 0 1 0 "$char"
+	elif [[ "$char" == '/' ]]; then
+		findEdgesEndpoints 1 -1 -1 1 "$char"
+	elif [[ "$char" == '\' ]]; then
+		findEdgesEndpoints -1 -1 1 1 "$char"
+	fi
+
+	instruction="line $endpoint1 $endpoint2"
+	instructions="$instructions""$instruction"'\n'
+}
+
+# Finds the two endpoints of the edge
+# Arguments: 
+# $1 - delta x of first direction, $2 - delta y of first direction,
+# $3 - delta x of oposite direction, $4 - delta y of oposite direction
+# $5 - the character reptesenting the edge
+findEdgesEndpoints() {
+	findEdgesEndpoint "$1" "$2" "$5"
+	endpoint1="$connectToX $connectToY"
+	findEdgesEndpoint "$3" "$4" "$5"
+	endpoint2="$connectToX $connectToY"
+}
+
+# Finds the endpoint in the specified direction
+# $1 - delta x of direction, $2 - delta y of direction,
+# $3 - the character reptesenting the edge
+findEdgesEndpoint() {
+	let	connectToX="$x"+"$1"
+	let	connectToY="$y"+"$2"
+	# If this field has the same edge character, continue to next one
+	if [[ "$3" == ${lines[$connectToX]:$connectToY:1} ]]; then
+		findEdgesEndpoint "$@"	
+	fi
+}
+
+#### MAIN ####
+
+main() {
+	# Copy lines into array
+	SAVE_IFS="$IFS"
+	IFS=$'\n'
+	i=0
+	for a in `cat "$1"`; do
+		lines["$i"]="$a"
+		let i="$i"+1
+	done
+	IFS="$SAVE_IFS"
+
+	# Drawing instructions for the imagemagic
+	instructions=""
+
+	EDGE='-|/\'
+	CONNECTORS='-|/\+()'
+	CONNECTORS_AND_SPACE='-|/\+() '
+
+	for (( y=0 ; y < ${#lines[@]} ; y++ )); do
+		for (( x=0 ; x < ${#lines[y]} ; x++ )); do
+			# getChar "$x" "$y":
+			char=${lines[$y]:$x:1}
+			echo "$x" "$y" X"$char"X
+			if [[ '-|/\\+() ' != *"$char"* ]]; then
+				echo "label" 
+				processLabel
+			fi
+			if [[ "$char" == '(' ]]; then
+				echo node 
+				processNode 
+			fi
+			if [[ '-|/\' == *"$char"* ]]; then
+				echo edge
+				processEdge
+			fi
+		done
+		echo
+	done
+
+	echo -e "instructions:\n$instructions"
+}
+
+main "$@"

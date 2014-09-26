@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USAGE=`basename "$0"`" [ASCII GRAPH FILE]"
-DESCRIPTION="Reads a graph from ascii drawing and draws it to png file using image magic programm."
+DESCRIPTION="Reads a graph from ascii drawing and creates png file using image magic convert command."
 
 if [[ "$#" -ne 1 || "$1" == "--help" ]]; then
 	echo -e "Usage: $USAGE"; echo -e "$DESCRIPTION"; exit
@@ -11,47 +11,55 @@ fi
 
 DEBUG=true
 
+#######################
 #### PROCESS LABEL ####
+#######################
 
 # Reads label until it reaches connector or space
 # Draws rectangle and label on it.
 processLabel() {
 	restOfLine=${lines[$y]:$x}
-	label=`echo "$restOfLine" | grep -o "^[^ \n]*"`
+	label=`echo "$restOfLine" | grep -o "^[^ -+()|\n]*"`
 	length=${#label}
 	let newX="$x"+"$length"
 	let yPlus1="$y"+1
 
-	let scaledX="$x"*"$SIZE"
-	let scaledY="$y"*"$SIZE"
-	let scaledX2="$newX"*"$SIZE"
-	let scaledY2="$yPlus1"*"$SIZE"
+	let scaledX="$x"*"$SIZEX"
+	let scaledY="$y"*"$SIZEY"
+	let scaledX2="$newX"*"$SIZEX"
+	let scaledY2="$yPlus1"*"$SIZEY"
 
-	instruction="rectangle $scaledX,$scaledY $scaledX2,$scaledY2\ntext $scaledX,$scaledY '$label'"
+	instruction="rectangle $scaledX,$scaledY $scaledX2,$scaledY2\ntext $scaledX,$scaledY2 '$label'"
 	instructions="$instructions""$instruction""\n"
 
 	x="$newX"
 }
 
+######################
 #### PROCESS NODE ####
+######################
 
 # Draws a circle and nodes label on it.
 processNode() {
 	let xPlus1="$x"+1
+	let yPlus1="$y"+1
 	label=${lines[$y]:$xPlus1:1}
 
-	let circleX="$x"*"$SIZE"
-	let circleY="$y"*"$SIZE"
-	let diameter="$SIZE"
-	let labelX="$xPlus1"*"$SIZE"
+	let circleX="$xPlus1"*"$SIZEX"+"$SIZEX"/2
+	let circleY="$y"*"$SIZEY"+"$SIZEY"/2
+	let circleY2="$y"*"$SIZEY"
+	let labelX="$xPlus1"*"$SIZEX"
+	let labelY="$yPlus1"*"$SIZEY"-"$SIZEY"/4
 
-	instruction="m#circle $circleX,$circleY $diameter,$diameter\ntext $label $labelX $circleY"
+	instruction="m#circle $circleX,$circleY $circleX,$circleY2\ntext $labelX,$labelY '$label'"
 	instructions="$instructions""$instruction""\n"
 
 	let x="$x"+2
 }
 
+######################
 #### PROCESS EDGE ####
+######################
 
 # Investigates where does edge lead and draws a line between the ends.
 processEdge() {
@@ -78,13 +86,13 @@ processEdge() {
 findEdgesEndpoints() {
 	connectToX="$x"; connectToY="$y"
 	findEdgesEndpoint "$1" "$2" "$5"
-	let connectToX="$connectToX"*"$SIZE"
-	let connectToY="$connectToY"*"$SIZE"
+	let connectToX="$connectToX"*"$SIZEX"+"$SIZEX"/2
+	let connectToY="$connectToY"*"$SIZEY"+"$SIZEY"/2
 	endpoint1="$connectToX,$connectToY"
 	connectToX="$x"; connectToY="$y"
 	findEdgesEndpoint "$3" "$4" "$5"
-	let connectToX="$connectToX"*"$SIZE"
-	let connectToY="$connectToY"*"$SIZE"
+	let connectToX="$connectToX"*"$SIZEX"+"$SIZEX"/2
+	let connectToY="$connectToY"*"$SIZEY"+"$SIZEY"/2
 	endpoint2="$connectToX,$connectToY"
 }
 
@@ -117,11 +125,14 @@ findEdgesEndpoint() {
 	fi
 }
 
+##############
 #### MAIN ####
+##############
 
 main() {
 	# Size factor
-	SIZE=20
+	SIZEY=60
+	SIZEX=`echo "scale=1;$SIZEY*2/3" | bc | sed 's/\..*//'`
 
 	# Copy lines into array
 	SAVE_IFS="$IFS"
@@ -181,25 +192,34 @@ main() {
 
 	# Sort instructions so that edges get drawn first, then circles
 	# and rectangles and lastly the labels.
-	orderedInstructions=`echo -e "$instructions" | sort | sed 's/^.*#//'`
+	orderedInstructions=`echo -e "$instructions" | sort -u | sed 's/^.*#//'`
 	if [[ "$DEBUG" == "true" ]]; then
 		echo -e "\nINSTRUCTIONS:\n$orderedInstructions"
 	fi
+	drawingInstructions=`echo -e "$orderedInstructions" | grep -v '^text '`
+	textInstructions=`echo -e "$orderedInstructions" | grep '^text '`
 
 	# Calculate size of the canvas.
-	let sizeY=${#lines[@]}*"$SIZE"
+	let sizeY=${#lines[@]}*"$SIZEY"
 	sizeX=0
 	for (( y=0 ; y < ${#lines[@]} ; y++ )); do
 		if [[ ${#lines["$y"]} -gt "sizeX" ]]; then
 			sizeX=${#lines["$y"]}
 		fi
 	done
-	let sizeX="$sizeX"*"$SIZE"
+	let sizeX="$sizeX"*"$SIZEX"
 
 	# Create png.
-	echo -e "push graphic-context\nviewbox 0 0 $sizeX $sizeY" > tmp.mvg
-	echo -e "$orderedInstructions" >> tmp.mvg
-	echo "pop graphic-context" >> tmp.mvg
+	let fontSize="$sizeY"/11
+	echo -e "push graphic-context\n" > tmp.mvg
+	echo -e "viewbox 0 0 $sizeX $sizeY\n" >> tmp.mvg
+	echo -e "font-size $fontSize\n" >> tmp.mvg
+	echo -e "fill 'white'\n" >> tmp.mvg
+	echo -e "stroke 'black'\n" >> tmp.mvg
+	echo -e "$drawingInstructions\n" >> tmp.mvg
+	echo -e "fill 'black'\n" >> tmp.mvg
+	echo -e "$textInstructions" >> tmp.mvg
+	echo -e "pop graphic-context" >> tmp.mvg
 	convert tmp.mvg tmp.png
 }
 

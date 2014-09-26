@@ -9,6 +9,8 @@ fi
 
 #########
 
+DEBUG=true
+
 #### PROCESS LABEL ####
 
 # Reads label until it reaches connector or space
@@ -20,8 +22,13 @@ processLabel() {
 	let newX="$x"+"$length"
 	let yPlus1="$y"+1
 
-	instruction="rectangle $x $y $newX $yPlus1\ntext $label $x $y"
-	instructions="$instructions""$instruction"'\n'
+	let scaledX="$x"*"$SIZE"
+	let scaledY="$y"*"$SIZE"
+	let scaledX2="$newX"*"$SIZE"
+	let scaledY2="$yPlus1"*"$SIZE"
+
+	instruction="rectangle $scaledX,$scaledY $scaledX2,$scaledY2\ntext $scaledX,$scaledY '$label'"
+	instructions="$instructions""$instruction""\n"
 
 	x="$newX"
 }
@@ -33,8 +40,13 @@ processNode() {
 	let xPlus1="$x"+1
 	label=${lines[$y]:$xPlus1:1}
 
-	instruction="circle $x $y 1 1\ntext $label $xPlus1 $y"
-	instructions="$instructions""$instruction"'\n'
+	let circleX="$x"*"$SIZE"
+	let circleY="$y"*"$SIZE"
+	let diameter="$SIZE"
+	let labelX="$xPlus1"*"$SIZE"
+
+	instruction="m#circle $circleX,$circleY $diameter,$diameter\ntext $label $labelX $circleY"
+	instructions="$instructions""$instruction""\n"
 
 	let x="$x"+2
 }
@@ -55,7 +67,7 @@ processEdge() {
 	fi
 
 	instruction="line $endpoint1 $endpoint2"
-	instructions="$instructions""$instruction"'\n'
+	instructions="$instructions""$instruction""\n"
 }
 
 # Finds the two endpoints of the edge
@@ -64,27 +76,53 @@ processEdge() {
 # $3 - delta x of oposite direction, $4 - delta y of oposite direction
 # $5 - the character reptesenting the edge
 findEdgesEndpoints() {
+	connectToX="$x"; connectToY="$y"
 	findEdgesEndpoint "$1" "$2" "$5"
-	endpoint1="$connectToX $connectToY"
+	let connectToX="$connectToX"*"$SIZE"
+	let connectToY="$connectToY"*"$SIZE"
+	endpoint1="$connectToX,$connectToY"
+	connectToX="$x"; connectToY="$y"
 	findEdgesEndpoint "$3" "$4" "$5"
-	endpoint2="$connectToX $connectToY"
+	let connectToX="$connectToX"*"$SIZE"
+	let connectToY="$connectToY"*"$SIZE"
+	endpoint2="$connectToX,$connectToY"
 }
 
 # Finds the endpoint in the specified direction
 # $1 - delta x of direction, $2 - delta y of direction,
 # $3 - the character reptesenting the edge
 findEdgesEndpoint() {
-	let	connectToX="$x"+"$1"
-	let	connectToY="$y"+"$2"
+	let newX="$connectToX"+"$1"
+	let newY="$connectToY"+"$2"
+	local char=${lines[$newY]:$newX:1}
+	if [[ -z "$char" || "$char" == ' ' ]]; then
+		return
 	# If this field has the same edge character, continue to next one
-	if [[ "$3" == ${lines[$connectToX]:$connectToY:1} ]]; then
+	elif [[ "$char" == "$3" ]]; then
+		connectToX="$newX"
+		connectToY="$newY"
 		findEdgesEndpoint "$@"	
+	elif [[ "$char" == '(' ]]; then
+		let connectToX="newX"+1
+		let connectToY="newY"
+		return
+	elif [[ "$char" == ')' ]]; then
+		let connectToX="newX"-1
+		let connectToY="newY"
+		return
+	else
+		connectToX="$newX"
+		connectToY="$newY"
+		return
 	fi
 }
 
 #### MAIN ####
 
 main() {
+	# Size factor
+	SIZE=20
+
 	# Copy lines into array
 	SAVE_IFS="$IFS"
 	IFS=$'\n'
@@ -102,28 +140,67 @@ main() {
 	CONNECTORS='-|/\+()'
 	CONNECTORS_AND_SPACE='-|/\+() '
 
+	if [[ "$DEBUG" == "true" ]]; then
+		echo "INPUT FILE:"
+		cat "$1"
+		echo -e "\nPARSING:"
+	fi
+
+	# Parse.
 	for (( y=0 ; y < ${#lines[@]} ; y++ )); do
+		if [[ "$DEBUG" == "true" ]]; then
+			echo -e "\nLine no $y: \"${lines[$y]}\""
+		fi
 		for (( x=0 ; x < ${#lines[y]} ; x++ )); do
 			# getChar "$x" "$y":
 			char=${lines[$y]:$x:1}
-			echo "$x" "$y" X"$char"X
+			if [[ "$DEBUG" == "true" ]]; then
+				echo -en "\n$x" "$y" \""$char"\"' '
+			fi	
 			if [[ '-|/\\+() ' != *"$char"* ]]; then
-				echo "label" 
+				if [[ "$DEBUG" == "true" ]]; then
+					echo -n label 
+				fi
 				processLabel
 			fi
 			if [[ "$char" == '(' ]]; then
-				echo node 
+				if [[ "$DEBUG" == "true" ]]; then
+					echo -n node 
+				fi
 				processNode 
 			fi
 			if [[ '-|/\' == *"$char"* ]]; then
-				echo edge
+				if [[ "$DEBUG" == "true" ]]; then
+					echo -n edge
+				fi
 				processEdge
 			fi
 		done
 		echo
 	done
 
-	echo -e "instructions:\n$instructions"
+	# Sort instructions so that edges get drawn first, then circles
+	# and rectangles and lastly the labels.
+	orderedInstructions=`echo -e "$instructions" | sort | sed 's/^.*#//'`
+	if [[ "$DEBUG" == "true" ]]; then
+		echo -e "\nINSTRUCTIONS:\n$orderedInstructions"
+	fi
+
+	# Calculate size of the canvas.
+	let sizeY=${#lines[@]}*"$SIZE"
+	sizeX=0
+	for (( y=0 ; y < ${#lines[@]} ; y++ )); do
+		if [[ ${#lines["$y"]} -gt "sizeX" ]]; then
+			sizeX=${#lines["$y"]}
+		fi
+	done
+	let sizeX="$sizeX"*"$SIZE"
+
+	# Create png.
+	echo -e "push graphic-context\nviewbox 0 0 $sizeX $sizeY" > tmp.mvg
+	echo -e "$orderedInstructions" >> tmp.mvg
+	echo "pop graphic-context" >> tmp.mvg
+	convert tmp.mvg tmp.png
 }
 
 main "$@"

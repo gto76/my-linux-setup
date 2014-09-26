@@ -11,6 +11,13 @@ fi
 
 DEBUG=true
 
+# Size factor (how many pixels does one cell take up)
+SIZEY=60
+SIZEX=`echo "scale=1;$SIZEY*2/3" | bc | sed 's/\..*//'`
+let FONT_SIZE=("$SIZEY"*3)/4
+#FONT="DejaVu-Sans-Mono-Oblique"
+FONT="DejaVu-Sans-Mono-Bold"
+
 #######################
 #### PROCESS LABEL ####
 #######################
@@ -23,15 +30,33 @@ processLabel() {
 	length=${#label}
 	let newX="$x"+"$length"
 	let yPlus1="$y"+1
+	# RECTANGLE:
+	let RECTANGLE_OFFSET="$SIZEX"/8
+	let rectangleX="$x"*"$SIZEX"+"$RECTANGLE_OFFSET"
+	let rectangleY="$y"*"$SIZEY"+"$RECTANGLE_OFFSET"
+	let rectangleX2="$newX"*"$SIZEX"-"$RECTANGLE_OFFSET"
+	let rectangleY2="$yPlus1"*"$SIZEY"-"$RECTANGLE_OFFSET"
+	instructionRectangle="rectangle $rectangleX,$rectangleY $rectangleX2,$rectangleY2\n"
+	# TEXT:
+	FONT_WIDTH_FACTOR="0.6107" # 0.6 prevec u desno, 0.65 prevec v levo, 0.625 mal v levo, 0.62 mal v levo, 0.615 levo,
+    textWidthExpression="scale=1;$FONT_SIZE*$length*$FONT_WIDTH_FACTOR"
+	textWidth=$(echo "$textWidthExpression" | bc | sed 's/\..*//')
+	let rectangleWidth="$length"*"$SIZEX"-2*"$RECTANGLE_OFFSET"
+	let textOffsetX=("$rectangleWidth"-"$textWidth")/2+"$RECTANGLE_OFFSET"
+	let textX="$x"*"$SIZEX"+"$textOffsetX"
+	let textOffsetY=("$SIZEY"-2*"$RECTANGLE_OFFSET"-"$FONT_SIZE")/2
+	let textY="$yPlus1"*"$SIZEY"-"$RECTANGLE_OFFSET"-2*"$textOffsetY"
+	instructionText="text $textX,$textY '$label'\n"
 
-	let scaledX="$x"*"$SIZEX"
-	let scaledY="$y"*"$SIZEY"
-	let scaledX2="$newX"*"$SIZEX"
-	let scaledY2="$yPlus1"*"$SIZEY"
 
-	instruction="rectangle $scaledX,$scaledY $scaledX2,$scaledY2\ntext $scaledX,$scaledY2 '$label'"
-	instructions="$instructions""$instruction""\n"
 
+#	lableOffsetX=`echo "scale=1;($SIZEX*$length-2*$RECTANGLE_OFFSET-$FONT_SIZE*(0.6)*$length)/2" | bc | sed 's/\..*//'`
+#	let textScaledX="$x"*"$SIZEX"+"$lableOffsetX"
+#	let lableOffsetY=("$SIZEY"-2*"$RECTANGLE_OFFSET"-"$FONT_SIZE")/2
+#	let textScaledY="$yPlus1"*"$SIZEY"-"$RECTANGLE_OFFSET"-2*"$lableOffsetY"
+#	instructionText="text $textScaledX,$textScaledY '$label'\n"
+
+	instructions="$instructions""$instructionRectangle""$instructionText"
 	x="$newX"
 }
 
@@ -125,14 +150,25 @@ findEdgesEndpoint() {
 	fi
 }
 
+#### CALCULATE CANVAS SIZE ####
+
+calculateCanvasSize() {
+	# Calculate size of the canvas.
+	let canvasSizeY=${#lines[@]}*"$SIZEY"
+	canvasSizeX=0
+	for (( y=0 ; y < ${#lines[@]} ; y++ )); do
+		if [[ ${#lines["$y"]} -gt "canvasSizeX" ]]; then
+			canvasSizeX=${#lines["$y"]}
+		fi
+	done
+	let canvasSizeX="$canvasSizeX"*"$SIZEX"
+}
+
 ##############
 #### MAIN ####
 ##############
 
 main() {
-	# Size factor
-	SIZEY=60
-	SIZEX=`echo "scale=1;$SIZEY*2/3" | bc | sed 's/\..*//'`
 
 	# Copy lines into array
 	SAVE_IFS="$IFS"
@@ -199,26 +235,18 @@ main() {
 	drawingInstructions=`echo -e "$orderedInstructions" | grep -v '^text '`
 	textInstructions=`echo -e "$orderedInstructions" | grep '^text '`
 
-	# Calculate size of the canvas.
-	let sizeY=${#lines[@]}*"$SIZEY"
-	sizeX=0
-	for (( y=0 ; y < ${#lines[@]} ; y++ )); do
-		if [[ ${#lines["$y"]} -gt "sizeX" ]]; then
-			sizeX=${#lines["$y"]}
-		fi
-	done
-	let sizeX="$sizeX"*"$SIZEX"
+	calculateCanvasSize
 
 	# Create png.
-	let fontSize="$sizeY"/11
 	echo -e "push graphic-context\n" > tmp.mvg
-	echo -e "viewbox 0 0 $sizeX $sizeY\n" >> tmp.mvg
-	echo -e "font-size $fontSize\n" >> tmp.mvg
-	echo -e "fill 'white'\n" >> tmp.mvg
-	echo -e "stroke 'black'\n" >> tmp.mvg
+	echo -e "viewbox 0 0 $canvasSizeX $canvasSizeY" >> tmp.mvg
+	echo -e "font-size $FONT_SIZE" >> tmp.mvg
+	echo -e "font '$FONT'" >> tmp.mvg
+	echo -e "fill 'white'" >> tmp.mvg
+	echo -e "stroke 'black'" >> tmp.mvg
 	echo -e "$drawingInstructions\n" >> tmp.mvg
 	echo -e "fill 'black'\n" >> tmp.mvg
-	echo -e "$textInstructions" >> tmp.mvg
+	echo -e "$textInstructions\n" >> tmp.mvg
 	echo -e "pop graphic-context" >> tmp.mvg
 	convert tmp.mvg tmp.png
 }

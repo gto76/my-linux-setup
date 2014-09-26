@@ -712,7 +712,7 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
                                    behind).
                                                               HEAD
                                                                |
-                                   LABEL HEAD          LABEL (D)-MASTER
+                                   LABEL HEAD          LABEL  (D)-MASTER
                                        \   |               \ / |          
                                        (B)(C)-*MASTER      (B)(C)
                                         | /         ___\    | / 

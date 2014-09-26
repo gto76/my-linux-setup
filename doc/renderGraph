@@ -30,7 +30,7 @@ setConstants() {
 	# An estimate of font-width/font-height.
 	FONT_WIDTH_FACTOR="0.6107" 
 	# Additional heightening of the text expressed in height of a text
-	VERTICAL_LIFT_FACTOR="0.1"
+	VERTICAL_LIFT_FACTOR="0.13"
 	VERTICAL_LIFT_EXPRESSION="scale=1;$FONT_SIZE*$VERTICAL_LIFT_FACTOR"
 	VERTICAL_LIFT=`echo "$VERTICAL_LIFT_EXPRESSION" | bc | sed 's/\..*//'`
 	let RECTANGLE_HEIGHT="$SIZEY"-2*"$RECTANGLE_OFFSET"
@@ -76,7 +76,9 @@ calculateCanvasSize() {
 # Draws rectangle and label on it.
 processLabel() {
 	restOfLine=${lines[$y]:$x}
-	label=`echo "$restOfLine" | grep -o "^[^ -+()|\n]*"`
+	echo "restOfLine: $restOfLine\n"
+	#label=`echo "$restOfLine" | grep -o "^[^ \-+()|\n]*"`
+	label=`echo "$restOfLine" | grep -o "^[^ +()|\n\-]*"`
 	length=${#label}
 	let newX="$x"+"$length"
 	let yPlus1="$y"+1
@@ -117,9 +119,16 @@ processNode() {
 	let circleY2="$y"*"$SIZEY"
 	instructionCircle="m#circle $circleX,$circleY $circleX,$circleY2\n"
 	# Text:
-	let labelX="$xPlus1"*"$SIZEX"
-	let labelY="$yPlus1"*"$SIZEY"-"$SIZEY"/4
-	instructionText="text $labelX,$labelY '$label'\n"
+	#let labelX="$xPlus1"*"$SIZEX"
+	length=1
+    textWidthExpression="scale=1;$FONT_SIZE*$length*$FONT_WIDTH_FACTOR"
+	textWidth=$(echo "$textWidthExpression" | bc | sed 's/\..*//')
+	let rectangleWidth="$length"*"$SIZEX"-2*"$RECTANGLE_OFFSET"
+	let textOffsetX=("$rectangleWidth"-"$textWidth")/2+"$RECTANGLE_OFFSET"
+	let textX="$xPlus1"*"$SIZEX"+"$textOffsetX"
+	#let labelY="$yPlus1"*"$SIZEY"-"$SIZEY"/4
+	let textY="$y"*"$SIZEY"+"$TEXT_OFFSET_Y"
+	instructionText="text $textX,$textY '$label'\n"
 
 	instructions="$instructions""$instructionCircle""$instructionText"
 	let x="$x"+2
@@ -215,13 +224,19 @@ sortInstructions() {
 createPng() {
 	echo -e "push graphic-context\n" > tmp.mvg
 	echo -e "viewbox 0 0 $canvasSizeX $canvasSizeY" >> tmp.mvg
-	echo -e "font-size $FONT_SIZE" >> tmp.mvg
-	echo -e "font '$FONT'" >> tmp.mvg
 	echo -e "fill 'white'" >> tmp.mvg
 	echo -e "stroke 'black'" >> tmp.mvg
+	echo -e "stroke-antialias 1" >> tmp.mvg
+	#echo -e "stroke-width 2" >> tmp.mvg
 	echo -e "$drawingInstructions\n" >> tmp.mvg
-	echo -e "fill 'black'\n" >> tmp.mvg
+	echo -e "push graphic-context" >> tmp.mvg
+	echo -e "fill 'black'" >> tmp.mvg
+	echo -e "font-size $FONT_SIZE" >> tmp.mvg
+	echo -e "font '$FONT'" >> tmp.mvg
+	echo -e "text-antialias 1" >> tmp.mvg
+	echo -e "stroke-opacity 0" >> tmp.mvg
 	echo -e "$textInstructions\n" >> tmp.mvg
+	echo -e "pop graphic-context" >> tmp.mvg
 	echo -e "pop graphic-context" >> tmp.mvg
 	convert tmp.mvg tmp.png
 }

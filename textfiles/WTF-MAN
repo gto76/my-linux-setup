@@ -312,6 +312,7 @@ paste - glue two documents side by side
 sed 's///g' - substitute every occurrence in line, not just the first one
 	's///I' - ignore case
 	-r - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis
+expand - convert tabs to spaces
 
 DIFF:
 diff -u <files> - unified format

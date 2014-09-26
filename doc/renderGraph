@@ -7,14 +7,13 @@ if [[ "$#" -lt 1 || "$1" == "--help" ]]; then
 	echo -e "Usage: $USAGE"; echo -e "$DESCRIPTION"; exit
 fi
 
-#########
-
+#########         #########         ######### 
 DEBUG=false
 # Size factor (how many pixels does one cell take up)
 SIZEY=${2:-"60"}
 FONT=${3:-"DejaVu-Sans-Mono-Oblique"}
-
-#########
+TAB_WIDTH=4
+#########         #########         #########
 
 #######################
 #### SET CONSTANTS ####
@@ -46,7 +45,7 @@ copyLinesIntoArray() {
 	SAVE_IFS="$IFS"
 	IFS=$'\n'
 	i=0
-	for a in `cat "$1"`; do
+	for a in `expand -t "$TAB_WIDTH" "$1"`; do
 		lines["$i"]="$a"
 		let i="$i"+1
 	done

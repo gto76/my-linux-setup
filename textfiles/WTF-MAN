@@ -128,6 +128,8 @@ source <script> - run script: for example source /etc/profile (same as . <comman
 #!/bin/bash - good practice to insert at begining of a bash script
 export PATH="$PATH:<your-dir>" - add new directory to path variable
 All variables in bash are global !!!!!!!
+read -p "Press [Enter] key to start backup..." - prompt for user input
+variable=${1:-"default value"} - setting variable with default value if $1 is empty
 
 ARRAYS AND LINES:
 while read -r line; do

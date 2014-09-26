@@ -1,22 +1,72 @@
 #!/bin/bash
 
-USAGE=`basename "$0"`" [ASCII GRAPH FILE]"
+USAGE=`basename "$0"`" [ASCII GRAPH FILE] [FONT NAME]"
 DESCRIPTION="Reads a graph from ascii drawing and creates png file using image magic convert command."
 
-if [[ "$#" -ne 1 || "$1" == "--help" ]]; then
+if [[ "$#" -lt 1 || "$1" == "--help" ]]; then
 	echo -e "Usage: $USAGE"; echo -e "$DESCRIPTION"; exit
 fi
 
 #########
 
-DEBUG=true
-
+DEBUG=false
 # Size factor (how many pixels does one cell take up)
-SIZEY=60
-SIZEX=`echo "scale=1;$SIZEY*2/3" | bc | sed 's/\..*//'`
-let FONT_SIZE=("$SIZEY"*3)/4
-#FONT="DejaVu-Sans-Mono-Oblique"
-FONT="DejaVu-Sans-Mono-Bold"
+SIZEY=${2:-"60"}
+FONT=${3:-"DejaVu-Sans-Mono-Oblique"}
+
+#########
+
+#######################
+#### SET CONSTANTS ####
+#######################
+
+setConstants() {
+	# Width of one ascii cell in pixels.
+	SIZEX=`echo "scale=1;$SIZEY*2/3" | bc | sed 's/\..*//'`
+	# Heigh of a font.
+	let FONT_SIZE=("$SIZEY"*3)/4
+	# Distance from rectangles edge to the edge of the cell in the pixels.
+	let RECTANGLE_OFFSET="$SIZEX"/8
+	# An estimate of font-width/font-height.
+	FONT_WIDTH_FACTOR="0.6107" 
+	# Additional heightening of the text expressed in height of a text
+	VERTICAL_LIFT_FACTOR="0.1"
+	VERTICAL_LIFT_EXPRESSION="scale=1;$FONT_SIZE*$VERTICAL_LIFT_FACTOR"
+	VERTICAL_LIFT=`echo "$VERTICAL_LIFT_EXPRESSION" | bc | sed 's/\..*//'`
+	let RECTANGLE_HEIGHT="$SIZEY"-2*"$RECTANGLE_OFFSET"
+	# How far from the upper cells will be texts bottom.
+	let TEXT_OFFSET_Y=("$RECTANGLE_HEIGHT"-"$FONT_SIZE")/2+"$RECTANGLE_OFFSET"+"$FONT_SIZE"-"$VERTICAL_LIFT"
+}
+
+###############################
+#### COPY LINES INTO ARRAY ####
+###############################
+
+copyLinesIntoArray() {
+	SAVE_IFS="$IFS"
+	IFS=$'\n'
+	i=0
+	for a in `cat "$1"`; do
+		lines["$i"]="$a"
+		let i="$i"+1
+	done
+	IFS="$SAVE_IFS"
+}
+
+###############################
+#### CALCULATE CANVAS SIZE ####
+###############################
+
+calculateCanvasSize() {
+	let canvasSizeY=${#lines[@]}*"$SIZEY"
+	canvasSizeX=0
+	for (( y=0 ; y < ${#lines[@]} ; y++ )); do
+		if [[ ${#lines["$y"]} -gt "canvasSizeX" ]]; then
+			canvasSizeX=${#lines["$y"]}
+		fi
+	done
+	let canvasSizeX="$canvasSizeX"*"$SIZEX"
+}
 
 #######################
 #### PROCESS LABEL ####
@@ -31,30 +81,21 @@ processLabel() {
 	let newX="$x"+"$length"
 	let yPlus1="$y"+1
 	# RECTANGLE:
-	let RECTANGLE_OFFSET="$SIZEX"/8
 	let rectangleX="$x"*"$SIZEX"+"$RECTANGLE_OFFSET"
 	let rectangleY="$y"*"$SIZEY"+"$RECTANGLE_OFFSET"
 	let rectangleX2="$newX"*"$SIZEX"-"$RECTANGLE_OFFSET"
 	let rectangleY2="$yPlus1"*"$SIZEY"-"$RECTANGLE_OFFSET"
 	instructionRectangle="rectangle $rectangleX,$rectangleY $rectangleX2,$rectangleY2\n"
 	# TEXT:
-	FONT_WIDTH_FACTOR="0.6107" # 0.6 prevec u desno, 0.65 prevec v levo, 0.625 mal v levo, 0.62 mal v levo, 0.615 levo,
+	# position x:
     textWidthExpression="scale=1;$FONT_SIZE*$length*$FONT_WIDTH_FACTOR"
 	textWidth=$(echo "$textWidthExpression" | bc | sed 's/\..*//')
 	let rectangleWidth="$length"*"$SIZEX"-2*"$RECTANGLE_OFFSET"
 	let textOffsetX=("$rectangleWidth"-"$textWidth")/2+"$RECTANGLE_OFFSET"
 	let textX="$x"*"$SIZEX"+"$textOffsetX"
-	let textOffsetY=("$SIZEY"-2*"$RECTANGLE_OFFSET"-"$FONT_SIZE")/2
-	let textY="$yPlus1"*"$SIZEY"-"$RECTANGLE_OFFSET"-2*"$textOffsetY"
+	# position y;
+	let textY="$y"*"$SIZEY"+"$TEXT_OFFSET_Y"
 	instructionText="text $textX,$textY '$label'\n"
-
-
-
-#	lableOffsetX=`echo "scale=1;($SIZEX*$length-2*$RECTANGLE_OFFSET-$FONT_SIZE*(0.6)*$length)/2" | bc | sed 's/\..*//'`
-#	let textScaledX="$x"*"$SIZEX"+"$lableOffsetX"
-#	let lableOffsetY=("$SIZEY"-2*"$RECTANGLE_OFFSET"-"$FONT_SIZE")/2
-#	let textScaledY="$yPlus1"*"$SIZEY"-"$RECTANGLE_OFFSET"-2*"$lableOffsetY"
-#	instructionText="text $textScaledX,$textScaledY '$label'\n"
 
 	instructions="$instructions""$instructionRectangle""$instructionText"
 	x="$newX"
@@ -70,15 +111,17 @@ processNode() {
 	let yPlus1="$y"+1
 	label=${lines[$y]:$xPlus1:1}
 
+	# Circle:
 	let circleX="$xPlus1"*"$SIZEX"+"$SIZEX"/2
 	let circleY="$y"*"$SIZEY"+"$SIZEY"/2
 	let circleY2="$y"*"$SIZEY"
+	instructionCircle="m#circle $circleX,$circleY $circleX,$circleY2\n"
+	# Text:
 	let labelX="$xPlus1"*"$SIZEX"
 	let labelY="$yPlus1"*"$SIZEY"-"$SIZEY"/4
+	instructionText="text $labelX,$labelY '$label'\n"
 
-	instruction="m#circle $circleX,$circleY $circleX,$circleY2\ntext $labelX,$labelY '$label'"
-	instructions="$instructions""$instruction""\n"
-
+	instructions="$instructions""$instructionCircle""$instructionText"
 	let x="$x"+2
 }
 
@@ -150,18 +193,37 @@ findEdgesEndpoint() {
 	fi
 }
 
-#### CALCULATE CANVAS SIZE ####
+###########################
+#### SORT INSTRUCTIONS ####
+###########################
 
-calculateCanvasSize() {
-	# Calculate size of the canvas.
-	let canvasSizeY=${#lines[@]}*"$SIZEY"
-	canvasSizeX=0
-	for (( y=0 ; y < ${#lines[@]} ; y++ )); do
-		if [[ ${#lines["$y"]} -gt "canvasSizeX" ]]; then
-			canvasSizeX=${#lines["$y"]}
-		fi
-	done
-	let canvasSizeX="$canvasSizeX"*"$SIZEX"
+# Sort instructions so that edges get drawn first, then circles
+# and rectangles and lastly the labels.
+sortInstructions() {
+	orderedInstructions=`echo -e "$instructions" | sort -u | sed 's/^.*#//'`
+	if [[ "$DEBUG" == "true" ]]; then
+		echo -e "\nINSTRUCTIONS:\n$orderedInstructions"
+	fi
+	drawingInstructions=`echo -e "$orderedInstructions" | grep -v '^text '`
+	textInstructions=`echo -e "$orderedInstructions" | grep '^text '`
+}
+
+####################
+#### CREATE PNG ####
+####################
+
+createPng() {
+	echo -e "push graphic-context\n" > tmp.mvg
+	echo -e "viewbox 0 0 $canvasSizeX $canvasSizeY" >> tmp.mvg
+	echo -e "font-size $FONT_SIZE" >> tmp.mvg
+	echo -e "font '$FONT'" >> tmp.mvg
+	echo -e "fill 'white'" >> tmp.mvg
+	echo -e "stroke 'black'" >> tmp.mvg
+	echo -e "$drawingInstructions\n" >> tmp.mvg
+	echo -e "fill 'black'\n" >> tmp.mvg
+	echo -e "$textInstructions\n" >> tmp.mvg
+	echo -e "pop graphic-context" >> tmp.mvg
+	convert tmp.mvg tmp.png
 }
 
 ##############
@@ -169,23 +231,12 @@ calculateCanvasSize() {
 ##############
 
 main() {
-
-	# Copy lines into array
-	SAVE_IFS="$IFS"
-	IFS=$'\n'
-	i=0
-	for a in `cat "$1"`; do
-		lines["$i"]="$a"
-		let i="$i"+1
-	done
-	IFS="$SAVE_IFS"
+	setConstants
+	copyLinesIntoArray "$1"
+	calculateCanvasSize
 
 	# Drawing instructions for the imagemagic
 	instructions=""
-
-	EDGE='-|/\'
-	CONNECTORS='-|/\+()'
-	CONNECTORS_AND_SPACE='-|/\+() '
 
 	if [[ "$DEBUG" == "true" ]]; then
 		echo "INPUT FILE:"
@@ -223,32 +274,13 @@ main() {
 				processEdge
 			fi
 		done
-		echo
+		if [[ "$DEBUG" == "true" ]]; then
+			echo
+		fi
 	done
 
-	# Sort instructions so that edges get drawn first, then circles
-	# and rectangles and lastly the labels.
-	orderedInstructions=`echo -e "$instructions" | sort -u | sed 's/^.*#//'`
-	if [[ "$DEBUG" == "true" ]]; then
-		echo -e "\nINSTRUCTIONS:\n$orderedInstructions"
-	fi
-	drawingInstructions=`echo -e "$orderedInstructions" | grep -v '^text '`
-	textInstructions=`echo -e "$orderedInstructions" | grep '^text '`
-
-	calculateCanvasSize
-
-	# Create png.
-	echo -e "push graphic-context\n" > tmp.mvg
-	echo -e "viewbox 0 0 $canvasSizeX $canvasSizeY" >> tmp.mvg
-	echo -e "font-size $FONT_SIZE" >> tmp.mvg
-	echo -e "font '$FONT'" >> tmp.mvg
-	echo -e "fill 'white'" >> tmp.mvg
-	echo -e "stroke 'black'" >> tmp.mvg
-	echo -e "$drawingInstructions\n" >> tmp.mvg
-	echo -e "fill 'black'\n" >> tmp.mvg
-	echo -e "$textInstructions\n" >> tmp.mvg
-	echo -e "pop graphic-context" >> tmp.mvg
-	convert tmp.mvg tmp.png
+	sortInstructions
+	createPng
 }
 
 main "$@"

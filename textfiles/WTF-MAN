@@ -130,6 +130,7 @@ export PATH="$PATH:<your-dir>" - add new directory to path variable
 All variables in bash are global !!!!!!!
 read -p "Press [Enter] key to start backup..." - prompt for user input
 variable=${1:-"default value"} - setting variable with default value if $1 is empty
+getopts - parse parameters
 
 ARRAYS AND LINES:
 while read -r line; do
@@ -324,7 +325,7 @@ patch - apply a diff file to original
 	diff -u <old-filename> <new-filename> > patch.diff - create patch
 
 SEARCH:
-grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t or .+), -I - do not process binary files, -l - just print files with matches, -L - just print files wihouth matches -e <pattern> - specify pattern (needed if it starts with -)
+grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t or .+), -i ignore case, -I - do not process binary files, -l - just print files with matches, -L - just print files wihouth matches -e <pattern> - specify pattern (needed if it starts with -)
 look - display lines beginning with a given string
 strings - print all text parts of binary file
 

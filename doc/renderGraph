@@ -8,11 +8,12 @@ if [[ "$#" -lt 1 || "$1" == "--help" ]]; then
 fi
 
 #########         #########         ######### 
-DEBUG=false
+DEBUG="false"
 # Size factor (how many pixels does one cell take up)
 SIZEY=${2:-"60"}
 FONT=${3:-"DejaVu-Sans-Mono-Oblique"}
 TAB_WIDTH=4
+COLOR="true"
 #########         #########         #########
 
 #######################
@@ -71,12 +72,22 @@ calculateCanvasSize() {
 #### PROCESS LABEL ####
 #######################
 
+setColor() {
+	color="rgb(138, 226, 52)" #branch -> lime
+	if [[ -n `echo "$1" | grep -i '^origin'` ]]; then
+		color="rgb(239, 41, 41)" #remote -> red
+	elif [[ -n `echo "$1" | grep -i '^head'` ]]; then
+		color="rgb(52, 226, 226)" #HEAD -> aqua
+	elif [[ -n `echo "$1" | grep -i '^v[0-9]\|^[0-9]'` ]]; then
+		color="rgb(252, 233, 77)" #tag -> yelow
+	fi
+}
+
 # Reads label until it reaches connector or space
 # Draws rectangle and label on it.
 processLabel() {
 	restOfLine=${lines[$y]:$x}
 	echo "restOfLine: $restOfLine\n"
-	#label=`echo "$restOfLine" | grep -o "^[^ \-+()|\n]*"`
 	label=`echo "$restOfLine" | grep -o "^[^ +()|\n\-]*"`
 	length=${#label}
 	let newX="$x"+"$length"
@@ -86,7 +97,12 @@ processLabel() {
 	let rectangleY="$y"*"$SIZEY"+"$RECTANGLE_OFFSET"
 	let rectangleX2="$newX"*"$SIZEX"-"$RECTANGLE_OFFSET"
 	let rectangleY2="$yPlus1"*"$SIZEY"-"$RECTANGLE_OFFSET"
-	instructionRectangle="rectangle $rectangleX,$rectangleY $rectangleX2,$rectangleY2\n"
+	if [[ "$COLOR" == "true" ]]; then
+		setColor "$label"
+		instructionRectangle="rectangle#fill '$color' rectangle $rectangleX,$rectangleY $rectangleX2,$rectangleY2 fill 'white'\n"
+	else
+		instructionRectangle="rectangle $rectangleX,$rectangleY $rectangleX2,$rectangleY2\n"
+	fi
 	# TEXT:
 	# position x:
     textWidthExpression="scale=1;$FONT_SIZE*$length*$FONT_WIDTH_FACTOR"

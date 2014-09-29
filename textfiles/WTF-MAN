@@ -56,11 +56,9 @@ ctrl x, ctrl e - edit command in editor
 ctrl p - show last command (same as up arrow)
 
 
-
-##########################
-AWESOME TERMINAL COMMANDS:
-##########################
-
+#############################
+# AWESOME TERMINAL COMMANDS #
+#############################
 
 PACKAGES:
 
@@ -88,68 +86,17 @@ whereis - locates where command resides
 which - similar only executable
 wtf - looks up filename suffixes database
 
-HISTORY:
+INSTALL MANTRA:
 
-sudo !! - Run the last command as root 
-<space>command - Execute a command without saving it in the history
-!<term> - last command that starts with term
+./configure --help
+./configure
+make
+sudo make install
 
-BASH:
 
-"$x" - ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! 
-"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! 
-"$@" - Use this instead!!!!! Will retain arguments as-is, so no args provided will result in no args being passed on. This is in most cases what you want to use for passing on arguments.
-Google: "$@" is right almost everytime, and $* is wrong almost everytime.
-"$#" - number of arguments
-"$1" - first argument
-"$0" - name of the script
-$'\n' - string literal with escape seqences
-If you want IFS to be a new line (useful with for loop) you need to: IFS=$'\n' - the dollar forces substitution!!!!!
-$? - exit code of last command (0 - ok)
-
-test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
-	-n - is string non empty, -z - is string empty, -a - and, -o - or,
-	= - strings are equal, -nt - file newer than, -ot - older then,
-	-d - directory exists, -e - file exists, -f - is a regular file,
-	-h - its a symbolic link, -r - has read permission,
-	-w - has write permission, -x - has execute permission
-[[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
-let <expression> - executes expression
-
-$(command) - same as `command`
-$RANDOM - 0 - 32767
-input=`cat` - getting standard input
-- in place of a file name means standard in or out
-set -o vi - set line editing to vi mode
-pushd . - put current dir on stack
-popd - pop dir from stack
-cd - - go to last dir
-source <script> - run script: for example source /etc/profile (same as . <command>)
-#!/bin/bash - good practice to insert at begining of a bash script
-export PATH="$PATH:<your-dir>" - add new directory to path variable
-All variables in bash are global !!!!!!!
-read -p "Press [Enter] key to start backup..." - prompt for user input
-variable=${1:-"default value"} - setting variable with default value if $1 is empty
-getopts - parse parameters
-
-ARRAYS AND LINES:
-while read -r line; do
-    echo "... $line ..."
-done <<< "$list" - reading line by line from variable
-${a[1]} - value of the second element of the array
-for c in ${a[@]} - iterate over array
-${varname:offset:length} - get substring: s="aeiou"; ${s:3:1} -> o
-${#var} - length of a var 
-${#name[subscript]} - length  of the element
-${#name[@]} - length  of the array
-
-REDIRECTIONS:
-<command> 2> /dev/null - redirect error output
-<command> &> /dev/null - redirect both standard and error output
-<command> >&2 - write to stderr
-<command> 2>&1 | less - add stderr to stdout and print it with less (useful for gcc)
-
+#######
 GENERAL:
+#######
 
 expr - evaluate expressions (expr 1 + 1 -> 2)
 echo -n - no newline at the end
@@ -256,7 +203,74 @@ gcc - gnu c compiler
 	-w - supress warnings (only print errors) 
 install - copy files and set attributes
 
+####
+BASH:
+####
+
+"$x" - ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! 
+"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! 
+"$@" - Use this instead!!!!! Will retain arguments as-is, so no args provided will result in no args being passed on. This is in most cases what you want to use for passing on arguments.
+Google: "$@" is right almost everytime, and $* is wrong almost everytime.
+"$#" - number of arguments
+"$1" - first argument
+"$0" - name of the script
+$'\n' - string literal with escape seqences
+If you want IFS to be a new line (useful with for loop) you need to: IFS=$'\n' - the dollar forces substitution!!!!!
+$? - exit code of last command (0 - ok)
+
+test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
+	-n - is string non empty, -z - is string empty, -a - and, -o - or,
+	= - strings are equal, -nt - file newer than, -ot - older then,
+	-d - directory exists, -e - file exists, -f - is a regular file,
+	-h - its a symbolic link, -r - has read permission,
+	-w - has write permission, -x - has execute permission
+[[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
+let <expression> - executes expression
+
+$(command) - same as `command`
+$RANDOM - 0 - 32767
+input=`cat` - getting standard input
+- in place of a file name means standard in or out
+set -o vi - set line editing to vi mode
+pushd . - put current dir on stack
+popd - pop dir from stack
+cd - - go to last dir
+source <script> - run script: for example source /etc/profile (same as . <command>)
+#!/bin/bash - good practice to insert at begining of a bash script
+export PATH="$PATH:<your-dir>" - add new directory to path variable
+All variables in bash are global !!!!!!!
+read -p "Press [Enter] key to start backup..." - prompt for user input
+variable=${1:-"default value"} - setting variable with default value if $1 is empty
+getopts - parse parameters/arguments
+getopt - GNU version is even better then getopts, not a builtin
+
+HISTORY:
+
+sudo !! - Run the last command as root 
+<space>command - Execute a command without saving it in the history
+!<term> - last command that starts with term
+
+ARRAYS AND LINES:
+
+while read -r line; do
+    echo "... $line ..."
+done <<< "$list" - reading line by line from variable
+${a[1]} - value of the second element of the array
+for c in ${a[@]} - iterate over array
+${varname:offset:length} - get substring: s="aeiou"; ${s:3:1} -> o
+${#var} - length of a var 
+${#name[subscript]} - length  of the element
+${#name[@]} - length  of the array
+
+REDIRECTIONS:
+
+<command> 2> /dev/null - redirect error output
+<command> &> /dev/null - redirect both standard and error output
+<command> >&2 - write to stderr
+<command> 2>&1 | less - add stderr to stdout and print it with less (useful for gcc)
+
 ALIASES:
+
 alias - print all aliases
 	<name> - print alias
 	<name>='cmd' - set alias
@@ -325,7 +339,7 @@ patch - apply a diff file to original
 	diff -u <old-filename> <new-filename> > patch.diff - create patch
 
 SEARCH:
-grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t or .+), -i ignore case, -I - do not process binary files, -l - just print files with matches, -L - just print files wihouth matches -e <pattern> - specify pattern (needed if it starts with -)
+grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t or +!!!!), -i ignore case, -I - do not process binary files, -l - just print files with matches, -L - just print files wihouth matches -e <pattern> - specify pattern (needed if it starts with -)
 look - display lines beginning with a given string
 strings - print all text parts of binary file
 
@@ -463,9 +477,9 @@ dnsniff - warious hacking tools:
 ip link set eth0 promisc on - set network inerface to promiscuous mode
 iip link set eth0 multicast off - set multicast off
 
-#######
+######
 SYSTEM:
-#######
+######
 
 meta, system info - in cinnamon
 uname -a - print system info, kernel version
@@ -669,9 +683,9 @@ openmovieeditor - gui movie editor (video)
 aview, asciiview - ASCII art image viewer and video player
 
 
-####################
-AWESOME LINUX FILES:
-####################
+#######################
+# AWESOME LINUX FILES #
+#######################
 
 BASH:
 ~/.bashrc - executed at every shell startup, user specific
@@ -744,18 +758,10 @@ BOOT (kernels):
 /boot/grub/menu.lst - Grub configuration file
 
 
-############
-############
-
-INSTALL MANTRA:
-./configure --help
-./configure
-make
-sudo make install
-
 #############
 ##  G I T  ##
 #############
+
 GIT MANTRA:
 git init
 git add <filename> OR git add .
@@ -824,13 +830,15 @@ git bisect reset - exit bisect mode
 
 Tools:
 gitk - repo explorer
+gitg - a bit nicer version
 tig - text based repo explorer
 
 
-###########
-##  VIM  ##
-###########
+#############
+##  V I M  ##
+#############
 
+VIM
 +<linenum> - open file at line number
 alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
 ctrl-[ - escape
@@ -848,7 +856,7 @@ V - linewise visual mode
 P - paste before cursor
 x - delete character
 :%s/old/new/gc - sed, c means with conformations
-///
+
 MOVEMENT
 e - end of word
 E - end of WORD
@@ -975,8 +983,10 @@ ctrl-w, direction - move to split
 AUTOCOMPLETE:
 ctrl+n - show autocomplete suggestions
 
-///////////
-///////////
+
+#############
+## M I S C ##
+#############
 
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily

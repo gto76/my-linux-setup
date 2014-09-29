@@ -1,0 +1,27 @@
+#!/bin/bash
+
+title=""
+filename=""
+atTitle="false"
+
+while read line; do
+	if [[ -n `echo "$line" | grep '^\.\.'` ]]; then
+		atTitle="true"
+		titleNewWord=`echo "$line" | tr -d '. '`
+		if [[ -n "$titleNewWord" ]]; then
+			title="$title""$titleNewWord "
+		fi
+	elif [[ "$atTitle" == "true" ]]; then
+		atTitle="false"
+		title=`echo "$title" | sed 's/ $//'`
+		filename=`echo "$title" | tr [a-z] [A-Z] | tr ' ' '-'`
+		echo "$title"
+		echo "$title" | sed 's/./=/g'
+		title=""
+	fi
+
+	if [[ "$atTitle" == "false" ]]; then
+		#echo "$line" >> "$title.md"
+		echo "$line"
+	fi
+done < ../textfiles/NYK

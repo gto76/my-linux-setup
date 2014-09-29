@@ -1,7 +1,7 @@
 Hi
 ==
 
-This is site of my [github project](/www.github.com/gto76/my-aliases) in which I contain mainly my [dotfiles](/www.github.com/gto76/my-aliasestree/gh-pages/dotfiles)... But among theme there are hiding two textfiles in which I write all the interesting things that I know I'm gonna forget otherwise.
+This is site of my [github project](https://www.github.com/gto76/my-aliases) in which I contain mainly my [dotfiles](https://www.github.com/gto76/my-aliasestree/gh-pages/dotfiles)... But among theme there are hiding two textfiles in which I write all the interesting things that I know I'm gonna forget otherwise.
 
 The first one contains short descriptions of various Linux commands:
 [WTF-MAN](page/wtf-man.html)

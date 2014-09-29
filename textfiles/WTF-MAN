@@ -968,6 +968,9 @@ SPELLCHECK:
 :set spell spelllang=en_us
 :setlocal spell spelllang=en_us
 :set nospell
+z= - show suggestions for misspelled word
+]s - go to next misspelled word
+[s - go to previous misspelled word
 
 TABS:
 :tabe <filename> - open new tab

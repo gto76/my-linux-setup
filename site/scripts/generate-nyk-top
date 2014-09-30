@@ -1,0 +1,7 @@
+cat nyk.md.template > nyk.md
+
+cd nyk
+for file in *; do
+	title=`basename -s .md $file`
+	echo "[$title]($title.html)" >> ../nyk.md
+done

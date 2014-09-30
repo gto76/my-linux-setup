@@ -5,6 +5,11 @@ __      _| |_ / _|   _ __ ___   __ _ _ __
   \_/\_/  \__|_|    |_| |_| |_|\__,_|_| |_|
 
 
+
+###########
+## GNOME ##
+###########
+
 ctrl+alt+t - start terminal
 ctrl+alt+f - start firefox
 ctrl+alt+h - start home
@@ -56,11 +61,13 @@ ctrl x, ctrl e - edit command in editor
 ctrl p - show last command (same as up arrow)
 
 
-#############################
-# AWESOME TERMINAL COMMANDS #
-#############################
+###############################
+## AWESOME TERMINAL COMMANDS ##
+###############################
 
+========
 PACKAGES:
+========
 
 dpkg -l - lists installed packages
 apt - skin for dpkg
@@ -93,10 +100,9 @@ INSTALL MANTRA:
 make
 sudo make install
 
-
-#######
+=======
 GENERAL:
-#######
+=======
 
 expr - evaluate expressions (expr 1 + 1 -> 2)
 echo -n - no newline at the end
@@ -203,9 +209,9 @@ gcc - gnu c compiler
 	-w - supress warnings (only print errors) 
 install - copy files and set attributes
 
-####
+====
 BASH:
-####
+====
 
 "$x" - ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! 
 "$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! 
@@ -280,9 +286,9 @@ type <command> - will tell you what is command aliased to
 bash -n <script> - check for errors
 mkdir -p - make parents if needed
 
-####
+====
 TEXT:
-####
+====
 
 PRINT:
 tail -f - do not stop printing
@@ -360,9 +366,9 @@ fte - cool text editor with CUA (IBM)-shortcuts
 diakonos - simple terminal text editor with ctrl-c for copy
 pyroom - distraction free writing (gui)
 
-#######
+=======
 NETWORK:
-#######
+=======
 
 whois - info about domain
 host <ip_address/hostname> - DNS lookup utility
@@ -419,9 +425,9 @@ sudo iw dev wlan0 scan - list wireless networks in range
 sudo iwlist wlan0 scan - similar
 wavemon - monitor wireless connection link quality
 	
-########	
+========
 INTERNET:
-########
+========
 
 lynx - web browser 
 	-cmd_log=FILENAME - write keystrokes to script
@@ -477,9 +483,9 @@ dnsniff - warious hacking tools:
 ip link set eth0 promisc on - set network inerface to promiscuous mode
 iip link set eth0 multicast off - set multicast off
 
-######
+======
 SYSTEM:
-######
+======
 
 meta, system info - in cinnamon
 uname -a - print system info, kernel version
@@ -575,9 +581,9 @@ setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz - choose terminal font
 jfbterm - enable unicode characters in terminal
 echo -en "\e]PC7373C9" - change blue color in tty (first numeral after P means slot, and others shade)
 
-#########
+=========
 PROCESSES:
-#########
+=========
 
 ctrl-z - put job in background
 jobs - Prints currently running job
@@ -639,9 +645,9 @@ SYSTEM RUNLEVELS: RedHat / Debian
 6 Reboots
 S Single user mode
 
-###########
+===========
 MULTI-MEDIA:
-###########
+===========
 
 AUDIO:
 
@@ -683,9 +689,9 @@ openmovieeditor - gui movie editor (video)
 aview, asciiview - ASCII art image viewer and video player
 
 
-#######################
-# AWESOME LINUX FILES #
-#######################
+#########################
+## AWESOME LINUX FILES ##
+#########################
 
 BASH:
 ~/.bashrc - executed at every shell startup, user specific
@@ -1085,6 +1091,5 @@ syntax highlight - https://github.com/jnwhiteh/vim-golang
 	- for gedit: sudo cp /usr/share/gtksourceview-3.0/language-specs/go.lang /usr/share/gtksourceview-2.0/language-specs/
 simple ncurses - go get github.com/nsf/termbox-go
 
-######## NEW / NOT SORTED #########
 
 

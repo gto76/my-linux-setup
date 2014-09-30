@@ -5,5 +5,5 @@ cat ../templates/wtf-man.md.template > ../markdown/wtf-man.md
 cd ../markdown/wtf-man
 for file in *; do
 	title=`basename -s .md $file`
-	echo "[$title]($title.html)" >> ../wtf-man.md
+	echo "[$title](wtf-man/$title.html)" >> ../wtf-man.md
 done

@@ -1,0 +1,50 @@
+<h1>LINUX SYSTEM PROGRAMMING</h1>
+
+<p>LINUX ABSTRACTIONS:
+1.FILE
+2.PROCESS
+triplet of the Linux kernel (the heart of
+the operating system), the GNU C library (glibc), and the GNU C Compiler</p>
+
+<p>ABI (application binary interface):
+Thus, each machine architecture has its
+own ABI on Linux. In fact, we tend to call a particular ABI by its machine name, such
+as Alpha, or x86-64. Thus, the ABI is a function of both the operating system (say, Linux)
+and the architecture (say, x86-64)</p>
+
+<p>SPECIAL FILES:
+Linux supports four: block device
+files (disk), character device files (keyboard), named pipes, and Unix domain sockets.</p>
+
+<p>INTERPROCESS COMMUNICATION:
+mechanisms supported by Linux include pipes, named pipes, semaphores, message
+queues, shared memory, and futexes.</p>
+
+<p>Modern operating systems provide two fundamental virtualized abstractions to user-space: virtual memory and a virtualized processor.</p>
+
+<p>MEMORY:
+Unlike malloc(), which makes no such guarantees about the contents of allocated memory, calloc() zeros all bytes in the returned chunk of memory.</p>
+
+<p>/* like malloc(), but zeros memory and terminates on failure */
+void * xmalloc0 (size<em>t size) {
+void *p;
+p = calloc (1, size);
+if (!p) {
+perror ("xmalloc0");
+exit (EXIT</em>FAILURE);
+}
+return p;
+}</p>
+
+<p>APPROACH  | PROS                            |CONS
+----------+---------------------------------+----------------------------------------------
+malloc()  | Easy, simple, common.           |Returned memory not necessarily zeroed.
+calloc()  | Makes allocating arrays simple, |Convoluted interface if not allocating arrays.
+|   zeros returned memory.          |
+realloc() | Resizes existing allocations.   |Useful only for resizing existing allocations.</p>
+
+<p>void free (void *ptr);
+A call to free() frees the memory at ptr. The parameter ptr must have been previously
+returned by malloc(), calloc(), or realloc(). That is, you cannot use free() to free
+partial chunks of memory—say, half of a chunk of memory—by passing in a pointer
+halfway into an allocated block</p>

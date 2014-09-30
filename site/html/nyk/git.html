@@ -1,0 +1,123 @@
+<h1>GIT</h1>
+
+<h1>[Notes from "Git for ages 4 and up" video]</h1>
+
+<p>( ) &lt;--------- ADD - Writes files to the repo. (Into the staging area.)</p>
+
+<h2>|</h2>
+
+<p>+------------+
+v            |
+HEAD *MASTER &lt;-+- COMMIT - Creates commit object for added files, which
+ /         |           has an id, and then puts labels on it [HEAD,
+(A) &lt;-------+           MASTER] (or moves them from previous commit).
+|                      (Prints branch label that it's advancing and
+---                     objects hash)</p>
+
+<p>HEAD  LABEL &lt;---- BRANCH <LABEL> - Stucks a new label on HEAD (withouth
+ /                             parameter it prints local branches).
+(A)-*MASTER                      (With -r will print remote branches/</p>
+
+<h2>|                              all the references that you have.)</h2>
+
+<p>HEAD *LABEL &lt;---- CHECKOUT <LABEL> - Switches which branch it's going to
+ /                               advance at commit (from master to
+(A)-MASTER                        label). (If the labels were pointing
+|                                to different commits it would also
+---                               get the files)</p>
+
+<p>MERGE <LABEL> - Merge contents of <LABEL> branch into
+HEAD. Also second <LABEL> parameter
+possible -> will merge into it instead
+of current branch. There are two
+strategys in which git will merge two
+branches:</p>
+
+<h2>FAST FORWARD</h2>
+
+<p>If the <LABEL> is reachable from HEAD
+and its above it.
+LABEL
+LABEL         HEAD | *MASTER
+|               | /
+HEAD (B) *MASTER      (B)
+ | /      <em>_</em>    |
+(A)          /   (A)
+|                |
+---              ---</p>
+
+<h2>RECURSIVE STRATEGY</h2>
+
+<p>Merges contents and creates new commit
+that has two parents (it can have any
+number of parents). Moves currnet branch
+and HEAD labels to it (label LABEL stays
+behind).
+HEAD
+|
+LABEL HEAD          LABEL  (D)-MASTER
+   |                / |
+(B)(C)-*MASTER      (B)(C)
+| /         <em>_</em>    | /
+(A)             /   (A)
+|                   |
+---                 ---</p>
+
+<p>RESET -hard HEAD^ - Move current label to commit HEAD-1,
+and also do checkout (--hard)</p>
+
+<p>LOG --graph --decorate --all - Shows nice history with
+graph</p>
+
+<p>TODO graph!        DETACHED HEAD STATE:
+TAG v1.0 <hash> -> CHECKOUT v1.0 - If no branch label is
+on this commit you get message: "You are in detached
+head state", meaning that if you want to keep your
+commits, you need to create a new branch.</p>
+
+<p>===========================================================================
+TO MERGE NEW FEATURE INTO MASTER:</p>
+
+<p>HEAD <em>LABEL        HEAD LABEL
+ /                 /
+LABEL HEAD          HEAD *LABEL              (D)                (D)-</em>MASTER
+   |                /                  / |                / |
+(B)(C)-*MASTER      (B)(C)-MASTER      (B)(C)-MASTER      (B)(C)
+| /         <strong>_    | /        <em></strong>    | /        _</em>_    | /
+(A)             /   (A)            /   (A)            /   (A)
+|                   |                  |                  |
+---                 ---                ---                ---
+1. CHECKOUT       2. MERGE MASTER    3. CHECKOUT MASTER,
+LABEL             (recursive),       MERGE LABEL
+test               (fast forward)</p>
+
+<p>===========================================================================
+WORKING WITH REMOTE REPOSITORIES:</p>
+
+<p>CLONE <url or path of origin> <optional different name>
+- Makes a copy of remote repository. State of our
+repo after clone:</p>
+
+<p>+--------------------+----+- TRACKING BRANCHES - they mean: last time I
+v ORIGIN/LABEL &lt;-----+    |  talked with origin, thats where its label
+ORIGIN/HEAD | ORIGIN/MASTER &lt;-+  was.
+|/
+HEAD--(D)--*MASTER &lt;------- Also it did not pull over LABEL branch,
+/ |                    because it pulls over only the default
+(B)(C)                   branch, which is master (note that origin
+| /                     and master are just names, they have no
+(A)                      segnificance).</p>
+
+<h2>|</h2>
+
+<p>CLONE --bare <url or path of origin> <optional different
+name> - Make a copy of repo, containing only
+contents of .git directory (there is no
+checkout.</p>
+
+<p>REMOTE -v - List remotes (defaultly named origin)</p>
+
+<p>PULL - Same as FETCH + MERGE</p>
+
+<p>PUSH <origin> <local branch> - Pushes changes made to the
+local branch to origin repo.</p>

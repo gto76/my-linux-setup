@@ -379,7 +379,9 @@ alias installed='packages'
 
 # Create executable file
 createExecutable() {
-	touch "$1"
+	if [[ ! -f "$1" ]]; then
+		echo '#!/bin/bash' >> "$1"
+	fi
 	chmod u+x "$1"        
 }
 alias ce=createExecutable

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-for a in *.md; do 
-	markdown "$a" > `basename -s .md "$a"`.html
-done
-
-mv index.html ../index.html

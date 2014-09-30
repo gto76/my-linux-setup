@@ -22,20 +22,17 @@ while read line; do
 			title="$title""$titleNewWord "
 		fi
 	# If we are at the first line after the title
-	elif [[ "$atTitle" == "true" && -n "$title" ]]; then
+	elif [[ "$atTitle" == "true" ]]; then
 		atTitle="false"
 		# Remove last space from the title
 		title=`echo "$title" | sed 's/ $//'`
 		filename=`echo "$title" | tr [A-Z] [a-z] | tr ' ' '-'`.md
 		# Append title to the new file named after title
-		echo "$title" >> "$DIR_OUT$filename"
+		echo "$title" > "$DIR_OUT$filename"
 		# Append line of '='s to the same file
 		echo "$title" | sed 's/./=/g' >> "$DIR_OUT$filename"
 		title=""
-	else
-		atTitle="false"
 	fi
-
 	# If we are not processing title then just append line to the
 	# file named after the last title,
 	# if we havent encoutered the first title yet, do nothing

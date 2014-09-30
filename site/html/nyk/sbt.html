@@ -1,0 +1,48 @@
+<h1>SBT</h1>
+
+<h2>Installing Scala</h2>
+
+<p>export SCALA<em>VERSION=2.11.1
+wget http://downloads.typesafe.com/scala/$SCALA</em>VERSION/scala-$SCALA<em>VERSION.tgz
+tar xvzf scala-$SCALA</em>VERSION.tgz
+sudo sh -c 'echo "export SCALA<em>HOME="$PWD/scala-$SCALA</em>VERSION"" >> /etc/profile'
+sudo sh -c 'echo "export PATH="$PATH:$SCALA_HOME/bin"" >> /etc/profile'</p>
+
+<h2>Installing sbt</h2>
+
+<p>export SBT<em>VERSION=0.13.5
+wget http://dl.bintray.com/sbt/debian/sbt-$SBT</em>VERSION.deb
+sudo dpkg -i sbt-$SBT_VERSION.deb</p>
+
+<h2>To Run Project</h2>
+
+<ol>
+<li>In project root create file "build.sbt" containing:
+```
+name := "<project name>"</li>
+</ol>
+
+<p>version := "0.9.0"</p>
+
+<p>scalaVersion := "2.11.1"
+```
+2. Run: "sbt run"</p>
+
+<h2>To Build fat jar (executable with java -jar, and containing all dependencies)</h2>
+
+<ol>
+<li>Create file "project/assembly.sbt" containing:
+<code>
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.11.2")
+</code></li>
+<li>In project root create file "assembly.sbt" containing:
+```
+import AssemblyKeys._ // put this at the top of the file</li>
+</ol>
+
+<p>assemblySettings</p>
+
+<p>// your assembly settings here
+```
+3. Run: "sbt assembly"
+4. Run: "java -jar target/scala-x.x.x/<jar name>.jar"</p>

@@ -1,6 +1,8 @@
-cat nyk.md.template > nyk.md
+#!/bin/bash
 
-cd nyk
+cat ../templates/nyk.md.template > ../markdown/nyk.md
+
+cd ../markdown/nyk
 for file in *; do
 	title=`basename -s .md $file`
 	echo "[$title]($title.html)" >> ../nyk.md

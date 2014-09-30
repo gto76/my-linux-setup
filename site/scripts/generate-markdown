@@ -1,0 +1,9 @@
+#!/bin/bash
+
+./split-nyk
+./generate-nyk-top
+./split-wtf-man
+./generate-wtf-man-top
+./generate-index
+
+

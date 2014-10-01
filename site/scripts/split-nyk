@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Splits NYK textfile into multiple markdown files.
 
 DIR_OUT='../markdown/nyk/'
 

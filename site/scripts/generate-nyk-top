@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Generates top page for subpages that are created from NYK textfile.
 
 cat ../templates/nyk.md.template > ../markdown/nyk.md
 

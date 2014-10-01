@@ -4,21 +4,25 @@
 
 cd ../markdown
 
-for f in *.md; do 
-	markdown "$f" > ../html/`basename -s .md "$f"`.html
-done
+for f in `find . -name '*.md'`; do
+	# First create coresponding directory in html folder if it doesnt exist
+	dirName=../html`dirname $f | tr -d '.'`
+	if [[ ! -d "$dirName" ]]; then
+		mkdir "$dirName"
+	fi
 
-for d in * ; do
-	if [[ -d "$d" ]]; then
-		if [[ ! -d ../html/"$d" ]]; then
-			mkdir ../html/"$d"
-		fi
-		cd "$d"
-		for f in *.md; do 
-			markdown "$f" > ../../html/"$d"/`basename -s .md "$f"`.html
-		done
-		cd ..
+	markdownFilePath=`echo "$f" | sed 's/\.md$//' | tr -d '.'`
+	echo "$markdownFilePath" 
+	
+	# If converter for the file doesent exist, convet it with markdown
+	converter=./converters/"markdownFilePath"
+	htmlFilePath=../html"$markdownFilePath".html
+	if [[ ! -e "$converter"  ]]; then
+		./"converter" "$f" > "$htmlFilePath"
+	else
+		markdown "$f" > "$htmlFilePath"
 	fi
 done
 
 mv ../html/index.html ../../index.html
+

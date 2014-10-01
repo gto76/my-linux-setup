@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Generates top page for pages that are generated from WTF-MAN textfile.
 
 cat ../templates/wtf-man.md.template > ../markdown/wtf-man.md
 

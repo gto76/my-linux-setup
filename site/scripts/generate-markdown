@@ -1,8 +1,13 @@
 #!/bin/bash
+#
+# Creates multiple markdown files form NYK and WTF-MAN text files.
+# Also creates markdown files from template files.
 
 ./split-nyk
 ./generate-nyk-top
 ./split-wtf-man
+./split-awesome-terminal-commands
+./generate-awesome-terminal-commands-top
 ./generate-wtf-man-top
 ./generate-index
 

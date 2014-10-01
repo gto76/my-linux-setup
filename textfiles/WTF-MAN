@@ -201,13 +201,17 @@ find <dir> -name <filename> - search by name
 	-inum <inum> - find files with the inode number
 	-type <f|...> - find files of type
 	-delete - delete found files
-	-exec <command> {} ; - find files and execute command for every found file. {} is replaced with filename
+	-exec <command> {} \; - find files and execute command for every found file. {} is replaced with filename
 	-exec <command> {} + - find files and execute command with all filenames in place of {}
 	-atime +/-n - find files that were last acessed less or more than n days.
 sudo sh -c 'echo "bla bla bla" >> <filename>' - append lines to systam configuration file
 gcc - gnu c compiler
 	-w - supress warnings (only print errors) 
 install - copy files and set attributes
+sh - run command interpreter (shell)
+	-c - read commands from arguments instead of stdin
+bash - run bash shell
+	-c - read commands from arguments instead of stdin
 
 ====
 BASH:
@@ -764,9 +768,9 @@ BOOT (kernels):
 /boot/grub/menu.lst - Grub configuration file
 
 
-#############
-##  G I T  ##
-#############
+###########
+##  GIT  ##
+###########
 
 GIT MANTRA:
 git init
@@ -840,11 +844,10 @@ gitg - a bit nicer version
 tig - text based repo explorer
 
 
-#############
-##  V I M  ##
-#############
+###########
+##  VIM  ##
+###########
 
-VIM
 +<linenum> - open file at line number
 alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
 ctrl-[ - escape
@@ -993,9 +996,9 @@ AUTOCOMPLETE:
 ctrl+n - show autocomplete suggestions
 
 
-#############
-## M I S C ##
-#############
+##########
+## MISC ##
+##########
 
 VLC:
 sudo add-apt-repository ppa:videolan/stable-daily

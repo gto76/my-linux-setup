@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Splits WTF-MAN textfile into multiple markdown files.
 
 DIR_OUT='../markdown/wtf-man/'
 
@@ -15,7 +17,7 @@ while read line; do
 	if [[ -n `echo "$line" | grep '^##'` ]]; then
 		atTitle="true"
 		# Remove '#'s and spaces from line
-		titleNewWord=`echo "$line" | tr -d '# '`
+		titleNewWord=`echo "$line" | tr -d '#'`
 		# If line contains anything else then '#'s and spaces,
 		# append it to the title
 		if [[ -n "$titleNewWord" ]]; then
@@ -24,13 +26,13 @@ while read line; do
 	# If we are at the first line after the title
 	elif [[ "$atTitle" == "true" ]]; then
 		atTitle="false"
-		# Remove last space from the title
-		title=`echo "$title" | sed 's/ $//'`
+		# Remove trailing and leading spaces from title
+		title=`echo "$title" | sed 's/ *$//' | sed 's/^ *//'`
 		filename=`echo "$title" | tr [A-Z] [a-z] | tr ' ' '-'`.md
 		# Append title to the new file named after title
-		echo "$title" > "$DIR_OUT$filename"
+		#echo "$title" > "$DIR_OUT$filename"
 		# Append line of '='s to the same file
-		echo "$title" | sed 's/./=/g' >> "$DIR_OUT$filename"
+		#echo "$title" | sed 's/./=/g' >> "$DIR_OUT$filename"
 		title=""
 	fi
 	# If we are not processing title then just append line to the

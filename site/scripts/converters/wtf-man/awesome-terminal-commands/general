@@ -24,6 +24,9 @@ while read line; do
 		continue
 	fi
 
+	# First convert all < to &lt and > to &gt
+	line=`echo "$line" | sed 's/</\&lt/g' | sed 's/>/\&gt/g'`
+
 	# Line doesen't begin with tab
 	if [[ -z `echo "$line" | grep -P '^\t'` ]]; then
 		name=`echo "$line" | grep -oP '^.*?-' | sed 's/ *-$//'`
@@ -64,7 +67,7 @@ while read line; do
 			echo "<tr><td></td><td><strong>$optn</strong>$expl</td></tr>"
 		# 7. and it contains only explanation.
 		else
-			echo "<tr><td></td><td>$expl</td></tr>"
+			echo "<tr><td></td><td>$line</td></tr>"
 		fi
 	fi	
 done < "$1"

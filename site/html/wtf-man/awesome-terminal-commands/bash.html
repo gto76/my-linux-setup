@@ -9,6 +9,7 @@ Google: "$@" is right almost everytime, and $</em> is wrong almost everytime.
 "$0" - name of the script
 $'n' - string literal with escape seqences
 If you want IFS to be a new line (useful with for loop) you need to: IFS=$'n' - the dollar forces substitution!!!!!
+Also if you want 'while read line; do...' to preserve leading spaces and tabs, you need to set IFS=""
 $? - exit code of last command (0 - ok)</p>
 
 <p>test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
@@ -18,6 +19,7 @@ $? - exit code of last command (0 - ok)</p>
     -h - its a symbolic link, -r - has read permission,
     -w - has write permission, -x - has execute permission
 [[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &amp;&amp;, ||, &lt;, > (lexicographic less, more), and also regular expression matching.
+=~ - regex comparison operator: [[ "$HOST" =~ ^user.* ]]
 let <expression> - executes expression</p>
 
 <p>$(command) - same as <code>command</code>

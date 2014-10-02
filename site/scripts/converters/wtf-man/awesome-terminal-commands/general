@@ -29,13 +29,13 @@ while read line; do
 
 	# Line doesen't begin with tab
 	if [[ -z `echo "$line" | grep -P '^\t'` ]]; then
-		name=`echo "$line" | grep -oP '^.*?-' | sed 's/ *-$//'`
-		expl=`echo "$line" | grep -o -e '-.*$'`
+		name=`echo "$line" | grep -oP '^.*? -' | sed 's/ *-$//'`
+		expl=`echo "$line" | grep -o -e ' -.*$'`
 		# and name doesn't contain a tab
 		if [[ -z `echo "$name" | grep -P '\t'` ]]; then
-			# 1. and Explanation starts with '- '.
-			if [[ -n `echo "$expl" | grep '^- '` ]]; then
-				expl=`echo "$expl" | sed 's/^- //'`
+			# 1. and Explanation starts with ' - '.
+			if [[ -n `echo "$expl" | grep '^ - '` ]]; then
+				expl=`echo "$expl" | sed 's/^ - //'`
 				echo "<tr><td valign=top><strong>$name</strong>\
 						</td><td>$expl</td></tr>"
 			# 2. and Explanation starts with option.

@@ -131,7 +131,6 @@ tar	xvzf <file>.tar.gz - decompress and detar
 	-cf <archive>.tar <file>... - compress
 ln - makes links to the files
 	-s <file> <link> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!
-ccsm - additional settings (compiz config settings manager - BAD)
 md5sum - checks md5 sum hash
 sh - run command interpreter (shell). Can run script even if not executable.
 	-c '<commands>' - start new noninteractive shell and read commands from arguments instead of stdin
@@ -154,8 +153,7 @@ tmux - terminal multiplexer, better screen.
 	] - paste,	
 	" - split horizontally,	
 	% - split vertically 
-man section_number tool_name
-	1 programs 2 System calls 3 Library calls 4 Special files 5 File formats 7 Miscellaneous 8 System administration commands
+man [<section-number>] <command> - Section numbers:	1 programs, 2 system calls, 3 library calls, 4 special files, 5 file formats, 7 miscellaneous, 8 system administration commands
 	-a shows all sections
 tee - Sends output of a program to a file and to a standard output
 cp -R - copy recursively
@@ -580,6 +578,7 @@ xset - user preference utility for X
    -r - turn key autorepeat off
    r - turn key autorepeat on
 umask -  The umask is a value set by the shell. It controls the default permissions of any file created
+ccsm - additional settings (compiz config settings manager - BAD)
 
 KEYS/CHARACTERS/FONTS:
 IN X:

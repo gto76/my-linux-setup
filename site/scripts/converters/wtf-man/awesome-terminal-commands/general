@@ -1,4 +1,13 @@
 #!/bin/bash
+#
+# Converts a text file consisting of commands and their explanations
+# into a html page.
+# A line in texfile may poses one of these forms:
+# 1. <COMMAND> - <EXPLANATION>
+# 2. <COMMAND> -<OPTION>... - <EXPLANATION>
+# 3. (tab)	-<OPTION> - <EXPLANATION>
+# 4. (tab)	<PARAMETERS> - <EXPLANATION>
+# 5. (tab)	<EXPLANATION>
 
 i=0
 
@@ -17,12 +26,12 @@ while read line; do
 	if [[ -z `echo "$line" | grep -P '^\t'` ]]; then
 		name=`echo "$line" | grep -oP '^.*?-' | sed 's/ *-$//'`
 		expl=`echo "$line" | grep -o -e '-.*$'`
-		# and Explanation starts with '- '.
+		# 1. and Explanation starts with '- '.
 		if [[ -n `echo "$expl" | grep '^- '` ]]; then
 			expl=`echo "$expl" | sed 's/^- //'`
 			echo "<tr><td valign=top><strong>$name</strong>\
 					</td><td>$expl</td></tr>"
-		# and Explanation starts with option.
+		# 2. and Explanation starts with option.
 		else
 			optn=`echo "$expl" | grep -oP '^.* - +' | sed 's/ *- *$//'`
 			expl=`echo "$expl" | grep -o ' - .*$'`
@@ -33,12 +42,11 @@ while read line; do
 	# Line begins with tab
 	else
 		optn=`echo "$line" | grep -oP '^.* - +' | sed 's/ *- *$//'`
-		# and it contains a ' - '.
+		# 3,4. and it contains a ' - '.
 		if [[ -n "$optn" ]]; then
-			expl=`echo "$line" | grep -o -e '-.*$'`
-			echo "<tr><td></td><td><strong>$optn</strong>\
-					$expl</td></tr>"
-		# and it contains only explanation.
+			expl=`echo "$line" | grep -o -e ' - .*$'`
+			echo "<tr><td></td><td><strong>$optn</strong>$expl</td></tr>"
+		# 5. and it contains only explanation.
 		else
 			echo "<tr><td></td><td>$expl</td></tr>"
 		fi

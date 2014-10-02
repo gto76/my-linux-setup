@@ -1,0 +1,55 @@
+<h1>INTERNET</h1>
+
+<p>lynx - web browser 
+    -cmd<em>log=FILENAME - write keystrokes to script
+    -cmd</em>script=FILENAME - read keystrokes from script
+    -syslog-urls - log requested URLs with syslog.
+    -Press a to save the address of a document or link to a (Netscape-alike) bookmark file, by default ~/lynx_bookmarks.html. You can open this in a different browser, it's just HTML.
+    -l Add the current link to your bookmark file 
+    ctrl+n - scroll down two lines
+    ctrl+p - scroll up two lines
+    -dumb - prints txt to stdout (-crawl - turn numbers off)
+    -source - prints html to stdout
+    o - options (you can select vim mode)
+    ctrl p - previous line
+    crrl n - next line
+elinks - web browser (looks better)
+mutt - mail client
+sftp - secure ftp
+sshd - (openssh-server) ssh server deamon
+    /etc/init.d/ssh restart - sshd restart
+    ssh-keygen -t rsa -C "email address" - generate rsa key pair
+    ~/.ssh - location for your keys
+    CYGWIN sshd - name of the service on windows
+scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp, (ssh)
+ssh [user]@[address] "mpg321 -" &lt; [file].mp3 - stream audio over ssh
+wget - download files from WWW
+    -O - specify output file
+    -c - continue downloading unfinished file. Can also use wildcards, but use single quotes around url. 
+    -r -l1 --no-parent -A.gif - recursively to the depth of one ignoring references to the parent directory and all gifs.
+    curl - similar
+    "-qO -" - writes to standard output + quiet 
+    -i- urls specified by standard input
+transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
+youtube-dl - download from youtube
+noip2 - dynamic dns update client
+rdesktop - Remote Desktop Protocol client
+tin, nn - usenet client
+nrss - rss feed reader</p>
+
+<p>HACKING:</p>
+
+<p>nmap -sP 192.168.2.1-3 - network scanning
+    nmap 192.168.0.3 -p100-139 - port scanning
+    sudo nmap -O 192.168.0.3 - scanning os
+tcpdump - sniffer (Show network traffic), sudo
+ettercap - Multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
+driftnet - Picks out and displays images from network traffic
+kismet - Wireless 802.11b monitoring tool
+aircrack-ng - wireless WEP/WPA cracking utilities
+Cain &amp; Abel - password recovery tool for Microsoft Operating Systems
+dnsniff - warious hacking tools: 
+    arpspoof - for man in the middle attack
+    dsniff - password sniffer for several protocols, ...
+ip link set eth0 promisc on - set network inerface to promiscuous mode
+iip link set eth0 multicast off - set multicast off</p>

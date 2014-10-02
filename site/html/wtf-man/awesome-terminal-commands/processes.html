@@ -1,0 +1,61 @@
+<h1>PROCESSES</h1>
+
+<p>ctrl-z - put job in background
+jobs - Prints currently running job
+bg <job number> - Backgrounds a process
+fg <job number> - Bring a process to the foreground
+%n - job number n
+%s - job whose command line starts with s
+%% - current job
+%- - previous job</p>
+
+<p>ps --forest - view hierarchical view of processes
+    v - virtual memory 
+    --sort - sort by field 
+    pstree - similar
+pgrep <string> - returns PIDS of processes containing string (-l to     print process name)
+pkill = kill $(pgrep mozilla) - kills everything mozilla
+    kill -kill pid - force quit, data will be lost
+    killall - uses name instead of pid
+    skill - sends signals to command/user/tty
+        skill -STOP user<em>name - stop all of the users processes
+        skill -CONT user</em>name
+nice - Sets the priority for a process (from -20 MAX to 20 MIN priority)
+    nice -20 make - Would execute make and it would run at maximum          priority.
+    renice - Changes the priority of an existing command
+        renice +20 2222
+    snice - snice works very similarly to skill
+        snice -10 -u root - increase the priority of all root’s processes.
+pmap - report memory map of a process (maped file)</p>
+
+<p>SCHEDULED COMMANDS:</p>
+
+<p>at - executes a command once on a particular day, at a particular time.
+    at 21:30 / at now + time /at -f shell_script now + 1 hour
+    echo "ls -l" | at midnight
+atq - list jobs currently in queue
+atrm - Will remove a job from the ’at’ queue.
+crontab -e - schedule commands for repeating execution 
+    cron - daemon that executes scheduled commands
+    anacron - catches up with tasks next time the computer is on</p>
+
+<p>SERVICES:</p>
+
+<p>service - allows you to start, stop or restart a service (/etc/init.d script)
+    service -f sshd - restart the daemon sshd
+    service httpd status - get status
+    service --status-all
+You may also execute the shell script directly from /etc/init.d . Simply go to that directory
+then type ./script name.
+    restart, start, stop, status
+/etc/init.d/httpd stop = service httpd stop
+runlevel - output previous and current runlevel
+SYSTEM RUNLEVELS: RedHat / Debian
+0 Shuts down the system
+1 Administrative single-user mode
+2 Same as 3 but without networking / multiuser with X server
+3 Text mode state (ctrl+alt+F1) / User defined
+4 User defined
+5 X-window mode (ctrl+alt+F7) / User defined
+6 Reboots
+S Single user mode</p>

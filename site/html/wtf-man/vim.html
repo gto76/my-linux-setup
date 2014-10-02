@@ -1,0 +1,161 @@
+<p>+<linenum> - open file at line number
+alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
+ctrl-[ - escape
+gF - open file under cursor
+. - execute last command again
+; - repeat the last character-wise search
+help:   ctrl ] - follow link
+        ctrl o - go back
+        :q     - exit help <br />
+c - case insensitive search
+? - search backward
+V - linewise visual mode
+~ - switch case</p>
+
+<blockquote>
+  <ul>
+<li>tab right 
+P - paste before cursor
+x - delete character
+:%s/old/new/gc - sed, c means with conformations</li>
+</ul>
+</blockquote>
+
+<p>MOVEMENT
+e - end of word
+E - end of WORD
+W - start of WORD
+ge - end of previous word
+),( - sentence
+{,} - paragraph
+]],[[ - section</p>
+
+<p>LINES
+0 - start of line
+^,_ - first non-blank of line
++,- - first non-blank of next/previous line
+Enter - first nonblank of next line</p>
+
+<p>SCREEN LINES
+g0, g$ - start/end of screen line
+gm - middle of screen line
+gk, gj - up/down one screen line</p>
+
+<p>SCREENS
+H,M,L - go to top/middle/bottom of screen
+ctrl F,B - page up/down
+ctrl D,U - half page up/down
+ctrl E,Y - one more line at bottom/top 
+z Enter,z.,z- - reposition line with cursor at top/middle/bottom</p>
+
+<p>SEARCH
+<em>,# - search forward/backward for exact word under cursor
+g</em>,g# - same, but even when word is embedded
+% - find match of current brace, quote,...
+fx,Fx - move cursor forward/backward to x on current line
+tx,Tx - same, but to one char before x
+;/, - repeat/reverse last</p>
+
+<p>LINE NUMBERING
+numG,:num - goto line number</p>
+
+<p>MARKS
+'" - move to position of last edit of file
+<code>. - move to last change in file
+</code>0 - position where you last exited vim</p>
+
+<p>INSERT MODE COMMANDS
+ctrl h - backspace
+ctrl u - delete line
+ctrl w - delete previous word</p>
+
+<p>MACROS
+qx - record characters into x
+q - stop recording
+@ - execute x</p>
+
+<p>REGISTERS
+"ayy - copy line into register a
+"ap - paste register a
+:reg - access all registers</p>
+
+<p>MISC</p>
+
+<blockquote>
+  <blockquote>
+  <p>,&lt;&lt; - shift line one tab
+K - look up word under cursor in man pages</p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p>SET COMMAND
+:set x,nox (also x!),x=value,all,x? - set x/unset x/assign x/print all values/print x
+command (short) | default   | explanation
+----------------+-----------+-------------------------------------
+autoident (ai)  | noai      | 
+backup (bk)     | nobackup  | back file up before overwrite
+ignorecase (ic) | noic      | ignore case in search
+number (nu)     | nonu      | display line numbers
+relativenumber  | nornu     | display relative numbers
+(rnu)           |           |
+shiftwidth= (sw)| 8         | number of spaces added when identing
+tabstop= (ts)   | 8         | tab width
+wrap            | wrap      | wrap lines
+wrapscan (ws)   | ws        | search wraps around file
+mouse=a         |           | mouse mode (use shift when selecting to copy to clipboard)</p>
+
+<p>EDIT COMMANDS
+[n] operation [m] motion - if both n and m are specified then n x m</p>
+
+<h2>c - CHANGE, d - DELETE, y - YANK </h2>
+
+<p>C,D,Y - till the end of line
+cc,dd,yy - current line
+cf<x>,df<x>,yf<x> - forward up to x</p>
+
+<h2>c),d),y) - sentence</h2>
+
+<p>g~w - switch case of a word</p>
+
+<h2>gu, gU - to lower/upper case</h2>
+
+<p>[p - paste but match current indentation
+r - replace character
+S - substitute entire line
+x,X - delete character/delete back
+. - repeat last change
+~ - change case of character
+ctrl a,x - increment/decrement number under cursor</p>
+
+<p>AUTOMATIC LINEBRAKE:
+:set tw=80 - set text width
+gq - formats selected text
+:set tw=0 - stop formating</p>
+
+<p>COLORSCHEME:
+:colorscheme darkblue, torte - nice, darker
+    slate, default - less contrast
+:highlight Normal ctermbg=grey - set light background</p>
+
+<p>SPELLCHECK:
+:set spell spelllang=en<em>us
+:setlocal spell spelllang=en</em>us
+:set nospell
+z= - show suggestions for misspelled word
+]s - go to next misspelled word
+[s - go to previous misspelled word</p>
+
+<p>TABS:
+:tabe <filename> - open new tab
+gt, gT - go to next/previous tab
+ctrl + pgup/pgdn - switch tab
+vim -p - open one tab page per file
+ZZ - save and close tab (same as :wq)</p>
+
+<p>SPLITS:
+:vsp - split verticaly
+ctrl-w, direction - move to split</p>
+
+<p>AUTOCOMPLETE:
+ctrl+n - show autocomplete suggestions</p>

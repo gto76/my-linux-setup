@@ -1,0 +1,56 @@
+<h1>NETWORK</h1>
+
+<p>whois - info about domain
+host <ip_address/hostname> - DNS lookup utility
+    nslookup - same interactively
+    dig - same, lot of options
+hostname - prints/sets computer name, to set it permanently edit /etc/hostname and /etc/hosts
+netstat - Displays contents of /proc/net files,  status of ports...
+    -r - show routing table
+    -i - show interfaces
+arp - manipulate the system ARP cache (IP - mac)
+route - The route command is the tool used to display or modify the routing table
+    add default gw 192.168.1.10 - change the default gateway
+should DNS not be configured correctly on your machine, you need to edit
+“/etc/resolv.conf” to make things work
+ifconfig eth0 <ip> <down / up>
+    ifup eth0 - Will bring eth0 up if it is currently down.
+    ifcfg - Use ifcfg to configure a particular interface
+    ifconfig eth0 192.168.1.4 netmask 255.255.255.0 up - set ip and mask
+ip link show - list network interfaces
+        set dev eth0 up - bring interface eth0 up or down
+    addr show - list addresses of interfaces
+    route add default via 1.2.3.254 - set default gateway
+traceroute / traceroute6 / traceroute6.iputils
+    tracepath / tracepath6 - similar
+    -> iputils package
+    mtr - combines the functionality of the traceroute and ping
+findsmb - list info about machines that respond to SMB name queries - windows based machines sharing their hard disk’s
+/etc/services - list of services with their port numbers
+NetworkManager - network management daemon
+    nm-tool - prints info 
+    nm-online - is network connected 
+    nmcli - command-line tool for controlling NetworkManager
+    NetworkManager.conf - configuration file
+nc - (netcat) arbitrary TCP and UDP connections and listens
+ncat - Concatenate and redirect sockets
+ethtool eth0 - show status of eth0
+    -S - statistics
+    -s - change settings (speed, duplex,...)
+ss -tupl - list internet services on a system
+ss -tuo - list active connections to/from system</p>
+
+<p>WIRELESS:</p>
+
+<p>iwconfig - Sets the wireless configuration options basic to most wireless devices.
+iwlist <interface> <option> - Displays current status information of a device. (more detailed then iwconfig)
+iwspy - Sets the list of IP addresses in a wireless network and checks the quality of
+     their connections.
+iwpriv - Accesses configuration options specific to a particular device.
+rfkill list - show wireless adapters (wifi and bluetooth)
+        block/unblock <dev num> - block/unblock wireless device
+iw dev wlan0 link - show link status of wlan0
+             set biterates legacy-2.4 1 - manually set interface speed
+sudo iw dev wlan0 scan - list wireless networks in range
+sudo iwlist wlan0 scan - similar
+wavemon - monitor wireless connection link quality</p>

@@ -12,6 +12,8 @@ title=""
 filename=""
 atTitle="false"
 
+SAVE_IFS="$IFS"
+IFS=""
 while read line; do
 	# If line begins with a '##'
 	if [[ -n `echo "$line" | grep '^##'` ]]; then
@@ -42,3 +44,4 @@ while read line; do
 		echo "$line" >> "$DIR_OUT$filename"
 	fi
 done < ../../textfiles/WTF-MAN
+IFS="$SAVE_IFS"

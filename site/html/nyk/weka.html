@@ -1,0 +1,34 @@
+<h1>WEKA</h1>
+
+<hr />
+
+<h2>FORMATING INPUT:</h2>
+
+<ol>
+<li><p>DECLARE ATTRIBUTES:
+Numeric:
+    Attribute Attribute1 = new Attribute("firstNumeric");
+Nominal:
+    FastVector fvNominalVal = new FastVector(3);
+    fvNominalVal.addElement("blue");
+    fvNominalVal.addElement("gray");
+    fvNominalVal.addElement("black");
+    Attribute Attribute2 = new Attribute("aNominal", fvNominalVal);</p></li>
+<li><p>PUT THEM IN FAST VECTOR:
+FastVector fvWekaAttributes = new FastVector(2);
+     fvWekaAttributes.addElement(Attribute1); <br />
+     fvWekaAttributes.addElement(Attribute2);</p></li>
+<li><p>CREATE INSTANCES CONTAINER:
+Instances instances = new Instances("entries", fvWekaAttributes, 10); </p></li>
+<li><p>FILL IT WITH INSTANCES
+Instance inst = new Instance(2);
+inst.setValue((Attribute)fvWekaAttributes.elementAt(0), 0.2);
+inst.setValue((Attribute)fvWekaAttributes.elementAt(1), 0.8);</p>
+
+<p>inst.setDataset(instances);
+instances.add(inst);</p></li>
+</ol>
+
+<p>SHEMA:
+1. Attribute (attribute declarations) -> FastVector (attribute container) -> Istances constructor
+2. Double, Attribute -> Instance (instances) -> Istances</p>

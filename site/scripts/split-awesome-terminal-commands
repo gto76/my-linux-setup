@@ -14,6 +14,8 @@ title=""
 filename=""
 atTitle="false"
 
+SAVE_IFS="$IFS"
+IFS=""
 while read line; do
 	# if === and !atTitle -> atTitle, continue
 	if [[ -n `echo "$line" | grep '^=='` && "$atTitle" == "false" ]]; then
@@ -44,3 +46,4 @@ while read line; do
 		echo "$line" >> "$DIR_OUT$filename"
 	fi
 done < awesome-terminal-commands.md
+IFS="$SAVE_IFS"

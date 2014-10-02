@@ -12,13 +12,12 @@ for f in `find . -name '*.md'`; do
 	fi
 
 	markdownFilePath=`echo "$f" | sed 's/\.md$//' | tr -d '.'`
-	echo "$markdownFilePath" 
 	
 	# If converter for the file doesent exist, convet it with markdown
-	converter=./converters/"markdownFilePath"
+	converter=../scripts/converters"$markdownFilePath"
 	htmlFilePath=../html"$markdownFilePath".html
-	if [[ ! -e "$converter"  ]]; then
-		./"converter" "$f" > "$htmlFilePath"
+	if [[ -f "$converter"  ]]; then
+		"$converter" "$f" > "$htmlFilePath"
 	else
 		markdown "$f" > "$htmlFilePath"
 	fi

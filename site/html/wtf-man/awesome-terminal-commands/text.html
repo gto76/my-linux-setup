@@ -1,0 +1,83 @@
+<h1>TEXT</h1>
+
+<p>PRINT:
+tail -f - do not stop printing
+    -n +<line number> - start at line number
+cat -n - number all lines
+    -nl - similar</p>
+
+<blockquote>
+  <blockquote>
+  <p>file - simplest text editor (great for pasting)
+less -  &amp;phrase - display only lines with
+        -N show line numbers
+        -~ do not show ~ after EOF
+        +G tells less to start at the end of the file
+        -F or --quit-if-one-screen
+        v - opens editor defined in $VISUAL or $EDITOR
+        :n - examine the next file
+        &lt;,> - go to home, end</p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p>EDIT:
+tr - translate or delete characters (-d for delete)
+cut <filename> - remove sections from each line of files
+        -d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
+sort - sorts
+    -u - uniq
+    -t - set delimiter for fields (default is space)
+    -k - select by which field to sort 
+uniq - removes adjacent duplicates
+    -d - intersection
+    -u - difference
+column - columnate text
+    t - create a table
+shuf - shuffle input lines
+tac - concatenate and print files in reverse (reverse cat)
+join - join lines of two files on a common field
+colrm <from <to>> - removes columns
+seq <number> - output numbers from 1 to number
+ispell/aspell - interactive spell checker
+basename <filename> - strip directory from filenames
+        -s &lt;.suffix> - also strip suffix
+dirname <filename> - strip last component from file name
+fmt - produce roughly uniform line lengths
+fold - wrap each input line to fit in specified width
+paste - glue two documents side by side
+sed 's///g' - substitute every occurrence in line, not just the first one
+    's///I' - ignore case
+    -r - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis
+expand - convert tabs to spaces</p>
+
+<p>DIFF:
+diff -u <files> - unified format
+diff --brief -r - commpare two directory trees
+comm - compare two sorted files line by line
+sdiff - two files side by side
+patch - apply a diff file to original
+    patch &lt; patch.diff - apply patch
+    diff -u <old-filename> <new-filename> > patch.diff - create patch</p>
+
+<p>SEARCH:
+grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need t, + or .*? [? meaning non greedy]!!!!), -i ignore case, -I - do not process binary files, -l - just print files with matches, -L - just print files wihouth matches -e <pattern> - specify pattern (needed if it starts with -)
+look - display lines beginning with a given string
+strings - print all text parts of binary file</p>
+
+<p>CONVERT:
+enscript - Converts text files to postscript, rtf, HTML
+gs - ghostscript: postscript and PDF language interpreter and previewer
+pdftohtml - pdf to html
+pdftotext - pdf to text
+libreoffice - novi openoffice
+figlet - display large characters made up of ordinary screen characters (ascii art)
+toilet - similar (ascii art)</p>
+
+<p>EDITORS:
+nano -  /etc/nanorc - nano config
+        /usr/share/nano/LANGUAGE.nanorc - syntax highlights
+        alt - / or ? go to last line
+fte - cool text editor with CUA (IBM)-shortcuts
+diakonos - simple terminal text editor with ctrl-c for copy
+pyroom - distraction free writing (gui)</p>

@@ -1,0 +1,70 @@
+<p>BASH:
+~/.bashrc - executed at every shell startup, user specific
+/etc/bash.bashrc - executed at every shell startup, all users
+~/.profile, .bash<em>profile, .bash</em>login - first file found executed at login, user specific </p>
+
+<h2>/etc/profile - executed at login, all users (put PATHS here)</h2>
+
+<p>/etc/rc.local - last startup script executed, runs command as su</p>
+
+<p>HOME:
+~/.Xmodmap - keyboard map</p>
+
+<p>ETC: ( "Edit To Configure" / "Editable Text Configuration" )
+/etc/mailcap - default programs for extensions 
+/etc/passwd - users 
+/etc/groups - groups 
+/etc/default/console-setup - set (tty) console character set, font size...
+/etc/fstab - Filesystam table. To mount drive at startup create folder in /media and add line like this (see man fstab for details):
+    /dev/sda1   /media/data   ntfs   user,fmask=0111,dmask=0000   0   2
+/etc/alternatives - links to default application versions (here you can change the default java jdk)</p>
+
+<p>SERVICES:
+/etc/init/, $HOME/.init/ - init - Upstart init daemon job configuration
+/etc/init.d/ - folder with service scripts, that get executed at start and end
+/etc/init.d/halt - runs at the end 
+/etc/rc<NUM>.d - Startup scripts for different runlevels - links to scripts in /etc/init.d - S85httpd -> S means startup, K is for stop. (To disable service just change S for K)
+/etc/rc.local - last initialization file executed - put your commands here</p>
+
+<p>/etc/init/ssh.conf - sshd config
+/etc/ssh/sshd_config - sshd config
+/etc/fstab - Automatic mounts are handled by configuring the file
+/etc/sudoers - lists of users and the commands they can run with sudo
+/etc/crontab - system-wide crontab
+/etc/cron.hourly|daily|weekly|monthly/ - links to scripts that will execute periodically. Scripts within a cron directory are run alphabetically.
+/etc/rsyslog.conf|rsyslog.d/50-default.conf - log conf (need to restart rsyslogd after edit)
+/etc/services - list of services with their port numbers
+/etc/resolv.conf - dns information
+/etc/syslog.conf - Configuration information for syslogd </p>
+
+<p>PROC / The files under the /proc show various information
+about the system:
+/proc/cpuinfo - information about the CPU
+/proc/modules -  information about what kernel-modules are loaded on your system
+/proc/net/ - network related
+    /proc/net/route - routing table
+    netstat - Displays contents of /proc/net files
+/proc/iomem - neat memory map
+/proc/partitions - partitions info
+/proc/acpi/battery/BAT1/info - battery info
+/proc/acpi/ac_adapter/ACAD/state - adapter info
+/proc/acpi/wakeup - list of devices that can wake up your machine via acpi
+    sudo sh -c "echo USB1 > /proc/acpi/wakeup" - enable device USB1 to wakeup computer from sleep/suspend
+/proc/net/wireless - wireless connection info</p>
+
+<p>USR - "Unix System Resources":
+/usr/lib/jvm - java jres and jdks
+/usr/share/man - man pages</p>
+
+<p>SBIN - the "system-administrator's bin file", which hosts programs that would be in /bin if they didn't have "root-only"
+access permissions.</p>
+
+<p>VAR - "variable":
+/var/log/ - System logs in here
+/var/log/auth.log - log of logins
+/var/log/syslog - most of the rest of the logs 
+/var/spool - contains data which is awaiting some kind of later processing
+/var/log/auth.log - logins </p>
+
+<p>BOOT (kernels):
+/boot/grub/menu.lst - Grub configuration file</p>

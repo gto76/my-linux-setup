@@ -1,0 +1,79 @@
+#!/bin/bash
+
+i=0
+
+echo '<h2>General</h2>'
+echo '<blockquote><table>'
+
+SAVE_IFS="$IFS"
+IFS=""
+while read line; do
+	let i++
+	if [[ i -lt 4 ]]; then
+		continue
+	fi
+
+	# Line doesen't begin with tab
+	if [[ -z `echo "$line" | grep -P '^\t'` ]]; then
+		name=`echo "$line" | grep -oP '^.*?-' | sed 's/ *-$//'`
+		expl=`echo "$line" | grep -o -e '-.*$'`
+		# and Explanation starts with '- '.
+		if [[ -n `echo "$expl" | grep '^- '` ]]; then
+			expl=`echo "$expl" | sed 's/^- //'`
+			echo "<tr><td valign=top><strong>$name</strong>\
+					</td><td>$expl</td></tr>"
+		# and Explanation starts with option.
+		else
+			optn=`echo "$expl" | grep -oP '^.* - +' | sed 's/ *- *$//'`
+			expl=`echo "$expl" | grep -o ' - .*$'`
+			echo "<tr><td valign=top><strong>$name</strong>\
+					</td><td><strong>$optn</strong>\
+					$expl</td></tr>"
+		fi
+	# Line begins with tab
+	else
+		optn=`echo "$line" | grep -oP '^.* - +' | sed 's/ *- *$//'`
+		# and it contains a ' - '.
+		if [[ -n "$optn" ]]; then
+			expl=`echo "$line" | grep -o -e '-.*$'`
+			echo "<tr><td></td><td><strong>$optn</strong>\
+					$expl</td></tr>"
+		# and it contains only explanation.
+		else
+			echo "<tr><td></td><td>$expl</td></tr>"
+		fi
+	fi	
+
+#	commandName=`echo "$line" | grep -oP '^.*?\t' | sed 's/ *-$//'`
+#	explanation=`echo "$line" | grep -oP -e '\t.*$' | sed 's/^- //'`
+#
+##	if [[ -z "$commandName" ]]; then
+#		commandName=`echo "$line" | grep -oP '^.*?-' | sed 's/ *-$//'`
+#	fi
+#
+#	if [[ -z "$explanation" ]]; then
+#		explanation=`echo "$line" | grep -o -e '-.*$' | sed 's/^- //'`
+#	fi
+#
+#	option=`echo "$explanation" | grep -oP '^.* - +' | sed 's/ *- *$//'`
+#	optionExplanation=`echo "$explanation" | grep -o ' - .*$'`
+#
+#	#echo "commandName = $commandName explanation = $explanation" >&2
+#
+#	if [[ -n "$commandName" ]]; then
+#		if [[ -z "$option" ]]; then
+#			echo "<tr><td valign=top><strong>$commandName</strong>\
+#					</td><td>$explanation</td></tr>"
+#		else
+#			echo "<tr><td valign=top><strong>$commandName</strong>\
+#					</td><td><strong>$option</strong>\
+#					$optionExplanation</td></tr>"
+#		fi
+#	else
+#		echo "<tr><td></td><td><strong>$option</strong> \
+#				$optionExplanation</td></tr>"
+#	fi
+done < "$1"
+echo '</table></blockquote>'
+
+IFS="$SAVE_IFS"

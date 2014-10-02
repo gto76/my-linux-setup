@@ -12,6 +12,8 @@ title=""
 filename=""
 atTitle="false"
 
+SAVE_IFS="$IFS"
+IFS=""
 while read line; do
 	# If line begins with two dots
 	if [[ -n `echo "$line" | grep '^\.\.'` ]]; then
@@ -43,3 +45,4 @@ while read line; do
 		echo "$line" >> "$DIR_OUT$filename"
 	fi
 done < ../../textfiles/NYK
+IFS="$SAVE_IFS"

@@ -1,0 +1,32 @@
+<h1>PACKAGES</h1>
+
+<p>dpkg -l - lists installed packages
+apt - skin for dpkg
+apt-get update - update local list of existing packages
+        -u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update &amp;&amp; apt-get -u dist-upgrade)
+        install - also update single package
+        autoremove - remove unneeded packages
+        remove - remove package, leave configurations
+        purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
+        source <package> - download code
+        build-dep <package> - install the build dependencies
+apt-cache search <keyword> - search packages, like apropos, but global
+        show - get info about package
+        policy <package> - show installed and remote version
+aptitude - browse packages (skin for apt-get)
+        search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
+winetricks - install wine applications
+update-alternatives - maintain symbolic links determining default commands</p>
+
+<p>apropos -a - all keywords
+whatis - short description of app
+whereis - locates where command resides 
+which - similar only executable
+wtf - looks up filename suffixes database</p>
+
+<p>INSTALL MANTRA:</p>
+
+<p>./configure --help
+./configure
+make
+sudo make install</p>

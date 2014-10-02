@@ -1,0 +1,95 @@
+<h1>SYSTEM</h1>
+
+<p>meta, system info - in cinnamon
+uname -a - print system info, kernel version
+cat /etc/issue - show name and version of distribution
+init - Upstart init daemon job configuration
+time <command> - time a execution of a command
+cat /var/log/auth.log | grep "failed password" -i - print all failed logins
+users - prints logged in users
+who - logged in users, more data
+w - logged in users, also what are they running
+free -tm - Displays memory statistics 
+    -s continuously display
+vmstat - Performance of system components / virtual memory statistics
+sar - System activity information
+iostat - Disk usage
+perf - profiler
+sudo /etc/init.d/ssh restart - restart sshh deamon
+zeitgeist - activity logger
+vipw - edit password file
+vigr - edit groups file
+passwd - change password
+chattr - Change file system attributes
+dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful when debugging problems
+mount device mountpoint - mount /dev/hdc2 /mymedia
+mount - list all mounted devices
+Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk
+parted -l - list partitions (sudo)
+mono - .NET support
+telinit - change system runlevel
+last - when various users have logged in or out. This includes information on when the computer was rebooted.
+lastlog - Displays a list of users and what day/time they logged into the system
+rsyslogd -  manages all the logs on your system
+    closelog, openlog, syslog, vsyslog -> send      messages to the system logger
+logger - makes entries in the system log
+auditd - system call auditing
+    ausearch - querys the audit logs
+    autrace - traces a specific process
+    auditctl - controls the behavior of the auditd server
+busybox <command> - combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)
+getconf -a - print all system configuration variables
+strace <program name and its parameters> - trace system calls and signals. All printed system calls can be looked up by man!
+    -s - maximum string size we want printed (default is too short, 2000 ok)
+    -f - also follow children
+    -p <pid> - attach to process
+    -o <log file>
+    -c - count/aggregate
+    -T time the execution of each call
+ltrace - list library calls made by command
+lsof - list open files with file descriptors
+    -p <pid> - open files by process
+    <path> - open files in path
+lsmod - show which kernel modules (drivers) are loaded
+modinfo <driver-name> - get more information about kernel module
+lsattr - list attributes
+lshw - lists all hardware
+lspci [-tv] - show pci info
+lsusb [-tv] - show usb info
+lscpu - print CPU information
+tload - "graphic" representation of system load
+dmidecode -q - display bios/dmi information like ram size/type,
+    max ram, computer model name, cpu information..
+smartctl -A /dev/sda - show disk usage info
+hdparm -tT /dev/sda - do a read speed test
+badblocks -s /dev/sda - check for bad blocks
+top - show processes by resource consumption
+    &lt;, > - change resource
+htop - better top
+sensors - (lm-sensors) hardware monitoring tool, temperature, fan speed
+pwmconfig - (fancontrol) set fan speed
+nohup - run a command immune to hangups
+tty - print the file name of the terminal connected to standard input
+stty - change and print terminal line settings
+openvt -  run a program on a next available tty
+script - makes a typescript of everything printed on your terminal. Ctrl-D to stop recording.
+disks - nice gui partition tool
+fstrim -v / - discard unused blocks, useful for ssd-s
+setterm - set terminal atributes
+    -cursor off/on
+xset - user preference utility for X
+   -r - turn key autorepeat off
+   r - turn key autorepeat on</p>
+
+<p>KEYS/CHARACTERS/FONTS:
+IN X:
+xmodmap - remap keys
+setxkbmap -layout us - set us keyboard layout
+xev - get keycodes of pressed keys
+X NOT NECESSARY:
+loadkeys <country code> - load key mapping 
+showkey - get keycodes of pressed keys
+setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz - choose terminal font
+/etc/default/console-setup - file with default font settings
+jfbterm - enable unicode characters in terminal
+echo -en "e]PC7373C9" - change blue color in tty (first numeral after P means slot, and others shade)</p>

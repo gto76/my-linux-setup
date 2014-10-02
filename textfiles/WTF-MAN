@@ -126,7 +126,7 @@ locate <word>  - same as find but using index
 locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
 xargs - output from one command to arguments of another
 	-t - echoes the command before executing it, and -p echoes it and asks for confirmation
-tar xvzf xxx.tar.gz - decompress and detar
+tar	xvzf xxx.tar.gz - decompress and detar
 	xvjf xxx.tar.bz2 - decompress and detar
 	-cf archiveName.tar files.. - compress
 tar cvf - ./SOURCEDIR_OR_FILES | ssh user@host 'cat > newfile.tar' - send tar archive over network
@@ -235,6 +235,7 @@ test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit stat
 	-h - its a symbolic link, -r - has read permission,
 	-w - has write permission, -x - has execute permission
 [[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
+=~ - regex comparison operator: [[ "$HOST" =~ ^user.* ]]
 let <expression> - executes expression
 
 $(command) - same as `command`
@@ -253,6 +254,7 @@ read -p "Press [Enter] key to start backup..." - prompt for user input
 variable=${1:-"default value"} - setting variable with default value if $1 is empty
 getopts - parse parameters/arguments
 getopt - GNU version is even better then getopts, not a builtin
+while read line; do <COMANDS>; done < <FILENAME> - read from file line by line
 
 HISTORY:
 
@@ -349,7 +351,7 @@ patch - apply a diff file to original
 	diff -u <old-filename> <new-filename> > patch.diff - create patch
 
 SEARCH:
-grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t or +!!!!), -i ignore case, -I - do not process binary files, -l - just print files with matches, -L - just print files wihouth matches -e <pattern> - specify pattern (needed if it starts with -)
+grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t, + or .*? [? meaning non greedy]!!!!), -i ignore case, -I - do not process binary files, -l - just print files with matches, -L - just print files wihouth matches -e <pattern> - specify pattern (needed if it starts with -)
 look - display lines beginning with a given string
 strings - print all text parts of binary file
 
@@ -972,6 +974,7 @@ gq - formats selected text
 COLORSCHEME:
 :colorscheme darkblue, torte - nice, darker
 	slate, default - less contrast
+:highlight Normal ctermbg=grey - set light background
 
 SPELLCHECK:
 :set spell spelllang=en_us

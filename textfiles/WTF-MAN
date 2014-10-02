@@ -226,6 +226,7 @@ Google: "$@" is right almost everytime, and $* is wrong almost everytime.
 "$0" - name of the script
 $'\n' - string literal with escape seqences
 If you want IFS to be a new line (useful with for loop) you need to: IFS=$'\n' - the dollar forces substitution!!!!!
+Also if you want 'while read line; do...' to preserve leading spaces and tabs, you need to set IFS=""
 $? - exit code of last command (0 - ok)
 
 test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.

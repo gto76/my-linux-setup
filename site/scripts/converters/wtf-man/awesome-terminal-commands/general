@@ -5,9 +5,11 @@
 # A line in texfile may poses one of these forms:
 # 1. <COMMAND> - <EXPLANATION>
 # 2. <COMMAND> -<OPTION>... - <EXPLANATION>
-# 3. (tab)	-<OPTION> - <EXPLANATION>
-# 4. (tab)	<PARAMETERS> - <EXPLANATION>
-# 5. (tab)	<EXPLANATION>
+# 3. <COMMAND> (tab)	-<OPTION> - <EXPLANATION>
+# 4. <COMMAND> (tab)	<PARAMETERS> - <EXPLANATION>
+# 5. (tab)	-<OPTION> - <EXPLANATION>
+# 6. (tab)	<PARAMETERS> - <EXPLANATION>
+# 7. (tab)	<EXPLANATION>
 
 i=0
 
@@ -26,15 +28,29 @@ while read line; do
 	if [[ -z `echo "$line" | grep -P '^\t'` ]]; then
 		name=`echo "$line" | grep -oP '^.*?-' | sed 's/ *-$//'`
 		expl=`echo "$line" | grep -o -e '-.*$'`
-		# 1. and Explanation starts with '- '.
-		if [[ -n `echo "$expl" | grep '^- '` ]]; then
-			expl=`echo "$expl" | sed 's/^- //'`
-			echo "<tr><td valign=top><strong>$name</strong>\
-					</td><td>$expl</td></tr>"
-		# 2. and Explanation starts with option.
+		# and name doesn't contain a tab
+		if [[ -z `echo "$name" | grep -P '\t'` ]]; then
+			# 1. and Explanation starts with '- '.
+			if [[ -n `echo "$expl" | grep '^- '` ]]; then
+				expl=`echo "$expl" | sed 's/^- //'`
+				echo "<tr><td valign=top><strong>$name</strong>\
+						</td><td>$expl</td></tr>"
+			# 2. and Explanation starts with option.
+			else
+				optn=`echo "$expl" | grep -oP '^.* - +' | sed 's/ *- *$//'`
+				expl=`echo "$expl" | grep -o ' - .*$'`
+				echo "<tr><td valign=top><strong>$name</strong>\
+						</td><td><strong>$optn</strong>\
+						$expl</td></tr>"
+			fi
+		# 3, 4. and name contains a tab.
 		else
-			optn=`echo "$expl" | grep -oP '^.* - +' | sed 's/ *- *$//'`
-			expl=`echo "$expl" | grep -o ' - .*$'`
+			name=`echo "$line" | grep -oP '^.*\t'`
+			optn=`echo "$line" | \
+					grep -oP '\t.*? - ' | \
+					sed 's/\t//' | \
+					sed 's/ - \+//'`
+			expl=`echo "$line" | grep -oP ' - .*$' | sed 's/^ *//'`
 			echo "<tr><td valign=top><strong>$name</strong>\
 					</td><td><strong>$optn</strong>\
 					$expl</td></tr>"
@@ -42,45 +58,15 @@ while read line; do
 	# Line begins with tab
 	else
 		optn=`echo "$line" | grep -oP '^.* - +' | sed 's/ *- *$//'`
-		# 3,4. and it contains a ' - '.
+		# 5,6. and it contains a ' - '.
 		if [[ -n "$optn" ]]; then
 			expl=`echo "$line" | grep -o -e ' - .*$'`
 			echo "<tr><td></td><td><strong>$optn</strong>$expl</td></tr>"
-		# 5. and it contains only explanation.
+		# 7. and it contains only explanation.
 		else
 			echo "<tr><td></td><td>$expl</td></tr>"
 		fi
 	fi	
-
-#	commandName=`echo "$line" | grep -oP '^.*?\t' | sed 's/ *-$//'`
-#	explanation=`echo "$line" | grep -oP -e '\t.*$' | sed 's/^- //'`
-#
-##	if [[ -z "$commandName" ]]; then
-#		commandName=`echo "$line" | grep -oP '^.*?-' | sed 's/ *-$//'`
-#	fi
-#
-#	if [[ -z "$explanation" ]]; then
-#		explanation=`echo "$line" | grep -o -e '-.*$' | sed 's/^- //'`
-#	fi
-#
-#	option=`echo "$explanation" | grep -oP '^.* - +' | sed 's/ *- *$//'`
-#	optionExplanation=`echo "$explanation" | grep -o ' - .*$'`
-#
-#	#echo "commandName = $commandName explanation = $explanation" >&2
-#
-#	if [[ -n "$commandName" ]]; then
-#		if [[ -z "$option" ]]; then
-#			echo "<tr><td valign=top><strong>$commandName</strong>\
-#					</td><td>$explanation</td></tr>"
-#		else
-#			echo "<tr><td valign=top><strong>$commandName</strong>\
-#					</td><td><strong>$option</strong>\
-#					$optionExplanation</td></tr>"
-#		fi
-#	else
-#		echo "<tr><td></td><td><strong>$option</strong> \
-#				$optionExplanation</td></tr>"
-#	fi
 done < "$1"
 echo '</table></blockquote>'
 

@@ -1,96 +1,96 @@
 <h2>General</h2>
 <blockquote><table>
-<tr><td valign=top><strong>expr</strong>					</td><td>evaluate expressions (expr 1 + 1 -> 2)</td></tr>
-<tr><td valign=top><strong>echo</strong>					</td><td><strong>-n</strong>					 - no newline at the end</td></tr>
+<tr><td valign=top><strong>expr</strong>						</td><td>evaluate expressions (expr 1 + 1 -> 2)</td></tr>
+<tr><td valign=top><strong>echo</strong>						</td><td><strong>-n</strong>						 - no newline at the end</td></tr>
 <tr><td></td><td><strong>	 -e</strong> - enable interpretation of backslashed letters</td></tr>
-<tr><td valign=top><strong>read</strong>					</td><td>reads from file line by line</td></tr>
-<tr><td valign=top><strong>umask</strong>					</td><td> The umask is a value set by the shell. It controls the default permissions of any file created</td></tr>
-<tr><td valign=top><strong>ls 	</strong>					</td><td><strong>-d</strong>					 - list directory names instead of contents</td></tr>
+<tr><td valign=top><strong>read</strong>						</td><td>reads from file line by line</td></tr>
+<tr><td valign=top><strong>umask</strong>						</td><td> The umask is a value set by the shell. It controls the default permissions of any file created</td></tr>
+<tr><td valign=top><strong>ls 	</strong>					</td><td><strong>-d</strong>					- list directory names instead of contents</td></tr>
 <tr><td></td><td><strong>	-S</strong> - sort by size </td></tr>
 <tr><td></td><td><strong>	-t</strong> - sort by time</td></tr>
 <tr><td></td><td><strong>	-1</strong> - one file per line</td></tr>
 <tr><td></td><td><strong>	./*</strong> - ls one level deep</td></tr>
 <tr><td></td><td><strong>	-i</strong> - get inode number of file (file id). Use sudo find / -inum <number> to find all links that point to same file.</td></tr>
-<tr><td valign=top><strong>rm</strong>					</td><td><strong>-f</strong>					 - force remove (do not prompt)</td></tr>
-<tr><td valign=top><strong>mc</strong>					</td><td>midnight commander</td></tr>
+<tr><td valign=top><strong>rm</strong>						</td><td><strong>-f</strong>						 - force remove (do not prompt)</td></tr>
+<tr><td valign=top><strong>mc</strong>						</td><td>midnight commander</td></tr>
 <tr><td></td><td><strong>	alt o</strong> - open parent dir in another panel</td></tr>
 <tr><td></td><td><strong>	ctrl o</strong> - switch to bash</td></tr>
-<tr><td valign=top><strong>df</strong>					</td><td>disc fullness / disc free</td></tr>
-<tr><td valign=top><strong>find . | grep bla</strong>					</td><td>serarches also subdirectories recursively</td></tr>
-<tr><td valign=top><strong>locate <word></strong>					</td><td>same as find but using index</td></tr>
+<tr><td valign=top><strong>df</strong>						</td><td>disc fullness / disc free</td></tr>
+<tr><td valign=top><strong>find . | grep bla</strong>						</td><td>serarches also subdirectories recursively</td></tr>
+<tr><td valign=top><strong>locate <word></strong>						</td><td>same as find but using index</td></tr>
 <tr><td></td><td><strong>	sudo updatedb OR sudo locate -u</strong> - update database</td></tr>
-<tr><td valign=top><strong>locate</strong>					</td><td><strong>-0 | xargs -0</strong>					 - uses NUL character as separator, necessary for filenames with spaces	</td></tr>
-<tr><td valign=top><strong>xargs</strong>					</td><td>output from one command to arguments of another</td></tr>
+<tr><td valign=top><strong>locate</strong>						</td><td><strong>-0 | xargs -0</strong>						 - uses NUL character as separator, necessary for filenames with spaces	</td></tr>
+<tr><td valign=top><strong>xargs</strong>						</td><td>output from one command to arguments of another</td></tr>
 <tr><td></td><td><strong>	-t</strong> - echoes the command before executing it, and -p echoes it and asks for confirmation</td></tr>
-<tr><td valign=top><strong>tar	xvzf xxx.tar.gz</strong>					</td><td>decompress and detar</td></tr>
+<tr><td valign=top><strong>tar		</strong>					</td><td><strong>	xvzf xxx.tar.gz</strong>					- decompress and detar</td></tr>
 <tr><td></td><td><strong>	xvjf xxx.tar.bz2</strong> - decompress and detar</td></tr>
 <tr><td></td><td><strong>	-cf archiveName.tar files..</strong> - compress</td></tr>
-<tr><td valign=top><strong>tar cvf</strong>					</td><td>./SOURCEDIR_OR_FILES | ssh user@host 'cat > newfile.tar' - send tar archive over network</td></tr>
-<tr><td valign=top><strong>ln</strong>					</td><td>makes links between files</td></tr>
+<tr><td valign=top><strong>tar cvf</strong>						</td><td>./SOURCEDIR_OR_FILES | ssh user@host 'cat > newfile.tar' - send tar archive over network</td></tr>
+<tr><td valign=top><strong>ln</strong>						</td><td>makes links between files</td></tr>
 <tr><td></td><td><strong>	-s <file> <link></strong> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!</td></tr>
-<tr><td valign=top><strong>ccsm</strong>					</td><td>additional settings (compiz config settings manager - BAD)</td></tr>
-<tr><td valign=top><strong>md5sum</strong>					</td><td>checks md5 sum hash</td></tr>
-<tr><td valign=top><strong>sh</strong>					</td><td>run script even if not executable</td></tr>
+<tr><td valign=top><strong>ccsm</strong>						</td><td>additional settings (compiz config settings manager - BAD)</td></tr>
+<tr><td valign=top><strong>md5sum</strong>						</td><td>checks md5 sum hash</td></tr>
+<tr><td valign=top><strong>sh</strong>						</td><td>run script even if not executable</td></tr>
 <tr><td></td><td><strong>	-c '<commands>'</strong> - start new noninteractive shell and run commands</td></tr>
-<tr><td valign=top><strong>du</strong>					</td><td><strong>-s <folderName></strong>					 - folder size</td></tr>
-<tr><td valign=top><strong>screen</strong>					</td><td>switch between multiple virtual terminals (useful in ssh)</td></tr>
+<tr><td valign=top><strong>du</strong>						</td><td><strong>-s <folderName></strong>						 - folder size</td></tr>
+<tr><td valign=top><strong>screen</strong>						</td><td>switch between multiple virtual terminals (useful in ssh)</td></tr>
 <tr><td></td><td><strong>	ctrl+a: c - new terminal, n - next, p - previous, a</strong> - new terminal, n - next, p - previous, a - go to beginning of line</td></tr>
-<tr><td valign=top><strong>tmux</strong>					</td><td>terminal multiplexer, better screen</td></tr>
+<tr><td valign=top><strong>tmux</strong>						</td><td>terminal multiplexer, better screen</td></tr>
 <tr><td></td><td><strong>	ctrl+b: pgup - enter in copy mode and pageup, [ - copy mode, ]</strong> - enter in copy mode and pageup, [ - copy mode, ] - paste,	</td></tr>
 <tr><td></td><td><strong>	" - split horizontally,	%</strong> - split horizontally,	% - split vertically </td></tr>
-<tr><td valign=top><strong>tmux ls</strong>					</td><td>shows running sessions</td></tr>
-<tr><td valign=top><strong>tmux attach (</strong>					</td><td><strong>-t <session no>)</strong>					 - attach to running session</td></tr>
+<tr><td valign=top><strong>tmux ls</strong>						</td><td>shows running sessions</td></tr>
+<tr><td valign=top><strong>tmux attach (</strong>						</td><td><strong>-t <session no>)</strong>						 - attach to running session</td></tr>
 <tr><td></td><td><strong>	ctrl-b d</strong> - exit session	</td></tr>
-<tr><td valign=top><strong></strong>					</td><td><strong></strong>					</td></tr>
-<tr><td valign=top><strong></strong>					</td><td><strong></strong>					</td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
 <tr><td></td><td></td></tr>
 <tr><td></td><td></td></tr>
-<tr><td valign=top><strong>tee</strong>					</td><td>Sends output of a program to a file and to a standard output</td></tr>
-<tr><td valign=top><strong>cp</strong>					</td><td><strong>-R</strong>					 - copy recursively</td></tr>
-<tr><td valign=top><strong>shred</strong>					</td><td>securely remove files</td></tr>
-<tr><td valign=top><strong>date</strong>					</td><td>tells you date and time, also can set</td></tr>
-<tr><td valign=top><strong>cal</strong>					</td><td>calendar</td></tr>
-<tr><td valign=top><strong>sudo fdisk</strong>					</td><td><strong>-l</strong>					 - show partitions</td></tr>
-<tr><td valign=top><strong>shutdown now</strong>					</td><td>take you to single user mode</td></tr>
+<tr><td valign=top><strong>tee</strong>						</td><td>Sends output of a program to a file and to a standard output</td></tr>
+<tr><td valign=top><strong>cp</strong>						</td><td><strong>-R</strong>						 - copy recursively</td></tr>
+<tr><td valign=top><strong>shred</strong>						</td><td>securely remove files</td></tr>
+<tr><td valign=top><strong>date</strong>						</td><td>tells you date and time, also can set</td></tr>
+<tr><td valign=top><strong>cal</strong>						</td><td>calendar</td></tr>
+<tr><td valign=top><strong>sudo fdisk</strong>						</td><td><strong>-l</strong>						 - show partitions</td></tr>
+<tr><td valign=top><strong>shutdown now</strong>						</td><td>take you to single user mode</td></tr>
 <tr><td></td><td><strong>	-h now</strong> -  begins the shutdown procedure (OR halt OR poweroff)</td></tr>
 <tr><td></td><td><strong>	-h 11:50</strong> - when</td></tr>
 <tr><td></td><td><strong>	-r now</strong> - reboot (OR reboot)</td></tr>
-<tr><td valign=top><strong>cmp</strong>					</td><td>compares two files, similar do diff but also for binaries</td></tr>
-<tr><td valign=top><strong>acpi</strong>					</td><td>check battery</td></tr>
-<tr><td valign=top><strong>xclip</strong>					</td><td>copies to clipboard</td></tr>
-<tr><td valign=top><strong>mkfifo <pipename></strong>					</td><td>creates named pipe</td></tr>
-<tr><td valign=top><strong></strong>					</td><td><strong></strong>					</td></tr>
-<tr><td valign=top><strong>rsync</strong>					</td><td>a fast, versatile, remote (and local) file-copying tool</td></tr>
-<tr><td valign=top><strong>wall</strong>					</td><td>interconsole instant messenger (e "bla" | wall)</td></tr>
+<tr><td valign=top><strong>cmp</strong>						</td><td>compares two files, similar do diff but also for binaries</td></tr>
+<tr><td valign=top><strong>acpi</strong>						</td><td>check battery</td></tr>
+<tr><td valign=top><strong>xclip</strong>						</td><td>copies to clipboard</td></tr>
+<tr><td valign=top><strong>mkfifo <pipename></strong>						</td><td>creates named pipe</td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong>rsync</strong>						</td><td>a fast, versatile, remote (and local) file-copying tool</td></tr>
+<tr><td valign=top><strong>wall</strong>						</td><td>interconsole instant messenger (e "bla" | wall)</td></tr>
 <tr><td></td><td><strong>	mesg n</strong> - turn off</td></tr>
-<tr><td valign=top><strong>wmctrl</strong>					</td><td>X Window Manager</td></tr>
-<tr><td valign=top><strong>run</strong>					</td><td><strong>-parts</strong>					 - run all scripts or programs in a directory</td></tr>
-<tr><td valign=top><strong>mkisofs</strong>					</td><td>create a DVD/CD image</td></tr>
-<tr><td valign=top><strong>cdrecord</strong>					</td><td>write to a CD/DVD</td></tr>
-<tr><td valign=top><strong>watch</strong>					</td><td>execute a program periodically, showing output fullscreen</td></tr>
-<tr><td valign=top><strong>watch bash</strong>					</td><td><strong>-i -c '<alias>'</strong>					 - execute alias periodically</td></tr>
-<tr><td valign=top><strong>zcat</strong>					</td><td>catz gziped file</td></tr>
-<tr><td valign=top><strong>line</strong>					</td><td>read one line</td></tr>
-<tr><td valign=top><strong>mktemp</strong>					</td><td>create a temporary file or directory</td></tr>
+<tr><td valign=top><strong>wmctrl</strong>						</td><td>X Window Manager</td></tr>
+<tr><td valign=top><strong>run</strong>						</td><td><strong>-parts</strong>						 - run all scripts or programs in a directory</td></tr>
+<tr><td valign=top><strong>mkisofs</strong>						</td><td>create a DVD/CD image</td></tr>
+<tr><td valign=top><strong>cdrecord</strong>						</td><td>write to a CD/DVD</td></tr>
+<tr><td valign=top><strong>watch</strong>						</td><td>execute a program periodically, showing output fullscreen</td></tr>
+<tr><td valign=top><strong>watch bash</strong>						</td><td><strong>-i -c '<alias>'</strong>						 - execute alias periodically</td></tr>
+<tr><td valign=top><strong>zcat</strong>						</td><td>catz gziped file</td></tr>
+<tr><td valign=top><strong>line</strong>						</td><td>read one line</td></tr>
+<tr><td valign=top><strong>mktemp</strong>						</td><td>create a temporary file or directory</td></tr>
 <tr><td></td><td>create a temporary file or directory</td></tr>
-<tr><td valign=top><strong>rename</strong>					</td><td>renames multiple files using sed syntax</td></tr>
-<tr><td valign=top><strong>sleep</strong>					</td><td>delay for a specified amount of time</td></tr>
-<tr><td valign=top><strong>whiptail</strong>					</td><td>display dialog boxes from shell scripts</td></tr>
-<tr><td valign=top><strong>reset</strong>					</td><td>initializes terminal, useful after printing binary file</td></tr>
-<tr><td valign=top><strong></strong>					</td><td><strong></strong>					</td></tr>
-<tr><td valign=top><strong>bc</strong>					</td><td>calculator: echo 1+1 | bc -> 2</td></tr>
+<tr><td valign=top><strong>rename</strong>						</td><td>renames multiple files using sed syntax</td></tr>
+<tr><td valign=top><strong>sleep</strong>						</td><td>delay for a specified amount of time</td></tr>
+<tr><td valign=top><strong>whiptail</strong>						</td><td>display dialog boxes from shell scripts</td></tr>
+<tr><td valign=top><strong>reset</strong>						</td><td>initializes terminal, useful after printing binary file</td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong>bc</strong>						</td><td>calculator: echo 1+1 | bc -> 2</td></tr>
 <tr><td></td><td>calculator: echo 1+1 | bc -> 2</td></tr>
-<tr><td valign=top><strong>zip</strong>					</td><td><strong>-g <archive> <file></strong>					 - grow/add to existing archive</td></tr>
-<tr><td valign=top><strong>unzip *.zip</strong>					</td><td>backslash is necessary so that bash doesn't expand the * </td></tr>
+<tr><td valign=top><strong>zip</strong>						</td><td><strong>-g <archive> <file></strong>						 - grow/add to existing archive</td></tr>
+<tr><td valign=top><strong>unzip *.zip</strong>						</td><td>backslash is necessary so that bash doesn't expand the * </td></tr>
 <tr><td></td><td><strong>	-d <dirname></strong> - extract into directory (create if doesent exist)</td></tr>
-<tr><td valign=top><strong>unrar e</strong>					</td><td>extract files from rar archives</td></tr>
-<tr><td valign=top><strong>lpstat</strong>					</td><td>show printing jobs</td></tr>
-<tr><td valign=top><strong>cancel <id></strong>					</td><td>cancel printing job</td></tr>
-<tr><td valign=top><strong>gpg <filename></strong>					</td><td>decrypt file with password</td></tr>
+<tr><td valign=top><strong>unrar e</strong>						</td><td>extract files from rar archives</td></tr>
+<tr><td valign=top><strong>lpstat</strong>						</td><td>show printing jobs</td></tr>
+<tr><td valign=top><strong>cancel <id></strong>						</td><td>cancel printing job</td></tr>
+<tr><td valign=top><strong>gpg <filename></strong>						</td><td>decrypt file with password</td></tr>
 <tr><td></td><td>decrypt file with password</td></tr>
-<tr><td valign=top><strong>file <filename></strong>					</td><td>determine file type</td></tr>
-<tr><td valign=top><strong>tree</strong>					</td><td>ls in a tree-like (hierarchical) format</td></tr>
-<tr><td valign=top><strong>find <dir></strong>					</td><td><strong>-name <filename></strong>					 - search by name</td></tr>
+<tr><td valign=top><strong>file <filename></strong>						</td><td>determine file type</td></tr>
+<tr><td valign=top><strong>tree</strong>						</td><td>ls in a tree-like (hierarchical) format</td></tr>
+<tr><td valign=top><strong>find <dir></strong>						</td><td><strong>-name <filename></strong>						 - search by name</td></tr>
 <tr><td></td><td><strong>	-not</strong> - insert before other options to negate</td></tr>
 <tr><td></td><td><strong>	-samefile <filename></strong> - find all hard links of a file</td></tr>
 <tr><td></td><td><strong>	-xdev</strong> - don't descend directories on other filesystems</td></tr>
@@ -100,13 +100,13 @@
 <tr><td></td><td><strong>	-exec <command> {} ;</strong> - find files and execute command for every found file. {} is replaced with filename</td></tr>
 <tr><td></td><td><strong>	-exec <command> {} +</strong> - find files and execute command with all filenames in place of {}</td></tr>
 <tr><td></td><td><strong>	-atime +/-n</strong> - find files that were last acessed less or more than n days.</td></tr>
-<tr><td valign=top><strong>sudo sh</strong>					</td><td><strong>-c 'echo "bla bla bla" >> <filename>'</strong>					 - append lines to systam configuration file</td></tr>
-<tr><td valign=top><strong>gcc</strong>					</td><td>gnu c compiler</td></tr>
+<tr><td valign=top><strong>sudo sh</strong>						</td><td><strong>-c 'echo "bla bla bla" >> <filename>'</strong>						 - append lines to systam configuration file</td></tr>
+<tr><td valign=top><strong>gcc</strong>						</td><td>gnu c compiler</td></tr>
 <tr><td></td><td><strong>	-w</strong> - supress warnings (only print errors) </td></tr>
-<tr><td valign=top><strong>install</strong>					</td><td>copy files and set attributes</td></tr>
-<tr><td valign=top><strong>sh</strong>					</td><td>run command interpreter (shell)</td></tr>
+<tr><td valign=top><strong>install</strong>						</td><td>copy files and set attributes</td></tr>
+<tr><td valign=top><strong>sh</strong>						</td><td>run command interpreter (shell)</td></tr>
 <tr><td></td><td><strong>	-c</strong> - read commands from arguments instead of stdin</td></tr>
-<tr><td valign=top><strong>bash</strong>					</td><td>run bash shell</td></tr>
+<tr><td valign=top><strong>bash</strong>						</td><td>run bash shell</td></tr>
 <tr><td></td><td><strong>	-c</strong> - read commands from arguments instead of stdin</td></tr>
-<tr><td valign=top><strong></strong>					</td><td><strong></strong>					</td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
 </table></blockquote>

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo '<h2>General Unix Commands</h2>'
+echo '<h2>Unix Text Tools</h2>'
 
 ../scripts/text-to-table "$1"
 

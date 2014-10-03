@@ -1,0 +1,100 @@
+#!/bin/bash
+#
+# Usage: ./text-to-table <file>
+#
+# Converts a text file consisting of commands and their explanations
+# into a html page.
+# A line in texfile may poses one of these forms:
+# 1. <COMMAND> - <EXPLANATION>
+# 2. <COMMAND> -<OPTION>... - <EXPLANATION>
+# 3. <COMMAND> (tab)	-<OPTION> - <EXPLANATION>
+# 4. <COMMAND> (tab)	<PARAMETERS> - <EXPLANATION>
+# 5. (tab)	-<OPTION> - <EXPLANATION>
+# 6. (tab)	<PARAMETERS> - <EXPLANATION>
+# 7. (tab)	<EXPLANATION>
+# 8. <HEADING>
+# 9. <COMMAND>
+
+i=0
+
+echo '<blockquote><table>'
+
+SAVE_IFS="$IFS"
+IFS=""
+while read line; do
+	let i++
+	if [[ i -lt 2 ]]; then
+		continue
+	fi
+
+	# First convert all < to &lt and > to &gt
+	line=`echo "$line" | sed 's/</\&lt/g' | sed 's/>/\&gt/g'`
+
+	# 8. Line contains a heading
+	if [[ -n `echo "$line" | grep '^[A-Z]'` ]]; then
+		line=`echo "$line" | \
+				grep -o '^.'``echo "$line" | \
+				sed 's/^.//' | \
+				tr [A-Z] [a-z] | \
+				tr -d ':'`
+		echo '</table>'
+		echo "<h3 align=\"center\">$line</h3>"
+		echo '<table>'
+		continue
+	fi
+
+	# Line doesen't begin with tab
+	if [[ -z `echo "$line" | grep -P '^\t'` ]]; then
+		name=`echo "$line" | grep -oP '^.*? -' | sed 's/ *-$//'`
+		expl=`echo "$line" | grep -o -e ' -.*$'`
+
+		# 9. and there is no explanation.
+		if [[ -z "$name" ]]; then
+			echo "<tr><td valign=top><strong>$line</strong>\
+					</td><td></td></tr>"
+			continue
+		fi
+
+		# and name doesn't contain a tab
+		if [[ -z `echo "$name" | grep -P '\t'` ]]; then
+			# 1. and Explanation starts with ' - '.
+			if [[ -n `echo "$expl" | grep '^ - '` ]]; then
+				expl=`echo "$expl" | sed 's/^ - //'`
+				echo "<tr><td valign=top><strong>$name</strong>\
+						</td><td>$expl</td></tr>"
+			# 2. and Explanation starts with option.
+			else
+				optn=`echo "$expl" | grep -oP '^.* - +' | sed 's/ *- *$//'`
+				expl=`echo "$expl" | grep -o ' - .*$'`
+				echo "<tr><td valign=top><strong>$name</strong>\
+						</td><td><strong>$optn</strong>\
+						$expl</td></tr>"
+			fi
+		# 3, 4. and name contains a tab.
+		else
+			name=`echo "$line" | grep -oP '^.*\t'`
+			optn=`echo "$line" | \
+					grep -oP '\t.*? - ' | \
+					sed 's/\t//' | \
+					sed 's/ - \+//'`
+			expl=`echo "$line" | grep -oP ' - .*$' | sed 's/^ *//'`
+			echo "<tr><td valign=top><strong>$name</strong>\
+					</td><td><strong>$optn</strong>\
+					$expl</td></tr>"
+		fi
+	# Line begins with tab
+	else
+		optn=`echo "$line" | grep -oP '^.* - +' | sed 's/ *- *$//'`
+		# 5,6. and it contains a ' - '.
+		if [[ -n "$optn" ]]; then
+			expl=`echo "$line" | grep -o -e ' - .*$'`
+			echo "<tr><td></td><td><strong>$optn</strong>$expl</td></tr>"
+		# 7. and it contains only explanation.
+		else
+			echo "<tr><td></td><td>$line</td></tr>"
+		fi
+	fi	
+done < "$1"
+echo '</table></blockquote>'
+
+IFS="$SAVE_IFS"

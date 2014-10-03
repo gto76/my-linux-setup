@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo '<h2>General Unix Commands</h2>'
+echo '<h2>Package Management</h2>'
 
 ../scripts/text-to-table "$1"
 

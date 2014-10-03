@@ -21,44 +21,44 @@ alt+F2 - toggle maximize window
 alt+F3 - toggle full screen
 ctrl+alt+d - minimize all windows
 
-ctrl+alt+F1 to F6 terminals
-ctrl+alt+F7 to F12 Xwindows
-ctrl alt backspace - restart X
-ctrl alt del - log out
-ctrl alt end - shutdown
+ctrl+alt+<F1 to F6> - terminals
+ctrl+alt+<F7 to F12> - Xwindows
+ctrl+alt+backspace - restart X
+ctrl+alt+del - log out
+ctrl+alt+end - shutdown
 
 middle mouse button - paste selected text
 
 NAUTILUS/NEMO:
-ctrl+l - location
+ctrl+l - location, show path
 ctrl+shift+n - new folder
 ctrl+h - show hidden files
 
 GEDIT:
 ctrl+g - find the next instance of the string.
-ctrl+shft+g - find the previous instance of the string. 
-Ctrl+Shft+K - Clear highlight 
+ctrl+shift+g - find the previous instance of the string. 
+ctrl+shift+k - clear highlight 
 
 TERMINAL:
 ctrl+shift+c - copy in terminal
 ctrl+shift+v - paste in terminal
 shift+ctrl+t - new tab	 
 shift+ctrl+w - close tab	 
-ctrl PgUp/PgDown - change tabs
-ctrl -/+ - zoom
+ctrl PgUp/PgDn - change tabs
+ctrl +/- - zoom
 
 BASH (emacs mode, you can switch to vi mode with: set -o vi)
-ctrl c - cancel, erase line
-ctrl a - go to beginning of line
-ctrl e - end of line
-ctrl u - copy line
-ctrl y - paste line
-alt . - last argument
-ctrl r - search trough history
-alt * - show all matches for regular expression
-ctrl alt e - shows current line as when passed through alias, history and shell expansion
-ctrl x, ctrl e - edit command in editor
-ctrl p - show last command (same as up arrow)
+ctrl+c - cancel, erase line
+ctrl+a - go to beginning of line
+ctrl+e - end of line
+ctrl+u - copy line
+ctrl+y - paste line
+alt+. - last argument
+ctrl+r - search trough history
+alt+* - show all matches for regular expression
+ctrl+alt+e - shows current line as when passed through alias, history and shell expansion
+ctrl+x, ctrl+e - edit command in editor
+ctrl+p - show last command (same as up arrow)
 
 
 ###############################
@@ -70,16 +70,16 @@ PACKAGES:
 ========
 
 dpkg -l - lists installed packages
-apt - skin for dpkg
+apt - 'skin' for dpkg
 apt-get	update - update local list of existing packages
 		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade)
-		install - also update single package
+		install <package> - also update single package
 		autoremove - remove unneeded packages
-		remove - remove package, leave configurations
-		purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
+		remove <package> - remove package, leave configurations
+		purge <package> - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
 		source <package> - download code
 		build-dep <package> - install the build dependencies
-apt-cache search <keyword> - search packages, like apropos, but global
+apt-cache	search <keyword> - search packages, like apropos, but global
 		show - get info about package
 		policy <package> - show installed and remote version
 aptitude - browse packages (skin for apt-get)
@@ -104,10 +104,50 @@ sudo make install
 GENERAL:
 =======
 
-expr - evaluate expressions (expr 1 + 1 -> 2)
+man [<section-number>] <command> - Section numbers:	1 programs, 2 system calls, 3 library calls, 4 special files, 5 file formats, 7 miscellaneous, 8 system administration commands
 echo -n - no newline at the end
 	 -e - enable interpretation of backslashed letters
-read - reads from file line by line
+xargs - output from one command to arguments of another
+	-t - echoes the command before executing it, and 
+	-p - echoes it and asks for confirmation
+tee - Sends output of a program to a file and to a standard output
+expr - evaluate expressions (expr 1 + 1 -> 2)
+bc - calculator: echo 1+1 | bc -> 2
+	for floating point operations use: echo "scale=5;3/4" | bc -> .75000
+sh - run command interpreter (shell). Can run script even if not executable.
+	-c '<commands>' - start new noninteractive shell and read commands from arguments instead of stdin
+bash - run bash command interpreter (shell)
+	-c - read commands from arguments instead of stdin
+sudo sh -c 'echo "bla bla bla" >> <file>' - append lines to system configuration file
+gcc - gnu c compiler
+	-w - supress warnings (only print errors) 
+	-a shows all sections
+run-parts - run all scripts or programs in a directory
+date - tells you date and time, also can set
+cal - calendar
+xclip - copies to clipboard
+mkfifo <pipe> - creates named pipe during that shell session.
+wall - interconsole instant messenger (echo "bla" | wall)
+	mesg n - turn off
+watch - execute a program periodically, showing output fullscreen
+watch bash -i -c '<alias>' - execute alias periodically
+line - read one line
+sleep - delay for a specified amount of time
+whiptail - display dialog boxes from shell scripts
+reset - initializes terminal, useful after printing binary file
+hexdump, hd — ASCII, decimal, hexadecimal, octal dump
+lpstat - show printing jobs
+cancel <id> - cancel printing job
+mkisofs - create a DVD/CD image
+cdrecord - write to a CD/DVD
+acpi - check battery
+sudo fdisk -l - show partitions
+shutdown now - take you to single user mode
+	-h now -  begins the shutdown procedure (OR halt OR poweroff)
+	-h 11:50 - when
+	-r now - reboot (OR reboot)
+
+FILES:
 ls 	-d - list directory names instead of contents
 	-S - sort by size 
 	-t - sort by time
@@ -123,20 +163,44 @@ find . | grep bla - serarches also subdirectories recursively
 locate <word>  - same as find but using index
 sudo updatedb - update database for locate
 locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
-xargs - output from one command to arguments of another
-	-t - echoes the command before executing it, and 
-	-p - echoes it and asks for confirmation
-tar	xvzf <file>.tar.gz - decompress and detar
-	xvjf <file>.tar.bz2 - decompress and detar
-	-cf <archive>.tar <file>... - compress
 ln - makes links to the files
 	-s <file> <link> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!
 md5sum - checks md5 sum hash
-sh - run command interpreter (shell). Can run script even if not executable.
-	-c '<commands>' - start new noninteractive shell and read commands from arguments instead of stdin
-bash - run bash command interpreter (shell)
-	-c - read commands from arguments instead of stdin
+read - reads from file line by line
 du -s <folder> - folder size
+cp -R - copy recursively
+shred - securely remove files
+file <file> - determine file type
+tree - ls in a tree-like (hierarchical) format
+find <dir> -name <file> - search by name
+	-not - insert before other options to negate
+	-samefile <file> - find all hard links of a file
+	-xdev - don't descend directories on other filesystems
+	-inum <inum> - find files with the inode number
+	-type <f|...> - find files of type
+	-delete - delete found files
+	-exec <command> {} \; - find files and execute command for every found file. {} is replaced with filename
+	-exec <command> {} + - find files and execute command with all filenames in place of {}
+	-atime +/-n - find files that were last acessed less or more than n days.
+install - copy files and set attributes
+gpg <file> - decrypt file with password
+	-c <file> - encrypt
+mktemp - create a temporary file or directory
+rename - renames multiple files using sed syntax
+rsync - a fast, versatile, remote (and local) file-copying tool
+cmp - compares two files, similar to diff but also for binaries
+
+ARCHIVES:
+tar	xvzf <file>.tar.gz - decompress and detar
+	xvjf <file>.tar.bz2 - decompress and detar
+	-cf <archive>.tar <file>... - compress
+zip -g <archive> <file> - grow/add to existing archive
+unzip \*.zip - backslash is necessary so that bash doesn't expand the * 
+	-d <dir> - extract into directory (create if doesent exist)
+unrar e - extract files from rar archives
+zcat - catz gziped file
+
+TERMINAL MULTIPLEXERS:
 screen - switch between multiple virtual terminals (useful in ssh)
 	ctrl+a: 
 	c - new terminal, 
@@ -153,67 +217,6 @@ tmux - terminal multiplexer, better screen.
 	] - paste,	
 	" - split horizontally,	
 	% - split vertically 
-man [<section-number>] <command> - Section numbers:	1 programs, 2 system calls, 3 library calls, 4 special files, 5 file formats, 7 miscellaneous, 8 system administration commands
-	-a shows all sections
-tee - Sends output of a program to a file and to a standard output
-cp -R - copy recursively
-shred - securely remove files
-date - tells you date and time, also can set
-cal - calendar
-sudo fdisk -l - show partitions
-shutdown now - take you to single user mode
-	-h now -  begins the shutdown procedure (OR halt OR poweroff)
-	-h 11:50 - when
-	-r now - reboot (OR reboot)
-cmp - compares two files, similar do diff but also for binaries
-acpi - check battery
-xclip - copies to clipboard
-mkfifo <pipename> - creates named pipe
-during that shell session.
-rsync - a fast, versatile, remote (and local) file-copying tool
-wall - interconsole instant messenger (e "bla" | wall)
-	mesg n - turn off
-wmctrl - X Window Manager
-run-parts - run all scripts or programs in a directory
-mkisofs - create a DVD/CD image
-cdrecord - write to a CD/DVD
-watch - execute a program periodically, showing output fullscreen
-watch bash -i -c '<alias>' - execute alias periodically
-zcat - catz gziped file
-line - read one line
-mktemp - create a temporary file or directory
-	tempfile
-rename - renames multiple files using sed syntax
-sleep - delay for a specified amount of time
-whiptail - display dialog boxes from shell scripts
-reset - initializes terminal, useful after printing binary file
-hexdump, hd — ASCII, decimal, hexadecimal, octal dump
-bc - calculator: echo 1+1 | bc -> 2
-	for floating point operations use: echo "scale=5;3/4" | bc -> .75000
-zip -g <archive> <file> - grow/add to existing archive
-unzip \*.zip - backslash is necessary so that bash doesn't expand the * 
-	-d <dirname> - extract into directory (create if doesent exist)
-unrar e - extract files from rar archives
-lpstat - show printing jobs
-cancel <id> - cancel printing job
-gpg <filename> - decrypt file with password
-	-c <filename> encrypt
-file <filename> - determine file type
-tree - ls in a tree-like (hierarchical) format
-find <dir> -name <filename> - search by name
-	-not - insert before other options to negate
-	-samefile <filename> - find all hard links of a file
-	-xdev - don't descend directories on other filesystems
-	-inum <inum> - find files with the inode number
-	-type <f|...> - find files of type
-	-delete - delete found files
-	-exec <command> {} \; - find files and execute command for every found file. {} is replaced with filename
-	-exec <command> {} + - find files and execute command with all filenames in place of {}
-	-atime +/-n - find files that were last acessed less or more than n days.
-sudo sh -c 'echo "bla bla bla" >> <filename>' - append lines to systam configuration file
-gcc - gnu c compiler
-	-w - supress warnings (only print errors) 
-install - copy files and set attributes
 
 ====
 BASH:
@@ -301,25 +304,25 @@ TEXT:
 
 PRINT:
 tail -f - do not stop printing
-	-n +<line number> - start at line number
+	-n +<line-number> - start at line number
 cat -n - number all lines
 	-nl - similar
 	>> file - simplest text editor (great for pasting)
-less - 	&phrase - display only lines with
-		-N show line numbers
-		-~ do not show ~ after EOF
-		+G tells less to start at the end of the file
-		-F or --quit-if-one-screen
+less  	&<phrase> - display only lines with
+		-N - show line numbers
+		-~ - do not show ~ after EOF
+		+G - tells less to start at the end of the file
+		-F - or --quit-if-one-screen
 		v - opens editor defined in $VISUAL or $EDITOR
 		:n - examine the next file
 		<,> - go to home, end
 
 EDIT:
-tr - translate or delete characters (-d for delete)
+tr <from> <to> - translate or delete characters (-d for delete)
 cut <filename> - remove sections from each line of files
-		-d ’:’ -f 1,7 /etc/passwd - only show the username and the shell
-sort - sorts
-	-u - uniq
+		-d ':' -f 1,7 /etc/passwd - only show the username and the shell
+sort - sorts lines
+	-u - uniq, deletes duplicates
 	-t - set delimiter for fields (default is space)
 	-k - select by which field to sort 
 uniq - removes adjacent duplicates
@@ -333,16 +336,17 @@ join - join lines of two files on a common field
 colrm <from <to>> - removes columns
 seq <number> - output numbers from 1 to number
 ispell/aspell - interactive spell checker
-basename <filename> - strip directory from filenames
+basename <path> - strip directory from path
 		-s <.suffix> - also strip suffix
-dirname <filename> - strip last component from file name
+dirname <path> - strip last component from path
 fmt - produce roughly uniform line lengths
 fold - wrap each input line to fit in specified width
 paste - glue two documents side by side
-sed 's///g' - substitute every occurrence in line, not just the first one
+sed	's///g' - substitute every occurrence in line, not just the first one
 	's///I' - ignore case
 	-r - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis
 expand - convert tabs to spaces
+	-t <number> - set number of spaces (default is 8)
 
 DIFF:
 diff -u <files> - unified format
@@ -351,10 +355,22 @@ comm - compare two sorted files line by line
 sdiff - two files side by side
 patch - apply a diff file to original
 	patch < patch.diff - apply patch
-	diff -u <old-filename> <new-filename> > patch.diff - create patch
+	diff -u <old-file> <new-file> > patch.diff - create patch
 
 SEARCH:
-grep -v inverse, -n lineNumbers, -w wholeWord, -Ax or -Bx x lines after or before, -r recursive, -o, --only-matching (count occurrences with | wc -l), -P perl notation (if you need \t, + or .*? [? meaning non greedy]!!!!), -i ignore case, -I - do not process binary files, -l - just print files with matches, -L - just print files wihouth matches -e <pattern> - specify pattern (needed if it starts with -)
+grep -v - inverse
+	-n - line numbers 
+	-w - whole word 
+	-A<x> | -B<x> - x lines after or before
+	-r - recursive 
+	-o, --only-matching - print only matching part
+	-P - perl notation (if you need \\t, + or .*? [? meaning non greedy]!!!!) 
+	-i - ignore case 
+	-I - do not process binary files 
+	-l - just print files with matches 
+	-L - just print files wihouth matches
+	-e <pattern> - specify pattern (needed if it starts with -!!!!!!!)
+	| wc -l - count occurrences
 look - display lines beginning with a given string
 strings - print all text parts of binary file
 
@@ -363,14 +379,14 @@ enscript - Converts text files to postscript, rtf, HTML
 gs - ghostscript: postscript and PDF language interpreter and previewer
 pdftohtml - pdf to html
 pdftotext - pdf to text
-libreoffice - novi openoffice
+libreoffice - new openoffice
 figlet - display large characters made up of ordinary screen characters (ascii art)
 toilet - similar (ascii art)
 
 EDITORS:
-nano - 	/etc/nanorc - nano config
-		/usr/share/nano/LANGUAGE.nanorc - syntax highlights
-		alt - / or ? go to last line
+nano - /etc/nanorc > nano config
+		/usr/share/nano/LANGUAGE.nanorc > syntax highlights
+		alt + / or ? > go to last line
 fte - cool text editor with CUA (IBM)-shortcuts
 diakonos - simple terminal text editor with ctrl-c for copy
 pyroom - distraction free writing (gui)
@@ -579,6 +595,7 @@ xset - user preference utility for X
    r - turn key autorepeat on
 umask -  The umask is a value set by the shell. It controls the default permissions of any file created
 ccsm - additional settings (compiz config settings manager - BAD)
+wmctrl - X Window Manager
 
 KEYS/CHARACTERS/FONTS:
 IN X:

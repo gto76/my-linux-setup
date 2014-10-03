@@ -1,32 +1,47 @@
-<h1>PACKAGES</h1>
-
-<p>dpkg -l - lists installed packages
-apt - skin for dpkg
-apt-get update - update local list of existing packages
-        -u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update &amp;&amp; apt-get -u dist-upgrade)
-        install - also update single package
-        autoremove - remove unneeded packages
-        remove - remove package, leave configurations
-        purge - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
-        source <package> - download code
-        build-dep <package> - install the build dependencies
-apt-cache search <keyword> - search packages, like apropos, but global
-        show - get info about package
-        policy <package> - show installed and remote version
-aptitude - browse packages (skin for apt-get)
-        search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
-winetricks - install wine applications
-update-alternatives - maintain symbolic links determining default commands</p>
-
-<p>apropos -a - all keywords
-whatis - short description of app
-whereis - locates where command resides 
-which - similar only executable
-wtf - looks up filename suffixes database</p>
-
-<p>INSTALL MANTRA:</p>
-
-<p>./configure --help
-./configure
-make
-sudo make install</p>
+<h2>Package Management</h2>
+<blockquote><table>
+<tr><td valign=top><strong>========</strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong>dpkg</strong>						</td><td><strong> -l</strong>						 - lists installed packages</td></tr>
+<tr><td valign=top><strong>apt</strong>						</td><td>'skin' for dpkg</td></tr>
+<tr><td valign=top><strong>apt-get	</strong>					</td><td><strong>update</strong>					- update local list of existing packages</td></tr>
+<tr><td></td><td><strong>		-u dist-upgrade</strong> - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade)</td></tr>
+<tr><td></td><td><strong>		install &ltpackage&gt</strong> - also update single package</td></tr>
+<tr><td></td><td><strong>		autoremove</strong> - remove unneeded packages</td></tr>
+<tr><td></td><td><strong>		remove &ltpackage&gt</strong> - remove package, leave configurations</td></tr>
+<tr><td></td><td><strong>		purge &ltpackage&gt</strong> - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.</td></tr>
+<tr><td></td><td><strong>		source &ltpackage&gt</strong> - download code</td></tr>
+<tr><td></td><td><strong>		build-dep &ltpackage&gt</strong> - install the build dependencies</td></tr>
+<tr><td valign=top><strong>apt-cache	</strong>					</td><td><strong>search &ltkeyword&gt</strong>					- search packages, like apropos, but global</td></tr>
+<tr><td></td><td><strong>		show</strong> - get info about package</td></tr>
+<tr><td></td><td><strong>		policy &ltpackage&gt</strong> - show installed and remote version</td></tr>
+<tr><td valign=top><strong>aptitude</strong>						</td><td>browse packages (skin for apt-get)</td></tr>
+<tr><td></td><td><strong>		search '~i!~M'</strong> - list installed packages, that were not installed as a dependency, with short description.</td></tr>
+<tr><td valign=top><strong>winetricks</strong>						</td><td>install wine applications</td></tr>
+<tr><td valign=top><strong>update-alternatives</strong>						</td><td>maintain symbolic links determining default commands</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong>apropos</strong>						</td><td><strong> -a</strong>						 - all keywords</td></tr>
+<tr><td valign=top><strong>whatis</strong>						</td><td>short description of app</td></tr>
+<tr><td valign=top><strong>whereis</strong>						</td><td>locates where command resides </td></tr>
+<tr><td valign=top><strong>which</strong>						</td><td>similar only executable</td></tr>
+<tr><td valign=top><strong>wtf</strong>						</td><td>looks up filename suffixes database</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+</table>
+<h3 align="center">Install mantra</h3>
+<table>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong>./configure</strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong>./configure</strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong>make</strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong>sudo make install</strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>						</td><td><strong></strong>						</td></tr>
+</table></blockquote>

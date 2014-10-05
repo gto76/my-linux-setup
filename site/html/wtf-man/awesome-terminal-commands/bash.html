@@ -1,79 +1,106 @@
-<h1>BASH</h1>
-
-<p>"$x" - ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! 
-"$<em>" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! 
-"$@" - Use this instead!!!!! Will retain arguments as-is, so no args provided will result in no args being passed on. This is in most cases what you want to use for passing on arguments.
-Google: "$@" is right almost everytime, and $</em> is wrong almost everytime.
-"$#" - number of arguments
-"$1" - first argument
-"$0" - name of the script
-$'n' - string literal with escape seqences
-If you want IFS to be a new line (useful with for loop) you need to: IFS=$'n' - the dollar forces substitution!!!!!
-Also if you want 'while read line; do...' to preserve leading spaces and tabs, you need to set IFS=""
-$? - exit code of last command (0 - ok)</p>
-
-<p>test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
-    -n - is string non empty, -z - is string empty, -a - and, -o - or,
-    = - strings are equal, -nt - file newer than, -ot - older then,
-    -d - directory exists, -e - file exists, -f - is a regular file,
-    -h - its a symbolic link, -r - has read permission,
-    -w - has write permission, -x - has execute permission
-[[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &amp;&amp;, ||, &lt;, > (lexicographic less, more), and also regular expression matching.
-=~ - regex comparison operator: [[ "$HOST" =~ ^user.* ]]
-let <expression> - executes expression</p>
-
-<p>$(command) - same as <code>command</code>
-$RANDOM - 0 - 32767
-input=<code>cat</code> - getting standard input
-- in place of a file name means standard in or out
-set -o vi - set line editing to vi mode
-pushd . - put current dir on stack
-popd - pop dir from stack
-cd - - go to last dir
-source <script> - run script: for example source /etc/profile (same as . <command>)</p>
-
-<h1>!/bin/bash - good practice to insert at begining of a bash script</h1>
-
-<p>export PATH="$PATH:<your-dir>" - add new directory to path variable
-All variables in bash are global !!!!!!!
-read -p "Press [Enter] key to start backup..." - prompt for user input
-variable=${1:-"default value"} - setting variable with default value if $1 is empty
-getopts - parse parameters/arguments
-getopt - GNU version is even better then getopts, not a builtin
-while read line; do <COMANDS>; done &lt; <FILENAME> - read from file line by line</p>
-
-<p>HISTORY:</p>
-
-<p>sudo !! - Run the last command as root 
-<space>command - Execute a command without saving it in the history
-!<term> - last command that starts with term</p>
-
-<p>ARRAYS AND LINES:</p>
-
-<p>while read -r line; do
-    echo "... $line ..."
-done &lt;&lt;&lt; "$list" - reading line by line from variable
-${a[1]} - value of the second element of the array
-for c in ${a[@]} - iterate over array
-${varname:offset:length} - get substring: s="aeiou"; ${s:3:1} -> o
-${#var} - length of a var 
-${#name[subscript]} - length  of the element
-${#name[@]} - length  of the array</p>
-
-<p>REDIRECTIONS:</p>
-
-<p><command> 2> /dev/null - redirect error output
-<command> &amp;> /dev/null - redirect both standard and error output
-<command> >&amp;2 - write to stderr
-<command> 2>&amp;1 | less - add stderr to stdout and print it with less (useful for gcc)</p>
-
-<p>ALIASES:</p>
-
-<p>alias - print all aliases
-    <name> - print alias
-    <name>='cmd' - set alias
-command <command> - executes original command, bypassing any aliases or shell functions that may be defined for command
-<command> - temporarily disable alias (call original)
-type <command> - will tell you what is command aliased to
-bash -n <script> - check for errors
-mkdir -p - make parents if needed</p>
+<!DOCTYPE html>
+<head>
+<title>Bash Shell Builtin Commands</title>
+</head><style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>
+<a href="../../../html/wtf-man.html" target="_blank"> 
+  <img src="../../../resources/kenandritchie.png" border="0" />
+</a>
+<h2>Bash Shell Builtin Commands</h2>
+<blockquote><table>
+<tr><td valign=top><strong>"$x"</strong>						</td><td>ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! </td></tr>
+<tr><td></td><td>	   All variables in bash are global !!!!!!!</td></tr>
+<tr><td valign=top><strong>"$*"</strong>						</td><td>Combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! </td></tr>
+<tr><td valign=top><strong>"$@"</strong>						</td><td>Use this instead!!!!! Will retain arguments as-is, so no args provided will result in no args being passed on. This is in most cases what you want to use for passing on arguments.</td></tr>
+<tr><td></td><td>	Google: "$@" is right almost everytime, and $* is wrong almost everytime.</td></tr>
+<tr><td valign=top><strong>"$#"</strong>						</td><td>number of arguments</td></tr>
+<tr><td valign=top><strong>"$1"</strong>						</td><td>first argument</td></tr>
+<tr><td valign=top><strong>"$0"</strong>						</td><td>name of the script</td></tr>
+<tr><td valign=top><strong>$'n'</strong>						</td><td>string literal with escape seqences (there is a backslash before n)</td></tr>
+<tr><td></td><td><strong>	If you want IFS to be a new line (useful with for loop) you need to: IFS=$'n'</strong> - the dollar forces substitution!!!!!</td></tr>
+<tr><td></td><td>	Also if you want 'while read line; do...' to preserve leading spaces and tabs, you need to set IFS=""</td></tr>
+<tr><td valign=top><strong>$?</strong>						</td><td>exit code of last command (0 - sucess)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>test &ltexpr&gt</strong>						</td><td>same as [ &ltexpression&gt ], returns zero exit status if true.</td></tr>
+<tr><td></td><td><strong>	-n</strong> - is string non empty, </td></tr>
+<tr><td></td><td><strong>	-z</strong> - is string empty, </td></tr>
+<tr><td></td><td><strong>	-a</strong> - and, </td></tr>
+<tr><td></td><td><strong>	-o</strong> - or,</td></tr>
+<tr><td></td><td><strong>	=</strong> - strings are equal, </td></tr>
+<tr><td></td><td><strong>	-nt</strong> - file newer than, </td></tr>
+<tr><td></td><td><strong>	-ot</strong> - older then,</td></tr>
+<tr><td></td><td><strong>	-d</strong> - directory exists, </td></tr>
+<tr><td></td><td><strong>	-e</strong> - file exists, </td></tr>
+<tr><td></td><td><strong>	-f</strong> - is a regular file,</td></tr>
+<tr><td></td><td><strong>	-h</strong> - its a symbolic link, </td></tr>
+<tr><td></td><td><strong>	-r</strong> - has read permission,</td></tr>
+<tr><td></td><td><strong>	-w</strong> - has write permission, </td></tr>
+<tr><td></td><td><strong>	-x</strong> - has execute permission</td></tr>
+<tr><td valign=top><strong>[[ &ltexpr&gt ]]</strong>						</td><td>same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, &lt, &gt (lexicographic less, more), and also regular expression matching.</td></tr>
+<tr><td valign=top><strong>=~</strong>						</td><td>regex comparison operator: [[ "$HOST" =~ ^user.* ]]</td></tr>
+<tr><td valign=top><strong>let &ltexpr&gt</strong>						</td><td>executes expression: let a="$b"+2</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>$(command)</strong>						</td><td>same as `command`</td></tr>
+<tr><td valign=top><strong>$RANDOM</strong>						</td><td>0 - 32767</td></tr>
+<tr><td valign=top><strong>input=`cat`</strong>						</td><td>getting standard input</td></tr>
+<tr><td valign=top><strong>-</strong>						</td><td>in place of a file name means standard in or out</td></tr>
+<tr><td valign=top><strong>set</strong>						</td><td><strong> -o vi</strong>						 - set line editing to vi mode</td></tr>
+<tr><td valign=top><strong>pushd .</strong>						</td><td>put current dir on stack</td></tr>
+<tr><td valign=top><strong>popd</strong>						</td><td>pop dir from stack</td></tr>
+<tr><td valign=top><strong>cd</strong>						</td><td>- go to last dir</td></tr>
+<tr><td valign=top><strong>source &ltscript&gt</strong>						</td><td>run script: for example source /etc/profile (same as . &ltcommand&gt)</td></tr>
+<tr><td valign=top><strong>#!/bin/bash</strong>						</td><td>good practice to insert at begining of a bash script</td></tr>
+<tr><td valign=top><strong>export 	</strong>					</td><td><strong>PATH="$PATH:&ltdir&gt"</strong>					- add new directory to path variable</td></tr>
+<tr><td valign=top><strong>read</strong>						</td><td><strong> -p "Press [Enter] key to start backup..."</strong>						 - prompt for user input</td></tr>
+<tr><td valign=top><strong>var=${1:-"&ltdefault-value&gt"}</strong>						</td><td>setting variable with default value if $1 is empty</td></tr>
+<tr><td valign=top><strong>getopts</strong>						</td><td>parse parameters/arguments, builtin</td></tr>
+<tr><td valign=top><strong>getopt</strong>						</td><td>GNU version is even better then getopts, not a builtin</td></tr>
+<tr><td valign=top><strong>while read line; do &ltcommands&gt; done &lt &ltfile&gt</strong>						</td><td>read from file line by line</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">History</h3>
+<table>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>sudo !!</strong>						</td><td>run the last command as root </td></tr>
+<tr><td valign=top><strong>&ltspace&gtcommand</strong>						</td><td>execute a command without saving it in the history</td></tr>
+<tr><td valign=top><strong>!&ltterm&gt</strong>						</td><td>last command that starts with term</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Redirections</h3>
+<table>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>&ltcommand&gt 2&gt /dev/null</strong>						</td><td>redirect error output</td></tr>
+<tr><td valign=top><strong>&ltcommand&gt &&gt /dev/null</strong>						</td><td>redirect both standard and error output</td></tr>
+<tr><td valign=top><strong>&ltcommand&gt &gt&2</strong>						</td><td>write to stderr</td></tr>
+<tr><td valign=top><strong>&ltcommand&gt 2&gt&1 | less</strong>						</td><td>add stderr to stdout and print it with less (useful for gcc)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Arrays And Lines</h3>
+<table>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>while read -r line; do</strong>							</td><td></td></tr>
+<tr><td valign=top><strong>    echo "... $line ..."</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>done &lt&lt&lt "$list"</strong>						</td><td>reading line by line from variable</td></tr>
+<tr><td valign=top><strong>${a[1]}</strong>						</td><td>value of the second element of the array</td></tr>
+<tr><td valign=top><strong>for c in ${a[@]}</strong>						</td><td>iterate over array</td></tr>
+<tr><td valign=top><strong>${varname:offset:length}</strong>						</td><td>get substring: s="aeiou"; ${s:3:1} -&gt o</td></tr>
+<tr><td valign=top><strong>${#var}</strong>						</td><td>length of a var </td></tr>
+<tr><td valign=top><strong>${#name[subscript]}</strong>						</td><td>length  of the element</td></tr>
+<tr><td valign=top><strong>${#name[@]}</strong>						</td><td>length  of the array</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Aliases</h3>
+<table>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>alias</strong>						</td><td>print all aliases</td></tr>
+<tr><td></td><td><strong>	&ltname&gt</strong> - print alias</td></tr>
+<tr><td></td><td><strong>	&ltname&gt='cmd'</strong> - set alias</td></tr>
+<tr><td valign=top><strong>command &ltcommand&gt</strong>						</td><td>executes original command, bypassing any aliases or shell functions that may be defined for command</td></tr>
+<tr><td valign=top><strong>&ltcommand&gt</strong>						</td><td>temporarily disable alias (call original)</td></tr>
+<tr><td valign=top><strong>type &ltcommand&gt</strong>						</td><td>will tell you what is command aliased to</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table></blockquote>

@@ -47,7 +47,8 @@ shift+ctrl+w - close tab
 ctrl PgUp/PgDn - change tabs
 ctrl +/- - zoom
 
-BASH (emacs mode, you can switch to vi mode with: set -o vi)
+BASH:
+	(emacs mode, you can switch to vi mode with: set -o vi)
 ctrl+c - cancel, erase line
 ctrl+a - go to beginning of line
 ctrl+e - end of line
@@ -118,6 +119,7 @@ sh - run command interpreter (shell). Can run script even if not executable.
 	-c '<commands>' - start new noninteractive shell and read commands from arguments instead of stdin
 bash - run bash command interpreter (shell)
 	-c - read commands from arguments instead of stdin
+	-n <script> - check script for errors
 sudo sh -c 'echo "bla bla bla" >> <file>' - append lines to system configuration file
 gcc - gnu c compiler
 	-w - supress warnings (only print errors) 
@@ -135,13 +137,13 @@ line - read one line
 sleep - delay for a specified amount of time
 whiptail - display dialog boxes from shell scripts
 reset - initializes terminal, useful after printing binary file
-hexdump, hd — ASCII, decimal, hexadecimal, octal dump
+hexdump, hd - ASCII, decimal, hexadecimal, octal dump
 lpstat - show printing jobs
 cancel <id> - cancel printing job
 mkisofs - create a DVD/CD image
 cdrecord - write to a CD/DVD
 acpi - check battery
-sudo fdisk -l - show partitions
+fdisk -l - show partitions (sudo)
 shutdown now - take you to single user mode
 	-h now -  begins the shutdown procedure (OR halt OR poweroff)
 	-h 11:50 - when
@@ -155,23 +157,15 @@ ls 	-d - list directory names instead of contents
 	./* - ls one level deep
 	-i - get inode number of file (file id). Use sudo find / -inum <number> to find all links that point to same file.
 rm -f - force remove (do not prompt)
+mkdir -p - make parents if needed
+cp -R - copy recursively
+ln - makes links to the files
+	-s <file> <link> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!
+df - disc fullness / disc free
+du -s <folder> - folder size
 mc - midnight commander
 	alt o - open parent dir in another panel
 	ctrl o - switch to bash
-df - disc fullness / disc free
-find . | grep bla - serarches also subdirectories recursively
-locate <word>  - same as find but using index
-sudo updatedb - update database for locate
-locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
-ln - makes links to the files
-	-s <file> <link> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!
-md5sum - checks md5 sum hash
-read - reads from file line by line
-du -s <folder> - folder size
-cp -R - copy recursively
-shred - securely remove files
-file <file> - determine file type
-tree - ls in a tree-like (hierarchical) format
 find <dir> -name <file> - search by name
 	-not - insert before other options to negate
 	-samefile <file> - find all hard links of a file
@@ -182,6 +176,14 @@ find <dir> -name <file> - search by name
 	-exec <command> {} \; - find files and execute command for every found file. {} is replaced with filename
 	-exec <command> {} + - find files and execute command with all filenames in place of {}
 	-atime +/-n - find files that were last acessed less or more than n days.
+locate <word>  - same as find but using index
+updatedb - update database for locate (sudo)
+locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
+md5sum - checks md5 sum hash
+read - reads from file line by line
+shred - securely remove files
+file <file> - determine file type
+tree - ls in a tree-like (hierarchical) format
 install - copy files and set attributes
 gpg <file> - decrypt file with password
 	-c <file> - encrypt
@@ -223,50 +225,66 @@ BASH:
 ====
 
 "$x" - ALWAYS PUT DOUBLE QUOTES AROUND VARIABLE!!!!!!!!!!!!!!! 
-"$*" - combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! 
+	   All variables in bash are global !!!!!!!
+"$*" - Combines all the arguments into single word, separating them with first character of IFS variable. If IFS is not set, space is used. If IFS is null, no separator is used!!!!!!!!! No args provided will result in one empty string being passed on!!! 
 "$@" - Use this instead!!!!! Will retain arguments as-is, so no args provided will result in no args being passed on. This is in most cases what you want to use for passing on arguments.
-Google: "$@" is right almost everytime, and $* is wrong almost everytime.
+	Google: "$@" is right almost everytime, and $* is wrong almost everytime.
 "$#" - number of arguments
 "$1" - first argument
 "$0" - name of the script
-$'\n' - string literal with escape seqences
-If you want IFS to be a new line (useful with for loop) you need to: IFS=$'\n' - the dollar forces substitution!!!!!
-Also if you want 'while read line; do...' to preserve leading spaces and tabs, you need to set IFS=""
-$? - exit code of last command (0 - ok)
+$'\n' - string literal with escape seqences (there is a backslash before n)
+	If you want IFS to be a new line (useful with for loop) you need to: IFS=$'\n' - the dollar forces substitution!!!!!
+	Also if you want 'while read line; do...' to preserve leading spaces and tabs, you need to set IFS=""
+$? - exit code of last command (0 - sucess)
 
-test <expression> - same as [ <expression> ], -gt, -d,... Returns zero exit status if true.
-	-n - is string non empty, -z - is string empty, -a - and, -o - or,
-	= - strings are equal, -nt - file newer than, -ot - older then,
-	-d - directory exists, -e - file exists, -f - is a regular file,
-	-h - its a symbolic link, -r - has read permission,
-	-w - has write permission, -x - has execute permission
-[[ <expression> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
+test <expr> - same as [ <expression> ], returns zero exit status if true.
+	-n - is string non empty, 
+	-z - is string empty, 
+	-a - and, 
+	-o - or,
+	= - strings are equal, 
+	-nt - file newer than, 
+	-ot - older then,
+	-d - directory exists, 
+	-e - file exists, 
+	-f - is a regular file,
+	-h - its a symbolic link, 
+	-r - has read permission,
+	-w - has write permission, 
+	-x - has execute permission
+[[ <expr> ]] - same as [, but without word splitting and filename expansion. And with additional operators: &&, ||, <, > (lexicographic less, more), and also regular expression matching.
 =~ - regex comparison operator: [[ "$HOST" =~ ^user.* ]]
-let <expression> - executes expression
+let <expr> - executes expression: let a="$b"+2
 
 $(command) - same as `command`
 $RANDOM - 0 - 32767
 input=`cat` - getting standard input
-- in place of a file name means standard in or out
+- - in place of a file name means standard in or out
 set -o vi - set line editing to vi mode
 pushd . - put current dir on stack
 popd - pop dir from stack
 cd - - go to last dir
 source <script> - run script: for example source /etc/profile (same as . <command>)
 #!/bin/bash - good practice to insert at begining of a bash script
-export PATH="$PATH:<your-dir>" - add new directory to path variable
-All variables in bash are global !!!!!!!
+export 	PATH="$PATH:<dir>" - add new directory to path variable
 read -p "Press [Enter] key to start backup..." - prompt for user input
-variable=${1:-"default value"} - setting variable with default value if $1 is empty
-getopts - parse parameters/arguments
+var=${1:-"<default-value>"} - setting variable with default value if $1 is empty
+getopts - parse parameters/arguments, builtin
 getopt - GNU version is even better then getopts, not a builtin
-while read line; do <COMANDS>; done < <FILENAME> - read from file line by line
+while read line; do <commands>; done < <file> - read from file line by line
 
 HISTORY:
 
-sudo !! - Run the last command as root 
-<space>command - Execute a command without saving it in the history
+sudo !! - run the last command as root 
+<space>command - execute a command without saving it in the history
 !<term> - last command that starts with term
+
+REDIRECTIONS:
+
+<command> 2> /dev/null - redirect error output
+<command> &> /dev/null - redirect both standard and error output
+<command> >&2 - write to stderr
+<command> 2>&1 | less - add stderr to stdout and print it with less (useful for gcc)
 
 ARRAYS AND LINES:
 
@@ -280,13 +298,6 @@ ${#var} - length of a var
 ${#name[subscript]} - length  of the element
 ${#name[@]} - length  of the array
 
-REDIRECTIONS:
-
-<command> 2> /dev/null - redirect error output
-<command> &> /dev/null - redirect both standard and error output
-<command> >&2 - write to stderr
-<command> 2>&1 | less - add stderr to stdout and print it with less (useful for gcc)
-
 ALIASES:
 
 alias - print all aliases
@@ -295,8 +306,6 @@ alias - print all aliases
 command <command> - executes original command, bypassing any aliases or shell functions that may be defined for command
 \<command> - temporarily disable alias (call original)
 type <command> - will tell you what is command aliased to
-bash -n <script> - check for errors
-mkdir -p - make parents if needed
 
 ====
 TEXT:
@@ -396,118 +405,116 @@ NETWORK:
 =======
 
 whois - info about domain
-host <ip_address/hostname> - DNS lookup utility
-	nslookup - same interactively
-	dig - same, lot of options
+host <ip/hostname> - DNS lookup utility
+nslookup - same interactively
+dig - same, lot of options
 hostname - prints/sets computer name, to set it permanently edit /etc/hostname and /etc/hosts
-netstat - Displays contents of /proc/net files,  status of ports...
+netstat - displays contents of /proc/net files,  status of ports...
 	-r - show routing table
 	-i - show interfaces
-arp - manipulate the system ARP cache (IP - mac)
-route - The route command is the tool used to display or modify the routing table
+arp - manipulate the system ARP cache (IP -> mac)
+route - tool used to display or modify the routing table
 	add default gw 192.168.1.10 - change the default gateway
-should DNS not be configured correctly on your machine, you need to edit
-“/etc/resolv.conf” to make things work
-ifconfig eth0 <ip> <down / up>
-	ifup eth0 - Will bring eth0 up if it is currently down.
-	ifcfg - Use ifcfg to configure a particular interface
-	ifconfig eth0 192.168.1.4 netmask 255.255.255.0 up - set ip and mask
-ip link show - list network interfaces
-		set dev eth0 up - bring interface eth0 up or down
+	should DNS not be configured correctly on your machine, you need to edit "/etc/resolv.conf" to make things work
+ifconfig eth0	down/up - turn network interface on/off
+	192.168.1.4 netmask 255.255.255.0 up - set ip and mask
+ifup eth0 - Will bring eth0 up if it is currently down.
+ip	link show - list network interfaces
+	link set dev eth0 up - bring interface eth0 up or down
 	addr show - list addresses of interfaces
 	route add default via 1.2.3.254 - set default gateway
-traceroute / traceroute6 / traceroute6.iputils
-	tracepath / tracepath6 - similar
-	-> iputils package
-	mtr - combines the functionality of the traceroute and ping
-findsmb - list info about machines that respond to SMB name queries - windows based machines sharing their hard disk’s
-/etc/services - list of services with their port numbers
-NetworkManager - network management daemon
-	nm-tool - prints info 
-	nm-online - is network connected 
-	nmcli - command-line tool for controlling NetworkManager
-	NetworkManager.conf - configuration file
-nc - (netcat) arbitrary TCP and UDP connections and listens
+traceroute, traceroute6, traceroute6.iputils - traces route
+tracepath, tracepath6 - similar (iputils package)
+mtr - combines the functionality of the traceroute and ping
+findsmb - list info about machines that respond to SMB name queries - windows based machines sharing their hard disks
+/etc/services - list of internet services with their port numbers
+NetworkManager - network management daemon, configuration file is in /etc/NetworkManager/NetworkManager.conf 
+nm-tool - prints info 
+nm-online - is network connected 
+nmcli - command-line tool for controlling NetworkManager
+nc - (netcat) It can open TCP connections, send UDP packets, listen on arbitrary TCP and UDP ports, do port scanning...
 ncat - Concatenate and redirect sockets
 ethtool eth0 - show status of eth0
 	-S - statistics
 	-s - change settings (speed, duplex,...)
 ss -tupl - list internet services on a system
-ss -tuo - list active connections to/from system
-tar cvf - ./<files> | ssh user@host 'cat > newfile.tar' - send tar archive over network
+	-tuo - list active connections to/from system
 
 WIRELESS:
 
-iwconfig - Sets the wireless configuration options basic to most wireless devices.
-iwlist <interface> <option> - Displays current status information of a device. (more detailed then iwconfig)
-iwspy - Sets the list of IP addresses in a wireless network and checks the quality of
-     their connections.
-iwpriv - Accesses configuration options specific to a particular device.
-rfkill list - show wireless adapters (wifi and bluetooth)
-		block/unblock <dev num> - block/unblock wireless device
-iw dev wlan0 link - show link status of wlan0
-			 set biterates legacy-2.4 1	- manually set interface speed
-sudo iw dev wlan0 scan - list wireless networks in range
-sudo iwlist wlan0 scan - similar
+iwconfig - sets the wireless configuration options basic to most wireless devices
+iwlist wlan0	<option> - displays current status information of a device, more detailed then iwconfig
+				scan - list wireless networks in range (sudo)
+iwspy - sets the list of IP addresses in a wireless network and checks the quality of their connections
+iwpriv - accesses configuration options specific to a particular device
+rfkill 	list - show wireless adapters (wifi and bluetooth)
+		block/unblock <dev-num> - block/unblock wireless device
+iw dev wlan0	link - show link status of wlan0
+				set biterates <standard> - manually set interface speed
+				scan - list wireless networks in range (sudo)
 wavemon - monitor wireless connection link quality
 	
 ========
 INTERNET:
 ========
 
-lynx - web browser 
-	-cmd_log=FILENAME - write keystrokes to script
-	-cmd_script=FILENAME - read keystrokes from script
-	-syslog-urls - log requested URLs with syslog.
-	-Press a to save the address of a document or link to a (Netscape-alike) bookmark file, by default ~/lynx_bookmarks.html. You can open this in a different browser, it's just HTML.
-    -l Add the current link to your bookmark file 
-	ctrl+n - scroll down two lines
-	ctrl+p - scroll up two lines
-	-dumb - prints txt to stdout (-crawl - turn numbers off)
-	-source - prints html to stdout
-	o - options (you can select vim mode)
-	ctrl p - previous line
-	crrl n - next line
-elinks - web browser (looks better)
 mutt - mail client
 sftp - secure ftp
-sshd - (openssh-server) ssh server deamon
-	/etc/init.d/ssh restart - sshd restart
-	ssh-keygen -t rsa -C "email address" - generate rsa key pair
-	~/.ssh - location for your keys
-	CYGWIN sshd - name of the service on windows
-scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp, (ssh)
-ssh [user]@[address] "mpg321 -" < [file].mp3 - stream audio over ssh
+sshd - (openssh-server) ssh server deamon, on Windows service is named 'CYGWIN sshd'
+/etc/init.d/ssh	restart - restart sshd (ssh deamon) (sudo)
+ssh-keygen -t rsa -C <email> - generate rsa key pair, keys are stored in ~/.ssh
+ssh - SSH client
+	<user>@<address> "mpg321 -" < <file>.mp3 - stream audio over ssh
+scp	<local-file> <user>@<host>:~<remote-file> - securely copy files over network
 wget - download files from WWW
 	-O - specify output file
 	-c - continue downloading unfinished file. Can also use wildcards, but use single quotes around url. 
 	-r -l1 --no-parent -A.gif - recursively to the depth of one ignoring references to the parent directory and all gifs.
 	curl - similar
 	"-qO -" - writes to standard output + quiet 
-	-i- urls specified by standard input
-transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
+	-i - urls specified by standard input
+transmissioncli - torrent terminal client 
+	-d - download limit (kB/s)
+	-u - upload limit 
 youtube-dl - download from youtube
 noip2 - dynamic dns update client
 rdesktop - Remote Desktop Protocol client
 tin, nn - usenet client
 nrss - rss feed reader
 
+BROWSERS:
+lynx - terminal web browser 
+	-cmd_log=<file> - write keystrokes to script
+	-cmd_script=<file> - read keystrokes from script
+	-syslog-urls - log requested URLs with syslog.
+	-dumb - prints txt to stdout 
+	-crawl - same, turns numbers off
+	-source - prints html to stdout
+	-l - add the current link to your bookmark file 
+	a - save the address of a document or link to a bookmark file, by default ~/lynx_bookmarks.html
+	o - options (you can select vim mode)
+	ctrl+n - scroll down two lines
+	ctrl+p - scroll up two lines
+	ctrl+p - previous line
+	crrl+n - next line
+elinks - another web browser (has menus)
+
 HACKING:
 
-nmap -sP 192.168.2.1-3 - network scanning
-	nmap 192.168.0.3 -p100-139 - port scanning
-	sudo nmap -O 192.168.0.3 - scanning os
-tcpdump - sniffer (Show network traffic), sudo
-ettercap - Multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
-driftnet - Picks out and displays images from network traffic
+nmap -sP 192.168.1.1-3 - network scanning
+	192.168.1.3 -p100-139 - port scanning
+	-O 192.168.0.3 - scanning os (sudo)
+tcpdump - sniffer (show network traffic) (sudo)
+ettercap - multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
+driftnet - picks out and displays images from network traffic
 kismet - Wireless 802.11b monitoring tool
 aircrack-ng - wireless WEP/WPA cracking utilities
 Cain & Abel - password recovery tool for Microsoft Operating Systems
 dnsniff - warious hacking tools: 
 	arpspoof - for man in the middle attack
 	dsniff - password sniffer for several protocols, ...
-ip link set eth0 promisc on - set network inerface to promiscuous mode
-iip link set eth0 multicast off - set multicast off
+ip link set eth0 	promisc on - set network inerface to promiscuous mode
+				 	multicast off - set multicast off
 
 ======
 SYSTEM:
@@ -516,97 +523,118 @@ SYSTEM:
 meta, system info - in cinnamon
 uname -a - print system info, kernel version
 cat /etc/issue - show name and version of distribution
-init - Upstart init daemon job configuration
-time <command> - time a execution of a command
-cat /var/log/auth.log | grep "failed password" -i - print all failed logins
+
+init - upstart init daemon job configuration
+telinit - change system runlevel
+dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful when debugging problems
+getconf -a - print all system configuration variables
+nohup <command> - run a command immune to hangups
+
+wmctrl - X Window Manager
+
+busybox <command> - combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)
+mono - .NET support
+
+USERS:
 users - prints logged in users
 who - logged in users, more data
 w - logged in users, also what are they running
-free -tm - Displays memory statistics 
-	-s continuously display
-vmstat - Performance of system components / virtual memory statistics
-sar - System activity information
-iostat - Disk usage
-perf - profiler
-sudo /etc/init.d/ssh restart - restart sshh deamon
-zeitgeist - activity logger
+passwd - change password
 vipw - edit password file
 vigr - edit groups file
-passwd - change password
-chattr - Change file system attributes
-dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful when debugging problems
-mount device mountpoint - mount /dev/hdc2 /mymedia
+umask -  the umask is a value set by the shell. It controls the default permissions of any file created
+
+FILE SYSTEMS:
+mkfs - build a Linux filesystem
+mke2fs - create a ext filesystem
+mkswap - set up a swap area
+parted - partition manipulation program
+	-l - list partitions (sudo)
+fdisk - manipulate disk partition table
+	-l - list partitions (sudo)
+disks - nice gui partition tool
 mount - list all mounted devices
-Creating File Systems: mkfs, mke2fs, mkswap, parted, and fdisk
-parted -l - list partitions (sudo)
-mono - .NET support
-telinit - change system runlevel
+	<device> <path> - for example mount /dev/hdc2 to /mymedia
+lsattr - list file attributes
+chattr - change file attributes
+
+LOGGING:
 last - when various users have logged in or out. This includes information on when the computer was rebooted.
-lastlog - Displays a list of users and what day/time they logged into the system
+lastlog - displays a list of users and what day/time they logged into the system
 rsyslogd -  manages all the logs on your system
-	closelog, openlog, syslog, vsyslog -> send 		messages to the system logger
+	closelog, openlog, syslog, vsyslog -> library calls that send messages to the system logger
 logger - makes entries in the system log
-auditd - system call auditing
-	ausearch - querys the audit logs
-	autrace - traces a specific process
-	auditctl - controls the behavior of the auditd server
-busybox <command> - combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)
-getconf -a - print all system configuration variables
-strace <program name and its parameters> - trace system calls and signals. All printed system calls can be looked up by man!
-	-s - maximum string size we want printed (default is too short, 2000 ok)
+cat /var/log/auth.log | grep "failed password" -i - print all failed logins
+zeitgeist - activity logger
+
+LOAD:
+tload - 'graphic' representation of system load
+top - show processes by resource consumption
+	<, > - change resource
+htop - better top
+free -tm - displays memory statistics 
+	-s <seconds> - continuously display
+vmstat - performance of system components / virtual memory statistics
+sar - system activity information
+iostat - disk usage
+time <command> - time a execution of a command
+perf - profiler
+
+TRACING:
+auditd - system call auditing (package)
+ausearch - querys the audit logs
+autrace - traces a specific process
+auditctl - controls the behavior of the auditd server
+strace <command and parameters> - trace system calls and signals. All printed system calls can be looked up by man!
+	-s - maximum string size we want printed (default is too short, 2000 is ok)
 	-f - also follow children
 	-p <pid> - attach to process
-	-o <log file>
+	-o <file> - write output to file
 	-c - count/aggregate
-	-T time the execution of each call
+	-T - time the execution of each call
 ltrace - list library calls made by command
 lsof - list open files with file descriptors
 	-p <pid> - open files by process
 	<path> - open files in path
 lsmod - show which kernel modules (drivers) are loaded
-modinfo <driver-name> - get more information about kernel module
-lsattr - list attributes
-lshw - lists all hardware
+modinfo <module> - get more information about kernel module
+
+HARDWARE:
+lshw - list all hardware
 lspci [-tv] - show pci info
 lsusb [-tv] - show usb info
 lscpu - print CPU information
-tload - "graphic" representation of system load
 dmidecode -q - display bios/dmi information like ram size/type,
 	max ram, computer model name, cpu information..
 smartctl -A /dev/sda - show disk usage info
 hdparm -tT /dev/sda - do a read speed test
 badblocks -s /dev/sda - check for bad blocks
-top - show processes by resource consumption
-	<, > - change resource
-htop - better top
+fstrim -v / - discard unused blocks, useful for ssd-s
 sensors - (lm-sensors) hardware monitoring tool, temperature, fan speed
 pwmconfig - (fancontrol) set fan speed
-nohup - run a command immune to hangups
+
+TERMINAL:
 tty - print the file name of the terminal connected to standard input
 stty - change and print terminal line settings
 openvt -  run a program on a next available tty
-script - makes a typescript of everything printed on your terminal. Ctrl-D to stop recording.
-disks - nice gui partition tool
-fstrim -v / - discard unused blocks, useful for ssd-s
+script - makes a typescript of everything printed on your terminal. Ctrl-d to stop recording.
 setterm - set terminal atributes
-	-cursor off/on
-xset - user preference utility for X
-   -r - turn key autorepeat off
-   r - turn key autorepeat on
-umask -  The umask is a value set by the shell. It controls the default permissions of any file created
-ccsm - additional settings (compiz config settings manager - BAD)
-wmctrl - X Window Manager
+	-cursor off/on - set cursor on/off
 
 KEYS/CHARACTERS/FONTS:
 IN X:
 xmodmap - remap keys
 setxkbmap -layout us - set us keyboard layout
 xev - get keycodes of pressed keys
+xset - user preference utility for X
+	-r - turn key autorepeat off 
+	r - turn key autorepeat on
 X NOT NECESSARY:
-loadkeys <country code> - load key mapping 
+loadkeys <country-code> - load key mapping 
 showkey - get keycodes of pressed keys
-setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz - choose terminal font
-/etc/default/console-setup - file with default font settings
+setfont <font> - set console font
+	/usr/share/consolefonts/Uni2-VGA16.psf.gz - for example
+	/etc/default/console-setup contains the default settings 
 jfbterm - enable unicode characters in terminal
 echo -en "\e]PC7373C9" - change blue color in tty (first numeral after P means slot, and others shade)
 
@@ -614,82 +642,86 @@ echo -en "\e]PC7373C9" - change blue color in tty (first numeral after P means s
 PROCESSES:
 =========
 
-ctrl-z - put job in background
-jobs - Prints currently running job
-bg <job number> - Backgrounds a process
-fg <job number> - Bring a process to the foreground
+ps --forest - view hierarchical view of processes
+	v - virtual memory 
+	--sort <field> - sort by field 
+pstree - similar
+pgrep <pattern> - prints PIDs of processes containing pattern
+	-l - also print process name
+pkill <pattern> - kills every process that contains pattern in name
+kill 	<pid> - sends TERM signal to process
+	-kill <pid> - sends KILL signal meaning force quit, data will be lost
+killall - uses name instead of pid
+skill - sends signals to command/user/tty or report process status
+		-stop <user> - stop all of the users processes
+		-cont <user> - continue all users processes
+nice - sets the priority for a process (from max of -20 to min of 20)
+	-20 <command> - execute command with maximum priority
+renice - changes the priority of an existing process
+		+20 <pid> - change processes priority to lowest level
+snice - works very similarly to skill
+		-10 -u root - increase the priority of all root's processes
+pmap - report memory map of a process (mapped file)
+
+JOBS:
+
+ctrl-z - put job into background
+jobs - prints currently running job
+bg <job-number> - put job in background
+fg <job-number> - bring job to the foreground
 %n - job number n
 %s - job whose command line starts with s
 %% - current job
 %- - previous job
 
-ps --forest - view hierarchical view of processes
-	v - virtual memory 
-	--sort - sort by field 
-	pstree - similar
-pgrep <string> - returns PIDS of processes containing string (-l to 	print process name)
-pkill = kill $(pgrep mozilla) - kills everything mozilla
-	kill -kill pid - force quit, data will be lost
-	killall - uses name instead of pid
-	skill - sends signals to command/user/tty
-		skill -STOP user_name - stop all of the users processes
-		skill -CONT user_name
-nice - Sets the priority for a process (from -20 MAX to 20 MIN priority)
-	nice -20 make - Would execute make and it would run at maximum 			priority.
-	renice - Changes the priority of an existing command
-		renice +20 2222
-	snice - snice works very similarly to skill
-		snice -10 -u root - increase the priority of all root’s processes.
-pmap - report memory map of a process (maped file)
-
 SCHEDULED COMMANDS:
 
-at - executes a command once on a particular day, at a particular time.
-	at 21:30 / at now + time /at -f shell_script now + 1 hour
+at - executes command at a particular time
+	at 21:30 / at now + time / at -f shell_script now + 1 hour
 	echo "ls -l" | at midnight
-atq - list jobs currently in queue
-atrm - Will remove a job from the ’at’ queue.
+atq - list jobs currently in 'at' queue
+atrm - remove a job from the 'at' queue
 crontab -e - schedule commands for repeating execution 
-	cron - daemon that executes scheduled commands
-	anacron - catches up with tasks next time the computer is on
+cron - daemon that executes scheduled commands
+anacron - like cron but it catches up with tasks next time the computer gets turned on
 
 SERVICES:
 	
-service - allows you to start, stop or restart a service (/etc/init.d script)
-	service -f sshd - restart the daemon sshd
-	service httpd status - get status
-	service --status-all
-You may also execute the shell script directly from /etc/init.d . Simply go to that directory
-then type ./script name.
-	restart, start, stop, status
-/etc/init.d/httpd stop = service httpd stop
-runlevel - output previous and current runlevel
-SYSTEM RUNLEVELS: RedHat / Debian
-0 Shuts down the system
-1 Administrative single-user mode
-2 Same as 3 but without networking / multiuser with X server
-3 Text mode state (ctrl+alt+F1) / User defined
-4 User defined
-5 X-window mode (ctrl+alt+F7) / User defined
-6 Reboots
-S Single user mode
+service - allows you to start, stop or restart a service (it runs a script in /etc/init.d folder)
+	-f sshd - restart the ssh server
+	httpd status - get status of apache
+	--status-all - print status of all services
+	You can also execute the shell script directly from /etc/init.d folder like: /etc/init.d/httpd stop. 
 
-===========
-MULTI-MEDIA:
-===========
+SYSTEM RUNLEVELS (RedHat/Debian):
+runlevel - output previous and current runlevel
+0 - Shuts down the system
+1 - Administrative single-user mode
+2 - Same as 3 but without networking / multiuser with X server
+3 - Text mode state (ctrl+alt+F1) / User defined
+4 - User defined
+5 - X-window mode (ctrl+alt+F7) / User defined
+6 - Reboots
+S - Single user mode
+
+==========
+MULTIMEDIA:
+==========
 
 AUDIO:
 
-cmus - music (can be controlled from outside)
+cmus - music player (can be controlled from outside)
 mplayer - movie/music player
 mpg321 - plays mp3
 ogg123 - plays ogg
 aplay - plays audio
 play - plays audio
-alsamixer - audio in out volumes
-	amixer
-arecord -f filequality -d seconds <filename>
-arecord -f cd -d numberofseconds -t raw | lame -x -r – out.mp3 - Arecord captures the audio that goes through your computer and pipes it to the lame encoder
+alsamixer - set audio level (curses)
+amixer - set audio levels (command line)
+arecord <file>  - command line audio recorder and player
+	-f <format> - set file format (cd)
+	-d <seconds> - set duration
+	-f cd -d <seconds> -t raw | lame -x -r - out.mp3 - capture audio that is playing and convert it to mp3
 id3v2 -l - lists all files tags
 sound-juicer - cd ripper
 xfburn - cd burner
@@ -697,24 +729,24 @@ xfburn - cd burner
 BITMAP:
 
 display - displays an image
-montage - Creates a montage from images
-	<input file/s> -set label '%t' <output file/s> - labels images
-convert - To convert the file format
-import - Captures screen-shots from the X server
+montage - creates a montage from images
+	<input-file/s> -set label '%t' <output-file/s> - labels images
+convert - converts file format
+import - captures screen-shots from the X server
 mogrify - edit image
 gocr - command line text recognition tool
 ocrad - command line text recognition tool
 ppmforge - creates picture of random planet or clouds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
-	-p	leave plots open after exit
-	plot file.dat - plot data from dat file
+	-p - leave plots open after exit
+	plot <file>.dat - plot data from dat file
 
 VIDEO:
 
-ffmpeg -i <fileNameIn> <fileNameOut> - Video and audio format converter. Has been replaced by:
-libav-tools: avconv - video and audio format converter
-openshot - gui movie editor (video)
-openmovieeditor - gui movie editor (video)
+ffmpeg -i <file-in> <file-out> - video and audio format converter. Has been replaced by:
+avconv - video and audio format converter (libav-tools)
+openshot - gui movie editor 
+openmovieeditor - gui movie editor 
 aview, asciiview - ASCII art image viewer and video player
 
 
@@ -733,7 +765,7 @@ BASH:
 HOME:
 ~/.Xmodmap - keyboard map
 
-ETC: ( "Edit To Configure" / "Editable Text Configuration" )
+ETC ( "Edit To Configure" / "Editable Text Configuration" ):
 /etc/mailcap - default programs for extensions 
 /etc/passwd - users 
 /etc/groups - groups 
@@ -741,32 +773,36 @@ ETC: ( "Edit To Configure" / "Editable Text Configuration" )
 /etc/fstab - Filesystam table. To mount drive at startup create folder in /media and add line like this (see man fstab for details):
 	/dev/sda1   /media/data   ntfs   user,fmask=0111,dmask=0000   0   2
 /etc/alternatives - links to default application versions (here you can change the default java jdk)
+/etc/issue - name and version of distribution
+/etc/fstab - automatic mounts are handled by configuring the file
+/etc/sudoers - lists of users and the commands they can run with sudo
 
 SERVICES:
-/etc/init/, $HOME/.init/ - init - Upstart init daemon job configuration
+/etc/init/, ~/.init/ - init - upstart init daemon job configuration
 /etc/init.d/ - folder with service scripts, that get executed at start and end
 /etc/init.d/halt - runs at the end 
-/etc/rc<NUM>.d - Startup scripts for different runlevels - links to scripts in /etc/init.d - S85httpd -> S means startup, K is for stop. (To disable service just change S for K)
+/etc/rc<level>.d - startup scripts for different runlevels - links to scripts in /etc/init.d - S85httpd -> S means startup, K is for stop. (To disable service just change S for K)
 /etc/rc.local - last initialization file executed - put your commands here
 
 /etc/init/ssh.conf - sshd config
 /etc/ssh/sshd_config - sshd config
-/etc/fstab - Automatic mounts are handled by configuring the file
-/etc/sudoers - lists of users and the commands they can run with sudo
 /etc/crontab - system-wide crontab
-/etc/cron.hourly|daily|weekly|monthly/ - links to scripts that will execute periodically. Scripts within a cron directory are run alphabetically.
+/etc/cron.hourly, /etc/cron.daily, ... - links to scripts that will execute periodically. Scripts within a cron directory are run alphabetically.
 /etc/rsyslog.conf|rsyslog.d/50-default.conf - log conf (need to restart rsyslogd after edit)
-/etc/services - list of services with their port numbers
-/etc/resolv.conf - dns information
 /etc/syslog.conf - Configuration information for syslogd 
 
-PROC / The files under the /proc show various information
-about the system:
+NETWORK:
+/etc/resolv.conf - dns information
+/etc/sysconfig/networking/devices/ifcfg-eth0 - use ifcfg to configure a particular interface
+/etc/services - list of internet services with their port numbers
+/etc/NetworkManager/NetworkManager.conf - configuration file
+
+PROC (various information about the system):
 /proc/cpuinfo - information about the CPU
-/proc/modules -  information about what kernel-modules are loaded on your system
+/proc/modules -  information about which kernel-modules are loaded on your system
 /proc/net/ - network related
-	/proc/net/route - routing table
-	netstat - Displays contents of /proc/net files
+/proc/net/route - routing table
+	netstat - displays contents of /proc/net files
 /proc/iomem - neat memory map
 /proc/partitions - partitions info
 /proc/acpi/battery/BAT1/info - battery info
@@ -779,18 +815,17 @@ USR - "Unix System Resources":
 /usr/lib/jvm - java jres and jdks
 /usr/share/man - man pages
 
-SBIN - the "system-administrator's bin file", which hosts programs that would be in /bin if they didn't have "root-only"
-access permissions.
+SBIN - the "system-administrator's bin file":
+	Hosts programs that would be in /bin if they didn't have "root-only" access permissions.
 
 VAR - "variable":
-/var/log/ - System logs in here
-/var/log/auth.log - log of logins
+/var/log/ - system logs in here
+/var/log/auth.log - logins
 /var/log/syslog - most of the rest of the logs 
 /var/spool - contains data which is awaiting some kind of later processing
-/var/log/auth.log - logins 
 
 BOOT (kernels):
-/boot/grub/menu.lst - Grub configuration file
+/boot/grub/menu.lst - grub configuration file
 
 
 ###########
@@ -799,74 +834,71 @@ BOOT (kernels):
 
 GIT MANTRA:
 git init
-git add <filename> OR git add .
+git add <file> OR git add .
 git status
-git commit -am "Commit message goes here."
--
-git clone git://github.com/USER/REPOSITORY.git - download repo (later you keep refreshing with 'git pull origin master') -> You need SSH key. If you don't want, use https://github.com/USER/REPOSITORY.git for address.
---
-GENERATE SSH KEY:
-1. Check for existing keys: cd ~/.ssh; ls -al
-2. Generate new key: ssh-keygen -t rsa -C "your_email@example.com"
-3. Add your key to the ssh-agent: ssh-add ~/.ssh/id_rsa
-4. Add your key to GitHub: copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key.
+git commit -am "<commit-message>"
 
---
+CLONE FROM GITHUB:
+git clone git://github.com/<user>/<repo>.git - download repo (later you keep refreshing with 'git pull origin master') -> You need SSH key. If you don't want, use https://github.com/<user>/<repo>.git for address.
+
+GENERATE SSH KEY:
+1. - Check for existing keys: cd ~/.ssh; ls -al
+2. - Generate new key: ssh-keygen -t rsa -C "your_email@example.com"
+3. - Add your key to the ssh-agent: ssh-add ~/.ssh/id_rsa
+4. - Add your key to GitHub: copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key.
+
 ADD TO GITHUB:
 Create remote repository on website
-git remote add origin git@github.com:/your-username/project-name.git
+git remote add origin git@github.com:/<user>/<project>.git
 git pull origin master
 git push origin master
-(git push --force)
-After your first push, you can simply type:
+after your first push, you can simply type:
 git push
 sometimes also: git push --set-upstream origin master
---
-Also useful:
-git rm --cached mylogfile.log - untrack file without deleting it.
+
+ALSO USEFUL:
+git rm --cached mylogfile.log - untrack file without deleting it
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
-sudo chown -R yourname:yourgroup * - in .git/objects
+chown -R <user>:<group> * - in .git/objects (sudo)
 git reset --hard HEAD~1 - delete last commit
-git format-patch -1 <sha> - generate patch file
-git rev-parse HEAD - get sha of head
 git reset --hard <sha> - trash the changes
 git reset HEAD^
+git format-patch -1 <sha> - generate patch file
+git rev-parse HEAD - get sha of head
 git revert
 git describe - print version and hash of HEAD
---
-Remote:
+git log --name-only --author=<name> - print changed files by commit
+git ls-files - list files
+
+REMOTE:
 git remote update - get info about state of remote
-git status -uno - check if everything up-to-date
 git remote show origin - print address of the origin
-git remote set-url origin git@github.com:my_user_name/my_repo.git - change the url of origin, ssh key needed
-git remote set-url origin https://www.github.com/my_user_name/my_repo.git - same, but withouth key
---
-Checkout:
+git remote set-url origin git@github.com:<user>/<repo>.git - change the url of origin, ssh key needed
+git remote set-url origin https://www.github.com/<user>/<repo>.git - same, but withouth key
+git status -uno - check if everything up-to-date
+
+CHECKOUT:
 git log > ../gitLog - first save log to file
 git checkout <hash> - then checkout previous versions
 git checkout head - return to head
---
-gitstats
---
-git log --name-only --author=<name> - print changed files by commit
-git ls-files - list files
---
-GITHUB md format:
+
+GITHUB MD FORMAT:
 ![Alt text](/doc/basket-stats.png?raw=true "<Description>") - insert image
---
-Bisect:
+
+BISECT:
 git bisect start
 git bisect bad - tell git that current version is bad
 git bisect good v25.0.2 - tell git the last good version you know about
 now git will checkout a version in between, so you can check it and tell:
-git bisect bad/good - this will countinue untill the first bad version is found
+git bisect bad/good - this will continue until the commit that introduced the bug is found 
 git bisect reset - exit bisect mode
 
-Tools:
+TOOLS:
 gitk - repo explorer
 gitg - a bit nicer version
 tig - text based repo explorer
+gitstats - generates stats for git repo, outputs HTML
 
 
 ###########
@@ -874,24 +906,28 @@ tig - text based repo explorer
 ###########
 
 +<linenum> - open file at line number
-alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
-ctrl-[ - escape
-gF - open file under cursor
+alt+<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
+ctrl+[ - escape
 . - execute last command again
 ; - repeat the last character-wise search
-help: 	ctrl ] - follow link
-		ctrl o - go back
-		:q     - exit help		
 \c - case insensitive search
 ? - search backward
 V - linewise visual mode
 ~ - switch case
-> - tab right 
+> - tab slection right 
+>> - tab line right
 P - paste before cursor
 x - delete character
 :%s/old/new/gc - sed, c means with conformations
+gF - open file under cursor
+K - look up word under cursor in man pages
 
-MOVEMENT
+HELP:
+ctrl+] - follow link
+ctrl+o - go back
+:q     - exit help		
+
+MOVEMENT:
 e - end of word
 E - end of WORD
 W - start of WORD
@@ -899,26 +935,27 @@ ge - end of previous word
 ),( - sentence
 {,} - paragraph
 ]],[[ - section
+:<num> - goto line number
 
-LINES
+LINES:
 0 - start of line
 ^,_ - first non-blank of line
 +,- - first non-blank of next/previous line
 Enter - first nonblank of next line
 
-SCREEN LINES
+SCREEN LINES:
 g0, g$ - start/end of screen line
 gm - middle of screen line
 gk, gj - up/down one screen line
 
-SCREENS
+PAGE UP/DOWN:
 H,M,L - go to top/middle/bottom of screen
 ctrl F,B - page up/down
 ctrl D,U - half page up/down
 ctrl E,Y - one more line at bottom/top 
 z Enter,z.,z- - reposition line with cursor at top/middle/bottom
 
-SEARCH
+SEARCH:
 *,# - search forward/backward for exact word under cursor
 g*,g# - same, but even when word is embedded
 % - find match of current brace, quote,...
@@ -926,35 +963,29 @@ fx,Fx - move cursor forward/backward to x on current line
 tx,Tx - same, but to one char before x
 ;/, - repeat/reverse last
 
-LINE NUMBERING
-numG,:num - goto line number
-
-MARKS
+MARKS:
 '" - move to position of last edit of file
 `. - move to last change in file
 `0 - position where you last exited vim
 
-INSERT MODE COMMANDS
-ctrl h - backspace
-ctrl u - delete line
-ctrl w - delete previous word
+INSERT MODE COMMANDS:
+ctrl+h - backspace
+ctrl+u - delete line
+ctrl+w - delete previous word
 
-MACROS
-qx - record characters into x
+MACROS:
+q<x> - record characters into x
 q - stop recording
-@ - execute x
+@<x> - execute x
 
-REGISTERS
+REGISTERS:
 "ayy - copy line into register a
 "ap - paste register a
 :reg - access all registers
 
-MISC
->>,<< - shift line one tab
-K - look up word under cursor in man pages
-
-SET COMMAND
+SET COMMAND:
 :set x,nox (also x!),x=value,all,x? - set x/unset x/assign x/print all values/print x
+```
 command (short)	| default	| explanation
 ----------------+-----------+-------------------------------------
 autoident (ai)	| noai		| 
@@ -968,26 +999,28 @@ tabstop= (ts)	| 8 		| tab width
 wrap			| wrap		| wrap lines
 wrapscan (ws)	| ws 		| search wraps around file
 mouse=a			|			| mouse mode (use shift when selecting to copy to clipboard)
+```
 
-EDIT COMMANDS
+
+EDIT COMMANDS:
 [n] operation [m] motion - if both n and m are specified then n x m
-c - CHANGE, d - DELETE, y - YANK 
---------------------------------
-C,D,Y - till the end of line
-cc,dd,yy - current line
-cf<x>,df<x>,yf<x> - forward up to x
-c),d),y) - sentence
-----------
+
+c, d, y - change, delete, yank 
+C, D, Y - till the end of line
+cc, dd, yy - current line
+cf<x>, df<x>, yf<x> - forward up to x
+c), d), y) - sentence
+
+~ - change case of character
 g~w - switch case of a word
 gu, gU - to lower/upper case
-----------
+
 [p - paste but match current indentation
 r - replace character
 S - substitute entire line
 x,X - delete character/delete back
 . - repeat last change
-~ - change case of character
-ctrl a,x - increment/decrement number under cursor
+ctrl+a, ctrl+x - increment/decrement number under cursor
 
 AUTOMATIC LINEBRAKE:
 :set tw=80 - set text width
@@ -1000,17 +1033,17 @@ COLORSCHEME:
 :highlight Normal ctermbg=grey - set light background
 
 SPELLCHECK:
-:set spell spelllang=en_us
+:set spell spelllang=en_us - turn spellcheck on
 :setlocal spell spelllang=en_us
-:set nospell
+:set nospell - turn off
 z= - show suggestions for misspelled word
 ]s - go to next misspelled word
 [s - go to previous misspelled word
 
 TABS:
-:tabe <filename> - open new tab
+:tabe <file> - open new tab
 gt, gT - go to next/previous tab
-ctrl + pgup/pgdn - switch tab
+ctrl+pgup/pgdn - switch tab
 vim -p - open one tab page per file
 ZZ - save and close tab (same as :wq)
 
@@ -1119,6 +1152,14 @@ go	build       compile packages and dependencies
 syntax highlight - https://github.com/jnwhiteh/vim-golang 
 	- for gedit: sudo cp /usr/share/gtksourceview-3.0/language-specs/go.lang /usr/share/gtksourceview-2.0/language-specs/
 simple ncurses - go get github.com/nsf/termbox-go
+
+PYTHON:
+INSTALLING MARKDOWN:
+git clone git://github.com/waylan/Python-Markdown.git python-markdown
+cd python-markdown
+python setup.py install
+MARKDOWN:
+python -m markdown -x markdown.extensions.tables table.txt - parse markdown containing table
 
 
 

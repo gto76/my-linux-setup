@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../scripts/generate-wtf-page "$1" "Bash Shell Builtin Commands" "3"

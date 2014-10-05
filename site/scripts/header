@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Usage: ./header <page-path> <page-title>
+# Sets pages maximum width, and prints a site header
+
+echo '<!DOCTYPE html>'
+# title
+echo -n '<head>
+<title>'
+echo -n "$2"
+echo -n '</title>
+</head>'
+# max width
+echo '<style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>'
+
+dirDepth=`echo "$1" | grep -o '/' | wc -l`
+siteDir=`echo "$1" | sed 's/[^/]//g' | sed 's/[/]/..\//g'`
+imgSrc="$siteDir"'resources/kenandritchie.png'
+wtfTop="$siteDir"'html/wtf-man.html'
+
+# Ken and Ritchie icon with link to top
+echo -n '<a href="'
+echo -n "$wtfTop"
+echo -n '" target="_blank"> 
+  <img src="'
+echo -n "$imgSrc" 
+echo '" border="0" />
+</a>'

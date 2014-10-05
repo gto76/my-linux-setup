@@ -1,6 +1,3 @@
 #!/bin/bash
 
-echo '<h2>Gnome Shortcuts</h2>'
-
-../scripts/text-to-table "$1"
-
+../scripts/generate-wtf-page "$1" "Gnome Shortcuts" "1"

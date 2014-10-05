@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Usage: generate-body [markdown file] [skip number of lines]
+# Generates html page containing table.
+
+OUT=`mktemp`
+tail -n+"$2" "$1" > $OUT
+../scripts/text-to-table "$OUT"
+rm -f "$OUT"
+

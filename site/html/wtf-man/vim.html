@@ -1,161 +1,268 @@
-<p>+<linenum> - open file at line number
-alt-<normal mode key> - escape, key !!!!!!!!!!!!!!!!!
-ctrl-[ - escape
-gF - open file under cursor
-. - execute last command again
-; - repeat the last character-wise search
-help:   ctrl ] - follow link
-        ctrl o - go back
-        :q     - exit help <br />
-c - case insensitive search
-? - search backward
-V - linewise visual mode
-~ - switch case</p>
-
-<blockquote>
-  <ul>
-<li>tab right 
-P - paste before cursor
-x - delete character
-:%s/old/new/gc - sed, c means with conformations</li>
-</ul>
-</blockquote>
-
-<p>MOVEMENT
-e - end of word
-E - end of WORD
-W - start of WORD
-ge - end of previous word
-),( - sentence
-{,} - paragraph
-]],[[ - section</p>
-
-<p>LINES
-0 - start of line
-^,_ - first non-blank of line
-+,- - first non-blank of next/previous line
-Enter - first nonblank of next line</p>
-
-<p>SCREEN LINES
-g0, g$ - start/end of screen line
-gm - middle of screen line
-gk, gj - up/down one screen line</p>
-
-<p>SCREENS
-H,M,L - go to top/middle/bottom of screen
-ctrl F,B - page up/down
-ctrl D,U - half page up/down
-ctrl E,Y - one more line at bottom/top 
-z Enter,z.,z- - reposition line with cursor at top/middle/bottom</p>
-
-<p>SEARCH
-<em>,# - search forward/backward for exact word under cursor
-g</em>,g# - same, but even when word is embedded
-% - find match of current brace, quote,...
-fx,Fx - move cursor forward/backward to x on current line
-tx,Tx - same, but to one char before x
-;/, - repeat/reverse last</p>
-
-<p>LINE NUMBERING
-numG,:num - goto line number</p>
-
-<p>MARKS
-'" - move to position of last edit of file
-<code>. - move to last change in file
-</code>0 - position where you last exited vim</p>
-
-<p>INSERT MODE COMMANDS
-ctrl h - backspace
-ctrl u - delete line
-ctrl w - delete previous word</p>
-
-<p>MACROS
-qx - record characters into x
-q - stop recording
-@ - execute x</p>
-
-<p>REGISTERS
-"ayy - copy line into register a
-"ap - paste register a
-:reg - access all registers</p>
-
-<p>MISC</p>
-
-<blockquote>
-  <blockquote>
-  <p>,&lt;&lt; - shift line one tab
-K - look up word under cursor in man pages</p>
-</blockquote>
-
-<p></blockquote></p>
-
-<p>SET COMMAND
-:set x,nox (also x!),x=value,all,x? - set x/unset x/assign x/print all values/print x
-command (short) | default   | explanation
+<!DOCTYPE html>
+<head>
+<title>Vim</title>
+</head><style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>
+<a href="../../html/wtf-man.html" target="_blank"> 
+  <img src="../../resources/kenandritchie.png" border="0" />
+</a>
+<h2>Vim</h2>
+<blockquote><table>
+<tr><td valign=top><strong>+&ltlinenum&gt</strong>						</td><td>open file at line number</td></tr>
+<tr><td valign=top><strong>alt+&ltnormal mode key&gt</strong>						</td><td>escape, key !!!!!!!!!!!!!!!!!</td></tr>
+<tr><td valign=top><strong>ctrl+[</strong>						</td><td>escape</td></tr>
+<tr><td valign=top><strong>.</strong>						</td><td>execute last command again</td></tr>
+<tr><td valign=top><strong>;</strong>						</td><td>repeat the last character-wise search</td></tr>
+<tr><td valign=top><strong>c</strong>						</td><td>case insensitive search</td></tr>
+<tr><td valign=top><strong>?</strong>						</td><td>search backward</td></tr>
+<tr><td valign=top><strong>V</strong>						</td><td>linewise visual mode</td></tr>
+<tr><td valign=top><strong>~</strong>						</td><td>switch case</td></tr>
+<tr><td valign=top><strong>&gt</strong>						</td><td>tab slection right </td></tr>
+<tr><td valign=top><strong>&gt&gt</strong>						</td><td>tab line right</td></tr>
+<tr><td valign=top><strong>P</strong>						</td><td>paste before cursor</td></tr>
+<tr><td valign=top><strong>x</strong>						</td><td>delete character</td></tr>
+<tr><td valign=top><strong>:%s/old/new/gc</strong>						</td><td>sed, c means with conformations</td></tr>
+<tr><td valign=top><strong>gF</strong>						</td><td>open file under cursor</td></tr>
+<tr><td valign=top><strong>K</strong>						</td><td>look up word under cursor in man pages</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Help</h3>
+<table>
+<tr><td valign=top><strong>ctrl+]</strong>						</td><td>follow link</td></tr>
+<tr><td valign=top><strong>ctrl+o</strong>						</td><td>go back</td></tr>
+<tr><td valign=top><strong>:q</strong>						</td><td>exit help		</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Movement</h3>
+<table>
+<tr><td valign=top><strong>e</strong>						</td><td>end of word</td></tr>
+<tr><td valign=top><strong>E</strong>						</td><td>end of WORD</td></tr>
+<tr><td valign=top><strong>W</strong>						</td><td>start of WORD</td></tr>
+<tr><td valign=top><strong>ge</strong>						</td><td>end of previous word</td></tr>
+<tr><td valign=top><strong>),(</strong>						</td><td>sentence</td></tr>
+<tr><td valign=top><strong>{,}</strong>						</td><td>paragraph</td></tr>
+<tr><td valign=top><strong>]],[[</strong>						</td><td>section</td></tr>
+<tr><td valign=top><strong>:&ltnum&gt</strong>						</td><td>goto line number</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Lines</h3>
+<table>
+<tr><td valign=top><strong>0</strong>						</td><td>start of line</td></tr>
+<tr><td valign=top><strong>^,_</strong>						</td><td>first non-blank of line</td></tr>
+<tr><td valign=top><strong>+,-</strong>						</td><td>first non-blank of next/previous line</td></tr>
+<tr><td valign=top><strong>Enter</strong>						</td><td>first nonblank of next line</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Screen Lines</h3>
+<table>
+<tr><td valign=top><strong>g0, g$</strong>						</td><td>start/end of screen line</td></tr>
+<tr><td valign=top><strong>gm</strong>						</td><td>middle of screen line</td></tr>
+<tr><td valign=top><strong>gk, gj</strong>						</td><td>up/down one screen line</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Page Up/Down</h3>
+<table>
+<tr><td valign=top><strong>H,M,L</strong>						</td><td>go to top/middle/bottom of screen</td></tr>
+<tr><td valign=top><strong>ctrl F,B</strong>						</td><td>page up/down</td></tr>
+<tr><td valign=top><strong>ctrl D,U</strong>						</td><td>half page up/down</td></tr>
+<tr><td valign=top><strong>ctrl E,Y</strong>						</td><td>one more line at bottom/top </td></tr>
+<tr><td valign=top><strong>z Enter,z.,z-</strong>						</td><td>reposition line with cursor at top/middle/bottom</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Search</h3>
+<table>
+<tr><td valign=top><strong>*,#</strong>						</td><td>search forward/backward for exact word under cursor</td></tr>
+<tr><td valign=top><strong>g*,g#</strong>						</td><td>same, but even when word is embedded</td></tr>
+<tr><td valign=top><strong>%</strong>						</td><td>find match of current brace, quote,...</td></tr>
+<tr><td valign=top><strong>fx,Fx</strong>						</td><td>move cursor forward/backward to x on current line</td></tr>
+<tr><td valign=top><strong>tx,Tx</strong>						</td><td>same, but to one char before x</td></tr>
+<tr><td valign=top><strong>;/,</strong>						</td><td>repeat/reverse last</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Marks</h3>
+<table>
+<tr><td valign=top><strong>'"</strong>						</td><td>move to position of last edit of file</td></tr>
+<tr><td valign=top><strong>`.</strong>						</td><td>move to last change in file</td></tr>
+<tr><td valign=top><strong>`0</strong>						</td><td>position where you last exited vim</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Insert Mode Commands</h3>
+<table>
+<tr><td valign=top><strong>ctrl+h</strong>						</td><td>backspace</td></tr>
+<tr><td valign=top><strong>ctrl+u</strong>						</td><td>delete line</td></tr>
+<tr><td valign=top><strong>ctrl+w</strong>						</td><td>delete previous word</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Macros</h3>
+<table>
+<tr><td valign=top><strong>q&ltx&gt</strong>						</td><td>record characters into x</td></tr>
+<tr><td valign=top><strong>q</strong>						</td><td>stop recording</td></tr>
+<tr><td valign=top><strong>@&ltx&gt</strong>						</td><td>execute x</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Registers</h3>
+<table>
+<tr><td valign=top><strong>"ayy</strong>						</td><td>copy line into register a</td></tr>
+<tr><td valign=top><strong>"ap</strong>						</td><td>paste register a</td></tr>
+<tr><td valign=top><strong>:reg</strong>						</td><td>access all registers</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Set Command</h3>
+<table>
+<tr><td valign=top><strong>:set x,nox (also x!),x=value,all,x?</strong>						</td><td>set x/unset x/assign x/print all values/print x</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<pre><code>command (short) | default   | explanation
 ----------------+-----------+-------------------------------------
-autoident (ai)  | noai      | 
+autoident (ai)  | noai      |    
 backup (bk)     | nobackup  | back file up before overwrite
 ignorecase (ic) | noic      | ignore case in search
 number (nu)     | nonu      | display line numbers
 relativenumber  | nornu     | display relative numbers
-(rnu)           |           |
+(rnu)           |           |    
 shiftwidth= (sw)| 8         | number of spaces added when identing
 tabstop= (ts)   | 8         | tab width
 wrap            | wrap      | wrap lines
 wrapscan (ws)   | ws        | search wraps around file
-mouse=a         |           | mouse mode (use shift when selecting to copy to clipboard)</p>
+</code></pre>
 
-<p>EDIT COMMANDS
-[n] operation [m] motion - if both n and m are specified then n x m</p>
+<table>
+<thead>
+<tr>
+<th>command (short)</th>
+<th>default</th>
+<th>explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>autoident (ai)</td>
+<td>noai</td>
+<td></td>
+</tr>
+<tr>
+<td>backup (bk)</td>
+<td>nobackup</td>
+<td>back file up before overwrite</td>
+</tr>
+<tr>
+<td>ignorecase (ic)</td>
+<td>noic</td>
+<td>ignore case in search</td>
+</tr>
+<tr>
+<td>number (nu)</td>
+<td>nonu</td>
+<td>display line numbers</td>
+</tr>
+<tr>
+<td>relativenumber</td>
+<td>nornu</td>
+<td>display relative numbers</td>
+</tr>
+<tr>
+<td>(rnu)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>shiftwidth= (sw)</td>
+<td>8</td>
+<td>number of spaces added when identing</td>
+</tr>
+<tr>
+<td>tabstop= (ts)</td>
+<td>8</td>
+<td>tab width</td>
+</tr>
+<tr>
+<td>wrap</td>
+<td>wrap</td>
+<td>wrap lines</td>
+</tr>
+<tr>
+<td>wrapscan (ws)</td>
+<td>ws</td>
+<td>search wraps around file</td>
+</tr>
+<tr>
+<td>mouse=a</td>
+<td></td>
+<td>mouse mode (use shift when selecting to copy to clipboard)</td>
+</tr>
+</tbody>
+</table>
 
-<h2>c - CHANGE, d - DELETE, y - YANK </h2>
 
-<p>C,D,Y - till the end of line
-cc,dd,yy - current line
-cf<x>,df<x>,yf<x> - forward up to x</p>
-
-<h2>c),d),y) - sentence</h2>
-
-<p>g~w - switch case of a word</p>
-
-<h2>gu, gU - to lower/upper case</h2>
-
-<p>[p - paste but match current indentation
-r - replace character
-S - substitute entire line
-x,X - delete character/delete back
-. - repeat last change
-~ - change case of character
-ctrl a,x - increment/decrement number under cursor</p>
-
-<p>AUTOMATIC LINEBRAKE:
-:set tw=80 - set text width
-gq - formats selected text
-:set tw=0 - stop formating</p>
-
-<p>COLORSCHEME:
-:colorscheme darkblue, torte - nice, darker
-    slate, default - less contrast
-:highlight Normal ctermbg=grey - set light background</p>
-
-<p>SPELLCHECK:
-:set spell spelllang=en<em>us
-:setlocal spell spelllang=en</em>us
-:set nospell
-z= - show suggestions for misspelled word
-]s - go to next misspelled word
-[s - go to previous misspelled word</p>
-
-<p>TABS:
-:tabe <filename> - open new tab
-gt, gT - go to next/previous tab
-ctrl + pgup/pgdn - switch tab
-vim -p - open one tab page per file
-ZZ - save and close tab (same as :wq)</p>
-
-<p>SPLITS:
-:vsp - split verticaly
-ctrl-w, direction - move to split</p>
-
-<p>AUTOCOMPLETE:
-ctrl+n - show autocomplete suggestions</p>
+<h3 align="center">Edit Commands</h3>
+<table>
+<tr><td valign=top><strong>[n] operation [m] motion</strong>						</td><td>if both n and m are specified then n x m</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>c, d, y</strong>						</td><td>change, delete, yank </td></tr>
+<tr><td valign=top><strong>C, D, Y</strong>						</td><td>till the end of line</td></tr>
+<tr><td valign=top><strong>cc, dd, yy</strong>						</td><td>current line</td></tr>
+<tr><td valign=top><strong>cf&ltx&gt, df&ltx&gt, yf&ltx&gt</strong>						</td><td>forward up to x</td></tr>
+<tr><td valign=top><strong>c), d), y)</strong>						</td><td>sentence</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>~</strong>						</td><td>change case of character</td></tr>
+<tr><td valign=top><strong>g~w</strong>						</td><td>switch case of a word</td></tr>
+<tr><td valign=top><strong>gu, gU</strong>						</td><td>to lower/upper case</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>[p</strong>						</td><td>paste but match current indentation</td></tr>
+<tr><td valign=top><strong>r</strong>						</td><td>replace character</td></tr>
+<tr><td valign=top><strong>S</strong>						</td><td>substitute entire line</td></tr>
+<tr><td valign=top><strong>x,X</strong>						</td><td>delete character/delete back</td></tr>
+<tr><td valign=top><strong>.</strong>						</td><td>repeat last change</td></tr>
+<tr><td valign=top><strong>ctrl a,x</strong>						</td><td>increment/decrement number under cursor</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Automatic Linebrake</h3>
+<table>
+<tr><td valign=top><strong>:set tw=80</strong>						</td><td>set text width</td></tr>
+<tr><td valign=top><strong>gq</strong>						</td><td>formats selected text</td></tr>
+<tr><td valign=top><strong>:set tw=0</strong>						</td><td>stop formating</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Colorscheme</h3>
+<table>
+<tr><td valign=top><strong>:colorscheme darkblue, torte</strong>						</td><td>nice, darker</td></tr>
+<tr><td></td><td><strong>	slate, default</strong> - less contrast</td></tr>
+<tr><td valign=top><strong>:highlight Normal ctermbg=grey</strong>						</td><td>set light background</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Spellcheck</h3>
+<table>
+<tr><td valign=top><strong>:set spell spelllang=en_us</strong>						</td><td>turn spellcheck on</td></tr>
+<tr><td valign=top><strong>:setlocal spell spelllang=en_us</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>:set nospell</strong>						</td><td>turn off</td></tr>
+<tr><td valign=top><strong>z=</strong>						</td><td>show suggestions for misspelled word</td></tr>
+<tr><td valign=top><strong>]s</strong>						</td><td>go to next misspelled word</td></tr>
+<tr><td valign=top><strong>[s</strong>						</td><td>go to previous misspelled word</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Tabs</h3>
+<table>
+<tr><td valign=top><strong>:tabe &ltfile&gt</strong>						</td><td>open new tab</td></tr>
+<tr><td valign=top><strong>gt, gT</strong>						</td><td>go to next/previous tab</td></tr>
+<tr><td valign=top><strong>ctrl+pgup/pgdn</strong>						</td><td>switch tab</td></tr>
+<tr><td valign=top><strong>vim</strong>						</td><td><strong> -p</strong>						 - open one tab page per file</td></tr>
+<tr><td valign=top><strong>ZZ</strong>						</td><td>save and close tab (same as :wq)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Splits</h3>
+<table>
+<tr><td valign=top><strong>:vsp</strong>						</td><td>split verticaly</td></tr>
+<tr><td valign=top><strong>ctrl-w, direction</strong>						</td><td>move to split</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Autocomplete</h3>
+<table>
+<tr><td valign=top><strong>ctrl+n</strong>						</td><td>show autocomplete suggestions</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table></blockquote>

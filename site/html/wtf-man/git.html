@@ -1,77 +1,104 @@
-<p>GIT MANTRA:
-git init
-git add <filename> OR git add .
-git status</p>
-
-<h2>git commit -am "Commit message goes here."</h2>
-
-<h2>git clone git://github.com/USER/REPOSITORY.git - download repo (later you keep refreshing with 'git pull origin master') -> You need SSH key. If you don't want, use https://github.com/USER/REPOSITORY.git for address.</h2>
-
-<p>GENERATE SSH KEY:
-1. Check for existing keys: cd ~/.ssh; ls -al
-2. Generate new key: ssh-keygen -t rsa -C "your<em>email@example.com"
-3. Add your key to the ssh-agent: ssh-add ~/.ssh/id</em>rsa
-4. Add your key to GitHub: copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key.</p>
-
-<p>--
-ADD TO GITHUB:
-Create remote repository on website
-git remote add origin git@github.com:/your-username/project-name.git
-git pull origin master
-git push origin master
-(git push --force)
-After your first push, you can simply type:
-git push</p>
-
-<h2>sometimes also: git push --set-upstream origin master</h2>
-
-<p>Also useful:
-git rm --cached mylogfile.log - untrack file without deleting it.
-git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
-git tag - list local tags
-sudo chown -R yourname:yourgroup * - in .git/objects
-git reset --hard HEAD~1 - delete last commit
-git format-patch -1 <sha> - generate patch file
-git rev-parse HEAD - get sha of head
-git reset --hard <sha> - trash the changes
-git reset HEAD^
-git revert</p>
-
-<h2>git describe - print version and hash of HEAD</h2>
-
-<p>Remote:
-git remote update - get info about state of remote
-git status -uno - check if everything up-to-date
-git remote show origin - print address of the origin
-git remote set-url origin git@github.com:my<em>user</em>name/my_repo.git - change the url of origin, ssh key needed</p>
-
-<h2>git remote set-url origin https://www.github.com/my<em>user</em>name/my_repo.git - same, but withouth key</h2>
-
-<p>Checkout:
-git log > ../gitLog - first save log to file
-git checkout <hash> - then checkout previous versions</p>
-
-<h2>git checkout head - return to head</h2>
-
-<h2>gitstats</h2>
-
-<p>git log --name-only --author=<name> - print changed files by commit</p>
-
-<h2>git ls-files - list files</h2>
-
-<p>GITHUB md format:</p>
-
-<h2><img src="/doc/basket-stats.png?raw=true" alt="Alt text" title="<Description>" /> - insert image</h2>
-
-<p>Bisect:
-git bisect start
-git bisect bad - tell git that current version is bad
-git bisect good v25.0.2 - tell git the last good version you know about
-now git will checkout a version in between, so you can check it and tell:
-git bisect bad/good - this will countinue untill the first bad version is found
-git bisect reset - exit bisect mode</p>
-
-<p>Tools:
-gitk - repo explorer
-gitg - a bit nicer version
-tig - text based repo explorer</p>
+<!DOCTYPE html>
+<head>
+<title>Git</title>
+</head><style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>
+<a href="../../html/wtf-man.html" target="_blank"> 
+  <img src="../../resources/kenandritchie.png" border="0" />
+</a>
+<h2>Git</h2>
+<blockquote><table>
+</table>
+<h3 align="center">Git Mantra</h3>
+<table>
+<tr><td valign=top><strong>git init</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git add &ltfile&gt OR git add .</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git status</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git commit -am "&ltcommit-message&gt"</strong>							</td><td></td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Clone From Github</h3>
+<table>
+<tr><td valign=top><strong>git clone git://github.com/&ltuser&gt/&ltrepo&gt.git</strong>						</td><td>download repo (later you keep refreshing with 'git pull origin master') -&gt You need SSH key. If you don't want, use https://github.com/&ltuser&gt/&ltrepo&gt.git for address.</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Generate Ssh Key</h3>
+<table>
+<tr><td valign=top><strong>1.</strong>						</td><td>Check for existing keys: cd ~/.ssh; ls -al</td></tr>
+<tr><td valign=top><strong>2.</strong>						</td><td>Generate new key: ssh-keygen -t rsa -C "your_email@example.com"</td></tr>
+<tr><td valign=top><strong>3.</strong>						</td><td>Add your key to the ssh-agent: ssh-add ~/.ssh/id_rsa</td></tr>
+<tr><td valign=top><strong>4.</strong>						</td><td>Add your key to GitHub: copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings &gt SSH Keys &gt Add SSH key.</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Add To Github</h3>
+<table>
+<tr><td valign=top><strong>Create remote repository on website</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git remote add origin git@github.com:/&ltuser&gt/&ltproject&gt.git</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git pull origin master</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git push origin master</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>after your first push, you can simply type:</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git push</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>sometimes also: git push --set-upstream origin master</strong>							</td><td></td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Also Useful</h3>
+<table>
+<tr><td valign=top><strong>git rm</strong>						</td><td><strong> --cached mylogfile.log</strong>						 - untrack file without deleting it</td></tr>
+<tr><td valign=top><strong>git tag</strong>						</td><td><strong> -a 0.9.1 -m "Version 0.9.1 release"</strong>						 - tag latest commit</td></tr>
+<tr><td valign=top><strong>git tag</strong>						</td><td>list local tags</td></tr>
+<tr><td valign=top><strong>chown</strong>						</td><td><strong> -R &ltuser&gt:&ltgroup&gt *</strong>						 - in .git/objects (sudo)</td></tr>
+<tr><td valign=top><strong>git reset</strong>						</td><td><strong> --hard HEAD~1</strong>						 - delete last commit</td></tr>
+<tr><td valign=top><strong>git reset</strong>						</td><td><strong> --hard &ltsha&gt</strong>						 - trash the changes</td></tr>
+<tr><td valign=top><strong>git reset HEAD^</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git format-patch</strong>						</td><td><strong> -1 &ltsha&gt</strong>						 - generate patch file</td></tr>
+<tr><td valign=top><strong>git rev-parse HEAD</strong>						</td><td>get sha of head</td></tr>
+<tr><td valign=top><strong>git revert</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git describe</strong>						</td><td>print version and hash of HEAD</td></tr>
+<tr><td valign=top><strong>git log</strong>						</td><td><strong> --name-only --author=&ltname&gt</strong>						 - print changed files by commit</td></tr>
+<tr><td valign=top><strong>git ls-files</strong>						</td><td>list files</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Remote</h3>
+<table>
+<tr><td valign=top><strong>git remote update</strong>						</td><td>get info about state of remote</td></tr>
+<tr><td valign=top><strong>git remote show origin</strong>						</td><td>print address of the origin</td></tr>
+<tr><td valign=top><strong>git remote set-url origin git@github.com:&ltuser&gt/&ltrepo&gt.git</strong>						</td><td>change the url of origin, ssh key needed</td></tr>
+<tr><td valign=top><strong>git remote set-url origin https://www.github.com/&ltuser&gt/&ltrepo&gt.git</strong>						</td><td>same, but withouth key</td></tr>
+<tr><td valign=top><strong>git status</strong>						</td><td><strong> -uno</strong>						 - check if everything up-to-date</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Checkout</h3>
+<table>
+<tr><td valign=top><strong>git log &gt ../gitLog</strong>						</td><td>first save log to file</td></tr>
+<tr><td valign=top><strong>git checkout &lthash&gt</strong>						</td><td>then checkout previous versions</td></tr>
+<tr><td valign=top><strong>git checkout head</strong>						</td><td>return to head</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Github Md Format</h3>
+<table>
+<tr><td valign=top><strong>![Alt text](/doc/basket-stats.png?raw=true "&ltDescription&gt")</strong>						</td><td>insert image</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Bisect</h3>
+<table>
+<tr><td valign=top><strong>git bisect start</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git bisect bad</strong>						</td><td>tell git that current version is bad</td></tr>
+<tr><td valign=top><strong>git bisect good v25.0.2</strong>						</td><td>tell git the last good version you know about</td></tr>
+<tr><td valign=top><strong>now git will checkout a version in between, so you can check it and tell:</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>git bisect bad/good</strong>						</td><td>this will continue until the commit that introduced the bug is found </td></tr>
+<tr><td valign=top><strong>git bisect reset</strong>						</td><td>exit bisect mode</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Tools</h3>
+<table>
+<tr><td valign=top><strong>gitk</strong>						</td><td>repo explorer</td></tr>
+<tr><td valign=top><strong>gitg</strong>						</td><td>a bit nicer version</td></tr>
+<tr><td valign=top><strong>tig</strong>						</td><td>text based repo explorer</td></tr>
+<tr><td valign=top><strong>gitstats</strong>						</td><td>generates stats for git repo, outputs HTML</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table></blockquote>

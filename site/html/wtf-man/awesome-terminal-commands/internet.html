@@ -1,55 +1,77 @@
-<h1>INTERNET</h1>
-
-<p>lynx - web browser 
-    -cmd<em>log=FILENAME - write keystrokes to script
-    -cmd</em>script=FILENAME - read keystrokes from script
-    -syslog-urls - log requested URLs with syslog.
-    -Press a to save the address of a document or link to a (Netscape-alike) bookmark file, by default ~/lynx_bookmarks.html. You can open this in a different browser, it's just HTML.
-    -l Add the current link to your bookmark file 
-    ctrl+n - scroll down two lines
-    ctrl+p - scroll up two lines
-    -dumb - prints txt to stdout (-crawl - turn numbers off)
-    -source - prints html to stdout
-    o - options (you can select vim mode)
-    ctrl p - previous line
-    crrl n - next line
-elinks - web browser (looks better)
-mutt - mail client
-sftp - secure ftp
-sshd - (openssh-server) ssh server deamon
-    /etc/init.d/ssh restart - sshd restart
-    ssh-keygen -t rsa -C "email address" - generate rsa key pair
-    ~/.ssh - location for your keys
-    CYGWIN sshd - name of the service on windows
-scp Desktop/url.txt yatri@192.168.1.50:~/Desktop/url.txt - copy file to remote comp, (ssh)
-ssh [user]@[address] "mpg321 -" &lt; [file].mp3 - stream audio over ssh
-wget - download files from WWW
-    -O - specify output file
-    -c - continue downloading unfinished file. Can also use wildcards, but use single quotes around url. 
-    -r -l1 --no-parent -A.gif - recursively to the depth of one ignoring references to the parent directory and all gifs.
-    curl - similar
-    "-qO -" - writes to standard output + quiet 
-    -i- urls specified by standard input
-transmissioncli - torrent terminal client (-d download limit, -u upload (kB/s))
-youtube-dl - download from youtube
-noip2 - dynamic dns update client
-rdesktop - Remote Desktop Protocol client
-tin, nn - usenet client
-nrss - rss feed reader</p>
-
-<p>HACKING:</p>
-
-<p>nmap -sP 192.168.2.1-3 - network scanning
-    nmap 192.168.0.3 -p100-139 - port scanning
-    sudo nmap -O 192.168.0.3 - scanning os
-tcpdump - sniffer (Show network traffic), sudo
-ettercap - Multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
-driftnet - Picks out and displays images from network traffic
-kismet - Wireless 802.11b monitoring tool
-aircrack-ng - wireless WEP/WPA cracking utilities
-Cain &amp; Abel - password recovery tool for Microsoft Operating Systems
-dnsniff - warious hacking tools: 
-    arpspoof - for man in the middle attack
-    dsniff - password sniffer for several protocols, ...
-ip link set eth0 promisc on - set network inerface to promiscuous mode
-iip link set eth0 multicast off - set multicast off</p>
+<!DOCTYPE html>
+<head>
+<title>Internet Tools</title>
+</head><style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>
+<a href="../../../html/wtf-man.html" target="_blank"> 
+  <img src="../../../resources/kenandritchie.png" border="0" />
+</a>
+<h2>Internet Tools</h2>
+<blockquote><table>
+<tr><td valign=top><strong>mutt</strong>						</td><td>mail client</td></tr>
+<tr><td valign=top><strong>sftp</strong>						</td><td>secure ftp</td></tr>
+<tr><td valign=top><strong>sshd</strong>						</td><td>(openssh-server) ssh server deamon, on Windows service is named 'CYGWIN sshd'</td></tr>
+<tr><td valign=top><strong>/etc/init.d/ssh	</strong>					</td><td><strong>restart</strong>					- restart sshd (ssh deamon) (sudo)</td></tr>
+<tr><td valign=top><strong>ssh-keygen</strong>						</td><td><strong> -t rsa -C &ltemail&gt</strong>						 - generate rsa key pair, keys are stored in ~/.ssh</td></tr>
+<tr><td valign=top><strong>ssh</strong>						</td><td>SSH client</td></tr>
+<tr><td></td><td><strong>	&ltuser&gt@&ltaddress&gt "mpg321 -" &lt &ltfile&gt.mp3</strong> - stream audio over ssh</td></tr>
+<tr><td valign=top><strong>scp	</strong>					</td><td><strong>&ltlocal-file&gt &ltuser&gt@&lthost&gt:~&ltremote-file&gt</strong>					- securely copy files over network</td></tr>
+<tr><td valign=top><strong>wget</strong>						</td><td>download files from WWW</td></tr>
+<tr><td></td><td><strong>	-O</strong> - specify output file</td></tr>
+<tr><td></td><td><strong>	-c</strong> - continue downloading unfinished file. Can also use wildcards, but use single quotes around url. </td></tr>
+<tr><td></td><td><strong>	-r -l1 --no-parent -A.gif</strong> - recursively to the depth of one ignoring references to the parent directory and all gifs.</td></tr>
+<tr><td></td><td><strong>	curl</strong> - similar</td></tr>
+<tr><td></td><td><strong>	"-qO -"</strong> - writes to standard output + quiet </td></tr>
+<tr><td></td><td><strong>	-i</strong> - urls specified by standard input</td></tr>
+<tr><td valign=top><strong>transmissioncli</strong>						</td><td>torrent terminal client </td></tr>
+<tr><td></td><td><strong>	-d</strong> - download limit (kB/s)</td></tr>
+<tr><td></td><td><strong>	-u</strong> - upload limit </td></tr>
+<tr><td valign=top><strong>youtube-dl</strong>						</td><td>download from youtube</td></tr>
+<tr><td valign=top><strong>noip2</strong>						</td><td>dynamic dns update client</td></tr>
+<tr><td valign=top><strong>rdesktop</strong>						</td><td>Remote Desktop Protocol client</td></tr>
+<tr><td valign=top><strong>tin, nn</strong>						</td><td>usenet client</td></tr>
+<tr><td valign=top><strong>nrss</strong>						</td><td>rss feed reader</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Browsers</h3>
+<table>
+<tr><td valign=top><strong>lynx</strong>						</td><td>terminal web browser </td></tr>
+<tr><td></td><td><strong>	-cmd_log=&ltfile&gt</strong> - write keystrokes to script</td></tr>
+<tr><td></td><td><strong>	-cmd_script=&ltfile&gt</strong> - read keystrokes from script</td></tr>
+<tr><td></td><td><strong>	-syslog-urls</strong> - log requested URLs with syslog.</td></tr>
+<tr><td></td><td><strong>	-dumb</strong> - prints txt to stdout </td></tr>
+<tr><td></td><td><strong>	-crawl</strong> - same, turns numbers off</td></tr>
+<tr><td></td><td><strong>	-source</strong> - prints html to stdout</td></tr>
+<tr><td></td><td><strong>	-l</strong> - add the current link to your bookmark file </td></tr>
+<tr><td></td><td><strong>	a</strong> - save the address of a document or link to a bookmark file, by default ~/lynx_bookmarks.html</td></tr>
+<tr><td></td><td><strong>	o</strong> - options (you can select vim mode)</td></tr>
+<tr><td></td><td><strong>	ctrl+n</strong> - scroll down two lines</td></tr>
+<tr><td></td><td><strong>	ctrl+p</strong> - scroll up two lines</td></tr>
+<tr><td></td><td><strong>	ctrl+p</strong> - previous line</td></tr>
+<tr><td></td><td><strong>	crrl+n</strong> - next line</td></tr>
+<tr><td valign=top><strong>elinks</strong>						</td><td>another web browser (has menus)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Hacking</h3>
+<table>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>nmap</strong>						</td><td><strong> -sP 192.168.1.1-3</strong>						 - network scanning</td></tr>
+<tr><td></td><td><strong>	192.168.1.3 -p100-139</strong> - port scanning</td></tr>
+<tr><td></td><td><strong>	-O 192.168.0.3</strong> - scanning os (sudo)</td></tr>
+<tr><td valign=top><strong>tcpdump</strong>						</td><td>sniffer (show network traffic) (sudo)</td></tr>
+<tr><td valign=top><strong>ettercap</strong>						</td><td>multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)</td></tr>
+<tr><td valign=top><strong>driftnet</strong>						</td><td>picks out and displays images from network traffic</td></tr>
+<tr><td valign=top><strong>kismet</strong>						</td><td>Wireless 802.11b monitoring tool</td></tr>
+<tr><td valign=top><strong>aircrack-ng</strong>						</td><td>wireless WEP/WPA cracking utilities</td></tr>
+<tr><td valign=top><strong>Cain & Abel</strong>						</td><td>password recovery tool for Microsoft Operating Systems</td></tr>
+<tr><td valign=top><strong>dnsniff</strong>						</td><td>warious hacking tools: </td></tr>
+<tr><td></td><td><strong>	arpspoof</strong> - for man in the middle attack</td></tr>
+<tr><td></td><td><strong>	dsniff</strong> - password sniffer for several protocols, ...</td></tr>
+<tr><td valign=top><strong>ip link set eth0 	</strong>					</td><td><strong>promisc on</strong>					- set network inerface to promiscuous mode</td></tr>
+<tr><td></td><td><strong>				 	multicast off</strong> - set multicast off</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table></blockquote>

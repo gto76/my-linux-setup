@@ -12,8 +12,9 @@
 # 5. (tab)	-<OPTION> - <EXPLANATION>
 # 6. (tab)	<PARAMETERS> - <EXPLANATION>
 # 7. (tab)	<EXPLANATION>
-# 8. <HEADING>
+# 8. <HEADING>:
 # 9. <COMMAND>
+# 10. <COMMAND> -<OPTION>
 
 i=0
 
@@ -30,13 +31,12 @@ while read line; do
 	# First convert all < to &lt and > to &gt
 	line=`echo "$line" | sed 's/</\&lt/g' | sed 's/>/\&gt/g'`
 
-	# 8. Line contains a heading
-	if [[ -n `echo "$line" | grep '^[A-Z]'` ]]; then
+	# 8. Line contains a heading (starts with uppercase, end with ':')
+	if [[ -n `echo "$line" | grep '^[A-Z].*:$'` ]]; then
+		# convert to title case
 		line=`echo "$line" | \
-				grep -o '^.'``echo "$line" | \
-				sed 's/^.//' | \
-				tr [A-Z] [a-z] | \
-				tr -d ':'`
+				tr -d ':' | \
+				sed -e 's/.*/\L&/' -e 's/[a-z]*/\u&/g'`
 		echo '</table>'
 		echo "<h3 align=\"center\">$line</h3>"
 		echo '<table>'
@@ -66,6 +66,12 @@ while read line; do
 			else
 				optn=`echo "$expl" | grep -oP '^.* - +' | sed 's/ *- *$//'`
 				expl=`echo "$expl" | grep -o ' - .*$'`
+				# 10. and there is no explanation. 
+				if [[ -z "$expl" ]]; then
+					echo "<tr><td valign=top><strong>$line</strong>\
+							</td><td></td></tr>"
+					continue
+				fi
 				echo "<tr><td valign=top><strong>$name</strong>\
 						</td><td><strong>$optn</strong>\
 						$expl</td></tr>"

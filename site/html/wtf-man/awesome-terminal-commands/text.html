@@ -15,102 +15,102 @@ html {
 </table>
 <h3 align="center">Print</h3>
 <table>
-<tr><td valign=top><strong>tail</strong>						</td><td><strong> -f</strong>						 - do not stop printing</td></tr>
-<tr><td></td><td><strong>	-n +&ltline-number&gt</strong> - start at line number</td></tr>
-<tr><td valign=top><strong>cat</strong>						</td><td><strong> -n</strong>						 - number all lines</td></tr>
-<tr><td></td><td><strong>	-nl</strong> - similar</td></tr>
-<tr><td></td><td><strong>	&gt&gt file</strong> - simplest text editor (great for pasting)</td></tr>
-<tr><td valign=top><strong>less  	</strong>					</td><td><strong>&&ltphrase&gt</strong>					- display only lines with</td></tr>
-<tr><td></td><td><strong>		-N</strong> - show line numbers</td></tr>
-<tr><td></td><td><strong>		-~</strong> - do not show ~ after EOF</td></tr>
-<tr><td></td><td><strong>		+G</strong> - tells less to start at the end of the file</td></tr>
-<tr><td></td><td><strong>		-F</strong> - or --quit-if-one-screen</td></tr>
-<tr><td></td><td><strong>		v</strong> - opens editor defined in $VISUAL or $EDITOR</td></tr>
-<tr><td></td><td><strong>		:n</strong> - examine the next file</td></tr>
-<tr><td></td><td><strong>		&lt,&gt</strong> - go to home, end</td></tr>
+<tr><td valign=top><strong>tail</strong>						</td><td style="width:15px"></td><td><strong> -f</strong>						 - do not stop printing</td></tr>
+<tr><td></td><td></td><td><strong>	-n +&ltline-number&gt</strong> - start at line number</td></tr>
+<tr><td valign=top><strong>cat</strong>						</td><td style="width:15px"></td><td><strong> -n</strong>						 - number all lines</td></tr>
+<tr><td></td><td></td><td><strong>	-nl</strong> - similar</td></tr>
+<tr><td></td><td></td><td><strong>	&gt&gt file</strong> - simplest text editor (great for pasting)</td></tr>
+<tr><td valign=top><strong>less  	</strong>					</td><td style="width:15px"></td><td><strong>&&ltphrase&gt</strong>					- display only lines with</td></tr>
+<tr><td></td><td></td><td><strong>		-N</strong> - show line numbers</td></tr>
+<tr><td></td><td></td><td><strong>		-~</strong> - do not show ~ after EOF</td></tr>
+<tr><td></td><td></td><td><strong>		+G</strong> - tells less to start at the end of the file</td></tr>
+<tr><td></td><td></td><td><strong>		-F</strong> - or --quit-if-one-screen</td></tr>
+<tr><td></td><td></td><td><strong>		v</strong> - opens editor defined in $VISUAL or $EDITOR</td></tr>
+<tr><td></td><td></td><td><strong>		:n</strong> - examine the next file</td></tr>
+<tr><td></td><td></td><td><strong>		&lt,&gt</strong> - go to home, end</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Edit</h3>
 <table>
-<tr><td valign=top><strong>tr &ltfrom&gt &ltto&gt</strong>						</td><td>translate or delete characters (-d for delete)</td></tr>
-<tr><td valign=top><strong>cut &ltfilename&gt</strong>						</td><td>remove sections from each line of files</td></tr>
-<tr><td></td><td><strong>		-d ':' -f 1,7 /etc/passwd</strong> - only show the username and the shell</td></tr>
-<tr><td valign=top><strong>sort</strong>						</td><td>sorts lines</td></tr>
-<tr><td></td><td><strong>	-u</strong> - uniq, deletes duplicates</td></tr>
-<tr><td></td><td><strong>	-t</strong> - set delimiter for fields (default is space)</td></tr>
-<tr><td></td><td><strong>	-k</strong> - select by which field to sort </td></tr>
-<tr><td valign=top><strong>uniq</strong>						</td><td>removes adjacent duplicates</td></tr>
-<tr><td></td><td><strong>	-d</strong> - intersection</td></tr>
-<tr><td></td><td><strong>	-u</strong> - difference</td></tr>
-<tr><td valign=top><strong>column</strong>						</td><td>columnate text</td></tr>
-<tr><td></td><td><strong>	t</strong> - create a table</td></tr>
-<tr><td valign=top><strong>shuf</strong>						</td><td>shuffle input lines</td></tr>
-<tr><td valign=top><strong>tac</strong>						</td><td>concatenate and print files in reverse (reverse cat)</td></tr>
-<tr><td valign=top><strong>join</strong>						</td><td>join lines of two files on a common field</td></tr>
-<tr><td valign=top><strong>colrm &ltfrom &ltto&gt&gt</strong>						</td><td>removes columns</td></tr>
-<tr><td valign=top><strong>seq &ltnumber&gt</strong>						</td><td>output numbers from 1 to number</td></tr>
-<tr><td valign=top><strong>ispell/aspell</strong>						</td><td>interactive spell checker</td></tr>
-<tr><td valign=top><strong>basename &ltpath&gt</strong>						</td><td>strip directory from path</td></tr>
-<tr><td></td><td><strong>		-s &lt.suffix&gt</strong> - also strip suffix</td></tr>
-<tr><td valign=top><strong>dirname &ltpath&gt</strong>						</td><td>strip last component from path</td></tr>
-<tr><td valign=top><strong>fmt</strong>						</td><td>produce roughly uniform line lengths</td></tr>
-<tr><td valign=top><strong>fold</strong>						</td><td>wrap each input line to fit in specified width</td></tr>
-<tr><td valign=top><strong>paste</strong>						</td><td>glue two documents side by side</td></tr>
-<tr><td valign=top><strong>sed	</strong>					</td><td><strong>'s///g'</strong>					- substitute every occurrence in line, not just the first one</td></tr>
-<tr><td></td><td><strong>	's///I'</strong> - ignore case</td></tr>
-<tr><td></td><td><strong>	-r</strong> - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis</td></tr>
-<tr><td valign=top><strong>expand</strong>						</td><td>convert tabs to spaces</td></tr>
-<tr><td></td><td><strong>	-t &ltnumber&gt</strong> - set number of spaces (default is 8)</td></tr>
+<tr><td valign=top><strong>tr &ltfrom&gt &ltto&gt</strong>						</td><td style="width:15px"></td><td>translate or delete characters (-d for delete)</td></tr>
+<tr><td valign=top><strong>cut &ltfilename&gt</strong>						</td><td style="width:15px"></td><td>remove sections from each line of files</td></tr>
+<tr><td></td><td></td><td><strong>		-d ':' -f 1,7 /etc/passwd</strong> - only show the username and the shell</td></tr>
+<tr><td valign=top><strong>sort</strong>						</td><td style="width:15px"></td><td>sorts lines</td></tr>
+<tr><td></td><td></td><td><strong>	-u</strong> - uniq, deletes duplicates</td></tr>
+<tr><td></td><td></td><td><strong>	-t</strong> - set delimiter for fields (default is space)</td></tr>
+<tr><td></td><td></td><td><strong>	-k</strong> - select by which field to sort </td></tr>
+<tr><td valign=top><strong>uniq</strong>						</td><td style="width:15px"></td><td>removes adjacent duplicates</td></tr>
+<tr><td></td><td></td><td><strong>	-d</strong> - intersection</td></tr>
+<tr><td></td><td></td><td><strong>	-u</strong> - difference</td></tr>
+<tr><td valign=top><strong>column</strong>						</td><td style="width:15px"></td><td>columnate text</td></tr>
+<tr><td></td><td></td><td><strong>	t</strong> - create a table</td></tr>
+<tr><td valign=top><strong>shuf</strong>						</td><td style="width:15px"></td><td>shuffle input lines</td></tr>
+<tr><td valign=top><strong>tac</strong>						</td><td style="width:15px"></td><td>concatenate and print files in reverse (reverse cat)</td></tr>
+<tr><td valign=top><strong>join</strong>						</td><td style="width:15px"></td><td>join lines of two files on a common field</td></tr>
+<tr><td valign=top><strong>colrm &ltfrom &ltto&gt&gt</strong>						</td><td style="width:15px"></td><td>removes columns</td></tr>
+<tr><td valign=top><strong>seq &ltnumber&gt</strong>						</td><td style="width:15px"></td><td>output numbers from 1 to number</td></tr>
+<tr><td valign=top><strong>ispell/aspell</strong>						</td><td style="width:15px"></td><td>interactive spell checker</td></tr>
+<tr><td valign=top><strong>basename &ltpath&gt</strong>						</td><td style="width:15px"></td><td>strip directory from path</td></tr>
+<tr><td></td><td></td><td><strong>		-s &lt.suffix&gt</strong> - also strip suffix</td></tr>
+<tr><td valign=top><strong>dirname &ltpath&gt</strong>						</td><td style="width:15px"></td><td>strip last component from path</td></tr>
+<tr><td valign=top><strong>fmt</strong>						</td><td style="width:15px"></td><td>produce roughly uniform line lengths</td></tr>
+<tr><td valign=top><strong>fold</strong>						</td><td style="width:15px"></td><td>wrap each input line to fit in specified width</td></tr>
+<tr><td valign=top><strong>paste</strong>						</td><td style="width:15px"></td><td>glue two documents side by side</td></tr>
+<tr><td valign=top><strong>sed	</strong>					</td><td style="width:15px"></td><td><strong>'s///g'</strong>					- substitute every occurrence in line, not just the first one</td></tr>
+<tr><td></td><td></td><td><strong>	's///I'</strong> - ignore case</td></tr>
+<tr><td></td><td></td><td><strong>	-r</strong> - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis</td></tr>
+<tr><td valign=top><strong>expand</strong>						</td><td style="width:15px"></td><td>convert tabs to spaces</td></tr>
+<tr><td></td><td></td><td><strong>	-t &ltnumber&gt</strong> - set number of spaces (default is 8)</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Diff</h3>
 <table>
-<tr><td valign=top><strong>diff</strong>						</td><td><strong> -u &ltfiles&gt</strong>						 - unified format</td></tr>
-<tr><td valign=top><strong>diff</strong>						</td><td><strong> --brief -r</strong>						 - commpare two directory trees</td></tr>
-<tr><td valign=top><strong>comm</strong>						</td><td>compare two sorted files line by line</td></tr>
-<tr><td valign=top><strong>sdiff</strong>						</td><td>two files side by side</td></tr>
-<tr><td valign=top><strong>patch</strong>						</td><td>apply a diff file to original</td></tr>
-<tr><td></td><td><strong>	patch &lt patch.diff</strong> - apply patch</td></tr>
-<tr><td></td><td><strong>	diff -u &ltold-file&gt &ltnew-file&gt &gt patch.diff</strong> - create patch</td></tr>
+<tr><td valign=top><strong>diff</strong>						</td><td style="width:15px"></td><td><strong> -u &ltfiles&gt</strong>						 - unified format</td></tr>
+<tr><td valign=top><strong>diff</strong>						</td><td style="width:15px"></td><td><strong> --brief -r</strong>						 - commpare two directory trees</td></tr>
+<tr><td valign=top><strong>comm</strong>						</td><td style="width:15px"></td><td>compare two sorted files line by line</td></tr>
+<tr><td valign=top><strong>sdiff</strong>						</td><td style="width:15px"></td><td>two files side by side</td></tr>
+<tr><td valign=top><strong>patch</strong>						</td><td style="width:15px"></td><td>apply a diff file to original</td></tr>
+<tr><td></td><td></td><td><strong>	patch &lt patch.diff</strong> - apply patch</td></tr>
+<tr><td></td><td></td><td><strong>	diff -u &ltold-file&gt &ltnew-file&gt &gt patch.diff</strong> - create patch</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Search</h3>
 <table>
-<tr><td valign=top><strong>grep</strong>						</td><td><strong> -v</strong>						 - inverse</td></tr>
-<tr><td></td><td><strong>	-n</strong> - line numbers </td></tr>
-<tr><td></td><td><strong>	-w</strong> - whole word </td></tr>
-<tr><td></td><td><strong>	-A&ltx&gt | -B&ltx&gt</strong> - x lines after or before</td></tr>
-<tr><td></td><td><strong>	-r</strong> - recursive </td></tr>
-<tr><td></td><td><strong>	-o, --only-matching</strong> - print only matching part</td></tr>
-<tr><td></td><td><strong>	-P</strong> - perl notation (if you need t, + or .*? [? meaning non greedy]!!!!) </td></tr>
-<tr><td></td><td><strong>	-i</strong> - ignore case </td></tr>
-<tr><td></td><td><strong>	-I</strong> - do not process binary files </td></tr>
-<tr><td></td><td><strong>	-l</strong> - just print files with matches </td></tr>
-<tr><td></td><td><strong>	-L</strong> - just print files wihouth matches</td></tr>
-<tr><td></td><td><strong>	-e &ltpattern&gt</strong> - specify pattern (needed if it starts with -!!!!!!!)</td></tr>
-<tr><td></td><td><strong>	| wc -l</strong> - count occurrences</td></tr>
-<tr><td valign=top><strong>look</strong>						</td><td>display lines beginning with a given string</td></tr>
-<tr><td valign=top><strong>strings</strong>						</td><td>print all text parts of binary file</td></tr>
+<tr><td valign=top><strong>grep</strong>						</td><td style="width:15px"></td><td><strong> -v</strong>						 - inverse</td></tr>
+<tr><td></td><td></td><td><strong>	-n</strong> - line numbers </td></tr>
+<tr><td></td><td></td><td><strong>	-w</strong> - whole word </td></tr>
+<tr><td></td><td></td><td><strong>	-A&ltx&gt | -B&ltx&gt</strong> - x lines after or before</td></tr>
+<tr><td></td><td></td><td><strong>	-r</strong> - recursive </td></tr>
+<tr><td></td><td></td><td><strong>	-o, --only-matching</strong> - print only matching part</td></tr>
+<tr><td></td><td></td><td><strong>	-P</strong> - perl notation (if you need \t, + or .*? [? meaning non greedy]!!!!) </td></tr>
+<tr><td></td><td></td><td><strong>	-i</strong> - ignore case </td></tr>
+<tr><td></td><td></td><td><strong>	-I</strong> - do not process binary files </td></tr>
+<tr><td></td><td></td><td><strong>	-l</strong> - just print files with matches </td></tr>
+<tr><td></td><td></td><td><strong>	-L</strong> - just print files wihouth matches</td></tr>
+<tr><td></td><td></td><td><strong>	-e &ltpattern&gt</strong> - specify pattern (needed if it starts with -!!!!!!!)</td></tr>
+<tr><td></td><td></td><td><strong>	| wc -l</strong> - count occurrences</td></tr>
+<tr><td valign=top><strong>look</strong>						</td><td style="width:15px"></td><td>display lines beginning with a given string</td></tr>
+<tr><td valign=top><strong>strings</strong>						</td><td style="width:15px"></td><td>print all text parts of binary file</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Convert</h3>
 <table>
-<tr><td valign=top><strong>enscript</strong>						</td><td>Converts text files to postscript, rtf, HTML</td></tr>
-<tr><td valign=top><strong>gs</strong>						</td><td>ghostscript: postscript and PDF language interpreter and previewer</td></tr>
-<tr><td valign=top><strong>pdftohtml</strong>						</td><td>pdf to html</td></tr>
-<tr><td valign=top><strong>pdftotext</strong>						</td><td>pdf to text</td></tr>
-<tr><td valign=top><strong>libreoffice</strong>						</td><td>new openoffice</td></tr>
-<tr><td valign=top><strong>figlet</strong>						</td><td>display large characters made up of ordinary screen characters (ascii art)</td></tr>
-<tr><td valign=top><strong>toilet</strong>						</td><td>similar (ascii art)</td></tr>
+<tr><td valign=top><strong>enscript</strong>						</td><td style="width:15px"></td><td>Converts text files to postscript, rtf, HTML</td></tr>
+<tr><td valign=top><strong>gs</strong>						</td><td style="width:15px"></td><td>ghostscript: postscript and PDF language interpreter and previewer</td></tr>
+<tr><td valign=top><strong>pdftohtml</strong>						</td><td style="width:15px"></td><td>pdf to html</td></tr>
+<tr><td valign=top><strong>pdftotext</strong>						</td><td style="width:15px"></td><td>pdf to text</td></tr>
+<tr><td valign=top><strong>libreoffice</strong>						</td><td style="width:15px"></td><td>new openoffice</td></tr>
+<tr><td valign=top><strong>figlet</strong>						</td><td style="width:15px"></td><td>display large characters made up of ordinary screen characters (ascii art)</td></tr>
+<tr><td valign=top><strong>toilet</strong>						</td><td style="width:15px"></td><td>similar (ascii art)</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Editors</h3>
 <table>
-<tr><td valign=top><strong>nano</strong>						</td><td>/etc/nanorc &gt nano config</td></tr>
-<tr><td></td><td>		/usr/share/nano/LANGUAGE.nanorc &gt syntax highlights</td></tr>
-<tr><td></td><td>		alt + / or ? &gt go to last line</td></tr>
-<tr><td valign=top><strong>fte</strong>						</td><td>cool text editor with CUA (IBM)-shortcuts</td></tr>
-<tr><td valign=top><strong>diakonos</strong>						</td><td>simple terminal text editor with ctrl-c for copy</td></tr>
-<tr><td valign=top><strong>pyroom</strong>						</td><td>distraction free writing (gui)</td></tr>
+<tr><td valign=top><strong>nano</strong>						</td><td style="width:15px"></td><td>/etc/nanorc &gt nano config</td></tr>
+<tr><td></td><td></td><td>		/usr/share/nano/LANGUAGE.nanorc &gt syntax highlights</td></tr>
+<tr><td></td><td></td><td>		alt + / or ? &gt go to last line</td></tr>
+<tr><td valign=top><strong>fte</strong>						</td><td style="width:15px"></td><td>cool text editor with CUA (IBM)-shortcuts</td></tr>
+<tr><td valign=top><strong>diakonos</strong>						</td><td style="width:15px"></td><td>simple terminal text editor with ctrl-c for copy</td></tr>
+<tr><td valign=top><strong>pyroom</strong>						</td><td style="width:15px"></td><td>distraction free writing (gui)</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table></blockquote>

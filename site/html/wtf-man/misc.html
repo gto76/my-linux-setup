@@ -1,105 +1,124 @@
-<p>VLC:
-sudo add-apt-repository ppa:videolan/stable-daily
-sudo add-apt-repository ppa:n-muench/vlc</p>
-
-<p>PIRATEBAY:
-torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file</p>
-
-<p>JAVA:
-java -Xmx6g myprogram - reserve 6 giga for process
-    -jar <jar> - execute jar
-    -cp <path>:<path>... - tell java where are libraries located
-appletviewer Race.html - run java applet
-jps -lvm - list java processes
-jmap -histo:live <pid> - memory map
-jvisualvm - profiler
-jar cvfe "bla.jar" <main-class> *.class - create executable jar
-jar xf <jar> - extract files from jar
-jar tf <jar> - print contents of a jar </p>
-
-<p>Install oracle jdk:
-sudo apt-get remove openjdk*
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install oracle-java7-installer</p>
-
-<p>SCREEN: 
-All shortcuts begin with ctrl+a
-    | - new region vertically
-    S - new region horizontally
-    tab - move to next region
-    Q - close all but selected region
-    X - kill the current region
-    esc - enter copy/scrollback mode -> space: start/stop marking
-    ] - paste
-    k - kill window
-    t - show time and avg cpu load</p>
-
-<p>FIREFOX:
-about:config - layout.css.devPixelsPerPx default zoom (-1.0)</p>
-
-<p>XRANDR:
-xrandr --output VGA1 --primary - changes primary screen 
-xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their relative positions</p>
-
-<h2>xrandr -q - list devices</h2>
-
-<h1>reset</h1>
-
-<h2>xrandr --auto</h2>
-
-<h1>turn off laptop screen</h1>
-
-<h2>xrandr --output LVDS1 --off</h2>
-
-<h1>24" 16x12 on</h1>
-
-<p>xrandr --output [VGA|HDMI] --mode 1600x1200
-MOUNT ISO:
-sudo mkdir /media/x
-sudo mount -o loop <PATH_ISO> /media/x</p>
-
-<p>ECLIPSE:
-ctrl-1 - quick fix
-alt-shift-s - source submenu
-ctrl - F7, esc - close pop-up console window
-ctrl-7, ctrl-/ - toggle comment
-F3 - goto definition
-objectaid - UML plugin </p>
-
-<p>WINE:
-winecfg -> drives tab to set drive
-wine explorer /desktop=abalaba,1024x768 app.exe - run wine app in virtual desktop
-reason on wine:
-    down alt down - open menu
-regedit - registry editor</p>
-
-<p>CYGWIN:
-[cygwin] ssh-host-cofig, [command prompt] net start sshd, [any] ssh <windows username - CASE MATTERS!>@<host>, using windows password - run sshd</p>
-
-<p>GOLANG:
-go  build       compile packages and dependencies
-    clean       remove object files
-    env         print Go environment information
-    fix         run go tool fix on packages
-    fmt         run gofmt on package sources
-    get         download and install packages and dependencies (first you need to set GOPATH to dir where packages will get downloaded)
-    install     compile and install packages and dependencies
-    list        list packages
-    run         compile and run Go program
-    test        test packages
-    tool        run specified go tool
-    version     print Go version
-    vet         run go tool vet on packages</p>
-
-<p>syntax highlight - https://github.com/jnwhiteh/vim-golang 
-    - for gedit: sudo cp /usr/share/gtksourceview-3.0/language-specs/go.lang /usr/share/gtksourceview-2.0/language-specs/
-simple ncurses - go get github.com/nsf/termbox-go</p>
-
-<p>PYTHON:
-INSTALLING MARKDOWN:
-git clone git://github.com/waylan/Python-Markdown.git python-markdown
-cd python-markdown
-python setup.py install
-MARKDOWN:
-python -m markdown -x markdown.extensions.tables table.txt - parse markdown containing table</p>
+<!DOCTYPE html>
+<head>
+<title>Miscellaneous</title>
+</head><style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>
+<a href="../../html/wtf-man.html" target="_blank"> 
+  <img src="../../resources/kenandritchie.png" border="0" />
+</a>
+<h2>Miscellaneous</h2>
+<blockquote><table>
+</table>
+<h3 align="center">Piratebay</h3>
+<table>
+<tr><td valign=top><strong>torrents.thepiratebay.sx/7532474/Cabin.torrent</strong>						</td><td style="width:15px"></td><td>download torrent file</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Java</h3>
+<table>
+<tr><td valign=top><strong>java</strong>						</td><td style="width:15px"></td><td><strong> -Xmx6g myprogram</strong>						 - reserve 6 giga for process</td></tr>
+<tr><td></td><td></td><td><strong>	-jar &ltjar&gt</strong> - execute jar</td></tr>
+<tr><td></td><td></td><td><strong>	-cp &ltpath&gt:&ltpath&gt...</strong> - tell java where libraries are located</td></tr>
+<tr><td valign=top><strong>appletviewer &ltpage&gt.html</strong>						</td><td style="width:15px"></td><td>run java applet</td></tr>
+<tr><td valign=top><strong>jps</strong>						</td><td style="width:15px"></td><td><strong> -lvm</strong>						 - list java processes</td></tr>
+<tr><td valign=top><strong>jmap</strong>						</td><td style="width:15px"></td><td><strong> -histo:live &ltpid&gt</strong>						 - memory map</td></tr>
+<tr><td valign=top><strong>jvisualvm</strong>						</td><td style="width:15px"></td><td>profiler</td></tr>
+<tr><td valign=top><strong>jar cvfe "bla.jar" &ltmain-class&gt *.class</strong>						</td><td style="width:15px"></td><td>create executable jar</td></tr>
+<tr><td valign=top><strong>jar xf &ltjar&gt</strong>						</td><td style="width:15px"></td><td>extract files from jar</td></tr>
+<tr><td valign=top><strong>jar tf &ltjar&gt</strong>						</td><td style="width:15px"></td><td>print contents of a jar </td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Install Oracle Jdk</h3>
+<table>
+<tr><td valign=top><strong>sudo apt-get remove openjdk*</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>sudo add-apt-repository ppa:webupd8team/java</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>sudo apt-get update</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>sudo apt-get install oracle-java7-installer</strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Firefox</h3>
+<table>
+<tr><td valign=top><strong>about:config</strong>						</td><td style="width:15px"></td><td>layout.css.devPixelsPerPx default zoom (-1.0)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Xrandr</h3>
+<table>
+<tr><td valign=top><strong>xrandr</strong>						</td><td style="width:15px"></td><td><strong>	--output VGA1 --primary</strong>						 - changes primary screen </td></tr>
+<tr><td></td><td></td><td><strong>		--output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1</strong> - to change their relative positions</td></tr>
+<tr><td></td><td></td><td><strong>		-q</strong> - list devices</td></tr>
+<tr><td></td><td></td><td><strong>		--auto</strong> - reset</td></tr>
+<tr><td></td><td></td><td><strong>		--output LVDS1 --off</strong> - turn off laptop screen</td></tr>
+<tr><td></td><td></td><td><strong>		--output [VGA|HDMI] --mode 1600x1200</strong> - 24" 16x12 on</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Mount Iso</h3>
+<table>
+<tr><td valign=top><strong>sudo mkdir /media/x</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>sudo mount -o loop &ltpath-to-iso&gt /media/x</strong>							</td><td></td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Eclipse</h3>
+<table>
+<tr><td valign=top><strong>ctrl+1</strong>						</td><td style="width:15px"></td><td>quick fix</td></tr>
+<tr><td valign=top><strong>alt+shift+s</strong>						</td><td style="width:15px"></td><td>source submenu</td></tr>
+<tr><td valign=top><strong>ctrl+F7, esc</strong>						</td><td style="width:15px"></td><td>close pop-up console window</td></tr>
+<tr><td valign=top><strong>ctrl+7, ctrl+/</strong>						</td><td style="width:15px"></td><td>toggle comment</td></tr>
+<tr><td valign=top><strong>F3</strong>						</td><td style="width:15px"></td><td>goto definition</td></tr>
+<tr><td valign=top><strong>objectaid</strong>						</td><td style="width:15px"></td><td>UML plugin </td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Wine</h3>
+<table>
+<tr><td valign=top><strong>winecfg -&gt drives tab to set drive</strong>							</td><td></td></tr>
+<tr><td valign=top><strong>wine explorer /desktop=abalaba,1024x768 app.exe</strong>						</td><td style="width:15px"></td><td>run wine app in virtual desktop</td></tr>
+<tr><td valign=top><strong>reason on wine:	</strong>					</td><td style="width:15px"></td><td><strong>down alt down</strong>					- open menu</td></tr>
+<tr><td valign=top><strong>regedit</strong>						</td><td style="width:15px"></td><td>registry editor</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Cygwin</h3>
+<table>
+<tr><td valign=top><strong>[cygwin] ssh-host-cofig, </strong>					</td><td></td></tr>
+<tr><td valign=top><strong>[command prompt] net start sshd, </strong>					</td><td></td></tr>
+<tr><td valign=top><strong>[any] ssh &ltwindows username</strong>						</td><td style="width:15px"></td><td>CASE MATTERS!&gt@&lthost&gt - run sshd (use windows password)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Golang</h3>
+<table>
+<tr><td valign=top><strong>go	</strong>					</td><td style="width:15px"></td><td><strong>build      </strong>					- compile packages and dependencies</td></tr>
+<tr><td></td><td></td><td><strong>	clean</strong> - remove object files</td></tr>
+<tr><td></td><td></td><td><strong>	env</strong> - print Go environment information</td></tr>
+<tr><td></td><td></td><td><strong>	fix</strong> - run go tool fix on packages</td></tr>
+<tr><td></td><td></td><td><strong>	fmt</strong> - run gofmt on package sources</td></tr>
+<tr><td></td><td></td><td><strong>	get</strong> - download and install packages and dependencies (first you need to set GOPATH to dir where packages will get downloaded)</td></tr>
+<tr><td></td><td></td><td><strong>	install</strong> - compile and install packages and dependencies</td></tr>
+<tr><td></td><td></td><td><strong>	list</strong> - list packages</td></tr>
+<tr><td></td><td></td><td><strong>	run</strong> - compile and run Go program</td></tr>
+<tr><td></td><td></td><td><strong>	test</strong> - test packages</td></tr>
+<tr><td></td><td></td><td><strong>	tool</strong> - run specified go tool</td></tr>
+<tr><td></td><td></td><td><strong>	version</strong> - print Go version</td></tr>
+<tr><td></td><td></td><td><strong>	vet</strong> - run go tool vet on packages</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>syntax highlight</strong>						</td><td style="width:15px"></td><td>https://github.com/jnwhiteh/vim-golang </td></tr>
+<tr><td></td><td></td><td>	- for gedit: sudo cp /usr/share/gtksourceview-3.0/language-specs/go.lang /usr/share/gtksourceview-2.0/language-specs/</td></tr>
+<tr><td valign=top><strong>simple ncurses</strong>						</td><td style="width:15px"></td><td>go get github.com/nsf/termbox-go</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Python</h3>
+<table>
+</table>
+<h3 align="center">Install Markdown</h3>
+<table>
+<tr><td valign=top><strong>git clone git://github.com/waylan/Python-Markdown.git python-markdown</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>cd python-markdown</strong>					</td><td></td></tr>
+<tr><td valign=top><strong>python setup.py install</strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Parse Markdown</h3>
+<table>
+<tr><td valign=top><strong>python</strong>						</td><td style="width:15px"></td><td><strong> -m markdown -x markdown.extensions.tables table.txt</strong>						 - parse markdown containing table</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table></blockquote>

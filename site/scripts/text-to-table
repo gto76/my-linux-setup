@@ -9,12 +9,16 @@
 # 2. <COMMAND> -<OPTION>... - <EXPLANATION>
 # 3. <COMMAND> (tab)	-<OPTION> - <EXPLANATION>
 # 4. <COMMAND> (tab)	<PARAMETERS> - <EXPLANATION>
+# 11. <COMMAND> (tab)	- <EXPLANATION>
 # 5. (tab)	-<OPTION> - <EXPLANATION>
 # 6. (tab)	<PARAMETERS> - <EXPLANATION>
 # 7. (tab)	<EXPLANATION>
 # 8. <HEADING>:
 # 9. <COMMAND>
 # 10. <COMMAND> -<OPTION>
+
+# Separation between first and second column in pixels
+SEP_WIDTH="15"
 
 i=0
 
@@ -45,13 +49,21 @@ while read line; do
 
 	# Line doesen't begin with tab
 	if [[ -z `echo "$line" | grep -P '^\t'` ]]; then
-		name=`echo "$line" | grep -oP '^.*? -' | sed 's/ *-$//'`
-		expl=`echo "$line" | grep -o -e ' -.*$'`
+		name=`echo "$line" | grep -oP '^.*?[ \t]-' | sed 's/[ \t]*-$//'`
+		expl=`echo "$line" | grep -oP -e '[ \t]-.*$'`
 
 		# 9. and there is no explanation.
 		if [[ -z "$name" ]]; then
 			echo "<tr><td valign=top><strong>$line</strong>\
 					</td><td></td></tr>"
+			continue
+		fi
+	
+		# 11. and there is explanation after the tab:
+		if [[ -n `echo "$line" | grep -P '\t *- '` ]];then
+			expl=`echo "$expl" | sed 's/^[ \t]*- //'`
+			echo "<tr><td valign=top><strong>$name</strong>\
+					</td><td style=\"width:${SEP_WIDTH}px\"></td><td>$expl</td></tr>"
 			continue
 		fi
 
@@ -61,7 +73,7 @@ while read line; do
 			if [[ -n `echo "$expl" | grep '^ - '` ]]; then
 				expl=`echo "$expl" | sed 's/^ - //'`
 				echo "<tr><td valign=top><strong>$name</strong>\
-						</td><td>$expl</td></tr>"
+						</td><td style=\"width:${SEP_WIDTH}px\"></td><td>$expl</td></tr>"
 			# 2. and Explanation starts with option.
 			else
 				optn=`echo "$expl" | grep -oP '^.* - +' | sed 's/ *- *$//'`
@@ -73,7 +85,7 @@ while read line; do
 					continue
 				fi
 				echo "<tr><td valign=top><strong>$name</strong>\
-						</td><td><strong>$optn</strong>\
+						</td><td style=\"width:${SEP_WIDTH}px\"></td><td><strong>$optn</strong>\
 						$expl</td></tr>"
 			fi
 		# 3, 4. and name contains a tab.
@@ -85,7 +97,7 @@ while read line; do
 					sed 's/ - \+//'`
 			expl=`echo "$line" | grep -oP ' - .*$' | sed 's/^ *//'`
 			echo "<tr><td valign=top><strong>$name</strong>\
-					</td><td><strong>$optn</strong>\
+					</td><td style=\"width:${SEP_WIDTH}px\"></td><td><strong>$optn</strong>\
 					$expl</td></tr>"
 		fi
 	# Line begins with tab
@@ -94,10 +106,10 @@ while read line; do
 		# 5,6. and it contains a ' - '.
 		if [[ -n "$optn" ]]; then
 			expl=`echo "$line" | grep -o -e ' - .*$'`
-			echo "<tr><td></td><td><strong>$optn</strong>$expl</td></tr>"
+			echo "<tr><td></td><td></td><td><strong>$optn</strong>$expl</td></tr>"
 		# 7. and it contains only explanation.
 		else
-			echo "<tr><td></td><td>$line</td></tr>"
+			echo "<tr><td></td><td></td><td>$line</td></tr>"
 		fi
 	fi	
 done < "$1"

@@ -15,95 +15,105 @@ html {
 </table>
 <h3 align="center">Bash</h3>
 <table>
-<tr><td valign=top><strong>~/.bashrc</strong>						</td><td>executed at every shell startup, user specific</td></tr>
-<tr><td valign=top><strong>/etc/bash.bashrc</strong>						</td><td>executed at every shell startup, all users</td></tr>
-<tr><td valign=top><strong>~/.profile, .bash_profile, .bash_login</strong>						</td><td>first file found executed at login, user specific </td></tr>
-<tr><td valign=top><strong>/etc/profile</strong>						</td><td>executed at login, all users (put PATHS here)</td></tr>
+<tr><td valign=top><strong>~/.bashrc</strong>						</td><td style="width:15px"></td><td>executed at every shell startup, user specific</td></tr>
+<tr><td valign=top><strong>/etc/bash.bashrc</strong>						</td><td style="width:15px"></td><td>executed at every shell startup, all users</td></tr>
+<tr><td valign=top><strong>~/.profile, .bash_profile, .bash_login</strong>						</td><td style="width:15px"></td><td>first file found executed at login, user specific </td></tr>
+<tr><td valign=top><strong>/etc/profile</strong>						</td><td style="width:15px"></td><td>executed at login, all users (put PATHS here)</td></tr>
 <tr><td valign=top><strong>--</strong>					</td><td></td></tr>
-<tr><td valign=top><strong>/etc/rc.local</strong>						</td><td>last startup script executed, runs command as su</td></tr>
+<tr><td valign=top><strong>/etc/rc.local</strong>						</td><td style="width:15px"></td><td>last startup script executed, runs command as su</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Home</h3>
 <table>
-<tr><td valign=top><strong>~/.Xmodmap</strong>						</td><td>keyboard map</td></tr>
+<tr><td valign=top><strong>~/.Xmodmap</strong>						</td><td style="width:15px"></td><td>keyboard map</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Bins</h3>
+<table>
+<tr><td valign=top><strong>/bin</strong>						</td><td style="width:15px"></td><td>key programs like ls, cat, bash,...</td></tr>
+<tr><td valign=top><strong>/sbin</strong>						</td><td style="width:15px"></td><td>key programs for system management like ifconfig, mkfs, fdisk...</td></tr>
+<tr><td valign=top><strong>/usr/bin</strong>						</td><td style="width:15px"></td><td>distribution managed programs</td></tr>
+<tr><td valign=top><strong>/usr/sbin</strong>						</td><td style="width:15px"></td><td>distribution managed system programs</td></tr>
+<tr><td valign=top><strong>/usr/local/bin</strong>						</td><td style="width:15px"></td><td>user programs not managed by the distribution package</td></tr>
+<tr><td valign=top><strong>/usr/local/sbin</strong>						</td><td style="width:15px"></td><td>user system management programs, not managed by the distribution package</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Etc ( "Edit To Configure" / "Editable Text Configuration" )</h3>
 <table>
-<tr><td valign=top><strong>/etc/mailcap</strong>						</td><td>default programs for extensions </td></tr>
-<tr><td valign=top><strong>/etc/passwd</strong>						</td><td>users </td></tr>
-<tr><td valign=top><strong>/etc/groups</strong>						</td><td>groups </td></tr>
-<tr><td valign=top><strong>/etc/default/console-setup</strong>						</td><td>set (tty) console character set, font size...</td></tr>
-<tr><td valign=top><strong>/etc/fstab</strong>						</td><td>Filesystam table. To mount drive at startup create folder in /media and add line like this (see man fstab for details):</td></tr>
-<tr><td></td><td>	/dev/sda1   /media/data   ntfs   user,fmask=0111,dmask=0000   0   2</td></tr>
-<tr><td valign=top><strong>/etc/alternatives</strong>						</td><td>links to default application versions (here you can change the default java jdk)</td></tr>
-<tr><td valign=top><strong>/etc/issue</strong>						</td><td>name and version of distribution</td></tr>
-<tr><td valign=top><strong>/etc/fstab</strong>						</td><td>automatic mounts are handled by configuring the file</td></tr>
-<tr><td valign=top><strong>/etc/sudoers</strong>						</td><td>lists of users and the commands they can run with sudo</td></tr>
+<tr><td valign=top><strong>/etc/mailcap</strong>						</td><td style="width:15px"></td><td>default programs for extensions </td></tr>
+<tr><td valign=top><strong>/etc/passwd</strong>						</td><td style="width:15px"></td><td>users </td></tr>
+<tr><td valign=top><strong>/etc/groups</strong>						</td><td style="width:15px"></td><td>groups </td></tr>
+<tr><td valign=top><strong>/etc/default/console-setup</strong>						</td><td style="width:15px"></td><td>set (tty) console character set, font size...</td></tr>
+<tr><td valign=top><strong>/etc/fstab</strong>						</td><td style="width:15px"></td><td>Filesystam table. To mount drive at startup create folder in /media and add line like this (see man fstab for details):</td></tr>
+<tr><td></td><td></td><td>	/dev/sda1   /media/data   ntfs   user,fmask=0111,dmask=0000   0   2</td></tr>
+<tr><td valign=top><strong>/etc/alternatives</strong>						</td><td style="width:15px"></td><td>links to default application versions (here you can change the default java jdk)</td></tr>
+<tr><td valign=top><strong>/etc/issue</strong>						</td><td style="width:15px"></td><td>name and version of distribution</td></tr>
+<tr><td valign=top><strong>/etc/fstab</strong>						</td><td style="width:15px"></td><td>automatic mounts are handled by configuring the file</td></tr>
+<tr><td valign=top><strong>/etc/sudoers</strong>						</td><td style="width:15px"></td><td>lists of users and the commands they can run with sudo</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Services</h3>
 <table>
-<tr><td valign=top><strong>/etc/init/, ~/.init/</strong>						</td><td>init - upstart init daemon job configuration</td></tr>
-<tr><td valign=top><strong>/etc/init.d/</strong>						</td><td>folder with service scripts, that get executed at start and end</td></tr>
-<tr><td valign=top><strong>/etc/init.d/halt</strong>						</td><td>runs at the end </td></tr>
-<tr><td valign=top><strong>/etc/rc&ltlevel&gt.d</strong>						</td><td>startup scripts for different runlevels - links to scripts in /etc/init.d - S85httpd -&gt S means startup, K is for stop. (To disable service just change S for K)</td></tr>
-<tr><td valign=top><strong>/etc/rc.local</strong>						</td><td>last initialization file executed - put your commands here</td></tr>
+<tr><td valign=top><strong>/etc/init/, ~/.init/</strong>						</td><td style="width:15px"></td><td>init - upstart init daemon job configuration</td></tr>
+<tr><td valign=top><strong>/etc/init.d/</strong>						</td><td style="width:15px"></td><td>folder with service scripts, that get executed at start and end</td></tr>
+<tr><td valign=top><strong>/etc/init.d/halt</strong>						</td><td style="width:15px"></td><td>runs at the end </td></tr>
+<tr><td valign=top><strong>/etc/rc&ltlevel&gt.d</strong>						</td><td style="width:15px"></td><td>startup scripts for different runlevels - links to scripts in /etc/init.d - S85httpd -&gt S means startup, K is for stop. (To disable service just change S for K)</td></tr>
+<tr><td valign=top><strong>/etc/rc.local</strong>						</td><td style="width:15px"></td><td>last initialization file executed - put your commands here</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
-<tr><td valign=top><strong>/etc/init/ssh.conf</strong>						</td><td>sshd config</td></tr>
-<tr><td valign=top><strong>/etc/ssh/sshd_config</strong>						</td><td>sshd config</td></tr>
-<tr><td valign=top><strong>/etc/crontab</strong>						</td><td>system-wide crontab</td></tr>
-<tr><td valign=top><strong>/etc/cron.hourly, /etc/cron.daily, ...</strong>						</td><td>links to scripts that will execute periodically. Scripts within a cron directory are run alphabetically.</td></tr>
-<tr><td valign=top><strong>/etc/rsyslog.conf|rsyslog.d/50-default.conf</strong>						</td><td>log conf (need to restart rsyslogd after edit)</td></tr>
-<tr><td valign=top><strong>/etc/syslog.conf</strong>						</td><td>Configuration information for syslogd </td></tr>
+<tr><td valign=top><strong>/etc/init/ssh.conf</strong>						</td><td style="width:15px"></td><td>sshd config</td></tr>
+<tr><td valign=top><strong>/etc/ssh/sshd_config</strong>						</td><td style="width:15px"></td><td>sshd config</td></tr>
+<tr><td valign=top><strong>/etc/crontab</strong>						</td><td style="width:15px"></td><td>system-wide crontab</td></tr>
+<tr><td valign=top><strong>/etc/cron.hourly, /etc/cron.daily, ...</strong>						</td><td style="width:15px"></td><td>links to scripts that will execute periodically. Scripts within a cron directory are run alphabetically.</td></tr>
+<tr><td valign=top><strong>/etc/rsyslog.conf|rsyslog.d/50-default.conf</strong>						</td><td style="width:15px"></td><td>log conf (need to restart rsyslogd after edit)</td></tr>
+<tr><td valign=top><strong>/etc/syslog.conf</strong>						</td><td style="width:15px"></td><td>Configuration information for syslogd </td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Network</h3>
 <table>
-<tr><td valign=top><strong>/etc/resolv.conf</strong>						</td><td>dns information</td></tr>
-<tr><td valign=top><strong>/etc/sysconfig/networking/devices/ifcfg-eth0</strong>						</td><td>use ifcfg to configure a particular interface</td></tr>
-<tr><td valign=top><strong>/etc/services</strong>						</td><td>list of internet services with their port numbers</td></tr>
-<tr><td valign=top><strong>/etc/NetworkManager/NetworkManager.conf</strong>						</td><td>configuration file</td></tr>
+<tr><td valign=top><strong>/etc/resolv.conf</strong>						</td><td style="width:15px"></td><td>dns information</td></tr>
+<tr><td valign=top><strong>/etc/sysconfig/networking/devices/ifcfg-eth0</strong>						</td><td style="width:15px"></td><td>use ifcfg to configure a particular interface</td></tr>
+<tr><td valign=top><strong>/etc/services</strong>						</td><td style="width:15px"></td><td>list of internet services with their port numbers</td></tr>
+<tr><td valign=top><strong>/etc/NetworkManager/NetworkManager.conf</strong>						</td><td style="width:15px"></td><td>configuration file</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Proc (Various Information About The System)</h3>
 <table>
-<tr><td valign=top><strong>/proc/cpuinfo</strong>						</td><td>information about the CPU</td></tr>
-<tr><td valign=top><strong>/proc/modules</strong>						</td><td> information about which kernel-modules are loaded on your system</td></tr>
-<tr><td valign=top><strong>/proc/net/</strong>						</td><td>network related</td></tr>
-<tr><td valign=top><strong>/proc/net/route</strong>						</td><td>routing table</td></tr>
-<tr><td></td><td><strong>	netstat</strong> - displays contents of /proc/net files</td></tr>
-<tr><td valign=top><strong>/proc/iomem</strong>						</td><td>neat memory map</td></tr>
-<tr><td valign=top><strong>/proc/partitions</strong>						</td><td>partitions info</td></tr>
-<tr><td valign=top><strong>/proc/acpi/battery/BAT1/info</strong>						</td><td>battery info</td></tr>
-<tr><td valign=top><strong>/proc/acpi/ac_adapter/ACAD/state</strong>						</td><td>adapter info</td></tr>
-<tr><td valign=top><strong>/proc/acpi/wakeup</strong>						</td><td>list of devices that can wake up your machine via acpi</td></tr>
-<tr><td></td><td><strong>	sudo sh -c "echo USB1 &gt /proc/acpi/wakeup"</strong> - enable device USB1 to wakeup computer from sleep/suspend</td></tr>
-<tr><td valign=top><strong>/proc/net/wireless</strong>						</td><td>wireless connection info</td></tr>
+<tr><td valign=top><strong>/proc/cpuinfo</strong>						</td><td style="width:15px"></td><td>information about the CPU</td></tr>
+<tr><td valign=top><strong>/proc/modules</strong>						</td><td style="width:15px"></td><td> information about which kernel-modules are loaded on your system</td></tr>
+<tr><td valign=top><strong>/proc/net/</strong>						</td><td style="width:15px"></td><td>network related</td></tr>
+<tr><td valign=top><strong>/proc/net/route</strong>						</td><td style="width:15px"></td><td>routing table</td></tr>
+<tr><td></td><td></td><td><strong>	netstat</strong> - displays contents of /proc/net files</td></tr>
+<tr><td valign=top><strong>/proc/iomem</strong>						</td><td style="width:15px"></td><td>neat memory map</td></tr>
+<tr><td valign=top><strong>/proc/partitions</strong>						</td><td style="width:15px"></td><td>partitions info</td></tr>
+<tr><td valign=top><strong>/proc/acpi/battery/BAT1/info</strong>						</td><td style="width:15px"></td><td>battery info</td></tr>
+<tr><td valign=top><strong>/proc/acpi/ac_adapter/ACAD/state</strong>						</td><td style="width:15px"></td><td>adapter info</td></tr>
+<tr><td valign=top><strong>/proc/acpi/wakeup</strong>						</td><td style="width:15px"></td><td>list of devices that can wake up your machine via acpi</td></tr>
+<tr><td></td><td></td><td><strong>	sudo sh -c "echo USB1 &gt /proc/acpi/wakeup"</strong> - enable device USB1 to wakeup computer from sleep/suspend</td></tr>
+<tr><td valign=top><strong>/proc/net/wireless</strong>						</td><td style="width:15px"></td><td>wireless connection info</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Usr - "Unix System Resources"</h3>
 <table>
-<tr><td valign=top><strong>/usr/lib/jvm</strong>						</td><td>java jres and jdks</td></tr>
-<tr><td valign=top><strong>/usr/share/man</strong>						</td><td>man pages</td></tr>
+<tr><td valign=top><strong>/usr/lib/jvm</strong>						</td><td style="width:15px"></td><td>java jres and jdks</td></tr>
+<tr><td valign=top><strong>/usr/share/man</strong>						</td><td style="width:15px"></td><td>man pages</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Sbin - The "System-Administrator'S Bin File"</h3>
 <table>
-<tr><td></td><td>	Hosts programs that would be in /bin if they didn't have "root-only" access permissions.</td></tr>
+<tr><td></td><td></td><td>	Hosts programs that would be in /bin if they didn't have "root-only" access permissions.</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Var - "Variable"</h3>
 <table>
-<tr><td valign=top><strong>/var/log/</strong>						</td><td>system logs in here</td></tr>
-<tr><td valign=top><strong>/var/log/auth.log</strong>						</td><td>logins</td></tr>
-<tr><td valign=top><strong>/var/log/syslog</strong>						</td><td>most of the rest of the logs </td></tr>
-<tr><td valign=top><strong>/var/spool</strong>						</td><td>contains data which is awaiting some kind of later processing</td></tr>
+<tr><td valign=top><strong>/var/log/</strong>						</td><td style="width:15px"></td><td>system logs in here</td></tr>
+<tr><td valign=top><strong>/var/log/auth.log</strong>						</td><td style="width:15px"></td><td>logins</td></tr>
+<tr><td valign=top><strong>/var/log/syslog</strong>						</td><td style="width:15px"></td><td>most of the rest of the logs </td></tr>
+<tr><td valign=top><strong>/var/spool</strong>						</td><td style="width:15px"></td><td>contains data which is awaiting some kind of later processing</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Boot (Kernels)</h3>
 <table>
-<tr><td valign=top><strong>/boot/grub/menu.lst</strong>						</td><td>grub configuration file</td></tr>
+<tr><td valign=top><strong>/boot/grub/menu.lst</strong>						</td><td style="width:15px"></td><td>grub configuration file</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table></blockquote>

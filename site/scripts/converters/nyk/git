@@ -1,0 +1,98 @@
+#!/bin/bash
+#
+# Usage: ./git <path-to-markdown> 
+
+PICTURE_SIZE=30
+
+../scripts/header "$1" "Git for Ages 4 and Up"
+echo "<h2>Git for Ages 4 and Up</h2>"
+
+picture=""		# picture part of the section
+description=""	# description part of the section
+divider=0		# colum that divides picture from description part
+i=0
+lastLineEmpty="false"
+pictureIndex=1
+
+
+# Description section is defined by a ' - ' between the title and
+# the actual description.
+findDividingColumn() {
+	let divider=`echo "$line" | sed 's/[^ {2,}\t]* - .*$//' | wc -m`-1
+}
+
+
+printSection() {
+	# Divide title from text
+	firstLine=`echo "$description" | head -1 `
+	title=`echo "$firstLine" | sed 's/ - .*//'`
+	text=$(echo "$firstLine" | sed 's/^.* - //')$(echo "$description" | tail -n+2)
+
+	echo "firstLine $pictureIndex = $firstLine" >&2
+	echo "title $pictureIndex = $title" >&2
+	echo "text $pictureIndex = $text" >&2
+	echo "picture $pictureIndex = $picture" >&2
+	echo "description = $description" >&2
+
+	# Generate picture
+	# check if render-graph script is installed, if not download it and install it
+	command -v render-graph >/dev/null 2>&1 
+	if [[ $? -ne 0 ]]; then
+		echo >&2 "downloading render grapsh script"
+		cd /tmp
+		git clone https://github.com/gto76/ascii-git-graph-to-png.git
+		sudo cp ascii-git-graph-to-png /usr/local/bin
+	fi
+	pictureTextFile=`mktemp`
+	echo "$picture" > "$pictureTextFile"
+	render-graph -s "$PICTURE_SIZE" "$pictureTextFile" -o ../resources/picture"$pictureIndex"
+
+	# Print HTML
+	echo "<h3 align=\"center\">$title</h3>"
+	echo "$text"
+	echo "<img src=\"../../resources/picture${pictureIndex}.png\">"
+
+	let pictureIndex++
+}
+
+# If line is empty, and if picture or description is not empty then print, continue.
+# If last line was empty then find the dividing column.
+# Add to picture first x chars and to description other n-x
+main() {
+	SAVE_IFS="$IFS"
+	IFS=""
+	while read -r line; do
+		#echo "reading line $line" >&2
+		let i++
+		if [[ "$i" -lt 5 ]]; then
+			continue
+		fi
+
+		if [[ -z "$line" ]]; then
+			lastLineEmpty="true"
+			if [[ -n "$picture" || -n "$description" ]]; then
+				printSection
+				picture=""
+				description=""
+			fi
+			continue
+		fi
+
+		if [[ "$lastLineEmpty" == true ]]; then	
+			findDividingColumn
+		fi
+
+		picture="$picture\n"${line:0:divider} 	
+		description="$description\n"${line:divider:${#line}}
+
+		lastLineEmpty="false"
+	done < "$1"
+	IFS="$SAVE-IFS"
+}
+
+main "$@"
+
+
+
+
+

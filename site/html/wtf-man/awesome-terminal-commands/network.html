@@ -12,56 +12,56 @@ html {
 </a>
 <h2>Network Tools</h2>
 <blockquote><table>
-<tr><td valign=top><strong>whois</strong>						</td><td>info about domain</td></tr>
-<tr><td valign=top><strong>host &ltip/hostname&gt</strong>						</td><td>DNS lookup utility</td></tr>
-<tr><td valign=top><strong>nslookup</strong>						</td><td>same interactively</td></tr>
-<tr><td valign=top><strong>dig</strong>						</td><td>same, lot of options</td></tr>
-<tr><td valign=top><strong>hostname</strong>						</td><td>prints/sets computer name, to set it permanently edit /etc/hostname and /etc/hosts</td></tr>
-<tr><td valign=top><strong>netstat</strong>						</td><td>displays contents of /proc/net files,  status of ports...</td></tr>
-<tr><td></td><td><strong>	-r</strong> - show routing table</td></tr>
-<tr><td></td><td><strong>	-i</strong> - show interfaces</td></tr>
-<tr><td valign=top><strong>arp</strong>						</td><td>manipulate the system ARP cache (IP -&gt mac)</td></tr>
-<tr><td valign=top><strong>route</strong>						</td><td>tool used to display or modify the routing table</td></tr>
-<tr><td></td><td><strong>	add default gw 192.168.1.10</strong> - change the default gateway</td></tr>
-<tr><td></td><td>	should DNS not be configured correctly on your machine, you need to edit "/etc/resolv.conf" to make things work</td></tr>
-<tr><td valign=top><strong>ifconfig eth0	</strong>					</td><td><strong>down/up</strong>					- turn network interface on/off</td></tr>
-<tr><td></td><td><strong>	192.168.1.4 netmask 255.255.255.0 up</strong> - set ip and mask</td></tr>
-<tr><td valign=top><strong>ifup eth0</strong>						</td><td>Will bring eth0 up if it is currently down.</td></tr>
-<tr><td valign=top><strong>ip	</strong>					</td><td><strong>link show</strong>					- list network interfaces</td></tr>
-<tr><td></td><td><strong>	link set dev eth0 up</strong> - bring interface eth0 up or down</td></tr>
-<tr><td></td><td><strong>	addr show</strong> - list addresses of interfaces</td></tr>
-<tr><td></td><td><strong>	route add default via 1.2.3.254</strong> - set default gateway</td></tr>
-<tr><td valign=top><strong>traceroute, traceroute6, traceroute6.iputils</strong>						</td><td>traces route</td></tr>
-<tr><td valign=top><strong>tracepath, tracepath6</strong>						</td><td>similar (iputils package)</td></tr>
-<tr><td valign=top><strong>mtr</strong>						</td><td>combines the functionality of the traceroute and ping</td></tr>
-<tr><td valign=top><strong>findsmb</strong>						</td><td>list info about machines that respond to SMB name queries - windows based machines sharing their hard disks</td></tr>
-<tr><td valign=top><strong>/etc/services</strong>						</td><td>list of internet services with their port numbers</td></tr>
-<tr><td valign=top><strong>NetworkManager</strong>						</td><td>network management daemon, configuration file is in /etc/NetworkManager/NetworkManager.conf </td></tr>
-<tr><td valign=top><strong>nm-tool</strong>						</td><td>prints info </td></tr>
-<tr><td valign=top><strong>nm-online</strong>						</td><td>is network connected </td></tr>
-<tr><td valign=top><strong>nmcli</strong>						</td><td>command-line tool for controlling NetworkManager</td></tr>
-<tr><td valign=top><strong>nc</strong>						</td><td>(netcat) It can open TCP connections, send UDP packets, listen on arbitrary TCP and UDP ports, do port scanning...</td></tr>
-<tr><td valign=top><strong>ncat</strong>						</td><td>Concatenate and redirect sockets</td></tr>
-<tr><td valign=top><strong>ethtool eth0</strong>						</td><td>show status of eth0</td></tr>
-<tr><td></td><td><strong>	-S</strong> - statistics</td></tr>
-<tr><td></td><td><strong>	-s</strong> - change settings (speed, duplex,...)</td></tr>
-<tr><td valign=top><strong>ss</strong>						</td><td><strong> -tupl</strong>						 - list internet services on a system</td></tr>
-<tr><td></td><td><strong>	-tuo</strong> - list active connections to/from system</td></tr>
+<tr><td valign=top><strong>whois</strong>						</td><td style="width:15px"></td><td>info about domain</td></tr>
+<tr><td valign=top><strong>host &ltip/hostname&gt</strong>						</td><td style="width:15px"></td><td>DNS lookup utility</td></tr>
+<tr><td valign=top><strong>nslookup</strong>						</td><td style="width:15px"></td><td>same interactively</td></tr>
+<tr><td valign=top><strong>dig</strong>						</td><td style="width:15px"></td><td>same, lot of options</td></tr>
+<tr><td valign=top><strong>hostname</strong>						</td><td style="width:15px"></td><td>prints/sets computer name, to set it permanently edit /etc/hostname and /etc/hosts</td></tr>
+<tr><td valign=top><strong>netstat</strong>						</td><td style="width:15px"></td><td>displays contents of /proc/net files,  status of ports...</td></tr>
+<tr><td></td><td></td><td><strong>	-r</strong> - show routing table</td></tr>
+<tr><td></td><td></td><td><strong>	-i</strong> - show interfaces</td></tr>
+<tr><td valign=top><strong>arp</strong>						</td><td style="width:15px"></td><td>manipulate the system ARP cache (IP -&gt mac)</td></tr>
+<tr><td valign=top><strong>route</strong>						</td><td style="width:15px"></td><td>tool used to display or modify the routing table</td></tr>
+<tr><td></td><td></td><td><strong>	add default gw 192.168.1.10</strong> - change the default gateway</td></tr>
+<tr><td></td><td></td><td>	should DNS not be configured correctly on your machine, you need to edit "/etc/resolv.conf" to make things work</td></tr>
+<tr><td valign=top><strong>ifconfig eth0	</strong>					</td><td style="width:15px"></td><td><strong>down/up</strong>					- turn network interface on/off</td></tr>
+<tr><td></td><td></td><td><strong>	192.168.1.4 netmask 255.255.255.0 up</strong> - set ip and mask</td></tr>
+<tr><td valign=top><strong>ifup eth0</strong>						</td><td style="width:15px"></td><td>Will bring eth0 up if it is currently down.</td></tr>
+<tr><td valign=top><strong>ip	</strong>					</td><td style="width:15px"></td><td><strong>link show</strong>					- list network interfaces</td></tr>
+<tr><td></td><td></td><td><strong>	link set dev eth0 up</strong> - bring interface eth0 up or down</td></tr>
+<tr><td></td><td></td><td><strong>	addr show</strong> - list addresses of interfaces</td></tr>
+<tr><td></td><td></td><td><strong>	route add default via 1.2.3.254</strong> - set default gateway</td></tr>
+<tr><td valign=top><strong>traceroute, traceroute6, traceroute6.iputils</strong>						</td><td style="width:15px"></td><td>traces route</td></tr>
+<tr><td valign=top><strong>tracepath, tracepath6</strong>						</td><td style="width:15px"></td><td>similar (iputils package)</td></tr>
+<tr><td valign=top><strong>mtr</strong>						</td><td style="width:15px"></td><td>combines the functionality of the traceroute and ping</td></tr>
+<tr><td valign=top><strong>findsmb</strong>						</td><td style="width:15px"></td><td>list info about machines that respond to SMB name queries - windows based machines sharing their hard disks</td></tr>
+<tr><td valign=top><strong>/etc/services</strong>						</td><td style="width:15px"></td><td>list of internet services with their port numbers</td></tr>
+<tr><td valign=top><strong>NetworkManager</strong>						</td><td style="width:15px"></td><td>network management daemon, configuration file is in /etc/NetworkManager/NetworkManager.conf </td></tr>
+<tr><td valign=top><strong>nm-tool</strong>						</td><td style="width:15px"></td><td>prints info </td></tr>
+<tr><td valign=top><strong>nm-online</strong>						</td><td style="width:15px"></td><td>is network connected </td></tr>
+<tr><td valign=top><strong>nmcli</strong>						</td><td style="width:15px"></td><td>command-line tool for controlling NetworkManager</td></tr>
+<tr><td valign=top><strong>nc</strong>						</td><td style="width:15px"></td><td>(netcat) It can open TCP connections, send UDP packets, listen on arbitrary TCP and UDP ports, do port scanning...</td></tr>
+<tr><td valign=top><strong>ncat</strong>						</td><td style="width:15px"></td><td>Concatenate and redirect sockets</td></tr>
+<tr><td valign=top><strong>ethtool eth0</strong>						</td><td style="width:15px"></td><td>show status of eth0</td></tr>
+<tr><td></td><td></td><td><strong>	-S</strong> - statistics</td></tr>
+<tr><td></td><td></td><td><strong>	-s</strong> - change settings (speed, duplex,...)</td></tr>
+<tr><td valign=top><strong>ss</strong>						</td><td style="width:15px"></td><td><strong> -tupl</strong>						 - list internet services on a system</td></tr>
+<tr><td></td><td></td><td><strong>	-tuo</strong> - list active connections to/from system</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Wireless</h3>
 <table>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
-<tr><td valign=top><strong>iwconfig</strong>						</td><td>sets the wireless configuration options basic to most wireless devices</td></tr>
-<tr><td valign=top><strong>iwlist wlan0	</strong>					</td><td><strong>&ltoption&gt</strong>					- displays current status information of a device, more detailed then iwconfig</td></tr>
-<tr><td></td><td><strong>				scan</strong> - list wireless networks in range (sudo)</td></tr>
-<tr><td valign=top><strong>iwspy</strong>						</td><td>sets the list of IP addresses in a wireless network and checks the quality of their connections</td></tr>
-<tr><td valign=top><strong>iwpriv</strong>						</td><td>accesses configuration options specific to a particular device</td></tr>
-<tr><td valign=top><strong>rfkill 	</strong>					</td><td><strong>list</strong>					- show wireless adapters (wifi and bluetooth)</td></tr>
-<tr><td></td><td><strong>		block/unblock &ltdev-num&gt</strong> - block/unblock wireless device</td></tr>
-<tr><td valign=top><strong>iw dev wlan0	</strong>					</td><td><strong>link</strong>					- show link status of wlan0</td></tr>
-<tr><td></td><td><strong>				set biterates &ltstandard&gt</strong> - manually set interface speed</td></tr>
-<tr><td></td><td><strong>				scan</strong> - list wireless networks in range (sudo)</td></tr>
-<tr><td valign=top><strong>wavemon</strong>						</td><td>monitor wireless connection link quality</td></tr>
-<tr><td></td><td>	</td></tr>
+<tr><td valign=top><strong>iwconfig</strong>						</td><td style="width:15px"></td><td>sets the wireless configuration options basic to most wireless devices</td></tr>
+<tr><td valign=top><strong>iwlist wlan0	</strong>					</td><td style="width:15px"></td><td><strong>&ltoption&gt</strong>					- displays current status information of a device, more detailed then iwconfig</td></tr>
+<tr><td></td><td></td><td><strong>				scan</strong> - list wireless networks in range (sudo)</td></tr>
+<tr><td valign=top><strong>iwspy</strong>						</td><td style="width:15px"></td><td>sets the list of IP addresses in a wireless network and checks the quality of their connections</td></tr>
+<tr><td valign=top><strong>iwpriv</strong>						</td><td style="width:15px"></td><td>accesses configuration options specific to a particular device</td></tr>
+<tr><td valign=top><strong>rfkill 	</strong>					</td><td style="width:15px"></td><td><strong>list</strong>					- show wireless adapters (wifi and bluetooth)</td></tr>
+<tr><td></td><td></td><td><strong>		block/unblock &ltdev-num&gt</strong> - block/unblock wireless device</td></tr>
+<tr><td valign=top><strong>iw dev wlan0	</strong>					</td><td style="width:15px"></td><td><strong>link</strong>					- show link status of wlan0</td></tr>
+<tr><td></td><td></td><td><strong>				set biterates &ltstandard&gt</strong> - manually set interface speed</td></tr>
+<tr><td></td><td></td><td><strong>				scan</strong> - list wireless networks in range (sudo)</td></tr>
+<tr><td valign=top><strong>wavemon</strong>						</td><td style="width:15px"></td><td>monitor wireless connection link quality</td></tr>
+<tr><td></td><td></td><td>	</td></tr>
 </table></blockquote>

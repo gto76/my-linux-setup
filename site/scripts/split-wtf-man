@@ -14,7 +14,7 @@ atTitle="false"
 
 SAVE_IFS="$IFS"
 IFS=""
-while read line; do
+while read -r line; do
 	# If line begins with a '##'
 	if [[ -n `echo "$line" | grep '^##'` ]]; then
 		atTitle="true"

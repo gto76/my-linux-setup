@@ -208,7 +208,16 @@ screen - switch between multiple virtual terminals (useful in ssh)
 	c - new terminal, 
 	n - next, 
 	p - previous, 
-	a - go to beginning of line
+	a - go to beginning of line,
+	| - new region vertically,
+	S - new region horizontally,
+	tab - move to next region,
+	Q - close all but selected region,
+	X - kill the current region,
+	esc - enter copy/scrollback mode -> space: start/stop marking,
+	] - paste,
+	k - kill window,
+	t - show time and avg cpu load
 tmux - terminal multiplexer, better screen.	
 	ls - shows running sessions
 	attach (-t <session no>) - attach to running session
@@ -272,6 +281,7 @@ var=${1:-"<default-value>"} - setting variable with default value if $1 is empty
 getopts - parse parameters/arguments, builtin
 getopt - GNU version is even better then getopts, not a builtin
 while read line; do <commands>; done < <file> - read from file line by line
+	-r - do not treat backslashes as escape characters
 
 HISTORY:
 
@@ -543,6 +553,7 @@ passwd - change password
 vipw - edit password file
 vigr - edit groups file
 umask -  the umask is a value set by the shell. It controls the default permissions of any file created
+usermod <user> - modify user acount information
 
 FILE SYSTEMS:
 mkfs - build a Linux filesystem
@@ -765,6 +776,14 @@ BASH:
 HOME:
 ~/.Xmodmap - keyboard map
 
+BINS:
+/bin - key programs like ls, cat, bash,...
+/sbin - key programs for system management like ifconfig, mkfs, fdisk...
+/usr/bin - distribution managed programs
+/usr/sbin - distribution managed system programs
+/usr/local/bin - user programs not managed by the distribution package
+/usr/local/sbin - user system management programs, not managed by the distribution package
+
 ETC ( "Edit To Configure" / "Editable Text Configuration" ):
 /etc/mailcap - default programs for extensions 
 /etc/passwd - users 
@@ -932,9 +951,9 @@ e - end of word
 E - end of WORD
 W - start of WORD
 ge - end of previous word
-),( - sentence
-{,} - paragraph
-]],[[ - section
+), ( - sentence
+{, } - paragraph
+]], [[ - section
 :<num> - goto line number
 
 LINES:
@@ -953,7 +972,7 @@ H,M,L - go to top/middle/bottom of screen
 ctrl F,B - page up/down
 ctrl D,U - half page up/down
 ctrl E,Y - one more line at bottom/top 
-z Enter,z.,z- - reposition line with cursor at top/middle/bottom
+z Enter, z., z- - reposition line with cursor at top/middle/bottom
 
 SEARCH:
 *,# - search forward/backward for exact word under cursor
@@ -974,7 +993,7 @@ ctrl+u - delete line
 ctrl+w - delete previous word
 
 MACROS:
-q<x> - record characters into x
+q<x> - record actions into x
 q - stop recording
 @<x> - execute x
 
@@ -984,23 +1003,23 @@ REGISTERS:
 :reg - access all registers
 
 SET COMMAND:
-:set x,nox (also x!),x=value,all,x? - set x/unset x/assign x/print all values/print x
-```
-command (short)	| default	| explanation
-----------------+-----------+-------------------------------------
-autoident (ai)	| noai		| 
-backup (bk)		| nobackup 	| back file up before overwrite
-ignorecase (ic)	| noic 		| ignore case in search
-number (nu)		| nonu 		| display line numbers
-relativenumber	| nornu		| display relative numbers
-(rnu)			|			|
-shiftwidth= (sw)| 8 		| number of spaces added when identing
-tabstop= (ts)	| 8 		| tab width
-wrap			| wrap		| wrap lines
-wrapscan (ws)	| ws 		| search wraps around file
-mouse=a			|			| mouse mode (use shift when selecting to copy to clipboard)
-```
+:set <x>	- set x
+:set no<x>, <x>!	- unset x
+:set <x>=value - assign x
+:set all		- print all values
+:set <x>?			- print x 
 
+SET COMMAND OPERANDS:
+autoident, ai - autoident (noai)
+backup, bk 		- back file up before overwrite (nobackup) 
+ignorecase, ic 	- ignore case in search (noic)
+number, nu		- display line numbers (nonu)
+relativenumber, rnu - display relative numbers (nornu)
+shiftwidth, sw 	- number of spaces added when identing (8)
+tabstop, ts		- tab width (8)
+wrap			- wrap lines (wrap)
+wrapscan, ws	- search wraps around file (ws)
+mouse=a			- mouse mode (use shift when selecting to copy to clipboard)
 
 EDIT COMMANDS:
 [n] operation [m] motion - if both n and m are specified then n x m
@@ -1059,18 +1078,14 @@ ctrl+n - show autocomplete suggestions
 ## MISC ##
 ##########
 
-VLC:
-sudo add-apt-repository ppa:videolan/stable-daily
-sudo add-apt-repository ppa:n-muench/vlc
-
 PIRATEBAY:
 torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file
 
 JAVA:
 java -Xmx6g myprogram - reserve 6 giga for process
 	-jar <jar> - execute jar
-	-cp <path>:<path>... - tell java where are libraries located
-appletviewer Race.html - run java applet
+	-cp <path>:<path>... - tell java where libraries are located
+appletviewer <page>.html - run java applet
 jps -lvm - list java processes
 jmap -histo:live <pid> - memory map
 jvisualvm - profiler
@@ -1078,88 +1093,71 @@ jar cvfe "bla.jar" <main-class> *.class - create executable jar
 jar xf <jar> - extract files from jar
 jar tf <jar> - print contents of a jar 
 
-Install oracle jdk:
+INSTALL ORACLE JDK:
 sudo apt-get remove openjdk*
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java7-installer
 
-SCREEN: 
-All shortcuts begin with ctrl+a
-	| - new region vertically
-	S - new region horizontally
-	tab - move to next region
-	Q - close all but selected region
-	X - kill the current region
-	esc - enter copy/scrollback mode -> space: start/stop marking
-	] - paste
-	k - kill window
-	t - show time and avg cpu load
-
 FIREFOX:
 about:config - layout.css.devPixelsPerPx default zoom (-1.0)
 
 XRANDR:
-xrandr --output VGA1 --primary - changes primary screen 
-xrandr --output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their relative positions
-xrandr -q - list devices
---
-# reset 
-xrandr --auto
---
-# turn off laptop screen
-xrandr --output LVDS1 --off
---
-# 24" 16x12 on
-xrandr --output [VGA|HDMI] --mode 1600x1200
+xrandr 	--output VGA1 --primary - changes primary screen 
+		--output VGA1 --auto --pos 0x0 --output LVDS1 --auto --right-of VGA1 - to change their relative positions
+		-q - list devices
+		--auto - reset
+		--output LVDS1 --off - turn off laptop screen
+		--output [VGA|HDMI] --mode 1600x1200 - 24" 16x12 on
+
 MOUNT ISO:
 sudo mkdir /media/x
-sudo mount -o loop <PATH_ISO> /media/x
+sudo mount -o loop <path-to-iso> /media/x
 
 ECLIPSE:
-ctrl-1 - quick fix
-alt-shift-s - source submenu
-ctrl - F7, esc - close pop-up console window
-ctrl-7, ctrl-/ - toggle comment
+ctrl+1 - quick fix
+alt+shift+s - source submenu
+ctrl+F7, esc - close pop-up console window
+ctrl+7, ctrl+/ - toggle comment
 F3 - goto definition
 objectaid - UML plugin 
 
 WINE:
 winecfg -> drives tab to set drive
 wine explorer /desktop=abalaba,1024x768 app.exe - run wine app in virtual desktop
-reason on wine:
-	down alt down - open menu
+reason on wine:	down alt down - open menu
 regedit - registry editor
 
 CYGWIN:
-[cygwin] ssh-host-cofig, [command prompt] net start sshd, [any] ssh <windows username - CASE MATTERS!>@<host>, using windows password - run sshd
+[cygwin] ssh-host-cofig, 
+[command prompt] net start sshd, 
+[any] ssh <windows username - CASE MATTERS!>@<host> - run sshd (use windows password)
 
 GOLANG:
-go	build       compile packages and dependencies
-	clean       remove object files
-	env         print Go environment information
-	fix         run go tool fix on packages
-	fmt         run gofmt on package sources
-	get         download and install packages and dependencies (first you need to set GOPATH to dir where packages will get downloaded)
-	install     compile and install packages and dependencies
-	list        list packages
-	run         compile and run Go program
-	test        test packages
-	tool        run specified go tool
-	version     print Go version
-	vet         run go tool vet on packages
+go	build       - compile packages and dependencies
+	clean       - remove object files
+	env         - print Go environment information
+	fix         - run go tool fix on packages
+	fmt         - run gofmt on package sources
+	get         - download and install packages and dependencies (first you need to set GOPATH to dir where packages will get downloaded)
+	install     - compile and install packages and dependencies
+	list        - list packages
+	run         - compile and run Go program
+	test        - test packages
+	tool        - run specified go tool
+	version     - print Go version
+	vet         - run go tool vet on packages
 
 syntax highlight - https://github.com/jnwhiteh/vim-golang 
 	- for gedit: sudo cp /usr/share/gtksourceview-3.0/language-specs/go.lang /usr/share/gtksourceview-2.0/language-specs/
 simple ncurses - go get github.com/nsf/termbox-go
 
 PYTHON:
-INSTALLING MARKDOWN:
+INSTALL MARKDOWN:
 git clone git://github.com/waylan/Python-Markdown.git python-markdown
 cd python-markdown
 python setup.py install
-MARKDOWN:
+PARSE MARKDOWN:
 python -m markdown -x markdown.extensions.tables table.txt - parse markdown containing table
-
 
 

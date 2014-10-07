@@ -1,133 +1,58 @@
-<h1>GIT</h1>
-
-<h1>[Notes from "Git for ages 4 and up" video]</h1>
-
-<pre><code>( ) &lt;--------- ADD - Writes files to the repo. (Into the staging area.)
- |  
----
-</code></pre>
-
-<p>+------------+
-   v            | <br />
- HEAD *MASTER &lt;-+- COMMIT - Creates commit object for added files, which <br />
-     /         |           has an id, and then puts labels on it [HEAD, <br />
-    (A) &lt;-------+           MASTER] (or moves them from previous commit). <br />
-     |                      (Prints branch label that it's advancing and <br />
-    ---                     objects hash)</p>
-
-<p>HEAD  LABEL &lt;---- BRANCH <LABEL> - Stucks a new label on HEAD (withouth <br />
-     /                             parameter it prints local branches). 
-    (A)-*MASTER                      (With -r will print remote branches/ 
-     |                              all the references that you have.)
-    ---    </p>
-
-<p>HEAD *LABEL &lt;---- CHECKOUT <LABEL> - Switches which branch it's going to
-     /                               advance at commit (from master to
-    (A)-MASTER                        label). (If the labels were pointing
-     |                                to different commits it would also
-    ---                               get the files)</p>
-
-<pre><code>               MERGE &lt;LABEL&gt; - Merge contents of &lt;LABEL&gt; branch into 
-                               HEAD. Also second &lt;LABEL&gt; parameter 
-                               possible -&gt; will merge into it instead
-                               of current branch. There are two
-                               strategys in which git will merge two
-                               branches:
-
-                               FAST FORWARD
-                               ------------
-                               If the &lt;LABEL&gt; is reachable from HEAD
-                               and its above it.
-                                                    LABEL
-                                   LABEL         HEAD | *MASTER       
-                                     |               | /        
-                               HEAD (B) *MASTER      (B)
-                                    | /      ___    |
-                                    (A)          /   (A)
-                                     |                | 
-                                    ---              ---
-
-                               RECURSIVE STRATEGY
-                               ------------------ 
-                               Merges contents and creates new commit 
-                               that has two parents (it can have any 
-                               number of parents). Moves currnet branch
-                               and HEAD labels to it (label LABEL stays 
-                               behind).
-                                                          HEAD
-                                                           |
-                               LABEL HEAD          LABEL  (D)-MASTER
-                                      |                / |          
-                                   (B)(C)-*MASTER      (B)(C)
-                                    | /         ___    | / 
-                                   (A)             /   (A)
-                                    |                   |      
-                                   ---                 ---    
-
-
-
-               RESET -hard HEAD^ - Move current label to commit HEAD-1,
-                                   and also do checkout (--hard)
-
-
-               LOG --graph --decorate --all - Shows nice history with
-                                              graph
-</code></pre>
-
-<p>TODO graph!        DETACHED HEAD STATE:
-                   TAG v1.0 <hash> -> CHECKOUT v1.0 - If no branch label is
-                   on this commit you get message: "You are in detached
-                   head state", meaning that if you want to keep your
-                   commits, you need to create a new branch.</p>
-
-<p>===========================================================================
-TO MERGE NEW FEATURE INTO MASTER:</p>
-
-<pre><code>                                       HEAD *LABEL        HEAD LABEL
-                                           /                 /
-</code></pre>
-
-<p>LABEL HEAD          HEAD <em>LABEL              (D)                (D)-</em>MASTER
-       |                /                  / |                / | <br />
-    (B)(C)-*MASTER      (B)(C)-MASTER      (B)(C)-MASTER      (B)(C)
-     | /         <strong>_    | /        <em></strong>    | /        _</em>_    | / 
-    (A)             /   (A)            /   (A)            /   (A)
-     |                   |                  |                  | <br />
-    ---                 ---                ---                --- <br />
-                    1. CHECKOUT       2. MERGE MASTER    3. CHECKOUT MASTER,
-                       LABEL             (recursive),       MERGE LABEL
-                                         test               (fast forward)</p>
-
-<p>===========================================================================
-WORKING WITH REMOTE REPOSITORIES:</p>
-
-<pre><code>               CLONE &lt;url or path of origin&gt; &lt;optional different name&gt;
-                     - Makes a copy of remote repository. State of our 
-                     repo after clone:
-
-+--------------------+----+- TRACKING BRANCHES - they mean: last time I
-v ORIGIN/LABEL &lt;-----+    |  talked with origin, thats where its label
-</code></pre>
-
-<p>ORIGIN/HEAD | ORIGIN/MASTER &lt;-+  was.
-           |/ 
-     HEAD--(D)--*MASTER &lt;------- Also it did not pull over LABEL branch,
-          / |                    because it pulls over only the default
-        (B)(C)                   branch, which is master (note that origin
-         | /                     and master are just names, they have no 
-        (A)                      segnificance).
-         | <br />
-        ---    </p>
-
-<pre><code>               CLONE --bare &lt;url or path of origin&gt; &lt;optional different
-                     name&gt; - Make a copy of repo, containing only
-                             contents of .git directory (there is no
-                             checkout.
-
-               REMOTE -v - List remotes (defaultly named origin)
-
-               PULL - Same as FETCH + MERGE
-
-               PUSH &lt;origin&gt; &lt;local branch&gt; - Pushes changes made to the
-                                              local branch to origin repo.
-</code></pre>
+<!DOCTYPE html>
+<head>
+<title>Git for Ages 4 and Up</title>
+</head><style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>
+<a href="../../html/wtf-man.html" target="_blank"> 
+  <img src="../../resources/kenandritchie.png" border="0" />
+</a>
+<h2>Git for Ages 4 and Up</h2>
+<h3 align="center">\nADD</h3>
+Writes files to the repo. (Into the staging area.)\n\n\n
+<img src="../../resources/picture1.png">
+<h3 align="center">\nCOMMIT</h3>
+Creates commit object for added files, which \n         has an id, and then puts labels on it [HEAD,  \n         MASTER] (or moves them from previous commit). \n         (Prints branch label that it's advancing and \n         objects hash)
+<img src="../../resources/picture2.png">
+<h3 align="center">\n\nD  LABEL       BRANCH <LABEL></h3>
+Stucks a new label on HEAD (withouth \n\ /                             parameter it prints local branches). \n(A)-*MASTER                     (With -r will print remote branches/ \n |                              all the references that you have.)\n---    
+<img src="../../resources/picture3.png">
+<h3 align="center">\n<LABEL></h3>
+Switches which branch it's going to\n          advance at commit (from master to\n          label). (If the labels were pointing\n          to different commits it would also\n          get the files)
+<img src="../../resources/picture4.png">
+<h3 align="center">\n<LABEL></h3>
+Move current label to commit HEAD-1,\n              and also do checkout (--hard)
+<img src="../../resources/picture5.png">
+<h3 align="center">\n--all</h3>
+Shows nice history with\n        graph
+<img src="../../resources/picture6.png">
+<h3 align="center">\n\nHECKOUT v1.0</h3>
+If no branch label is\net message: "You are in detached\n that if you want to keep your\n create a new branch.
+<img src="../../resources/picture7.png">
+<h3 align="center">\n\n\n\n\n\nR\n\n\n\n\n\n\n,\n\n</h3>
+\n\n\n\n\n\nR\n\n\n\n\n\n\n,\n\n
+<img src="../../resources/picture8.png">
+<h3 align="center">\n\n</h3>
+\n\n
+<img src="../../resources/picture9.png">
+<h3 align="center">\n\n \n</h3>
+\n\n \n
+<img src="../../resources/picture10.png">
+<h3 align="center">\nBRANCHES</h3>
+they mean: last time I\nth origin, thats where its label\n\n\nid not pull over LABEL branch,\nt pulls over only the default\nhich is master (note that origin\nr are just names, they have no \nnce).\n\n
+<img src="../../resources/picture11.png">
+<h3 align="center">\n\n\n\n</h3>
+\n\n\n\n
+<img src="../../resources/picture12.png">
+<h3 align="center">\n-v</h3>
+List remotes (defaultly named origin)
+<img src="../../resources/picture13.png">
+<h3 align="center">\nPULL</h3>
+Same as FETCH + MERGE
+<img src="../../resources/picture14.png">
+<h3 align="center">\nbranch></h3>
+Pushes changes made to the\n          local branch to origin repo.
+<img src="../../resources/picture15.png">

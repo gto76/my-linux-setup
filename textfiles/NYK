@@ -655,28 +655,26 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
 ===========================================================================
 
 
-    ( ) <--------- ADD - Writes files to the repo. (Into the staging area.)
+    ( )            ADD - Writes files to the repo. (Into the staging area.)
      |  
     ---
-
   
-   +------------+
-   v            |          
- HEAD *MASTER <-+- COMMIT - Creates commit object for added files, which     
-    \ /         |           has an id, and then puts labels on it [HEAD,  
-    (A) <-------+           MASTER] (or moves them from previous commit).             
-     |                      (Prints branch label that it's advancing and     
+
+ HEAD *MASTER      COMMIT - Creates commit object for added files, which 
+    \ /                     has an id, and then puts labels on it [HEAD,  
+    (A)                     MASTER] (or moves them from previous commit). 
+     |                      (Prints branch label that it's advancing and 
     ---                     objects hash)
 
     
- HEAD  LABEL <---- BRANCH <LABEL> - Stucks a new label on HEAD (withouth                    
+ HEAD  LABEL       BRANCH <LABEL> - Stucks a new label on HEAD (withouth 
     \ /                             parameter it prints local branches). 
-    (A)-*MASTER                      (With -r will print remote branches/ 
+    (A)-*MASTER                     (With -r will print remote branches/ 
      |                              all the references that you have.)
     ---    
 
 
- HEAD *LABEL <---- CHECKOUT <LABEL> - Switches which branch it's going to
+ HEAD *LABEL       CHECKOUT <LABEL> - Switches which branch it's going to
     \ /                               advance at commit (from master to
     (A)-MASTER                        label). (If the labels were pointing
      |                                to different commits it would also
@@ -689,39 +687,27 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
                                    of current branch. There are two
                                    strategys in which git will merge two
                                    branches:
-
-                                   FAST FORWARD
-                                   ------------
-                                   If the <LABEL> is reachable from HEAD
-                                   and its above it.
-                                                        LABEL
-                                       LABEL         HEAD | *MASTER       
-                                         |              \ | /        
-                                   HEAD (B) *MASTER      (B)
-                                       \ | /      ___\    |
-                                        (A)          /   (A)
-                                         |                | 
-                                        ---              ---
-
-                                   RECURSIVE STRATEGY
-                                   ------------------ 
-                                   Merges contents and creates new commit 
-                                   that has two parents (it can have any 
-                                   number of parents). Moves currnet branch
-                                   and HEAD labels to it (label LABEL stays 
-                                   behind).
-                                                              HEAD
-                                                               |
-                                   LABEL HEAD          LABEL  (D)-MASTER
-                                       \   |               \ / |          
-                                       (B)(C)-*MASTER      (B)(C)
-                                        | /         ___\    | / 
-                                       (A)             /   (A)
-                                        |                   |      
-                                       ---                 ---    
+                                   
+     				 LABEL         FAST FORWARD - If the <LABEL> is  
+    LABEL         HEAD | *MASTER   reachable from HEAD and it is located
+      |              \ | /         above it.
+HEAD (B) *MASTER      (B)
+    \ | /      ___\    |
+     (A)          /   (A)
+      |                | 
+     ---              ---
+                                   
+                       HEAD        RECURSIVE STRATEGY - Merges contents and
+                        |          creates new commit that has two parents
+LABEL HEAD      LABEL  (D)-MASTER  (it can have any number of parents). 
+    \   |           \ / |          Moves currnet branch and HEAD labels to
+    (B)(C)-*MASTER  (B)(C)         it (label LABEL stays behind).
+     | /       ___\  | / 
+    (A)           / (A)
+	 |               |      
+    ---             ---    
                                    
   
-
                    RESET -hard HEAD^ - Move current label to commit HEAD-1,
                                        and also do checkout (--hard)
 

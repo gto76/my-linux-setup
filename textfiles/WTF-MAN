@@ -940,6 +940,7 @@ x - delete character
 :%s/old/new/gc - sed, c means with conformations
 gF - open file under cursor
 K - look up word under cursor in man pages
+ctrl+v - select visual box
 
 HELP:
 ctrl+] - follow link

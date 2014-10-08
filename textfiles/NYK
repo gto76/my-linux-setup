@@ -660,38 +660,38 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
     ---
   
 
- HEAD *MASTER      COMMIT - Creates commit object for added files, which 
+ HEAD *master      COMMIT - Creates commit object for added files, which 
     \ /                     has an id, and then puts labels on it [HEAD,  
-    (A)                     MASTER] (or moves them from previous commit). 
+    (A)                     master] (or moves them from previous commit). 
      |                      (Prints branch label that it's advancing and 
     ---                     objects hash)
 
     
- HEAD  LABEL       BRANCH <LABEL> - Stucks a new label on HEAD (withouth 
+ HEAD *master      BRANCH <label> - Stucks a new label on HEAD (withouth 
     \ /                             parameter it prints local branches). 
-    (A)-*MASTER                     (With -r will print remote branches/ 
+    (A)-label                       (With -r will print remote branches/ 
      |                              all the references that you have.)
     ---    
 
 
- HEAD *LABEL       CHECKOUT <LABEL> - Switches which branch it's going to
+ HEAD  master      CHECKOUT <label> - Switches which branch it's going to
     \ /                               advance at commit (from master to
-    (A)-MASTER                        label). (If the labels were pointing
+    (A)-*label                        label). (If the labels were pointing
      |                                to different commits it would also
     ---                               get the files)
 
 
-                   MERGE <LABEL> - Merge contents of <LABEL> branch into 
-                                   HEAD. Also second <LABEL> parameter 
+                   MERGE <label> - Merge contents of <label> branch into 
+                                   HEAD. Also second <label> parameter 
                                    possible -> will merge into it instead
                                    of current branch. There are two
                                    strategys in which git will merge two
                                    branches:
                                    
-     				 LABEL         FAST FORWARD - If the <LABEL> is  
-    LABEL         HEAD | *MASTER   reachable from HEAD and it is located
+     				 label         FAST FORWARD - If the <label> is  
+    label         HEAD | *master   reachable from HEAD and it is located
       |              \ | /         above it.
-HEAD (B) *MASTER      (B)
+HEAD (B) *master      (B)
     \ | /      ___\    |
      (A)          /   (A)
       |                | 
@@ -699,9 +699,9 @@ HEAD (B) *MASTER      (B)
                                    
                        HEAD        RECURSIVE STRATEGY - Merges contents and
                         |          creates new commit that has two parents
-LABEL HEAD      LABEL  (D)-MASTER  (it can have any number of parents). 
+label HEAD      label  (D)-master  (it can have any number of parents). 
     \   |           \ / |          Moves currnet branch and HEAD labels to
-    (B)(C)-*MASTER  (B)(C)         it (label LABEL stays behind).
+    (B)(C)-*master  (B)(C)         it (<label> stays behind).
      | /       ___\  | / 
     (A)           / (A)
 	 |               |      
@@ -716,31 +716,60 @@ LABEL HEAD      LABEL  (D)-MASTER  (it can have any number of parents).
                                                   graph
 
 
-TODO graph!        DETACHED HEAD STATE:
-                   TAG v1.0 <hash> -> CHECKOUT v1.0 - If no branch label is
+DETACHED HEAD STATE:
+
+
+                   TAG v1.0 <A> -> CHECKOUT v1.0 - If no branch label is
                    on this commit you get message: "You are in detached
                    head state", meaning that if you want to keep your
                    commits, you need to create a new branch.
 
 
-===========================================================================
 TO MERGE NEW FEATURE INTO MASTER:
-    
-                                           HEAD *LABEL        HEAD LABEL
-                                              \ /                \ /
- LABEL HEAD          HEAD *LABEL              (D)                (D)-*MASTER
-    \   |               \ /                  / |                / |        
-    (B)(C)-*MASTER      (B)(C)-MASTER      (B)(C)-MASTER      (B)(C)
-     | /         ___\    | /        ___\    | /        ___\    | / 
-    (A)             /   (A)            /   (A)            /   (A)
-     |                   |                  |                  |      
-    ---                 ---                ---                ---    
-                    1. CHECKOUT       2. MERGE MASTER    3. CHECKOUT MASTER,
-                       LABEL             (recursive),       MERGE LABEL
-                                         test               (fast forward)
+                   
 
-===========================================================================
+ label HEAD           	1. - starting position 
+    \   |          
+    (B)(C)-*master 
+     | /        
+    (A)            
+     |             
+    ---            
+                   
+
+ *label HEAD			2. - checkout label
+     \ /            
+     (B)(C)-master  
+      | /        
+     (A)            
+      |             
+     ---            
+
+
+   *label HEAD    		3. - merge master (recursive), test 
+       \ /         
+       (D)         
+      / |          
+    (B)(C)-master  
+     | /        
+    (A)            
+     |             
+    ---            
+
+
+   label HEAD			4. - checkout master, merge label (fast forward) 
+       \ /
+       (D)-*master
+      / |        
+    (B)(C)
+     | / 
+    (A)
+     |      
+    ---    
+
+
 WORKING WITH REMOTE REPOSITORIES:
+
 
                    CLONE <url or path of origin> <optional different name>
                          - Makes a copy of remote repository. State of our 

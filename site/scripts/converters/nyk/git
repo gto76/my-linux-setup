@@ -1,41 +1,58 @@
 #!/bin/bash
 #
 # Usage: ./git <path-to-markdown> 
+# Creates the Git for ages 4 and up page from the textfile
 
-PICTURE_SIZE=30
-
-../scripts/header "$1" "Git for Ages 4 and Up"
-echo "<h2>Git for Ages 4 and Up</h2>"
-
+###################################
+# Height of one cell in picture
+PICTURE_SIZE=19
+# Width of the second, separating column
+SEP_WIDTH=15
+###################################
 picture=""		# picture part of the section
 description=""	# description part of the section
 divider=0		# colum that divides picture from description part
 i=0
 lastLineEmpty="false"
 pictureIndex=1
+# If there is only one blank line separating two parts, then we know we 
+# are still in the same section, meaning we output to the same table
+numberOfBlankLinesInRow=2
+firstSection="true"
+###################################
 
+##########################
+## FIND DIVIDING COLUMN ##
+##########################
 
 # Description section is defined by a ' - ' between the title and
 # the actual description.
 findDividingColumn() {
-	let divider=`echo "$line" | sed 's/[^ {2,}\t]* - .*$//' | wc -m`-1
+	lastLastChar=""
+	lastChar=""
+	for (( j=0 ; j < ${#line} ; j++ )); do
+		char=${line:j:1} 
+		#echo "loop: j = $j, char = $char, pictureIndex = $pictureIndex" >&2
+		if [[ "$char" == " " && "$lastChar" == " " ]]; then
+			divider="$j"
+		fi
+		if [[ "$char" == ' ' && \
+				 "$lastChar" == '-' && \
+				 "$lastLastChar" == ' ' ]]; then 
+			return
+		fi
+		lastLastChar="$lastChar"
+		lastChar="$char"
+	done
 }
 
+######################
+## GENERATE PICTURE ##
+######################
 
-printSection() {
-	# Divide title from text
-	firstLine=`echo "$description" | head -1 `
-	title=`echo "$firstLine" | sed 's/ - .*//'`
-	text=$(echo "$firstLine" | sed 's/^.* - //')$(echo "$description" | tail -n+2)
-
-	echo "firstLine $pictureIndex = $firstLine" >&2
-	echo "title $pictureIndex = $title" >&2
-	echo "text $pictureIndex = $text" >&2
-	echo "picture $pictureIndex = $picture" >&2
-	echo "description = $description" >&2
-
-	# Generate picture
-	# check if render-graph script is installed, if not download it and install it
+generatePicture() {
+	# check if render-graph script is installed, if not download it 
+	# and install it
 	command -v render-graph >/dev/null 2>&1 
 	if [[ $? -ne 0 ]]; then
 		echo >&2 "downloading render grapsh script"
@@ -45,20 +62,93 @@ printSection() {
 	fi
 	pictureTextFile=`mktemp`
 	echo "$picture" > "$pictureTextFile"
-	render-graph -s "$PICTURE_SIZE" "$pictureTextFile" -o ../resources/picture"$pictureIndex"
+	render-graph -c -s "$PICTURE_SIZE" "$pictureTextFile" \
+			 -o ../resources/picture"$pictureIndex"
 
-	# Print HTML
-	echo "<h3 align=\"center\">$title</h3>"
-	echo "$text"
-	echo "<img src=\"../../resources/picture${pictureIndex}.png\">"
-
+	pix="<br><br><img src =\"../../resources/picture${pictureIndex}.png\">"
 	let pictureIndex++
 }
 
-# If line is empty, and if picture or description is not empty then print, continue.
+###################
+## PRINT SECTION ##
+###################
+
+# Prints explanation of one git command consisting of title, 
+# text and picture
+printSection() {
+	# Replace all < and >s with &lt and &gt
+	description=`echo "$description" | \
+					sed 's/</\&lt/g' | \
+					sed 's/>/\&gt/g'`
+
+	# Divide title from text
+	title=`echo "$description" | sed 's/ - .*//' | tr [A-Z] [a-z]`
+	text=`echo "$description" | sed 's/^.* - //'`
+
+	# If picture is empty, contine
+	if [[ -z `echo -e "$picture" | tr -d '\040\011\012\015'` ]]; then	
+		pix=""
+	else
+		generatePicture
+	fi
+	
+	# Print HTML
+	if [[ "$numberOfBlankLinesInRow" -gt 1 ]]; then
+		if [[ "$firstSection" == "false" ]]; then
+			echo '</table></blockquote>'
+		else
+			firstSection="false"
+		fi
+
+		echo '<blockquote><table>'
+		echo "<tr><td valign=top style=\"white-space:nowrap;\">\
+				<strong>$title</strong></td>\
+				<td style=\"width:${SEP_WIDTH}px\"></td>\
+				<td>$text$pix</td></tr>"
+		#echo '</table></blockquote>'
+	# still in same section, do not seal the table
+	else
+		echo "<tr><td valign=top>\
+				</td><td style=\"width:${SEP_WIDTH}px\"></td>\
+				<td><br><strong>$title</strong> - $text$pix</td></tr>"
+	fi
+	numberOfBlankLinesInRow=0
+}
+
+###################
+## PRINT HEADING ##
+###################
+
+printHeading() { 
+	if [[ "$firstSection" == "false" ]]; then
+		echo '</table></blockquote>'
+	fi
+	# convert to title case
+	line=`echo "$line" | \
+		    tr -d ':' | \
+		    sed -e 's/.*/\L&/' -e 's/[a-z]*/\u&/g'`
+	echo "<br><h3 align=\"center\">$line</h3>"
+	echo '<blockquote><table>'
+}
+
+##########
+## MAIN ##
+##########
+
+# If line is empty, and if picture or description is not empty then 
+# print, continue.
 # If last line was empty then find the dividing column.
 # Add to picture first x chars and to description other n-x
 main() {
+	# Print header and title
+	../scripts/header "$1" "Git for ages 4 and up"
+	echo "<h2>Git for ages 4 and up</h2>"
+
+	# Replace tabs with spaces
+	tmpFile=`mktemp`
+	expand "$1" > "$tmpFile"
+	mv -f "$tmpFile" "$1"
+
 	SAVE_IFS="$IFS"
 	IFS=""
 	while read -r line; do
@@ -68,10 +158,13 @@ main() {
 			continue
 		fi
 
-		if [[ -z "$line" ]]; then
+		# check if line is empty
+		if [[ -z `echo "$line" | tr -d ' '` ]]; then
 			lastLineEmpty="true"
+			let numberOfBlankLinesInRow++
 			if [[ -n "$picture" || -n "$description" ]]; then
 				printSection
+				echo "### picture = $picture" >&2
 				picture=""
 				description=""
 			fi
@@ -79,15 +172,23 @@ main() {
 		fi
 
 		if [[ "$lastLineEmpty" == true ]]; then	
+			# if line contains the heading
+			if [[ -n `echo "$line" | grep '^[A-Z].*:$'` ]]; then
+				printHeading
+				continue
+			fi
+			# else its just a first line of a section
 			findDividingColumn
+			echo "divider = $divider, line = $line" >&2
 		fi
 
 		picture="$picture\n"${line:0:divider} 	
-		description="$description\n"${line:divider:${#line}}
+		description="$description"${line:divider:${#line}}
 
 		lastLineEmpty="false"
 	done < "$1"
 	IFS="$SAVE-IFS"
+	echo '</table></blockquote>'
 }
 
 main "$@"

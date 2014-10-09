@@ -655,40 +655,40 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
 ===========================================================================
 
 
-    ( )            ADD - Writes files to the repo. (Into the staging area.)
+    ( )            ADD - writes files to the repo. (Into the staging area.)
      |  
     ---
   
 
- HEAD *master      COMMIT - Creates commit object for added files, which 
+ HEAD *master      COMMIT - creates commit object for added files, which 
     \ /                     has an id, and then puts labels on it [HEAD,  
     (A)                     master] (or moves them from previous commit). 
      |                      (Prints branch label that it's advancing and 
     ---                     objects hash)
 
     
- HEAD *master      BRANCH <label> - Stucks a new label on HEAD (withouth 
+ HEAD *master      BRANCH <label> - stucks a new label on HEAD (withouth 
     \ /                             parameter it prints local branches). 
     (A)-label                       (With -r will print remote branches/ 
      |                              all the references that you have.)
     ---    
 
 
- HEAD  master      CHECKOUT <label> - Switches which branch it's going to
+ HEAD  master      CHECKOUT <label> - switches which branch it's going to
     \ /                               advance at commit (from master to
     (A)-*label                        label). (If the labels were pointing
      |                                to different commits it would also
     ---                               get the files)
 
 
-                   MERGE <label> - Merge contents of <label> branch into 
+                   MERGE <label> - merge contents of <label> branch into 
                                    HEAD. Also second <label> parameter 
                                    possible -> will merge into it instead
                                    of current branch. There are two
                                    strategys in which git will merge two
                                    branches:
                                    
-     				 label         FAST FORWARD - If the <label> is  
+					 label         FAST FORWARD - if the <label> is  
     label         HEAD | *master   reachable from HEAD and it is located
       |              \ | /         above it.
 HEAD (B) *master      (B)
@@ -697,7 +697,7 @@ HEAD (B) *master      (B)
       |                | 
      ---              ---
                                    
-                       HEAD        RECURSIVE STRATEGY - Merges contents and
+                       HEAD        RECURSIVE STRATEGY - merges contents and
                         |          creates new commit that has two parents
 label HEAD      label  (D)-master  (it can have any number of parents). 
     \   |           \ / |          Moves currnet branch and HEAD labels to
@@ -708,11 +708,11 @@ label HEAD      label  (D)-master  (it can have any number of parents).
     ---             ---    
                                    
   
-                   RESET -hard HEAD^ - Move current label to commit HEAD-1,
-                                       and also do checkout (--hard)
+                   RESET -hard HEAD^ - moves current label to commit HEAD-1,
+                                       and also does checkout (--hard)
 
 
-                   LOG --graph --decorate --all - Shows nice history with
+                   LOG - --graph --decorate --all - shows nice history with
                                                   graph
 
 
@@ -728,7 +728,7 @@ DETACHED HEAD STATE:
 TO MERGE NEW FEATURE INTO MASTER:
                    
 
- label HEAD           	1. - starting position 
+ label HEAD           	1. - Starting position:
     \   |          
     (B)(C)-*master 
      | /        
@@ -737,7 +737,7 @@ TO MERGE NEW FEATURE INTO MASTER:
     ---            
                    
 
- *label HEAD			2. - checkout label
+ *label HEAD			2. - Checkout label:
      \ /            
      (B)(C)-master  
       | /        
@@ -746,7 +746,7 @@ TO MERGE NEW FEATURE INTO MASTER:
      ---            
 
 
-   *label HEAD    		3. - merge master (recursive), test 
+   *label HEAD    		3. - Merge master (recursive), test:
        \ /         
        (D)         
       / |          
@@ -757,7 +757,7 @@ TO MERGE NEW FEATURE INTO MASTER:
     ---            
 
 
-   label HEAD			4. - checkout master, merge label (fast forward) 
+   label HEAD			4. - Checkout master, merge label (fast forward):
        \ /
        (D)-*master
       / |        

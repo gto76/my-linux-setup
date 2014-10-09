@@ -4,10 +4,9 @@
 # Creates the Git for ages 4 and up page from the textfile
 
 ###################################
-# Height of one cell in picture
-PICTURE_SIZE=19
-# Width of the second, separating column
-SEP_WIDTH=15
+PICTURE_SIZE=19 # Height of one cell in picture
+SEP_WIDTH=15 # Width of the second, separating column
+TAB_WIDTH=4 # Width of a tab in textfile
 ###################################
 picture=""		# picture part of the section
 description=""	# description part of the section
@@ -64,8 +63,9 @@ generatePicture() {
 	echo "$picture" > "$pictureTextFile"
 	render-graph -c -s "$PICTURE_SIZE" "$pictureTextFile" \
 			 -o ../resources/picture"$pictureIndex"
-
-	pix="<br><br><img src =\"../../resources/picture${pictureIndex}.png\">"
+	#pix="<br><br><img src =\"../../resources/picture${pictureIndex}.png\"><br>"
+	pix="<tr><td></td><td></td><td align=\"center\"><br>\
+			<img src =\"../../resources/picture${pictureIndex}.png\"></td></tr>"
 	let pictureIndex++
 }
 
@@ -83,7 +83,7 @@ printSection() {
 
 	# Divide title from text
 	title=`echo "$description" | sed 's/ - .*//' | tr [A-Z] [a-z]`
-	text=`echo "$description" | sed 's/^.* - //'`
+	text=`echo "$description" | grep -o ' - .*$' | sed 's/^ - //'` #sed 's/^.*? - //'`
 
 	# If picture is empty, contine
 	if [[ -z `echo -e "$picture" | tr -d '\040\011\012\015'` ]]; then	
@@ -94,24 +94,29 @@ printSection() {
 	
 	# Print HTML
 	if [[ "$numberOfBlankLinesInRow" -gt 1 ]]; then
-		if [[ "$firstSection" == "false" ]]; then
-			echo '</table></blockquote>'
-		else
-			firstSection="false"
-		fi
+		#if [[ "$firstSection" == "false" ]]; then
+			#echo '</table></blockquote>'
+		#else
+		#	firstSection="false"
+		#fi
 
-		echo '<blockquote><table>'
+		if [[ "$firstSection" == "true" ]]; then
+			firstSection="false"
+		fi	
+
+		#echo '<blockquote><table>'
 		echo "<tr><td valign=top style=\"white-space:nowrap;\">\
 				<strong>$title</strong></td>\
 				<td style=\"width:${SEP_WIDTH}px\"></td>\
-				<td>$text$pix</td></tr>"
+				<td>$text</td></tr>"
 		#echo '</table></blockquote>'
 	# still in same section, do not seal the table
 	else
 		echo "<tr><td valign=top>\
 				</td><td style=\"width:${SEP_WIDTH}px\"></td>\
-				<td><br><strong>$title</strong> - $text$pix</td></tr>"
+				<td><br><strong>$title</strong> - $text</td></tr>"
 	fi
+	echo "$pix"
 	numberOfBlankLinesInRow=0
 }
 
@@ -143,10 +148,11 @@ main() {
 	# Print header and title
 	../scripts/header "$1" "Git for ages 4 and up"
 	echo "<h2>Git for ages 4 and up</h2>"
+	echo '<blockquote><table>'
 
 	# Replace tabs with spaces
 	tmpFile=`mktemp`
-	expand "$1" > "$tmpFile"
+	expand -t "$TAB_WIDTH" "$1" > "$tmpFile"
 	mv -f "$tmpFile" "$1"
 
 	SAVE_IFS="$IFS"

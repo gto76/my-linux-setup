@@ -120,6 +120,7 @@ sh - run command interpreter (shell). Can run script even if not executable.
 bash - run bash command interpreter (shell)
 	-c - read commands from arguments instead of stdin
 	-n <script> - check script for errors
+	-x - oputputs lines before execution, good for debuging
 sudo sh -c 'echo "bla bla bla" >> <file>' - append lines to system configuration file
 gcc - gnu c compiler
 	-w - supress warnings (only print errors) 

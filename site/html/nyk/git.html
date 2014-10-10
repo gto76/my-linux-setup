@@ -22,9 +22,9 @@ html {
 <tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture4.png"></td></tr>
 <tr><td valign=top style="white-space:nowrap;">				<strong> merge &ltlabel&gt</strong></td>				<td style="width:15px"></td>				<td>merge contents of &ltlabel&gt branch into                  HEAD. Also second &ltlabel&gt parameter                  possible -&gt will merge into it instead                 of current branch. There are two                 strategys in which git will merge two                 branches:</td></tr>
 
-<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> fast forward</strong> - if the &ltlabel&gt is   reachable from HEAD and it is located above it.</td></tr>
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> FAST FORWARD</strong> - if the &ltlabel&gt is   reachable from HEAD and it is located above it.</td></tr>
 <tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture5.png"></td></tr>
-<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> recursive strategy</strong> - merges contents and creates new commit that has two parents (it can have any number of parents).  Moves currnet branch and HEAD labels to it (&ltlabel&gt stays behind).</td></tr>
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> RECURSIVE STRATEGY</strong> - merges contents and creates new commit that has two parents (it can have any number of parents).  Moves currnet branch and HEAD labels to it (&ltlabel&gt stays behind).</td></tr>
 <tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture6.png"></td></tr>
 <tr><td valign=top style="white-space:nowrap;">				<strong> reset -hard head^</strong></td>				<td style="width:15px"></td>				<td>moves current label to commit HEAD-1,                     and also does checkout (--hard)</td></tr>
 
@@ -51,14 +51,14 @@ html {
 <blockquote><table>
 <tr><td valign=top style="white-space:nowrap;">				<strong> clone &lturl or path of origin&gt &ltoptional different name&gt      </strong></td>				<td style="width:15px"></td>				<td>Makes a copy of remote repository. State of our        repo after clone:</td></tr>
 
-<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> +--------------------+----+- tracking branches</strong> - they mean: last time I v ORIGIN/LABEL &lt-----+    |  talked with origin, thats where its labelGIN/HEAD | ORIGIN/MASTER &lt-+  was.        \|/   HEAD--(D)--*MASTER &lt------- Also it did not pull over LABEL branch,       / |                    because it pulls over only the default     (B)(C)                   branch, which is master (note that origin      | /                     and master are just names, they have no      (A)                      segnificance).      |           ---    </td></tr>
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> +--------------------+----+- TRACKING BRANCHES</strong> - they mean: last time I v ORIGIN/LABEL &lt-----+    |  talked with origin, thats where its labelGIN/HEAD | ORIGIN/MASTER &lt-+  was.        \|/   HEAD--(D)--*MASTER &lt------- Also it did not pull over LABEL branch,       / |                    because it pulls over only the default     (B)(C)                   branch, which is master (note that origin      | /                     and master are just names, they have no      (A)                      segnificance).      |           ---    </td></tr>
 <tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture11.png"></td></tr>
-<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> clone --bare &lturl or path of origin&gt &ltoptional different       name&gt</strong> - Make a copy of repo, containing only               contents of .git directory (there is no               checkout.</td></tr>
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> CLONE --bare &lturl or path of origin&gt &ltoptional different       name&gt</strong> - Make a copy of repo, containing only               contents of .git directory (there is no               checkout.</td></tr>
 
-<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> remote -v</strong> - List remotes (defaultly named origin)</td></tr>
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> REMOTE -v</strong> - List remotes (defaultly named origin)</td></tr>
 
-<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> pull</strong> - Same as FETCH + MERGE</td></tr>
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> PULL</strong> - Same as FETCH + MERGE</td></tr>
 
-<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> push &ltorigin&gt &ltlocal branch&gt</strong> - Pushes changes made to the                                local branch to origin repo.</td></tr>
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> PUSH &ltorigin&gt &ltlocal branch&gt</strong> - Pushes changes made to the                                local branch to origin repo.</td></tr>
 
 </table></blockquote>

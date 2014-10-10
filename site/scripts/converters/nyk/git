@@ -63,7 +63,6 @@ generatePicture() {
 	echo "$picture" > "$pictureTextFile"
 	render-graph -c -s "$PICTURE_SIZE" "$pictureTextFile" \
 			 -o ../resources/picture"$pictureIndex"
-	#pix="<br><br><img src =\"../../resources/picture${pictureIndex}.png\"><br>"
 	pix="<tr><td></td><td></td><td align=\"center\"><br>\
 			<img src =\"../../resources/picture${pictureIndex}.png\"></td></tr>"
 	let pictureIndex++
@@ -82,8 +81,9 @@ printSection() {
 					sed 's/>/\&gt/g'`
 
 	# Divide title from text
-	title=`echo "$description" | sed 's/ - .*//' | tr [A-Z] [a-z]`
-	text=`echo "$description" | grep -o ' - .*$' | sed 's/^ - //'` #sed 's/^.*? - //'`
+	title=`echo "$description" | sed 's/ - .*//'`
+	titleLowerCase=`echo "$title" | tr [A-Z] [a-z]`
+	text=`echo "$description" | grep -o ' - .*$' | sed 's/^ - //'`
 
 	# If picture is empty, contine
 	if [[ -z `echo -e "$picture" | tr -d '\040\011\012\015'` ]]; then	
@@ -94,22 +94,10 @@ printSection() {
 	
 	# Print HTML
 	if [[ "$numberOfBlankLinesInRow" -gt 1 ]]; then
-		#if [[ "$firstSection" == "false" ]]; then
-			#echo '</table></blockquote>'
-		#else
-		#	firstSection="false"
-		#fi
-
-		if [[ "$firstSection" == "true" ]]; then
-			firstSection="false"
-		fi	
-
-		#echo '<blockquote><table>'
 		echo "<tr><td valign=top style=\"white-space:nowrap;\">\
-				<strong>$title</strong></td>\
+				<strong>$titleLowerCase</strong></td>\
 				<td style=\"width:${SEP_WIDTH}px\"></td>\
 				<td>$text</td></tr>"
-		#echo '</table></blockquote>'
 	# still in same section, do not seal the table
 	else
 		echo "<tr><td valign=top>\
@@ -117,6 +105,7 @@ printSection() {
 				<td><br><strong>$title</strong> - $text</td></tr>"
 	fi
 	echo "$pix"
+	firstSection="false"
 	numberOfBlankLinesInRow=0
 }
 

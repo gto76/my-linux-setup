@@ -30,7 +30,7 @@ export LESS=' -R '
 
 ###################################################
 # ALIASES FOR EASY AND QUICK ACCESS TO THE FILES: #
-#  .bashrc,  .bash_aliases,  WTF MAN, and  TOD0   #
+#  .bashrc,  .bash_aliases,  WTF-MAN, and  INS    #
 ###################################################
 
 # Location of text file with useful unix command descriptions.
@@ -46,8 +46,10 @@ QUAFE="1:$MAN;\
 	3:$HOME/.my_bashrc;\
 	4:$INS;\
 	5:$NYK;\
-	6:$HOME/fri/elektronsko-in-mobilno-poslovanje/text;\
-	7:$HOME/fri/multimedijske-tehnologije/text"
+	6:$HOME/fri/site/mt/text.md;\
+	7:$HOME/fri/site/emp/text.md;\
+	8:$HOME/fri/site/tpo/text.md;\
+	9:$HOME/fri/site/is/text.md"
 
 SAVE_IFS="$IFS"
 IFS=$'\n'
@@ -56,21 +58,21 @@ for pair in `echo "$QUAFE" | tr -d '\t' | tr ';' '\n'`; do
 	file=`echo $pair | sed 's/^.*://'`
 
 	# Opens file in less.
-	alias m"$i"='m "$file"'
+	alias m"$i"="m $file"
 	# Opens file in nano.
-	alias n"$i"='nano "$file"'
+	alias n"$i"="nano $file"
 	# Opens file in vim.
-	alias v"$i"='v "$file"'
+	alias v"$i"="v $file"
 	# Opens file in gedit.
-	alias g"$i"='g "$file" &'
+	alias g"$i"="g $file &"
 	# Greps file for passed phrase.
-	alias c"$i"='m1 | c | gr'
+	alias c"$i"="m$i | c | gr"
+	# Appends line to file.
+	alias a"$i"="echo $@ >> $file"
+	# Print what file does the number represent
+	alias w"$i"="echo $file"
 
 done
 IFS="$SAVE_IFS"
 
-# Append line to MAN file.
-zhud() {
-    echo "$@" >> "$MAN"
-}
 

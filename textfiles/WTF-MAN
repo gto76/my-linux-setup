@@ -46,6 +46,7 @@ shift+ctrl+t - new tab
 shift+ctrl+w - close tab	 
 ctrl PgUp/PgDn - change tabs
 ctrl +/- - zoom
+ctrl+d - close terminal
 
 BASH:
 	(emacs mode, you can switch to vi mode with: set -o vi)
@@ -149,6 +150,8 @@ shutdown now - take you to single user mode
 	-h now -  begins the shutdown procedure (OR halt OR poweroff)
 	-h 11:50 - when
 	-r now - reboot (OR reboot)
+make -q - do not run any commands, just return 0 exit status if everything is up to date or nonzero otherwise
+	-B - unconditionaly make all targets
 
 FILES:
 ls 	-d - list directory names instead of contents
@@ -168,7 +171,9 @@ mc - midnight commander
 	alt o - open parent dir in another panel
 	ctrl o - switch to bash
 find <dir> -name <file> - search by name
+	-regex <regex> - use regex for name search
 	-not - insert before other options to negate
+	-maxdepth <levels> - descend only to levels deep
 	-samefile <file> - find all hard links of a file
 	-xdev - don't descend directories on other filesystems
 	-inum <inum> - find files with the inode number
@@ -323,8 +328,9 @@ TEXT:
 ====
 
 PRINT:
-tail -f - do not stop printing
-	-n +<line-number> - start at line number
+head -n-<number-of-lines> - print all lines but the last n
+tail -n+<line-number> - start at line number
+	-f - do not stop printing
 cat -n - number all lines
 	-nl - similar
 	>> file - simplest text editor (great for pasting)
@@ -358,6 +364,7 @@ seq <number> - output numbers from 1 to number
 ispell/aspell - interactive spell checker
 basename <path> - strip directory from path
 		-s <.suffix> - also strip suffix
+		-a - process multiple filenames
 dirname <path> - strip last component from path
 fmt - produce roughly uniform line lengths
 fold - wrap each input line to fit in specified width
@@ -365,6 +372,7 @@ paste - glue two documents side by side
 sed	's///g' - substitute every occurrence in line, not just the first one
 	's///I' - ignore case
 	-r - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis
+	-i <file> - will make changes directly to the file (in place)
 expand - convert tabs to spaces
 	-t <number> - set number of spaces (default is 8)
 
@@ -569,6 +577,7 @@ mount - list all mounted devices
 	<device> <path> - for example mount /dev/hdc2 to /mymedia
 lsattr - list file attributes
 chattr - change file attributes
+rkhunter -c - checks if it can find any rootkits under the system
 
 LOGGING:
 last - when various users have logged in or out. This includes information on when the computer was rebooted.
@@ -877,6 +886,7 @@ git push
 sometimes also: git push --set-upstream origin master
 
 ALSO USEFUL:
+git checkout HEAD^ <file> - retrieve deleted file
 git rm --cached mylogfile.log - untrack file without deleting it
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
@@ -942,6 +952,7 @@ x - delete character
 gF - open file under cursor
 K - look up word under cursor in man pages
 ctrl+v - select visual box
+:e - reload file
 
 HELP:
 ctrl+] - follow link

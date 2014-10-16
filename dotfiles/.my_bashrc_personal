@@ -9,7 +9,7 @@ export EDITOR="vim"
 
 # Few shortcuts to frequently used directories.
 alias code='cd ~/code; l'
-alias data='cd ~/data; l'
+alias data='cd /media/minerva/Data; l'
 alias de='cd ~/Desktop; l'
 alias des='cd ~/Desktop; l'
 

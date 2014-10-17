@@ -234,6 +234,8 @@ alias gt='gnome-terminal'
 alias term='gnome-terminal'
 # Start a file explorer
 alias f='nemo .'
+# Update files db
+alias updatedb='sudo updatedb'
 
 ########
 # SUDO #

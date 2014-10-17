@@ -38,34 +38,34 @@ export MAN="$HOME/Desktop/WTF-MAN"
 # Location of text file with general configuration and instalation instructions.
 export INS="$HOME/Desktop/INS"
 # Location of TOD0 text file.
-export TODO="$HOME/Desktop/TODO"
+export NYK="$HOME/Desktop/NYK"
 
 # Opens file in less.
 alias m1='m "$MAN"'
 alias m2='m $HOME/.my_bash_aliases'
 alias m3='m $HOME/.my_bashrc'
 alias m4='m "$INS"'
-alias m5='m "$TODO"'
+alias m5='m "$NYK"'
 # Opens file in nano.
 alias n1='nano "$MAN"'
 alias n2='nano $HOME/.my_bash_aliases'
 alias n3='nano $HOME/.my_bashrc'
 alias n4='nano "$INS"'
-alias n5='nano "$TODO"'
-alias nnn='nano "$MAN" $HOME/.my_bash_aliases $HOME/.my_bashrc "$TODO"'
+alias n5='nano "$NYK"'
+alias nnn='nano "$MAN" $HOME/.my_bash_aliases $HOME/.my_bashrc "$NYK"'
 # Opens file in vim.
 alias v1='v "$MAN"'
 alias v2='v $HOME/.my_bash_aliases'
-alias v3='v $HOME/.my_bashrc'
+alias v3='v $HOME/.my_bashrc' # Don't stare at the abyss :)
 alias v4='v $"$INS"'
-alias v5='v "$TODO"'
+alias v5='v "$NYK"'
 # Opens file in gedit.
 alias g1='g "$MAN" &'
 alias g2='g $HOME/.my_bash_aliases &'
 alias g3='g $HOME/.my_bashrc &'
 alias g4='g $"$INS"'
-alias g5='g "$TODO" &'
-alias ggg='gedit "$MAN" $HOME/.my_bash_aliases "$TODO" &'
+alias g5='g "$NYK" &'
+alias ggg='gedit "$MAN" $HOME/.my_bash_aliases "$NYK" &'
 # Greps file for passed phrase.
 alias c1='m1 | c | gr'
 alias c2='m2 | c | gr'
@@ -73,14 +73,8 @@ alias c3='m3 | c | gr'
 alias c4='m4 | c | gr'
 alias c5='m5 | c | gr'
 
-# Append line to TOD0 file. 
-alias zt='ztodo'
-ztodo() {
-    echo "$@" >> "$TODO"
-}
 # Append line to MAN file.
 zhud() {
     echo "$@" >> "$MAN"
 }
 
-alias tz='tail "$TODO"'

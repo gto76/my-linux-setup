@@ -49,10 +49,10 @@ Also note that if you change anything in [**`.my_bash_aliases`**](dotfiles/.my_b
 
 ## How to install:
 ```
-	cd $HOME
-	git clone https://github.com/gto76/my-aliases.git
-	cd my-aliases
-    ./install
+$ cd $HOME
+$ git clone https://github.com/gto76/my-aliases.git
+$ cd my-aliases
+$ ./install
 ```
 
 ## Files in detail:

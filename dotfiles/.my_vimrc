@@ -9,6 +9,9 @@ set number
 set background=dark
 colorscheme darkblue
 
+" Set F7 to switch to light background
+nmap <F7> :highlight Normal ctermfg=black ctermbg=grey<CR>
+
 " Use syntax highlighting
 syntax on
 

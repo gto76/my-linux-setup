@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+<title>Process Management</title>
+</head><style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>
+<a href="../../../html/wtf-man.html" target="_blank"> 
+  <img src="../../../resources/kenandritchie.png" border="0" />
+</a>
+<h2>Process Management</h2>
+<blockquote><table>
+<tr><td valign=top><strong>ps</strong>						</td><td style="width:15px"></td><td><strong> --forest</strong>						 - view hierarchical view of processes</td></tr>
+<tr><td></td><td></td><td><strong>	v</strong> - virtual memory </td></tr>
+<tr><td></td><td></td><td><strong>	--sort &ltfield&gt</strong> - sort by field </td></tr>
+<tr><td valign=top><strong>pstree</strong>						</td><td style="width:15px"></td><td>similar</td></tr>
+<tr><td valign=top><strong>pgrep &ltpattern&gt</strong>						</td><td style="width:15px"></td><td>prints PIDs of processes containing pattern</td></tr>
+<tr><td></td><td></td><td><strong>	-l</strong> - also print process name</td></tr>
+<tr><td valign=top><strong>pkill &ltpattern&gt</strong>						</td><td style="width:15px"></td><td>kills every process that contains pattern in name</td></tr>
+<tr><td valign=top><strong>kill 	</strong>					</td><td style="width:15px"></td><td><strong>&ltpid&gt</strong>					- sends TERM signal to process</td></tr>
+<tr><td></td><td></td><td><strong>	-kill &ltpid&gt</strong> - sends KILL signal meaning force quit, data will be lost</td></tr>
+<tr><td valign=top><strong>killall</strong>						</td><td style="width:15px"></td><td>uses name instead of pid</td></tr>
+<tr><td valign=top><strong>skill</strong>						</td><td style="width:15px"></td><td>sends signals to command/user/tty or report process status</td></tr>
+<tr><td></td><td></td><td><strong>		-stop &ltuser&gt</strong> - stop all of the users processes</td></tr>
+<tr><td></td><td></td><td><strong>		-cont &ltuser&gt</strong> - continue all users processes</td></tr>
+<tr><td valign=top><strong>nice</strong>						</td><td style="width:15px"></td><td>sets the priority for a process (from max of -20 to min of 20)</td></tr>
+<tr><td></td><td></td><td><strong>	-20 &ltcommand&gt</strong> - execute command with maximum priority</td></tr>
+<tr><td valign=top><strong>renice</strong>						</td><td style="width:15px"></td><td>changes the priority of an existing process</td></tr>
+<tr><td></td><td></td><td><strong>		+20 &ltpid&gt</strong> - change processes priority to lowest level</td></tr>
+<tr><td valign=top><strong>snice</strong>						</td><td style="width:15px"></td><td>works very similarly to skill</td></tr>
+<tr><td></td><td></td><td><strong>		-10 -u root</strong> - increase the priority of all root's processes</td></tr>
+<tr><td valign=top><strong>pmap</strong>						</td><td style="width:15px"></td><td>report memory map of a process (mapped file)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Jobs</h3>
+<table>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>ctrl-z</strong>						</td><td style="width:15px"></td><td>put job into background</td></tr>
+<tr><td valign=top><strong>jobs</strong>						</td><td style="width:15px"></td><td>prints currently running job</td></tr>
+<tr><td valign=top><strong>bg &ltjob-number&gt</strong>						</td><td style="width:15px"></td><td>put job in background</td></tr>
+<tr><td valign=top><strong>fg &ltjob-number&gt</strong>						</td><td style="width:15px"></td><td>bring job to the foreground</td></tr>
+<tr><td valign=top><strong>%n</strong>						</td><td style="width:15px"></td><td>job number n</td></tr>
+<tr><td valign=top><strong>%s</strong>						</td><td style="width:15px"></td><td>job whose command line starts with s</td></tr>
+<tr><td valign=top><strong>%%</strong>						</td><td style="width:15px"></td><td>current job</td></tr>
+<tr><td valign=top><strong>%-</strong>						</td><td style="width:15px"></td><td>previous job</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Scheduled Commands</h3>
+<table>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>at</strong>						</td><td style="width:15px"></td><td>executes command at a particular time</td></tr>
+<tr><td></td><td></td><td>	at 21:30 / at now + time / at -f shell_script now + 1 hour</td></tr>
+<tr><td></td><td></td><td>	echo "ls -l" | at midnight</td></tr>
+<tr><td valign=top><strong>atq</strong>						</td><td style="width:15px"></td><td>list jobs currently in 'at' queue</td></tr>
+<tr><td valign=top><strong>atrm</strong>						</td><td style="width:15px"></td><td>remove a job from the 'at' queue</td></tr>
+<tr><td valign=top><strong>crontab</strong>						</td><td style="width:15px"></td><td><strong> -e</strong>						 - schedule commands for repeating execution </td></tr>
+<tr><td valign=top><strong>cron</strong>						</td><td style="width:15px"></td><td>daemon that executes scheduled commands</td></tr>
+<tr><td valign=top><strong>anacron</strong>						</td><td style="width:15px"></td><td>like cron but it catches up with tasks next time the computer gets turned on</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Services</h3>
+<table>
+<tr><td></td><td></td><td>	</td></tr>
+<tr><td valign=top><strong>service</strong>						</td><td style="width:15px"></td><td>allows you to start, stop or restart a service (it runs a script in /etc/init.d folder)</td></tr>
+<tr><td></td><td></td><td><strong>	-f sshd</strong> - restart the ssh server</td></tr>
+<tr><td></td><td></td><td><strong>	httpd status</strong> - get status of apache</td></tr>
+<tr><td></td><td></td><td><strong>	--status-all</strong> - print status of all services</td></tr>
+<tr><td></td><td></td><td>	You can also execute the shell script directly from /etc/init.d folder like: /etc/init.d/httpd stop. </td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">System Runlevels (Redhat/Debian)</h3>
+<table>
+<tr><td valign=top><strong>runlevel</strong>						</td><td style="width:15px"></td><td>output previous and current runlevel</td></tr>
+<tr><td valign=top><strong>0</strong>						</td><td style="width:15px"></td><td>Shuts down the system</td></tr>
+<tr><td valign=top><strong>1</strong>						</td><td style="width:15px"></td><td>Administrative single-user mode</td></tr>
+<tr><td valign=top><strong>2</strong>						</td><td style="width:15px"></td><td>Same as 3 but without networking / multiuser with X server</td></tr>
+<tr><td valign=top><strong>3</strong>						</td><td style="width:15px"></td><td>Text mode state (ctrl+alt+F1) / User defined</td></tr>
+<tr><td valign=top><strong>4</strong>						</td><td style="width:15px"></td><td>User defined</td></tr>
+<tr><td valign=top><strong>5</strong>						</td><td style="width:15px"></td><td>X-window mode (ctrl+alt+F7) / User defined</td></tr>
+<tr><td valign=top><strong>6</strong>						</td><td style="width:15px"></td><td>Reboots</td></tr>
+<tr><td valign=top><strong>S</strong>						</td><td style="width:15px"></td><td>Single user mode</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table></blockquote>

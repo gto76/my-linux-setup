@@ -173,11 +173,11 @@ int printPointerArray(char const *keyword[]) {
 }
 
 
-.........................
-....... L I N U X .......
-...... S Y S T E M ......
-. P R O G R A M M I N G .
-.........................
+...........................
+........ L I N U X ........
+....... S Y S T E M .......
+.. P R O G R A M M I N G ..
+...........................
 LINUX ABSTRACTIONS:
 1.FILE
 2.PROCESS
@@ -227,12 +227,91 @@ returned by malloc(), calloc(), or realloc(). That is, you cannot use free() to 
 partial chunks of memory—say, half of a chunk of memory—by passing in a pointer
 halfway into an allocated block
 
-.....................
-.....................
-. E F F E C T I V E .
-...... J A V A ......
-.....................
-.....................
+.............
+.............
+.. M A K E ..
+.............
+.............
+--------------
+SPECIAL MACROS
+--------------
+All special macros begin with a dollar sign and do not need to be surrounded by parenthesis:
+
+* $@ - name of the target
+		client: client.c
+			$(CC) client.c -o $@
+
+* $? - lisf of dependents more recent than the target
+		client: client.c
+			$(CC) $? -o $@
+
+* $^ - all dependencies, withoth dupicates
+		viewsource: client.c server.c
+			less $^
+
+* $+ - all dependencies
+		viewsource: client.c server.c
+			less $+
+
+* $< - only first dependency
+
+----------------------------
+WILDCARD MATCHING IN TARGETS
+----------------------------
+* % - wildcard in target
+* $* - if you need the matched text in in the command
+
+	%:
+		gcc -o $* $*.c
+
+>so for example 'make test_executable' will expand to:
+
+	gcc -o test_executable test_executable.c	
+
+-----------------------
+FUNCTIONS FOR FILENAMES
+-----------------------
+* $(dir names...) - extract the directory part of each filename in names
+
+* $(notdir names...) - extract all but the directory path
+
+* $(suffix names...) - extract the suffix of each file name
+
+* $(basename names...) - extract all but the suffix
+
+* $(addsuffix suffix,names...) - adds suffix to all filenames
+
+* $(addprefix prefix,names...) - glues pefix part (usualy path) in front of the names
+
+* $(join list1,list2) - concatenates the two arguments word by word: '$(join a b,.c .o)' produces 'a.c b.o'
+
+* $(wildcard pattern) - using shell file name patterns it returns list of matching files
+
+* $(realpath names...) - return the canonical absolute name, meaning without no . or .. components nor any symlinks
+
+* $(abspath names...) - same as realpath, but does not reslolve symlinks, and does not require the file names to refer to an existing file or directory
+
+------------------------------
+CREATING A LIST OF DIRECTORIES
+------------------------------
+
+DIRS := ${shell find ${ROOT_DIRECTORY} -type d -print}
+
+--------------------
+USING CD IN COMMANDS
+--------------------
+>There must be no new line characte between the lines, because otherwise the cd command will get executed in its own subshell. Consequentlly the semi-colon also needs to be added after every statement.
+
+	all:
+		cd some_dir; \
+		gcc -Wall -o myTest myTest.c
+
+.......................
+.......................
+.. E F F E C T I V E ..
+....... J A V A .......
+.......................
+.......................
 --------------------------------
 CREATING AND DESTROYING OBJECTS:
 --------------------------------
@@ -655,106 +734,121 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
 ===========================================================================
 
 
-    ( ) <--------- ADD - Writes files to the repo. (Into the staging area.)
+    ( )            ADD - writes files to the repo. (Into the staging area.)
      |  
     ---
-
   
-   +------------+
-   v            |          
- HEAD *MASTER <-+- COMMIT - Creates commit object for added files, which     
-    \ /         |           has an id, and then puts labels on it [HEAD,  
-    (A) <-------+           MASTER] (or moves them from previous commit).             
-     |                      (Prints branch label that it's advancing and     
+
+ HEAD *master      COMMIT - creates commit object for added files, which 
+    \ /                     has an id, and then puts labels on it [HEAD,  
+    (A)                     master] (or moves them from previous commit). 
+     |                      (Prints branch label that it's advancing and 
     ---                     objects hash)
 
     
- HEAD  LABEL <---- BRANCH <LABEL> - Stucks a new label on HEAD (withouth                    
+ HEAD *master      BRANCH <label> - stucks a new label on HEAD (withouth 
     \ /                             parameter it prints local branches). 
-    (A)-*MASTER                      (With -r will print remote branches/ 
+    (A)-label                       (With -r will print remote branches/ 
      |                              all the references that you have.)
     ---    
 
 
- HEAD *LABEL <---- CHECKOUT <LABEL> - Switches which branch it's going to
+ HEAD  master      CHECKOUT <label> - switches which branch it's going to
     \ /                               advance at commit (from master to
-    (A)-MASTER                        label). (If the labels were pointing
+    (A)-*label                        label). (If the labels were pointing
      |                                to different commits it would also
     ---                               get the files)
 
 
-                   MERGE <LABEL> - Merge contents of <LABEL> branch into 
-                                   HEAD. Also second <LABEL> parameter 
+                   MERGE <label> - merge contents of <label> branch into 
+                                   HEAD. Also second <label> parameter 
                                    possible -> will merge into it instead
                                    of current branch. There are two
                                    strategys in which git will merge two
                                    branches:
-
-                                   FAST FORWARD
-                                   ------------
-                                   If the <LABEL> is reachable from HEAD
-                                   and its above it.
-                                                        LABEL
-                                       LABEL         HEAD | *MASTER       
-                                         |              \ | /        
-                                   HEAD (B) *MASTER      (B)
-                                       \ | /      ___\    |
-                                        (A)          /   (A)
-                                         |                | 
-                                        ---              ---
-
-                                   RECURSIVE STRATEGY
-                                   ------------------ 
-                                   Merges contents and creates new commit 
-                                   that has two parents (it can have any 
-                                   number of parents). Moves currnet branch
-                                   and HEAD labels to it (label LABEL stays 
-                                   behind).
-                                                              HEAD
-                                                               |
-                                   LABEL HEAD          LABEL  (D)-MASTER
-                                       \   |               \ / |          
-                                       (B)(C)-*MASTER      (B)(C)
-                                        | /         ___\    | / 
-                                       (A)             /   (A)
-                                        |                   |      
-                                       ---                 ---    
+                                   
+					 label         FAST FORWARD - if the <label> is  
+    label         HEAD | *master   reachable from HEAD and it is located
+      |              \ | /         above it.
+HEAD (B) *master      (B)
+    \ | /      ___\    |
+     (A)          /   (A)
+      |                | 
+     ---              ---
+                                   
+                       HEAD        RECURSIVE STRATEGY - merges contents and
+                        |          creates new commit that has two parents
+label HEAD      label  (D)-master  (it can have any number of parents). 
+    \   |           \ / |          Moves currnet branch and HEAD labels to
+    (B)(C)-*master  (B)(C)         it (<label> stays behind).
+     | /       ___\  | / 
+    (A)           / (A)
+	 |               |      
+    ---             ---    
                                    
   
+                   RESET -hard HEAD^ - moves current label to commit HEAD-1,
+                                       and also does checkout (--hard)
 
-                   RESET -hard HEAD^ - Move current label to commit HEAD-1,
-                                       and also do checkout (--hard)
 
-
-                   LOG --graph --decorate --all - Shows nice history with
+                   LOG - --graph --decorate --all - shows nice history with
                                                   graph
 
 
-TODO graph!        DETACHED HEAD STATE:
-                   TAG v1.0 <hash> -> CHECKOUT v1.0 - If no branch label is
+DETACHED HEAD STATE:
+
+
+                   TAG v1.0 <A> -> CHECKOUT v1.0 - If no branch label is
                    on this commit you get message: "You are in detached
                    head state", meaning that if you want to keep your
                    commits, you need to create a new branch.
 
 
-===========================================================================
 TO MERGE NEW FEATURE INTO MASTER:
-    
-                                           HEAD *LABEL        HEAD LABEL
-                                              \ /                \ /
- LABEL HEAD          HEAD *LABEL              (D)                (D)-*MASTER
-    \   |               \ /                  / |                / |        
-    (B)(C)-*MASTER      (B)(C)-MASTER      (B)(C)-MASTER      (B)(C)
-     | /         ___\    | /        ___\    | /        ___\    | / 
-    (A)             /   (A)            /   (A)            /   (A)
-     |                   |                  |                  |      
-    ---                 ---                ---                ---    
-                    1. CHECKOUT       2. MERGE MASTER    3. CHECKOUT MASTER,
-                       LABEL             (recursive),       MERGE LABEL
-                                         test               (fast forward)
+                   
 
-===========================================================================
+ label HEAD           	1. - Starting position:
+    \   |          
+    (B)(C)-*master 
+     | /        
+    (A)            
+     |             
+    ---            
+                   
+
+ *label HEAD			2. - Checkout label:
+     \ /            
+     (B)(C)-master  
+      | /        
+     (A)            
+      |             
+     ---            
+
+
+   *label HEAD    		3. - Merge master (recursive), test:
+       \ /         
+       (D)         
+      / |          
+    (B)(C)-master  
+     | /        
+    (A)            
+     |             
+    ---            
+
+
+   label HEAD			4. - Checkout master, merge label (fast forward):
+       \ /
+       (D)-*master
+      / |        
+    (B)(C)
+     | / 
+    (A)
+     |      
+    ---    
+
+
 WORKING WITH REMOTE REPOSITORIES:
+
 
                    CLONE <url or path of origin> <optional different name>
                          - Makes a copy of remote repository. State of our 

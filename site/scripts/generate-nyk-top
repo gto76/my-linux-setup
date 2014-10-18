@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Generates top page for subpages that are created from NYK textfile.
+
+cat ../templates/nyk.md.template > ../markdown/nyk.md
+
+cd ../markdown/nyk
+for file in *; do
+	title=`basename -s .md $file`
+	echo "[$title](nyk/$title.html)" >> ../nyk.md
+done

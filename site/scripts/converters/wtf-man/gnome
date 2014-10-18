@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../scripts/generate-wtf-page "$1" "Gnome Shortcuts" "1"

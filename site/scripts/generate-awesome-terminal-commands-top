@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Generates top page for subpages that are created from awesome-terminal-commands.
+
+NAME='awesome-terminal-commands'
+
+cat ../templates/"$NAME".md.template > ../markdown/wtf-man/"$NAME".md
+
+cd ../markdown/wtf-man/"$NAME"
+for file in *; do
+	title=`basename -s .md $file`
+	echo "[$title]("$NAME"/$title.html)" >> ../"$NAME".md
+done
+

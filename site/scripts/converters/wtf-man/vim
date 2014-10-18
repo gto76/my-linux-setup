@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../scripts/generate-wtf-page "$1" "Vim" "1"

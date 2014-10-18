@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Goes trough the markdown directory and converts every md file into html
+
+cd ../markdown
+
+for f in *.md; do 
+	markdown "$f" > ../html/`basename -s .md "$f"`.html
+done
+
+for d in * ; do
+	if [[ -d "$d" ]]; then
+		if [[ ! -d ../html/"$d" ]]; then
+			mkdir ../html/"$d"
+		fi
+		cd "$d"
+		for f in *.md; do 
+			markdown "$f" > ../../html/"$d"/`basename -s .md "$f"`.html
+		done
+		cd ..
+	fi
+done
+
+mv ../html/index.html ../../index.html

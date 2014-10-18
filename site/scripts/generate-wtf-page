@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# Usage: ./generate-wtf-page <path-to-markdown> <page-title> <skip-number-of-pages>
+# Generates wtf-man page.
+
+../scripts/header "$1" "$2"
+echo "<h2>$2</h2>"
+../scripts/generate-body "$1" "$3"

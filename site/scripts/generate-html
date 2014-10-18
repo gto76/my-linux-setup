@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Goes trough the markdown directory and converts every md file into html
+
+cd ../markdown
+
+for f in `find . -name '*.md'`; do
+	# First create coresponding directory in html folder if it doesnt exist
+	dirName=../html`dirname $f | tr -d '.'`
+	if [[ ! -d "$dirName" ]]; then
+		mkdir "$dirName"
+	fi
+
+	markdownFilePath=`echo "$f" | sed 's/\.md$//' | tr -d '.'`
+	
+	# If converter for the file doesent exist, convet it with markdown
+	converter=../scripts/converters"$markdownFilePath"
+	htmlFilePath=../html"$markdownFilePath".html
+	if [[ -f "$converter"  ]]; then
+		"$converter" "$f" > "$htmlFilePath"
+	else
+		markdown "$f" > "$htmlFilePath"
+	fi
+done
+
+mv ../html/index.html ../../index.html
+

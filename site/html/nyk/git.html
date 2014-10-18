@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+<title>Git for ages 4 and up</title>
+</head><style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>
+<a href="../../html/wtf-man.html" target="_blank"> 
+  <img src="../../resources/kenandritchie.png" border="0" />
+</a>
+<h2>Git for ages 4 and up</h2>
+<blockquote><table>
+<tr><td valign=top style="white-space:nowrap;">				<strong> add</strong></td>				<td style="width:15px"></td>				<td>writes files to the repo. (Into the staging area.)</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture1.png"></td></tr>
+<tr><td valign=top style="white-space:nowrap;">				<strong> commit</strong></td>				<td style="width:15px"></td>				<td>creates commit object for added files, which           has an id, and then puts labels on it [HEAD,            master] (or moves them from previous commit).           (Prints branch label that it's advancing and           objects hash)</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture2.png"></td></tr>
+<tr><td valign=top style="white-space:nowrap;">				<strong> branch &ltlabel&gt</strong></td>				<td style="width:15px"></td>				<td>stucks a new label on HEAD (withouth                   parameter it prints local branches).                   (With -r will print remote branches/                   all the references that you have.)</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture3.png"></td></tr>
+<tr><td valign=top style="white-space:nowrap;">				<strong> checkout &ltlabel&gt</strong></td>				<td style="width:15px"></td>				<td>switches which branch it's going to                    advance at commit (from master to                    label). (If the labels were pointing                    to different commits it would also                    get the files)</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture4.png"></td></tr>
+<tr><td valign=top style="white-space:nowrap;">				<strong> merge &ltlabel&gt</strong></td>				<td style="width:15px"></td>				<td>merge contents of &ltlabel&gt branch into                  HEAD. Also second &ltlabel&gt parameter                  possible -&gt will merge into it instead                 of current branch. There are two                 strategys in which git will merge two                 branches:</td></tr>
+
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> FAST FORWARD</strong> - if the &ltlabel&gt is   reachable from HEAD and it is located above it.</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture5.png"></td></tr>
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> RECURSIVE STRATEGY</strong> - merges contents and creates new commit that has two parents (it can have any number of parents).  Moves currnet branch and HEAD labels to it (&ltlabel&gt stays behind).</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture6.png"></td></tr>
+<tr><td valign=top style="white-space:nowrap;">				<strong> reset -hard head^</strong></td>				<td style="width:15px"></td>				<td>moves current label to commit HEAD-1,                     and also does checkout (--hard)</td></tr>
+
+<tr><td valign=top style="white-space:nowrap;">				<strong> log</strong></td>				<td style="width:15px"></td>				<td>--graph --decorate --all - shows nice history with                                graph</td></tr>
+
+</table></blockquote>
+<br><h3 align="center">Detached Head State</h3>
+<blockquote><table>
+<tr><td valign=top style="white-space:nowrap;">				<strong> tag v1.0 &lta&gt -&gt checkout v1.0</strong></td>				<td style="width:15px"></td>				<td>If no branch label is on this commit you get message: "You are in detached head state", meaning that if you want to keep your commits, you need to create a new branch.</td></tr>
+
+</table></blockquote>
+<br><h3 align="center">To Merge New Feature Into Master</h3>
+<blockquote><table>
+<tr><td valign=top style="white-space:nowrap;">				<strong> 1.</strong></td>				<td style="width:15px"></td>				<td>Starting position:</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture7.png"></td></tr>
+<tr><td valign=top style="white-space:nowrap;">				<strong> 2.</strong></td>				<td style="width:15px"></td>				<td>Checkout label:</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture8.png"></td></tr>
+<tr><td valign=top style="white-space:nowrap;">				<strong> 3.</strong></td>				<td style="width:15px"></td>				<td>Merge master (recursive), test:</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture9.png"></td></tr>
+<tr><td valign=top style="white-space:nowrap;">				<strong> 4.</strong></td>				<td style="width:15px"></td>				<td>Checkout master, merge label (fast forward):</td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture10.png"></td></tr>
+</table></blockquote>
+<br><h3 align="center">Working With Remote Repositories</h3>
+<blockquote><table>
+<tr><td valign=top style="white-space:nowrap;">				<strong> clone &lturl or path of origin&gt &ltoptional different name&gt      </strong></td>				<td style="width:15px"></td>				<td>Makes a copy of remote repository. State of our        repo after clone:</td></tr>
+
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> +--------------------+----+- TRACKING BRANCHES</strong> - they mean: last time I v ORIGIN/LABEL &lt-----+    |  talked with origin, thats where its labelGIN/HEAD | ORIGIN/MASTER &lt-+  was.        \|/   HEAD--(D)--*MASTER &lt------- Also it did not pull over LABEL branch,       / |                    because it pulls over only the default     (B)(C)                   branch, which is master (note that origin      | /                     and master are just names, they have no      (A)                      segnificance).      |           ---    </td></tr>
+<tr><td></td><td></td><td align="center"><br>			<img src ="../../resources/picture11.png"></td></tr>
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> CLONE --bare &lturl or path of origin&gt &ltoptional different       name&gt</strong> - Make a copy of repo, containing only               contents of .git directory (there is no               checkout.</td></tr>
+
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> REMOTE -v</strong> - List remotes (defaultly named origin)</td></tr>
+
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> PULL</strong> - Same as FETCH + MERGE</td></tr>
+
+<tr><td valign=top>				</td><td style="width:15px"></td>				<td><br><strong> PUSH &ltorigin&gt &ltlocal branch&gt</strong> - Pushes changes made to the                                local branch to origin repo.</td></tr>
+
+</table></blockquote>

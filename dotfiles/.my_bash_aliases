@@ -154,6 +154,7 @@ alias mvdir='mv'
 # Simplify going up in directory hierarchy.
 alias cd..='cd ..'
 alias ..='cd ..'
+alias ,,='cd ..'
 alias ...='cd ../..'
 alias ....='cd ..; cd ..; cd ..;'
 alias .....='cd ..; cd ..; cd ..; cd..'
@@ -187,10 +188,10 @@ alias v='vim -p'
 alias vv='view'
 # Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
 alias n='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
-g() {
-	gedit "$@" &
-}
+g() { gedit "$@" & }
 alias fire='firefox &'
+chrome() { google-chrome "$@" &> /dev/null & }
+i() { google-chrome "$@" &> /dev/null & }
 alias sub='sublime_text &'
 alias scr='screen'
 alias clr='clear'
@@ -210,7 +211,8 @@ alias bc1='gcalccmd'
 alias mk="make"
 # Report disk space of main partitions in human readable form.
 alias df1='df -h | grep "sd\|Size" | cat'
-alias pdf='evince'
+# Open pdf file
+pdf() { evince $@ & }
 # Set volume in console for all audio channels.
 alias mixer='alsamixer'
 # Get keycode for pressed key.
@@ -254,7 +256,7 @@ alias srm='sudo rm -i'
 alias scp='sudo cp -iv'
 alias smv='sudo mv -iv'
 
-sg() {
+sg() { 
 	sudo gedit "$*" 
 }
 sn() {
@@ -381,7 +383,13 @@ alias installed='packages'
 
 # Create executable file
 createExecutable() {
-	touch "$1"
+	if [[ ! -f "$1" ]]; then
+		echo '#!/bin/bash' >> "$1"
+		echo '#' >> "$1"
+		echo "# Usage: $1 " >> "$1"
+		echo '# ' >> "$1"
+		echo >> "$1"
+	fi
 	chmod u+x "$1"        
 }
 alias ce=createExecutable

@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Deletes all html and markdown files, and generates them anew.
+
+./clean-markdown
+./clean-html
+./generate-markdown
+./generate-html
+
+

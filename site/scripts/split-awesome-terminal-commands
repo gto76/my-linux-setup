@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# Splits WTF-MAN textfile into multiple markdown files.
+
+cd ../markdown/wtf-man
+
+DIR_OUT='awesome-terminal-commands/'
+
+if [[ ! -d "$DIR_OUT" ]]; then
+	mkdir "$DIR_OUT"
+fi
+
+title=""
+filename=""
+atTitle="false"
+
+SAVE_IFS="$IFS"
+IFS=""
+while read -r line; do
+	# if === and !atTitle -> atTitle, continue
+	if [[ -n `echo "$line" | grep '^=='` && "$atTitle" == "false" ]]; then
+		atTitle="true"
+		continue
+	fi
+
+	# if === and atTitle -> !atTitle, continue
+	if [[ -n `echo "$line" | grep '^=='` && "$atTitle" == "true" ]]; then
+		atTitle="false"
+		continue
+	fi
+
+	# if atTitle -> save title, filename, continue
+	if [[ "$atTitle" == "true" ]]; then
+		# Remove trailing and leading spaces and colons from title
+		title=`echo "$line" | tr -d ':' | sed 's/ *$//' | sed 's/^ *//'`
+		filename=`echo "$title" | tr [A-Z] [a-z] | tr ' ' '-'`.md
+		# Append title to the new file named after title
+		echo "$title" > "$DIR_OUT$filename"
+		# Append line of '='s to the same file
+		echo "$title" | sed 's/./=/g' >> "$DIR_OUT$filename"
+		continue
+	fi
+
+	# echo line > filefilename
+	if [[ -n "$filename" ]]; then
+		echo "$line" >> "$DIR_OUT$filename"
+	fi
+done < awesome-terminal-commands.md
+IFS="$SAVE_IFS"

@@ -1,0 +1,194 @@
+#!/bin/bash
+#
+# Usage: ./git <path-to-markdown> 
+# Creates the Git for ages 4 and up page from the textfile
+
+###################################
+PICTURE_SIZE=19 # Height of one cell in picture
+SEP_WIDTH=15 # Width of the second, separating column
+TAB_WIDTH=4 # Width of a tab in textfile
+###################################
+picture=""		# picture part of the section
+description=""	# description part of the section
+divider=0		# colum that divides picture from description part
+i=0
+lastLineEmpty="false"
+pictureIndex=1
+# If there is only one blank line separating two parts, then we know we 
+# are still in the same section, meaning we output to the same table
+numberOfBlankLinesInRow=2
+firstSection="true"
+###################################
+
+##########################
+## FIND DIVIDING COLUMN ##
+##########################
+
+# Description section is defined by a ' - ' between the title and
+# the actual description.
+findDividingColumn() {
+	lastLastChar=""
+	lastChar=""
+	for (( j=0 ; j < ${#line} ; j++ )); do
+		char=${line:j:1} 
+		#echo "loop: j = $j, char = $char, pictureIndex = $pictureIndex" >&2
+		if [[ "$char" == " " && "$lastChar" == " " ]]; then
+			divider="$j"
+		fi
+		if [[ "$char" == ' ' && \
+				 "$lastChar" == '-' && \
+				 "$lastLastChar" == ' ' ]]; then 
+			return
+		fi
+		lastLastChar="$lastChar"
+		lastChar="$char"
+	done
+}
+
+######################
+## GENERATE PICTURE ##
+######################
+
+generatePicture() {
+	# check if render-graph script is installed, if not download it 
+	# and install it
+	command -v render-graph >/dev/null 2>&1 
+	if [[ $? -ne 0 ]]; then
+		echo >&2 "downloading render grapsh script"
+		cd /tmp
+		git clone https://github.com/gto76/ascii-git-graph-to-png.git
+		sudo cp ascii-git-graph-to-png /usr/local/bin
+	fi
+	pictureTextFile=`mktemp`
+	echo "$picture" > "$pictureTextFile"
+	render-graph -c -s "$PICTURE_SIZE" "$pictureTextFile" \
+			 -o ../resources/picture"$pictureIndex"
+	pix="<tr><td></td><td></td><td align=\"center\"><br>\
+			<img src =\"../../resources/picture${pictureIndex}.png\"></td></tr>"
+	let pictureIndex++
+}
+
+###################
+## PRINT SECTION ##
+###################
+
+# Prints explanation of one git command consisting of title, 
+# text and picture
+printSection() {
+	# Replace all < and >s with &lt and &gt
+	description=`echo "$description" | \
+					sed 's/</\&lt/g' | \
+					sed 's/>/\&gt/g'`
+
+	# Divide title from text
+	title=`echo "$description" | sed 's/ - .*//'`
+	titleLowerCase=`echo "$title" | tr [A-Z] [a-z]`
+	text=`echo "$description" | grep -o ' - .*$' | sed 's/^ - //'`
+
+	# If picture is empty, contine
+	if [[ -z `echo -e "$picture" | tr -d '\040\011\012\015'` ]]; then	
+		pix=""
+	else
+		generatePicture
+	fi
+	
+	# Print HTML
+	if [[ "$numberOfBlankLinesInRow" -gt 1 ]]; then
+		echo "<tr><td valign=top style=\"white-space:nowrap;\">\
+				<strong>$titleLowerCase</strong></td>\
+				<td style=\"width:${SEP_WIDTH}px\"></td>\
+				<td>$text</td></tr>"
+	# still in same section, do not seal the table
+	else
+		echo "<tr><td valign=top>\
+				</td><td style=\"width:${SEP_WIDTH}px\"></td>\
+				<td><br><strong>$title</strong> - $text</td></tr>"
+	fi
+	echo "$pix"
+	firstSection="false"
+	numberOfBlankLinesInRow=0
+}
+
+###################
+## PRINT HEADING ##
+###################
+
+printHeading() { 
+	if [[ "$firstSection" == "false" ]]; then
+		echo '</table></blockquote>'
+	fi
+	# convert to title case
+	line=`echo "$line" | \
+		    tr -d ':' | \
+		    sed -e 's/.*/\L&/' -e 's/[a-z]*/\u&/g'`
+	echo "<br><h3 align=\"center\">$line</h3>"
+	echo '<blockquote><table>'
+}
+
+##########
+## MAIN ##
+##########
+
+# If line is empty, and if picture or description is not empty then 
+# print, continue.
+# If last line was empty then find the dividing column.
+# Add to picture first x chars and to description other n-x
+main() {
+	# Print header and title
+	../scripts/header "$1" "Git for ages 4 and up"
+	echo "<h2>Git for ages 4 and up</h2>"
+	echo '<blockquote><table>'
+
+	# Replace tabs with spaces
+	tmpFile=`mktemp`
+	expand -t "$TAB_WIDTH" "$1" > "$tmpFile"
+	mv -f "$tmpFile" "$1"
+
+	SAVE_IFS="$IFS"
+	IFS=""
+	while read -r line; do
+		#echo "reading line $line" >&2
+		let i++
+		if [[ "$i" -lt 5 ]]; then
+			continue
+		fi
+
+		# check if line is empty
+		if [[ -z `echo "$line" | tr -d ' '` ]]; then
+			lastLineEmpty="true"
+			let numberOfBlankLinesInRow++
+			if [[ -n "$picture" || -n "$description" ]]; then
+				printSection
+				echo "### picture = $picture" >&2
+				picture=""
+				description=""
+			fi
+			continue
+		fi
+
+		if [[ "$lastLineEmpty" == true ]]; then	
+			# if line contains the heading
+			if [[ -n `echo "$line" | grep '^[A-Z].*:$'` ]]; then
+				printHeading
+				continue
+			fi
+			# else its just a first line of a section
+			findDividingColumn
+			echo "divider = $divider, line = $line" >&2
+		fi
+
+		picture="$picture\n"${line:0:divider} 	
+		description="$description"${line:divider:${#line}}
+
+		lastLineEmpty="false"
+	done < "$1"
+	IFS="$SAVE-IFS"
+	echo '</table></blockquote>'
+}
+
+main "$@"
+
+
+
+
+

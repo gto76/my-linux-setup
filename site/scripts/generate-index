@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cp ../templates/index.md.template ../markdown/index.md 

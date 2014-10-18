@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Generates top page for pages that are generated from WTF-MAN textfile.
+
+cat ../templates/wtf-man.md.template > ../markdown/wtf-man.md
+
+cd ../markdown/wtf-man
+for file in *; do
+	title=`basename -s .md $file`
+	echo "[$title](wtf-man/$title.html)" >> ../wtf-man.md
+done

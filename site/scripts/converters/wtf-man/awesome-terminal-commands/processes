@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../scripts/generate-wtf-page "$1" "Process Management" "3"

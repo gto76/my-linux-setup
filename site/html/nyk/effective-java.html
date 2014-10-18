@@ -1,0 +1,183 @@
+<h1>EFFECTIVE JAVA</h1>
+
+<hr />
+
+<h2>CREATING AND DESTROYING OBJECTS:</h2>
+
+<ol>
+<li>Consider static factory methods instead of Constructors:
+<ul>
+<li>They have names.</li>
+<li>They are not required to create a new object each time they're invoked.</li>
+<li>They can return an object of any subtype of their return type.</li>
+<li>Classes without public or protected constructors cannot be subclassed.</li>
+<li>They are not readily distinguishable from other static methods.</li>
+</ul></li>
+<li>Consider a builder when faced with many constructor parameters.</li>
+<li>Enforce the singleton property with a private constructor or an enum type. 
+Single-element enum is the best way to implement a singleton.</li>
+<li>Enforce noninstantiability with a private constructor.</li>
+<li>Avoid finalizers. 
+Never do anything time-critical in a finalizer. 
+Provide an explicit termination method.</li>
+</ol>
+
+<hr />
+
+<h2>METHODS COMMON TO ALL OBJECTS:</h2>
+
+<ol>
+<li>Obey the general contract when overriding equals.
+<ol>
+<li>Use the == operator to check if the argument is a reference to this object.</li>
+<li>Use the instanceof operator to check if the argument has the correct type.</li>
+<li>Cast the argument to correct type.</li>
+<li>For each "significant" field in the class, check if that field of the argument matches.</li>
+<li>Ask yourself three questions: Is it symmetric? Is it transitive? Is it consistent?</li>
+</ol></li>
+<li>Always override hashcode when you override equals. 
+Equal objects must have equal hash codes.</li>
+</ol>
+
+<hr />
+
+<h2>CLASSES AND INTERFACES: </h2>
+
+<ol>
+<li>Minimize the accessibility of classes and members. 
+It is wrong for a class to have a public static final array field, or an accessor that returns such a field. Use UnmodifiableList.</li>
+<li>Minimize mutability. 
+Classes should be immutable unless there's a very good reason to make them mutable. 
+Make every field final unless there is a compelling reason to make it nonfinal.</li>
+<li>Favor composition over inheritance. 
+Inheritance violates encapsulation.</li>
+<li>Design and document for inheritance or else prohibit it. 
+The class must document its self-use of overridable methods. 
+Constructors must not involve overridable methods. 
+Neither clone nor readObject may invoke an overridable method directly of indirectly.</li>
+<li>Prefer interfaces to abstract classes. 
+You can combine the virtues of interfaces and abstract classes by providing an abstract skeletal implementation class to go  with each nontrivial interface that you export.</li>
+</ol>
+
+<hr />
+
+<h2>GENERICS:</h2>
+
+<p>Parametrized type       | List<String>
+Actual type parameter   | String
+Generic type            | List<E> <br />
+Formal type parameter   | E
+Unbounded wildcard type | List<?>
+Raw type                | List
+Bounded type parameter  | <E extends Number>
+Recursive type bound    | <T extends Comparable<T>>
+Bounded wildcard type   | List<? extends Number>
+Generic Method          | static <E> List<E> asList(E[] a)
+Type token              | Strung.class</p>
+
+<p>If a type parameter appears only once in a method declaration, replace it with a wildcard.</p>
+
+<hr />
+
+<h2>ENUMS AND ANNOTATIONS:</h2>
+
+<ol>
+<li>Use EnumSet instead of bit fields.</li>
+<li>Use EnumMap instead of ordinal indexing.</li>
+<li>Emulate extensible enums with interfaces. 
+Enums can implement original enums interface and be used in place of original enum.</li>
+</ol>
+
+<hr />
+
+<h2>METHODS:</h2>
+
+<ol>
+<li>Check parameters for validity.</li>
+<li>Make defensive copies when needed.
+Defensive copies are made before checking the validity of the parameters, and the validity check is performed on the copies.</li>
+<li>Return empty arrays or collections, not nulls.</li>
+<li>Write doc comments for all exposed API elements. 
+Use {a code} for code in doc comments</li>
+</ol>
+
+<hr />
+
+<h2>GENERAL PROGRAMMING:</h2>
+
+<ol>
+<li>Prefer primitive types to boxed primitives. 
+Applying the == operator to boxed primitives is almost always wrong. When you mix primitives and boxed primitives in a single operation, the boxed primitive is auto-unboxed.</li>
+</ol>
+
+<hr />
+
+<h2>EXCEPTIONS:</h2>
+
+<ol>
+<li>Use checked exceptions for recoverable conditions and runtime exceptions for programing errors. 
+All of the unchecked throwables you implement should subclass RuntimeException.</li>
+<li>Favor the use of standard exceptions: IllegalArgumentExceptin, IllegalStateException, NullPointerException, IndexOutOfBoundsException, ConcurentModificationException, UnsupportedOperationException</li>
+<li>Throw exceptions appropriate to the abstraction. 
+Higher layers should catch lower-level exceptions and, in their place, throw exceptions that can be explained in terms of the higher-level abstraction. (Exception translation)</li>
+<li>Document all exceptions thrown by each method.</li>
+<li>Include failure-capture information in detail messages. 
+Should contain all parameters and fields that contributed to the exception.</li>
+<li>Strive for failure atomicity. 
+A failed method invocation should leave the object in the state that it was in prior to invocation.</li>
+</ol>
+
+<hr />
+
+<h2>CONCURRENCY:</h2>
+
+<ol>
+<li>Synchronize access to shared mutable date. 
+Synchronization has no effect unless both read and write operations are synchronized. 
+Confine mutable data to a single thread.</li>
+<li>Avoid excessive synchronization. 
+As a rule, you should do as little work as possible inside synchronized regions.</li>
+<li>Prefer executors and tasks to threads.</li>
+<li>Prefer concurrency utilities to wait and notify. 
+Use ConcurentHashMap in preference to synchronyzedMap or HashTable. 
+For interval timing, always use System.nanoTime in preference to System.currentTimeMillis.</li>
+<li>Document thread safety. 
+To enable safe concurrent use, a class must clearly document what level of thread safety it supports. 
+Levels of thread safety:
+    1. Immutable
+    2. Unconditionally thread-safe -> No need for external synchronization.
+    3. Conditionally thread-safe -> Some methods require external synchronization.
+    4. Non thread-safe -> All methods require external synchronization.
+    5. Thread hostile.</li>
+<li>Use lazy initialization judiciously.</li>
+<li>Don't depend on thread scheduler. 
+Threads should not run if they are not doing useful work. 
+Thread priorities are among the least portable features of the Java platform.</li>
+<li>Avoid thread groups. 
+Thread groups are obsolete.</li>
+</ol>
+
+<hr />
+
+<h2>SERIALIZATION:</h2>
+
+<ol>
+<li>Implement Serializable judiciously.</li>
+<li>Consider using custom serialized form. 
+Default serialized form is likely to be appropriate if an object's physical representation is identical to its logical content. 
+Even if you decide that the default serialized form is appropriate, you often must provide readObject method to ensure invariants and security.
+Before deciding to make a field non-transient, convince yourself that its value is part of the logical state of the object.
+You must impose any synchronization on object serialization that you would impose on any other method that reads the entire state of the object.
+Declare UID.</li>
+<li>Write read Object methods defensively. Defensive copy.</li>
+<li>For instance control, prefer enum types to readResolve.</li>
+<li>Consider serialization proxies instead of serialized instance.</li>
+</ol>
+
+<hr />
+
+<h2>NEW COLLECTION INTERFACES IN 6.0:</h2>
+
+<p>Deque -> Double ended queue. (ArrayDeque, LinkedList)
+NavigableSet -> SortedSet extended. (TreeSet)
+NavigableMap -> SortedMap extended. (TreeMap)</p>

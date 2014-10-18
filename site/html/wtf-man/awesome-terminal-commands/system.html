@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<head>
+<title>System Tools</title>
+</head><style>
+html {
+    margin:    0 auto;
+    max-width: 670px;
+}
+</style>
+<a href="../../../html/wtf-man.html" target="_blank"> 
+  <img src="../../../resources/kenandritchie.png" border="0" />
+</a>
+<h2>System Tools</h2>
+<blockquote><table>
+<tr><td valign=top><strong>meta, system info</strong>						</td><td style="width:15px"></td><td>in cinnamon</td></tr>
+<tr><td valign=top><strong>uname</strong>						</td><td style="width:15px"></td><td><strong> -a</strong>						 - print system info, kernel version</td></tr>
+<tr><td valign=top><strong>cat /etc/issue</strong>						</td><td style="width:15px"></td><td>show name and version of distribution</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>init</strong>						</td><td style="width:15px"></td><td>upstart init daemon job configuration</td></tr>
+<tr><td valign=top><strong>telinit</strong>						</td><td style="width:15px"></td><td>change system runlevel</td></tr>
+<tr><td valign=top><strong>dmesg</strong>						</td><td style="width:15px"></td><td>print the contents of your bootup (startup) messages displayed by the kernel. This is often useful when debugging problems</td></tr>
+<tr><td valign=top><strong>getconf</strong>						</td><td style="width:15px"></td><td><strong> -a</strong>						 - print all system configuration variables</td></tr>
+<tr><td valign=top><strong>nohup &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>run a command immune to hangups</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>wmctrl</strong>						</td><td style="width:15px"></td><td>X Window Manager</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>busybox &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)</td></tr>
+<tr><td valign=top><strong>mono</strong>						</td><td style="width:15px"></td><td>.NET support</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Users</h3>
+<table>
+<tr><td valign=top><strong>users</strong>						</td><td style="width:15px"></td><td>prints logged in users</td></tr>
+<tr><td valign=top><strong>who</strong>						</td><td style="width:15px"></td><td>logged in users, more data</td></tr>
+<tr><td valign=top><strong>w</strong>						</td><td style="width:15px"></td><td>logged in users, also what are they running</td></tr>
+<tr><td valign=top><strong>passwd</strong>						</td><td style="width:15px"></td><td>change password</td></tr>
+<tr><td valign=top><strong>vipw</strong>						</td><td style="width:15px"></td><td>edit password file</td></tr>
+<tr><td valign=top><strong>vigr</strong>						</td><td style="width:15px"></td><td>edit groups file</td></tr>
+<tr><td valign=top><strong>umask</strong>						</td><td style="width:15px"></td><td> the umask is a value set by the shell. It controls the default permissions of any file created</td></tr>
+<tr><td valign=top><strong>usermod &ltuser&gt</strong>						</td><td style="width:15px"></td><td>modify user acount information</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">File Systems</h3>
+<table>
+<tr><td valign=top><strong>mkfs</strong>						</td><td style="width:15px"></td><td>build a Linux filesystem</td></tr>
+<tr><td valign=top><strong>mke2fs</strong>						</td><td style="width:15px"></td><td>create a ext filesystem</td></tr>
+<tr><td valign=top><strong>mkswap</strong>						</td><td style="width:15px"></td><td>set up a swap area</td></tr>
+<tr><td valign=top><strong>parted</strong>						</td><td style="width:15px"></td><td>partition manipulation program</td></tr>
+<tr><td></td><td></td><td><strong>	-l</strong> - list partitions (sudo)</td></tr>
+<tr><td valign=top><strong>fdisk</strong>						</td><td style="width:15px"></td><td>manipulate disk partition table</td></tr>
+<tr><td></td><td></td><td><strong>	-l</strong> - list partitions (sudo)</td></tr>
+<tr><td valign=top><strong>disks</strong>						</td><td style="width:15px"></td><td>nice gui partition tool</td></tr>
+<tr><td valign=top><strong>mount</strong>						</td><td style="width:15px"></td><td>list all mounted devices</td></tr>
+<tr><td></td><td></td><td><strong>	&ltdevice&gt &ltpath&gt</strong> - for example mount /dev/hdc2 to /mymedia</td></tr>
+<tr><td valign=top><strong>lsattr</strong>						</td><td style="width:15px"></td><td>list file attributes</td></tr>
+<tr><td valign=top><strong>chattr</strong>						</td><td style="width:15px"></td><td>change file attributes</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Logging</h3>
+<table>
+<tr><td valign=top><strong>last</strong>						</td><td style="width:15px"></td><td>when various users have logged in or out. This includes information on when the computer was rebooted.</td></tr>
+<tr><td valign=top><strong>lastlog</strong>						</td><td style="width:15px"></td><td>displays a list of users and what day/time they logged into the system</td></tr>
+<tr><td valign=top><strong>rsyslogd</strong>						</td><td style="width:15px"></td><td> manages all the logs on your system</td></tr>
+<tr><td></td><td></td><td>	closelog, openlog, syslog, vsyslog -&gt library calls that send messages to the system logger</td></tr>
+<tr><td valign=top><strong>logger</strong>						</td><td style="width:15px"></td><td>makes entries in the system log</td></tr>
+<tr><td valign=top><strong>cat /var/log/auth.log | grep "failed password"</strong>						</td><td style="width:15px"></td><td><strong> -i</strong>						 - print all failed logins</td></tr>
+<tr><td valign=top><strong>zeitgeist</strong>						</td><td style="width:15px"></td><td>activity logger</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Load</h3>
+<table>
+<tr><td valign=top><strong>tload</strong>						</td><td style="width:15px"></td><td>'graphic' representation of system load</td></tr>
+<tr><td valign=top><strong>top</strong>						</td><td style="width:15px"></td><td>show processes by resource consumption</td></tr>
+<tr><td></td><td></td><td><strong>	&lt, &gt</strong> - change resource</td></tr>
+<tr><td valign=top><strong>htop</strong>						</td><td style="width:15px"></td><td>better top</td></tr>
+<tr><td valign=top><strong>free</strong>						</td><td style="width:15px"></td><td><strong> -tm</strong>						 - displays memory statistics </td></tr>
+<tr><td></td><td></td><td><strong>	-s &ltseconds&gt</strong> - continuously display</td></tr>
+<tr><td valign=top><strong>vmstat</strong>						</td><td style="width:15px"></td><td>performance of system components / virtual memory statistics</td></tr>
+<tr><td valign=top><strong>sar</strong>						</td><td style="width:15px"></td><td>system activity information</td></tr>
+<tr><td valign=top><strong>iostat</strong>						</td><td style="width:15px"></td><td>disk usage</td></tr>
+<tr><td valign=top><strong>time &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>time a execution of a command</td></tr>
+<tr><td valign=top><strong>perf</strong>						</td><td style="width:15px"></td><td>profiler</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Tracing</h3>
+<table>
+<tr><td valign=top><strong>auditd</strong>						</td><td style="width:15px"></td><td>system call auditing (package)</td></tr>
+<tr><td valign=top><strong>ausearch</strong>						</td><td style="width:15px"></td><td>querys the audit logs</td></tr>
+<tr><td valign=top><strong>autrace</strong>						</td><td style="width:15px"></td><td>traces a specific process</td></tr>
+<tr><td valign=top><strong>auditctl</strong>						</td><td style="width:15px"></td><td>controls the behavior of the auditd server</td></tr>
+<tr><td valign=top><strong>strace &ltcommand and parameters&gt</strong>						</td><td style="width:15px"></td><td>trace system calls and signals. All printed system calls can be looked up by man!</td></tr>
+<tr><td></td><td></td><td><strong>	-s</strong> - maximum string size we want printed (default is too short, 2000 is ok)</td></tr>
+<tr><td></td><td></td><td><strong>	-f</strong> - also follow children</td></tr>
+<tr><td></td><td></td><td><strong>	-p &ltpid&gt</strong> - attach to process</td></tr>
+<tr><td></td><td></td><td><strong>	-o &ltfile&gt</strong> - write output to file</td></tr>
+<tr><td></td><td></td><td><strong>	-c</strong> - count/aggregate</td></tr>
+<tr><td></td><td></td><td><strong>	-T</strong> - time the execution of each call</td></tr>
+<tr><td valign=top><strong>ltrace</strong>						</td><td style="width:15px"></td><td>list library calls made by command</td></tr>
+<tr><td valign=top><strong>lsof</strong>						</td><td style="width:15px"></td><td>list open files with file descriptors</td></tr>
+<tr><td></td><td></td><td><strong>	-p &ltpid&gt</strong> - open files by process</td></tr>
+<tr><td></td><td></td><td><strong>	&ltpath&gt</strong> - open files in path</td></tr>
+<tr><td valign=top><strong>lsmod</strong>						</td><td style="width:15px"></td><td>show which kernel modules (drivers) are loaded</td></tr>
+<tr><td valign=top><strong>modinfo &ltmodule&gt</strong>						</td><td style="width:15px"></td><td>get more information about kernel module</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Hardware</h3>
+<table>
+<tr><td valign=top><strong>lshw</strong>						</td><td style="width:15px"></td><td>list all hardware</td></tr>
+<tr><td valign=top><strong>lspci [-tv]</strong>						</td><td style="width:15px"></td><td>show pci info</td></tr>
+<tr><td valign=top><strong>lsusb [-tv]</strong>						</td><td style="width:15px"></td><td>show usb info</td></tr>
+<tr><td valign=top><strong>lscpu</strong>						</td><td style="width:15px"></td><td>print CPU information</td></tr>
+<tr><td valign=top><strong>dmidecode</strong>						</td><td style="width:15px"></td><td><strong> -q</strong>						 - display bios/dmi information like ram size/type,</td></tr>
+<tr><td></td><td></td><td>	max ram, computer model name, cpu information..</td></tr>
+<tr><td valign=top><strong>smartctl</strong>						</td><td style="width:15px"></td><td><strong> -A /dev/sda</strong>						 - show disk usage info</td></tr>
+<tr><td valign=top><strong>hdparm</strong>						</td><td style="width:15px"></td><td><strong> -tT /dev/sda</strong>						 - do a read speed test</td></tr>
+<tr><td valign=top><strong>badblocks</strong>						</td><td style="width:15px"></td><td><strong> -s /dev/sda</strong>						 - check for bad blocks</td></tr>
+<tr><td valign=top><strong>fstrim</strong>						</td><td style="width:15px"></td><td><strong> -v /</strong>						 - discard unused blocks, useful for ssd-s</td></tr>
+<tr><td valign=top><strong>sensors</strong>						</td><td style="width:15px"></td><td>(lm-sensors) hardware monitoring tool, temperature, fan speed</td></tr>
+<tr><td valign=top><strong>pwmconfig</strong>						</td><td style="width:15px"></td><td>(fancontrol) set fan speed</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Terminal</h3>
+<table>
+<tr><td valign=top><strong>tty</strong>						</td><td style="width:15px"></td><td>print the file name of the terminal connected to standard input</td></tr>
+<tr><td valign=top><strong>stty</strong>						</td><td style="width:15px"></td><td>change and print terminal line settings</td></tr>
+<tr><td valign=top><strong>openvt</strong>						</td><td style="width:15px"></td><td> run a program on a next available tty</td></tr>
+<tr><td valign=top><strong>script</strong>						</td><td style="width:15px"></td><td>makes a typescript of everything printed on your terminal. Ctrl-d to stop recording.</td></tr>
+<tr><td valign=top><strong>setterm</strong>						</td><td style="width:15px"></td><td>set terminal atributes</td></tr>
+<tr><td></td><td></td><td><strong>	-cursor off/on</strong> - set cursor on/off</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Keys/Characters/Fonts</h3>
+<table>
+</table>
+<h3 align="center">In X</h3>
+<table>
+<tr><td valign=top><strong>xmodmap</strong>						</td><td style="width:15px"></td><td>remap keys</td></tr>
+<tr><td valign=top><strong>setxkbmap</strong>						</td><td style="width:15px"></td><td><strong> -layout us</strong>						 - set us keyboard layout</td></tr>
+<tr><td valign=top><strong>xev</strong>						</td><td style="width:15px"></td><td>get keycodes of pressed keys</td></tr>
+<tr><td valign=top><strong>xset</strong>						</td><td style="width:15px"></td><td>user preference utility for X</td></tr>
+<tr><td></td><td></td><td><strong>	-r</strong> - turn key autorepeat off </td></tr>
+<tr><td></td><td></td><td><strong>	r</strong> - turn key autorepeat on</td></tr>
+</table>
+<h3 align="center">X Not Necessary</h3>
+<table>
+<tr><td valign=top><strong>loadkeys &ltcountry-code&gt</strong>						</td><td style="width:15px"></td><td>load key mapping </td></tr>
+<tr><td valign=top><strong>showkey</strong>						</td><td style="width:15px"></td><td>get keycodes of pressed keys</td></tr>
+<tr><td valign=top><strong>setfont &ltfont&gt</strong>						</td><td style="width:15px"></td><td>set console font</td></tr>
+<tr><td></td><td></td><td><strong>	/usr/share/consolefonts/Uni2-VGA16.psf.gz</strong> - for example</td></tr>
+<tr><td></td><td></td><td>	/etc/default/console-setup contains the default settings </td></tr>
+<tr><td valign=top><strong>jfbterm</strong>						</td><td style="width:15px"></td><td>enable unicode characters in terminal</td></tr>
+<tr><td valign=top><strong>echo</strong>						</td><td style="width:15px"></td><td><strong> -en "e]PC7373C9"</strong>						 - change blue color in tty (first numeral after P means slot, and others shade)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table></blockquote>

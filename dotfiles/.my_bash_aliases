@@ -576,7 +576,7 @@ pushall() {
 }
 
 # For all projects in the directory print the labaels of the last commit
-alias gsta='for a in *; do cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..; done'
+alias gsta='for a in *; do if [[ -d "$a" ]]; then cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..;fi ; done'
 
 # Displays lines of code per file in git repo and sum of all. Only looks for files in src directory.
 gloc() {

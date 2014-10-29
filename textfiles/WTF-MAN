@@ -578,6 +578,7 @@ mount - list all mounted devices
 lsattr - list file attributes
 chattr - change file attributes
 rkhunter -c - checks if it can find any rootkits under the system
+ntfsundelete <HD name> - undelete files on ntfs partition (sudo)
 
 LOGGING:
 last - when various users have logged in or out. This includes information on when the computer was rebooted.

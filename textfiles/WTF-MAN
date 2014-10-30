@@ -197,9 +197,10 @@ mktemp - create a temporary file or directory
 rename - renames multiple files using sed syntax
 rsync - a fast, versatile, remote (and local) file-copying tool
 cmp - compares two files, similar to diff but also for binaries
+stat -c%X <file> - time of last modification of the file 
 
 ARCHIVES:
-tar	xvzf <file>.tar.gz - decompress and detar
+tar	xvzf <file>.tar.gz (.tgz) - decompress and detar
 	xvjf <file>.tar.bz2 - decompress and detar
 	-cf <archive>.tar <file>... - compress
 zip -g <archive> <file> - grow/add to existing archive
@@ -805,6 +806,7 @@ ETC ( "Edit To Configure" / "Editable Text Configuration" ):
 /etc/issue - name and version of distribution
 /etc/fstab - automatic mounts are handled by configuring the file
 /etc/sudoers - lists of users and the commands they can run with sudo
+/etc/apt/sources.list - list of places where to look for packages
 
 SERVICES:
 /etc/init/, ~/.init/ - init - upstart init daemon job configuration
@@ -868,7 +870,7 @@ git status
 git commit -am "<commit-message>"
 
 CLONE FROM GITHUB:
-git clone git://github.com/<user>/<repo>.git - download repo (later you keep refreshing with 'git pull origin master') -> You need SSH key. If you don't want, use https://github.com/<user>/<repo>.git for address.
+git clone git@github.com:/<user>/<project> - download repo (later you keep refreshing with 'git pull origin master') -> You need SSH key. If you don't want, use https://github.com/<user>/<repo> for address.
 
 GENERATE SSH KEY:
 1. - Check for existing keys: cd ~/.ssh; ls -al
@@ -1111,6 +1113,14 @@ sudo apt-get remove openjdk*
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java7-installer
+
+INSTALL ORACLE JDK ON DEBIAN:
+echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" | sudo tee /etc/apt/sources.list.d/webupd8team-java.list
+echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" | sudo tee -a /etc/apt/sources.list.d/webupd8team-java.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+sudo apt-get install oracle-java7-set-default
 
 FIREFOX:
 about:config - layout.css.devPixelsPerPx default zoom (-1.0)

@@ -156,7 +156,9 @@ alias cd..='cd ..'
 alias ..='cd ..'
 alias ,,='cd ..'
 alias ...='cd ../..'
+alias ,,,='cd ../..'
 alias ....='cd ..; cd ..; cd ..;'
+alias ,,,,='cd ..; cd ..; cd ..;'
 alias .....='cd ..; cd ..; cd ..; cd..'
 alias ......='cd ..; cd ..; cd ..; cd..; cd..'
 alias .......='cd ..; cd ..; cd ..; cd..; cd..; cd..'
@@ -375,7 +377,7 @@ alias remove='sudo apt-get remove && autoremove'
 alias purge='sudo apt-get purge && autoremove'
 alias autoremove='sudo apt-get autoremove'
 # Show installed and remote version.
-alias apt-version='apt-cache policy'
+alias version='apt-cache policy'
 alias ve='apt-cache policy'
 # Print installed packages
 alias packages='dpkg --get-selections | grep -v deinstall'
@@ -577,6 +579,24 @@ pushall() {
 
 # For all projects in the directory print the labaels of the last commit
 alias gsta='for a in *; do cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..; done'
+
+
+# Usage: cloneAll <github-username>
+# Clones all users github repos in pwd.
+cloneAll() {
+	if [[ -z "$1" ]]; then
+		exit
+	fi
+
+	tempFile=`mktemp`
+	wget 'https://github.com/gto76?tab=repositories' -O "$tempFile"
+	repos=`grep "$1"/[^//\"]* -o "$tempFile" | sort -u | grep -v follow`
+
+	while read -r line; do
+		git clone git@github.com:"$line"
+	done <<< "$repos"
+}
+
 
 # Displays lines of code per file in git repo and sum of all. Only looks for files in src directory.
 gloc() {

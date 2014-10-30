@@ -18,12 +18,15 @@ cd ~
 git clone https://github.com/gto76/my-aliases.git
 cd my-aliases
 ./install.sh
+bash
 # SET UP GIT
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 # MOUNT OTHER DRIVES
 mkdir /media/data
 sudo sh -c 'echo "/dev/<device id>   /media/data   <filesystem type>   user,fmask=0111,dmask=0000   0   2" >> /etc/fstab'
+# INSTALL SCALA SYNTAX FOR VIM
+mkdir -p ~/.vim/{ftdetect,indent,syntax} && for d in ftdetect indent syntax ; do wget --no-check-certificate -O ~/.vim/$d/scala.vim https://raw.githubusercontent.com/scala/scala-dist/master/tool-support/src/vim/$d/scala.vim; done
 
 (less syntax highlight)
 (tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)

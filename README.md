@@ -53,6 +53,7 @@ $ cd $HOME
 $ git clone https://github.com/gto76/my-aliases.git
 $ cd my-aliases
 $ ./install
+$ bash
 ```
 
 ## Files in detail:

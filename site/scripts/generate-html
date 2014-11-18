@@ -13,9 +13,11 @@ for f in `find . -name '*.md'`; do
 
 	markdownFilePath=`echo "$f" | sed 's/\.md$//' | tr -d '.'`
 	
-	# If converter for the file doesent exist, convet it with markdown
 	converter=../scripts/converters"$markdownFilePath"
 	htmlFilePath=../html"$markdownFilePath".html
+	# Make dir if it doesn't exist
+	mkdir -p ../html"$markdownFilePath" 
+	# If converter for the file doesent exist, convet it with markdown
 	if [[ -f "$converter"  ]]; then
 		"$converter" "$f" > "$htmlFilePath"
 	else

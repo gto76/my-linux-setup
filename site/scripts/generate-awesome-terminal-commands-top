@@ -8,7 +8,7 @@ cat ../templates/"$NAME".md.template > ../markdown/wtf-man/"$NAME".md
 
 cd ../markdown/wtf-man/"$NAME"
 for file in *; do
-	title=`basename -s .md $file`
+	title=`basename $file .md`
 	echo "[$title]("$NAME"/$title.html)" >> ../"$NAME".md
 done
 

@@ -15,8 +15,10 @@ html {
 </table>
 <h3 align="center">Print</h3>
 <table>
-<tr><td valign=top><strong>tail</strong>						</td><td style="width:15px"></td><td><strong> -f</strong>						 - do not stop printing</td></tr>
-<tr><td></td><td></td><td><strong>	-n +&ltline-number&gt</strong> - start at line number</td></tr>
+<tr><td valign=top><strong>head</strong>						</td><td style="width:15px"></td><td><strong> -n-&ltnumber-of-lines&gt</strong>						 - print all lines but the last n</td></tr>
+<tr><td></td><td></td><td><strong>	-c &ltnum-of-char&gt</strong> - print first c characters</td></tr>
+<tr><td valign=top><strong>tail</strong>						</td><td style="width:15px"></td><td><strong> -n+&ltline-number&gt</strong>						 - start at line number</td></tr>
+<tr><td></td><td></td><td><strong>	-f</strong> - do not stop printing</td></tr>
 <tr><td valign=top><strong>cat</strong>						</td><td style="width:15px"></td><td><strong> -n</strong>						 - number all lines</td></tr>
 <tr><td></td><td></td><td><strong>	-nl</strong> - similar</td></tr>
 <tr><td></td><td></td><td><strong>	&gt&gt file</strong> - simplest text editor (great for pasting)</td></tr>
@@ -50,8 +52,9 @@ html {
 <tr><td valign=top><strong>colrm &ltfrom &ltto&gt&gt</strong>						</td><td style="width:15px"></td><td>removes columns</td></tr>
 <tr><td valign=top><strong>seq &ltnumber&gt</strong>						</td><td style="width:15px"></td><td>output numbers from 1 to number</td></tr>
 <tr><td valign=top><strong>ispell/aspell</strong>						</td><td style="width:15px"></td><td>interactive spell checker</td></tr>
-<tr><td valign=top><strong>basename &ltpath&gt</strong>						</td><td style="width:15px"></td><td>strip directory from path</td></tr>
-<tr><td></td><td></td><td><strong>		-s &lt.suffix&gt</strong> - also strip suffix</td></tr>
+<tr><td valign=top><strong>basename &ltpath&gt [suffix]</strong>						</td><td style="width:15px"></td><td>strip directory from path</td></tr>
+<tr><td></td><td></td><td><strong>		-s &lt.suffix&gt</strong> - also strip suffix ?</td></tr>
+<tr><td></td><td></td><td><strong>		-a</strong> - process multiple filenames ?</td></tr>
 <tr><td valign=top><strong>dirname &ltpath&gt</strong>						</td><td style="width:15px"></td><td>strip last component from path</td></tr>
 <tr><td valign=top><strong>fmt</strong>						</td><td style="width:15px"></td><td>produce roughly uniform line lengths</td></tr>
 <tr><td valign=top><strong>fold</strong>						</td><td style="width:15px"></td><td>wrap each input line to fit in specified width</td></tr>
@@ -59,6 +62,7 @@ html {
 <tr><td valign=top><strong>sed	</strong>					</td><td style="width:15px"></td><td><strong>'s///g'</strong>					- substitute every occurrence in line, not just the first one</td></tr>
 <tr><td></td><td></td><td><strong>	's///I'</strong> - ignore case</td></tr>
 <tr><td></td><td></td><td><strong>	-r</strong> - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis</td></tr>
+<tr><td></td><td></td><td><strong>	-i &ltfile&gt</strong> - will make changes directly to the file (in place)</td></tr>
 <tr><td valign=top><strong>expand</strong>						</td><td style="width:15px"></td><td>convert tabs to spaces</td></tr>
 <tr><td></td><td></td><td><strong>	-t &ltnumber&gt</strong> - set number of spaces (default is 8)</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>

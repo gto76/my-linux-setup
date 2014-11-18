@@ -188,6 +188,9 @@ alias c='cat'
 alias v='vim -p'
 # Read only vim
 alias vv='view'
+# Scala vim (tab is 2 spaces)
+alias scv='v -c ":set ts=2" -c ":set sw=2"'
+alias vs='scv'
 # Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
 alias n='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
 g() { gedit "$@" & }
@@ -197,6 +200,7 @@ i() { google-chrome "$@" &> /dev/null & }
 alias sub='sublime_text &'
 alias scr='screen'
 alias clr='clear'
+alias cl='clear'
 alias his='history | catOrLessG'
 alias h='history | grep '
 alias xx='exit'
@@ -901,7 +905,7 @@ alias rss='nrss'
 # Prints nba scores. Not totally reliable, as pages tend to change.
 alias nbaScoreboard="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/scoreboard.asp | grep -w 'PM' -A10 | grep -v 'STATS LLC\|Any commercial\|NBC Sports\|NBC Universal' | grep -v MST | sed 's/^.*ET\([0-9:]*\).*$/   \1/' | grep -v Preview | sed '/^$/N;/^\n$/D' | m"
 nba() {
-	e -n '   ';	t; e 
+	e -n '   ';	date; e 
 	nbaScoreboard
 }
 # Prints nba standings. A bit more reliable. 

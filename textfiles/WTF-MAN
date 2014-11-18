@@ -330,6 +330,7 @@ TEXT:
 
 PRINT:
 head -n-<number-of-lines> - print all lines but the last n
+	-c <num-of-char> - print first c characters
 tail -n+<line-number> - start at line number
 	-f - do not stop printing
 cat -n - number all lines
@@ -363,9 +364,9 @@ join - join lines of two files on a common field
 colrm <from <to>> - removes columns
 seq <number> - output numbers from 1 to number
 ispell/aspell - interactive spell checker
-basename <path> - strip directory from path
-		-s <.suffix> - also strip suffix
-		-a - process multiple filenames
+basename <path> [suffix] - strip directory from path
+		-s <.suffix> - also strip suffix ?
+		-a - process multiple filenames ?
 dirname <path> - strip last component from path
 fmt - produce roughly uniform line lengths
 fold - wrap each input line to fit in specified width
@@ -1008,9 +1009,9 @@ ctrl+u - delete line
 ctrl+w - delete previous word
 
 MACROS:
-q<x> - record actions into x
-q - stop recording
-@<x> - execute x
+q<x> - record actions (macro) into x
+q - stop recording macro
+@<x> - execute x (macro)
 
 REGISTERS:
 "ayy - copy line into register a
@@ -1021,6 +1022,7 @@ SET COMMAND:
 :set <x>	- set x
 :set no<x>, <x>!	- unset x
 :set <x>=value - assign x
+:set <x>-=value - remove value form <x>
 :set all		- print all values
 :set <x>?			- print x 
 
@@ -1035,6 +1037,8 @@ tabstop, ts		- tab width (8)
 wrap			- wrap lines (wrap)
 wrapscan, ws	- search wraps around file (ws)
 mouse=a			- mouse mode (use shift when selecting to copy to clipboard)
+
+:set iskeyword-=. - remove dot from words part (two words if separated with dot)
 
 EDIT COMMANDS:
 [n] operation [m] motion - if both n and m are specified then n x m
@@ -1100,6 +1104,7 @@ JAVA:
 java -Xmx6g myprogram - reserve 6 giga for process
 	-jar <jar> - execute jar
 	-cp <path>:<path>... - tell java where libraries are located
+export _JAVA_OPTIONS=-Xmx1000m - set heap space globaly
 appletviewer <page>.html - run java applet
 jps -lvm - list java processes
 jmap -histo:live <pid> - memory map

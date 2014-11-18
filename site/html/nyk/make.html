@@ -1,0 +1,78 @@
+<h1>MAKE</h1>
+
+<hr />
+
+<h2>SPECIAL MACROS</h2>
+
+<p>All special macros begin with a dollar sign and do not need to be surrounded by parenthesis:</p>
+
+<ul>
+<li><p>$@ - name of the target
+    client: client.c
+        $(CC) client.c -o $@</p></li>
+<li><p>$? - lisf of dependents more recent than the target
+    client: client.c
+        $(CC) $? -o $@</p></li>
+<li><p>$^ - all dependencies, withoth dupicates
+    viewsource: client.c server.c
+        less $^</p></li>
+<li><p>$+ - all dependencies
+    viewsource: client.c server.c
+        less $+</p></li>
+<li><p>$&lt; - only first dependency</p></li>
+</ul>
+
+<hr />
+
+<h2>WILDCARD MATCHING IN TARGETS</h2>
+
+<ul>
+<li>% - wildcard in target</li>
+<li><p>$* - if you need the matched text in in the command</p>
+
+<p>%:
+    gcc -o $* $*.c</p></li>
+</ul>
+
+<blockquote>
+  <p>so for example 'make test_executable' will expand to:</p>
+</blockquote>
+
+<pre><code>gcc -o test_executable test_executable.c
+</code></pre>
+
+<hr />
+
+<h2>FUNCTIONS FOR FILENAMES</h2>
+
+<ul>
+<li><p>$(dir names...) - extract the directory part of each filename in names</p></li>
+<li><p>$(notdir names...) - extract all but the directory path</p></li>
+<li><p>$(suffix names...) - extract the suffix of each file name</p></li>
+<li><p>$(basename names...) - extract all but the suffix</p></li>
+<li><p>$(addsuffix suffix,names...) - adds suffix to all filenames</p></li>
+<li><p>$(addprefix prefix,names...) - glues pefix part (usualy path) in front of the names</p></li>
+<li><p>$(join list1,list2) - concatenates the two arguments word by word: '$(join a b,.c .o)' produces 'a.c b.o'</p></li>
+<li><p>$(wildcard pattern) - using shell file name patterns it returns list of matching files</p></li>
+<li><p>$(realpath names...) - return the canonical absolute name, meaning without no . or .. components nor any symlinks</p></li>
+<li><p>$(abspath names...) - same as realpath, but does not reslolve symlinks, and does not require the file names to refer to an existing file or directory</p></li>
+</ul>
+
+<hr />
+
+<h2>CREATING A LIST OF DIRECTORIES</h2>
+
+<p>DIRS := ${shell find ${ROOT_DIRECTORY} -type d -print}</p>
+
+<hr />
+
+<h2>USING CD IN COMMANDS</h2>
+
+<blockquote>
+  <p>There must be no new line characte between the lines, because otherwise the cd command will get executed in its own subshell. Consequentlly the semi-colon also needs to be added after every statement.</p>
+</blockquote>
+
+<pre><code>all:
+    cd some_dir; \
+    gcc -Wall -o myTest myTest.c
+</code></pre>

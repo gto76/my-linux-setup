@@ -29,6 +29,7 @@ html {
 <tr><td valign=top><strong>gF</strong>						</td><td style="width:15px"></td><td>open file under cursor</td></tr>
 <tr><td valign=top><strong>K</strong>						</td><td style="width:15px"></td><td>look up word under cursor in man pages</td></tr>
 <tr><td valign=top><strong>ctrl+v</strong>						</td><td style="width:15px"></td><td>select visual box</td></tr>
+<tr><td valign=top><strong>:e</strong>						</td><td style="width:15px"></td><td>reload file</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Help</h3>
@@ -100,9 +101,9 @@ html {
 </table>
 <h3 align="center">Macros</h3>
 <table>
-<tr><td valign=top><strong>q&ltx&gt</strong>						</td><td style="width:15px"></td><td>record actions into x</td></tr>
-<tr><td valign=top><strong>q</strong>						</td><td style="width:15px"></td><td>stop recording</td></tr>
-<tr><td valign=top><strong>@&ltx&gt</strong>						</td><td style="width:15px"></td><td>execute x</td></tr>
+<tr><td valign=top><strong>q&ltx&gt</strong>						</td><td style="width:15px"></td><td>record actions (macro) into x</td></tr>
+<tr><td valign=top><strong>q</strong>						</td><td style="width:15px"></td><td>stop recording macro</td></tr>
+<tr><td valign=top><strong>@&ltx&gt</strong>						</td><td style="width:15px"></td><td>execute x (macro)</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Registers</h3>
@@ -117,6 +118,7 @@ html {
 <tr><td valign=top><strong>:set &ltx&gt</strong>					</td><td style="width:15px"></td><td>set x</td></tr>
 <tr><td valign=top><strong>:set no&ltx&gt, &ltx&gt!</strong>					</td><td style="width:15px"></td><td>unset x</td></tr>
 <tr><td valign=top><strong>:set &ltx&gt=value</strong>						</td><td style="width:15px"></td><td>assign x</td></tr>
+<tr><td valign=top><strong>:set &ltx&gt-=value</strong>						</td><td style="width:15px"></td><td>remove value form &ltx&gt</td></tr>
 <tr><td valign=top><strong>:set all</strong>					</td><td style="width:15px"></td><td>print all values</td></tr>
 <tr><td valign=top><strong>:set &ltx&gt?</strong>					</td><td style="width:15px"></td><td>print x </td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
@@ -133,6 +135,8 @@ html {
 <tr><td valign=top><strong>wrap</strong>					</td><td style="width:15px"></td><td>wrap lines (wrap)</td></tr>
 <tr><td valign=top><strong>wrapscan, ws</strong>					</td><td style="width:15px"></td><td>search wraps around file (ws)</td></tr>
 <tr><td valign=top><strong>mouse=a</strong>					</td><td style="width:15px"></td><td>mouse mode (use shift when selecting to copy to clipboard)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>:set iskeyword-=.</strong>						</td><td style="width:15px"></td><td>remove dot from words part (two words if separated with dot)</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Edit Commands</h3>

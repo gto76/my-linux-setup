@@ -56,6 +56,8 @@ html {
 <tr><td></td><td></td><td><strong>	-h now</strong> -  begins the shutdown procedure (OR halt OR poweroff)</td></tr>
 <tr><td></td><td></td><td><strong>	-h 11:50</strong> - when</td></tr>
 <tr><td></td><td></td><td><strong>	-r now</strong> - reboot (OR reboot)</td></tr>
+<tr><td valign=top><strong>make</strong>						</td><td style="width:15px"></td><td><strong> -q</strong>						 - do not run any commands, just return 0 exit status if everything is up to date or nonzero otherwise</td></tr>
+<tr><td></td><td></td><td><strong>	-B</strong> - unconditionaly make all targets</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Files</h3>
@@ -77,7 +79,9 @@ html {
 <tr><td></td><td></td><td><strong>	alt o</strong> - open parent dir in another panel</td></tr>
 <tr><td></td><td></td><td><strong>	ctrl o</strong> - switch to bash</td></tr>
 <tr><td valign=top><strong>find &ltdir&gt</strong>						</td><td style="width:15px"></td><td><strong> -name &ltfile&gt</strong>						 - search by name</td></tr>
+<tr><td></td><td></td><td><strong>	-regex &ltregex&gt</strong> - use regex for name search</td></tr>
 <tr><td></td><td></td><td><strong>	-not</strong> - insert before other options to negate</td></tr>
+<tr><td></td><td></td><td><strong>	-maxdepth &ltlevels&gt</strong> - descend only to levels deep</td></tr>
 <tr><td></td><td></td><td><strong>	-samefile &ltfile&gt</strong> - find all hard links of a file</td></tr>
 <tr><td></td><td></td><td><strong>	-xdev</strong> - don't descend directories on other filesystems</td></tr>
 <tr><td></td><td></td><td><strong>	-inum &ltinum&gt</strong> - find files with the inode number</td></tr>
@@ -101,11 +105,12 @@ html {
 <tr><td valign=top><strong>rename</strong>						</td><td style="width:15px"></td><td>renames multiple files using sed syntax</td></tr>
 <tr><td valign=top><strong>rsync</strong>						</td><td style="width:15px"></td><td>a fast, versatile, remote (and local) file-copying tool</td></tr>
 <tr><td valign=top><strong>cmp</strong>						</td><td style="width:15px"></td><td>compares two files, similar to diff but also for binaries</td></tr>
+<tr><td valign=top><strong>stat</strong>						</td><td style="width:15px"></td><td><strong> -c%X &ltfile&gt</strong>						 - time of last modification of the file </td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Archives</h3>
 <table>
-<tr><td valign=top><strong>tar	</strong>					</td><td style="width:15px"></td><td><strong>xvzf &ltfile&gt.tar.gz</strong>					- decompress and detar</td></tr>
+<tr><td valign=top><strong>tar	</strong>					</td><td style="width:15px"></td><td><strong>xvzf &ltfile&gt.tar.gz (.tgz)</strong>					- decompress and detar</td></tr>
 <tr><td></td><td></td><td><strong>	xvjf &ltfile&gt.tar.bz2</strong> - decompress and detar</td></tr>
 <tr><td></td><td></td><td><strong>	-cf &ltarchive&gt.tar &ltfile&gt...</strong> - compress</td></tr>
 <tr><td valign=top><strong>zip</strong>						</td><td style="width:15px"></td><td><strong> -g &ltarchive&gt &ltfile&gt</strong>						 - grow/add to existing archive</td></tr>

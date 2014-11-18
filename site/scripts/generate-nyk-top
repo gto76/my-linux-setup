@@ -7,5 +7,5 @@ cat ../templates/nyk.md.template > ../markdown/nyk.md
 cd ../markdown/nyk
 for file in *; do
 	title=`basename $file .md`
-	echo "[$title](nyk/$title.html)" >> ../nyk.md
+	echo -e "[$title](nyk/$title.html)  \n" >> ../nyk.md
 done

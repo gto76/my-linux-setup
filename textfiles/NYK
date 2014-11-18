@@ -746,7 +746,7 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
     ---                     objects hash)
 
     
- HEAD *master      BRANCH <label> - stucks a new label on HEAD (withouth 
+ HEAD *master      BRANCH <label> - stucks a new label on HEAD (without 
     \ /                             parameter it prints local branches). 
     (A)-label                       (With -r will print remote branches/ 
      |                              all the references that you have.)
@@ -764,7 +764,7 @@ DONALD KNUTH - ART OF COMPUTER PROGRAMMING, TEX
                                    HEAD. Also second <label> parameter 
                                    possible -> will merge into it instead
                                    of current branch. There are two
-                                   strategys in which git will merge two
+                                   strategies in which git will merge two
                                    branches:
                                    
 					 label         FAST FORWARD - if the <label> is  
@@ -778,8 +778,8 @@ HEAD (B) *master      (B)
                                    
                        HEAD        RECURSIVE STRATEGY - merges contents and
                         |          creates new commit that has two parents
-label HEAD      label  (D)-master  (it can have any number of parents). 
-    \   |           \ / |          Moves currnet branch and HEAD labels to
+label HEAD      label  (D)-*master (it can have any number of parents). 
+    \   |           \ / |          Moves current branch and HEAD labels to
     (B)(C)-*master  (B)(C)         it (<label> stays behind).
      | /       ___\  | / 
     (A)           / (A)
@@ -798,11 +798,13 @@ label HEAD      label  (D)-master  (it can have any number of parents).
 DETACHED HEAD STATE:
 
 
-                   TAG v1.0 <A> -> CHECKOUT v1.0 - If no branch label is
-                   on this commit you get message: "You are in detached
-                   head state", meaning that if you want to keep your
-                   commits, you need to create a new branch.
-
+  label  (D)-master     TAG v1.0 A, CHECKOUT v1.0 - If no branch label is
+      \ / |             on this commit you get message: "You are in detached
+      (B)(C)            head state", meaning that if you want to keep your
+       | /              commits, you need to create a new branch.
+ v1.0-(A)-HEAD
+       |      
+      ---    
 
 TO MERGE NEW FEATURE INTO MASTER:
                    
@@ -850,30 +852,33 @@ TO MERGE NEW FEATURE INTO MASTER:
 WORKING WITH REMOTE REPOSITORIES:
 
 
-                   CLONE <url or path of origin> <optional different name>
-                         - Makes a copy of remote repository. State of our 
-                         repo after clone:
+                   CLONE <url> <name>
+                         - Makes a copy of remote repository (name is
+						 optional) . State of our repo after clone:
 
-    +--------------------+----+- TRACKING BRANCHES - they mean: last time I
-    v ORIGIN/LABEL <-----+    |  talked with origin, thats where its label
-ORIGIN/HEAD | ORIGIN/MASTER <-+  was.
+                                 TRACKING BRANCHES - they mean: last time I
+      ORIGIN/LABEL               talked with origin, thats where its label
+ORIGIN/HEAD | ORIGIN/MASTER      was.
            \|/ 
-     HEAD--(D)--*MASTER <------- Also it did not pull over LABEL branch,
+     HEAD--(D)--*MASTER          Also it did not pull over LABEL branch,
           / |                    because it pulls over only the default
         (B)(C)                   branch, which is master (note that origin
          | /                     and master are just names, they have no 
-        (A)                      segnificance).
+        (A)                      significance).
          |      
         ---    
 
-                   CLONE --bare <url or path of origin> <optional different
-                         name> - Make a copy of repo, containing only
-                                 contents of .git directory (there is no
+
+                   CLONE --bare <url> <name> - Make a copy of repo, containing 
+				                 only contents of .git directory (there is no
                                  checkout.
+
 
                    REMOTE -v - List remotes (defaultly named origin)
 
+
                    PULL - Same as FETCH + MERGE
+
 
                    PUSH <origin> <local branch> - Pushes changes made to the
                                                   local branch to origin repo.

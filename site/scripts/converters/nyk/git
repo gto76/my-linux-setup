@@ -137,7 +137,11 @@ main() {
 	# Print header and title
 	../scripts/header "$1" "Git for ages 4 and up"
 	echo "<h2>Git for ages 4 and up</h2>"
+	# Embed video:
+	echo "<iframe width=\"640\" height=\"480\" src=\"//www.youtube.com/embed/1ffBJ4sVUb4\" frameborder=\"0\" allowfullscreen></iframe>"
+	echo "<br>"
 	echo '<blockquote><table>'
+
 
 	# Replace tabs with spaces
 	tmpFile=`mktemp`

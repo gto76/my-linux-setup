@@ -549,7 +549,8 @@ init - upstart init daemon job configuration
 telinit - change system runlevel
 dmesg - print the contents of your bootup (startup) messages displayed by the kernel. This is often useful when debugging problems
 getconf -a - print all system configuration variables
-nohup <command> - run a command immune to hangups
+nohup <command> - run a command immune to hangups, runs even after the shell is closed (writes output to nohup.out)
+nohup <command> &>/dev/null & - run a command immune to hangups in background, do not save output
 
 wmctrl - X Window Manager
 

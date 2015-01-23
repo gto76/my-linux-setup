@@ -78,6 +78,7 @@ apt-get	update - update local list of existing packages
 		install <package> - also update single package
 		autoremove - remove unneeded packages
 		remove <package> - remove package, leave configurations
+		remove apt-listchanges - useful when debian cant find package
 		purge <package> - remove package and its configurations, run apt-get autoremove after, to remove all dependencies that are not needed anymore.
 		source <package> - download code
 		build-dep <package> - install the build dependencies
@@ -252,6 +253,7 @@ $'\n' - string literal with escape seqences (there is a backslash before n)
 	If you want IFS to be a new line (useful with for loop) you need to: IFS=$'\n' - the dollar forces substitution!!!!!
 	Also if you want 'while read line; do...' to preserve leading spaces and tabs, you need to set IFS=""
 $? - exit code of last command (0 - sucess)
+Ctrl-Z, kill %% - kill looping bash script
 
 test <expr> - same as [ <expression> ], returns zero exit status if true.
 	-n - is string non empty, 
@@ -1103,9 +1105,10 @@ PIRATEBAY:
 torrents.thepiratebay.sx/7532474/Cabin.torrent - download torrent file
 
 JAVA:
+javac -cp <path>:<path>... - tell java where libraries are located
 java -Xmx6g myprogram - reserve 6 giga for process
 	-jar <jar> - execute jar
-	-cp <path>:<path>... - tell java where libraries are located
+	-cp .:<path>:<path>... - tell java where libraries are located, you also need to pass the location of class among paths, hence .:
 export _JAVA_OPTIONS=-Xmx1000m - set heap space globaly
 appletviewer <page>.html - run java applet
 jps -lvm - list java processes

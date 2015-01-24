@@ -51,6 +51,8 @@ filetype plugin indent on    " required
 "### MY CONF ###
 "###############
 
+set guifont=Consolas:h11:cEASTEUROPE
+
 " Set widht of the tabs
 set tabstop=4
 set shiftwidth=4
@@ -105,7 +107,7 @@ set nowb
 set noswapfile
 
 " Configure backspace so it acts as it should act
-"set backspace=eol,start,indent
+set backspace=indent,eol,start
 "set whichwrap+=<,>,h,l
 
 " So that esc, O works faster

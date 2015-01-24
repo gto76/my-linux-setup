@@ -1,0 +1,1 @@
+so ~/.my_vimrc

@@ -561,6 +561,7 @@ commit() {
   fi
   git commit -am "$message"
 }
+alias init='git init'
 alias push='git push'
 alias pull='git pull'
 alias checkout='git checkout'
@@ -577,6 +578,15 @@ alias gd='git diff'
 alias ga='git add'
 alias gm='git mv'
 alias gll='git ls-files'
+
+# Add to github (first create remote repository on website,
+# init local repo and add files to it):
+# Parameter: <USERNAME>/<PROJECT>
+origin() {
+	git remote add origin git@github.com:/"$1".git
+	git pull origin master
+	git push origin master
+}
 
 # GIT MISC:
 

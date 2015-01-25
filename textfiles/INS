@@ -8,32 +8,44 @@
 # UPDATE:
 sudo apt-get update
 sudo apt-get -u dist-upgrade
+
 # INSTALL APPS
 sudo apt-get install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
+
 # REMOVE DEFAULT ll ALIAS
 sudo sed -e 's/\(^alias ll\)/#\1/' /etc/bash.bashrc > /tmp/bash.bashrc.tmp
 sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc
+
 # INSTALL MY CONF FILES
 cd ~
 git clone https://github.com/gto76/my-aliases.git
 cd my-aliases
 ./install.sh
 bash
+
 # SET UP GIT
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
+git config --global push.default simple
+
+# GENERATE SSH KEY FOR GITHUB
+ssh-keygen -t rsa -C "you@example.com" (press enter to all prompts)
+ssh-add ~/.ssh/id_rsa
+# copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key on your Github page.
+
 # MOUNT OTHER DRIVES
 mkdir /media/data
 sudo sh -c 'echo "/dev/<device id>   /media/data   <filesystem type>   user,fmask=0111,dmask=0000   0   2" >> /etc/fstab'
+
 # INSTALL SCALA SYNTAX FOR VIM
 mkdir -p ~/.vim/{ftdetect,indent,syntax} && for d in ftdetect indent syntax ; do wget --no-check-certificate -O ~/.vim/$d/scala.vim https://raw.githubusercontent.com/scala/scala-dist/master/tool-support/src/vim/$d/scala.vim; done
-
-(less syntax highlight)
-(tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
 
 # REMOVE TOTEM AND BANSHEE MEDIA PLAYERS
 purge totem
 purge banshee
+
+(less syntax highlight)
+(tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
 
 #
 # MOUSEJOBS:

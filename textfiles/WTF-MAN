@@ -627,7 +627,7 @@ lsmod - show which kernel modules (drivers) are loaded
 modinfo <module> - get more information about kernel module
 
 HARDWARE:
-lshw - list all hardware
+lshw - list all hardware (sudo)
 lspci [-tv] - show pci info
 lsusb [-tv] - show usb info
 lscpu - print CPU information
@@ -892,6 +892,13 @@ after your first push, you can simply type:
 git push
 sometimes also: git push --set-upstream origin master
 
+REMOTE:
+git remote update - get info about state of remote
+git remote show origin - print address of the origin
+git remote set-url origin git@github.com:<user>/<repo>.git - change the url of origin, ssh key needed
+git remote set-url origin https://www.github.com/<user>/<repo>.git - same, but withouth key
+git status -uno - check if everything up-to-date
+
 ALSO USEFUL:
 git checkout HEAD^ <file> - retrieve deleted file
 git rm --cached mylogfile.log - untrack file without deleting it
@@ -907,13 +914,6 @@ git revert
 git describe - print version and hash of HEAD
 git log --name-only --author=<name> - print changed files by commit
 git ls-files - list files
-
-REMOTE:
-git remote update - get info about state of remote
-git remote show origin - print address of the origin
-git remote set-url origin git@github.com:<user>/<repo>.git - change the url of origin, ssh key needed
-git remote set-url origin https://www.github.com/<user>/<repo>.git - same, but withouth key
-git status -uno - check if everything up-to-date
 
 CHECKOUT:
 git log > ../gitLog - first save log to file

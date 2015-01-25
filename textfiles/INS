@@ -12,6 +12,9 @@ sudo apt-get -u dist-upgrade
 # INSTALL APPS
 sudo apt-get install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
 
+# INSTALL VIM BUNDLE MANAGER
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 # REMOVE DEFAULT ll ALIAS
 sudo sed -e 's/\(^alias ll\)/#\1/' /etc/bash.bashrc > /tmp/bash.bashrc.tmp
 sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc
@@ -32,6 +35,10 @@ git config --global push.default simple
 ssh-keygen -t rsa -C "you@example.com" (press enter to all prompts)
 ssh-add ~/.ssh/id_rsa
 # copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key on your Github page.
+
+# USE SSH KEY FOR PUSHING MY-ALIASES
+cd ~/my-aliases
+git remote set-url origin git@github.com:<user>/<repo>.git
 
 # MOUNT OTHER DRIVES
 mkdir /media/data

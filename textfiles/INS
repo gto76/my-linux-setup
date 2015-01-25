@@ -5,12 +5,23 @@
 (_)_/  |_|_| |_|___/\__\__,_|_|_|
 
 
-# UPDATE:
+# IF YOU ARE NOT AMONG SUDOERS ON FEDORA
+su -
+usermod <username> -a -G wheel
+
+# ENABLE TOUCHPAD TAB
+win key > type mouse > select tap to click
+
+# UPDATE
 sudo apt-get update
 sudo apt-get -u dist-upgrade
+* FEDORA:
+sudo yum update
 
 # INSTALL APPS
 sudo apt-get install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
+* FEDORA:
+yum install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
 
 # INSTALL VIM BUNDLE MANAGER
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim

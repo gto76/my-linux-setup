@@ -23,7 +23,7 @@ sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc
 cd ~
 git clone https://github.com/gto76/my-aliases.git
 cd my-aliases
-./install.sh
+./install
 bash
 
 # SET UP GIT

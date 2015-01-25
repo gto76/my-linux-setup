@@ -30,7 +30,10 @@ mkdir -p ~/.vim/{ftdetect,indent,syntax} && for d in ftdetect indent syntax ; do
 
 (less syntax highlight)
 (tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
-remove totem and banshee media players
+
+# REMOVE TOTEM AND BANSHEE MEDIA PLAYERS
+purge totem
+purge banshee
 
 #
 # MOUSEJOBS:

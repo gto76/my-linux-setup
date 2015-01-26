@@ -123,6 +123,7 @@ To switch J and K paste this into custom keymapings textbox:
 # DISABLE DEFAULT BEHAVIOUR FOR alt+F1:
 sudo apt-get install dconf-editor
 dconf-editor > navigate to org.cinnamon.muffin.keybindings
+(org.gnome.desktop.wm.keybinding for gnome)
 for panel-main-menu, replace ['<Alt>F1'] with []
 logout & login (ctrl+alt+del)
 

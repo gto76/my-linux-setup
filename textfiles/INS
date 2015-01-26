@@ -13,7 +13,7 @@ su -
 usermod <username> -a -G wheel
 
 # ENABLE TOUCHPAD TAB
-win key > type mouse > select tap to click
+// win key > type mouse > select tap to click
 
 # UPDATE
 sudo apt-get update
@@ -48,7 +48,7 @@ git config --global push.default simple
 # GENERATE SSH KEY FOR GITHUB
 ssh-keygen -t rsa -C "you@example.com" (press enter to all prompts)
 ssh-add ~/.ssh/id_rsa
-# copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key on your Github page.
+// copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key on your Github page.
 
 # USE SSH KEY FOR PUSHING MY-ALIASES
 cd ~/my-aliases
@@ -68,11 +68,31 @@ purge banshee
 (less syntax highlight)
 (tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
 
+
+#
+# DEBIAN:
+#
+
 # INSTAL MATE DESKTOP ON DEBIAN WHEEZY
-add: deb http://http.debian.net/debian wheezy-backports main
-to: /etc/apt/sources.list
+// add: deb http://http.debian.net/debian wheezy-backports main
+// to: /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get -t wheezy-backports install mate-desktop-environment
+
+# UPGRADE TO TESTING VERSION
+// change all occurances of "wheezy" to "testing" in /etc/apt/sources.list
+sudo apt-get update
+// restart computer
+
+# INSTALL CINNAMON DESKTOP:
+sudo apt-get install cinnamon
+
+# INSTALL WIRELLES INTEL DRIVER
+// add non free to /etc/apt/sources.list, 
+// for example "deb http://http.debian.net/debian/ testing main non-free"
+apt-get update && apt-get install firmware-iwlwifi
+// restart computer
+
 
 #
 # MOUSEJOBS:

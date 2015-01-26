@@ -7,9 +7,7 @@
 
 # IF YOU ARE NOT AMONG SUDOERS
 su -
-visudo
-(add this line:)
-<username> ALL=(ALL) ALL
+adduser <username> sudo
 * FEDORA:
 su -
 usermod <username> -a -G wheel

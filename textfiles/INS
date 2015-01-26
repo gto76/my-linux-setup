@@ -70,6 +70,12 @@ purge banshee
 (less syntax highlight)
 (tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
 
+# INSTAL MATE DESKTOP ON DEBIAN WHEEZY
+add: deb http://http.debian.net/debian wheezy-backports main
+to: /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get -t wheezy-backports install mate-desktop-environment
+
 #
 # MOUSEJOBS:
 #

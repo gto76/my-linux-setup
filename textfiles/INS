@@ -52,9 +52,9 @@ cat ~/.ssh/id_rsa.pub
 // Copy contents of the key and paste them into key field at 
 // Acount settings > SSH Keys > Add SSH key on your Github page.
 
-# USE SSH KEY FOR PUSHING MY-ALIASES
+# USE SSH KEY FOR PUSHING MY-ALIASES (you need to fork the repo to your github account)
 cd ~/my-aliases
-git remote set-url origin git@github.com:<user>/<repo>.git
+git remote set-url origin git@github.com:<user>/my-aliases.git
 
 # MOUNT OTHER DRIVES
 mkdir /media/data

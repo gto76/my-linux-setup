@@ -87,6 +87,7 @@ apt-cache	search <keyword> - search packages, like apropos, but global
 		policy <package> - show installed and remote version
 aptitude - browse packages (skin for apt-get)
 		search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
+		search <package> - search for package
 winetricks - install wine applications
 update-alternatives - maintain symbolic links determining default commands
 

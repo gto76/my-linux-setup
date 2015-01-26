@@ -5,7 +5,12 @@
 (_)_/  |_|_| |_|___/\__\__,_|_|_|
 
 
-# IF YOU ARE NOT AMONG SUDOERS ON FEDORA
+# IF YOU ARE NOT AMONG SUDOERS
+su -
+visudo
+(add this line:)
+<username> ALL=(ALL) ALL
+* FEDORA:
 su -
 usermod <username> -a -G wheel
 

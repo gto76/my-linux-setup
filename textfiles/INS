@@ -48,7 +48,9 @@ git config --global push.default simple
 # GENERATE SSH KEY FOR GITHUB
 ssh-keygen -t rsa -C "you@example.com" (press enter to all prompts)
 ssh-add ~/.ssh/id_rsa
-// copy contents of ~/.ssh/id_rsa.pub and paste them into key field at Acount settings > SSH Keys > Add SSH key on your Github page.
+cat ~/.ssh/id_rsa.pub
+// Copy contents of the key and paste them into key field at 
+// Acount settings > SSH Keys > Add SSH key on your Github page.
 
 # USE SSH KEY FOR PUSHING MY-ALIASES
 cd ~/my-aliases

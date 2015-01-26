@@ -22,7 +22,7 @@ sudo apt-get -u dist-upgrade
 sudo yum update
 
 # INSTALL APPS
-sudo apt-get install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
+sudo apt-get install vim mc git openssh-server nrss nmap wine openjdk-7-jdk vlc
 * FEDORA:
 yum install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
 
@@ -69,7 +69,6 @@ purge banshee
 
 (less syntax highlight)
 (tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
-
 
 #
 # DEBIAN:

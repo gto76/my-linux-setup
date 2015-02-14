@@ -347,6 +347,7 @@ less  	&<phrase> - display only lines with
 		v - opens editor defined in $VISUAL or $EDITOR
 		:n - examine the next file
 		<,> - go to home, end
+wc - count lines, words and characters
 
 EDIT:
 tr <from> <to> - translate or delete characters (-d for delete)
@@ -738,14 +739,16 @@ MULTIMEDIA:
 
 AUDIO:
 
+alsamixer - set audio level (curses)
+amixer - set audio levels (command line)
+rmmod pcspkr - disable pc-speaker, beep (sudo)
+
 cmus - music player (can be controlled from outside)
 mplayer - movie/music player
 mpg321 - plays mp3
 ogg123 - plays ogg
 aplay - plays audio
 play - plays audio
-alsamixer - set audio level (curses)
-amixer - set audio levels (command line)
 arecord <file>  - command line audio recorder and player
 	-f <format> - set file format (cd)
 	-d <seconds> - set duration

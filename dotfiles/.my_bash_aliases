@@ -387,6 +387,7 @@ gr2() {
 alias canhaz='sudo apt-get install'
 alias ch='canhaz'
 alias update='sudo apt-get update'
+alias upgrade='sudo apt-get dist-upgrade'
 alias remove='sudo apt-get remove && autoremove'
 alias purge='sudo apt-get purge && autoremove'
 alias autoremove='sudo apt-get autoremove'
@@ -446,6 +447,10 @@ hd1() {
 
 # GO
 alias run='go run'
+
+locate1() {
+	locate "$@" | catOrLess
+}
 
 #FIND
 # Recursively search for files containing pattern in their names.
@@ -566,6 +571,11 @@ alias push='git push'
 alias pull='git pull'
 alias checkout='git checkout'
 alias merge='git merge'
+alias branch='git branch'
+
+clone() {
+	git clone git@github.com:/"$1".git
+}
 
 alias gs='git status'
 # Nicely decorated graph of commits

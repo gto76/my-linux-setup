@@ -94,6 +94,38 @@ sudo apt-get install cinnamon
 apt-get update && apt-get install firmware-iwlwifi
 // restart computer
 
+# IMPROVE FONT RENDERING
+// put into .fonts.conf in home dir:
+<?xml version='1.0'?>
+<!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
+<fontconfig>
+ <match target="font">
+  <edit mode="assign" name="rgba">
+   <const>rgb</const>
+  </edit>
+ </match>
+ <match target="font">
+  <edit mode="assign" name="hinting">
+   <bool>true</bool>
+  </edit>
+ </match>
+ <match target="font">
+  <edit mode="assign" name="hintstyle">
+   <const>hintslight</const>
+  </edit>
+ </match>
+ <match target="font">
+  <edit mode="assign" name="antialias">
+   <bool>true</bool>
+  </edit>
+ </match>
+  <match target="font">
+    <edit mode="assign" name="lcdfilter">
+      <const>lcddefault</const>
+    </edit>
+  </match>
+</fontconfig>
+
 
 #
 # MOUSEJOBS:
@@ -125,7 +157,8 @@ sudo apt-get install dconf-editor
 dconf-editor > navigate to org.cinnamon.muffin.keybindings
 (org.gnome.desktop.wm.keybinding for gnome)
 for panel-main-menu, replace ['<Alt>F1'] with []
-logout & login (ctrl+alt+del)
+set minimize window to ['<Alt>F1']
+// logout
 
 # SET KEYBOARD SHORTCUTS:
 System setings > Keyboard > Keyboard shortcuts:
@@ -148,6 +181,8 @@ ctrl+alt+i - IDEA
 ctrl+alt+r - nrss (command: gnome-terminal -e nrss)
 ctrl+alt+m - midnight commander (command: gnome-terminal -e mc)
 ctrl+alt+c - console calculator (command: gnome-terminal -e gcalccmd)
+# LOGOUT:
+ctrl+alt+l - command: gnome-session-quit --logout
 
 # FIREFOX:
 remove bookmarks toolbar

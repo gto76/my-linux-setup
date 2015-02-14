@@ -1,16 +1,14 @@
 #!/bin/bash
 
-#    _               _              _ _                     
-#   | |__   __ _ ___| |__      __ _| (_) __ _ ___  ___  ___ 
-#   | '_ \ / _` / __| '_ \    / _` | | |/ _` / __|/ _ \/ __|
-#  _| |_) | (_| \__ \ | | |  | (_| | | | (_| \__ \  __/\__ \
-# (_)_.__/ \__,_|___/_| |_|   \__,_|_|_|\__,_|___/\___||___/
+#              _              _ _                     
+#     __ _ ___| |__      __ _| (_) __ _ ___  ___  ___ 
+#    / _` / __| '_ \    / _` | | |/ _` / __|/ _ \/ __|
+#  _| (_| \__ \ | | |  | (_| | | | (_| \__ \  __/\__ \
+# (_)\__,_|___/_| |_|   \__,_|_|_|\__,_|___/\___||___/
 #
 
 
-
 set -o vi
-
 
 
 ########
@@ -84,13 +82,13 @@ alias listLong='ls1 -l'
 
 # Functions that call aliases above, and pipe output to less. They override color option of ls to always and add RAW-CONTROL-CHARS option to less alias. This enables the transfer of colors from ls to less. Also start less at end of file.
 listShortLess() { 
-  listShort --color=always $* | less 
+  listShort $* | less 
 }
 listMedLess() { 
-  listMed --color=always $* | less
+  listMed $* | less
 }
 listLongLess() { 
-  listLong --color=always $* | less
+  listLong $* | less
 }
 
 # This functions decide weather they will call basic or less version of the listShort/Med/Long function. It depends on whether the output of ls will fit on screen.

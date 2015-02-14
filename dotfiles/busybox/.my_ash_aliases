@@ -9,7 +9,7 @@
 
 
 set -o vi
-
+alias lynx='lynx --accept-all-cookies'
 
 ########
 # LESS #
@@ -142,7 +142,6 @@ alias t='tree1'
 alias tree2='tree1 -a'
 alias t1='tree2'
 
-
 ##########
 # BASICS #
 ##########
@@ -162,7 +161,9 @@ alias cd..='cd ..'
 alias ..='cd ..'
 alias ,,='cd ..'
 alias ...='cd ../..'
+alias ,,,='cd ../..'
 alias ....='cd ..; cd ..; cd ..;'
+alias ,,,,='cd ..; cd ..; cd ..;'
 alias .....='cd ..; cd ..; cd ..; cd..'
 alias ......='cd ..; cd ..; cd ..; cd..; cd..'
 alias .......='cd ..; cd ..; cd ..; cd..; cd..; cd..'
@@ -181,7 +182,7 @@ p() {
 	fi		
 }
 
-alias ba='ash'
+alias ba='bash'
 alias e='echo'
 # Echo with backslash escapes (\n,...)
 alias ee='echo -e'
@@ -192,15 +193,29 @@ alias c='cat'
 alias v='vim -p'
 # Read only vim
 alias vv='view'
+# Scala vim (tab is 2 spaces)
+alias scv='v -c ":set ts=2" -c ":set sw=2"'
+alias vs='scv'
 # Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
 alias n='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
-g() { gedit "$@" & }
-alias fire='firefox &'
-chrome() { google-chrome "$@" &> /dev/null & }
-i() { google-chrome "$@" &> /dev/null & }
-alias sub='sublime_text &'
+# Runs command in background, it doesent hang up if the shell is closed and it doesn't print output
+runInBackground() {
+	nohup "$@" &>/dev/null &
+}
+alias rb='runInBackground'
+
+g() { 
+	rb gedit "$@" 
+}
+alias fire='rb firefox'
+chrome() { 
+	rb google-chrome "$@" 
+}
+alias i='chrome'
+alias sub='rb sublime_text'
 alias scr='screen'
 alias clr='clear'
+alias cl='clear'
 alias his='history | catOrLessG'
 alias h='history | grep '
 alias xx='exit'
@@ -235,7 +250,7 @@ alias asci='asciiview'
 alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
 alias resetkeys='resetkey'
 # Display disk space used by a folder or a file in human readable form.
-alias du='du --summarize'
+alias du='du --summarize --human-readable'
 # Set bash to vi mode.
 alias vimode='set -o vi'
 # Start a new terminal.
@@ -276,6 +291,273 @@ sv() {
 }
 
 
+######
+# PS #
+######
+
+# Pipe output of ps to catOrLess.
+psM() {
+	ps "$@" | catOrLess
+}
+alias ps='psM'
+# Print every process on the system.
+alias pse='ps -e | catOrLess'
+alias psa='ps -e | catOrLess'
+alias ps1='ps -e | catOrLess'
+
+alias hib='sudo pm-hibernate'
+alias sus='sudo pm-suspend'
+# Print matching processes and their pids.
+alias pgrep1='pgrep --list-name'
+
+
+########
+# TEXT #
+########
+
+# Removes columns specified by second argument. Specify delimiter with first argument.
+cut1() {
+	cut --delimiter="$1" --fields="$2" 
+}
+# Sort lines of file. Specify separator and key. Key is used to specify number of field you want lines to be sorted by.
+sort1() { 
+	sort --field-separator="$1" --key="$2"
+}
+# Makes table out of input data. You need to specify column separator.
+alias table='column -t -s'
+# Delete specified characters.
+alias trd='tr --delete'
+
+# Change input strings notation from CamelCase to underscore.
+toUnderscore() {
+	cat | sed 's/\([A-Z]\)/_\1/g' | tr [a-z] [A-Z]
+}
+# Vice versa.
+toCamel() {
+	cat | tr [A-Z] [a-z] | sed 's/_\([a-z]\)/\U\1/g'
+}
+
+
+##########
+# SYSTEM #
+##########
+
+# Trace system calls and signals. Print strings of maximum 2000 chars, and also trace child processes.
+alias strace1='strace -s 2000 -f'
+# Print all system information.
+alias uname1='uname -all'
+# Print verbose information of all PCI devices.
+alias lspci1='lspci -v | catOrLess'
+# Display cpu temperature.
+alias temp='acpi -t'
+# Print battery status.
+alias b='acpi'
+alias batt='acpi'
+alias battery='acpi'
+# Trim SSD disk
+alias trim='sudo fstrim -v /'
+alias ssd='trim'
+# Change blue color to blueberry in tty
+alias blue='echo -en "\e]PC7373C9"'
+
+# Turn off laptop monitor if external is connected.
+vga() {
+	xrandr | grep VGA | grep " connected " > /dev/null
+	if [ $? -eq 0 ]; then
+    	xrandr --output LVDS1 --off
+		killall nautilus
+		nautilus -n &
+	fi
+}
+
+
+##########
+# USEFUL #
+##########
+
+# Make grep more user friendly by highlighting matches
+# and exclude grepping through .svn and .git folders.
+alias grep1='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
+gr() {
+	grep1 "$@" --ignore-case --perl-regexp --color=always | catOrLess
+}
+gr1() {
+	gr "$@" --ignore-case --perl-regexp --only-matching | catOrLess
+}
+gr2() {
+	egrep "$@" --ignore-case --color=always --exclude-dir=\.svn --exclude-dir=\.git | catOrLess
+}
+
+# Apt-get.
+alias canhaz='sudo apt-get install'
+alias ch='canhaz'
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get dist-upgrade'
+alias remove='sudo apt-get remove && autoremove'
+alias purge='sudo apt-get purge && autoremove'
+alias autoremove='sudo apt-get autoremove'
+# Show installed and remote version.
+alias version='apt-cache policy'
+alias ve='apt-cache policy'
+# Print installed packages
+alias packages='dpkg --get-selections | grep -v deinstall'
+alias installed='packages'
+
+# Create executable file
+createExecutable() {
+	if [[ ! -f "$1" ]]; then
+		echo '#!/bin/bash' >> "$1"
+		echo '#' >> "$1"
+		echo "# Usage: $1 " >> "$1"
+		echo '# ' >> "$1"
+		echo >> "$1"
+	fi
+	chmod u+x "$1"        
+}
+alias ce=createExecutable
+alias me=createExecutable    
+# Create executable file with sh extension.
+bs() {
+	fName="$1.sh"
+	createExecutable "$fName"
+}
+# Create executable bash script. Open it in gedit.
+bsg() {
+	fName="$1.sh"
+	createExecutable "$fName"
+	nohup gedit "$fName" &>/dev/null &
+}
+# Create executable bash script. Open it in nano.
+bsn() {
+    fName="$1.sh"
+	createExecutable "$fName"
+    nano "$fName"
+}
+# Create executable bash script. Open it in vim.
+bsv() {
+    fName="$1.sh"
+	createExecutable "$fName"
+    vim "$fName"
+}
+
+# Untar file. (tar xvf)
+alias tar1='tar --extract --verbose --file'
+# Untar and unzip file. (tar xzvf)
+alias tarz='tar --extract --verbose -gunzip --file'
+
+# Hexadecimal dump.
+hd1() {
+	hd "$*" | catOrLess
+}
+
+# GO
+alias run='go run'
+
+locate1() {
+	locate "$@" | catOrLess
+}
+
+#FIND
+# Recursively search for files containing pattern in their names.
+find1() {
+	find . | grep --color=always "$1" | catOrLess
+}
+# Print all directories recursively.
+alias findd='find . -name .git -prune -o -type d | catOrLess'
+
+# Make directory and descend into.
+mkdir1() {
+	mkdir "$1"
+	cd "$1"
+}
+# Make directory and its subdirectories
+alias mkdir2="mkdir -p"
+# Make directory and its subdirectories, and descend into.
+mkdir3() {
+	mkdir -p "$1"
+	cd "$1"
+}
+
+# Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seams like playing with fire.
+sed1() {
+	input=`cat`
+	echo "$input" | sed "s/$1/$2/" | catOrLess
+}
+# Same but with g option.
+sed2() {
+	input=`cat`
+	echo "$input" | sed "s/$1/$2/g" | catOrLess
+}
+
+# Print clipboard
+alias xo='xclip -o'
+# Put in clipboard
+alias xi='xclip -i'
+
+# Turn key input repeat off
+alias norepeat='xset -r'
+# Turn key input repeat on
+alias repeat='xset r'
+
+##########################
+# COMMAND/PACKAGE SEARCH #
+##########################
+
+# Apropos.
+aproposM() {
+	apropos "$*" | catOrLess
+}
+alias apropos='aproposM'
+alias ap='apropos'
+# Run apropos with passed string, then grep output with same string.
+aproposMG() {
+	apropos "$*" | gr "$*" 
+}
+alias apg='aproposMG'
+# Search packages, that can be installed with apt-get.
+apropos1() {
+	apt-cache search "$*" | catOrLess
+}
+alias ap1='apropos1'
+# Same, but grep output with same string.
+apropos1G() {
+	apt-cache search "$*" | gr "$*"
+}
+alias ap1g='apropos1G'
+
+alias wi1='whatis'
+# Prints package description. (Few lines)
+whatis1() {
+	apt-cache show "$*" | grep "^ " | catOrLess
+}
+alias wi2='whatis1'
+# Searches aliases for name
+whatis2() {
+	type "$*" | catOrLess
+}
+alias wi3='whatis2'
+# Universal command description search function. First tries whatis, then apt-cache show and finally type. When one of them succeeds in finding the description the function returns.
+wi() {
+	call1=`whatis "$@" 2> /dev/null`
+	if [ "$?" == "0" ]; then
+		echo "$call1"
+		return
+	fi
+
+	call2=`apt-cache show "$*" 2> /dev/null | grep "^ "`
+	if [ "$?" == "0" ]; then
+		echo "$call2"
+		return
+	fi
+
+	call3=`type "$*" 2> /dev/null`
+	if [ "$?" == "0" ]; then
+		echo "$call3"
+		return
+	fi
+}
+
+
 #######
 # GIT #
 #######
@@ -289,10 +571,16 @@ commit() {
   fi
   git commit -am "$message"
 }
+alias init='git init'
 alias push='git push'
 alias pull='git pull'
 alias checkout='git checkout'
 alias merge='git merge'
+alias branch='git branch'
+
+clone() {
+	git clone git@github.com:/"$1".git
+}
 
 alias gs='git status'
 # Nicely decorated graph of commits
@@ -305,6 +593,15 @@ alias gd='git diff'
 alias ga='git add'
 alias gm='git mv'
 alias gll='git ls-files'
+
+# Add to github (first create remote repository on website,
+# init local repo and add files to it):
+# Parameter: <USERNAME>/<PROJECT>
+origin() {
+	git remote add origin git@github.com:/"$1".git
+	git pull origin master
+	git push origin master
+}
 
 # GIT MISC:
 
@@ -321,6 +618,24 @@ pushall() {
 
 # For all projects in the directory print the labaels of the last commit
 alias gsta='for a in *; do if [[ -d "$a" ]]; then cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..;fi ; done'
+
+
+# Usage: cloneAll <github-username>
+# Clones all users github repos in pwd.
+cloneAll() {
+	if [[ -z "$1" ]]; then
+		exit
+	fi
+
+	tempFile=`mktemp`
+	wget 'https://github.com/gto76?tab=repositories' -O "$tempFile"
+	repos=`grep "$1"/[^//\"]* -o "$tempFile" | sort -u | grep -v follow`
+
+	while read -r line; do
+		git clone git@github.com:"$line"
+	done <<< "$repos"
+}
+
 
 # Displays lines of code per file in git repo and sum of all. Only looks for files in src directory.
 gloc() {
@@ -358,4 +673,720 @@ giplot() {
 	echo "unset key; plot '/tmp/gitlTmpFile'" | gnuplot -p 
 	\rm /tmp/gitlTmpFile
 }
+
+
+###################
+# NOT SO NECESARY #
+###################
+
+# Print PATH variable, but substitute colon with new line.
+alias path='echo -e ${PATH//:/\\n}'
+
+# Print total memory in megabytes.
+alias mem="free -m | grep Mem | sed 's/^Mem: *\([0-9]*\).*/\1/'"
+
+# Print free memory in megabytes.
+fr() {
+	echo -n	$(free -m \
+		| grep Mem \
+	  	| sed 's/^[^ ]*[ ]*[^ ]*[ ]*[^ ]*[ ]*\([^ ]*\)[ ]*[^ ]*[ ]*[^ ]*[ ]*[^ ]*/\1/') 
+	echo " / $(mem)"
+}
+
+# Open last modified file in nano.
+alias Nano="nano `ls -t | head -1`" 
+# Open last modified file in vim.
+alias Vim="vim `ls -t | head -1`" 
+
+# Print majority of commands.
+commands() {
+	whatis `ls -1 /usr/share/man/man1/ \
+		| sed 's/\..*$//' \
+		| sed 's/-.*$//' \
+		| sed 's/_.*$//' \
+		| uniq` 2>/dev/null \
+		| grep \(1\) \
+		| sed 's/(1)//' \
+		| grep -v DOS -i \
+		| grep -v anymap \
+		| grep -v ppm \
+		| catOrLess
+}
+
+# Size of a command.
+bsize() {
+	loc=`which "$1"`
+	if [ $? -eq 0 ]; then
+		ls -Hlh "$loc" | sed 's/^[^ ]* [^ ]* [^ ]* [^ ]* \([^ ]*\).*/\1/'
+	fi
+}
+
+# Display an image.
+picture() {
+	rb eog "$@"
+}
+#alias picture='eog'
+alias image='picture'
+alias img='picture'
+alias d='picture'
+
+# Run a typing tutor.
+alias tt='gtypist'
+
+######################
+# PAGE/LINE COUNTING #
+######################
+
+# Prints how many pages roughly will text occupy in a smaller format (~A5) book.
+noOfPages() {
+	echo $(wc -w "$@" | grep -o ^[0-9]*) / 500 | bc	
+}
+alias pot='noOfPages'
+
+# Counts number of lines in files with extension $1 
+# in current and sub directories.
+noOfLines() {
+	rootDir="$PWD"
+	no=0
+	for file in *; do
+		if [ -d "$file" ]; then
+			#echo "entering $file" >&2
+			cd "$file"
+			recRes=`noOfLines "$1"`
+			#echo "recRes is $recRes" >&2
+			let no=$no+"$recRes"
+			cd "$rootDir"
+		fi
+		if [[ "$file" == *."$1" ]]; then
+			let no=$no+`cat "$file" | wc -l`	
+		fi
+	done
+	echo $no
+}
+alias loc='noOfLines'
+# Same as noOfLines, but prints results per top directory.
+locall() {
+	table=$(for project in *; do 
+		cd "$project"
+		echo -n "$project;" 
+		lines=`loc "$1"`
+		echo "$lines" 
+		cd..
+	done)
+	sum=`echo "$table" | grep -o [0-9]*$ | sumall` 
+	folder=`echo $PWD | grep -o "[^/]*$" | tr [a-z] [A-Z]`
+	echo "$folder;$sum"
+	echo "$table"
+}
+# Sums all the numbers.
+sumall() {
+	in=`cat`
+	sum=0
+	for line in `echo "$in"`; do 
+		let sum=sum+"$line"
+	done
+	echo "$sum"
+}
+
+
+###########
+# NETWORK #
+###########
+
+# Whats my internal ip.
+ip1() {
+	/sbin/ifconfig \
+		| grep "inet addr:192.168" \
+		| grep -o addr:[0-9.]* \
+		| grep -o [0-9.]\* \
+		| cat 
+}
+# Whats my external ip. 
+alias ip2='echo `lynx --dump http://ipecho.net/plain | grep -o [0-9.]\*`'
+# Whats gateways ip.
+alias gateway='route -n | grep "192.168." | head -n1 | grep -o "192.168.[0-9.]*"'
+# Whats my mac address.
+alias mac='ifconfig | grep HWaddr | cat'
+
+# Ping gateway.
+alias ping1='ping -c 4 `gateway`'
+# Ping ip address of noip.com.
+alias ping2='ping -c 4 8.23.224.107'
+# Ping google.
+alias ping3='ping -c 4 www.google.com'
+# Ping all of the above.
+pingAll() {
+	ping -c 1 -q `gateway` | grep --color=never -A 1 statistics
+	ping -c 1 -q 8.23.224.107 | grep --color=never -A 1 statistics
+	ping -c 1 -q www.google.com | grep --color=never -A 1 statistics
+}
+alias pa=pingAll
+alias pa1='pingAll; pingAll'
+
+# How many people are on network beside you (number of hosts).
+noh() {
+	if [ $# -gt 0 ]
+	then
+		forth="$1"
+	else
+		forth="254"
+	fi
+	thirdNumberOfIp=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+	command="nmap -sP 192.168.$thirdNumberOfIp.0-$forth"
+	noOfHosts=`$command | grep -o "[0-9]* hosts up" | grep -o "[0-9]*"`
+	noOfOtherUsers=`expr $noOfHosts - 2`
+	echo $noOfOtherUsers
+}
+# Check only first 10 addreses.
+alias noh1='noh 10'
+
+# Scans first $1 addreses of local network.
+nmap1() {
+  if [ $# -eq 0 ]
+  then
+    third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+    forth="254"
+  fi
+  if [ $# -eq 1 ]
+  then
+    third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
+    forth="$1"
+  fi
+  if [ $# -gt 1 ]
+  then
+    third="$1"
+    forth="$2"
+  fi
+  nmap -sP 192.168.$third.0-$forth
+}
+# Scan first 20 addreses of local network.
+alias nmap2='nmap1 20'
+
+# Saves output of nmap1 in file named after current time (year-month-day-hour-minute: week of the year-day of the week).
+networkLogger() {
+	destDir="."
+	third=`/sbin/ifconfig \
+		| grep "inet addr:192.168" \
+		| grep -o addr:[0-9.]* \
+		| grep -o "[0-9.]*" \
+		| sed -e :a -e "s/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta"`
+	forth="20"
+	nmap -sP 192.168.$third.0-$forth > "$destDir"/`date +%y-%m-%d-%H-%M:%W-%u`]
+}
+
+# Should create some kind of a timeline from files created by notworkLogger, displaying when which machine was online.
+niceDisplay() {
+	cd "~/networkLogger/logs"
+	# For all uniqe host names,
+	for n in `cat * | grep Host | sort | uniq | grep -v Gateway | sed 's/^Host \([^ ]*\).*$/\1/'`; do
+		printf "$n:\t"
+		# check every log file if it contains it
+		for f in *; do
+			cat "$f" | grep -q "$n"
+			if [ $? -eq 0 ]; then
+				# and print a * if it does.
+				printf "*"
+			else
+				printf " "
+			fi
+		done
+		echo ""
+	done
+}
+
+
+############
+# WIRELESS #
+############
+
+# Block wireless device.
+alias woff='rfkill block `rfkill list | grep Wireless | grep ^[0-9] -o`'
+# Unblock wireless device.
+alias won='rfkill unblock `rfkill list | grep Wireless | grep ^[0-9] -o`'
+# Reset wireless device.
+alias wr='woff; won'
+# Wlan up/down.
+alias up='sudo ifconfig wlan0 up'
+alias down='sudo ifconfig wlan0 down'
+
+# Displays wireless networks in range.
+wlan() {
+	sudo iwlist wlan0 scan \
+		| grep Quality -A2 \
+		| tr -d "\n" \
+		| sed 's/--/\n/g' \
+		| sed -e 's/ \+/ /g' \
+		| sort -r \
+		| sed 's/ Quality=//g' \
+		| sed 's/\/70 Signal level=-[0-9]* dBm Encryption key:/ /g' \
+		| sed 's/ ESSID:/ /g'
+}
+# Whois piped to less if necessary.
+whois1() {
+	whois "$@" | catOrLess
+}
+
+
+############
+# INTERNET #
+############
+
+# Lynx accepting cookies, starting in Google, and in vim mode.
+alias lynx1='lynx -accept_all_cookies -vikeys www.google.com'
+
+# Rss feed reader.
+alias rss='nrss'
+
+# Prints nba scores. Not totally reliable, as pages tend to change.
+alias nbaScoreboard="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/scoreboard.asp | grep -w 'PM' -A10 | grep -v 'STATS LLC\|Any commercial\|NBC Sports\|NBC Universal' | grep -v MST | sed 's/^.*ET\([0-9:]*\).*$/   \1/' | grep -v Preview | sed '/^$/N;/^\n$/D' | m"
+nba() {
+	e -n '   ';	date; e 
+	nbaScoreboard
+}
+# Prints nba standings. A bit more reliable. 
+nbaStandings() {
+	lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/standings_conference.asp \
+		| grep 'Eastern Conference' -A39 \
+		| gr _ -v \
+		| sed 's/New York/New=York/g' \
+		| sed 's/San Antonio/San=Antonio/g' \
+		| sed 's/Oklahoma City/Oklahoma=City/g' \
+		| sed 's/Trail Blazers/Trail=Blazers/g' \
+		| sed 's/Los Angeles/Los=Angeles/g' \
+		| sed 's/Golden State/Golden=State/g' \
+		| sed 's/New Orleans/New=Orleans/g' \
+		| sed 's/Conf GB/Conf=GB/g' \
+		| sed 's/Last 10/Last=10/g' \
+		| sed 's/\([0-9]*\) \([W\|L]\)$/\1=\2/g' \
+		| sed 's/W L/= = = W L/' \
+		| sed 's/Eastern Conference/€/g' \
+		| sed 's/Western Conference/ħ/g' \
+		| column -t \
+		| tr '=' ' ' \
+		| sed 's/€/Eastern Conference/' \
+		| sed 's/ħ/\nWestern Conference/' \
+		| catOrLess
+}
+alias nba1='e; nbaStandings; e'
+
+
+# Opens linx browser with search results for passed arguments except the first one which specifies the webpage. 
+searchWebpage() {
+  if [ $# -eq 1 ]; then
+    url="$1"
+  fi
+
+  if [ $# -eq 2 ]; then
+    url="$1/search?q=$2" 
+  fi
+
+  if [ $# -gt 2 ]; then
+    url="$1/search?q=$2"
+    i=0
+    for var in "$@"; do
+      if [ $i -gt 1 ];  then
+        url=$url+$var
+      fi
+      let i=$i+1
+    done
+  fi
+  eval "lynx $url"
+}
+
+# Opens lynx browser with search results for $@ in stackoverflow.com. Not really useful, you get better results using Google.
+alias so='stack'
+alias stack='searchWebpage http://stackoverflow.com'
+# Opens lynx browser with search results for $@ in superuser.com. 
+alias suser='http://superuser.com'
+
+# Opens lynx browser with search result for $@ in wikipedia.org. 
+wiki() {
+  if [ $# -eq 0 ]
+  then
+    url='http://en.wikipedia.org/wiki/'
+  fi
+
+  if [ $# -eq 1 ]
+  then
+    url="http://en.wikipedia.org/wiki/$1"
+  fi
+
+  if [ $# -gt 1 ]
+  then
+    url="http://en.wikipedia.org/wiki/$1"
+    i=0
+    for var in "$@"
+    do
+      if [ $i -gt 0 ]
+      then
+        url="${url}_${var}"
+      fi
+      let i=$i+1
+    done
+  fi
+  eval "lynx $url"
+}
+
+
+###########
+# WEATHER #
+###########
+
+# Aliases for weather conditions at specific locations. City ids can be found at yahoo weather, just find page of the city and copy id from url.
+weathr() {
+	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" \
+	| awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
+}
+alias wea1='weathr 531951' # Weather for Trzic.
+alias wea2='weathr 530634' # Weather for Ljubljana.
+alias wea='wea1; wea2'
+
+
+##################
+# IMAGE DOWNLOAD #
+##################
+
+# Gets google image thumbnail for the passed phrase, and sends it to stdout.
+gi1() {
+	# Wget needs to introduce itself as a browser.
+	wget -qO- "http://images.google.com/images?q=$(echo "$@" | sed 's/ /+/g')" -U "Firefox on Ubuntu Gutsy: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.14) Gecko/20080418 Ubuntu/7.10 (gutsy) Firefox/2.0.0.14" \
+		| grep -o '<img[^>]*>' \
+		| head -n1 \
+		| grep "src=\"[^\"]*" -o \
+		| sed 's/src=\"//' \
+		| wget -i- -O-
+}
+# Download image and instantly display it.
+gi() {
+	gi1 "$@" 2> /dev/null | display &
+}
+# Same but as background process.
+gi2() {
+	gi1 "$@" 2> /dev/null | display
+}
+# For every input line it downloads first google image match (thumbnail) and saves it in PWD.
+gimage() {
+	cat | while read line
+	do 
+		gi1 "$line" > "$line"
+		# Wait 3 seconds between downloads, so we appear more humanlike. If no sleep is used, your ip will get banned when reaching around 1000 or 2000 downloads. Of course if you have dynamic ip, reseting connection to your internet provider will fix the problem. I didn't try to find out what happens if you repeat the process:)
+		sleep 3
+	done
+}
+
+
+#########
+# AUDIO #
+#########
+
+# Set master volume in rage of 0 to 100.
+vol() {
+	amixer set Master playback "$1"
+}
+# Volume up 6dB.
+q() {
+	vol "6dB+" | tail -n 1
+}
+# Volume down 6dB.
+a() {
+	vol "6dB-" | tail -n 1
+}
+# Volume up 2 dB.
+qq() {
+	vol "2dB+" | tail -n 1
+}
+# Volume down 2 dB.
+aa() {
+	vol "2dB-" | tail -n 1
+}
+
+alias pl='mplayer'
+
+# Copies all files that are referenced in playlist to desired directory.
+# Also removes their track numbers from filenames (if any) and replaces 
+# them with the numbers that corespond to order the songs are featured 
+# in the playlist. 
+#
+# Usage: cp-m3u <m3u playlist> <destination directory>
+cp-m3u() {
+	IFS=$'\n'
+	i=1
+	for a in `cat "$1" | grep ^[^#]`; do
+    	doubleDigitNumber="$i"
+		if [ "$i" -lt 10 ]; then 
+			doubleDigitNumber=0"$i"
+		fi  
+		cp "$a" "$2"/"$doubleDigitNumber"`basename "$a"| sed 's/^[0-9]*//'`
+		let i=i+1
+	done
+}
+
+
+################
+# AUDIO PLAYER #
+################
+
+# Plays song. (Downloads from youtube if nothing found locally)
+# TODO: Doesn't find file in a filesystem.
+spilej() {
+	if [ -f "$1" ]
+	then
+		echo "Playing \"$1\""
+		mplayer -slave "$@" &> /dev/null
+	#else if
+		# TODO: check temp folder
+		#foundFiles=`find /tmp/spilejYoutube/ -iname '*$1*.wav' -o -iname '*$1*.mp3'-o -iname '*$2*.mp3'-o -iname '*$2*.mp3'`
+		#if [ $foundFiles == "" ]
+	else
+		#search filesystem
+		#TODO check that it's not mp3.part file
+		echo "No file in folder. Scanning filesystem..."
+		listOfFiles=`locate ".*$*.*mp3" ".*$*.*wav" --regex --quiet --ignore-case`
+		noOfFiles=`echo "$listOfFiles" | wc -l`
+		if [ "$noOfFiles" -gt 1 ]
+		then
+			#echo "File found."
+			let chosenNumber="$RANDOM"%"$noOfFiles"
+			fileName=`echo "$listOfFiles" | sed "$chosenNumber!d" | sed 's/\(.*\)\r/"\1"/g' `
+			echo "Playing \"$fileName\""
+			mplayer "$fileName" &> /dev/null
+		else
+			echo "No file in filesystem. Searching Youtube..."
+			spilejYoutube "$*"
+		fi		
+	fi
+}
+
+# Try to find song on Youtube. Download video, convert it to audio and play.
+spilejYoutube() {
+	#TODO More reliable search	
+	#TODO MP4
+	#TODO Stop executing if one step fails
+	cd ~/Music; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube
+	# Generate script that will try to input string into youtubes search box, and then somehow navigate to the search results, choose one hit and bookmark it in $HOME/lynx_bookmarks.
+	#echo "Generating search script."
+	lynxYoutubeSkripta "$*" > spilejLinxSkripta
+	# Run lynx with that script.
+	#echo "Searching."
+	lynx -cmd_script=~/Music/spilejYoutube/spilejLinxSkripta www.youtube.com &>/dev/null
+	# Use last bookmark.
+	url=`cut --delimiter='"' -f 2 $HOME/lynx_bookmarks.html | tail -n1 | sed s/";".*$//`
+	#echo "url:$url"
+	# Download video using youtube-dl.
+	echo "Downloading: $url"
+	youtube-dl -q "$url"
+	# Convert it into mp3.
+	fileId=`echo $url | sed 's/^.*=//'`
+	videoFilename=`ls *$fileId.*`
+	audioFilename=`echo "$videoFilename" | sed 's/\..*$//g'`.wav
+	echo "filename: $audioFilename"
+	ffmpeg -i "$videoFilename" "$audioFilename" &> /dev/null
+	# Delete the video.
+	\rm "$videoFilename"
+    # Play the audio.
+	mplayer "$audioFilename" &>/dev/null
+}
+
+# Searches youtube for arguments and (hopefully) returns first match.
+lynxYoutubeSkripta() {
+	echo "key v"
+	for i in {1..8}
+	do
+		echo "key Down Arrow"
+	done
+	echo "`echo "$*" | sed 's/\(.\)/\1\n/g' | sed 's/[ ]/<space>/g' | sed 's/^/key /g' | head -n -1`"
+	echo "key Up Arrow"
+	echo "key Right Arrow"
+	for i in {1..44}
+	do
+		echo "key Down Arrow"
+	done
+	echo "key a
+key l
+key ^J
+key q
+key y"
+}
+
+# Plays three songs that match the search pattern in a row. 
+#TODO Should not play same songs.
+spilej3() {
+	spilej "$@"
+	spilej "$@"
+	spilej "$@"
+}
+
+
+#################################
+# TRACEROUTE WITH COUNTRY CODES #
+#################################
+
+# Print country codes on the route to host.
+# This is one option, but doesn't work correctly: wget -qO- http://api.wipmania.com/"$ip",
+# because it mostly just returns the location of the seat of company that owns the router.
+traceroute1() {
+	i=1
+	echo -n "$@; "
+	traceroute "$@" | while read line
+	do
+		if [ $i -gt 2 ]; then
+		
+			url=`echo "$line" | sed -r 's/^[ ]*[0-9]+  ([^ ]+) .*$/\1/'`
+			cc=`echo "$url" | grep -o '\.[a-z][a-z][ ]*$' | tr -d '.' | tr 'a-z' 'A-Z'`
+			
+			if [ $i -eq 3 ]; then
+				echo -n "$url; "
+			fi
+
+			if [[ "$cc" != "" && "$cc" != "EU" ]]; then
+				countryN="$cc"
+			else
+				countryN=`echo "$url" | urlToCountry | sed -r 's/.*\.([a-z][a-z])\.geant\.net/\1/'`
+			fi
+
+			isIp=`echo "$countryN" | grep -P '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'`
+			if [ "$isIp" != "" ]; then
+				countryN="$countryO"
+			fi
+		
+			if [ "$countryN" != "$countryO" ]; then
+				if [ $i -gt 3 ]; then
+					echo -n " > "
+				fi
+				if [ "$countryN" == "" ]; then
+					echo -n "??"
+				else 
+					echo -n "$countryN"
+				fi
+				countryO="$countryN"
+			fi			
+			
+		fi
+		let i=$i+1
+		if [ $i -gt 31 ]; then
+			echo -n " > .."
+		fi	
+	done
+	echo
+}
+
+# Prints assumed location of the router.
+urlToCountry() {
+	input=`cat`
+	echo "$input" | 
+	callSed DE gw-hetzner fra frankfurt ffm frnk frf "f\.de" hbg nue Dusseldorf Berlin |
+	callSed AT win wien vienna vie grz |
+	callSed CZ prag |
+	callSed US Houston 10ge4-2\.core1\.slc1\.he\.net ace-data-centers-inc\.10gigabitethernet1-4\.core1\.slc1\.he\.net -orl- -dc- "\.usa\." "\.us\." den nyc nyk NewYork ash asb chi chichago wdc Washington dal dlls sjo SanJose sjc phx phoenix atl mia mai lax [^t]las LosAngeles sttl |	#New York
+	callSed GB "\.us\." lon ldn lnd |
+	callSed DK kbn cop dk-| 
+	callSed FR "\.fr\." par prs Paris mrs mei Marseille mars |
+	callSed NE ams adm amd |
+	callSed BU sfia |
+	callSed HU szekesfehervar |
+	callSed PL poz pzn poznan Warsaw | 
+	callSed NL amsterdam |
+	callSed BA travnik |
+	callSed HU bud bpt Budapest |
+	callSed JP osak tok |
+	callSed TZ dar | 
+	callSed IN mba | 
+	callSed MZ mpm | 
+	callSed PT lis | 
+	callSed ES mad bcn |
+	callSed IT mil Milan rom palermo |
+	callSed SG sng sing \.sg\. | 
+	callSed BE Brussels belnet |
+	callSed EE tal | 
+	callSed LV rig latvija | 
+	callSed CA Montreal | 
+	callSed LT kau | 		
+	callSed GR ath |	
+	callSed IE Dublin |
+	callSed AU nsw |	
+	callSed RU spb |	
+	callSed RO buc roedu |	
+	callSed ZA mtz |	
+	callSed CL Santiago |	
+	callSed CA tor |		
+	callSed CN macau | 	
+	callSed AR bue baires | 
+	callSed CI IRVOCA |
+	callSed DJ dji | 
+	callSed SI siol |
+	callSed KZ Kaza | 
+	callSed LU lxb | 
+	callSed CY cypr | 
+	callSed LK srilanka |
+	callSed BM north-rock-communications
+	callSed HR zag |
+	callSed IS is- |
+	callSed IL bezeqint |
+	callSed JM flowja |
+	callSed CH zrh [^r]gen |
+	callSed LY libia |
+	callSed SK \.sk\. |
+	callSed SE se- |
+	callSed TR \.tr\. |
+	callSed  |
+	callSed  |
+	callSed
+	# te2-2.ccr01.zag01.atlas.cogentco.com -> US!!!
+	#./callSed.sh CH gen | #ARGENTINA!
+}
+
+callSed() {
+	input=`cat`
+	i=1
+	for arg in "$@"; do
+		if [ $i -gt 1 ]; then
+			input=`echo "$input" | sed "s/[^ ]*$arg[^ ]*/$1/I"`
+		fi
+		let i=$i+1
+	done
+	echo "$input"
+}
+
+# Prints urls of random universities, one per country.
+universities() {
+	# get all country codes from index site, together with country name
+	wget -qO - http://univ.cc/world.php | grep -o 'option value=\"[a-z]*\">[A-Za-z ]*(' | grep -o \".* | tr -d "\"" | tr -d "(" | while read ccc
+	do
+		country=`echo $ccc | sed 's/>.*//'`
+		countryName=`echo $ccc | sed 's/.*>//'`
+		if [ "$country" != "world" ]; then
+			# use them to get to country subsites and print url of random university that has country code for tld
+			urls=`wget -qO - "http://univ.cc/search.php?dom=$country&key=&start=1" | grep -o "'http:[^ ]*\.$country/[^ ]*'" | tr -d "'" | shuf`
+			url=""
+			while [ "$urls" != "" ]; do
+				url=`echo "$urls" | head -n1`
+				wget --timeout=3 --tries=1 -qO- "$url" >/dev/null
+				if [ $? -eq 0 ]; then
+					break
+				fi
+				urls=`echo "$urls" | tail -n +2`
+			done
+			
+			if [ "$url" != "" ]; then
+				echo "$countryName>$url"
+			fi
+		fi
+	done
+}
+
+# Traceroutes one university per country. If as argument "1" is passed, then it calls traceroute1 instead. That variation prints country codes of routers on path, instead of their urls.
+www() {
+	universities | while read nameAndUrl
+	do
+		countryName=`echo $nameAndUrl | sed 's/>.*//'`
+		url=`echo $nameAndUrl | sed 's/.*>//' | sed 's/http://' | tr -d '/'`
+		echo -n "$countryName; "
+		echo -n `date --rfc-3339=seconds`
+		echo -n "; "
+		traceroute"$1" "$url"
+	done
+}
+
+alias www1='www 1'
+
 

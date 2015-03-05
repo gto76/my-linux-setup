@@ -487,6 +487,7 @@ mutt - mail client
 sftp - secure ftp
 sshd - (openssh-server) ssh server deamon, on Windows service is named 'CYGWIN sshd'
 /etc/init.d/ssh	restart - restart sshd (ssh deamon) (sudo)
+/usr/local/etc/init.d/openssh start - start openssh deamon (sudo)
 ssh-keygen -t rsa -C <email> - generate rsa key pair, keys are stored in ~/.ssh
 ssh - SSH client
 	<user>@<address> "mpg321 -" < <file>.mp3 - stream audio over ssh

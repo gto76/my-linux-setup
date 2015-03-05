@@ -172,6 +172,47 @@ int printPointerArray(char const *keyword[]) {
 	}
 }
 
+==================
+C FOR 21ST CENTURY
+==================
+
+#### Tools
+gcc/clang - compiler
+gdb - debuger
+valgrind - memory leak finder
+gprof - profiler
+make
+pkg-config - for finding libraries
+doxygen - for documentation generation
+
+#### Libraries
+libcURL
+libGlib
+libGSL
+libSQLite3
+libXML2
+
+* A program compiled under Cygwin can run on boxes that don't have Cygwin installed if you distribute cygwin1.dll with your code; problem is licence, because then your code has to be under Cygwins licence.
+
+* If your program doesen't need the POSIX functions (like `fork` or `popen`), then you can use MinGW (Minimalist GNU for Windows) -> doesen't need cygwin1.dll, so it compiles to independent windows executable; problem is lack of libraries.
+
+#### Headers
+Compiler will paste the header file in its place. Header files only contains declarations of functions, and doesent say anything about what it does. That's enough information for the compiler to check the consistency of our usage and produce an object file. It is linker's job to find the apropriate function. (thus you have to add -lm option to the compiler, if you want the linker to link in the math function)
+
+#### Useful Flags
+* -g - adds symbols for debugging. Withouth it, your debugger won't be able to give you varible of function names (they don't slow down the program)
+* -std=gnu11 - specifies that gcc should allow code conforming to the C11 standard; else use -std=gnu99.
+* -O3 - optimization level three (if it changes variables too much, when using debuger, set to -O0)
+* -Wall - adds compiler warnings.
+
+#### Pointers
+* When you se *i on a declaration line, it is a pointer to something; when you see *i on a nondeclaration line, it is the pointed-to-value
+
+
+
+
+
+
 
 ...........................
 ........ L I N U X ........

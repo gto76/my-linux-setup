@@ -26,6 +26,7 @@ ctrl+alt+<F7 to F12> - Xwindows
 ctrl+alt+backspace - restart X
 ctrl+alt+del - log out
 ctrl+alt+end - shutdown
+super+pgUp/pgDn - switch workspace
 
 middle mouse button - paste selected text
 
@@ -90,6 +91,8 @@ aptitude - browse packages (skin for apt-get)
 		search <package> - search for package
 winetricks - install wine applications
 update-alternatives - maintain symbolic links determining default commands
+
+unattended-upgrade - automatic installation of upgrades
 
 apropos -a - all keywords
 whatis - short description of app
@@ -350,6 +353,7 @@ less  	&<phrase> - display only lines with
 wc - count lines, words and characters
 
 EDIT:
+sudo -e <file> - edit file as sudo
 tr <from> <to> - translate or delete characters (-d for delete)
 cut <filename> - remove sections from each line of files
 		-d ':' -f 1,7 /etc/passwd - only show the username and the shell
@@ -416,6 +420,7 @@ pdftotext - pdf to text
 libreoffice - new openoffice
 figlet - display large characters made up of ordinary screen characters (ascii art)
 toilet - similar (ascii art)
+cproto - generates C function prototypes (declarations)
 
 EDITORS:
 nano - /etc/nanorc > nano config
@@ -441,7 +446,7 @@ arp - manipulate the system ARP cache (IP -> mac)
 route - tool used to display or modify the routing table
 	add default gw 192.168.1.10 - change the default gateway
 	should DNS not be configured correctly on your machine, you need to edit "/etc/resolv.conf" to make things work
-ifconfig eth0	down/up - turn network interface on/off
+ifconfig eth0	down/up - turn network interface on/off (sudo)
 	192.168.1.4 netmask 255.255.255.0 up - set ip and mask
 ifup eth0 - Will bring eth0 up if it is currently down.
 ip	link show - list network interfaces
@@ -566,11 +571,12 @@ USERS:
 users - prints logged in users
 who - logged in users, more data
 w - logged in users, also what are they running
-passwd - change password
 vipw - edit password file
 vigr - edit groups file
 umask -  the umask is a value set by the shell. It controls the default permissions of any file created
 usermod <user> - modify user acount information
+useradd <user> - add user
+passwd <user> - change password
 
 FILE SYSTEMS:
 mkfs - build a Linux filesystem
@@ -904,6 +910,10 @@ git remote set-url origin git@github.com:<user>/<repo>.git - change the url of o
 git remote set-url origin https://www.github.com/<user>/<repo>.git - same, but withouth key
 git status -uno - check if everything up-to-date
 
+TAGS:
+git push --tags - push tags
+git fetch --tags - pulling tags (automaticaly if on the same branch and there is a new commit?)
+
 ALSO USEFUL:
 git checkout HEAD^ <file> - retrieve deleted file
 git rm --cached mylogfile.log - untrack file without deleting it
@@ -963,8 +973,9 @@ x - delete character
 :%s/old/new/gc - sed, c means with conformations
 gF - open file under cursor
 K - look up word under cursor in man pages
-ctrl+v - select visual box
+ctrl+v - select visual box (block select)
 :e - reload file
+:sav - save file as and keep new file open
 
 HELP:
 ctrl+] - follow link
@@ -1101,6 +1112,9 @@ ctrl-w, direction - move to split
 AUTOCOMPLETE:
 ctrl+n - show autocomplete suggestions
 
+HEXDUMP:
+:%!xxd - convert to hex
+:%!xxd -r - convert back
 
 ##########
 ## MISC ##

@@ -95,6 +95,7 @@ l() {
 	fi
 }
 alias k='l'
+alias ]='l'
 ll() {
 	noOfLines=`listMed "$@" 2> /dev/null | fold -w"$COLUMNS" | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
@@ -199,9 +200,16 @@ runInBackground() {
 }
 alias rb='runInBackground'
 
+# open file in gedit
 g() { 
-	rb gedit "$@" 
+	rb pluma "$@" 
 }
+
+# open vim in konsole with light theme
+vvv() { 
+	rb konsole --workdir "$PWD" --hide-menubar --hide-tabbar -e vim -p -c "set background=light" -c "colorscheme github"  "$@"
+}
+
 alias fire='rb firefox'
 chrome() { 
 	rb google-chrome "$@" 
@@ -588,6 +596,7 @@ alias gd='git diff'
 alias ga='git add'
 alias gm='git mv'
 alias gll='git ls-files'
+alias gb='git branch'
 
 # Add to github (first create remote repository on website,
 # init local repo and add files to it):

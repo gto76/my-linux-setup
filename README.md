@@ -3,7 +3,7 @@ My Aliases
 My Linux config files, three handy text files, and an install script to put them all in a right place.
 There is also a [website] (http://gto76.github.io/my-aliases/index.html) generated from the text files.
 
-## Quick overview:
+## Quick overview
 
 ```
 .
@@ -48,7 +48,7 @@ Once everything is installed, they are easily accessible with the following comm
 
 Also note that if you change anything in [**`.my_bash_aliases`**](dotfiles/.my_bash_aliases), you need to restart bash with `bash` command, or its `ba` alias.
 
-## How to install:
+## How to install
 ```
 $ cd $HOME
 $ git clone https://github.com/gto76/my-aliases.git
@@ -57,7 +57,7 @@ $ ./install
 $ bash
 ```
 
-## Files in detail:
+## Files in detail
 
 ### [`install`](install)
 Executable bash script that creates symbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
@@ -119,17 +119,17 @@ Long list of Unix commands with short descriptions. Useful for quick search befo
 
 ### [**`.Xmodmapus`**](dotfiles/.Xmodmapus), [**`.Xmodmapusvi`**](dotfiles/.Xmodmapusvi), [**`.Xmodmapsi`**](dotfiles/.Xmodmapsi) and [**`.Xmodmapsivi`**](dotfiles/.Xmodmapsivi)
 Keymaps that make CapsLock an additional modifier key. With it pressed, the keys under your right arm become numpad keys (the ones with NumLock off, e.g. Arrows, Home, End, PgUp...), but with few additions like: 'k' key that corresponds to '5' on a numpad becomes down key, 'p' becomes backspace, ';' enter, '/' delete, and "'" escape. Also space becomes enter, backspace delete, '`' escape, all the number keys their corresponding F keys and Insert key becomes CapsLock. There is also a Vi variation, which has directional keys positioned in Vi style and Home, End, PgUp, PgDn keys a little shifted around. Here are the two American versions:
-- **.Xmodmapus**:
+- **.Xmodmapus**
 
 ![Alt text](/doc/Xmodmapus.png?raw=true "Picture of Keyboard")
 
-- **.Xmodmapusvi**:
+- **.Xmodmapusvi**
 
 ![Alt text](/doc/Xmodmapusvi.png?raw=true "Picture of Keyboard")
 
 Also present are Slovenian versions: [**`.Xmodmapsi`**](dotfiles/.Xmodmapsi) and [**`.Xmodmapsivi`**](dotfiles/.Xmodmapsivi). Slovenian layout is basically the same as German with letters 'čćšđž' in place of 'umlauted' letters. 
 
-## How to set keymap:
+## How to set keymap
 Warning: For keymaps to work, it is mandatory that layout for that language is set before `xmodmap` is run. For example if American layout is selected and we want Slovenian we need to type:
 ```
 	setxkbmap -layout si
@@ -143,7 +143,7 @@ In [**`.my_bashrc`**](dotfiles/.my_bashrc) there are aliases that do this for yo
 
 If you want a particular keymap to get loaded when X starts (at least for Mint/Debian), go to Startup Applications and add new application: `xmodmap $HOME/.Xmodmapus` with 2 second delay.
 
-### Reaper Shortcuts Jure 04.ReaperKeyMap:
+### Reaper Shortcuts Jure 04.ReaperKeyMap
 Custom shortcuts for Reaper DAW (digital audio workstation).
 
 ![Alt text](/doc/reaper-keyboard-shortcuts.png?raw=true "Picture of Keyboard")

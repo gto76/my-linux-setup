@@ -49,12 +49,12 @@ Once everything is installed, they are easily accessible with the following comm
 Also note that if you change anything in [**`.my_bash_aliases`**](dotfiles/.my_bash_aliases), you need to restart bash with `bash` command, or its `ba` alias.
 
 ## How to install
-```
-$ cd $HOME
-$ git clone https://github.com/gto76/my-aliases.git
-$ cd my-aliases
-$ ./install
-$ bash
+```bash
+cd
+git clone https://github.com/gto76/my-aliases.git
+cd my-aliases
+./install
+bash
 ```
 
 ## Files in detail

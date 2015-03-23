@@ -3,7 +3,8 @@ My Aliases
 My Linux config files, three handy text files, and an install script to put them all in a right place.
 There is also a [website] (http://gto76.github.io/my-aliases/index.html) generated from the text files.
 
-## Quick overview
+Quick overview
+--------------
 
 ```
 .
@@ -48,7 +49,9 @@ Once everything is installed, they are easily accessible with the following comm
 
 Also note that if you change anything in [**`.my_bash_aliases`**](dotfiles/.my_bash_aliases), you need to restart bash with `bash` command, or its `ba` alias.
 
-## How to install
+How to install
+--------------
+
 ```bash
 cd
 git clone https://github.com/gto76/my-aliases.git
@@ -57,7 +60,8 @@ cd my-aliases
 bash
 ```
 
-## Files in detail
+Files in detail
+---------------
 
 ### [`install`](install)
 Executable bash script that creates symbolic links to all dot and text files of the project and places them in home and Desktop directory. If file with same name already exists, it is not overwritten, only a warning gets printed. At the end following lines are added to the `.bashrc` file in your home directory:
@@ -129,7 +133,9 @@ Keymaps that make CapsLock an additional modifier key. With it pressed, the keys
 
 Also present are Slovenian versions: [**`.Xmodmapsi`**](dotfiles/.Xmodmapsi) and [**`.Xmodmapsivi`**](dotfiles/.Xmodmapsivi). Slovenian layout is basically the same as German with letters 'čćšđž' in place of 'umlauted' letters. 
 
-## How to set keymap
+How to set keymap
+-----------------
+
 Warning: For keymaps to work, it is mandatory that layout for that language is set before `xmodmap` is run. For example if American layout is selected and we want Slovenian we need to type:
 ```
 	setxkbmap -layout si

@@ -209,6 +209,10 @@ g() {
 vvv() { 
 	rb konsole --workdir "$PWD" --hide-menubar --hide-tabbar -e vim -p -c "set background=light" -c "colorscheme github"  "$@"
 }
+# open vim in console with tab width 2
+vvvv() {
+	vvv -c ":set ts=2" -c ":set sw=2" "$@"
+}
 
 alias fire='rb firefox'
 chrome() { 
@@ -260,7 +264,7 @@ alias vimode='set -o vi'
 alias gt='gnome-terminal'
 alias term='gnome-terminal'
 # Start a file explorer
-alias f='nemo .'
+alias f='rb nautilus .'
 # Update files db
 alias updatedb='sudo updatedb'
 # Get name of first file in directory
@@ -362,6 +366,8 @@ alias trim='sudo fstrim -v /'
 alias ssd='trim'
 # Change blue color to blueberry in tty
 alias blue='echo -en "\e]PC7373C9"'
+# Send KILL signal instead of TERM
+alias kill1='kill -9'
 
 # Turn off laptop monitor if external is connected.
 vga() {
@@ -1028,7 +1034,15 @@ wiki() {
       let i=$i+1
     done
   fi
-  eval "lynx $url"
+
+  # only print part before contents and remove references
+	lynx -dump "$url" | while read line
+	do
+		if [ "$line" == "Contents" ]; then
+			break
+		fi
+		echo "$line" | sed 's/\[[0-9]*\]//g'
+	done
 }
 
 

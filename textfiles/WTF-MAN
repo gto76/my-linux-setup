@@ -763,6 +763,7 @@ arecord <file>  - command line audio recorder and player
 id3v2 -l - lists all files tags
 sound-juicer - cd ripper
 xfburn - cd burner
+traverso - simple daw
 
 BITMAP:
 
@@ -916,7 +917,7 @@ git fetch --tags - pulling tags (automaticaly if on the same branch and there is
 
 ALSO USEFUL:
 git checkout HEAD^ <file> - retrieve deleted file
-git rm --cached mylogfile.log - untrack file without deleting it
+git rm --cached <file> - untrack file without deleting it
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
 chown -R <user>:<group> * - in .git/objects (sudo)
@@ -928,7 +929,9 @@ git rev-parse HEAD - get sha of head
 git revert
 git describe - print version and hash of HEAD
 git log --name-only --author=<name> - print changed files by commit
+git log <file> - print files history
 git ls-files - list files
+git show <revision>:<file> - show file
 
 CHECKOUT:
 git log > ../gitLog - first save log to file
@@ -975,7 +978,7 @@ gF - open file under cursor
 K - look up word under cursor in man pages
 ctrl+v - select visual box (block select)
 :e - reload file
-:sav - save file as and keep new file open
+:sav - save file as and keep new file open (save as)
 
 HELP:
 ctrl+] - follow link

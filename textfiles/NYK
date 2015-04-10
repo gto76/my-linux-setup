@@ -208,10 +208,33 @@ Compiler will paste the header file in its place. Header files only contains dec
 #### Pointers
 * When you se *i on a declaration line, it is a pointer to something; when you see *i on a nondeclaration line, it is the pointed-to-value
 
+#### Const Keyword
+* Data that is marked as `const` under one name can be modified using different name.
 
+* `const` always refert to the text to its left (just as *). Trick to reading declarations is to read from right to left (but you can switch type name and `const` if you want(:
 
+`int const`
+>A constant integer
 
+`int const *`
+>A pointer to constant integer
 
+`int * const`
+>A constant pointer to integer
+
+`int * const *`
+>A pointer to constant pointer to an integer
+
+`int conts * *`
+>A pointer to pointer to constant integer
+
+`int const * const *`
+>A pointer to constant pointer to constant integer
+
+* You can cast constant to a nonconstant if you function doesn't accept constants:
+
+`int const *b = a;`
+`funct((int*)b)`
 
 
 ...........................
@@ -925,5 +948,25 @@ ORIGIN/HEAD | ORIGIN/MASTER      was.
                                                   local branch to origin repo.
 
 
+
+.................
+.................
+.. O N L I N E .. 
+... G A M E S ...
+.................
+.................
+
+Lag compensation, view interpolation, input prediction
+
+Always use UDP protocol!
+This connection is un-reliable and un-ordered.
+
+Setting the socket as non-blocking
+
+(usually 20 to 30 packets per second) (ticks)
+
+Client has to tell the server its incoming bandwidth capacity
+
+Source defaults to an interpolation period ('lerp') of 100-milliseconds
 
 

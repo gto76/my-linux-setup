@@ -973,7 +973,6 @@ V - linewise visual mode
 >> - tab line right
 P - paste before cursor
 x - delete character
-:%s/old/new/gc - sed, c means with conformations
 gF - open file under cursor
 K - look up word under cursor in man pages
 ctrl+v - select visual box (block select)
@@ -1020,6 +1019,7 @@ g*,g# - same, but even when word is embedded
 fx,Fx - move cursor forward/backward to x on current line
 tx,Tx - same, but to one char before x
 ;/, - repeat/reverse last
+:%s/old/new/gc - replace, like sed, c means with conformations
 
 MARKS:
 '" - move to position of last edit of file
@@ -1118,6 +1118,9 @@ ctrl+n - show autocomplete suggestions
 HEXDUMP:
 :%!xxd - convert to hex
 :%!xxd -r - convert back
+
+VUNDLE:
+:PluginInstall - install plugins
 
 ##########
 ## MISC ##

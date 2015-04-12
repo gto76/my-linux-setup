@@ -207,7 +207,7 @@ g() {
 
 # open vim in konsole with light theme
 vvv() { 
-	rb konsole --workdir "$PWD" --hide-menubar --hide-tabbar -e vim -p -c "set background=light" -c "colorscheme github"  "$@"
+	rb konsole --workdir "$PWD" --hide-menubar --hide-tabbar -e vim -p -c "set background=light" -c "colorscheme diner"  "$@"
 }
 # open vim in console with tab width 2
 vvvv() {

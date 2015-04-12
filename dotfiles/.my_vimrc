@@ -15,6 +15,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -60,12 +61,13 @@ set shiftwidth=4
 " Show line numbers
 set number
 
-" Set colors
-set background=dark
-colorscheme darkblue
-
 " Use syntax highlighting
 syntax on
+
+" Set colors
+set background=dark
+"set t_Co=256
+colorscheme darkblue
 
 " Automaticaly ident when writing code
 set autoindent

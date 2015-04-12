@@ -41,6 +41,9 @@ createLink ~ .Xmodmapsi
 createLink ~ .Xmodmapsivi
 (cd .nrss 
 createLink ~/.nrss config)
+(cd .vim/colors
+createLink ~/.vim/colors github.vim
+createLink ~/.vim/colors diner.vim)
 cd ..
 # create links to textfiles
 cd textfiles

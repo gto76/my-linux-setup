@@ -84,7 +84,8 @@ apt-get	update - update local list of existing packages
 		source <package> - download code
 		build-dep <package> - install the build dependencies
 apt-cache	search <keyword> - search packages, like apropos, but global
-		show - get info about package
+		show <package>  - get info about package (verdion, dependencies, ...)
+		showpkg <package> - similar, shows also reverse dependencies
 		policy <package> - show installed and remote version
 aptitude - browse packages (skin for apt-get)
 		search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.

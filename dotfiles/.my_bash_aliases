@@ -408,6 +408,10 @@ alias autoremove='sudo apt-get autoremove'
 # Show installed and remote version.
 alias version='apt-cache policy'
 alias ve='apt-cache policy'
+# Show packages' dependencies.
+depends() {
+	apt-cache show "$@" | grep Depends | sed 's/Depends:/ /' | sed 's/,/\n /g'
+}
 # Print installed packages
 alias packages='dpkg --get-selections | grep -v deinstall'
 alias installed='packages'
@@ -453,6 +457,7 @@ bsv() {
 alias tar1='tar --extract --verbose --file'
 # Untar and unzip file. (tar xzvf)
 alias tarz='tar --extract --verbose -gunzip --file'
+alias untar='tarz'
 
 # Hexadecimal dump.
 hd1() {

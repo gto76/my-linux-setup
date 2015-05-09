@@ -22,7 +22,7 @@ sudo apt-get -u dist-upgrade
 sudo yum update
 
 # INSTALL APPS
-sudo apt-get install vim mc git openssh-server nrss nmap wine openjdk-7-jdk vlc
+sudo apt-get install sudo vim mc git openssh-server nrss nmap wine openjdk-7-jdk vlc
 * FEDORA:
 yum install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
 
@@ -59,6 +59,9 @@ git remote set-url origin git@github.com:<user>/my-aliases.git
 # MOUNT OTHER DRIVES
 mkdir /media/data
 sudo sh -c 'echo "/dev/<device id>   /media/data   <filesystem type>   user,fmask=0111,dmask=0000   0   2" >> /etc/fstab'
+
+# SET LYNX BROWSER TO ACCEPT ALL COOKIES
+sudo sh -c "cat /etc/lynx-cur/lynx.cfg | sed 's/#FORCE_SSL_COOKIES_SECURE.*$/FORCE_SSL_COOKIES_SECURE:TRUE/' | sed 's/#SET_COOKIES.*$/SET_COOKIES:TRUE/' | sed 's/#ACCEPT_ALL_COOKIES.*$/ACCEPT_ALL_COOKIES:TRUE/' >> /tmp/lynx.cfg; mv /tmp/lynx.cfg /etc/lynx-cur/lynx.cfg"
 
 # INSTALL SCALA SYNTAX FOR VIM
 mkdir -p ~/.vim/{ftdetect,indent,syntax} && for d in ftdetect indent syntax ; do wget --no-check-certificate -O ~/.vim/$d/scala.vim https://raw.githubusercontent.com/scala/scala-dist/master/tool-support/src/vim/$d/scala.vim; done

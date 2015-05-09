@@ -234,9 +234,9 @@ screen - switch between multiple virtual terminals (useful in ssh)
 	t - show time and avg cpu load
 tmux - terminal multiplexer, better screen.	
 	ls - shows running sessions
-	attach (-t <session no>) - attach to running session
+	attach [-t <session no>] - attach to running session
 	ctrl+b: 
-	d - exit session	
+	d - detach from currently attached session	
 	pgup - enter in copy mode and pageup, 
 	[ - copy mode, 
 	] - paste,	
@@ -565,6 +565,9 @@ nohup <command> - run a command immune to hangups, runs even after the shell is 
 nohup <command> &>/dev/null & - run a command immune to hangups in background, do not save output
 
 wmctrl - X Window Manager
+
+awesome - tiled window manager
+	-k - check configuration script for errors
 
 busybox <command> - combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)
 mono - .NET support

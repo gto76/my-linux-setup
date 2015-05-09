@@ -238,7 +238,7 @@ alias wcw='wc -w'
 alias rm1='rm -f'
 # Console calculator with float.
 alias bc1='gcalccmd'
-alias mk="make"
+alias ma="make"
 # Report disk space of main partitions in human readable form.
 alias df1='df -h | grep "sd\|Size" | cat'
 # Open pdf file
@@ -276,14 +276,28 @@ alias random-file='ls | sort -R | head -1'
 alias rf='random-file'
 # Run profile script
 alias profile='source /etc/profile'
-
+# Switches the files. Usage: switch [FILE1] [FILE2]
+switch() {
+	TMP_NAME="f8ewn3j9"
+	cp "$1" "$TMP_NAME"
+	mv -f "$2" "$1"
+	mv "$TMP_NAME" "$2"
+}
 
 ########
 # SUDO #
 ########
 
+alias s='sudo'
+
+# Execute last command as sudo
+alias fuck='$(history -p \!\!)'
+alias fu='fuck'
+
 alias srm='sudo rm -i'
+alias srmdir='sudo rm -rI'
 alias scp='sudo cp -iv'
+alias scpdir='sudo cp -arv'
 alias smv='sudo mv -iv'
 
 sg() { 
@@ -497,6 +511,7 @@ mkdir3() {
 	mkdir -p "$1"
 	cd "$1"
 }
+alias mk='mkdir3'
 
 # Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seams like playing with fire.
 sed1() {

@@ -1,0 +1,2 @@
+sudo cp rc.lua /etc/xdg/awesome/
+sudo install -b theme.lua /usr/share/awesome/themes/default

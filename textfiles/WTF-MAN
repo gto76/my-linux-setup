@@ -73,6 +73,7 @@ PACKAGES:
 ========
 
 dpkg -l - lists installed packages
+	-i <package> - install package from a package file (sudo)
 apt - 'skin' for dpkg
 apt-get	update - update local list of existing packages
 		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade)
@@ -657,6 +658,7 @@ openvt -  run a program on a next available tty
 script - makes a typescript of everything printed on your terminal. Ctrl-d to stop recording.
 setterm - set terminal atributes
 	-cursor off/on - set cursor on/off
+gpm - enable mouse for tty
 
 KEYS/CHARACTERS/FONTS:
 IN X:
@@ -780,6 +782,7 @@ ppmforge - creates picture of random planet or clouds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
 	-p - leave plots open after exit
 	plot <file>.dat - plot data from dat file
+fbi - display images inside tty
 
 VIDEO:
 

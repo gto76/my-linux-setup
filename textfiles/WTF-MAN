@@ -564,6 +564,9 @@ nohup <command> &>/dev/null & - run a command immune to hangups in background, d
 
 wmctrl - X Window Manager
 
+awesome - tiled window manager
+	-k - check configuration script for errors
+
 busybox <command> - combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)
 mono - .NET support
 

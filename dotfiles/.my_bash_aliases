@@ -274,14 +274,22 @@ alias random-file='ls | sort -R | head -1'
 alias rf='random-file'
 # Run profile script
 alias profile='source /etc/profile'
-
+# Switches the files. Usage: switch [FILE1] [FILE2]
+switch() {
+	TMP_NAME="f8ewn3j9"
+	cp "$1" "$TMP_NAME"
+	mv -f "$2" "$1"
+	mv "$TMP_NAME" "$2"
+}
 
 ########
 # SUDO #
 ########
 
 alias srm='sudo rm -i'
+alias srmdir='sudo rm -rI'
 alias scp='sudo cp -iv'
+alias scpdir='sudo cp -arv'
 alias smv='sudo mv -iv'
 
 sg() { 

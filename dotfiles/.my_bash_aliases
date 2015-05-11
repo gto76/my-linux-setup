@@ -236,7 +236,7 @@ alias wcw='wc -w'
 alias rm1='rm -f'
 # Console calculator with float.
 alias bc1='gcalccmd'
-alias mk="make"
+alias ma="make"
 # Report disk space of main partitions in human readable form.
 alias df1='df -h | grep "sd\|Size" | cat'
 # Open pdf file
@@ -499,6 +499,7 @@ mkdir3() {
 	mkdir -p "$1"
 	cd "$1"
 }
+alias mk='mkdir3'
 
 # Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seams like playing with fire.
 sed1() {

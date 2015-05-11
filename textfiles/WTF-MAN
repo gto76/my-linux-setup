@@ -235,7 +235,7 @@ tmux - terminal multiplexer, better screen.
 	ls - shows running sessions
 	attach (-t <session no>) - attach to running session
 	ctrl+b: 
-	d - exit session	
+	d - detach from currently attached session	
 	pgup - enter in copy mode and pageup, 
 	[ - copy mode, 
 	] - paste,	

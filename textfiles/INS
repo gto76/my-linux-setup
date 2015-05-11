@@ -84,6 +84,10 @@ mkdir -p ~/.vim/{ftdetect,indent,syntax} && for d in ftdetect indent syntax ; do
 purge totem
 purge banshee
 
+# DISABLE PC SPEAKER
+// add: rmmod pcspkr
+// to: /etc/profile
+
 (less syntax highlight)
 (tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
 

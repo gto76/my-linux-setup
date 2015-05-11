@@ -170,6 +170,7 @@ ls 	-d - list directory names instead of contents
 rm -f - force remove (do not prompt)
 mkdir -p - make parents if needed
 cp -R - copy recursively
+	--preserve - copy and preserve mode, ownership and timestams
 ln - makes links to the files
 	-s <file> <link> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!
 df - disc fullness / disc free

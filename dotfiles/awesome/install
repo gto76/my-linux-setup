@@ -24,14 +24,14 @@ function createLink {
 
 backup() {
     sudo cp --preserve "$1"{,.bak}
+	sudo rm -f "$1" 
 }
 
 backup /etc/xdg/awesome/rc.lua
-sudo rm -f /etc/xdg/awesome/rc.lua
 createLink /etc/xdg/awesome rc.lua
 
 backup /usr/share/awesome/themes/default/theme.lua
-sudo rm -f /usr/share/awesome/themes/default/theme.lua
 createLink /usr/share/awesome/themes/default theme.lua
 
-
+backup /usr/share/awesome/themes/default/background.png
+createLink /usr/share/awesome/themes/default background.png

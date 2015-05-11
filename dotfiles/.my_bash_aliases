@@ -286,6 +286,12 @@ switch() {
 # SUDO #
 ########
 
+alias s='sudo'
+
+# Execute last command as sudo
+alias fuck='$(history -p \!\!)'
+alias fu='fuck'
+
 alias srm='sudo rm -i'
 alias srmdir='sudo rm -rI'
 alias scp='sudo cp -iv'

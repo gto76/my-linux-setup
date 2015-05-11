@@ -217,8 +217,9 @@ vvvv() {
 fire() {
 	rb firefox "$@"
 }
+
 chrome() { 
-	rb google-chrome "$@" 
+	rb google-chrome --touch-devices=123 "$@" 
 }
 alias i='chrome'
 alias sub='rb sublime_text'
@@ -451,6 +452,10 @@ depends() {
 # Print installed packages
 alias packages='dpkg --get-selections | grep -v deinstall | catOrLess'
 alias installed='packages'
+# Find to which package command belongs to
+which-package() {
+	dpkg -S $(which "$1")
+}
 
 # Create executable file
 createExecutable() {
@@ -845,6 +850,10 @@ sumall() {
 # NETWORK #
 ###########
 
+# Sudos
+alias tcpdump='sudo tcpdump'
+alias route='sudo route'
+
 # Whats my internal ip.
 ip1() {
 	/sbin/ifconfig \
@@ -893,7 +902,7 @@ noh() {
 alias noh1='noh 10'
 
 # Scans first $1 addreses of local network.
-nmap1() {
+nmap2() {
   if [ $# -eq 0 ]
   then
     third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
@@ -912,7 +921,7 @@ nmap1() {
   nmap -sP 192.168.$third.0-$forth
 }
 # Scan first 20 addreses of local network.
-alias nmap2='nmap1 20'
+alias nmap1='nmap2 20'
 
 # Saves output of nmap1 in file named after current time (year-month-day-hour-minute: week of the year-day of the week).
 networkLogger() {

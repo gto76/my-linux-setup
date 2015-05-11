@@ -177,6 +177,8 @@ To switch J and K paste this into custom keymapings textbox:
 	unmap K
 	map J nextTab
 	map K previousTab
+!!! If youre using virtualbox you have to run chrome with:
+google-chrome --touch-devices=123
 
 # DISABLE DEFAULT BEHAVIOUR FOR alt+F1:
 sudo apt-get install dconf-editor

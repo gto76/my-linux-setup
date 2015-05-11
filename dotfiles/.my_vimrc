@@ -99,6 +99,12 @@ set backspace=indent,eol,start
 " So that esc, O works faster
 set timeout timeoutlen=1000 ttimeoutlen=0
 
+" Disable automatic comment insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Mouse inside tmux in tty TEST
+"set ttymouse=xterm
+
 "#################
 "### SHORTCUTS ###
 "#################
@@ -119,3 +125,6 @@ nmap <F9> :set invnumber<CR>
 map <F10> :set invpaste<CR>
 set pastetoggle=<F10>
 
+" F11, F12  go to next/previous tab
+map <F11> gT<CR>
+map <F12> gt<CR>

@@ -25,6 +25,8 @@ add "http://www.mladina.si/media/rss/rss-fb-mladina.xml" "Mladina"
 
 #browser "/usr/bin/firefox -new-tab %u"
 browser "/usr/bin/google-chrome %u"
+#browser "/usr/bin/lynx %u"
+#browser "/usr/bin/elinks %u"
        
 #Text browsers should enable this
 #browser_wait "1"

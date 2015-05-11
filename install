@@ -35,6 +35,7 @@ createLink ~ .my_bashrc
 createLink ~ .my_bash_aliases
 createLink ~ .my_bashrc_personal
 createLink ~ .my_vimrc
+createLink ~ .tmux.conf
 createLink ~ .Xmodmapus
 createLink ~ .Xmodmapusvi
 createLink ~ .Xmodmapsi

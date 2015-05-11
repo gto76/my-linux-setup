@@ -284,6 +284,13 @@ switch() {
 	mv -f "$2" "$1"
 	mv "$TMP_NAME" "$2"
 }
+# Mount ISO file and cd into it
+mount-iso() {
+	sudo mkdir /media/"$1"
+	sudo mount -o loop "$1" /media/"$1"
+	cd /media/"$1"
+}
+alias cd-iso='mount-iso'
 
 ########
 # SUDO #

@@ -1,2 +1,37 @@
-sudo cp rc.lua /etc/xdg/awesome/
-sudo install -b theme.lua /usr/share/awesome/themes/default
+#!/bin/bash
+
+# Install script that creates simbolic links to the awesome config files.
+
+function createLink {
+	directory="$1"
+	file="$2"
+	fullPath="$directory"/"$file"
+
+	# Create directory if it doesent exist.
+	if [ ! -d "$directory" ]; then
+		echo "install.sh: Creating directory $directory."
+		mkdir -p "$directory"
+	fi
+
+	# Create link if file doesn't exist
+	if [[ ! -f "$fullPath" ]]; then
+		echo "install.sh: Creating link $fullPath"
+		sudo ln -s `pwd`/"$file" "$fullPath" 
+	else
+		echo "install.sh: WARNING: File $fullPath already exists. You will have to merge or overvrite it manualy."
+	fi	
+}
+
+backup() {
+    sudo cp --preserve "$1"{,.bak}
+}
+
+backup /etc/xdg/awesome/rc.lua
+sudo rm -f /etc/xdg/awesome/rc.lua
+createLink /etc/xdg/awesome rc.lua
+
+backup /usr/share/awesome/themes/default/theme.lua
+sudo rm -f /usr/share/awesome/themes/default/theme.lua
+createLink /usr/share/awesome/themes/default theme.lua
+
+

@@ -234,6 +234,7 @@ alias ta='tail'
 alias ta1='tail -n1'
 alias wcl='wc -l'
 alias wcw='wc -w'
+alias to='touch'
 # Force remove
 alias rm1='rm -f'
 # Console calculator with float.
@@ -298,14 +299,22 @@ alias cd-iso='mount-iso'
 alias s='sudo'
 
 # Execute last command as sudo
-alias fuck='$(history -p \!\!)'
+alias fuck='sudo $(history -p \!\!)'
 alias fu='fuck'
 
+# File manipulation 
 alias srm='sudo rm -i'
 alias srmdir='sudo rm -rI'
 alias scp='sudo cp -iv'
 alias scpdir='sudo cp -arv'
 alias smv='sudo mv -iv'
+
+# Backup file
+backup() {
+	sudo cp --preserve "$1"{,.bak}
+}
+alias bk='backup'
+
 
 sg() { 
 	sudo gedit "$*" 
@@ -440,7 +449,7 @@ depends() {
 	apt-cache show "$@" | grep Depends | sed 's/Depends:/ /' | sed 's/,/\n /g'
 }
 # Print installed packages
-alias packages='dpkg --get-selections | grep -v deinstall'
+alias packages='dpkg --get-selections | grep -v deinstall | catOrLess'
 alias installed='packages'
 
 # Create executable file

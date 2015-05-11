@@ -202,6 +202,8 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    awful.key({ "Mod1", "Control" }, "Left",   awful.tag.viewprev       ),
+    awful.key({ "Mod1", "Control" }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
@@ -249,6 +251,7 @@ globalkeys = awful.util.table.join(
     awful.key({ "Mod1", "Control" }, "r", function () awful.util.spawn("gnome-terminal -e nrss") end),
     awful.key({ "Mod1", "Control" }, "c", function () awful.util.spawn("google-chrome") end),
     awful.key({ "Mod1", "Control" }, "t", function () awful.util.spawn(terminal) end),
+    awful.key({ "Mod1", "Control" }, "g", function () awful.util.spawn("gedit") end),
 
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -406,12 +409,12 @@ client.add_signal("manage", function (c, startup)
     -- awful.titlebar.add(c, { modkey = modkey })
 
     -- Enable sloppy focus
-    c:add_signal("mouse::enter", function(c)
-        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-            and awful.client.focus.filter(c) then
-            client.focus = c
-        end
-    end)
+    -- c:add_signal("mouse::enter", function(c)
+    --    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+    --       and awful.client.focus.filter(c) then
+    --       client.focus = c
+    --   end
+    --end)
 
     if not startup then
         -- Set the windows at the slave,

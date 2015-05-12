@@ -94,8 +94,6 @@ l() {
 		listShortLess "$@" 
 	fi
 }
-alias k='l'
-alias ]='l'
 ll() {
 	noOfLines=`listMed "$@" 2> /dev/null | fold -w"$COLUMNS" | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
@@ -179,6 +177,7 @@ p() {
 }
 
 alias ba='bash'
+alias s='sudo'
 alias e='echo'
 # Echo with backslash escapes (\n,...)
 alias ee='echo -e'
@@ -199,10 +198,11 @@ runInBackground() {
 	nohup "$@" &>/dev/null &
 }
 alias rb='runInBackground'
+alias r='runInBackground'
 
 # open file in gedit
 g() { 
-	rb pluma "$@" 
+	rb gedit "$@" 
 }
 
 # open vim in konsole with light theme
@@ -224,11 +224,23 @@ chrome() {
 alias i='chrome'
 alias sub='rb sublime_text'
 alias scr='screen'
+alias tm='tmux'
+alias tma='tmux attach'
+alias tml='tmux ls'
 alias clr='clear'
 alias cl='clear'
-alias his='history | catOrLessG'
-alias h='history | grep '
+alias k='clear'
+# Greps the history, or just shows it if no argument is passed
+his() {
+	if [ "$#" -eq 0 ]; then
+		history | catOrLessG
+	else
+		history | grep "$@" | catOrLessG
+	fi
+}
+alias h='his'
 alias xx='exit'
+alias x='exit'
 alias he='head'
 alias he1='head -n1'
 alias ta='tail'
@@ -269,8 +281,6 @@ alias gt='gnome-terminal'
 alias term='gnome-terminal'
 # Start a file explorer
 alias f='rb nautilus .'
-# Update files db
-alias updatedb='sudo updatedb'
 # Get name of first file in directory
 alias first='ls | head -1'
 # Get name of random file in directory
@@ -292,12 +302,33 @@ mount-iso() {
 	cd /media/"$1"
 }
 alias cd-iso='mount-iso'
+# Show processes
+alias ht='htop'
+alias u='htop'
 
 ########
 # SUDO #
 ########
 
-alias s='sudo'
+# Run commands that require sudo with sudo
+alias fdisk='sudo fdisk'
+alias updatedb='sudo updatedb'
+alias ifconfig='sudo ifconfig'
+alias tcpdump='sudo tcpdump'
+alias route='sudo route'
+alias pm-hibernate='sudo pm-hibernate'
+alias pm-suspend='sudo pm-suspend'
+alias shutdown='sudo shutdown'
+alias fstrim='sudo fstrim'
+alias apt-get='sudo aptget'
+alias iw='sudo iw'
+alias nmap='sudo nmap'
+alias parted='sudo parted'
+alias ntfsundelete='sudo ntfsundelete'
+alias lshw='sudo lshw'
+alias chown='sudo chown'
+alias mount='sudo mount'
+
 
 # Execute last command as sudo
 alias fuck='sudo $(history -p \!\!)'
@@ -452,9 +483,14 @@ depends() {
 # Print installed packages
 alias packages='dpkg --get-selections | grep -v deinstall | catOrLess'
 alias installed='packages'
-# Find to which package command belongs to
+# Find to which of the installed packages passed command belongs to
 which-package() {
-	dpkg -S $(which "$1")
+	filename=$(readlink -f $(which "$1"))
+	dpkg -S "$filename" 
+}
+# Find to which of all the packages the command belongs to
+apt-file1() {
+	apt-file search "$1" | grep \/"$1"$ | catOrLess 
 }
 
 # Create executable file
@@ -511,6 +547,7 @@ alias run='go run'
 locate1() {
 	locate "$@" | catOrLess
 }
+alias o='locate1'
 
 #FIND
 # Recursively search for files containing pattern in their names.
@@ -580,6 +617,23 @@ apropos1G() {
 	apt-cache search "$*" | gr "$*"
 }
 alias ap1g='apropos1G'
+# Same, but only search for packages containing string in their name
+apropos2G() {
+	apt-cache search "$@" | gr "^[^ ]*$@[^ ]*" 
+}
+alias ap2g='apropos2G'
+
+# Searches packages based on their name and also by their executables
+y() {
+	(echo   "PACKAGES CONTAINING EXECUTABLES NAMED \"$1\""
+	echo -n "========================================"
+	echo "$1" | sed 's/./=/g'
+	apt-file1 "$@" | gr "^.*:"
+	echo -e "\nPACKAGES CONTAINING \"$@\" IN THEIR NAMES"	
+	echo -n   "====================================="
+	echo "$1" | sed 's/./=/g'
+	apropos2G "$@") | less 
+}
 
 alias wi1='whatis'
 # Prints package description. (Few lines)
@@ -849,10 +903,6 @@ sumall() {
 ###########
 # NETWORK #
 ###########
-
-# Sudos
-alias tcpdump='sudo tcpdump'
-alias route='sudo route'
 
 # Whats my internal ip.
 ip1() {
@@ -1170,6 +1220,7 @@ aa() {
 }
 
 alias pl='mplayer'
+alias mp='mplayer'
 
 # Copies all files that are referenced in playlist to desired directory.
 # Also removes their track numbers from filenames (if any) and replaces 

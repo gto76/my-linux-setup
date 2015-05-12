@@ -88,6 +88,8 @@ apt-cache	search <keyword> - search packages, like apropos, but global
 		show <package>  - get info about package (verdion, dependencies, ...)
 		showpkg <package> - similar, shows also reverse dependencies
 		policy <package> - show installed and remote version
+apt-file search - enables searching packages by file
+		update - updates local list of existing packages
 aptitude - browse packages (skin for apt-get)
 		search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
 		search <package> - search for package
@@ -206,6 +208,7 @@ rename - renames multiple files using sed syntax
 rsync - a fast, versatile, remote (and local) file-copying tool
 cmp - compares two files, similar to diff but also for binaries
 stat -c%X <file> - time of last modification of the file 
+readlink -f - follow link recursively and print files path
 
 ARCHIVES:
 tar	xvzf <file>.tar.gz (.tgz) - decompress and detar

@@ -192,9 +192,10 @@ end
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end)
+	-- Prevent wheel from changing tags: EDITED BY JURE SORN
+    -- awful.button({ }, 4, awful.tag.viewnext),
+	-- awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -202,6 +203,9 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    awful.key({ modkey,           }, "`",      awful.tag.viewprev       ),
+    awful.key({ modkey, "Shift"   }, "Tab",      awful.tag.viewprev       ),
+    awful.key({ modkey,           }, "Tab",    awful.tag.viewnext       ),
     awful.key({ "Mod1", "Control" }, "Left",   awful.tag.viewprev       ),
     awful.key({ "Mod1", "Control" }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
@@ -226,7 +230,12 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+    awful.key({ "Mod1", "Shift"   }, "Tab",
+        function ()
+            awful.client.focus.byidx(-1)
+            if client.focus then client.focus:raise() end
+        end),
+    -- awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -301,6 +310,7 @@ clientkeys = awful.util.table.join(
     awful.key({ "Mod1",           }, "F3",     function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ "Mod1",           }, "F4",     function (c) c:kill()                         end),
+    awful.key({ modkey,           }, "w",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
@@ -393,12 +403,17 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
     -- Set Chrome to always map on tags number 2 of screen 1.
-    { rule = { class = "google-chrome" },
-      properties = { tag = tags[1][2] } },
+    -- { rule = { class = "google-chrome" },
+    --  properties = { tag = tags[1][2] } },
+
+	-- Remove small gaps between windows. EDITED BY JURE SORN
+	{ rule = { },
+	properties = { size_hints_honor = false } }
 }
 -- }}}
 

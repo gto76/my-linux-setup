@@ -162,11 +162,13 @@ alias .....='cd ..; cd ..; cd ..; cd..'
 alias ......='cd ..; cd ..; cd ..; cd..; cd..'
 alias .......='cd ..; cd ..; cd ..; cd..; cd..; cd..'
 alias ..l='cd ..; l'
+
 # Combine cd and ls.
 cdl() {	
 	cd "$@"; l
 }
 alias .='echo $PWD'
+
 # If no file specified, print PWD, else full path of the file.
 p() {
 	if [ $# -eq 0 ]; then
@@ -279,8 +281,10 @@ alias vimode='set -o vi'
 # Start a new terminal.
 alias gt='gnome-terminal'
 alias term='gnome-terminal'
+alias co='gnome-terminal'
+alias te='gnome-terminal'
 # Start a file explorer
-alias f='rb nautilus .'
+alias na='rb nautilus .'
 # Get name of first file in directory
 alias first='ls | head -1'
 # Get name of random file in directory
@@ -329,10 +333,10 @@ alias lshw='sudo lshw'
 alias chown='sudo chown'
 alias mount='sudo mount'
 
-
 # Execute last command as sudo
 alias fuck='sudo $(history -p \!\!)'
 alias fu='fuck'
+alias f='fuck'
 
 # File manipulation 
 alias srm='sudo rm -i'
@@ -465,34 +469,6 @@ gr2() {
 	egrep "$@" --ignore-case --color=always --exclude-dir=\.svn --exclude-dir=\.git | catOrLess
 }
 
-# Apt-get.
-alias canhaz='sudo apt-get install'
-alias ch='canhaz'
-alias update='sudo apt-get update'
-alias upgrade='sudo apt-get dist-upgrade'
-alias remove='sudo apt-get remove && autoremove'
-alias purge='sudo apt-get purge && autoremove'
-alias autoremove='sudo apt-get autoremove'
-# Show installed and remote version.
-alias version='apt-cache policy'
-alias ve='apt-cache policy'
-# Show packages' dependencies.
-depends() {
-	apt-cache show "$@" | grep Depends | sed 's/Depends:/ /' | sed 's/,/\n /g'
-}
-# Print installed packages
-alias packages='dpkg --get-selections | grep -v deinstall | catOrLess'
-alias installed='packages'
-# Find to which of the installed packages passed command belongs to
-which-package() {
-	filename=$(readlink -f $(which "$1"))
-	dpkg -S "$filename" 
-}
-# Find to which of all the packages the command belongs to
-apt-file1() {
-	apt-file search "$1" | grep \/"$1"$ | catOrLess 
-}
-
 # Create executable file
 createExecutable() {
 	if [[ ! -f "$1" ]]; then
@@ -592,9 +568,42 @@ alias norepeat='xset -r'
 # Turn key input repeat on
 alias repeat='xset r'
 
-##########################
-# COMMAND/PACKAGE SEARCH #
-##########################
+############
+# PACKAGES #
+############
+
+# Apt-get.
+alias canhaz='sudo apt-get install'
+alias ch='canhaz'
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get dist-upgrade'
+alias remove='sudo apt-get remove && autoremove'
+alias purge='sudo apt-get purge && autoremove'
+alias autoremove='sudo apt-get autoremove'
+
+# Show installed and remote version.
+alias version='apt-cache policy'
+alias ve='apt-cache policy'
+
+# Show packages' dependencies.
+depends() {
+	apt-cache show "$@" | grep Depends | sed 's/Depends:/ /' | sed 's/,/\n /g'
+}
+
+# Print installed packages
+alias packages='dpkg --get-selections | grep -v deinstall | catOrLess'
+alias installed='packages'
+
+# Find to which of the installed packages passed command belongs to
+package() {
+	filename=$(readlink -f $(which "$1"))
+	dpkg -S "$filename" 
+}
+
+# Find to which of all the packages the command belongs to
+apt-file1() {
+	apt-file search "$1" | grep \/"$1"$ | catOrLess 
+}
 
 # Apropos.
 aproposM() {
@@ -602,21 +611,26 @@ aproposM() {
 }
 alias apropos='aproposM'
 alias ap='apropos'
+
 # Run apropos with passed string, then grep output with same string.
 aproposMG() {
 	apropos "$*" | gr "$*" 
 }
 alias apg='aproposMG'
+
 # Search packages, that can be installed with apt-get.
 apropos1() {
 	apt-cache search "$*" | catOrLess
 }
 alias ap1='apropos1'
+
 # Same, but grep output with same string.
 apropos1G() {
 	apt-cache search "$*" | gr "$*"
 }
 alias ap1g='apropos1G'
+alias search='apropos1G'
+
 # Same, but only search for packages containing string in their name
 apropos2G() {
 	apt-cache search "$@" | gr "^[^ ]*$@[^ ]*" 
@@ -641,11 +655,13 @@ whatis1() {
 	apt-cache show "$*" | grep "^ " | catOrLess
 }
 alias wi2='whatis1'
+
 # Searches aliases for name
 whatis2() {
 	type "$*" | catOrLess
 }
 alias wi3='whatis2'
+
 # Universal command description search function. First tries whatis, then apt-cache show and finally type. When one of them succeeds in finding the description the function returns.
 wi() {
 	call1=`whatis "$@" 2> /dev/null`
@@ -973,6 +989,35 @@ nmap2() {
 # Scan first 20 addreses of local network.
 alias nmap1='nmap2 20'
 
+# Retrurns OK if pingable of Fail if not. Parameter is an ip or domain
+pingable() {
+	pingResult=$(ping -c 1 -q "$1" | grep --color=never -A 1 statistics | grep "1 received")
+	if [ "$pingResult" != "" ]; then
+		echo -n "OK"
+	else
+		echo -n "Fail"
+	fi
+}
+
+# Scans the network and prints the ip-s of the conncted devices, and checks if connection to the internet is avalable.
+network() {
+	localIp=$(ip1)
+	echo "You:      $localIp"
+	gateway=$(gateway)
+	echo "Gateway:  $gateway    Ping: $(pingable "$gateway")  Ip: `ip2`"
+	all=$(nmap1)
+	allFiltered=$(echo "$all" | grep -v "$localIp" | grep -v "$gateway" | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" | sed 's/^/          /g')
+	len=${#allFiltered} 
+	allFil2=${allFiltered:6:len-6} 
+	echo "Other:$allFil2"
+	testIp="8.23.224.107"
+	echo "Internet: $testIp   Ping: $(pingable "$testIp")"
+	testDomain="www.google.com"
+	echo "          $testDomain Ping: $(pingable "$testDomain")"
+
+}
+alias ne='network'
+
 # Saves output of nmap1 in file named after current time (year-month-day-hour-minute: week of the year-day of the week).
 networkLogger() {
 	destDir="."
@@ -1204,19 +1249,19 @@ vol() {
 }
 # Volume up 6dB.
 q() {
-	vol "6dB+" | tail -n 1
+	vol "6%+" | tail -n 1
 }
 # Volume down 6dB.
 a() {
-	vol "6dB-" | tail -n 1
+	vol "6%-" | tail -n 1
 }
 # Volume up 2 dB.
 qq() {
-	vol "2dB+" | tail -n 1
+	vol "2%+" | tail -n 1
 }
 # Volume down 2 dB.
 aa() {
-	vol "2dB-" | tail -n 1
+	vol "2%-" | tail -n 1
 }
 
 alias pl='mplayer'

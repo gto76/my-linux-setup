@@ -8,10 +8,51 @@
 #
 
 
-
 set -o vi
 
 
+###################################################
+# ALIASES FOR EASY AND QUICK ACCESS TO THE FILES: #
+#         .bashrc, WTF-MAN, NYK and INS           #
+###################################################
+
+# Location of text file with useful unix command descriptions.
+export MAN="$HOME/my-aliases/textfiles/WTF-MAN"
+# Location of text file with general configuration and instalation instructions.
+export INS="$HOME/my-aliases/textfiles/INS"
+# Location of TOD0 text file.
+export NYK="$HOME/my-aliases/textfiles/NYK"
+
+# Quick access files enumeration
+QUAFE="1:$MAN;\
+	2:$HOME/.bashrc;\
+	3:$INS;\
+	4:$NYK;\
+"
+
+SAVE_IFS="$IFS"
+IFS=$'\n'
+for pair in `echo "$QUAFE" | tr -d '\t' | tr ';' '\n'`; do
+	i=`echo $pair | sed 's/:.*$//'` # index
+	file=`echo $pair | sed 's/^.*://'`
+
+	# Opens file in less.
+	alias m"$i"="m $file"
+	# Opens file in nano.
+	alias n"$i"="nano $file"
+	# Opens file in vim.
+	alias v"$i"="v $file"
+	# Opens file in gedit.
+	alias g"$i"="g $file &"
+	# Greps file for passed phrase.
+	alias c"$i"="m$i | c | gr"
+	# Appends line to file.
+	alias a"$i"="echo $@ >> $file"
+	# Print what file does the number represent
+	alias w"$i"="echo $file"
+
+done
+IFS="$SAVE_IFS"
 
 ########
 # LESS #

@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Install script that creates simbolic links to the files of the repository.
+# All links to the dotfiles are created in the home directory, except the
+# config file of the .nrss directory, which is created if it doesent exist.
+# All links to the text files are created in the ~/Desktop directory.
+# Link is not created if file with same name already exists and warning is
+# printed. Also line that loads .my_bashrc is added to the end of the .bashrc,
+# if it doesen't exist yet. Similary the line that loads .my_vimrc is added
+# to the end of .vimrc.
+
+function createLink {
+	directory="$1"
+	file="$2"
+	fullPath="$directory"/"$file"
+
+	# Create directory if it doesent exist.
+	if [ ! -d "$directory" ]; then
+		echo "install.sh: Creating directory $directory."
+		mkdir -p "$directory"
+	fi
+
+	# Create link if file doesn't exist
+	if [[ ! -f "$fullPath" ]]; then
+		echo "install.sh: Creating link $fullPath"
+		ln -s `pwd`/"$file" "$fullPath" 
+	else
+		echo "install.sh: WARNING: File $fullPath already exists. You will have to merge or overvrite it manualy."
+	fi	
+}
+
+# create links to dotfiles
+cd dotfiles
+(cd windows
+createLink ~ .bashrc
+createLink ~ .vimrc
+createLink ~ AutoHotkey.ahk)
+(cd .vim/colors
+createLink ~/.vim/colors github.vim
+createLink ~/.vim/colors diner.vim)
+cd ..
+# create links to textfiles
+cd textfiles
+createLink ~/Desktop WTF-MAN
+createLink ~/Desktop INS 
+createLink ~/Desktop NYK
+createLink ~/Desktop WIN.txt
+cd ..
+
+

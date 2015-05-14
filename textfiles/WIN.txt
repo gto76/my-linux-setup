@@ -1,0 +1,39 @@
+
+///////////
+/// WIN ///
+///////////
+
+### EXPLORER
+
+shift + right click - Open a Command Prompt from the Windows Explorer (or write 'cmd' into address bar)
+
+
+
+### COMMANDS
+
+setx - Set environment variables permanently
+setx PATH "%PATH%;C:\Shortcuts" - set path permanently
+setx PATHEXT .LNK;%pathext% - get the shortcuts to launch from a command prompt
+
+type - cat
+
+@<file> - substitute with file contents
+
+cls - clear
+
+rmdir <dir> /s /q - remove dir recursively
+
+
+
+
+
+
+### GIT
+
+# Make git callable from cmd, after installing git for windows
+setx PATHEXT .LNK;%pathext% - get the shortcuts to launch from a command prompt
+make shortcut from
+C:\Users\jure\AppData\Local\GitHub\PortableGit_c2ba306e536fdf878271f7fe636a147ff37326ad\bin
+to
+C:\Windows\System32
+

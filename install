@@ -17,7 +17,7 @@ function createLink {
 	# Create directory if it doesent exist.
 	if [ ! -d "$directory" ]; then
 		echo "install.sh: Creating directory $directory."
-		mkdir "$directory"
+		mkdir -p "$directory"
 	fi
 
 	# Create link if file doesn't exist
@@ -35,6 +35,7 @@ createLink ~ .my_bashrc
 createLink ~ .my_bash_aliases
 createLink ~ .my_bashrc_personal
 createLink ~ .my_vimrc
+createLink ~ .tmux.conf
 createLink ~ .Xmodmapus
 createLink ~ .Xmodmapusvi
 createLink ~ .Xmodmapsi

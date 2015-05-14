@@ -94,8 +94,6 @@ l() {
 		listShortLess "$@" 
 	fi
 }
-alias k='l'
-alias ]='l'
 ll() {
 	noOfLines=`listMed "$@" 2> /dev/null | fold -w"$COLUMNS" | wc -l`
 	if [ $LINES -gt $noOfLines ]; then
@@ -164,11 +162,13 @@ alias .....='cd ..; cd ..; cd ..; cd..'
 alias ......='cd ..; cd ..; cd ..; cd..; cd..'
 alias .......='cd ..; cd ..; cd ..; cd..; cd..; cd..'
 alias ..l='cd ..; l'
+
 # Combine cd and ls.
 cdl() {	
 	cd "$@"; l
 }
 alias .='echo $PWD'
+
 # If no file specified, print PWD, else full path of the file.
 p() {
 	if [ $# -eq 0 ]; then
@@ -179,6 +179,7 @@ p() {
 }
 
 alias ba='bash'
+alias s='sudo'
 alias e='echo'
 # Echo with backslash escapes (\n,...)
 alias ee='echo -e'
@@ -199,10 +200,11 @@ runInBackground() {
 	nohup "$@" &>/dev/null &
 }
 alias rb='runInBackground'
+alias r='runInBackground'
 
 # open file in gedit
 g() { 
-	rb pluma "$@" 
+	rb gedit "$@" 
 }
 
 # open vim in konsole with light theme
@@ -214,29 +216,45 @@ vvvv() {
 	vvv -c ":set ts=2" -c ":set sw=2" "$@"
 }
 
-alias fire='rb firefox'
+fire() {
+	rb firefox "$@"
+}
+
 chrome() { 
-	rb google-chrome "$@" 
+	rb google-chrome --touch-devices=123 "$@" 
 }
 alias i='chrome'
 alias sub='rb sublime_text'
 alias scr='screen'
+alias tm='tmux'
+alias tma='tmux attach'
+alias tml='tmux ls'
 alias clr='clear'
 alias cl='clear'
-alias his='history | catOrLessG'
-alias h='history | grep '
+alias k='clear'
+# Greps the history, or just shows it if no argument is passed
+his() {
+	if [ "$#" -eq 0 ]; then
+		history | catOrLessG
+	else
+		history | grep "$@" | catOrLessG
+	fi
+}
+alias h='his'
 alias xx='exit'
+alias x='exit'
 alias he='head'
 alias he1='head -n1'
 alias ta='tail'
 alias ta1='tail -n1'
 alias wcl='wc -l'
 alias wcw='wc -w'
+alias to='touch'
 # Force remove
 alias rm1='rm -f'
 # Console calculator with float.
 alias bc1='gcalccmd'
-alias mk="make"
+alias ma="make"
 # Report disk space of main partitions in human readable form.
 alias df1='df -h | grep "sd\|Size" | cat'
 # Open pdf file
@@ -263,10 +281,10 @@ alias vimode='set -o vi'
 # Start a new terminal.
 alias gt='gnome-terminal'
 alias term='gnome-terminal'
+alias co='gnome-terminal'
+alias te='gnome-terminal'
 # Start a file explorer
-alias f='rb nautilus .'
-# Update files db
-alias updatedb='sudo updatedb'
+alias na='rb nautilus .'
 # Get name of first file in directory
 alias first='ls | head -1'
 # Get name of random file in directory
@@ -274,15 +292,65 @@ alias random-file='ls | sort -R | head -1'
 alias rf='random-file'
 # Run profile script
 alias profile='source /etc/profile'
-
+# Switches the files. Usage: switch [FILE1] [FILE2]
+switch() {
+	TMP_NAME="f8ewn3j9"
+	cp "$1" "$TMP_NAME"
+	mv -f "$2" "$1"
+	mv "$TMP_NAME" "$2"
+}
+# Mount ISO file and cd into it
+mount-iso() {
+	sudo mkdir /media/"$1"
+	sudo mount -o loop "$1" /media/"$1"
+	cd /media/"$1"
+}
+alias cd-iso='mount-iso'
+# Show processes
+alias ht='htop'
+alias u='htop'
 
 ########
 # SUDO #
 ########
 
+# Run commands that require sudo with sudo
+alias fdisk='sudo fdisk'
+alias updatedb='sudo updatedb'
+alias ifconfig='sudo ifconfig'
+alias tcpdump='sudo tcpdump'
+alias route='sudo route'
+alias pm-hibernate='sudo pm-hibernate'
+alias pm-suspend='sudo pm-suspend'
+alias shutdown='sudo shutdown'
+alias fstrim='sudo fstrim'
+alias apt-get='sudo aptget'
+alias iw='sudo iw'
+alias nmap='sudo nmap'
+alias parted='sudo parted'
+alias ntfsundelete='sudo ntfsundelete'
+alias lshw='sudo lshw'
+alias chown='sudo chown'
+alias mount='sudo mount'
+
+# Execute last command as sudo
+alias fuck='sudo $(history -p \!\!)'
+alias fu='fuck'
+alias f='fuck'
+
+# File manipulation 
 alias srm='sudo rm -i'
+alias srmdir='sudo rm -rI'
 alias scp='sudo cp -iv'
+alias scpdir='sudo cp -arv'
 alias smv='sudo mv -iv'
+
+# Backup file
+backup() {
+	sudo cp --preserve "$1"{,.bak}
+}
+alias bk='backup'
+
 
 sg() { 
 	sudo gedit "$*" 
@@ -349,6 +417,10 @@ toCamel() {
 # SYSTEM #
 ##########
 
+# Reset computer
+alias restart='sudo shutdown -r now'
+alias poweroff='sudo shutdown now'
+
 # Trace system calls and signals. Print strings of maximum 2000 chars, and also trace child processes.
 alias strace1='strace -s 2000 -f'
 # Print all system information.
@@ -397,21 +469,6 @@ gr2() {
 	egrep "$@" --ignore-case --color=always --exclude-dir=\.svn --exclude-dir=\.git | catOrLess
 }
 
-# Apt-get.
-alias canhaz='sudo apt-get install'
-alias ch='canhaz'
-alias update='sudo apt-get update'
-alias upgrade='sudo apt-get dist-upgrade'
-alias remove='sudo apt-get remove && autoremove'
-alias purge='sudo apt-get purge && autoremove'
-alias autoremove='sudo apt-get autoremove'
-# Show installed and remote version.
-alias version='apt-cache policy'
-alias ve='apt-cache policy'
-# Print installed packages
-alias packages='dpkg --get-selections | grep -v deinstall'
-alias installed='packages'
-
 # Create executable file
 createExecutable() {
 	if [[ ! -f "$1" ]]; then
@@ -453,6 +510,7 @@ bsv() {
 alias tar1='tar --extract --verbose --file'
 # Untar and unzip file. (tar xzvf)
 alias tarz='tar --extract --verbose -gunzip --file'
+alias untar='tarz'
 
 # Hexadecimal dump.
 hd1() {
@@ -465,6 +523,7 @@ alias run='go run'
 locate1() {
 	locate "$@" | catOrLess
 }
+alias o='locate1'
 
 #FIND
 # Recursively search for files containing pattern in their names.
@@ -486,6 +545,7 @@ mkdir3() {
 	mkdir -p "$1"
 	cd "$1"
 }
+alias mk='mkdir3'
 
 # Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seams like playing with fire.
 sed1() {
@@ -508,9 +568,42 @@ alias norepeat='xset -r'
 # Turn key input repeat on
 alias repeat='xset r'
 
-##########################
-# COMMAND/PACKAGE SEARCH #
-##########################
+############
+# PACKAGES #
+############
+
+# Apt-get.
+alias canhaz='sudo apt-get install'
+alias ch='canhaz'
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get dist-upgrade'
+alias remove='sudo apt-get remove && autoremove'
+alias purge='sudo apt-get purge && autoremove'
+alias autoremove='sudo apt-get autoremove'
+
+# Show installed and remote version.
+alias version='apt-cache policy'
+alias ve='apt-cache policy'
+
+# Show packages' dependencies.
+depends() {
+	apt-cache show "$@" | grep Depends | sed 's/Depends:/ /' | sed 's/,/\n /g'
+}
+
+# Print installed packages
+alias packages='dpkg --get-selections | grep -v deinstall | catOrLess'
+alias installed='packages'
+
+# Find to which of the installed packages passed command belongs to
+package() {
+	filename=$(readlink -f $(which "$1"))
+	dpkg -S "$filename" 
+}
+
+# Find to which of all the packages the command belongs to
+apt-file1() {
+	apt-file search "$1" | grep \/"$1"$ | catOrLess 
+}
 
 # Apropos.
 aproposM() {
@@ -518,21 +611,43 @@ aproposM() {
 }
 alias apropos='aproposM'
 alias ap='apropos'
+
 # Run apropos with passed string, then grep output with same string.
 aproposMG() {
 	apropos "$*" | gr "$*" 
 }
 alias apg='aproposMG'
+
 # Search packages, that can be installed with apt-get.
 apropos1() {
 	apt-cache search "$*" | catOrLess
 }
 alias ap1='apropos1'
+
 # Same, but grep output with same string.
 apropos1G() {
 	apt-cache search "$*" | gr "$*"
 }
 alias ap1g='apropos1G'
+alias search='apropos1G'
+
+# Same, but only search for packages containing string in their name
+apropos2G() {
+	apt-cache search "$@" | gr "^[^ ]*$@[^ ]*" 
+}
+alias ap2g='apropos2G'
+
+# Searches packages based on their name and also by their executables
+y() {
+	(echo   "PACKAGES CONTAINING EXECUTABLES NAMED \"$1\""
+	echo -n "========================================"
+	echo "$1" | sed 's/./=/g'
+	apt-file1 "$@" | gr "^.*:"
+	echo -e "\nPACKAGES CONTAINING \"$@\" IN THEIR NAMES"	
+	echo -n   "====================================="
+	echo "$1" | sed 's/./=/g'
+	apropos2G "$@") | less 
+}
 
 alias wi1='whatis'
 # Prints package description. (Few lines)
@@ -540,11 +655,13 @@ whatis1() {
 	apt-cache show "$*" | grep "^ " | catOrLess
 }
 alias wi2='whatis1'
+
 # Searches aliases for name
 whatis2() {
 	type "$*" | catOrLess
 }
 alias wi3='whatis2'
+
 # Universal command description search function. First tries whatis, then apt-cache show and finally type. When one of them succeeds in finding the description the function returns.
 wi() {
 	call1=`whatis "$@" 2> /dev/null`
@@ -851,7 +968,7 @@ noh() {
 alias noh1='noh 10'
 
 # Scans first $1 addreses of local network.
-nmap1() {
+nmap2() {
   if [ $# -eq 0 ]
   then
     third=`ip1 | sed -e :a -e 's/[0-9]*.\([0-9]\).[0-9]*.[0.9]*/\1/;ta'`
@@ -870,7 +987,36 @@ nmap1() {
   nmap -sP 192.168.$third.0-$forth
 }
 # Scan first 20 addreses of local network.
-alias nmap2='nmap1 20'
+alias nmap1='nmap2 20'
+
+# Retrurns OK if pingable of Fail if not. Parameter is an ip or domain
+pingable() {
+	pingResult=$(ping -c 1 -q "$1" | grep --color=never -A 1 statistics | grep "1 received")
+	if [ "$pingResult" != "" ]; then
+		echo -n "OK"
+	else
+		echo -n "Fail"
+	fi
+}
+
+# Scans the network and prints the ip-s of the conncted devices, and checks if connection to the internet is avalable.
+network() {
+	localIp=$(ip1)
+	echo "You:      $localIp"
+	gateway=$(gateway)
+	echo "Gateway:  $gateway    Ping: $(pingable "$gateway")  Ip: `ip2`"
+	all=$(nmap1)
+	allFiltered=$(echo "$all" | grep -v "$localIp" | grep -v "$gateway" | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" | sed 's/^/          /g')
+	len=${#allFiltered} 
+	allFil2=${allFiltered:6:len-6} 
+	echo "Other:$allFil2"
+	testIp="8.23.224.107"
+	echo "Internet: $testIp   Ping: $(pingable "$testIp")"
+	testDomain="www.google.com"
+	echo "          $testDomain Ping: $(pingable "$testDomain")"
+
+}
+alias ne='network'
 
 # Saves output of nmap1 in file named after current time (year-month-day-hour-minute: week of the year-day of the week).
 networkLogger() {
@@ -1103,22 +1249,23 @@ vol() {
 }
 # Volume up 6dB.
 q() {
-	vol "6dB+" | tail -n 1
+	vol "6%+" | tail -n 1
 }
 # Volume down 6dB.
 a() {
-	vol "6dB-" | tail -n 1
+	vol "6%-" | tail -n 1
 }
 # Volume up 2 dB.
 qq() {
-	vol "2dB+" | tail -n 1
+	vol "2%+" | tail -n 1
 }
 # Volume down 2 dB.
 aa() {
-	vol "2dB-" | tail -n 1
+	vol "2%-" | tail -n 1
 }
 
 alias pl='mplayer'
+alias mp='mplayer'
 
 # Copies all files that are referenced in playlist to desired directory.
 # Also removes their track numbers from filenames (if any) and replaces 

@@ -73,6 +73,7 @@ PACKAGES:
 ========
 
 dpkg -l - lists installed packages
+	-i <package> - install package from a package file (sudo)
 apt - 'skin' for dpkg
 apt-get	update - update local list of existing packages
 		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade)
@@ -84,8 +85,11 @@ apt-get	update - update local list of existing packages
 		source <package> - download code
 		build-dep <package> - install the build dependencies
 apt-cache	search <keyword> - search packages, like apropos, but global
-		show - get info about package
+		show <package>  - get info about package (verdion, dependencies, ...)
+		showpkg <package> - similar, shows also reverse dependencies
 		policy <package> - show installed and remote version
+apt-file search - enables searching packages by file
+		update - updates local list of existing packages
 aptitude - browse packages (skin for apt-get)
 		search '~i!~M' - list installed packages, that were not installed as a dependency, with short description.
 		search <package> - search for package
@@ -168,6 +172,7 @@ ls 	-d - list directory names instead of contents
 rm -f - force remove (do not prompt)
 mkdir -p - make parents if needed
 cp -R - copy recursively
+	--preserve - copy and preserve mode, ownership and timestams
 ln - makes links to the files
 	-s <file> <link> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!
 df - disc fullness / disc free
@@ -203,6 +208,7 @@ rename - renames multiple files using sed syntax
 rsync - a fast, versatile, remote (and local) file-copying tool
 cmp - compares two files, similar to diff but also for binaries
 stat -c%X <file> - time of last modification of the file 
+readlink -f - follow link recursively and print files path
 
 ARCHIVES:
 tar	xvzf <file>.tar.gz (.tgz) - decompress and detar
@@ -232,9 +238,9 @@ screen - switch between multiple virtual terminals (useful in ssh)
 	t - show time and avg cpu load
 tmux - terminal multiplexer, better screen.	
 	ls - shows running sessions
-	attach (-t <session no>) - attach to running session
+	attach [-t <session no>] - attach to running session
 	ctrl+b: 
-	d - exit session	
+	d - detach from currently attached session	
 	pgup - enter in copy mode and pageup, 
 	[ - copy mode, 
 	] - paste,	
@@ -564,6 +570,9 @@ nohup <command> &>/dev/null & - run a command immune to hangups in background, d
 
 wmctrl - X Window Manager
 
+awesome - tiled window manager
+	-k - check configuration script for errors
+
 busybox <command> - combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)
 mono - .NET support
 
@@ -656,6 +665,7 @@ openvt -  run a program on a next available tty
 script - makes a typescript of everything printed on your terminal. Ctrl-d to stop recording.
 setterm - set terminal atributes
 	-cursor off/on - set cursor on/off
+gpm - enable mouse for tty
 
 KEYS/CHARACTERS/FONTS:
 IN X:
@@ -779,6 +789,7 @@ ppmforge - creates picture of random planet or clouds
 gnuplot - interactive plotter: plot [-10:10] sin(x)
 	-p - leave plots open after exit
 	plot <file>.dat - plot data from dat file
+fbi - display images inside tty
 
 VIDEO:
 

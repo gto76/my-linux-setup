@@ -22,7 +22,7 @@ sudo apt-get -u dist-upgrade
 sudo yum update
 
 # INSTALL APPS
-sudo apt-get install vim mc git openssh-server nrss nmap wine openjdk-7-jdk vlc
+sudo apt-get install sudo vim mc git openssh-server(ssh?) nrss nmap wine openjdk-7-jdk vlc htop tree
 * FEDORA:
 yum install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
 
@@ -60,12 +60,33 @@ git remote set-url origin git@github.com:<user>/my-aliases.git
 mkdir /media/data
 sudo sh -c 'echo "/dev/<device id>   /media/data   <filesystem type>   user,fmask=0111,dmask=0000   0   2" >> /etc/fstab'
 
+# SET LYNX BROWSER TO ACCEPT ALL COOKIES
+sudo sh -c "cat /etc/lynx-cur/lynx.cfg | sed 's/#FORCE_SSL_COOKIES_SECURE.*$/FORCE_SSL_COOKIES_SECURE:TRUE/' | sed 's/#SET_COOKIES.*$/SET_COOKIES:TRUE/' | sed 's/#ACCEPT_ALL_COOKIES.*$/ACCEPT_ALL_COOKIES:TRUE/' >> /tmp/lynx.cfg; mv /tmp/lynx.cfg /etc/lynx-cur/lynx.cfg"
+
+# CHANGE TTY RESOLUTION
+// edit /etc/default/grub:
+// GRUB_GFXMODE=1280x1024x32
+// GRUB_GFXPAYLOAD_LINUX=keep
+sudo update-grub
+
+# ENABLE MOUSE IN TTY
+sudo apt-get install gpm
+// add to .bashrc:
+// TERM=linux
+
+# CHANGE BLUE COLOR IN TTY
+echo -en "\e]PC7373C9"
+
 # INSTALL SCALA SYNTAX FOR VIM
 mkdir -p ~/.vim/{ftdetect,indent,syntax} && for d in ftdetect indent syntax ; do wget --no-check-certificate -O ~/.vim/$d/scala.vim https://raw.githubusercontent.com/scala/scala-dist/master/tool-support/src/vim/$d/scala.vim; done
 
 # REMOVE TOTEM AND BANSHEE MEDIA PLAYERS
 purge totem
 purge banshee
+
+# DISABLE PC SPEAKER
+// add: rmmod pcspkr
+// to: /etc/profile
 
 (less syntax highlight)
 (tty unicode: /etc/profile: setfont /usr/share/consolefonts/Uni2-VGA16.psf.gz)
@@ -74,11 +95,16 @@ purge banshee
 # DEBIAN:
 #
 
-# INSTAL MATE DESKTOP ON DEBIAN WHEEZY
+# INSTALL MATE DESKTOP ON DEBIAN WHEEZY
 // add: deb http://http.debian.net/debian wheezy-backports main
 // to: /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get -t wheezy-backports install mate-desktop-environment
+
+# INSTALL AWESOME DESKTOP
+sudo apt-get install awesome
+// remove: NoDisplay=false
+// from: /usr/share/xsessions/awesome.desktop
 
 # UPGRADE TO TESTING VERSION
 // change all occurances of "wheezy" to "testing" in /etc/apt/sources.list
@@ -151,6 +177,8 @@ To switch J and K paste this into custom keymapings textbox:
 	unmap K
 	map J nextTab
 	map K previousTab
+!!! If youre using virtualbox you have to run chrome with:
+google-chrome --touch-devices=123
 
 # DISABLE DEFAULT BEHAVIOUR FOR alt+F1:
 sudo apt-get install dconf-editor

@@ -527,8 +527,10 @@ alias o='locate1'
 
 #FIND
 # Recursively search for files containing pattern in their names.
+# Use filesistem regexes for search (aka *.*), and always suround them
+# with quotation marks
 find1() {
-	find . | grep --color=always "$1" | catOrLess
+	find . -name "$1" | gr $(echo "$1" | tr -d "\*")
 }
 # Print all directories recursively.
 alias findd='find . -name .git -prune -o -type d | catOrLess'
@@ -662,7 +664,7 @@ whatis2() {
 }
 alias wi3='whatis2'
 
-# Universal command description search function. First tries whatis, then apt-cache show and finally type. When one of them succeeds in finding the description the function returns.
+# Universal command description search function. First tries whatis, then apt-cache show, then type and finally apt-file. When one of them succeeds in finding the description the function returns.
 wi() {
 	call1=`whatis "$@" 2> /dev/null`
 	if [ "$?" == "0" ]; then
@@ -680,6 +682,12 @@ wi() {
 	if [ "$?" == "0" ]; then
 		echo "$call3"
 		return
+	fi
+
+	call4=`apt-file1 "$@" | gr "^.*:"`
+	if [ "$call4" != "" ]; then
+		echo "You need to install one of the following packages to get the file:"
+		echo "$call4"
 	fi
 }
 
@@ -999,17 +1007,33 @@ pingable() {
 	fi
 }
 
+# Prints status of the ssh port of the passed client
+port22status() {
+	nmap $(echo "$1" | tr -d ' ') -p22 | grep '22/tcp' | sed 's/^[^ ]* \([^ ]*\) .*$/\1/'
+}
+
 # Scans the network and prints the ip-s of the conncted devices, and checks if connection to the internet is avalable.
 network() {
 	localIp=$(ip1)
-	echo "You:      $localIp"
 	gateway=$(gateway)
-	echo "Gateway:  $gateway    Ping: $(pingable "$gateway")  Ip: `ip2`"
+	echo "You:      $localIp   ssh: $(port22status $(ip2))"
+	echo "Gateway:  $gateway    ssh: $(port22status "$gateway")"
 	all=$(nmap1)
-	allFiltered=$(echo "$all" | grep -v "$localIp" | grep -v "$gateway" | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" | sed 's/^/          /g')
+	allFiltered=$(
+		echo "$all" | 
+		grep -v "$localIp" |
+		grep -v "$gateway" |
+		grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" |
+		sed 's/^/          /g' ) 
 	len=${#allFiltered} 
-	allFil2=${allFiltered:6:len-6} 
-	echo "Other:$allFil2"
+	allFiltered=${allFiltered:6:len-6} 
+	echo -n "Other:"
+
+	while IFS= read -r line; do	
+		echo -n "$line    ssh: "
+		port22status "$line"	
+	done <<< "$allFiltered"
+
 	testIp="8.23.224.107"
 	echo "Internet: $testIp   Ping: $(pingable "$testIp")"
 	testDomain="www.google.com"

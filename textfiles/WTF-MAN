@@ -48,6 +48,7 @@ shift+ctrl+w - close tab
 ctrl PgUp/PgDn - change tabs
 ctrl +/- - zoom
 ctrl+d - close terminal
+ctrl+s - scroll lock
 
 BASH:
 	(emacs mode, you can switch to vi mode with: set -o vi)
@@ -76,7 +77,8 @@ dpkg -l - lists installed packages
 	-i <package> - install package from a package file (sudo)
 apt - 'skin' for dpkg
 apt-get	update - update local list of existing packages
-		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade)
+		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade). it will intellingently handle changing dependencies with new wersions of packages
+		upgrade - same as dist-upgrade, but will not remove installed packages or install new ones.
 		install <package> - also update single package
 		autoremove - remove unneeded packages
 		remove <package> - remove package, leave configurations
@@ -140,18 +142,8 @@ date - tells you date and time, also can set
 cal - calendar
 xclip - copies to clipboard
 mkfifo <pipe> - creates named pipe during that shell session.
-wall - interconsole instant messenger (echo "bla" | wall)
-	mesg n - turn off
-watch - execute a program periodically, showing output fullscreen
-watch bash -i -c '<alias>' - execute alias periodically
-line - read one line
-sleep - delay for a specified amount of time
-whiptail - display dialog boxes from shell scripts
-reset - initializes terminal, useful after printing binary file
-hexdump, hd - ASCII, decimal, hexadecimal, octal dump
-lpstat - show printing jobs
-cancel <id> - cancel printing job
-mkisofs - create a DVD/CD image
+mkisofs - create a DVD/CD image 
+genisoimage - create a DVD/CD image (debian)
 cdrecord - write to a CD/DVD
 acpi - check battery
 fdisk -l - show partitions (sudo)
@@ -317,9 +309,9 @@ REDIRECTIONS:
 
 ARRAYS AND LINES:
 
-while read -r line; do
+while IFS= read -r line; do
     echo "... $line ..."
-done <<< "$list" - reading line by line from variable
+done <<< "$list" - reading line by line from variable, use IFS= to preserve spaces
 ${a[1]} - value of the second element of the array
 for c in ${a[@]} - iterate over array
 ${varname:offset:length} - get substring: s="aeiou"; ${s:3:1} -> o

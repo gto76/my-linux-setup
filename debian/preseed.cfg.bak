@@ -81,7 +81,7 @@ d-i netcfg/wireless_wep string
 # If non-free firmware is needed for the network or other hardware, you can
 # configure the installer to always try to load it, without prompting. Or
 # change to false to disable asking.
-d-i hw-detect/load_firmware boolean true
+#d-i hw-detect/load_firmware boolean true
 
 ### Network console
 # Use the following settings if you wish to make use of the network-console
@@ -101,7 +101,7 @@ d-i mirror/http/directory string /debian
 d-i mirror/http/proxy string
 
 # Suite to install.
-d-i mirror/suite string testing
+#d-i mirror/suite string testing
 # Suite to use for loading installer components (optional).
 #d-i mirror/udeb/suite string testing
 
@@ -113,17 +113,17 @@ d-i mirror/suite string testing
 #d-i passwd/make-user boolean false
 
 # Root password, either in clear text
-d-i passwd/root-password password r00tme
-d-i passwd/root-password-again password r00tme
+#d-i passwd/root-password password r00tme
+#d-i passwd/root-password-again password r00tme
 # or encrypted using an MD5 hash.
 #d-i passwd/root-password-crypted password [MD5 hash]
 
 # To create a normal user account.
-d-i passwd/user-fullname string Debian User
-d-i passwd/username string debian
+#d-i passwd/user-fullname string Debian User
+#d-i passwd/username string debian
 # Normal user's password, either in clear text
-d-i passwd/user-password password insecure
-d-i passwd/user-password-again password insecure
+#d-i passwd/user-password password insecure
+#d-i passwd/user-password-again password insecure
 # or encrypted using an MD5 hash.
 #d-i passwd/user-password-crypted password [MD5 hash]
 # Create the first user with the specified UID instead of the default.
@@ -287,7 +287,7 @@ d-i partman/confirm_nooverwrite boolean true
 
 ### Apt setup
 # You can choose to install non-free and contrib software.
-d-i apt-setup/non-free boolean true
+#d-i apt-setup/non-free boolean true
 #d-i apt-setup/contrib boolean true
 # Uncomment this if you don't want to use a network mirror.
 #d-i apt-setup/use_mirror boolean false
@@ -316,10 +316,10 @@ d-i apt-setup/non-free boolean true
 #tasksel tasksel/first multiselect standard, web-server, kde-desktop
 
 # Individual additional packages to install
-d-i pkgsel/include string vim sudo mc git ssh nrss nmap openjdk-7-jdk vlc htop tree gpm fbi tmux awesome lynx curl tcpdump apt-file gcc make konsole pm-utils strace rfkill mplayer2 youtube-dl
+#d-i pkgsel/include string openssh-server build-essential
 # Whether to upgrade packages after debootstrap.
 # Allowed values: none, safe-upgrade, full-upgrade
-d-i pkgsel/upgrade select full-upgrade 
+#d-i pkgsel/upgrade select none
 
 # Some versions of the installer can report back on what software you have
 # installed, and what software you use. The default is not to report back,

@@ -326,7 +326,8 @@ alias - print all aliases
 	<name>='cmd' - set alias
 command <command> - executes original command, bypassing any aliases or shell functions that may be defined for command
 \<command> - temporarily disable alias (call original)
-type <command> - will tell you what is command aliased to
+type <command> - will tell you what is command aliased to or if it is a biltin, function or a command
+	-P just check commands
 
 ====
 TEXT:
@@ -380,6 +381,7 @@ paste - glue two documents side by side
 sed	's///g' - substitute every occurrence in line, not just the first one
 	's///I' - ignore case
 	-r - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis
+	-r 's###e' - execute match as a command
 	-i <file> - will make changes directly to the file (in place)
 expand - convert tabs to spaces
 	-t <number> - set number of spaces (default is 8)
@@ -1221,4 +1223,17 @@ python setup.py install
 PARSE MARKDOWN:
 python -m markdown -x markdown.extensions.tables table.txt - parse markdown containing table
 
+REPACKAGING A LINUX INSTALL ISO:
+
+# Mount ISO
+mkdir -p /mnt/linux
+mount -o loop /tmp/linux-install.iso /mnt/linux
+
+# Copy contents to a working directory
+cd /mnt/
+tar -cvf - linux | (cd /var/tmp && tar -xf - )
+
+# Make your changes and repackage (on debian use genisoimage). -c passes the name of the file that will be created
+cd /var/tmp/linux
+mkisofs -o ../your-new.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V Your Disk Name Here .
 

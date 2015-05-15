@@ -403,13 +403,20 @@ alias table='column -t -s'
 # Delete specified characters.
 alias trd='tr --delete'
 
-# Change input strings notation from CamelCase to underscore.
+# Change input strings notation from CamelCase to underscore. (all the folowong commands work as pipe filters
 toUnderscore() {
 	cat | sed 's/\([A-Z]\)/_\1/g' | tr [a-z] [A-Z]
 }
+
+# Change input strings notation from CamelCase to underscore.
+toHypenscore() {
+	cat | sed 's/\([A-Z]\)/-\1/g' | tr [A-Z] [a-z] 
+}
+alias decamelize='toHypenscore'
+
 # Vice versa.
 toCamel() {
-	cat | tr [A-Z] [a-z] | sed 's/_\([a-z]\)/\U\1/g'
+	cat | tr [A-Z] [a-z] | sed 's/[_-]\([a-z]\)/\U\1/g'
 }
 
 
@@ -593,19 +600,11 @@ depends() {
 }
 
 # Print installed packages
-alias packages='dpkg --get-selections | grep -v deinstall | catOrLess'
+alias packages1='dpkg --get-selections | grep -v deinstall | catOrLess'
 alias installed='packages'
 
-# Find to which of the installed packages passed command belongs to
-package() {
-	filename=$(readlink -f $(which "$1"))
-	dpkg -S "$filename" 
-}
-
-# Find to which of all the packages the command belongs to
-apt-file1() {
-	apt-file search "$1" | grep \/"$1"$ | catOrLess 
-}
+# Print installed packages withouth dependencies in order of installation
+alias packages='cat /var/log/apt/history.log | grep "apt-get install" | sed "s/.* //" | catOrLessG'
 
 # Apropos.
 aproposM() {
@@ -651,30 +650,98 @@ y() {
 	apropos2G "$@") | less 
 }
 
+# Find to which of the installed packages passed command belongs to
+package() {
+	file=$(sudo which "$1")
+	if [ "$file" == "" ]; then 
+		return
+	fi	
+	resolved=$(readlink -f "$file")
+	dpkg -S "$resolved" 
+}
+
+# Find to which of all the packages the command belongs to
+apt-file1() {
+	apt-file search "$1" | grep \/"$1"$ | catOrLess 
+}
+
+
 alias wi1='whatis'
 # Prints package description. (Few lines)
-whatis1() {
+whatis2() {
 	apt-cache show "$*" | grep "^ " | catOrLess
 }
-alias wi2='whatis1'
+alias wi2='whatis2'
 
 # Searches aliases for name
-whatis2() {
+whatis3() {
 	type "$*" | catOrLess
 }
-alias wi3='whatis2'
+alias wi3='whatis3'
+
+# Searches all packages for file
+whatis4() {
+	package "$@"
+}
+alias wi4='whatis4'
+
+# Searches all packages for file
+whatis5() {
+	apt-file1 "$@"
+}
+alias wi5='whatis5'
+
+# Searches all packages for keyword 
+whatis6() {
+	search "$@"
+}
+alias wi6='whatis6'
+
+# Converts man section number to a description
+manSection() {
+	case "$1" in
+		1)
+			echo "user command"
+			;;
+		2)
+			echo "system call"
+			;;
+		3)
+			echo "c function"
+			;;
+		4)
+			echo "device file"
+			;;
+		5)
+			echo "file format or convention"
+			;;
+		6)
+			echo "game"
+			;;
+		7)
+			echo "miscallaneous"
+			;;
+		8)
+			echo "su command"
+			;;
+		9)
+			echo "kernel routine"
+			;;
+	esac
+}
 
 # Universal command description search function. First tries whatis, then apt-cache show, then type and finally apt-file. When one of them succeeds in finding the description the function returns.
 wi() {
 	call1=`whatis "$@" 2> /dev/null`
 	if [ "$?" == "0" ]; then
 		echo "$call1"
+		package "$@"
 		return
 	fi
 
 	call2=`apt-cache show "$*" 2> /dev/null | grep "^ "`
 	if [ "$?" == "0" ]; then
-		echo "$call2"
+		echo "$call2" | catOrLess
 		return
 	fi
 
@@ -684,10 +751,20 @@ wi() {
 		return
 	fi
 
-	call4=`apt-file1 "$@" | gr "^.*:"`
+	call4=`package "$@"`
 	if [ "$call4" != "" ]; then
-		echo "You need to install one of the following packages to get the file:"
 		echo "$call4"
+		return
+	fi
+
+	call5=`apt-file1 "$@" | gr "^.*:"`
+	if [ "$call5" != "" ]; then
+		echo -e "You need to install one of the following packages to get the command:\n$call5" | catOrLess
+	fi
+
+	call6=`search "$@"`
+	if [ "$call6" != "" ]; then
+		echo  "$call6" | catOrLess
 	fi
 }
 

@@ -22,7 +22,7 @@ sudo apt-get -u dist-upgrade
 sudo yum update
 
 # INSTALL APPS
-sudo apt-get install sudo vim mc git openssh-server(ssh?) nrss nmap wine openjdk-7-jdk vlc htop tree
+sudo apt-get install sudo vim mc git ssh nrss nmap openjdk-7-jdk vlc htop tree
 * FEDORA:
 yum install vim mc git openssh-server nrss nmap wine openjdk-7-jdk
 

@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Usage: install 
+# For use on fresh debian install, that was installed with predefined values (preseeding), specified in preseed.cfg. It alows you to reset username/pasword, sets up git username/email, and basicaly takes care of little anoyances that come with default install.# The usernames/passwords and what specificaly gets set is specified by install.cfg configuration file.  
+
+CONFIG_FILENAME='install.cfg'
+
+# Greps parameters from config file, that belong to the passed group
+getParameters() {
+	cat "$CONFIG_FILENAME" | grep "^$1/" | sed 's/^[^\/]*\///'
+}
+
+# Sets up names and passwords
+users() {
+	usersParams=$(getParameters "users")
+}
+
+
+
+main() {
+	users
+	git
+
+}
+
+main "$@"

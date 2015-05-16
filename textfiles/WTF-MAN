@@ -117,6 +117,8 @@ sudo make install
 GENERAL:
 =======
 
+su - - switch to root
+su - <user> - switch to user
 man [<section-number>] <command> - Section numbers:	1 programs, 2 system calls, 3 library calls, 4 special files, 5 file formats, 7 miscellaneous, 8 system administration commands
 echo -n - no newline at the end
 	 -e - enable interpretation of backslashed letters
@@ -578,7 +580,16 @@ vipw - edit password file
 vigr - edit groups file
 umask -  the umask is a value set by the shell. It controls the default permissions of any file created
 usermod <user> - modify user acount information
+	-l newname oldname
+	-c "new real name" username
+	-d /my/new/home username - change location of the users home
+	-m -d /my/new/home - also move the files
 useradd <user> - add user
+adduser <user> - more high level (use 'adduser <user> sudo' after to add user to sudo group)
+	--system - create system user (can not log in) 
+adduser <user> <group> - add user to group
+userdel -r <user> - remove user and his home dir
+deluser -remove-all-files <user> - more high level, removes also files outside home, cron jobs, itd
 passwd <user> - change password
 
 FILE SYSTEMS:
@@ -827,7 +838,7 @@ ETC ( "Edit To Configure" / "Editable Text Configuration" ):
 /etc/alternatives - links to default application versions (here you can change the default java jdk)
 /etc/issue - name and version of distribution
 /etc/fstab - automatic mounts are handled by configuring the file
-/etc/sudoers - lists of users and the commands they can run with sudo
+/etc/sudoers - lists of users and the commands they can run with sudo (needs to be edited with visudo command)
 /etc/apt/sources.list - list of places where to look for packages
 
 SERVICES:

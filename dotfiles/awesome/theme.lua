@@ -19,6 +19,8 @@ theme.fg_minimize   = "#ffffff"
 theme.border_width  = "1"
 theme.border_normal = "#222222"
 theme.border_focus  = "#535d6c"
+-- a little brighter focus border color
+-- theme.border_focus  = "#FFFF00"
 theme.border_marked = "#91231c"
 
 -- There are other variable sets

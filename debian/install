@@ -10,17 +10,58 @@ getParameters() {
 	cat "$CONFIG_FILENAME" | grep "^$1/" | sed 's/^[^\/]*\///'
 }
 
-# Sets up names and passwords
-users() {
-	usersParams=$(getParameters "users")
+# Greps for single parameter inside the group
+# $1 group
+# $1 parameter
+getParam() {
+	params=$(getParameters "$1")
+	echo "$params" | grep "^$2 " | sed "s/^$2 //"
+}
+
+_git() {
+	params=$(getParameters "git")
+}
+
+_system() {
+	params=$(getParameters "system")
+}
+
+_ssh() {
+	params=$(getParameters "ssh")
+}
+
+_vim() {
+	params=$(getParameters "vim")
+}
+
+_awesome() {
+	params=$(getParameters "awesome")
+}
+
+_lynx() {
+	params=$(getParameters "lynx")
+}
+
+# Create directories in home
+_directories() {
+	param=$(getParam "directories" "create-new-in-home")
+	mkdir $param
+}
+
+_cleanup() {
+	params=$(getParameters "cleanup")
 }
 
 
-
 main() {
-	users
-	git
-
+	_git
+	_system
+	_ssh
+	_vim
+	_awesome
+	_lynx
+	_directories
+	_cleanup
 }
 
 main "$@"

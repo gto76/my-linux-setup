@@ -13,41 +13,39 @@ Main features
 - Will install testing suite (eternal updates)
 - Will create user named "debian" with password "insecure" and set roots password to "r00tme"
 - Beside the standard gnome desktop, the awesome windows manager will be installed
-- Will automatically install and upgrade folowing packages: 
+- Will automatically install and upgrade folowing packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl
 
 After instalation
 -----------------
 1. Go to tty (ctrl + alt + F1)
-2. Login as root:
-	username: root
-	password: r00tme
-3. Change roots password:
-	$ passwd <new-password>
-4. Delete existing user:
-	$ deluser -remove-all-files debian
-5. Add yourself:
-	$ adduser <your-login-name>
-6. Add yourself to sudo group
-	$ adduser <your-login-name> sudo
-7. Log out
-	$ exit
+2. Login as root (password: r00tme)
+3. Change roots password:  
+	`$ passwd <new-password>`
+4. Delete existing user:  
+	`$ deluser -remove-all-files debian`
+5. Add yourself:  
+	`$ adduser <your-login-name>`
+6. Add yourself to sudo group  
+	`$ adduser <your-login-name> sudo`
+7. Log out  
+	`$ exit`
 8. Go to login screen (alt + ctrl + F7), and login to gnome as yourself
 9. Open terminal window (press win button and type terminal)
-10. Download install script and install.cfg conf file.
-	$ wget http://gto76.github.io/my-aliases/debian/install
-	$ wget http://gto76.github.io/my-aliases/debian/install.cfg
-11. Change install.cfg according to your needs
-	$ nano install.cfg
-12. Run install
-	$ bash install
-13. Clone my-aliases git project
-	$ git clone git@github:/gto76/my-aliases.git
-14. Install them 
-	$ cd my-aliases
-	$ ./install
-15. Install Awesome config files
-	$ cd dotfiles/awesome
-	$ ./install
+10. Download `install` script and `install.cfg` conf file.  
+	`$ wget http://gto76.github.io/my-aliases/debian/install`
+	`$ wget http://gto76.github.io/my-aliases/debian/install.cfg`
+11. Change install.cfg according to your needs  
+	`$ nano install.cfg`
+12. Run install  
+	`$ bash install`
+13. Clone my-aliases git project  
+	`$ git clone git@github:/gto76/my-aliases.git`
+14. Install them  
+	`$ cd my-aliases`
+	`$ ./install`
+15. Install Awesome config files  
+	`$ cd dotfiles/awesome`
+	`$ ./install`
 
 Set up remaining things with mouse
 ----------------------------------

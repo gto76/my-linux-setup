@@ -5,6 +5,8 @@
 
 CONFIG_FILENAME='install.cfg'
 
+# UTIL:
+
 # Greps parameters from config file, that belong to the passed group
 getParameters() {
 	cat "$CONFIG_FILENAME" | grep "^$1/" | sed 's/^[^\/]*\///'
@@ -18,38 +20,94 @@ getParam() {
 	echo "$params" | grep "^$2 " | sed "s/^$2 //"
 }
 
+# MAIN:
+
 _git() {
-	params=$(getParameters "git")
+	# Configures Git to use this name by default
+	param=$(getParam "git" "full-name")
+	if [ "$param" != "" ]; then
+		git config --global user.name "$param"
+	fi
+	# Configures Git to use this email by default
+	param=$(getParam "git" "email")
+	if [ "$param" != "" ]; then
+		git config --global user.email "$param"
+	fi
+	# Configures Git to push only current branch by default if simple is selected
+	param=$(getParam "git" "push-default")
+	if [ "$param" != "" ]; then
+		git config --global push.default "$param" 
+	fi
+	# Generates ssh key that will enable you to push to 
+	# github without entering the pasword every time.
+	# Key will be located in ~/.ssh/id_rsa.pub, you will 
+	# have to go to github webpage and paste it at: 
+	#   'acount settings' > 'ssh keys' > 'add ssh key'
+	param=$(getParam "git" "generate-ssh-key")
+	if [ "$param" == "true" ]; then
+		ssh-keygen -t rsa -N "" -f id_rsa	
+		ssh-add ~/.ssh/id_rsa
+		echo "Paste this key at Githubi: 'acount settings' > 'ssh keys' > 'add ssh key'"
+		cat ~/.ssh/id_rsa.pub
+	fi
 }
 
 _system() {
-	params=$(getParameters "system")
-}
-
-_ssh() {
-	params=$(getParameters "ssh")
+	# Disables beeps 
+	param=$(getParam "system" "diable-pc-speaker")
+	if [ "$param" == "true" ]; then
+		sudo rmmod pcspkr
+	fi
+	# Changes the shade of blue in tty
+	param=$(getParam "system" "change-blue-in-tty")
+	if [ "$param" == "true" ]; then
+		echo -en "\e]PC7373C9"
+	fi
 }
 
 _vim() {
-	params=$(getParameters "vim")
+	# Installs vims bundle manager - Vundle
+	param=$(getParam "vim" "install-vundle")
+	if [ "$param" == "true" ]; then
+		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	fi
+	# Installs syntax highlight for scala
+	param=$(getParam "vim" "install-scala-syntax")
+	if [ "$param" == "true" ]; then
+		mkdir -p ~/.vim/{ftdetect,indent,syntax} && for d in ftdetect indent syntax ; do wget --no-check-certificate -O ~/.vim/$d/scala.vim https://raw.githubusercontent.com/scala/scala-dist/master/tool-support/src/vim/$d/scala.vim; done
+	fi
 }
 
 _awesome() {
-	params=$(getParameters "awesome")
+	# Makes Awesome window manager selectable at the login
+	param=$(getParam "awesome" "add-to-login-menu")
+	if [ "$param" == "true" ]; then
+		sudo sh -c "cat /usr/share/xsessions/awesome.desktop | sed 's/NoDisplay=true/NoDisplay=false/' >> /tmp/awesome.desktop; mv /tmp/awesome.desktop /usr/share/xsessions/awesome.desktop"
+	fi
 }
 
 _lynx() {
-	params=$(getParameters "lynx")
+	# Force Lynx to always accept cookies
+	param=$(getParam "lynx" "accept-cookies")
+	if [ "$param" == "true" ]; then
+		sudo sh -c "cat /etc/lynx-cur/lynx.cfg | sed 's/#FORCE_SSL_COOKIES_SECURE.*$/FORCE_SSL_COOKIES_SECURE:TRUE/' | sed 's/#SET_COOKIES.*$/SET_COOKIES:TRUE/' | sed 's/#ACCEPT_ALL_COOKIES.*$/ACCEPT_ALL_COOKIES:TRUE/' >> /tmp/lynx.cfg; mv /tmp/lynx.cfg /etc/lynx-cur/lynx.cfg"
+	fi
 }
 
-# Create directories in home
 _directories() {
+	# Creates custom directories in home
 	param=$(getParam "directories" "create-new-in-home")
-	mkdir $param
+	if [ "$param" != "" ]; then
+		mkdir $param
+	fi
 }
 
 _cleanup() {
-	params=$(getParameters "cleanup")
+	# Removes this script and config file after execution
+	param=$(getParam "cleanup" "remove-after-install")
+	if [ "$param" == "true" ]; then
+		rm install install.cfg
+	fi
 }
 
 

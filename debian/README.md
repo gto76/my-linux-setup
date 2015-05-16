@@ -6,7 +6,7 @@ The preseed.cfg file contains all the data needed for a fresh install of debian 
 `auto url=http://gto76.github.io/my-aliases/debian/preseed.cfg`
 
 !!! WARNING !!!
-Installer will automaticaly partition the hard disk, and hence erase all data. Check the `reseed.cfg`, line 149 for details.
+Installer will automaticaly partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
 
 Main features
 -------------
@@ -20,7 +20,7 @@ After instalation
 1. Go to tty (ctrl + alt + F1)
 2. Login as root (password: r00tme)
 3. Change roots password:  
-	`$ passwd <new-password>`
+	`$ passwd`
 4. Delete existing user:  
 	`$ deluser -remove-all-files debian`
 5. Add yourself:  
@@ -29,22 +29,22 @@ After instalation
 	`$ adduser <your-login-name> sudo`
 7. Log out  
 	`$ exit`
-8. Go to login screen (alt + ctrl + F7), and login to gnome as yourself
+8. Go to login screen (alt + ctrl + F7), click on 'not listed' and login to gnome as yourself
 9. Open terminal window (press win button and type terminal)
-10. Download `install` script and `install.cfg` conf file.  
-	`$ wget http://gto76.github.io/my-aliases/debian/install`
-	`$ wget http://gto76.github.io/my-aliases/debian/install.cfg`
-11. Change install.cfg according to your needs  
+10. Download "_install_" script and "_install.cfg_" conf file.  
+	```$ wget http://gto76.github.io/my-aliases/debian/install  
+	$ wget http://gto76.github.io/my-aliases/debian/install.cfg```
+11. Change "_install.cfg_" according to your needs  
 	`$ nano install.cfg`
 12. Run install  
 	`$ bash install`
 13. Clone my-aliases git project  
 	`$ git clone git@github:/gto76/my-aliases.git`
 14. Install them  
-	`$ cd my-aliases`
+	`$ cd my-aliases`  
 	`$ ./install`
 15. Install Awesome config files  
-	`$ cd dotfiles/awesome`
+	`$ cd dotfiles/awesome`  
 	`$ ./install`
 
 Set up remaining things with mouse

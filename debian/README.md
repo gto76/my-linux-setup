@@ -32,8 +32,8 @@ After instalation
 8. Go to login screen (alt + ctrl + F7), click on 'not listed' and login to gnome as yourself
 9. Open terminal window (press win button and type terminal)
 10. Download "_install_" script and "_install.cfg_" conf file.  
-	```$ wget http://gto76.github.io/my-aliases/debian/install  
-	$ wget http://gto76.github.io/my-aliases/debian/install.cfg```
+	`$ wget http://gto76.github.io/my-aliases/debian/install`  
+	`$ wget http://gto76.github.io/my-aliases/debian/install.cfg`
 11. Change "_install.cfg_" according to your needs  
 	`$ nano install.cfg`
 12. Run install  

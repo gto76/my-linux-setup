@@ -48,8 +48,7 @@ _git() {
 	if [ "$param" == "true" ]; then
 		ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa	
 		ssh-add ~/.ssh/id_rsa
-		cat ~/.ssh/id_rsa.pub
-		MESSAGES="$MESSAGES""Paste this key at Github: 'acount settings' > 'ssh keys' > 'add ssh key'\n$(cat ~/.ssh/id_rsa.pub)"
+		MESSAGES="$MESSAGES""\nPaste this key at Github: 'acount settings' > 'ssh keys' > 'add ssh key'\n$(cat ~/.ssh/id_rsa.pub)"
 	fi
 }
 
@@ -120,7 +119,7 @@ main() {
 	_lynx
 	_directories
 	_cleanup
-	echo "$MESSAGES"
+	echo -e "$MESSAGES"
 }
 
 main "$@"

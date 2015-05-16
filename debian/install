@@ -4,6 +4,7 @@
 # For use on fresh debian install, that was installed with predefined values (preseeding), specified in preseed.cfg. It alows you to reset username/pasword, sets up git username/email, and basicaly takes care of little anoyances that come with default install.# The usernames/passwords and what specificaly gets set is specified by install.cfg configuration file.  
 
 CONFIG_FILENAME='install.cfg'
+MESSAGES=""
 
 # UTIL:
 
@@ -45,10 +46,10 @@ _git() {
 	#   'acount settings' > 'ssh keys' > 'add ssh key'
 	param=$(getParam "git" "generate-ssh-key")
 	if [ "$param" == "true" ]; then
-		ssh-keygen -t rsa -N "" -f id_rsa	
+		ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa	
 		ssh-add ~/.ssh/id_rsa
-		echo "Paste this key at Githubi: 'acount settings' > 'ssh keys' > 'add ssh key'"
 		cat ~/.ssh/id_rsa.pub
+		MESSAGES="$MESSAGES""Paste this key at Github: 'acount settings' > 'ssh keys' > 'add ssh key'\n$(cat ~/.ssh/id_rsa.pub)"
 	fi
 }
 
@@ -74,7 +75,7 @@ _vim() {
 	# Installs syntax highlight for scala
 	param=$(getParam "vim" "install-scala-syntax")
 	if [ "$param" == "true" ]; then
-		mkdir -p ~/.vim/{ftdetect,indent,syntax} && for d in ftdetect indent syntax ; do wget --no-check-certificate -O ~/.vim/$d/scala.vim https://raw.githubusercontent.com/scala/scala-dist/master/tool-support/src/vim/$d/scala.vim; done
+		mkdir -p ~/.vim/{ftdetect,indent,syntax} && for d in ftdetect indent syntax ; do wget --no-check-certificate -O ~/.vim/$d/scala.vim https://raw.githubusercontent.com/scala/scala-tool-support/master/tool-support/vim/$d/scala.vim; done
 	fi
 }
 
@@ -114,12 +115,12 @@ _cleanup() {
 main() {
 	_git
 	_system
-	_ssh
 	_vim
 	_awesome
 	_lynx
 	_directories
 	_cleanup
+	echo "$MESSAGES"
 }
 
 main "$@"

@@ -55,19 +55,39 @@ Set up remaining things with mouse
 ----------------------------------
 
 1. Edit gnome-terminals apperance:
- * Open terminal (win + return)
- * Change background color to black (preferences...)
- * Change colors to ? (preferences...)
- * Disable menu (preferences ...)
+ * Change colors (Edit > Preferences > Profiles > Edit > Colors)
+ 	- Uncheck '_Use colors from system theme_'
+ 	- Select '_White on Black_' scheme for text and background
+ 	- Select '_Tango_' scheme for pallete
+ * Disable menu (View > Show menu bar)  
 
-2. Download chrome:
- * Open snowwheesel? (press: win + r, then type snowwhessel)
- * Go to chrome download site, download and install
- * Download extensions (vimium, addblock plus, hola)
- * Sign in to chrome to get bookmarks
+2. Download chrome:  
+	- `$ iceweasel google.com/chrome`
+	- Select the right version and download (select save file)
+	- Open containing folder, right click, open with > Package Install
+ 	- Download extensions (vimium, addblock plus, hola)
+ 	- Sign in to chrome to get bookmarks (do not rename the bookmarks folders, or they will duplicate on all machines)
 
+ 
+Check out Awesome
+-----------------
+1. Restart (System menu, power button icon, restart)
 
-
+2. Log in to Awesome (select your username and click the options button by the 'Sigh In' and select Awesome from the list)
+	* win + return - terminal
+	* ctrl + alt + c - Chrome
+	* ctrl + alt + h - Nautilus (home)
+	* win + r - Run command (tabs can be used to show suggestions)
+	* win + left mouse button - move window
+	* win + right mouse button - resize window
+	* win + space - change window ordering scheme
+	* win + j/k - jump to next/previous window (also alt + tab)
+	* win + shift + j/k - change windows spot
+	* win + w - close window
+	* ctrl + shift + q - quit Awesome (instantaneous / everything will be lost!)
+	* win + <number> - jump to desktop
+	* win + h/l - resise the main window (works just in some ordering modes)
+	* ctrl + win + r - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case ewerything will be lost -> run `awesome -k` to check if config file is OK.
 	
 
 

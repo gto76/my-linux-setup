@@ -62,6 +62,8 @@ for pair in `echo "$QUAFE" | tr -d '\t' | tr ';' '\n'`; do
 	alias n"$i"="nano $file"
 	# Opens file in vim.
 	alias v"$i"="v $file"
+	# Opens file in vim - read only mode.
+	alias vv"$i"="vv $file"
 	# Opens file in gedit.
 	alias g"$i"="g $file &"
 	# Greps file for passed phrase.

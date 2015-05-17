@@ -275,9 +275,11 @@ alias asci='asciiview'
 alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
 alias resetkeys='resetkey'
 # Display disk space used by a folder or a file in human readable form.
-alias du='du --summarize --human-readable'
+alias du1='du --summarize --human-readable'
 # Set bash to vi mode.
 alias vimode='set -o vi'
+# Set bash to emacs (normal) mode.
+alias emacsmode='set -o emacs'
 # Start a new terminal.
 alias gt='gnome-terminal'
 alias term='gnome-terminal'
@@ -375,13 +377,12 @@ psM() {
 	ps "$@" | catOrLess
 }
 alias ps='psM'
+
 # Print every process on the system.
 alias pse='ps -e | catOrLess'
 alias psa='ps -e | catOrLess'
 alias ps1='ps -e | catOrLess'
 
-alias hib='sudo pm-hibernate'
-alias sus='sudo pm-suspend'
 # Print matching processes and their pids.
 alias pgrep1='pgrep --list-name'
 
@@ -427,6 +428,10 @@ toCamel() {
 # Reset computer
 alias restart='sudo shutdown -r now'
 alias poweroff='sudo shutdown now'
+
+# Hibernate, suspend
+alias hib='sudo pm-hibernate'
+alias sus='sudo pm-suspend'
 
 # Trace system calls and signals. Print strings of maximum 2000 chars, and also trace child processes.
 alias strace1='strace -s 2000 -f'
@@ -556,7 +561,7 @@ mkdir3() {
 }
 alias mk='mkdir3'
 
-# Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seams like playing with fire.
+# Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seems like playing with fire.
 sed1() {
 	input=`cat`
 	echo "$input" | sed "s/$1/$2/" | catOrLess

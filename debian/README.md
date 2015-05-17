@@ -72,7 +72,7 @@ Check out Awesome
 -----------------
 1. Restart (System menu, power button icon, restart)
 
-2. Log in to Awesome (select your username and click the options button by the 'Sigh In' and select Awesome from the list)
+2. Log in to Awesome (select your username and click the options button by the 'Sign In' and select Awesome from the list)
 	* win + return - terminal
 	* ctrl + alt + c - Chrome
 	* ctrl + alt + h - Nautilus (home)
@@ -86,7 +86,8 @@ Check out Awesome
 	* win + m - maximize/restore window (not that useful regarding all the scheme posibilities combined with desktops)
 	* ctrl + shift + q - quit Awesome (instantaneous / everything will be lost!)
 	* win + <number> - jump to desktop
-	* win + h/l - resise the main window (works just in some ordering modes)
+	* win + click on desktop number - move active window to selected desktop
+	* win + h/l - resize the main window (works just in some ordering modes)
 	* ctrl + win + r - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case ewerything will be lost -> run `awesome -k` to check if config file is OK. Config file is located at ~/my-aliases/dotfiles/awesome)
 	
 

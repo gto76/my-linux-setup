@@ -30,7 +30,7 @@ After instalation
 7. Log out  
 	`$ exit`
 8. Go to login screen (alt + ctrl + F7), click on 'not listed' and login to gnome as yourself
-9. Open terminal window (press win button and type terminal)
+9. Open terminal window (press win key and type terminal)
 10. Download "_install_" script and "_install.cfg_" conf file.  
 	`$ wget http://gto76.github.io/my-aliases/debian/install`  
 	`$ wget http://gto76.github.io/my-aliases/debian/install.cfg`
@@ -38,8 +38,12 @@ After instalation
 	`$ nano install.cfg`
 12. Run install  
 	`$ bash install`
+13. If you chose to generate ssh key for git open web browser, then copy it from the terminal, and add it to Github
+	`$ iceweasel github.com`
+	Sign in and go to 'acount settings' > 'ssh keys' > 'add ssh key'
+	Close the browser
 13. Clone my-aliases git project  
-	`$ git clone git@github:/gto76/my-aliases.git`
+	`$ git clone git@github.com:/gto76/my-aliases.git`
 14. Install them  
 	`$ cd my-aliases`  
 	`$ ./install`

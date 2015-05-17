@@ -59,21 +59,21 @@ Set up remaining things with mouse
  	- Uncheck '_Use colors from system theme_'
  	- Select '_White on Black_' scheme for text and background
  	- Select '_Tango_' scheme for palette
- * Disable menu (View > Show menu bar)  
+ * Disable menubar (Edit > Preferences > General)
+ 	- Uncheck '_Show menubar by default in new terminals_'
 
 2. Download Chrome:  
 	- `$ iceweasel google.com/chrome`
 	- Select the right version and download (select save file)
 	- Open containing folder, right click, open with > Package Install
- 	- Download extensions (vimium, addblock plus, hola)
- 	- Sign in to chrome to get bookmarks (do not rename the bookmarks folders, or they will duplicate on all machines)
+ 	- Sign in to chrome to get the bookmarks and extensions (do not rename the bookmarks folders, or they will duplicate on all machines)
 
  
 Check out Awesome
 -----------------
 1. Restart (System menu, power button icon, restart)
 
-2. Log in to Awesome (select your username and click the options button by the 'Sigh In' and select Awesome from the list)
+2. Log in to Awesome (select your username and click the options button by the 'Sign In' and select Awesome from the list)
 	* win + return - terminal
 	* ctrl + alt + c - Chrome
 	* ctrl + alt + h - Nautilus (home)
@@ -84,10 +84,12 @@ Check out Awesome
 	* win + j/k - jump to next/previous window (also alt + tab)
 	* win + shift + j/k - change windows spot
 	* win + w - close window
+	* win + m - maximize/restore window (not that useful regarding all the scheme possibilities combined with desktops)
 	* ctrl + shift + q - quit Awesome (instantaneous / everything will be lost!)
 	* win + <number> - jump to desktop
-	* win + h/l - resise the main window (works just in some ordering modes)
-	* ctrl + win + r - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case ewerything will be lost -> run `awesome -k` to check if config file is OK. Config file is located at ~/my-aliases/dotfiles/awesome)
+	* win + click on desktop number - move active window to selected desktop
+	* win + h/l - resize the main window (works just in some ordering modes)
+	* ctrl + win + r - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case everything will be lost -> run `awesome -k` to check if config file is OK. Config file is located at ~/my-aliases/dotfiles/awesome)
 	
 
 

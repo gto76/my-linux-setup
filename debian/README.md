@@ -111,4 +111,9 @@ folders and have a shared clipboard.
 5. Add yourself to vboxsf group
 	`$ sudo adduser vboxsf
 6. Add the folders you want to share with the clien at 'Devices' > 'Shared Folder Settings'
-6. Log out and log in
+7. Log out and log in
+8. Also shared clipboard can be enabled at 'Devices' > 'Shared
+   Clipboard', and USB devices can be provided at 'Devices' >
+   'USB Debvices'
+
+Now your folders will be accesible at /media/<folder-name>

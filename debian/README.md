@@ -1,21 +1,21 @@
 Debian automatic installation
 =============================
 
-The preseed.cfg file contains all the data needed for a fresh install of debian linux (version jessie), so that it can be installed unatended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
+The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version jessie), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
 
 `auto url=http://gto76.github.io/my-aliases/debian/preseed.cfg`
 
 !!! WARNING !!!
-Installer will automaticaly partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
+Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
 
 Main features
 -------------
 - Will install testing suite (eternal updates)
 - Will create user named "debian" with password "insecure" and set roots password to "r00tme"
 - Beside the standard gnome desktop, the awesome windows manager will be installed
-- Will automatically install and upgrade folowing packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl
+- Will automatically install and upgrade following packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl
 
-After instalation
+After installation
 -----------------
 1. Go to tty (ctrl + alt + F1)
 2. Login as root (password: r00tme)
@@ -54,11 +54,11 @@ After instalation
 Set up remaining things with mouse
 ----------------------------------
 
-1. Edit gnome-terminals apperance:
+1. Edit gnome-terminals appearance:
  * Change colors (Edit > Preferences > Profiles > Edit > Colors)
  	- Uncheck '_Use colors from system theme_'
  	- Select '_White on Black_' scheme for text and background
- 	- Select '_Tango_' scheme for pallete
+ 	- Select '_Tango_' scheme for palette
  * Disable menu (View > Show menu bar)  
 
 2. Download Chrome:  

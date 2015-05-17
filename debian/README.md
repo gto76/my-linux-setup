@@ -61,7 +61,7 @@ Set up remaining things with mouse
  	- Select '_Tango_' scheme for pallete
  * Disable menu (View > Show menu bar)  
 
-2. Download chrome:  
+2. Download Chrome:  
 	- `$ iceweasel google.com/chrome`
 	- Select the right version and download (select save file)
 	- Open containing folder, right click, open with > Package Install
@@ -87,7 +87,7 @@ Check out Awesome
 	* ctrl + shift + q - quit Awesome (instantaneous / everything will be lost!)
 	* win + <number> - jump to desktop
 	* win + h/l - resise the main window (works just in some ordering modes)
-	* ctrl + win + r - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case ewerything will be lost -> run `awesome -k` to check if config file is OK.
+	* ctrl + win + r - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case ewerything will be lost -> run `awesome -k` to check if config file is OK. Config file is located at ~/my-aliases/dotfiles/awesome)
 	
 
 

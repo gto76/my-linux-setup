@@ -63,6 +63,12 @@ _system() {
 	if [ "$param" == "true" ]; then
 		echo -en "\e]PC7373C9"
 	fi
+	# Changes the resolution
+	param=$(getParam "system" "grub-gfxmode")
+	if [ "$param" != "" ]; then
+		# TODO bck?
+		sudo sh -c "cat /etc/default/grub | se"
+	fi
 }
 
 _vim() {
@@ -82,6 +88,7 @@ _awesome() {
 	# Makes Awesome window manager selectable at the login
 	param=$(getParam "awesome" "add-to-login-menu")
 	if [ "$param" == "true" ]; then
+		# TODO bck?
 		sudo sh -c "cat /usr/share/xsessions/awesome.desktop | sed 's/NoDisplay=true/NoDisplay=false/' >> /tmp/awesome.desktop; mv /tmp/awesome.desktop /usr/share/xsessions/awesome.desktop"
 	fi
 }
@@ -90,6 +97,7 @@ _lynx() {
 	# Force Lynx to always accept cookies
 	param=$(getParam "lynx" "accept-cookies")
 	if [ "$param" == "true" ]; then
+		# TODO bck?
 		sudo sh -c "cat /etc/lynx-cur/lynx.cfg | sed 's/#FORCE_SSL_COOKIES_SECURE.*$/FORCE_SSL_COOKIES_SECURE:TRUE/' | sed 's/#SET_COOKIES.*$/SET_COOKIES:TRUE/' | sed 's/#ACCEPT_ALL_COOKIES.*$/ACCEPT_ALL_COOKIES:TRUE/' >> /tmp/lynx.cfg; mv /tmp/lynx.cfg /etc/lynx-cur/lynx.cfg"
 	fi
 }

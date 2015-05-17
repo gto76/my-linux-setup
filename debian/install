@@ -83,7 +83,8 @@ _system() {
 	if [ "$param" != "" ]; then
 		file="/etc/default/grub"
 		backup "$file"
-		sudo sh -c "cat $file | sed 's/#GRUB_GFXMODE.*/GRUB_GFXMODE=""$param""\nGRUB_GFXPAYLOAD_LINUX=keep/' >> tmp/grub; vm /tmp/grub $file"
+		sudo sh -c "cat $file | sed 's/#GRUB_GFXMODE.*/GRUB_GFXMODE=""$param""\nGRUB_GFXPAYLOAD_LINUX=keep/' >> /tmp/grub; mv /tmp/grub $file"
+		sudo update-grub
 	fi
 }
 

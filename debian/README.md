@@ -8,12 +8,14 @@ The preseed.cfg file contains all the data needed for a fresh install of Debian 
 !!! WARNING !!!
 Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
 
+
 Main features
 -------------
 - Will install testing suite (eternal updates)
 - Will create user named "debian" with password "insecure" and set roots password to "r00tme"
 - Beside the standard gnome desktop, the awesome windows manager will be installed
 - Will automatically install and upgrade following packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl
+
 
 After installation
 -----------------
@@ -50,6 +52,7 @@ After installation
 15. Install Awesome config files  
 	`$ cd dotfiles/awesome`  
 	`$ ./install`
+
 
 Set up remaining things with mouse
 ----------------------------------
@@ -92,5 +95,20 @@ Check out Awesome
 	* ctrl + win + r - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case everything will be lost -> run `awesome -k` to check if config file is OK. Config file is located at ~/my-aliases/dotfiles/awesome)
 	
 
+Enabling shared folder on VirtualBox
+------------------------------------
+If you installed Linux on VirtualBox and want to access hosts
+folders and have a shared clipboard.
 
-	
+1. Install required packages with 
+	`$ sudo apt-get install build-essential module-assistant`
+2. Configure your system for building kernel modules by running 
+	`$ sudo m-a prepare`
+3. Click on Install Guest Additions… from the Devices menu, then run 
+	`$ sudo mount /media/cdrom`
+4. Install the additions 
+	`$ sudo bash /media/cdrom/VBoxLinuxAdditions.run`
+5. Add yourself to vboxsf group
+	`$ sudo adduser vboxsf
+6. Add the folders you want to share with the clien at 'Devices' > 'Shared Folder Settings'
+6. Log out and log in

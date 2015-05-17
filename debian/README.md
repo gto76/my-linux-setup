@@ -59,7 +59,8 @@ Set up remaining things with mouse
  	- Uncheck '_Use colors from system theme_'
  	- Select '_White on Black_' scheme for text and background
  	- Select '_Tango_' scheme for pallete
- * Disable menu (View > Show menu bar)  
+ * Disable menubar (Edit > Preferences > General)
+ 	- Uncheck '_Show menubar by default in new terminals_'
 
 2. Download Chrome:  
 	- `$ iceweasel google.com/chrome`

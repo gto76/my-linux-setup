@@ -65,8 +65,7 @@ Set up remaining things with mouse
 	- `$ iceweasel google.com/chrome`
 	- Select the right version and download (select save file)
 	- Open containing folder, right click, open with > Package Install
- 	- Download extensions (vimium, addblock plus, hola)
- 	- Sign in to chrome to get bookmarks (do not rename the bookmarks folders, or they will duplicate on all machines)
+ 	- Sign in to chrome to get the bookmarks and extensions (do not rename the bookmarks folders, or they will duplicate on all machines)
 
  
 Check out Awesome

@@ -84,6 +84,7 @@ Check out Awesome
 	* win + j/k - jump to next/previous window (also alt + tab)
 	* win + shift + j/k - change windows spot
 	* win + w - close window
+	* win + m - maximize/restore window (not that useful regarding all the scheme posibilities combined with desktops)
 	* ctrl + shift + q - quit Awesome (instantaneous / everything will be lost!)
 	* win + <number> - jump to desktop
 	* win + h/l - resise the main window (works just in some ordering modes)

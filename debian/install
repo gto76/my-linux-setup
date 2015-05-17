@@ -1,14 +1,21 @@
 #!/bin/bash
 #
 # Usage: install 
-# For use on fresh debian install, that was installed with predefined values (preseeding), specified in preseed.cfg. It alows you to reset username/pasword, sets up git username/email, and basicaly takes care of little anoyances that come with default install.# The usernames/passwords and what specificaly gets set is specified by install.cfg configuration file.  
+# For use on fresh debian install, that was installed with
+# predefined values (preseeding), specified in preseed.cfg. It
+# alows you to reset username/pasword, sets up git
+# username/email, and basicaly takes care of little anoyances
+# that come with default install.# The usernames/passwords and
+# what specificaly gets set is specified by install.cfg
+# configuration file.  
 
 CONFIG_FILENAME='install.cfg'
 MESSAGES=""
 
 # UTIL:
 
-# Greps parameters from config file, that belong to the passed group
+# Greps parameters from config file, that belong to the passed
+# group
 getParameters() {
 	cat "$CONFIG_FILENAME" | grep "^$1/" | sed 's/^[^\/]*\///'
 }
@@ -20,6 +27,13 @@ getParam() {
 	params=$(getParameters "$1")
 	echo "$params" | grep "^$2 " | sed "s/^$2 //"
 }
+
+# Backs-up the file by making his copy with .bak extension.
+# $1 - filename
+backup() {
+	sudo cp --preserve "$1"{,.bak}
+}
+
 
 # MAIN:
 
@@ -34,7 +48,8 @@ _git() {
 	if [ "$param" != "" ]; then
 		git config --global user.email "$param"
 	fi
-	# Configures Git to push only current branch by default if simple is selected
+	# Configures Git to push only current branch by default if
+	# simple is selected
 	param=$(getParam "git" "push-default")
 	if [ "$param" != "" ]; then
 		git config --global push.default "$param" 
@@ -63,11 +78,12 @@ _system() {
 	if [ "$param" == "true" ]; then
 		echo -en "\e]PC7373C9"
 	fi
-	# Changes the resolution
+	# Changes the resolution of tty
 	param=$(getParam "system" "grub-gfxmode")
 	if [ "$param" != "" ]; then
-		# TODO bck?
-		sudo sh -c "cat /etc/default/grub | se"
+		file="/etc/default/grub"
+		backup "$file"
+		sudo sh -c "cat $file | sed 's/#GRUB_GFXMODE.*/GRUB_GFXMODE=""$param""\nGRUB_GFXPAYLOAD_LINUX=keep/' >> tmp/grub; vm /tmp/grub $file"
 	fi
 }
 
@@ -88,8 +104,9 @@ _awesome() {
 	# Makes Awesome window manager selectable at the login
 	param=$(getParam "awesome" "add-to-login-menu")
 	if [ "$param" == "true" ]; then
-		# TODO bck?
-		sudo sh -c "cat /usr/share/xsessions/awesome.desktop | sed 's/NoDisplay=true/NoDisplay=false/' >> /tmp/awesome.desktop; mv /tmp/awesome.desktop /usr/share/xsessions/awesome.desktop"
+		file="/usr/share/xsessions/awesome.desktop"
+		backup "$file"
+		sudo sh -c "cat $file | sed 's/NoDisplay=true/NoDisplay=false/' >> /tmp/awesome.desktop; mv /tmp/awesome.desktop $file"
 	fi
 }
 
@@ -97,8 +114,9 @@ _lynx() {
 	# Force Lynx to always accept cookies
 	param=$(getParam "lynx" "accept-cookies")
 	if [ "$param" == "true" ]; then
-		# TODO bck?
-		sudo sh -c "cat /etc/lynx-cur/lynx.cfg | sed 's/#FORCE_SSL_COOKIES_SECURE.*$/FORCE_SSL_COOKIES_SECURE:TRUE/' | sed 's/#SET_COOKIES.*$/SET_COOKIES:TRUE/' | sed 's/#ACCEPT_ALL_COOKIES.*$/ACCEPT_ALL_COOKIES:TRUE/' >> /tmp/lynx.cfg; mv /tmp/lynx.cfg /etc/lynx-cur/lynx.cfg"
+		file="/etc/lynx-cur/lynx.cfg"
+		backup "$file"
+		sudo sh -c "cat $file | sed 's/#FORCE_SSL_COOKIES_SECURE.*$/FORCE_SSL_COOKIES_SECURE:TRUE/' | sed 's/#SET_COOKIES.*$/SET_COOKIES:TRUE/' | sed 's/#ACCEPT_ALL_COOKIES.*$/ACCEPT_ALL_COOKIES:TRUE/' >> /tmp/lynx.cfg; mv /tmp/lynx.cfg $file"
 	fi
 }
 
@@ -110,13 +128,6 @@ _directories() {
 	fi
 }
 
-_cleanup() {
-	# Removes this script and config file after execution
-	param=$(getParam "cleanup" "remove-after-install")
-	if [ "$param" == "true" ]; then
-		rm install install.cfg
-	fi
-}
 
 
 main() {
@@ -126,7 +137,6 @@ main() {
 	_awesome
 	_lynx
 	_directories
-	_cleanup
 	echo -e "$MESSAGES"
 }
 

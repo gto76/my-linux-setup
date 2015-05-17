@@ -102,6 +102,13 @@ set timeout timeoutlen=1000 ttimeoutlen=0
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" Set line rewraping to 64 columns
+set tw=64
+" Disable automatic line rewraping
+set fo-=t
+" Disable screen width from overriding tw when being narrower then tw
+set wm=0
+
 " Mouse inside tmux in tty TEST
 "set ttymouse=xterm
 

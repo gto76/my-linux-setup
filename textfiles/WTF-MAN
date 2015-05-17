@@ -1100,9 +1100,14 @@ x,X - delete character/delete back
 ctrl+a, ctrl+x - increment/decrement number under cursor
 
 AUTOMATIC LINEBRAKE:
-:set tw=80 - set text width
-gq - formats selected text
-:set tw=0 - stop formating
+gq - formats selected text 
+gqq - format current line
+:set tw=72 - set text width
+ADVANCED:
+tw=72 fo=cq wm=0 - no automatic wraping, rewraping will wrap to 72
+tw - controls the wrap width you would like to use
+fo - controls whether or not automatic text wrapping is enabled, depending whether or not the t flag is set
+wm - controls when to wrap based on terminal size
 
 COLORSCHEME:
 :colorscheme darkblue, torte - nice, darker

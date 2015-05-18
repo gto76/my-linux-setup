@@ -34,10 +34,21 @@ backup() {
 	sudo cp --preserve "$1"{,.bak}
 }
 
+# Tries to install passed package, if any parameter for it was
+# set in config file (if it is already installed, nothing happens)
+# $1 - package name
+installIfSet() {
+	params=$(getParameters "$1")
+	if [ "$params" != "" ]; then
+		sudo apt-get install --yes "$1"
+	fi
+}
+
 
 # MAIN:
 
 _git() {
+	installIfSet "git"
 	# Configures Git to use this name by default
 	param=$(getParam "git" "full-name")
 	if [ "$param" != "" ]; then
@@ -89,6 +100,7 @@ _system() {
 }
 
 _vim() {
+	installIfSet "vim"
 	# Installs vims bundle manager - Vundle
 	param=$(getParam "vim" "install-vundle")
 	if [ "$param" == "true" ]; then
@@ -102,6 +114,7 @@ _vim() {
 }
 
 _awesome() {
+	installIfSet "awesome"
 	# Makes Awesome window manager selectable at the login
 	param=$(getParam "awesome" "add-to-login-menu")
 	if [ "$param" == "true" ]; then
@@ -112,6 +125,7 @@ _awesome() {
 }
 
 _lynx() {
+	installIfSet "lynx"
 	# Force Lynx to always accept cookies
 	param=$(getParam "lynx" "accept-cookies")
 	if [ "$param" == "true" ]; then

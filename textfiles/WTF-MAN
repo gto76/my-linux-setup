@@ -76,7 +76,10 @@ PACKAGES:
 dpkg -l - lists installed packages
 	-i <package> - install package from a package file (sudo)
 apt - 'skin' for dpkg
-apt-get	update - update local list of existing packages
+apt-get	- top level package manager
+		--yes - answer with 'yes' to most questions (except the ones that can have potentialy harmful consequeces)
+		--force-yes - answer 'yes to all questions (not recommended)
+		update - update local list of existing packages
 		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade). it will intellingently handle changing dependencies with new wersions of packages
 		upgrade - same as dist-upgrade, but will not remove installed packages or install new ones.
 		install <package> - also update single package
@@ -587,7 +590,7 @@ usermod <user> - modify user acount information
 useradd <user> - add user
 adduser <user> - more high level (use 'adduser <user> sudo' after to add user to sudo group)
 	--system - create system user (can not log in) 
-adduser <user> <group> - add user to group (only takes effect at login time!!!)
+adduser <user> <group> - add user to group (only takes effect after login!!!)
 groups <user> - what groups user belongs to
 userdel -r <user> - remove user and his home dir
 deluser -remove-all-files <user> - more high level, removes also files outside home, cron jobs, itd
@@ -891,6 +894,7 @@ VAR - "variable":
 
 BOOT (kernels):
 /boot/grub/menu.lst - grub configuration file
+/etc/default/grub - grub configuration file
 
 
 ###########

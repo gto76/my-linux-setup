@@ -87,7 +87,7 @@ Check out Awesome
 	* win + j/k - jump to next/previous window (also alt + tab)
 	* win + shift + j/k - change windows spot
 	* win + w - close window
-	* win + m - maximize/restore window (not that useful regarding all the scheme possibilities combined with desktops)
+	* win + m - maximize/restore window (not that useful considering there exista a layout sheme that maximizes active window, just win + space to it)
 	* ctrl + shift + q - quit Awesome (instantaneous / everything will be lost!)
 	* win + <number> - jump to desktop
 	* win + click on desktop number - move active window to selected desktop
@@ -98,7 +98,8 @@ Check out Awesome
 Enable shared folders if on VirtualBox
 --------------------------------------
 If you installed Linux on VirtualBox and want to access hosts
-folders and have a shared clipboard.
+folders, have a shared clipboard, want to access usb devices and
+have posibility of resizing window (basically you want this :)
 
 3. Click on 'Devices' > 'Insert Guest Additions CD image...", then run 
 

@@ -78,7 +78,7 @@ _system() {
 	if [ "$param" == "true" ]; then
 		echo -en "\e]PC7373C9"
 	fi
-	# Changes the resolution of tty
+	# Changes the resolution of grub and tty
 	param=$(getParam "system" "grub-gfxmode")
 	if [ "$param" != "" ]; then
 		file="/etc/default/grub"

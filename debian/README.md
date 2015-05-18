@@ -98,7 +98,8 @@ Check out Awesome
 Enabling shared folder on VirtualBox
 ------------------------------------
 If you installed Linux on VirtualBox and want to access hosts
-folders and have a shared clipboard.
+folders, have a shared clipboard, want to access usb devices and
+have posibility of resizing window (basically you want this :)
 
 1. Install required packages with 
 	`$ sudo apt-get install build-essential module-assistant`

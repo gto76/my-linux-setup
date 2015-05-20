@@ -95,7 +95,7 @@ poweroff - Shut down
 * ip1 - Prints your local ip
 * ip2 - Prints your global ip
 * gateway - Prints gateways ip
-* pa -> Ping All - Pings gateway, a webserver with ip, and 'www.google.com'
+* pa -> Ping All - Pings gateway, a webserver with ip, and '_www.google.com_'
 * ne -> Network - Prints ips of network hosts and status of their ssh ports. Also checks if connection to internet works.
 
 * up - turns wireless adapter on

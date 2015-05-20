@@ -1,0 +1,33 @@
+#!/bin/bash
+# Removes all links that were created with install script.
+
+# Removes file if it is a symbolic link
+# $1 - filename
+function removeLink {
+	if test -h "$1"; then
+		rm "$1"
+	fi
+}
+
+function main() {
+	removeLink ~/.my_bashrc 
+	removeLink ~/.my_bash_aliases 
+	removeLink ~/.my_bashrc_personal 
+	removeLink ~/.my_vimrc
+
+	removeLink ~/.vim/colors/github.vim
+	removeLink ~/.vim/colors/diner.vim
+	removeLink ~/.tmux.conf
+	removeLink ~/.Xmodmapus
+	removeLink ~/.Xmodmapusvi
+	removeLink ~/.Xmodmapsi
+	removeLink ~/.Xmodmapsivi
+	removeLink ~/.nrss/config
+
+	removeLink ~/Desktop/WTF-MAN
+	removeLink ~/Desktop/INS 
+	removeLink ~/Desktop/NYK
+}
+
+main "$@"
+

@@ -811,8 +811,8 @@ alias gs='git status -sb'
 alias gl='git log --decorate --graph --all'
 alias gl1="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 alias gl2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
-# Update information about state of the origin.
-alias gu='git remote update'
+# Update information about state of the origin and print status
+alias gu='git remote update; git status -sb'
 alias gd='git diff'
 alias ga='git add'
 alias gm='git mv'

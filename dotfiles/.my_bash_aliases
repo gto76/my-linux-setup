@@ -209,7 +209,7 @@ g() {
 
 # open vim in konsole with light theme
 vvv() { 
-	rb konsole --workdir "$PWD" --hide-menubar --hide-tabbar -e vim -p -c "set background=light" -c "colorscheme diner"  "$@"
+	rb konsole --workdir "$PWD" --hide-menubar --hide-tabbar -e vim -p -c "set background=light" -c "colorscheme github" -c "set fo-=t"  "$@"
 }
 # open vim in console with tab width 2
 vvvv() {
@@ -311,6 +311,11 @@ alias cd-iso='mount-iso'
 # Show processes
 alias ht='htop'
 alias u='htop'
+# Open file with default aplication for the file type
+o() {
+	rb xdg-open "$@"
+}
+alias ty='type'
 
 ########
 # SUDO #
@@ -341,11 +346,14 @@ alias fu='fuck'
 alias f='fuck'
 
 # File manipulation 
-alias srm='sudo rm -i'
-alias srmdir='sudo rm -rI'
 alias scp='sudo cp -iv'
-alias scpdir='sudo cp -arv'
 alias smv='sudo mv -iv'
+alias srm='sudo rm -i'
+
+# Dir manipulation 
+alias scpdir='sudo cp -arv'
+alias smvdir='sudo mv'
+alias srmdir='sudo rm -rI'
 
 # Backup file
 backup() {
@@ -535,7 +543,6 @@ alias run='go run'
 locate1() {
 	locate "$@" | catOrLess
 }
-alias o='locate1'
 
 #FIND
 # Recursively search for files containing pattern in their names.
@@ -590,7 +597,8 @@ alias repeat='xset r'
 alias canhaz='sudo apt-get install'
 alias ch='canhaz'
 alias update='sudo apt-get update'
-alias upgrade='sudo apt-get dist-upgrade'
+alias upgrade='sudo apt-get upgrade'
+alias dist-upgrade='sudo apt-get dist-upgrade'
 alias remove='sudo apt-get remove && autoremove'
 alias purge='sudo apt-get purge && autoremove'
 alias autoremove='sudo apt-get autoremove'
@@ -606,10 +614,10 @@ depends() {
 
 # Print installed packages
 alias packages1='dpkg --get-selections | grep -v deinstall | catOrLess'
-alias installed='packages'
 
-# Print installed packages withouth dependencies in order of installation
+# Print packages that were installed by the user, in order of installation
 alias packages='cat /var/log/apt/history.log | grep "apt-get install" | sed "s/.* //" | catOrLessG'
+alias installed='packages'
 
 # Apropos.
 aproposM() {

@@ -206,6 +206,8 @@ rsync - a fast, versatile, remote (and local) file-copying tool
 cmp - compares two files, similar to diff but also for binaries
 stat -c%X <file> - time of last modification of the file 
 readlink -f - follow link recursively and print files path
+xdg-open <file> - open file with default aplication for the file type
+
 
 ARCHIVES:
 tar	xvzf <file>.tar.gz (.tgz) - decompress and detar
@@ -282,6 +284,7 @@ test <expr> - same as [ <expression> ], returns zero exit status if true.
 let <expr> - executes expression: let a="$b"+2
 
 $(command) - same as `command`
+eval <variable> - execute string as command
 $RANDOM - 0 - 32767
 input=`cat` - getting standard input
 - - in place of a file name means standard in or out
@@ -394,8 +397,9 @@ expand - convert tabs to spaces
 DIFF:
 diff -u <files> - unified format
 diff --brief -r - commpare two directory trees
-comm - compare two sorted files line by line
+colordiff - version of diff with colors
 sdiff - two files side by side
+comm - compare two sorted files line by line
 patch - apply a diff file to original
 	patch < patch.diff - apply patch
 	diff -u <old-file> <new-file> > patch.diff - create patch
@@ -418,7 +422,8 @@ look - display lines beginning with a given string
 strings - print all text parts of binary file
 
 CONVERT:
-enscript - Converts text files to postscript, rtf, HTML
+todos/fromdos - convet line endings form/to windows format (package tofrodos)
+enscript - converts text files to postscript, rtf, HTML
 gs - ghostscript: postscript and PDF language interpreter and previewer
 pdftohtml - pdf to html
 pdftotext - pdf to text

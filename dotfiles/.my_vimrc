@@ -109,6 +109,9 @@ set fo-=t
 " Disable screen width from overriding tw when being narrower then tw
 set wm=0
 
+" Correct the spelling mistakes highlighting (otherwise it can happen to be red on red
+hi SpellBad ctermfg=000 ctermbg=001 
+
 " Mouse inside tmux in tty TEST
 "set ttymouse=xterm
 

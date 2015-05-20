@@ -1,20 +1,30 @@
 Debian automatic installation
 =============================
 
-The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version jessie), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
+The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version [jessie](http://cdimage.debian.org/debian-cd/8.0.0/i386/iso-cd/debian-8.0.0-i386-CD-1.iso)), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
 
-`auto url=http://gto76.github.io/my-aliases/debian/preseed.cfg`
+`auto url=http://gto76.github.io/my-aliases/conf-files/debian/preseed.cfg`
 
 !!! WARNING !!!
 Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
 
 
-Main features
--------------
-- Will install testing suite (eternal updates)
+#### Main features
+- Will upgrade to testing suite (eternal updates)
 - Will create user named "debian" with password "insecure" and set roots password to "r00tme"
-- Beside the standard gnome desktop, the awesome windows manager will be installed
+- Beside the standard gnome desktop, the _Awesome_ windows manager will be installed
 - Will automatically install and upgrade following packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl, build-essential, module-assistant
+
+#### If you want to modify the _preseed.cfg_...
+1. Log in to www.github.com (or create acount)
+2. Go to https://github.com/gto76/my-aliases and clisk '_fork_'
+3. Descent to '_conf-files_' > '_debian_' > '_preseed.cfg_'
+4. Edit the file by clicking on pencil button.
+5. Click '_Commit changes_'
+6. At the start of Debian instalation press _ESC_ and type:
+	`auto url=http://<YOUR-GITHUB-USERNAME>.github.io/my-aliases/conf-files/debian/preseed.cfg`
+
+
 
 If you're installing Debian on virtual machine
 ----------------------------------------------
@@ -134,3 +144,5 @@ have posibility of resizing window (basically you want this :)
    'USB Debvices'
 
 Now your folders will be accesible at /media/<folder-name>
+
+and also check out the [**BASH ALIASES**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/bash)

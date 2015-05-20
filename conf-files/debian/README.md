@@ -16,6 +16,20 @@ Main features
 - Beside the standard gnome desktop, the awesome windows manager will be installed
 - Will automatically install and upgrade following packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl, build-essential, module-assistant
 
+If you're installing Debian on virtual machine
+----------------------------------------------
+1. Download and install '_VirtualBox_' form [here](https://www.virtualbox.org/wiki/Downloads)
+2. Click on '_New_', set type to '_Linux_' and version to '_Debian_'. Choose enough ram (~800MB).
+3. Select '_Create a virutal hard drive now_', '_VDI_', '_Dynamically allocated_'
+4. Select big enough size (~1TB), because it will be very hard to enlarge later (even with GParted).
+5. Click on '_Settings_'.
+5. Set '_General_' > '_Advanced_' > '_Shared Clipboard_' to bidirectional, and deselect '_Mini ToolBar: Show in Fullscreen_'
+6. Increase '_Display_' > '_Video_' > '_Video Memory_' (~40MB)
+7. If you want Debian to be seen on the network by the host, then set '_Network_' > '_Adapter 1_' > '_Attached to:_' to '_Bridged Adapter_'
+8. And lastly add folders that you would like to share with Debian with '_Shared Folders_' > '_+_', and check '_Auto-mount_' for all.
+9. Start the created virtual machine by double clicking on it, and select the Debian iso file when prompted with '_Select start-up disk_'
+10. Follow instructions for automatic instalation from the first paragraph.
+
 
 After installation
 -----------------

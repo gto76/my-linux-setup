@@ -52,7 +52,7 @@ _sharedFolders() {
 		return
 	fi
 
-	read -p "Please select 'Insert Guest Additions CD image...' from 'Devices' menu and press enter."
+	read -p "Please select 'Insert Guest Additions CD image...' from 'Devices' menu and press enter. If after this dialog about autorun appeares, click cancel."
 
 	sudo apt-get install --yes build-essentials module-assistant
 	sudo m-a prepare

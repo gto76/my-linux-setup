@@ -58,7 +58,7 @@ After installation
 	`$ adduser <your-login-name> sudo`
 7. Log out  
 	`$ exit`
-8. Go to login screen (alt + ctrl + F7), click on 'not listed' and login to gnome as yourself
+8. Go to login screen (alt + ctrl + F7), click on 'not listed' and login to _GNOME_ as yourself
 9. Open terminal window (press win key and type terminal)
 10. Download "_install_" script and "_install.cfg_" conf file.  
 	`$ wget http://gto76.github.io/my-aliases/debian/install`  

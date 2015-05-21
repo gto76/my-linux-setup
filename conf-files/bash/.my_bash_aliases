@@ -788,8 +788,12 @@ manSection() {
 wi() {
 	call1=`whatis "$@" 2> /dev/null`
 	if [ "$?" == "0" ]; then
-		sudo echo "$call1"
-		package "$@"
+		while IFS= read -r line; do
+			commandType=$(manSection $(echo "$line" | sed 's/.*(\([1-9]\)).*/\1/'))
+			echo "$line" "($commandType)"
+		done <<< "$call1"
+		echo -n "package: "
+		package "$@" | sed 's/:/\nlocation:/'
 		return
 	fi
 

@@ -1,61 +1,52 @@
 Bash
 ====
 
-ctrl c - cancel job / erase input line
-ctrl+shift c - copy
-ctrl+shift v - pastek
+ctrl c - cancel job / erase input line  
+ctrl+shift c - copy  
+ctrl+shift v - paste  
 
 Cool aliases
 ------------
-Output of most commands is send to pager if it cant fit on one page.
+Output of most commands is send to pager if it cant fit on one page.  
 Values in square brackets are optional, three dots mean there can be more than one.
 
 
 #### General
 
-* c - cat
-* e - echo
+>`c` - cat  
+>`e` - echo  
 
+>`emacsmode` - Switch to normal terminal input mode (my default is vi mode)  
+>`l, ll, lll` - ls and ls -l with some additional options  
+>`t` -> tree - displays file hierarchy
+>`rmdir, cpdir, mvdir` - remove, copy or move directory  
+>`.., ..., ....` - cd .., cd ../.., cd ../../..  
+>`m [FILE]` -  It runs cat or less, depending on wether the input or file can fit on one screen (output of most aliases here get send to this commad at the end)  
+>`n` -> nano - Nano text editor with some additional options  
+>`v` -> vim text editor  
+>`vv` -> vim read only  
+>`vvv` -> vim in separate console, with smaller font and white background  
+>`rb COMMAND` -> runInBackground - Runs a secified command in background  
+>`h [PATTERN]` -> history - Displays past commands, or only ones that contain pattern, if specified  
+>`df1` -> disk free - Prints disks fullnes in human readable format  
+>`o FILE` -> xdg-open - Open file with default aplication for the file type  
 
-* emacsmode - Switch to normal terminal input mode (my default
-is vi mode)
-* l, ll, lll - ls and ls -l with some additional options
-* t - tree with some additional options
-* rmdir, cpdir, mvdir - remove, copy or move directory
-* .., ..., .... - cd .., cd ../.., cd ../../..
-* m -  It runs cat or less, depending on wether the input or file
-can fit on one screen (output of most aliases here get send to
-this commad at the end)
-* n -> nano - Nano text editor with some additional options
-* v -> vim text editor
-* vv -> vim read only
-* vvv -> vim in separate console, with smaller font and white background
-back
-* rb -> runInBackground - Runs a secified command in background
-* h -> history - Displays past commands, or only ones that contain pattern, if specified
-* df1 -> disk free - Prints disks fullnes in human readable
-format
-* o -> xdg-open - Open file with default aplication for the file type
-
-* du1 -> du - Shows disk usage of everything in and under current
-folder or specified folder if passed.
-* na -> nautilus - File explorer
-* te -> terminal - Starts new terminal
-* f -> fuck - Runs last command with sudo
-* v2 -> vim ~/.my_bash_aliases - Opens file that contains this
-aliases for editing
-* n2 -> nano ~/.my_bash_aliases - Same but with Nano
-* backup - Backups file by making its copy with .bkp extension
-* find1 -> find - Searches for file in subdirectories and
-highlights the matches
-* gr PATTERN [FILE...] -> grep - Searches trough specified files for the pattern, using perl regural expressions, and highlights the matches.
-* me FILE - make executable -> Creates empty bash executable
-file, or just makes it executable if already exists.
+>`du1` -> du - Shows disk usage of everything in and under current folder or specified folder if passed.  
+>`na` -> nautilus - File explorer  
+>`te` -> terminal - Starts new terminal  
+>`f` -> fuck - Runs last command with sudo  
+>`v2` -> vim ~/.my_bash_aliases - Opens file that contains this aliases for editing  
+>`n2` -> nano ~/.my_bash_aliases - Same but with Nano  
+>`backup FILE` - Backups file by making its copy with .bkp extension  
+>`find1 [PATTERN]` -> find - Searches for file in subdirectories and highlights the matches  
+>`gr PATTERN [FILE...]` -> grep - Searches trough specified files for the pattern, using perl regural expressions, and highlights the matches.  
+>`me FILE` - make executable -> Creates empty bash executable file, or just makes it executable if already exists.  
+>`ty COMMAND` - type -> Check what the command is aliased to  
 
 ##### Sudo
-* sn - sudo nano
-* srm, scp, smv -> sudo rm/cp/mv
-* srmdir, scpdir, smvdir -> sudo rmdir/cpdir/mvdir
+>`sn` - sudo nano  
+>`srm, scp, smv` -> sudo rm/cp/mv  
+>`srmdir, scpdir, smvdir` -> sudo rmdir/cpdir/mvdir  
 
 #### Packages
 * ch PACKAGE -> canhaz -> apt-get install - Installs desired package
@@ -90,6 +81,7 @@ poweroff - Shut down
 * gl -> git log - Nicely  decorated log with graph on the side
 * gd -> git diff
 * ga FILE... -> git add
+* gu -> git remote update - Pulls info about the state of the remote repo
 
 #### Network
 * ip1 - Prints your local ip

@@ -126,29 +126,3 @@ Check out Awesome
 ---
 and also check out the [**BASH ALIASES**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/bash)	
 
-Enable shared folders if on VirtualBox
---------------------------------------
-If you installed Linux on VirtualBox and want to access hosts
-folders, have a shared clipboard, want to access usb devices and
-have possibility of resizing window (basically you want this :)
-
-3. Click on 'Devices' > 'Insert Guest Additions CD image...", then run 
-
-1. Install required packages with 
-	`$ sudo apt-get install build-essential module-assistant`
-2. Configure your system for building kernel modules by running 
-	`$ sudo m-a prepare`
-	`$ sudo mount /media/cdrom`
-4. Install the additions 
-	`$ sudo bash /media/cdrom/VBoxLinuxAdditions.run`
-5. Add yourself to vboxsf group
-	`$ sudo adduser <user> vboxsf
-7. Log out and log in
-
-6. Add the folders you want to share with the clien at 'Devices' > 'Shared Folder Settings'
-8. Also shared clipboard can be enabled at 'Devices' > 'Shared
-   Clipboard', and USB devices can be provided at 'Devices' >
-   'USB Debvices'
-
-Now your folders will be accessible at /media/<folder-name>
-

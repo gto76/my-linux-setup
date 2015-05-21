@@ -45,7 +45,9 @@ Installer will automatically partition the hard disk, and hence erase all data. 
 After installation
 ------------------
 1. Go to tty (ctrl + alt + F1)
-2. Login as root (password: r00tme)
+2. Login as root:  
+	`debian login: root`  
+	`Password: r00tme`
 3. Change roots password:  
 	`$ passwd`
 4. Delete existing user:  

@@ -67,12 +67,13 @@ After installation
 	`$ nano install.cfg`
 12. Run install  
 	`$ bash install`
-13. If you chose to generate ssh key for git open web browser, then copy it from the terminal, and add it to Github
-	`$ iceweasel github.com`
-	Sign in and go to 'acount settings' > 'ssh keys' > 'add ssh key'
-	Close the browser
-13. Clone my-aliases git project  
-	`$ git clone git@github.com:/gto76/my-aliases.git`
+13. If you chose to generate ssh key for git:  
+	- Copy it from the terminal (ctrl + alt + c)  
+	- Go to Github: `$ iceweasel github.com`  
+	- Sign in and go to 'acount settings' > 'ssh keys' > 'add ssh key'  
+13. Clone my-aliases git project (change 'gto76' with your Git username, if you already forked the project)
+	- If you have ssh key, use: `$ git clone git@github.com:/gto76/my-aliases.git`  
+	- If you don't have it, use: `$ git clone https://github.com/gto76/my-aliases`
 14. Install them  
 	`$ cd my-aliases`  
 	`$ ./install`

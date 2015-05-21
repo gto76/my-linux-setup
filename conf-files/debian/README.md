@@ -1,30 +1,5 @@
-Debian automatic installation
-=============================
-
-The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version [jessie](http://cdimage.debian.org/debian-cd/8.0.0/i386/iso-cd/debian-8.0.0-i386-CD-1.iso)), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
-
-`auto url=http://gto76.github.io/my-aliases/conf-files/debian/preseed.cfg`
-
-!!! WARNING !!!
-Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
-
-
-#### Main features
-- Will upgrade to testing suite (eternal updates)
-- Will create user named "debian" with password "insecure" and set roots password to "r00tme"
-- Beside the standard gnome desktop, the _Awesome_ windows manager will be installed
-- Will automatically install and upgrade following packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl, build-essential, module-assistant
-
-#### If you want to modify the _preseed.cfg_...
-1. Log in to www.github.com (or create acount)
-2. Go to https://github.com/gto76/my-aliases and clisk '_fork_'
-3. Descent to '_conf-files_' > '_debian_' > '_preseed.cfg_'
-4. Edit the file by clicking on pencil button.
-5. Click '_Commit changes_'
-6. At the start of Debian instalation press _ESC_ and type:
-	`auto url=http://<YOUR-GITHUB-USERNAME>.github.io/my-aliases/conf-files/debian/preseed.cfg`
-
-
+Debian - How to Install and Configure 
+=====================================
 
 If you're installing Debian on virtual machine
 ----------------------------------------------
@@ -42,8 +17,33 @@ If you're installing Debian on virtual machine
 10. Follow instructions for automatic installation from the first paragraph.
 
 
+Automatic installation using preseed.cfg
+----------------------------------------
+The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version [jessie](http://cdimage.debian.org/debian-cd/8.0.0/i386/iso-cd/debian-8.0.0-i386-CD-1.iso)), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
+
+`auto url=http://gto76.github.io/my-aliases/conf-files/debian/preseed.cfg`
+
+!!! WARNING !!!
+Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
+
+#### Main features
+- Will upgrade to testing suite (eternal updates)
+- Will create user named "debian" with password "insecure" and set roots password to "r00tme"
+- Beside the standard gnome desktop, the _Awesome_ windows manager will be installed
+- Will automatically install and upgrade following packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl, build-essential, module-assistant
+
+#### If you want to modify the _preseed.cfg_...
+1. Log in to www.github.com (or create acount)
+2. Go to https://github.com/gto76/my-aliases and clisk '_fork_'
+3. Descent to '_conf-files_' > '_debian_' > '_preseed.cfg_'
+4. Edit the file by clicking on pencil button.
+5. Click '_Commit changes_'
+6. At the start of Debian instalation press _ESC_ and type:
+	`auto url=http://<YOUR-GITHUB-USERNAME>.github.io/my-aliases/conf-files/debian/preseed.cfg`
+
+
 After installation
------------------
+------------------
 1. Go to tty (ctrl + alt + F1)
 2. Login as root (password: r00tme)
 3. Change roots password:  
@@ -119,7 +119,9 @@ Check out Awesome
 	* win + click on desktop number - move active window to selected desktop
 	* win + h/l - resize the main window (works just in some ordering modes)
 	* ctrl + win + r - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case everything will be lost -> run `awesome -k` to check if config file is OK. Config file is located at ~/my-aliases/dotfiles/awesome)
-	
+
+---
+and also check out the [**BASH ALIASES**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/bash)	
 
 Enable shared folders if on VirtualBox
 --------------------------------------
@@ -147,4 +149,3 @@ have possibility of resizing window (basically you want this :)
 
 Now your folders will be accessible at /media/<folder-name>
 
-and also check out the [**BASH ALIASES**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/bash)

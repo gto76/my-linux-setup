@@ -63,7 +63,7 @@ After installation
 10. Download "_install_" script and "_install.cfg_" conf file.  
 	`$ wget http://gto76.github.io/my-aliases/conf-files/debian/install`  
 	`$ wget http://gto76.github.io/my-aliases/conf-files/debian/install.cfg`
-11. Change "_install.cfg_" according to your needs (ctrl+o = save, ctrl+x = exit)  
+11. Modify "_install.cfg_" according to your needs (ctrl+o = save, ctrl+x = exit)  
 	`$ nano install.cfg`
 12. Run install  
 	`$ bash install`

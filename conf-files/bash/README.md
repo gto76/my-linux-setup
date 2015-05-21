@@ -7,7 +7,7 @@ ctrl+shift v - paste
 
 Cool aliases
 ------------
-Output of most commands is send to pager if it cant fit on one page.  
+Output of most commands is send to pager if it won't fit on one page.  
 Values in square brackets are optional, three dots mean there can be more than one.
 
 #### General

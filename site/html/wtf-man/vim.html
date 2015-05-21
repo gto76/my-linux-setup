@@ -25,11 +25,11 @@ html {
 <tr><td valign=top><strong>&gt&gt</strong>						</td><td style="width:15px"></td><td>tab line right</td></tr>
 <tr><td valign=top><strong>P</strong>						</td><td style="width:15px"></td><td>paste before cursor</td></tr>
 <tr><td valign=top><strong>x</strong>						</td><td style="width:15px"></td><td>delete character</td></tr>
-<tr><td valign=top><strong>:%s/old/new/gc</strong>						</td><td style="width:15px"></td><td>sed, c means with conformations</td></tr>
 <tr><td valign=top><strong>gF</strong>						</td><td style="width:15px"></td><td>open file under cursor</td></tr>
 <tr><td valign=top><strong>K</strong>						</td><td style="width:15px"></td><td>look up word under cursor in man pages</td></tr>
-<tr><td valign=top><strong>ctrl+v</strong>						</td><td style="width:15px"></td><td>select visual box</td></tr>
+<tr><td valign=top><strong>ctrl+v</strong>						</td><td style="width:15px"></td><td>select visual box (block select)</td></tr>
 <tr><td valign=top><strong>:e</strong>						</td><td style="width:15px"></td><td>reload file</td></tr>
+<tr><td valign=top><strong>:sav</strong>						</td><td style="width:15px"></td><td>save file as and keep new file open (save as)</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Help</h3>
@@ -83,6 +83,7 @@ html {
 <tr><td valign=top><strong>fx,Fx</strong>						</td><td style="width:15px"></td><td>move cursor forward/backward to x on current line</td></tr>
 <tr><td valign=top><strong>tx,Tx</strong>						</td><td style="width:15px"></td><td>same, but to one char before x</td></tr>
 <tr><td valign=top><strong>;/,</strong>						</td><td style="width:15px"></td><td>repeat/reverse last</td></tr>
+<tr><td valign=top><strong>:%s/old/new/gc</strong>						</td><td style="width:15px"></td><td>replace, like sed, c means with conformations</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Marks</h3>
@@ -163,9 +164,16 @@ html {
 </table>
 <h3 align="center">Automatic Linebrake</h3>
 <table>
-<tr><td valign=top><strong>:set tw=80</strong>						</td><td style="width:15px"></td><td>set text width</td></tr>
-<tr><td valign=top><strong>gq</strong>						</td><td style="width:15px"></td><td>formats selected text</td></tr>
-<tr><td valign=top><strong>:set tw=0</strong>						</td><td style="width:15px"></td><td>stop formating</td></tr>
+<tr><td valign=top><strong>gq</strong>						</td><td style="width:15px"></td><td>formats selected text </td></tr>
+<tr><td valign=top><strong>gqq</strong>						</td><td style="width:15px"></td><td>format current line</td></tr>
+<tr><td valign=top><strong>:set tw=72</strong>						</td><td style="width:15px"></td><td>set text width</td></tr>
+</table>
+<h3 align="center">Advanced</h3>
+<table>
+<tr><td valign=top><strong>tw=72 fo=cq wm=0</strong>						</td><td style="width:15px"></td><td>no automatic wraping, rewraping will wrap to 72</td></tr>
+<tr><td valign=top><strong>tw</strong>						</td><td style="width:15px"></td><td>controls the wrap width you would like to use</td></tr>
+<tr><td valign=top><strong>fo</strong>						</td><td style="width:15px"></td><td>controls whether or not automatic text wrapping is enabled, depending whether or not the t flag is set</td></tr>
+<tr><td valign=top><strong>wm</strong>						</td><td style="width:15px"></td><td>controls when to wrap based on terminal size</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Colorscheme</h3>
@@ -204,5 +212,15 @@ html {
 <table>
 <tr><td valign=top><strong>ctrl+n</strong>						</td><td style="width:15px"></td><td>show autocomplete suggestions</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Hexdump</h3>
+<table>
+<tr><td valign=top><strong>:%!xxd</strong>						</td><td style="width:15px"></td><td>convert to hex</td></tr>
+<tr><td valign=top><strong>:%!xxd</strong>						</td><td style="width:15px"></td><td><strong> -r</strong>						 - convert back</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Vundle</h3>
+<table>
+<tr><td valign=top><strong>:PluginInstall</strong>						</td><td style="width:15px"></td><td>install plugins</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table></blockquote>

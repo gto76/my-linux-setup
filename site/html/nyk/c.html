@@ -161,3 +161,99 @@ int printPointerArray(char const <em>keyword[]) {
         printf("%s", *kwp);
     }
 }</p>
+
+<p>==================</p>
+
+<h1>C FOR 21ST CENTURY</h1>
+
+<h4>Tools</h4>
+
+<p>gcc/clang - compiler
+gdb - debuger
+valgrind - memory leak finder
+gprof - profiler
+make
+pkg-config - for finding libraries
+doxygen - for documentation generation</p>
+
+<h4>Libraries</h4>
+
+<p>libcURL
+libGlib
+libGSL
+libSQLite3
+libXML2</p>
+
+<ul>
+<li><p>A program compiled under Cygwin can run on boxes that don't have Cygwin installed if you distribute cygwin1.dll with your code; problem is licence, because then your code has to be under Cygwins licence.</p></li>
+<li><p>If your program doesen't need the POSIX functions (like <code>fork</code> or <code>popen</code>), then you can use MinGW (Minimalist GNU for Windows) -> doesen't need cygwin1.dll, so it compiles to independent windows executable; problem is lack of libraries.</p></li>
+</ul>
+
+<h4>Headers</h4>
+
+<p>Compiler will paste the header file in its place. Header files only contains declarations of functions, and doesent say anything about what it does. That's enough information for the compiler to check the consistency of our usage and produce an object file. It is linker's job to find the apropriate function. (thus you have to add -lm option to the compiler, if you want the linker to link in the math function)</p>
+
+<h4>Useful Flags</h4>
+
+<ul>
+<li>-g - adds symbols for debugging. Withouth it, your debugger won't be able to give you varible of function names (they don't slow down the program)</li>
+<li>-std=gnu11 - specifies that gcc should allow code conforming to the C11 standard; else use -std=gnu99.</li>
+<li>-O3 - optimization level three (if it changes variables too much, when using debuger, set to -O0)</li>
+<li>-Wall - adds compiler warnings.</li>
+</ul>
+
+<h4>Pointers</h4>
+
+<ul>
+<li>When you se *i on a declaration line, it is a pointer to something; when you see *i on a nondeclaration line, it is the pointed-to-value</li>
+</ul>
+
+<h4>Const Keyword</h4>
+
+<ul>
+<li><p>Data that is marked as <code>const</code> under one name can be modified using different name.</p></li>
+<li><p><code>const</code> always refert to the text to its left (just as *). Trick to reading declarations is to read from right to left (but you can switch type name and <code>const</code> if you want(:</p></li>
+</ul>
+
+<p><code>int const</code></p>
+
+<blockquote>
+  <p>A constant integer</p>
+</blockquote>
+
+<p><code>int const *</code></p>
+
+<blockquote>
+  <p>A pointer to constant integer</p>
+</blockquote>
+
+<p><code>int * const</code></p>
+
+<blockquote>
+  <p>A constant pointer to integer</p>
+</blockquote>
+
+<p><code>int * const *</code></p>
+
+<blockquote>
+  <p>A pointer to constant pointer to an integer</p>
+</blockquote>
+
+<p><code>int conts * *</code></p>
+
+<blockquote>
+  <p>A pointer to pointer to constant integer</p>
+</blockquote>
+
+<p><code>int const * const *</code></p>
+
+<blockquote>
+  <p>A pointer to constant pointer to constant integer</p>
+</blockquote>
+
+<ul>
+<li>You can cast constant to a nonconstant if you function doesn't accept constants:</li>
+</ul>
+
+<p><code>int const *b = a;</code>
+<code>funct((int*)b)</code></p>

@@ -43,5 +43,5 @@ while read -r line; do
 	if [[ "$atTitle" == "false" && -n "$filename" ]]; then
 		echo "$line" >> "$DIR_OUT$filename"
 	fi
-done < ../../textfiles/WTF-MAN
+done < ../../text-files/WTF-MAN
 IFS="$SAVE_IFS"

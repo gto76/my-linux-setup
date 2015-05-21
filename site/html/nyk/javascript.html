@@ -1,0 +1,156 @@
+<h1>JAVASCRIPT</h1>
+
+<p>=======</p>
+
+<h1>J-QUERY</h1>
+
+<ul>
+<li>DOM elements selection and manipulation (e.g. all elements with an h1 tag)</li>
+<li>event handling </li>
+<li>AJAX</li>
+<li>animations</li>
+<li>Deferred and Promise objects to control asynchronous processing</li>
+<li>JSON parsing</li>
+<li>Extensibility through plug-ins</li>
+<li>Compatibility methods that are natively available in modern browsers but need fall backs for older ones, such as inArray() and each()</li>
+</ul>
+
+<h2>Usage styles</h2>
+
+<p>jQuery has two usage styles:</p>
+
+<ul>
+<li>Via the $ function, which is a factory method for the jQuery object. These functions, often called commands, are chainable as they all return jQuery objects.</li>
+<li>Via $.-prefixed functions. These are utility functions, which do not act upon the jQuery object directly.</li>
+</ul>
+
+<p>Access to and manipulation of multiple DOM nodes in jQuery typically begins with calling the $ function with a CSS selector string. This returns a jQuery object referencing all the matching elements in the HTML page. $("div.test"), for example, returns a jQuery object with all the div elements of class test. This node set can be manipulated by calling methods on the returned jQuery object or on the nodes themselves.</p>
+
+<h2>Typical start-point</h2>
+
+<p>The typical jQuery usage is to put initialization code and event handling functions in .ready(). This is triggered when the browser has constructed the DOM and sends a load event.</p>
+
+<p>```js</p>
+
+<script type="text/javascript">
+$(document).ready(function(){
+        // jQuery code, event handling callbacks here
+});
+</script>
+
+<p>```</p>
+
+<p>Callback functions for event handling are also included inside .ready() as anonymous functions but called when the event for the callback is triggered. For example, the following jQuery code adds an event handler for a mouse click on an img image element.</p>
+
+<p><code>js
+$(document).ready(function(){
+        $('img').click ( function() { 
+              // handle the click event on any img element in the page
+        });
+});
+</code></p>
+
+<p>The following syntaxes are equivalent:</p>
+
+<p><code>js
+$(document).ready(handler)
+$(handler)
+</code></p>
+
+<h2>Chaining</h2>
+
+<p>Each jQuery command returns a jQuery object, so commands can be chained:</p>
+
+<p><code>js
+$("div.test").add("p.quote").addClass("blue").slideDown("slow");
+</code></p>
+
+<p>This line finds the union of all div tags with class attribute test and all p tags with class attribute quote, adds the class attribute blue to each matched element, and then increases their height with an animation. The $ and add functions affect the matched set, while the addClass and slideDown affect the referenced nodes.</p>
+
+<h2>Creating new DOM elements</h2>
+
+<p>Besides accessing DOM nodes through jQuery object hierarchy, it is also possible to create new DOM elements if a string passed as the argument to $() looks like HTML. For example, this line finds an HTML select element with ID carmakes, and adds an option element with value "VAG" and text "Volkswagen":</p>
+
+<p><code>js
+$('select#carmakes').append($('&lt;option /&gt;').attr({value:"VAG"}).append("Volkswagen"));
+</code></p>
+
+<h2>Utility Functions</h2>
+
+<p>Functions prefixed with $. are utility functions or functions that affect global properties and behaviour. The following, for example, is a function used for iterating over arrays called each in jQuery:</p>
+
+<p><code>js
+$.each([1,2,3], function() {
+  console.log(this + 1);
+});
+</code></p>
+
+<p>This writes "2", "3", "4" to the console.</p>
+
+<h2>AJAX</h2>
+
+<p>It is possible to perform browser-independent Ajax queries using $.ajax and associated methods to load and manipulate remote data.</p>
+
+<p><code>js
+$.ajax({
+  type: "POST",
+  url: "example.php",
+  data: "name=John&amp;location=Boston"
+}).done( function(msg) {
+  alert( "Data Saved: " + msg );
+}).fail( function( xmlHttpRequest, statusText, errorThrown ) {
+  alert(
+    "Your form submission failed.\n\n"
+      + "XML Http Request: " + JSON.stringify( xmlHttpRequest )
+      + ",\nStatus Text: " + statusText
+      + ",\nError Thrown: " + errorThrown );
+});
+</code></p>
+
+<p>This example posts the data name=John and location=Boston to example.php on the server. When this request finishes the success function is called to alert the user. If the request fails it will alert the user to the failure, the status of the request, and the specific error.</p>
+
+<h1>BOOTSRAP</h1>
+
+<ul>
+<li>design templates for typography, forms, buttons, navigation and other interface components</li>
+</ul>
+
+<h1>WEBSOCKET</h1>
+
+<ul>
+<li>alternative to AJAX</li>
+<li>Communication takes place over single TCP socket</li>
+<li>AJAX technologies require a request to be made by the client, whereas WebSocket servers and clients can push each other messages</li>
+</ul>
+
+<h1>SOCKET IO</h1>
+
+<ul>
+<li>runs on top of Websocket if browser supports it,
+otherwise it uses AJAX long polling, or Flash</li>
+<li>also needs socket io on sever side</li>
+</ul>
+
+<p>// Create SocketIO instance, connect
+var socket = new io.Socket('localhost',{
+    port: 8080
+});
+socket.connect(); </p>
+
+<p>// Add a connect listener
+socket.on('connect',function() {
+    console.log('Client has connected to the server!');
+});
+// Add a connect listener
+socket.on('message',function(data) {
+    console.log('Received a message from the server!',data);
+});
+// Add a disconnect listener
+socket.on('disconnect',function() {
+    console.log('The client has disconnected!');
+});</p>
+
+<p>// Sends a message to the server via sockets
+function sendMessageToServer(message) {
+    socket.send(message);
+}</p>

@@ -159,15 +159,25 @@ _directories() {
 	fi
 }
 
+_aptFile() {
+	# Runs apt-file update if apt-file package is installed
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n'  apt-file | grep "install ok installed")
+	if [ "$PKG_OK" != ""  ]; then
+		sudo apt-file update
+	fi
+}
+
 
 
 main() {
+	_sharedFolders
 	_git
 	_system
 	_vim
 	_awesome
 	_lynx
 	_directories
+	_aptFile
 	echo -e "$MESSAGES"
 }
 

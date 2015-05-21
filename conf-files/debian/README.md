@@ -36,9 +36,10 @@ If you're installing Debian on virtual machine
 5. Set '_General_' > '_Advanced_' > '_Shared Clipboard_' to bidirectional, and deselect '_Mini ToolBar: Show in Fullscreen_'
 6. Increase '_Display_' > '_Video_' > '_Video Memory_' (~40MB)
 7. If you want Debian to be seen on the network by the host, then set '_Network_' > '_Adapter 1_' > '_Attached to:_' to '_Bridged Adapter_'
-8. And lastly add folders that you would like to share with Debian with '_Shared Folders_' > '_+_', and check '_Auto-mount_' for all.
+8. Add folders that you would like to share with Debian with '_Shared Folders_' > '_+_', and check '_Auto-mount_' for all.
+9. Select '_View_' > '_Auto resize guest display_'
 9. Start the created virtual machine by double clicking on it, and select the Debian iso file when prompted with '_Select start-up disk_'
-10. Follow instructions for automatic instalation from the first paragraph.
+10. Follow instructions for automatic installation from the first paragraph.
 
 
 After installation
@@ -110,8 +111,9 @@ Check out Awesome
 	* win + space - change window ordering scheme
 	* win + j/k - jump to next/previous window (also alt + tab)
 	* win + shift + j/k - change windows spot
+	* win + ctrl + return - swap focused window with master (the biggest one)
 	* win + w - close window
-	* win + m - maximize/restore window (not that useful considering there exista a layout sheme that maximizes active window, just win + space to it)
+	* win + m - maximize/restore window (not that useful considering there exists a layout scheme that maximizes active window, just win + space to it)
 	* ctrl + shift + q - quit Awesome (instantaneous / everything will be lost!)
 	* win + <number> - jump to desktop
 	* win + click on desktop number - move active window to selected desktop
@@ -123,7 +125,7 @@ Enable shared folders if on VirtualBox
 --------------------------------------
 If you installed Linux on VirtualBox and want to access hosts
 folders, have a shared clipboard, want to access usb devices and
-have posibility of resizing window (basically you want this :)
+have possibility of resizing window (basically you want this :)
 
 3. Click on 'Devices' > 'Insert Guest Additions CD image...", then run 
 
@@ -143,6 +145,6 @@ have posibility of resizing window (basically you want this :)
    Clipboard', and USB devices can be provided at 'Devices' >
    'USB Debvices'
 
-Now your folders will be accesible at /media/<folder-name>
+Now your folders will be accessible at /media/<folder-name>
 
 and also check out the [**BASH ALIASES**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/bash)

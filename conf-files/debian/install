@@ -3,11 +3,10 @@
 # Usage: install 
 # For use on fresh debian install, that was installed with
 # predefined values (preseeding), specified in preseed.cfg. It
-# alows you to reset username/pasword, sets up git
-# username/email, and basicaly takes care of little anoyances
-# that come with default install.# The usernames/passwords and
-# what specificaly gets set is specified by install.cfg
-# configuration file.  
+# alows you to set up gits username/email and basicaly takes
+# care of little anoyances that come with default install. What
+# specificaly gets set is specified by install.cfg configuration
+# file. If package is not installed it gets installed first.
 
 CONFIG_FILENAME='install.cfg'
 MESSAGES=""
@@ -46,6 +45,23 @@ installIfSet() {
 
 
 # MAIN:
+
+_sharedFolders() {
+	param=$(getParam "shared-folders" "enable")
+	if [ "$param" != "true" ]; then
+		return
+	fi
+
+	read -p "Please select 'Insert Guest Additions CD image...' from 'Devices' menu and press enter."
+
+	sudo apt-get install --yes build-essentials module-assistant
+	sudo m-a prepare
+	sudo mount /media/cdrom
+	sudo bash /media/cdrom/VBoxLinuxAdditions.run
+	sudo adduser $(whoami) vboxsf
+
+	MESSAGES="$MESSAGES""For shared folders to work please log out/log in. They will be located in /media folder.\n"
+}
 
 _git() {
 	installIfSet "git"

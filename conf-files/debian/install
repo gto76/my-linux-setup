@@ -113,6 +113,11 @@ _system() {
 		sudo sh -c "cat $file | sed 's/#GRUB_GFXMODE.*/GRUB_GFXMODE=""$param""\nGRUB_GFXPAYLOAD_LINUX=keep/' >> /tmp/grub; mv /tmp/grub $file"
 		sudo update-grub
 	fi
+	# Changes timezne
+	param=$(getParam "system" "timezone")
+	if [ "$param" != "" ]; then
+		timedatectl set-timezone "$param"
+	fi
 }
 
 _vim() {

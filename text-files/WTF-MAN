@@ -144,6 +144,9 @@ gcc - gnu c compiler
 	-a shows all sections
 run-parts - run all scripts or programs in a directory
 date - tells you date and time, also can set
+	-s <string> - set date
+	+%T -s "10:13:13" - set time
+timedatectl set-timezone CET - sets timezone
 cal - calendar
 xclip - copies to clipboard
 mkfifo <pipe> - creates named pipe during that shell session.

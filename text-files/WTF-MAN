@@ -304,6 +304,7 @@ getopts - parse parameters/arguments, builtin
 getopt - GNU version is even better then getopts, not a builtin
 while read line; do <commands>; done < <file> - read from file line by line
 	-r - do not treat backslashes as escape characters
+set -e - exit if any command fails
 
 HISTORY:
 

@@ -525,6 +525,8 @@ createExecutable() {
 		echo "# Usage: $1 " >> "$1"
 		echo '# ' >> "$1"
 		echo >> "$1"
+		echo '# set -e' >> "$1"
+		echo >> "$1"
 	fi
 	chmod u+x "$1"        
 }
@@ -863,6 +865,7 @@ alias ga='git add'
 alias gm='git mv'
 alias gll='git ls-files'
 alias gb='git branch'
+alias gc='git checkout'
 
 # Add to github (first create remote repository on website,
 # init local repo and add files to it):

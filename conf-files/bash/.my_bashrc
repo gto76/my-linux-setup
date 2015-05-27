@@ -96,6 +96,6 @@ cc1() {
 		if [ "$PRINT_LINE" == "true" ]; then
 			echo "$line" | expand -t 4
 		fi  
-	done <<< "$text"
+	done <<< "$text" | m
 }
 

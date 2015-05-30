@@ -1,4 +1,4 @@
-Debian - How to Install and Configure 
+Debian Linux - How to Install and Configure 
 =====================================
 
 If you're installing Debian on virtual machine
@@ -13,8 +13,7 @@ If you're installing Debian on virtual machine
 7. If you want Debian to be seen on the network by the host, then set '_Network_' > '_Adapter 1_' > '_Attached to:_' to '_Bridged Adapter_'
 8. Add folders that you would like to share with Debian with '_Shared Folders_' > '_+_', and check '_Auto-mount_' for all.
 9. Select '_View_' > '_Auto resize guest display_'
-9. Start the created virtual machine by double clicking on it, and select the Debian iso file when prompted with '_Select start-up disk_'
-10. Follow instructions for automatic installation from the first paragraph.
+9. Start the created virtual machine by double clicking on it, and select the Debian ISO file when prompted with '_Select start-up disk_'
 
 
 Automatic installation using preseed.cfg
@@ -23,7 +22,7 @@ The preseed.cfg file contains all the data needed for a fresh install of Debian 
 
 `auto url=http://gto76.github.io/my-aliases/conf-files/debian/preseed.cfg`
 
-!!! WARNING !!!
+**!!! WARNING !!!**  
 Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
 
 #### Main features
@@ -58,7 +57,7 @@ After installation
 	`$ adduser <your-login-name> sudo`
 7. Log out  
 	`$ exit`
-8. Go to login screen (alt + ctrl + F7), click on 'not listed' and login to _GNOME_ as yourself
+8. Go to login screen (alt + ctrl + F7), click on _'not listed'_ and login to _GNOME_ as yourself
 9. Open terminal window (press win key and type terminal)
 10. Download "_install_" script and "_install.cfg_" conf file.  
 	`$ wget http://gto76.github.io/my-aliases/conf-files/debian/install`  

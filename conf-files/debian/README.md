@@ -1,8 +1,8 @@
 Debian Linux - How to Install and Configure 
 =====================================
 
-If you're installing Debian on virtual machine
-----------------------------------------------
+If you're installing Debian on VirtualBox
+-----------------------------------------
 1. Download and install '_VirtualBox_' form [here](https://www.virtualbox.org/wiki/Downloads)
 2. Click on '_New_', set type to '_Linux_' and version to '_Debian_'. Choose enough ram (~800MB).
 3. Select '_Create a virutal hard drive now_', '_VDI_', '_Dynamically allocated_'

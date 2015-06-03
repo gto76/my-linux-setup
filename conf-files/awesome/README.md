@@ -11,7 +11,7 @@ The two configuration files don't change much besides providing a few additional
 * `win return` - terminal
 * `ctrl+alt c` - Chrome
 * `ctrl+alt h` - Nautilus (home)
-* `win r` - Run command (tab can be used to show suggestions)  
+* `win r` - Run command (tab can be used to cycle through the offered completions)  
 * `win + left mouse button` - move window  
 * `win + right mouse button` - resize window  
 * `win space` - change window ordering scheme  

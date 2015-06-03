@@ -107,4 +107,5 @@ Check out [Awesome Window Manager](https://github.com/gto76/my-aliases/tree/gh-p
 
 Check out [**Terminal Commands**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/bash)	
 -----------------
+By installing *my-aliases* project you get a ton of additional terminal commands, most of which are a standard command with abrevirated name or a *1* added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesen't fit the screen.
 

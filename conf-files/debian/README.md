@@ -13,8 +13,12 @@ If you're installing Debian on virtual machine
 7. If you want Debian to be seen on the network by the host, then set '_Network_' > '_Adapter 1_' > '_Attached to:_' to '_Bridged Adapter_'
 8. Add folders that you would like to share with Debian with '_Shared Folders_' > '_+_', and check '_Auto-mount_' for all.
 9. Select '_View_' > '_Auto resize guest display_'
-9. Start the created virtual machine by double clicking on it, and select the Debian ISO file when prompted with '_Select start-up disk_'
-
+9. Start the created virtual machine by double clicking on it, and select the Debian ISO file when prompted with '_Select start-up disk_'  
+10. (optional) Change guest clock synchronization to 1 second:   
+ > ```
+	$ cd "c:\Program Files\Oracle\VirtualBox"
+	$ VBoxManage.exe guestproperty set <vm-name> "/VirtualBox/GuestAdd/VBoxService/--timesync-set-treshold" 1000
+```
 
 Automatic installation using preseed.cfg
 ----------------------------------------

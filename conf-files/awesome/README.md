@@ -1,9 +1,9 @@
 Awesome Window Manager
 ======================
-Awesome is lightweight window manager for linux. It does not have any *own* apps like a file explorer, terminal or options pannel, so to use those you need a Gnome or some other proper desktop environment installed besides Awesome. It is however extremly lightweight, what comes very handy on older machines or virual boxes.
+Awesome is lightweight window manager for Linux. It does not have any *own* apps like a file explorer, terminal or options pannel, so to use those you need a Gnome or some other proper desktop environment installed besides Awesome. It is however extremly lightweight, what comes very handy on older machines or virual boxes.
 But its main strength is that it eradicates the need for mouse for window management. But note that if you use it on laptop that media buttons wont work, and that there will be no wireless network finder or battery status widgets, so you will have to find those on the internets (of course if you run it inside virtual machine on the laptop, there is no need for these, because the host system provides them).
 
-![screenshot](doc/awesome-screensot.png)
+![screenshot](/doc/awesome-screenshot.png)
 
 This folder contains *Awesome* configuration files `rc.lua`, `theme.lua`, a bacground wallpaper, and a `install` and `unistall` bash scripts, that make a link to the files from locations where these files ought to be.
 The twoo config files don't change much except they add a few additional keyboard shortcuts. Here they are listed together with the standard ones:  

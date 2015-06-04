@@ -339,6 +339,9 @@ o() {
 	rb xdg-open "$@"
 }
 alias ty='type'
+diff1() {
+	colordiff "$@" | catOrLess
+}
 
 ########
 # SUDO #
@@ -415,7 +418,9 @@ alias psa='ps -e | catOrLess'
 alias ps1='ps -e | catOrLess'
 
 # Print matching processes and their pids.
-alias pgrep1='pgrep --list-name'
+pgrep1() {
+	pgrep --list-name "$@" | catOrLess
+}
 
 
 ########
@@ -853,7 +858,7 @@ clone() {
 	git clone git@github.com:/"$1".git
 }
 
-alias gs='git status -sb'
+alias gs='git -c color.status=always status -sb | catOrLess'
 # Nicely decorated graph of commits
 alias gl='git log --decorate --graph --all'
 alias gl1="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"

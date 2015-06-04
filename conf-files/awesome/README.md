@@ -1,7 +1,7 @@
 Awesome Window Manager
 ======================
 Awesome is lightweight window manager for Linux. It does not have any *own* apps like a file explorer, terminal or options panel, so to use those you need a Gnome or some other proper desktop environment installed besides Awesome. It is however extremely lightweight, what comes very handy on older machines or virtual boxes.
-But its main strength is that it eradicates the need for mouse for window management. But note that if you use it on laptop that media buttons wont work, and that there will be no wireless network finder or battery status widgets, so you will have to find those on the internets (of course if you run it inside virtual machine on the laptop, there is no need for these, because the host system provides them).
+But its main strength is that it eradicates the need for mouse for window management. However if you plan to use it on laptop, note that by default there is no media buttons support, nor are there wireless network or battery status widgets, so you will have to find those on the internets (of course if you plan to run it inside virtual machine on the laptop, there is no need for these, because the host system will provide them).
 
 ![screenshot](/doc/awesome-screenshot.png)
 

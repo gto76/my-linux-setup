@@ -30,7 +30,7 @@ function createLink {
 }
 
 # create links to dotfiles
-cd conf-files
+cd conf-files/linux
 (cd bash
 createLink ~ .my_bashrc
 createLink ~ .my_bash_aliases
@@ -49,7 +49,7 @@ createLink ~ .Xmodmapsi
 createLink ~ .Xmodmapsivi)
 (cd nrss/.nrss 
 createLink ~/.nrss config)
-cd ..
+cd ../..
 # create links to textfiles
 cd text-files
 createLink ~/Desktop WTF-MAN

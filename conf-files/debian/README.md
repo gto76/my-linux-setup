@@ -15,7 +15,7 @@ If you're installing Debian on VirtualBox
 9. Select '_View_' > '_Auto resize guest display_'
 9. Start the created virtual machine by double clicking on it, and select the Debian ISO file when prompted with '_Select start-up disk_'  
 10. (optional) Change guest clock synchronization to 1 second:   
- > ```
+```
 	$ cd "c:\Program Files\Oracle\VirtualBox"
 	$ VBoxManage.exe guestproperty set <vm-name> "/VirtualBox/GuestAdd/VBoxService/--timesync-set-treshold" 1000
 ```

@@ -4,19 +4,27 @@ My Linux config files, three handy text files, and an install script to put them
 
 Text Files
 ----------
-Texfiles with notes about various linux commands,
-configurations, tools, etc.
-For details see [**text-files**](text-files)
+Texfiles with notes about various linux commands, configurations, tools, etc.
+For details click [**HERE**](text-files)
 
 Configuration Files
 ------------
 They are grouped by the target operating system.
-Main group is inteded for standard linux distributions: [**conf-files/linux**](conf-files/linux)
 
 #### Linux
-conf-files/linux/awesome
-conf-files/linux/bash
-conf-files/linux/xmodmap
+This folder contains files that work with standard linux distributions. They configure folowing programs:
+* Awesome - a window manager. For details click [**HERE**](/conf-files/linux/awesome)
+* Bash - main Linux shell (programm that interprets what you type in terminal). For details click [**HERE**](/conf-files/linux/bash)
+* Nrss - rss feed reader
+* Tmux - terminal multiplexer (program that lets you use multiple terminals inside one, useful when connecting to other computer using *ssh*)
+* Vim - The text editor
+* Xmodmap - programm that modifies keyboard mapings. For details click [**HERE**](/conf-files/linux/xmodmap) 
+
+
+
+
+Main group is inteded for standard linux distributions: [**conf-files/linux**](conf-files/linux)
+
 
 #### Busybox
 Configuration files intended for systems providing only a slimmed down collection of linux commands, called Busybox.

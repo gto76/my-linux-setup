@@ -1,5 +1,5 @@
-Bash
-====
+My Bash Configuration
+=====================
 
 ctrl c - cancel job / erase input line  
 ctrl+shift c - copy  

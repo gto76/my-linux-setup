@@ -2,6 +2,34 @@ My Aliases
 ==========
 My Linux config files, three handy text files, and an install script to put them all in a right place.
 
+Text Files
+----------
+Texfiles with notes about various linux commands,
+configurations, tools, etc.
+For details see [**text-files**](text-files)
+
+Configuration Files
+------------
+They are grouped by the target operating system.
+Main group is inteded for standard linux distributions: [**conf-files/linux**](conf-files/linux)
+
+#### Linux
+conf-files/linux/awesome
+conf-files/linux/bash
+conf-files/linux/xmodmap
+
+#### Busybox
+Configuration files intended for systems providing only a slimmed down collection of linux commands, called Busybox.
+
+#### Windows
+These files are used by shell programms that are made to simulate a linux environment on windows, like *Git Shell*. Only file that actualy effects windows is *AutoHotkey.ahk*; a config file for *AutoHotkey* program that enabels you to set system wide keyboard shortcuts.  
+
+#### Debian
+These files are intendet to avtomatize the Debian Linux installation. 
+For details see [**README**](conf-files/debian)
+
+
+
 Quick overview
 --------------
 

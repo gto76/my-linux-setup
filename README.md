@@ -1,7 +1,6 @@
 My Aliases
 ==========
 My Linux config files, three handy text files, and an install script to put them all in a right place.
-There is also a [website] (http://gto76.github.io/my-aliases/index.html) generated from the text files.
 
 Quick overview
 --------------

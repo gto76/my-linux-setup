@@ -69,3 +69,6 @@ if [[ -z `grep "so ~/.my_vimrc" ~/.vimrc` ]]; then
 	echo "so ~/.my_vimrc" >> ~/.vimrc
 fi
 
+# Install Vundle - vim plugin manager
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+

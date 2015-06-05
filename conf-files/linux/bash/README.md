@@ -3,7 +3,7 @@ Bash
 
 ctrl c - cancel job / erase input line  
 ctrl+shift c - copy  
-ctrl+shift v - paste  
+ctrl+shift v - paste 
 
 Cool aliases
 ------------
@@ -19,7 +19,7 @@ Values in square brackets are optional, three dots mean there can be more than o
 >`t` ⇾  tree - displays file hierarchy  
 >`rmdir, cpdir, mvdir` - remove, copy or move directory  
 >`.., ..., ....` - cd .., cd ../.., cd ../../..  
->`m [FILE]` -  It runs cat or less, depending on wether the input or file can fit on one screen (output of most aliases here get send to this commad at the end)  
+>`m [FILE]` or `cat [FILE] | m` -  It runs cat (just prints the file) or less (opens file in a pager), depending on wether the input or file can fit on one screen (output of most aliases here get send to this commad at the end)  
 >`n` ⇾ nano - Nano text editor with some additional options  
 >`v` ⇾ vim text editor  
 >`vv` ⇾ vim read only  
@@ -75,18 +75,25 @@ Values in square brackets are optional, three dots mean there can be more than o
 >`gs` ⇾ git status - Shows status in short format  
 >`gl` ⇾ git log - Nicely  decorated log with graph on the side  
 >`gd` ⇾ git diff  
->`ga FILE...` ⇾ git add  
->`gu` ⇾ git remote update - Pulls info about the state of the remote repo  
+>`ga FILE...` ⇾ `git add  
+>`gu` ⇾ `git remote update`- Pulls info about the state of the remote repo  
 
 #### Network
 >`ip1` - Prints your local ip  
 >`ip2` - Prints your global ip  
 >`gateway` - Prints gateways ip  
->`pa` ⇾ Ping All - Pings gateway, a webserver with ip, and '_www.google.com_'  
->`ne` ⇾ Network - Prints ips of network hosts and status of their ssh ports. Also checks if connection to internet works.  
+>`pa` ⇾ `pingAll` - Pings gateway, a webserver with ip, and '_www.google.com_'  
+>`ne` ⇾ `network` - Prints ips of network hosts and status of their ssh ports. Also checks if connection to internet works.  
 
 >`up` - turns wireless adapter on  
 >`down` - turns wireless adapter off  
+
+#### Misc
+>`teaceroute1 IP/DOMAIN` - Prints country codes of hosts on path.
+>`www` - Traceroutes one server per country, prints country codes of hosts on path. 
+>`spilej PATTERN` - Plays an artist/song/album. First looks in current directory, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems with downloading from youtube occur at search phase.
+>`gi PATTERN` - Downloads small image of a phrase from Google images.
+
 
 
 

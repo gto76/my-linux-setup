@@ -42,10 +42,10 @@ Values in square brackets are optional, three dots mean there can be more than o
 >`ty COMMAND` ⇾ `type COMMAND` - Check what the command is aliased to  
 
 #### Sudo
->`sn FILE` ⇾ `sudo nano FILE` - opens file in nano text editor with superuser privilages
->`sv FILE` ⇾ `sudo vim FILE` - opens file in vim with superuser privilages
->`srm/scp/smv FILE` ⇾ `sudo rm/cp/mv FILE` - deletes/copies/moves file with superuser privilages
->`srmdir/scpdir/smvdir DIR` ⇾ `sudo rmdir/cpdir/mvdir DIR` - deletes/copies/moves a directory with superuser privilages
+>`sn FILE` ⇾ `sudo nano FILE` - opens file in nano text editor with superuser privilages  
+>`sv FILE` ⇾ `sudo vim FILE` - opens file in vim with superuser privilages  
+>`srm/scp/smv FILE` ⇾ `sudo rm/cp/mv FILE` - deletes/copies/moves file with superuser privilages  
+>`srmdir/scpdir/smvdir DIR` ⇾ `sudo rmdir/cpdir/mvdir DIR` - deletes/copies/moves a directory with superuser privilages  
 
 #### Packages
 >`ch PACKAGE` ⇾ `canhaz PACKAGE` ⇾ `apt-get install PACKAGE`- Installs desired package  

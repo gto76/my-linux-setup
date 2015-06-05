@@ -89,10 +89,10 @@ Values in square brackets are optional, three dots mean there can be more than o
 >`down` - turns wireless adapter off  
 
 #### Misc
->`teaceroute1 IP/DOMAIN` - Prints country codes of hosts on path.
->`www` - Traceroutes one server per country, prints country codes of hosts on path. 
->`spilej PATTERN` - Plays an artist/song/album. First looks in current directory, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems with downloading from youtube occur at search phase.
->`gi PATTERN` - Downloads small image of a phrase from Google images.
+`teaceroute1 IP/DOMAIN` - Prints country codes of hosts on path.  
+`www` - Traceroutes one server per country, prints country codes of hosts on path.   
+`spilej PATTERN` - Plays an artist/song/album. First looks in current directory, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems with downloading from youtube occur at search phase.  
+`gi PATTERN` - Downloads small image of a phrase from Google images.  
 
 
 

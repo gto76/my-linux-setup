@@ -188,7 +188,7 @@ alias t1='tree2'
 ##########
 
 # Make some possibly destructive commands more interactive.
-alias rmdir='rm -rI'
+alias rmdir='rm -rf'
 alias rmd='rmdir'
 alias cpdir='cp -arv'
 alias rm='rm -i'

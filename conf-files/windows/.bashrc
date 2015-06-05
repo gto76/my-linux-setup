@@ -17,11 +17,11 @@ set -o vi
 ###################################################
 
 # Location of text file with useful unix command descriptions.
-export MAN="$HOME/my-aliases/textfiles/WTF-MAN"
+export MAN="$HOME/my-linux-setup/textfiles/WTF-MAN"
 # Location of text file with general configuration and instalation instructions.
-export INS="$HOME/my-aliases/textfiles/INS"
+export INS="$HOME/my-linux-setup/textfiles/INS"
 # Location of TOD0 text file.
-export NYK="$HOME/my-aliases/textfiles/NYK"
+export NYK="$HOME/my-linux-setup/textfiles/NYK"
 
 # Quick access files enumeration
 QUAFE="1:$MAN;\

@@ -24,5 +24,5 @@ The two configuration files don't change much besides providing a few additional
 * `win <number>` - jump to desktop  
 * `win click-on-desktop-number` - move active window to selected desktop  
 * `win h/l` - resize the main window (works just in some ordering modes)  
-* `ctrl+win r` - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case everything will be lost -> run `awesome -k` to check if config file is OK. Config file is located at ~/my-aliases/dotfiles/awesome)  
+* `ctrl+win r` - reload Awesome configuration file (instantaneous / everything will stay as is, unless there is an syntax error in config file in which case everything will be lost -> run `awesome -k` to check if config file is OK. Config file is located at ~/my-linux-setup/dotfiles/awesome)  
 	

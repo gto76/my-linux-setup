@@ -35,8 +35,8 @@ How to install
 
 ```bash
 cd
-git clone https://github.com/gto76/my-aliases.git
-cd my-aliases
+git clone https://github.com/gto76/my-linux-setup.git
+cd my-linux-setup 
 ./install-linux
 bash
 ```

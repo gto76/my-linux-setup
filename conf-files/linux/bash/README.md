@@ -19,17 +19,17 @@ Values in square brackets are optional. Three dots after the value mean there ca
 >`t` ⇾  `tree` - Displays file hierarchy in a tree view  
 >`rmdir, cpdir, mvdir` - Delete, copy or move directory  
 >`.., ..., ....` ⇾  `cd .., cd ../.., cd ../../..`   
->`m [FILE]` or `cat [FILE] | m` -  It runs cat (just prints the file) or less (opens file in a pager), depending on wether the input or file can fit on one screen (output of most aliases here get send to this commad at the end)  
+>`m [FILE]` or `cat [FILE] | m` -  It runs *cat* (just prints the file) or *less* (opens file in a pager), depending on wether the input or file can fit on one screen (output of most commands described here get send to this commad at the end)  
 >`n [FILE]` ⇾ `nano` text editor with some additional options  
 >`v [FILE]` ⇾ `vim` text editor  
->`vv [FILE]` ⇾ `vim` read only mode   
+>`vv [FILE]` ⇾ `vim` in read only mode   
 >`vvv [FILE]` ⇾ `vim` in separate console, with smaller font and white background  
->`rb COMMAND` ⇾ `runInBackground` - Runs a secified command in background  
+>`rb COMMAND` ⇾ `runInBackground` - Runs a specified command in background  
 >`h [PATTERN]` ⇾ `history` - Displays past commands, or only ones that contain pattern, if specified  
->`df1` ⇾ `disk free` - Prints disks fullnes in human readable format  
+>`df1` ⇾ `disk fullnes` - Prints disks space usage in human readable format  
 >`o FILE` ⇾ `xdg-open` - Open file with default aplication for the file type  
 
->`du1 [FILE...]` ⇾ `du ...` - Shows disk usage of everything in and under current folder or specified folder if passed.  
+>`du1 [FILE...]` ⇾ `du ...` - Shows file space usage of all files in and under current folder or specified folder if passed.  
 >`na` ⇾ `nautilus` - Opens File explorer in background  
 >`te` ⇾ `terminal`  - Starts new terminal in background  
 >`f` ⇾ `fuck` - Runs last command with sudo  

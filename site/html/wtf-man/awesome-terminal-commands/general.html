@@ -12,6 +12,8 @@ html {
 </a>
 <h2>General Unix Commands</h2>
 <blockquote><table>
+<tr><td valign=top><strong>su</strong>						</td><td style="width:15px"></td><td>- switch to root</td></tr>
+<tr><td valign=top><strong>su</strong>						</td><td style="width:15px"></td><td>&ltuser&gt - switch to user</td></tr>
 <tr><td valign=top><strong>man [&ltsection-number&gt] &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>Section numbers:	1 programs, 2 system calls, 3 library calls, 4 special files, 5 file formats, 7 miscellaneous, 8 system administration commands</td></tr>
 <tr><td valign=top><strong>echo</strong>						</td><td style="width:15px"></td><td><strong> -n</strong>						 - no newline at the end</td></tr>
 <tr><td></td><td></td><td><strong>	 -e</strong> - enable interpretation of backslashed letters</td></tr>
@@ -37,18 +39,8 @@ html {
 <tr><td valign=top><strong>cal</strong>						</td><td style="width:15px"></td><td>calendar</td></tr>
 <tr><td valign=top><strong>xclip</strong>						</td><td style="width:15px"></td><td>copies to clipboard</td></tr>
 <tr><td valign=top><strong>mkfifo &ltpipe&gt</strong>						</td><td style="width:15px"></td><td>creates named pipe during that shell session.</td></tr>
-<tr><td valign=top><strong>wall</strong>						</td><td style="width:15px"></td><td>interconsole instant messenger (echo "bla" | wall)</td></tr>
-<tr><td></td><td></td><td><strong>	mesg n</strong> - turn off</td></tr>
-<tr><td valign=top><strong>watch</strong>						</td><td style="width:15px"></td><td>execute a program periodically, showing output fullscreen</td></tr>
-<tr><td valign=top><strong>watch bash</strong>						</td><td style="width:15px"></td><td><strong> -i -c '&ltalias&gt'</strong>						 - execute alias periodically</td></tr>
-<tr><td valign=top><strong>line</strong>						</td><td style="width:15px"></td><td>read one line</td></tr>
-<tr><td valign=top><strong>sleep</strong>						</td><td style="width:15px"></td><td>delay for a specified amount of time</td></tr>
-<tr><td valign=top><strong>whiptail</strong>						</td><td style="width:15px"></td><td>display dialog boxes from shell scripts</td></tr>
-<tr><td valign=top><strong>reset</strong>						</td><td style="width:15px"></td><td>initializes terminal, useful after printing binary file</td></tr>
-<tr><td valign=top><strong>hexdump, hd</strong>						</td><td style="width:15px"></td><td>ASCII, decimal, hexadecimal, octal dump</td></tr>
-<tr><td valign=top><strong>lpstat</strong>						</td><td style="width:15px"></td><td>show printing jobs</td></tr>
-<tr><td valign=top><strong>cancel &ltid&gt</strong>						</td><td style="width:15px"></td><td>cancel printing job</td></tr>
-<tr><td valign=top><strong>mkisofs</strong>						</td><td style="width:15px"></td><td>create a DVD/CD image</td></tr>
+<tr><td valign=top><strong>mkisofs</strong>						</td><td style="width:15px"></td><td>create a DVD/CD image </td></tr>
+<tr><td valign=top><strong>genisoimage</strong>						</td><td style="width:15px"></td><td>create a DVD/CD image (debian)</td></tr>
 <tr><td valign=top><strong>cdrecord</strong>						</td><td style="width:15px"></td><td>write to a CD/DVD</td></tr>
 <tr><td valign=top><strong>acpi</strong>						</td><td style="width:15px"></td><td>check battery</td></tr>
 <tr><td valign=top><strong>fdisk</strong>						</td><td style="width:15px"></td><td><strong> -l</strong>						 - show partitions (sudo)</td></tr>
@@ -71,6 +63,7 @@ html {
 <tr><td valign=top><strong>rm</strong>						</td><td style="width:15px"></td><td><strong> -f</strong>						 - force remove (do not prompt)</td></tr>
 <tr><td valign=top><strong>mkdir</strong>						</td><td style="width:15px"></td><td><strong> -p</strong>						 - make parents if needed</td></tr>
 <tr><td valign=top><strong>cp</strong>						</td><td style="width:15px"></td><td><strong> -R</strong>						 - copy recursively</td></tr>
+<tr><td></td><td></td><td><strong>	--preserve</strong> - copy and preserve mode, ownership and timestams</td></tr>
 <tr><td valign=top><strong>ln</strong>						</td><td style="width:15px"></td><td>makes links to the files</td></tr>
 <tr><td></td><td></td><td><strong>	-s &ltfile&gt &ltlink&gt</strong> - makes symbolic link. If you want to use relative paths you must be in links directory !!!!!!!!!!!!!!!!!!!!!!</td></tr>
 <tr><td valign=top><strong>df</strong>						</td><td style="width:15px"></td><td>disc fullness / disc free</td></tr>
@@ -106,6 +99,9 @@ html {
 <tr><td valign=top><strong>rsync</strong>						</td><td style="width:15px"></td><td>a fast, versatile, remote (and local) file-copying tool</td></tr>
 <tr><td valign=top><strong>cmp</strong>						</td><td style="width:15px"></td><td>compares two files, similar to diff but also for binaries</td></tr>
 <tr><td valign=top><strong>stat</strong>						</td><td style="width:15px"></td><td><strong> -c%X &ltfile&gt</strong>						 - time of last modification of the file </td></tr>
+<tr><td valign=top><strong>readlink</strong>						</td><td style="width:15px"></td><td><strong> -f</strong>						 - follow link recursively and print files path</td></tr>
+<tr><td valign=top><strong>xdg-open &ltfile&gt</strong>						</td><td style="width:15px"></td><td>open file with default aplication for the file type</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Archives</h3>
@@ -139,9 +135,9 @@ html {
 <tr><td></td><td></td><td><strong>	t</strong> - show time and avg cpu load</td></tr>
 <tr><td valign=top><strong>tmux</strong>						</td><td style="width:15px"></td><td>terminal multiplexer, better screen.	</td></tr>
 <tr><td></td><td></td><td><strong>	ls</strong> - shows running sessions</td></tr>
-<tr><td></td><td></td><td><strong>	attach (-t &ltsession no&gt)</strong> - attach to running session</td></tr>
+<tr><td></td><td></td><td><strong>	attach [-t &ltsession no&gt]</strong> - attach to running session</td></tr>
 <tr><td></td><td></td><td>	ctrl+b: </td></tr>
-<tr><td></td><td></td><td><strong>	d</strong> - exit session	</td></tr>
+<tr><td></td><td></td><td><strong>	d</strong> - detach from currently attached session	</td></tr>
 <tr><td></td><td></td><td><strong>	pgup</strong> - enter in copy mode and pageup, </td></tr>
 <tr><td></td><td></td><td><strong>	[</strong> - copy mode, </td></tr>
 <tr><td></td><td></td><td><strong>	]</strong> - paste,	</td></tr>

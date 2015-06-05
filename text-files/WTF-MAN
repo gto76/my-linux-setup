@@ -76,7 +76,10 @@ PACKAGES:
 dpkg -l - lists installed packages
 	-i <package> - install package from a package file (sudo)
 apt - 'skin' for dpkg
-apt-get	update - update local list of existing packages
+apt-get	- top level package manager
+		--yes - answer with 'yes' to most questions (except the ones that can have potentialy harmful consequeces)
+		--force-yes - answer 'yes to all questions (not recommended)
+		update - update local list of existing packages
 		-u dist-upgrade - upgrade (to regularly update put in crontab: apt-get update && apt-get -u dist-upgrade). it will intellingently handle changing dependencies with new wersions of packages
 		upgrade - same as dist-upgrade, but will not remove installed packages or install new ones.
 		install <package> - also update single package
@@ -141,6 +144,9 @@ gcc - gnu c compiler
 	-a shows all sections
 run-parts - run all scripts or programs in a directory
 date - tells you date and time, also can set
+	-s <string> - set date
+	+%T -s "10:13:13" - set time
+timedatectl set-timezone CET - sets timezone
 cal - calendar
 xclip - copies to clipboard
 mkfifo <pipe> - creates named pipe during that shell session.
@@ -203,6 +209,8 @@ rsync - a fast, versatile, remote (and local) file-copying tool
 cmp - compares two files, similar to diff but also for binaries
 stat -c%X <file> - time of last modification of the file 
 readlink -f - follow link recursively and print files path
+xdg-open <file> - open file with default aplication for the file type
+
 
 ARCHIVES:
 tar	xvzf <file>.tar.gz (.tgz) - decompress and detar
@@ -279,6 +287,7 @@ test <expr> - same as [ <expression> ], returns zero exit status if true.
 let <expr> - executes expression: let a="$b"+2
 
 $(command) - same as `command`
+eval <variable> - execute string as command
 $RANDOM - 0 - 32767
 input=`cat` - getting standard input
 - - in place of a file name means standard in or out
@@ -295,6 +304,7 @@ getopts - parse parameters/arguments, builtin
 getopt - GNU version is even better then getopts, not a builtin
 while read line; do <commands>; done < <file> - read from file line by line
 	-r - do not treat backslashes as escape characters
+set -e - exit if any command fails
 
 HISTORY:
 
@@ -391,8 +401,9 @@ expand - convert tabs to spaces
 DIFF:
 diff -u <files> - unified format
 diff --brief -r - commpare two directory trees
-comm - compare two sorted files line by line
+colordiff - version of diff with colors
 sdiff - two files side by side
+comm - compare two sorted files line by line
 patch - apply a diff file to original
 	patch < patch.diff - apply patch
 	diff -u <old-file> <new-file> > patch.diff - create patch
@@ -415,7 +426,8 @@ look - display lines beginning with a given string
 strings - print all text parts of binary file
 
 CONVERT:
-enscript - Converts text files to postscript, rtf, HTML
+todos/fromdos - convet line endings form/to windows format (package tofrodos)
+enscript - converts text files to postscript, rtf, HTML
 gs - ghostscript: postscript and PDF language interpreter and previewer
 pdftohtml - pdf to html
 pdftotext - pdf to text
@@ -587,7 +599,8 @@ usermod <user> - modify user acount information
 useradd <user> - add user
 adduser <user> - more high level (use 'adduser <user> sudo' after to add user to sudo group)
 	--system - create system user (can not log in) 
-adduser <user> <group> - add user to group
+adduser <user> <group> - add user to group (only takes effect after login!!!)
+groups <user> - what groups user belongs to
 userdel -r <user> - remove user and his home dir
 deluser -remove-all-files <user> - more high level, removes also files outside home, cron jobs, itd
 passwd <user> - change password
@@ -890,6 +903,7 @@ VAR - "variable":
 
 BOOT (kernels):
 /boot/grub/menu.lst - grub configuration file
+/etc/default/grub - grub configuration file
 
 
 ###########

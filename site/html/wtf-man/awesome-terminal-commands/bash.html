@@ -24,6 +24,7 @@ html {
 <tr><td></td><td></td><td><strong>	If you want IFS to be a new line (useful with for loop) you need to: IFS=$'n'</strong> - the dollar forces substitution!!!!!</td></tr>
 <tr><td></td><td></td><td>	Also if you want 'while read line; do...' to preserve leading spaces and tabs, you need to set IFS=""</td></tr>
 <tr><td valign=top><strong>$?</strong>						</td><td style="width:15px"></td><td>exit code of last command (0 - sucess)</td></tr>
+<tr><td valign=top><strong>Ctrl-Z, kill %%</strong>						</td><td style="width:15px"></td><td>kill looping bash script</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 <tr><td valign=top><strong>test &ltexpr&gt</strong>						</td><td style="width:15px"></td><td>same as [ &ltexpression&gt ], returns zero exit status if true.</td></tr>
 <tr><td></td><td></td><td><strong>	-n</strong> - is string non empty, </td></tr>
@@ -45,6 +46,7 @@ html {
 <tr><td valign=top><strong>let &ltexpr&gt</strong>						</td><td style="width:15px"></td><td>executes expression: let a="$b"+2</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 <tr><td valign=top><strong>$(command)</strong>						</td><td style="width:15px"></td><td>same as `command`</td></tr>
+<tr><td valign=top><strong>eval &ltvariable&gt</strong>						</td><td style="width:15px"></td><td>execute string as command</td></tr>
 <tr><td valign=top><strong>$RANDOM</strong>						</td><td style="width:15px"></td><td>0 - 32767</td></tr>
 <tr><td valign=top><strong>input=`cat`</strong>						</td><td style="width:15px"></td><td>getting standard input</td></tr>
 <tr><td valign=top><strong>-</strong>						</td><td style="width:15px"></td><td>in place of a file name means standard in or out</td></tr>
@@ -83,9 +85,9 @@ html {
 <h3 align="center">Arrays And Lines</h3>
 <table>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
-<tr><td valign=top><strong>while read -r line; do</strong>							</td><td></td></tr>
+<tr><td valign=top><strong>while IFS= read -r line; do</strong>							</td><td></td></tr>
 <tr><td valign=top><strong>    echo "... $line ..."</strong>					</td><td></td></tr>
-<tr><td valign=top><strong>done &lt&lt&lt "$list"</strong>						</td><td style="width:15px"></td><td>reading line by line from variable</td></tr>
+<tr><td valign=top><strong>done &lt&lt&lt "$list"</strong>						</td><td style="width:15px"></td><td>reading line by line from variable, use IFS= to preserve spaces</td></tr>
 <tr><td valign=top><strong>${a[1]}</strong>						</td><td style="width:15px"></td><td>value of the second element of the array</td></tr>
 <tr><td valign=top><strong>for c in ${a[@]}</strong>						</td><td style="width:15px"></td><td>iterate over array</td></tr>
 <tr><td valign=top><strong>${varname:offset:length}</strong>						</td><td style="width:15px"></td><td>get substring: s="aeiou"; ${s:3:1} -&gt o</td></tr>
@@ -102,6 +104,7 @@ html {
 <tr><td></td><td></td><td><strong>	&ltname&gt='cmd'</strong> - set alias</td></tr>
 <tr><td valign=top><strong>command &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>executes original command, bypassing any aliases or shell functions that may be defined for command</td></tr>
 <tr><td valign=top><strong>&ltcommand&gt</strong>						</td><td style="width:15px"></td><td>temporarily disable alias (call original)</td></tr>
-<tr><td valign=top><strong>type &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>will tell you what is command aliased to</td></tr>
+<tr><td valign=top><strong>type &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>will tell you what is command aliased to or if it is a biltin, function or a command</td></tr>
+<tr><td></td><td></td><td>	-P just check commands</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table></blockquote>

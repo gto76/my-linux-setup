@@ -296,6 +296,10 @@ halfway into an allocated block
 .. M A K E ..
 .............
 .............
+
+target: dependencies
+[tab] command
+
 --------------
 SPECIAL MACROS
 --------------

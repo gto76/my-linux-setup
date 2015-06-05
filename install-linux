@@ -30,24 +30,28 @@ function createLink {
 }
 
 # create links to dotfiles
-cd dotfiles
+cd conf-files/linux
+(cd bash
 createLink ~ .my_bashrc
 createLink ~ .my_bash_aliases
-createLink ~ .my_bashrc_personal
+createLink ~ .my_bashrc_personal)
+(cd vim
 createLink ~ .my_vimrc
-createLink ~ .tmux.conf
+cd .vim/colors
+createLink ~/.vim/colors github.vim
+createLink ~/.vim/colors diner.vim)
+(cd tmux
+createLink ~ .tmux.conf)
+(cd xmodmap
 createLink ~ .Xmodmapus
 createLink ~ .Xmodmapusvi
 createLink ~ .Xmodmapsi
-createLink ~ .Xmodmapsivi
-(cd .nrss 
+createLink ~ .Xmodmapsivi)
+(cd nrss/.nrss 
 createLink ~/.nrss config)
-(cd .vim/colors
-createLink ~/.vim/colors github.vim
-createLink ~/.vim/colors diner.vim)
-cd ..
+cd ../..
 # create links to textfiles
-cd textfiles
+cd text-files
 createLink ~/Desktop WTF-MAN
 createLink ~/Desktop INS 
 createLink ~/Desktop NYK

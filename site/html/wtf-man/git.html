@@ -45,10 +45,25 @@ html {
 <tr><td valign=top><strong>sometimes also: git push --set-upstream origin master</strong>							</td><td></td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
+<h3 align="center">Remote</h3>
+<table>
+<tr><td valign=top><strong>git remote update</strong>						</td><td style="width:15px"></td><td>get info about state of remote</td></tr>
+<tr><td valign=top><strong>git remote show origin</strong>						</td><td style="width:15px"></td><td>print address of the origin</td></tr>
+<tr><td valign=top><strong>git remote set-url origin git@github.com:&ltuser&gt/&ltrepo&gt.git</strong>						</td><td style="width:15px"></td><td>change the url of origin, ssh key needed</td></tr>
+<tr><td valign=top><strong>git remote set-url origin https://www.github.com/&ltuser&gt/&ltrepo&gt.git</strong>						</td><td style="width:15px"></td><td>same, but withouth key</td></tr>
+<tr><td valign=top><strong>git status</strong>						</td><td style="width:15px"></td><td><strong> -uno</strong>						 - check if everything up-to-date</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
+<h3 align="center">Tags</h3>
+<table>
+<tr><td valign=top><strong>git push</strong>						</td><td style="width:15px"></td><td><strong> --tags</strong>						 - push tags</td></tr>
+<tr><td valign=top><strong>git fetch</strong>						</td><td style="width:15px"></td><td><strong> --tags</strong>						 - pulling tags (automaticaly if on the same branch and there is a new commit?)</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+</table>
 <h3 align="center">Also Useful</h3>
 <table>
 <tr><td valign=top><strong>git checkout HEAD^ &ltfile&gt</strong>						</td><td style="width:15px"></td><td>retrieve deleted file</td></tr>
-<tr><td valign=top><strong>git rm</strong>						</td><td style="width:15px"></td><td><strong> --cached mylogfile.log</strong>						 - untrack file without deleting it</td></tr>
+<tr><td valign=top><strong>git rm</strong>						</td><td style="width:15px"></td><td><strong> --cached &ltfile&gt</strong>						 - untrack file without deleting it</td></tr>
 <tr><td valign=top><strong>git tag</strong>						</td><td style="width:15px"></td><td><strong> -a 0.9.1 -m "Version 0.9.1 release"</strong>						 - tag latest commit</td></tr>
 <tr><td valign=top><strong>git tag</strong>						</td><td style="width:15px"></td><td>list local tags</td></tr>
 <tr><td valign=top><strong>chown</strong>						</td><td style="width:15px"></td><td><strong> -R &ltuser&gt:&ltgroup&gt *</strong>						 - in .git/objects (sudo)</td></tr>
@@ -60,16 +75,9 @@ html {
 <tr><td valign=top><strong>git revert</strong>					</td><td></td></tr>
 <tr><td valign=top><strong>git describe</strong>						</td><td style="width:15px"></td><td>print version and hash of HEAD</td></tr>
 <tr><td valign=top><strong>git log</strong>						</td><td style="width:15px"></td><td><strong> --name-only --author=&ltname&gt</strong>						 - print changed files by commit</td></tr>
+<tr><td valign=top><strong>git log &ltfile&gt</strong>						</td><td style="width:15px"></td><td>print files history</td></tr>
 <tr><td valign=top><strong>git ls-files</strong>						</td><td style="width:15px"></td><td>list files</td></tr>
-<tr><td valign=top><strong></strong>					</td><td></td></tr>
-</table>
-<h3 align="center">Remote</h3>
-<table>
-<tr><td valign=top><strong>git remote update</strong>						</td><td style="width:15px"></td><td>get info about state of remote</td></tr>
-<tr><td valign=top><strong>git remote show origin</strong>						</td><td style="width:15px"></td><td>print address of the origin</td></tr>
-<tr><td valign=top><strong>git remote set-url origin git@github.com:&ltuser&gt/&ltrepo&gt.git</strong>						</td><td style="width:15px"></td><td>change the url of origin, ssh key needed</td></tr>
-<tr><td valign=top><strong>git remote set-url origin https://www.github.com/&ltuser&gt/&ltrepo&gt.git</strong>						</td><td style="width:15px"></td><td>same, but withouth key</td></tr>
-<tr><td valign=top><strong>git status</strong>						</td><td style="width:15px"></td><td><strong> -uno</strong>						 - check if everything up-to-date</td></tr>
+<tr><td valign=top><strong>git show &ltrevision&gt:&ltfile&gt</strong>						</td><td style="width:15px"></td><td>show file</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Checkout</h3>

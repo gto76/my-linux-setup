@@ -1,0 +1,28 @@
+#!/bin/bash
+# Removes all links that were created with install script, and
+# restores backed up files.
+
+# Removes file if it is a symbolic link
+# $1 - filename
+removeLink() {
+	if test -h "$1"; then
+		sudo rm "$1"
+		backdown "$1"
+	fi
+}
+
+# Moves backup file back into its original state
+# $1 - name of original file (withouth bak extension)
+backdown() {
+    sudo cp --preserve "$1"{.bak,}
+	sudo rm -f "$1".bak 
+}
+
+main() {
+	removeLink /etc/xdg/awesome/rc.lua
+	removeLink /usr/share/awesome/themes/default/theme.lua
+	removeLink /usr/share/awesome/themes/default/background.png
+}
+
+main "$@"
+

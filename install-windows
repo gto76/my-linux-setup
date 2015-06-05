@@ -30,7 +30,7 @@ function createLink {
 }
 
 # create links to dotfiles
-cd dotfiles
+cd conf-files 
 (cd windows
 createLink ~ .bashrc
 createLink ~ .vimrc

@@ -30,10 +30,12 @@ html {
 <tr><td></td><td></td><td><strong>		v</strong> - opens editor defined in $VISUAL or $EDITOR</td></tr>
 <tr><td></td><td></td><td><strong>		:n</strong> - examine the next file</td></tr>
 <tr><td></td><td></td><td><strong>		&lt,&gt</strong> - go to home, end</td></tr>
+<tr><td valign=top><strong>wc</strong>						</td><td style="width:15px"></td><td>count lines, words and characters</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Edit</h3>
 <table>
+<tr><td valign=top><strong>sudo</strong>						</td><td style="width:15px"></td><td><strong> -e &ltfile&gt</strong>						 - edit file as sudo</td></tr>
 <tr><td valign=top><strong>tr &ltfrom&gt &ltto&gt</strong>						</td><td style="width:15px"></td><td>translate or delete characters (-d for delete)</td></tr>
 <tr><td valign=top><strong>cut &ltfilename&gt</strong>						</td><td style="width:15px"></td><td>remove sections from each line of files</td></tr>
 <tr><td></td><td></td><td><strong>		-d ':' -f 1,7 /etc/passwd</strong> - only show the username and the shell</td></tr>
@@ -62,6 +64,7 @@ html {
 <tr><td valign=top><strong>sed	</strong>					</td><td style="width:15px"></td><td><strong>'s///g'</strong>					- substitute every occurrence in line, not just the first one</td></tr>
 <tr><td></td><td></td><td><strong>	's///I'</strong> - ignore case</td></tr>
 <tr><td></td><td></td><td><strong>	-r</strong> - extended syntax, for +, ?,... , also you shouldn't escape the parenthesis</td></tr>
+<tr><td></td><td></td><td><strong>	-r 's###e'</strong> - execute match as a command</td></tr>
 <tr><td></td><td></td><td><strong>	-i &ltfile&gt</strong> - will make changes directly to the file (in place)</td></tr>
 <tr><td valign=top><strong>expand</strong>						</td><td style="width:15px"></td><td>convert tabs to spaces</td></tr>
 <tr><td></td><td></td><td><strong>	-t &ltnumber&gt</strong> - set number of spaces (default is 8)</td></tr>
@@ -71,8 +74,9 @@ html {
 <table>
 <tr><td valign=top><strong>diff</strong>						</td><td style="width:15px"></td><td><strong> -u &ltfiles&gt</strong>						 - unified format</td></tr>
 <tr><td valign=top><strong>diff</strong>						</td><td style="width:15px"></td><td><strong> --brief -r</strong>						 - commpare two directory trees</td></tr>
-<tr><td valign=top><strong>comm</strong>						</td><td style="width:15px"></td><td>compare two sorted files line by line</td></tr>
+<tr><td valign=top><strong>colordiff</strong>						</td><td style="width:15px"></td><td>version of diff with colors</td></tr>
 <tr><td valign=top><strong>sdiff</strong>						</td><td style="width:15px"></td><td>two files side by side</td></tr>
+<tr><td valign=top><strong>comm</strong>						</td><td style="width:15px"></td><td>compare two sorted files line by line</td></tr>
 <tr><td valign=top><strong>patch</strong>						</td><td style="width:15px"></td><td>apply a diff file to original</td></tr>
 <tr><td></td><td></td><td><strong>	patch &lt patch.diff</strong> - apply patch</td></tr>
 <tr><td></td><td></td><td><strong>	diff -u &ltold-file&gt &ltnew-file&gt &gt patch.diff</strong> - create patch</td></tr>
@@ -99,13 +103,15 @@ html {
 </table>
 <h3 align="center">Convert</h3>
 <table>
-<tr><td valign=top><strong>enscript</strong>						</td><td style="width:15px"></td><td>Converts text files to postscript, rtf, HTML</td></tr>
+<tr><td valign=top><strong>todos/fromdos</strong>						</td><td style="width:15px"></td><td>convet line endings form/to windows format (package tofrodos)</td></tr>
+<tr><td valign=top><strong>enscript</strong>						</td><td style="width:15px"></td><td>converts text files to postscript, rtf, HTML</td></tr>
 <tr><td valign=top><strong>gs</strong>						</td><td style="width:15px"></td><td>ghostscript: postscript and PDF language interpreter and previewer</td></tr>
 <tr><td valign=top><strong>pdftohtml</strong>						</td><td style="width:15px"></td><td>pdf to html</td></tr>
 <tr><td valign=top><strong>pdftotext</strong>						</td><td style="width:15px"></td><td>pdf to text</td></tr>
 <tr><td valign=top><strong>libreoffice</strong>						</td><td style="width:15px"></td><td>new openoffice</td></tr>
 <tr><td valign=top><strong>figlet</strong>						</td><td style="width:15px"></td><td>display large characters made up of ordinary screen characters (ascii art)</td></tr>
 <tr><td valign=top><strong>toilet</strong>						</td><td style="width:15px"></td><td>similar (ascii art)</td></tr>
+<tr><td valign=top><strong>cproto</strong>						</td><td style="width:15px"></td><td>generates C function prototypes (declarations)</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Editors</h3>

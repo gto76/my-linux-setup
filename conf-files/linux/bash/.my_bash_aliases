@@ -12,7 +12,9 @@
 # LESS #
 ########
 
-# Run less with: ignore case when searching, do not ring a bell, do not mark empty lines with ~, format prompt as 'page number'/'all pages' 'filename', set tabs to 4 spaces.
+# Run less with: ignore case when searching, do not ring a bell,
+# do not mark empty lines with ~, format prompt as 'page
+# number'/'all pages' 'filename', set tabs to 4 spaces.
 alias less='less --ignore-case --QUIET --tilde -P"%db/%D %f" --tabs=4'
 
 # Open cat or less, depending on no of lines of file or input.
@@ -37,7 +39,8 @@ catOrLess() {
 }
 alias m='catOrLess'
 
-# Open cat or less +G (starts at the end of file), depending on no of lines of file or input.
+# Open cat or less +G (starts at the end of file), depending on
+# no of lines of file or input.
 catOrLessG() {
 	if [ $# -gt 0 ]
 	then
@@ -64,17 +67,27 @@ alias mEnd='catOrLessG'
 # LS #
 ######
 
-# All other ls aliases end up calling this one. It runs ls with: append indicator, sort alphabetically by extension, list by columns, use color when stdout is connected to terminal, group directories before files.
+# All other ls aliases end up calling this one. It runs ls with:
+# append indicator, sort alphabetically by extension, list by
+# columns, use color when stdout is connected to terminal, group
+# directories before files.
 alias ls1='ls --classify -X -C --color=auto --group-directories-first'
 
-# Calls ls1 with: assumes screen width to be 80, so there aren't too many columns.
+# Calls ls1 with: assumes screen width to be 80, so there aren't
+# too many columns.
 alias listShort='ls1 --width=80'
-# Calls ls1 with: use long listing format, do not print groups, do not list owner, print sizes in human readable format, print date as: 'month by word, day of month, year, hour:minute'.
+# Calls ls1 with: use long listing format, do not print groups,
+# do not list owner, print sizes in human readable format, print
+# date as: 'month by word, day of month, year, hour:minute'.
 alias listMed='ls1 -l --no-group -g --human-readable --time-style="+%b %d %Y %H:%M"'
 # Calls ls1 with: use long listing format. 
 alias listLong='ls1 -l'
 
-# Functions that call aliases above, and pipe output to less. They override color option of ls to always and add RAW-CONTROL-CHARS option to less alias. This enables the transfer of colors from ls to less. Also start less at end of file.
+# Functions that call aliases above, and pipe output to less.
+# They override color option of ls to always and add
+# RAW-CONTROL-CHARS option to less alias. This enables the
+# transfer of colors from ls to less. Also start less at end of
+# file.
 listShortLess() { 
   listShort --color=always $* | less --RAW-CONTROL-CHARS +G
 }
@@ -85,7 +98,9 @@ listLongLess() {
   listLong --color=always $* | less --RAW-CONTROL-CHARS +G 
 }
 
-# This functions decide weather they will call basic or less version of the listShort/Med/Long function. It depends on whether the output of ls will fit on screen.
+# This functions decide weather they will call basic or less
+# version of the listShort/Med/Long function. It depends on
+# whether the output of ls will fit on screen.
 l() {
 	noOfLines=`listShort "$@" 2> /dev/null | fold -w"$COLUMNS" |  wc -l`
 	if [ $LINES -gt $noOfLines ]; then
@@ -111,7 +126,8 @@ lll() {
 	fi
 }
 
-# Variations of above function, that also display hidden files, but not . and ..
+# Variations of above function, that also display hidden files,
+# but not . and ..
 alias la='l --almost-all'
 alias lla='ll --almost-all'
 alias llla='lll --almost-all'
@@ -193,9 +209,14 @@ alias vv='view'
 # Scala vim (tab is 2 spaces)
 alias scv='v -c ":set ts=2" -c ":set sw=2"'
 alias vs='scv'
-# Nano with: enable experimental undo (will most probably crash if going deeper than first undo level), autoindent, constantly show the cursor position, log search and replace strings, enable edit of multiple files, treat punctuation as part of words, smooth scrolling, tab size is 4 spaces.
+# Nano with: enable experimental undo (will most probably crash
+# if going deeper than first undo level), autoindent, constantly
+# show the cursor position, log search and replace strings,
+# enable edit of multiple files, treat punctuation as part of
+# words, smooth scrolling, tab size is 4 spaces.
 alias n='nano --undo --autoindent --const --historylog --multibuffer --wordbounds --smooth --tabsize=4'
-# Runs command in background, it doesent hang up if the shell is closed and it doesn't print output
+# Runs command in background, it doesent hang up if the shell is
+# closed and it doesn't print output
 runInBackground() {
 	nohup "$@" &>/dev/null &
 }
@@ -209,7 +230,7 @@ g() {
 
 # open vim in konsole with light theme
 vvv() { 
-	rb konsole --workdir "$PWD" --hide-menubar --hide-tabbar -e vim -p -c "set background=light" -c "colorscheme diner"  "$@"
+	rb konsole --workdir "$PWD" --hide-menubar --hide-tabbar -e vim -p -c "set background=light" -c "colorscheme github" -c "set fo-=t"  "$@"
 }
 # open vim in console with tab width 2
 vvvv() {
@@ -263,7 +284,8 @@ pdf() { evince $@ & }
 alias mixer='alsamixer'
 # Get keycode for pressed key.
 alias keycode='xev';
-# Execute command periodically every 2 seconds. Aliases can be also used.
+# Execute command periodically every 2 seconds. Aliases can be
+# also used.
 alias watch1='watch bash -i -c'
 # Every 10 seconds.
 alias watch2='watch -n 10 bash -i -c'
@@ -274,10 +296,13 @@ alias asci='asciiview'
 # Set keyboard layout to us and run xmodmap.
 alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
 alias resetkeys='resetkey'
-# Display disk space used by a folder or a file in human readable form.
-alias du='du --summarize --human-readable'
+# Display disk space used by a folder or a file in human
+# readable form.
+alias du1='du --summarize --human-readable'
 # Set bash to vi mode.
 alias vimode='set -o vi'
+# Set bash to emacs (normal) mode.
+alias emacsmode='set -o emacs'
 # Start a new terminal.
 alias gt='gnome-terminal'
 alias term='gnome-terminal'
@@ -309,6 +334,14 @@ alias cd-iso='mount-iso'
 # Show processes
 alias ht='htop'
 alias u='htop'
+# Open file with default aplication for the file type
+o() {
+	rb xdg-open "$@"
+}
+alias ty='type'
+diff1() {
+	colordiff "$@" | catOrLess
+}
 
 ########
 # SUDO #
@@ -339,11 +372,14 @@ alias fu='fuck'
 alias f='fuck'
 
 # File manipulation 
-alias srm='sudo rm -i'
-alias srmdir='sudo rm -rI'
 alias scp='sudo cp -iv'
-alias scpdir='sudo cp -arv'
 alias smv='sudo mv -iv'
+alias srm='sudo rm -i'
+
+# Dir manipulation 
+alias scpdir='sudo cp -arv'
+alias smvdir='sudo mv'
+alias srmdir='sudo rm -rI'
 
 # Backup file
 backup() {
@@ -375,35 +411,40 @@ psM() {
 	ps "$@" | catOrLess
 }
 alias ps='psM'
+
 # Print every process on the system.
 alias pse='ps -e | catOrLess'
 alias psa='ps -e | catOrLess'
 alias ps1='ps -e | catOrLess'
 
-alias hib='sudo pm-hibernate'
-alias sus='sudo pm-suspend'
 # Print matching processes and their pids.
-alias pgrep1='pgrep --list-name'
+pgrep1() {
+	pgrep --list-name "$@" | catOrLess
+}
 
 
 ########
 # TEXT #
 ########
 
-# Removes columns specified by second argument. Specify delimiter with first argument.
+# Removes columns specified by second argument. Specify
+# delimiter with first argument.
 cut1() {
 	cut --delimiter="$1" --fields="$2" 
 }
-# Sort lines of file. Specify separator and key. Key is used to specify number of field you want lines to be sorted by.
+# Sort lines of file. Specify separator and key. Key is used to
+# specify number of field you want lines to be sorted by.
 sort1() { 
 	sort --field-separator="$1" --key="$2"
 }
-# Makes table out of input data. You need to specify column separator.
+# Makes table out of input data. You need to specify column
+# separator.
 alias table='column -t -s'
 # Delete specified characters.
 alias trd='tr --delete'
 
-# Change input strings notation from CamelCase to underscore. (all the folowong commands work as pipe filters
+# Change input strings notation from CamelCase to underscore.
+# (all the folowong commands work as pipe filters
 toUnderscore() {
 	cat | sed 's/\([A-Z]\)/_\1/g' | tr [a-z] [A-Z]
 }
@@ -428,7 +469,12 @@ toCamel() {
 alias restart='sudo shutdown -r now'
 alias poweroff='sudo shutdown now'
 
-# Trace system calls and signals. Print strings of maximum 2000 chars, and also trace child processes.
+# Hibernate, suspend
+alias hib='sudo pm-hibernate'
+alias sus='sudo pm-suspend'
+
+# Trace system calls and signals. Print strings of maximum 2000
+# chars, and also trace child processes.
 alias strace1='strace -s 2000 -f'
 # Print all system information.
 alias uname1='uname -all'
@@ -484,6 +530,8 @@ createExecutable() {
 		echo "# Usage: $1 " >> "$1"
 		echo '# ' >> "$1"
 		echo >> "$1"
+		echo '# set -e' >> "$1"
+		echo >> "$1"
 	fi
 	chmod u+x "$1"        
 }
@@ -530,11 +578,12 @@ alias run='go run'
 locate1() {
 	locate "$@" | catOrLess
 }
-alias o='locate1'
 
 #FIND
-# Recursively search for files containing pattern in their names.
-# Use filesistem regexes for search (aka *.*), and always suround them
+# Recursively search for files containing pattern in their
+# names.
+# Use filesistem regexes for search (aka *.*), and always
+# suround them
 # with quotation marks
 find1() {
 	find . -name "$1" | gr $(echo "$1" | tr -d "\*")
@@ -556,7 +605,10 @@ mkdir3() {
 }
 alias mk='mkdir3'
 
-# Simplified sed command. Usage: cat file | sed1 <change this> <to this>. Warning: I don't guarantee all the quotations and expansions will stay intact. It just seams like playing with fire.
+# Simplified sed command. Usage: cat file | sed1 <change this>
+# <to this>. Warning: I don't guarantee all the quotations and
+# expansions will stay intact. It just seems like playing with
+# fire.
 sed1() {
 	input=`cat`
 	echo "$input" | sed "s/$1/$2/" | catOrLess
@@ -585,7 +637,8 @@ alias repeat='xset r'
 alias canhaz='sudo apt-get install'
 alias ch='canhaz'
 alias update='sudo apt-get update'
-alias upgrade='sudo apt-get dist-upgrade'
+alias upgrade='sudo apt-get upgrade'
+alias dist-upgrade='sudo apt-get dist-upgrade'
 alias remove='sudo apt-get remove && autoremove'
 alias purge='sudo apt-get purge && autoremove'
 alias autoremove='sudo apt-get autoremove'
@@ -601,10 +654,11 @@ depends() {
 
 # Print installed packages
 alias packages1='dpkg --get-selections | grep -v deinstall | catOrLess'
-alias installed='packages'
 
-# Print installed packages withouth dependencies in order of installation
+# Print packages that were installed by the user, in order of
+# installation
 alias packages='cat /var/log/apt/history.log | grep "apt-get install" | sed "s/.* //" | catOrLessG'
+alias installed='packages'
 
 # Apropos.
 aproposM() {
@@ -613,7 +667,8 @@ aproposM() {
 alias apropos='aproposM'
 alias ap='apropos'
 
-# Run apropos with passed string, then grep output with same string.
+# Run apropos with passed string, then grep output with same
+# string.
 aproposMG() {
 	apropos "$*" | gr "$*" 
 }
@@ -632,13 +687,15 @@ apropos1G() {
 alias ap1g='apropos1G'
 alias search='apropos1G'
 
-# Same, but only search for packages containing string in their name
+# Same, but only search for packages containing string in their
+# name
 apropos2G() {
 	apt-cache search "$@" | gr "^[^ ]*$@[^ ]*" 
 }
 alias ap2g='apropos2G'
 
-# Searches packages based on their name and also by their executables
+# Searches packages based on their name and also by their
+# executables
 y() {
 	(echo   "PACKAGES CONTAINING EXECUTABLES NAMED \"$1\""
 	echo -n "========================================"
@@ -650,7 +707,8 @@ y() {
 	apropos2G "$@") | less 
 }
 
-# Find to which of the installed packages passed command belongs to
+# Find to which of the installed packages passed command belongs
+# to
 package() {
 	file=$(sudo which "$1")
 	if [ "$file" == "" ]; then 
@@ -730,12 +788,19 @@ manSection() {
 	esac
 }
 
-# Universal command description search function. First tries whatis, then apt-cache show, then type and finally apt-file. When one of them succeeds in finding the description the function returns.
-wi() {
+# Universal command description search function. First tries
+# whatis, then apt-cache show, then type and finally apt-file.
+# When one of them succeeds in finding the description the
+# function returns.
+whatIs() {
 	call1=`whatis "$@" 2> /dev/null`
 	if [ "$?" == "0" ]; then
-		sudo echo "$call1"
-		package "$@"
+		while IFS= read -r line; do
+			commandType=$(manSection $(echo "$line" | sed 's/.*(\([1-9]\)).*/\1/'))
+			echo "$line" "($commandType)"
+		done <<< "$call1"
+		echo -n "package: "
+		package "$@" | sed 's/:/\nlocation:/'
 		return
 	fi
 
@@ -767,6 +832,7 @@ wi() {
 		echo  "$call6" | catOrLess
 	fi
 }
+alias wi='whatis'
 
 
 #######
@@ -793,18 +859,19 @@ clone() {
 	git clone git@github.com:/"$1".git
 }
 
-alias gs='git status -sb'
+alias gs='git -c color.status=always status -sb | catOrLess'
 # Nicely decorated graph of commits
 alias gl='git log --decorate --graph --all'
 alias gl1="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 alias gl2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
-# Update information about state of the origin.
-alias gu='git remote update'
+# Update information about state of the origin and print status
+alias gu='git remote update; git status -sb'
 alias gd='git diff'
 alias ga='git add'
 alias gm='git mv'
 alias gll='git ls-files'
 alias gb='git branch'
+alias gc='git checkout'
 
 # Add to github (first create remote repository on website,
 # init local repo and add files to it):
@@ -828,7 +895,8 @@ pushall() {
 	done
 }
 
-# For all projects in the directory print the labaels of the last commit
+# For all projects in the directory print the labaels of the
+# last commit
 alias gsta='for a in *; do if [[ -d "$a" ]]; then cd "$a"; echo "$a"; git remote update; git log --decorate | head -1; echo; cd ..;fi ; done'
 
 
@@ -849,7 +917,8 @@ cloneAll() {
 }
 
 
-# Displays lines of code per file in git repo and sum of all. Only looks for files in src directory.
+# Displays lines of code per file in git repo and sum of all.
+# Only looks for files in src directory.
 gloc() {
 	git ls-files \
 		| xargs file \
@@ -879,7 +948,8 @@ glocall() {
 	echo "$sum"
 }
 
-# Plot distribution of file lengths in git repo. Gnuplot and gnuplot-x11 packages need to be installed.
+# Plot distribution of file lengths in git repo. Gnuplot and
+# gnuplot-x11 packages need to be installed.
 giplot() {
 	gitl | head -n-1 | sort -n | grep -o '^ *[0-9]* ' | tr -d ' ' > /tmp/gitlTmpFile 
 	echo "unset key; plot '/tmp/gitlTmpFile'" | gnuplot -p 
@@ -949,7 +1019,8 @@ alias tt='gtypist'
 # PAGE/LINE COUNTING #
 ######################
 
-# Prints how many pages roughly will text occupy in a smaller format (~A5) book.
+# Prints how many pages roughly will text occupy in a smaller
+# format (~A5) book.
 noOfPages() {
 	echo $(wc -w "$@" | grep -o ^[0-9]*) / 500 | bc	
 }
@@ -1074,7 +1145,8 @@ nmap2() {
 # Scan first 20 addreses of local network.
 alias nmap1='nmap2 20'
 
-# Retrurns OK if pingable of Fail if not. Parameter is an ip or domain
+# Retrurns OK if pingable of Fail if not. Parameter is an ip or
+# domain
 pingable() {
 	pingResult=$(ping -c 1 -q "$1" | grep --color=never -A 1 statistics | grep "1 received")
 	if [ "$pingResult" != "" ]; then
@@ -1089,7 +1161,8 @@ port22status() {
 	nmap $(echo "$1" | tr -d ' ') -p22 | grep '22/tcp' | sed 's/^[^ ]* \([^ ]*\) .*$/\1/'
 }
 
-# Scans the network and prints the ip-s of the conncted devices, and checks if connection to the internet is avalable.
+# Scans the network and prints the ip-s of the conncted devices,
+# and checks if connection to the internet is avalable.
 network() {
 	localIp=$(ip1)
 	gateway=$(gateway)
@@ -1119,7 +1192,9 @@ network() {
 }
 alias ne='network'
 
-# Saves output of nmap1 in file named after current time (year-month-day-hour-minute: week of the year-day of the week).
+# Saves output of nmap1 in file named after current time
+# (year-month-day-hour-minute: week of the year-day of the
+# week).
 networkLogger() {
 	destDir="."
 	third=`/sbin/ifconfig \
@@ -1131,7 +1206,8 @@ networkLogger() {
 	nmap -sP 192.168.$third.0-$forth > "$destDir"/`date +%y-%m-%d-%H-%M:%W-%u`]
 }
 
-# Should create some kind of a timeline from files created by notworkLogger, displaying when which machine was online.
+# Should create some kind of a timeline from files created by
+# notworkLogger, displaying when which machine was online.
 niceDisplay() {
 	cd "~/networkLogger/logs"
 	# For all uniqe host names,
@@ -1194,7 +1270,8 @@ alias lynx1='lynx -accept_all_cookies -vikeys www.google.com'
 # Rss feed reader.
 alias rss='nrss'
 
-# Prints nba scores. Not totally reliable, as pages tend to change.
+# Prints nba scores. Not totally reliable, as pages tend to
+# change.
 alias nbaScoreboard="lynx -dump -crawl http://scores.nbcsports.msnbc.com/nba/scoreboard.asp | grep -w 'PM' -A10 | grep -v 'STATS LLC\|Any commercial\|NBC Sports\|NBC Universal' | grep -v MST | sed 's/^.*ET\([0-9:]*\).*$/   \1/' | grep -v Preview | sed '/^$/N;/^\n$/D' | m"
 nba() {
 	e -n '   ';	date; e 
@@ -1227,7 +1304,8 @@ nbaStandings() {
 alias nba1='e; nbaStandings; e'
 
 
-# Opens linx browser with search results for passed arguments except the first one which specifies the webpage. 
+# Opens linx browser with search results for passed arguments
+# except the first one which specifies the webpage. 
 searchWebpage() {
   if [ $# -eq 1 ]; then
     url="$1"
@@ -1250,10 +1328,13 @@ searchWebpage() {
   eval "lynx $url"
 }
 
-# Opens lynx browser with search results for $@ in stackoverflow.com. Not really useful, you get better results using Google.
+# Opens lynx browser with search results for $@ in
+# stackoverflow.com. Not really useful, you get better results
+# using Google.
 alias so='stack'
 alias stack='searchWebpage http://stackoverflow.com'
-# Opens lynx browser with search results for $@ in superuser.com. 
+# Opens lynx browser with search results for $@ in
+# superuser.com. 
 alias suser='http://superuser.com'
 
 # Opens lynx browser with search result for $@ in wikipedia.org. 
@@ -1297,7 +1378,9 @@ wiki() {
 # WEATHER #
 ###########
 
-# Aliases for weather conditions at specific locations. City ids can be found at yahoo weather, just find page of the city and copy id from url.
+# Aliases for weather conditions at specific locations. City ids
+# can be found at yahoo weather, just find page of the city and
+# copy id from url.
 weathr() {
 	curl --silent "http://weather.yahooapis.com/forecastrss?w=$1&u=c" \
 	| awk -F '- '  '/<title>/ { sub("</title>", "", $2) && l=$2 }/<b>Forecast/ { getline; gsub("<.*", "", $2); printf("%s: %s\n", l, $2); exit }'
@@ -1311,7 +1394,8 @@ alias wea='wea1; wea2'
 # IMAGE DOWNLOAD #
 ##################
 
-# Gets google image thumbnail for the passed phrase, and sends it to stdout.
+# Gets google image thumbnail for the passed phrase, and sends
+# it to stdout.
 gi1() {
 	# Wget needs to introduce itself as a browser.
 	wget -qO- "http://images.google.com/images?q=$(echo "$@" | sed 's/ /+/g')" -U "Firefox on Ubuntu Gutsy: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.14) Gecko/20080418 Ubuntu/7.10 (gutsy) Firefox/2.0.0.14" \
@@ -1329,12 +1413,19 @@ gi() {
 gi2() {
 	gi1 "$@" 2> /dev/null | display
 }
-# For every input line it downloads first google image match (thumbnail) and saves it in PWD.
+# For every input line it downloads first google image match
+# (thumbnail) and saves it in PWD.
 gimage() {
 	cat | while read line
 	do 
 		gi1 "$line" > "$line"
-		# Wait 3 seconds between downloads, so we appear more humanlike. If no sleep is used, your ip will get banned when reaching around 1000 or 2000 downloads. Of course if you have dynamic ip, reseting connection to your internet provider will fix the problem. I didn't try to find out what happens if you repeat the process:)
+		# Wait 3 seconds between downloads, so we appear more
+		# humanlike. If no sleep is used, your ip will get
+		# banned when reaching around 1000 or 2000 downloads. Of
+		# course if you have dynamic ip, reseting connection to
+		# your internet provider will fix the problem. I didn't
+		# try to find out what happens if you repeat the
+		# process:)
 		sleep 3
 	done
 }
@@ -1368,10 +1459,10 @@ aa() {
 alias pl='mplayer'
 alias mp='mplayer'
 
-# Copies all files that are referenced in playlist to desired directory.
-# Also removes their track numbers from filenames (if any) and replaces 
-# them with the numbers that corespond to order the songs are featured 
-# in the playlist. 
+# Copies all files that are referenced in playlist to desired
+# directory.  Also removes their track numbers from filenames
+# (if any) and replaces them with the numbers that corespond to
+# order the songs are featured in the playlist. 
 #
 # Usage: cp-m3u <m3u playlist> <destination directory>
 cp-m3u() {
@@ -1423,13 +1514,17 @@ spilej() {
 	fi
 }
 
-# Try to find song on Youtube. Download video, convert it to audio and play.
+# Try to find song on Youtube. Download video, convert it to
+# audio and play.
 spilejYoutube() {
 	#TODO More reliable search	
 	#TODO MP4
 	#TODO Stop executing if one step fails
 	cd ~/Music; mkdir spilejYoutube 2>/dev/null; cd spilejYoutube
-	# Generate script that will try to input string into youtubes search box, and then somehow navigate to the search results, choose one hit and bookmark it in $HOME/lynx_bookmarks.
+	# Generate script that will try to input string into
+	# youtubes search box, and then somehow navigate to the
+	# search results, choose one hit and bookmark it in
+	# $HOME/lynx_bookmarks.
 	#echo "Generating search script."
 	lynxYoutubeSkripta "$*" > spilejLinxSkripta
 	# Run lynx with that script.
@@ -1453,7 +1548,8 @@ spilejYoutube() {
 	mplayer "$audioFilename" &>/dev/null
 }
 
-# Searches youtube for arguments and (hopefully) returns first match.
+# Searches youtube for arguments and (hopefully) returns first
+# match.
 lynxYoutubeSkripta() {
 	echo "key v"
 	for i in {1..8}
@@ -1487,9 +1583,10 @@ spilej3() {
 # TRACEROUTE WITH COUNTRY CODES #
 #################################
 
-# Print country codes on the route to host.
-# This is one option, but doesn't work correctly: wget -qO- http://api.wipmania.com/"$ip",
-# because it mostly just returns the location of the seat of company that owns the router.
+# Print country codes on the route to host.  This is one option,
+# but doesn't work correctly: wget -qO-
+# http://api.wipmania.com/"$ip", because it mostly just returns
+# the location of the seat of company that owns the router.
 traceroute1() {
 	i=1
 	echo -n "$@; "
@@ -1615,13 +1712,15 @@ callSed() {
 
 # Prints urls of random universities, one per country.
 universities() {
-	# get all country codes from index site, together with country name
+	# get all country codes from index site, together with
+	# country name
 	wget -qO - http://univ.cc/world.php | grep -o 'option value=\"[a-z]*\">[A-Za-z ]*(' | grep -o \".* | tr -d "\"" | tr -d "(" | while read ccc
 	do
 		country=`echo $ccc | sed 's/>.*//'`
 		countryName=`echo $ccc | sed 's/.*>//'`
 		if [ "$country" != "world" ]; then
-			# use them to get to country subsites and print url of random university that has country code for tld
+			# use them to get to country subsites and print url
+			# of random university that has country code for tld
 			urls=`wget -qO - "http://univ.cc/search.php?dom=$country&key=&start=1" | grep -o "'http:[^ ]*\.$country/[^ ]*'" | tr -d "'" | shuf`
 			url=""
 			while [ "$urls" != "" ]; do
@@ -1640,7 +1739,10 @@ universities() {
 	done
 }
 
-# Traceroutes one university per country. If as argument "1" is passed, then it calls traceroute1 instead. That variation prints country codes of routers on path, instead of their urls.
+# Traceroutes one university per country. If as argument "1" is
+# passed, then it calls traceroute1 instead. That variation
+# prints country codes of routers on path, instead of their
+# urls.
 www() {
 	universities | while read nameAndUrl
 	do

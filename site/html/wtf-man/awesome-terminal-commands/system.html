@@ -20,9 +20,13 @@ html {
 <tr><td valign=top><strong>telinit</strong>						</td><td style="width:15px"></td><td>change system runlevel</td></tr>
 <tr><td valign=top><strong>dmesg</strong>						</td><td style="width:15px"></td><td>print the contents of your bootup (startup) messages displayed by the kernel. This is often useful when debugging problems</td></tr>
 <tr><td valign=top><strong>getconf</strong>						</td><td style="width:15px"></td><td><strong> -a</strong>						 - print all system configuration variables</td></tr>
-<tr><td valign=top><strong>nohup &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>run a command immune to hangups</td></tr>
+<tr><td valign=top><strong>nohup &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>run a command immune to hangups, runs even after the shell is closed (writes output to nohup.out)</td></tr>
+<tr><td valign=top><strong>nohup &ltcommand&gt &&gt/dev/null &</strong>						</td><td style="width:15px"></td><td>run a command immune to hangups in background, do not save output</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 <tr><td valign=top><strong>wmctrl</strong>						</td><td style="width:15px"></td><td>X Window Manager</td></tr>
+<tr><td valign=top><strong></strong>					</td><td></td></tr>
+<tr><td valign=top><strong>awesome</strong>						</td><td style="width:15px"></td><td>tiled window manager</td></tr>
+<tr><td></td><td></td><td><strong>	-k</strong> - check configuration script for errors</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 <tr><td valign=top><strong>busybox &ltcommand&gt</strong>						</td><td style="width:15px"></td><td>combines tiny versions of many common UNIX utilities into a single small executable. (1.5 Mb)</td></tr>
 <tr><td valign=top><strong>mono</strong>						</td><td style="width:15px"></td><td>.NET support</td></tr>
@@ -33,11 +37,22 @@ html {
 <tr><td valign=top><strong>users</strong>						</td><td style="width:15px"></td><td>prints logged in users</td></tr>
 <tr><td valign=top><strong>who</strong>						</td><td style="width:15px"></td><td>logged in users, more data</td></tr>
 <tr><td valign=top><strong>w</strong>						</td><td style="width:15px"></td><td>logged in users, also what are they running</td></tr>
-<tr><td valign=top><strong>passwd</strong>						</td><td style="width:15px"></td><td>change password</td></tr>
 <tr><td valign=top><strong>vipw</strong>						</td><td style="width:15px"></td><td>edit password file</td></tr>
 <tr><td valign=top><strong>vigr</strong>						</td><td style="width:15px"></td><td>edit groups file</td></tr>
 <tr><td valign=top><strong>umask</strong>						</td><td style="width:15px"></td><td> the umask is a value set by the shell. It controls the default permissions of any file created</td></tr>
 <tr><td valign=top><strong>usermod &ltuser&gt</strong>						</td><td style="width:15px"></td><td>modify user acount information</td></tr>
+<tr><td></td><td></td><td>	-l newname oldname</td></tr>
+<tr><td></td><td></td><td>	-c "new real name" username</td></tr>
+<tr><td></td><td></td><td><strong>	-d /my/new/home username</strong> - change location of the users home</td></tr>
+<tr><td></td><td></td><td><strong>	-m -d /my/new/home</strong> - also move the files</td></tr>
+<tr><td valign=top><strong>useradd &ltuser&gt</strong>						</td><td style="width:15px"></td><td>add user</td></tr>
+<tr><td valign=top><strong>adduser &ltuser&gt</strong>						</td><td style="width:15px"></td><td>more high level (use 'adduser &ltuser&gt sudo' after to add user to sudo group)</td></tr>
+<tr><td></td><td></td><td><strong>	--system</strong> - create system user (can not log in) </td></tr>
+<tr><td valign=top><strong>adduser &ltuser&gt &ltgroup&gt</strong>						</td><td style="width:15px"></td><td>add user to group (only takes effect after login!!!)</td></tr>
+<tr><td valign=top><strong>groups &ltuser&gt</strong>						</td><td style="width:15px"></td><td>what groups user belongs to</td></tr>
+<tr><td valign=top><strong>userdel</strong>						</td><td style="width:15px"></td><td><strong> -r &ltuser&gt</strong>						 - remove user and his home dir</td></tr>
+<tr><td valign=top><strong>deluser</strong>						</td><td style="width:15px"></td><td><strong> -remove-all-files &ltuser&gt</strong>						 - more high level, removes also files outside home, cron jobs, itd</td></tr>
+<tr><td valign=top><strong>passwd &ltuser&gt</strong>						</td><td style="width:15px"></td><td>change password</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">File Systems</h3>
@@ -55,6 +70,7 @@ html {
 <tr><td valign=top><strong>lsattr</strong>						</td><td style="width:15px"></td><td>list file attributes</td></tr>
 <tr><td valign=top><strong>chattr</strong>						</td><td style="width:15px"></td><td>change file attributes</td></tr>
 <tr><td valign=top><strong>rkhunter</strong>						</td><td style="width:15px"></td><td><strong> -c</strong>						 - checks if it can find any rootkits under the system</td></tr>
+<tr><td valign=top><strong>ntfsundelete &ltHD name&gt</strong>						</td><td style="width:15px"></td><td>undelete files on ntfs partition (sudo)</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Logging</h3>
@@ -106,7 +122,7 @@ html {
 </table>
 <h3 align="center">Hardware</h3>
 <table>
-<tr><td valign=top><strong>lshw</strong>						</td><td style="width:15px"></td><td>list all hardware</td></tr>
+<tr><td valign=top><strong>lshw</strong>						</td><td style="width:15px"></td><td>list all hardware (sudo)</td></tr>
 <tr><td valign=top><strong>lspci [-tv]</strong>						</td><td style="width:15px"></td><td>show pci info</td></tr>
 <tr><td valign=top><strong>lsusb [-tv]</strong>						</td><td style="width:15px"></td><td>show usb info</td></tr>
 <tr><td valign=top><strong>lscpu</strong>						</td><td style="width:15px"></td><td>print CPU information</td></tr>
@@ -128,6 +144,7 @@ html {
 <tr><td valign=top><strong>script</strong>						</td><td style="width:15px"></td><td>makes a typescript of everything printed on your terminal. Ctrl-d to stop recording.</td></tr>
 <tr><td valign=top><strong>setterm</strong>						</td><td style="width:15px"></td><td>set terminal atributes</td></tr>
 <tr><td></td><td></td><td><strong>	-cursor off/on</strong> - set cursor on/off</td></tr>
+<tr><td valign=top><strong>gpm</strong>						</td><td style="width:15px"></td><td>enable mouse for tty</td></tr>
 <tr><td valign=top><strong></strong>					</td><td></td></tr>
 </table>
 <h3 align="center">Keys/Characters/Fonts</h3>

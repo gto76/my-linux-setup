@@ -103,13 +103,13 @@ Set up remaining things with mouse
  	- Sign in to chrome to get the bookmarks and extensions (do not rename the bookmarks folders, or they will duplicate on all machines)
 
  
-Check out [Awesome Window Manager](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/awesome)
+Check out [Awesome Window Manager](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/linux/awesome)
 -----------------
-1. Restart (System menu > power button icon > restart)
+1. Restart computer (System menu > power button icon > restart)
 2. Log in to Awesome (select your username and click the options button by the 'Sign In' and select Awesome from the list)
 
 
-Check out [**Terminal Commands**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/bash)	
+Check out [**Terminal Commands**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/linux/bash)	
 -----------------
 By installing *my-aliases* project you get a ton of additional terminal commands, most of which are a standard command with abrevirated name or a *1* added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesen't fit the screen.
 

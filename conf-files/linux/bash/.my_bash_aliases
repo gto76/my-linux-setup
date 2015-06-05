@@ -792,7 +792,7 @@ manSection() {
 # whatis, then apt-cache show, then type and finally apt-file.
 # When one of them succeeds in finding the description the
 # function returns.
-wi() {
+whatIs() {
 	call1=`whatis "$@" 2> /dev/null`
 	if [ "$?" == "0" ]; then
 		while IFS= read -r line; do
@@ -832,6 +832,7 @@ wi() {
 		echo  "$call6" | catOrLess
 	fi
 }
+alias wi='whatis'
 
 
 #######

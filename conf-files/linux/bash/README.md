@@ -40,6 +40,9 @@ General
 >`me FILE` ⇾ `createExecutable` - Creates empty bash executable file, or just makes it executable if already exists.  
 >`ty COMMAND` ⇾ `type` - Check what the command is aliased to  
 
+>`mc` ⇾ `midnight commander` - is a file explorer that runs inside terminal.  
+>`ssh IP` ⇾ `secure shell` -  is a programm for logging into a remote machine and for executing commands on a remote machine.    
+
 Sudo
 ----
 >`sn FILE` ⇾ `sudo nano ...` - opens file in *nano* text editor with superuser privileges  
@@ -61,16 +64,17 @@ Packages
 
 Processes
 ---------
+>`htop` - An quivalent of *Windows task manager*, except that it runs in terminal  
 >`ps1` - Prints all processes  
 >`pgrep1 PATTERN` - Greps all processes for pattern  
 >`kill1 PID` - Sends kill signal to the process  
 
 System
 -----
->`hib` - Hibernate  
->`sus` - Suspend  
->`restart` - Restart  
->`poweroff` - Shut down  
+>`hib` ernate  
+>`sus` pend  
+>`restart`  
+>`poweroff`  
 
 Git
 ---

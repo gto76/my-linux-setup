@@ -72,8 +72,8 @@ After installation
 	`$ bash install`
 13. If you chose to generate ssh key for git:  
 	- Copy it from the terminal (ctrl + alt + c)  
-	- Go to Github: `$ iceweasel github.com`  
-	- Sign in and go to 'acount settings' > 'ssh keys' > 'add ssh key'  
+	- Go to GitHub: `$ iceweasel github.com`  
+	- Sign in and go to 'account settings' > 'ssh keys' > 'add ssh key'  
 13. Clone my-aliases git project (change 'gto76' with your Git username, if you already forked the project)
 	- If you have ssh key, use: `$ git clone git@github.com:/gto76/my-aliases.git`  
 	- If you don't have it, use: `$ git clone https://github.com/gto76/my-aliases`
@@ -111,5 +111,5 @@ Check out [Awesome Window Manager](https://github.com/gto76/my-aliases/tree/gh-p
 
 Check out [**Terminal Commands**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/linux/bash)	
 -----------------
-By installing *my-aliases* project you get a ton of additional terminal commands, most of which are a standard command with abrevirated name or a *1* added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesen't fit the screen.
+By installing *my-aliases* project you get a ton of additional terminal commands, most of which are a standard command with abbreviated name or a *1* added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesn't fit the screen.
 

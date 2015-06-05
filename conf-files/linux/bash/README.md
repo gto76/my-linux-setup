@@ -36,12 +36,12 @@ General
 >`n2` ⇾ `nano ~/.my_bash_aliases` - Same but with *nano*
 >`backup FILE` - Backups file by making its copy with *.bkp* extension  
 >`find1 [PATTERN]` ⇾ `find ...` - Searches for file in subdirectories and highlights the matches  
->`gr PATTERN [FILE...]` ⇾ `grep ...` - Searches trough specified files for the pattern, using perl regular expressions, and highlights the matches.  
+>`gr PATTERN [FILE...]` ⇾ `grep ...` - Searches trough specified files for the pattern, using Perl regular expressions, and highlights the matches.  
 >`me FILE` ⇾ `createExecutable` - Creates empty bash executable file, or just makes it executable if already exists.  
 >`ty COMMAND` ⇾ `type` - Check what the command is aliased to  
 
 >`mc` ⇾ `midnight commander` - is a file explorer that runs inside terminal.  
->`ssh IP` ⇾ `secure shell` -  is a programm for logging into a remote machine and for executing commands on a remote machine.    
+>`ssh IP` ⇾ `secure shell` -  is a program for logging into a remote machine and for executing commands on a remote machine.    
 
 Sudo
 ----
@@ -64,7 +64,7 @@ Packages
 
 Processes
 ---------
->`htop` - An quivalent of *Windows task manager*, except that it runs in terminal  
+>`htop` - An equivalent of *Windows task manager*, except that it runs in terminal  
 >`ps1` - Prints all processes  
 >`pgrep1 PATTERN` - Greps all processes for pattern  
 >`kill1 PID` - Sends kill signal to the process  
@@ -89,11 +89,11 @@ Git
 
 Network
 -------
->`ip1` - Prints your local ip  
->`ip2` - Prints your global ip  
->`gateway` - Prints gateways ip  
->`pa` ⇾ `pingAll` - Pings gateway, a webserver with ip, and '_www.google.com_'  
->`ne` ⇾ `network` - Prints ips of network hosts and status of their ssh ports. Also checks if connection to internet works.  
+>`ip1` - Prints your local IP  
+>`ip2` - Prints your global IP  
+>`gateway` - Prints gateways IP  
+>`pa` ⇾ `pingAll` - Pings gateway, a webserver with IP, and '_www.google.com_'  
+>`ne` ⇾ `network` - Prints IPs of network hosts and status of their ssh ports. Also checks if connection to internet works.  
 
 >`up` - turns wireless adapter on  
 >`down` - turns wireless adapter off  
@@ -102,7 +102,7 @@ Misc
 ----
 >`teaceroute1 IP/DOMAIN` - Prints country codes of hosts on path.  
 >`www` - Traceroutes one server per country, prints country codes of hosts on path.   
->`spilej PATTERN` - Plays an artist/song/album. First looks in current directory, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems with downloading from youtube occur at search phase.  
+>`spilej PATTERN` - Plays an artist/song/album. First looks in current directory, then runs locate to search whole file system. At the end it tries to find it on YouTube and download the video and convert it to audio and play it. Most of the problems with downloading from YouTube occur at search phase.  
 >`gi PATTERN` - Downloads small image of a phrase from Google images.  
 
 

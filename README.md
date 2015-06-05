@@ -70,7 +70,7 @@ if [ -f ~/.my_bashrc ]; then
 fi
 ```
 This way aliases and functions in [**`.my_bashrc`**](dotfiles/.my_bashrc) get loaded at terminal startup. [**`.my_bashrc`**](dotfiles/.my_bashrc) then loads other two files ([**`.my_bash_aliases`**](dotfiles/.my_bash_aliases) and [**`.my_bashrc_personal`**](dotfiles/.my_bashrc_personal)) in a same manner.
-Also following line: `so ~/.my_vimrc` is added to the end of a `.vimrc` file, which loads [**`.my_vimrc`**](dotfiles/.my_vimrc) at vim startup. 
+Also following line: `so ~/.my_vimrc` is added to the end of a `.vimrc` file, which loads [**`.my_vimrc`**](dotfiles/.my_vimrc) at Vim startup. 
 
 To execute it run:
 ```

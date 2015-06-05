@@ -832,7 +832,7 @@ whatIs() {
 		echo  "$call6" | catOrLess
 	fi
 }
-alias wi='whatis'
+alias wi='whatIs'
 
 
 #######

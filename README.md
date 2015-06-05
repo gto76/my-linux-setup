@@ -2,11 +2,6 @@ My Aliases
 ==========
 My Linux config files, three handy text files, and an install script to put them all in a right place.
 
-Text Files
-----------
-Texfiles with notes about various linux commands, configurations, tools, etc.
-For details click [**HERE**](text-files)
-
 Configuration Files
 ------------
 They are grouped by the target operating system.
@@ -30,6 +25,11 @@ These files are used by shell programms that are made to simulate a linux enviro
 These files are intendet to avtomatize the Debian Linux installation. 
 For details see [**README**](conf-files/debian)
 
+Text Files
+----------
+Texfiles with notes about various linux commands, configurations, tools, etc.
+For details click [**HERE**](text-files)
+
 How to install
 --------------
 
@@ -52,7 +52,7 @@ fi
 This way aliases and functions in [**`.my_bashrc`**](dotfiles/.my_bashrc) get loaded at terminal startup. [**`.my_bashrc`**](dotfiles/.my_bashrc) then loads other two files ([**`.my_bash_aliases`**](dotfiles/.my_bash_aliases) and [**`.my_bashrc_personal`**](dotfiles/.my_bashrc_personal)) in a same manner.
 Also following line: `so ~/.my_vimrc` is added to the end of a `.vimrc` file, which loads [**`.my_vimrc`**](dotfiles/.my_vimrc) at Vim startup. 
 
-Of course you can also create links yourself, or even just copy the files if you don't intend to commit changes.
+Of course you can instead create links yourself, or even just copy the files if you don't intend to commit changes.
 
 
 

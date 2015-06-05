@@ -24,7 +24,7 @@ Automatic installation using preseed.cfg
 ----------------------------------------
 The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version [jessie](http://cdimage.debian.org/debian-cd/8.0.0/i386/iso-cd/debian-8.0.0-i386-CD-1.iso)), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
 
-`auto url=http://gto76.github.io/my-aliases/conf-files/debian/preseed.cfg`
+`auto url=http://gto76.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 
 **!!! WARNING !!!**  
 Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
@@ -37,12 +37,12 @@ Installer will automatically partition the hard disk, and hence erase all data. 
 
 #### If you want to modify the _preseed.cfg_...
 1. Log in to www.github.com (or create acount)
-2. Go to https://github.com/gto76/my-aliases and clisk '_fork_'
+2. Go to https://github.com/gto76/my-linux-setup and clisk '_fork_'
 3. Descent to '_conf-files_' > '_debian_' > '_preseed.cfg_'
 4. Edit the file by clicking on pencil button.
 5. Click '_Commit changes_'
 6. At the start of Debian instalation press _ESC_ and type:
-	`auto url=http://<YOUR-GITHUB-USERNAME>.github.io/my-aliases/conf-files/debian/preseed.cfg`
+	`auto url=http://<YOUR-GITHUB-USERNAME>.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 
 
 After installation
@@ -64,8 +64,8 @@ After installation
 8. Go to login screen (alt + ctrl + F7), click on _'not listed'_ and login to _GNOME_ as yourself
 9. Open terminal window (press win key and type terminal)
 10. Download "_install_" script and "_install.cfg_" conf file.  
-	`$ wget http://gto76.github.io/my-aliases/conf-files/debian/install`  
-	`$ wget http://gto76.github.io/my-aliases/conf-files/debian/install.cfg`
+	`$ wget http://gto76.github.io/my-linux-setup/conf-files/debian/install`  
+	`$ wget http://gto76.github.io/my-linux-setup/conf-files/debian/install.cfg`
 11. Modify "_install.cfg_" according to your needs (ctrl+o = save, ctrl+x = exit)  
 	`$ nano install.cfg`
 12. Run install  
@@ -74,11 +74,11 @@ After installation
 	- Copy it from the terminal (ctrl + alt + c)  
 	- Go to GitHub: `$ iceweasel github.com`  
 	- Sign in and go to 'account settings' > 'ssh keys' > 'add ssh key'  
-13. Clone my-aliases git project (change 'gto76' with your Git username, if you already forked the project)
-	- If you have ssh key, use: `$ git clone git@github.com:/gto76/my-aliases.git`  
-	- If you don't have it, use: `$ git clone https://github.com/gto76/my-aliases`
+13. Clone my-linux-setup git project (change 'gto76' with your Git username, if you already forked the project)
+	- If you have ssh key, use: `$ git clone git@github.com:/gto76/my-linux-setup.git`  
+	- If you don't have it, use: `$ git clone https://github.com/gto76/my-linux-setup`
 14. Install them  
-	`$ cd my-aliases`  
+	`$ cd my-linux-setup`  
 	`$ ./install`
 15. Install Awesome config files  
 	`$ cd dotfiles/awesome`  
@@ -103,13 +103,13 @@ Set up remaining things with mouse
  	- Sign in to chrome to get the bookmarks and extensions (do not rename the bookmarks folders, or they will duplicate on all machines)
 
  
-Check out [Awesome Window Manager](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/linux/awesome)
+Check out [Awesome Window Manager](/conf-files/linux/awesome)
 -----------------
 1. Restart computer (System menu > power button icon > restart)
 2. Log in to Awesome (select your username and click the options button by the 'Sign In' and select Awesome from the list)
 
 
-Check out [**Terminal Commands**](https://github.com/gto76/my-aliases/tree/gh-pages/conf-files/linux/bash)	
+Check out [**Terminal Commands**](/conf-files/linux/bash)	
 -----------------
-By installing *my-aliases* project you get a ton of additional terminal commands, most of which are a standard command with abbreviated name or a *1* added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesn't fit the screen.
+By installing *my-linux-setup* project you get a ton of additional terminal commands, most of which are a standard command with abbreviated name or a *1* added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesn't fit the screen.
 

@@ -43,7 +43,7 @@ Installer will automatically partition the hard disk, and hence erase all data (
 3. Descent to '_conf-files_' > '_debian_' > '_preseed.cfg_'
 4. Edit the file by clicking on pencil button.
 5. Click '_Commit changes_'
-6. At the start of Debian instalation press _ESC_ and type:
+6. At the start of Debian instalation press '*Esc*' and type:
 	`auto url=http://<YOUR-GITHUB-USERNAME>.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 
 
@@ -116,5 +116,5 @@ Check out [Awesome Window Manager](/conf-files/linux/awesome)
 
 Check out [**Terminal Commands**](/conf-files/linux/bash)	
 -----------------
-By installing *my-linux-setup* project you get a ton of additional terminal commands, most of which are a standard command with abbreviated name or a *1* added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesn't fit the screen.
+By installing *my-linux-setup* project you get a ton of additional terminal commands, most of which are a standard command with abbreviated name or number '*1*' added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesn't fit the screen.
 

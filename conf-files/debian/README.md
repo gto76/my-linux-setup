@@ -32,7 +32,7 @@ Installer will automatically partition the hard disk, and hence erase all data (
 #### Main features
 - Will upgrade to testing suite (eternal updates)
 - Will create user named "debian" with password "insecure" and set roots password to "r00tme"
-- Beside the standard gnome desktop, the _Awesome_ windows manager will be installed
+- Beside the standard GNOME desktop, the _Awesome_ windows manager will be installed
 - Will automatically install and upgrade following packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl, build-essential, module-assistant
 
 #### If you want to modify the _preseed.cfg_...
@@ -91,7 +91,7 @@ After installation
 Set up remaining things with mouse
 ----------------------------------
 
-1. Edit gnome-terminals appearance:
+1. Edit *GNOME Terminal*'s appearance:
  * Change colors (Edit > Preferences > Profiles > Edit > Colors)
  	- Uncheck '_Use colors from system theme_'
  	- Select '_White on Black_' scheme for text and background

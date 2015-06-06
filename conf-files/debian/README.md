@@ -77,7 +77,7 @@ After installation
 13. Clone my-linux-setup git project (change 'gto76' with your Git username, if you already forked the project)
 	- If you have ssh key, use: `$ git clone git@github.com:/gto76/my-linux-setup.git`  
 	- If you don't have it, use: `$ git clone https://github.com/gto76/my-linux-setup`
-14. Install them  
+14. Install it  
 	`$ cd my-linux-setup`  
 	`$ ./install`
 15. Install Awesome config files  

@@ -1,6 +1,8 @@
 Debian Linux - How to Install and Configure 
 =====================================
 
+Download ISO image from [**HERE**](http://cdimage.debian.org/debian-cd/8.0.0/i386/iso-cd/debian-8.0.0-i386-CD-1.iso)
+
 If you're installing Debian on VirtualBox
 -----------------------------------------
 1. Download and install *VirtualBox* form [here](https://www.virtualbox.org/wiki/Downloads)
@@ -22,7 +24,7 @@ If you're installing Debian on VirtualBox
 
 Automatic installation using preseed.cfg
 ----------------------------------------
-The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version [jessie](http://cdimage.debian.org/debian-cd/8.0.0/i386/iso-cd/debian-8.0.0-i386-CD-1.iso)), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
+The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version *Jessie*), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
 
 `auto url=http://gto76.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 

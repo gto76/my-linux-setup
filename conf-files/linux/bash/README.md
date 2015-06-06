@@ -19,7 +19,7 @@ General
 >`rmdir, cpdir, mvdir` - Delete, copy or move directory  
 >`.., ..., ....` ⇾  `cd .., cd ../.., cd ../../..`   
 >`m [FILE]` or `cat [FILE] | m` -  It runs *cat* (just prints the file) or *less* (opens file in a pager), depending on whether the input or file can fit on one screen (output of most commands described here get send to this command at the end)  
->`n [FILE]` ⇾ `nano` text editor with some additional options  
+>`n [FILE]` ⇾ `nano` text editor with some additional options (ctrl+o - save file, ctrl+x - exit)   
 >`v [FILE]` ⇾ `vim` text editor  
 >`vv [FILE]` ⇾ `vim` in read only mode   
 >`vvv [FILE]` ⇾ `vim` in separate console, with smaller font and white background  

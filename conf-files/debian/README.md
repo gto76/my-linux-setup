@@ -27,7 +27,7 @@ The preseed.cfg file contains all the data needed for a fresh install of Debian 
 `auto url=http://gto76.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 
 **!!! WARNING !!!**  
-Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details.
+Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details. 
 
 #### Main features
 - Will upgrade to testing suite (eternal updates)
@@ -83,6 +83,9 @@ After installation
 15. Install Awesome config files  
 	`$ cd dotfiles/awesome`  
 	`$ ./install`
+16. If you're installing Linux on VirtualBox, you can make links to shared folders inside your home folder with:  
+	`$ cd`  
+	`$ sudo ln -s /media/sf_* .`  
 
 
 Set up remaining things with mouse

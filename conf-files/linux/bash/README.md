@@ -32,8 +32,8 @@ General
 >`na` ⇾ `nautilus` - Opens File explorer in background  
 >`te` ⇾ `terminal`  - Starts new terminal in background  
 >`f` ⇾ `fuck` - Runs last command with sudo  
->`v2` ⇾ `vim ~/.my_bash_aliases` - Opens file that contains this aliases in *vim* text editor
->`n2` ⇾ `nano ~/.my_bash_aliases` - Same but with *nano*
+>`v2` ⇾ `vim ~/.my_bash_aliases` - Opens file that contains this aliases in *vim* text editor  
+>`n2` ⇾ `nano ~/.my_bash_aliases` - Same but with *nano*  
 >`backup FILE` - Backups file by making its copy with *.bkp* extension  
 >`find1 [PATTERN]` ⇾ `find ...` - Searches for file in subdirectories and highlights the matches  
 >`gr PATTERN [FILE...]` ⇾ `grep ...` - Searches trough specified files for the pattern, using Perl regular expressions, and highlights the matches.  

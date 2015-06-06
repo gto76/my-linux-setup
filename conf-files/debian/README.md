@@ -5,7 +5,7 @@ Download ISO image from [**HERE**](http://cdimage.debian.org/debian-cd/8.0.0/i38
 
 If you're installing Debian on VirtualBox
 -----------------------------------------
-1. Download and install *VirtualBox* form [here](https://www.virtualbox.org/wiki/Downloads)
+1. Download and install [**VirtualBox**](http://download.virtualbox.org/virtualbox/4.3.28/VirtualBox-4.3.28-100309-Win.exe)  
 2. Click on '_New_', set type to '_Linux_' and version to '_Debian_'. Choose enough ram (~800MB).
 3. Select '_Create a virutal hard drive now_' > '_VDI_' > '_Dynamically allocated_'
 4. Select big enough size (~1TB), because it will be very hard to enlarge later (even with *GParted*), and since it is dynamically allocated, it will only take as much space as it needs to store the files, that is around 7GB when freshly installed. If this is too much, you can deselect few packages by changing *preseed.cfg* file (see next section)  

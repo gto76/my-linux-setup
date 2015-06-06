@@ -24,7 +24,7 @@ If you're installing Debian on VirtualBox
 
 Automatic installation using preseed.cfg
 ----------------------------------------
-The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version *Jessie*), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
+The *preseed.cfg* file contains all the data needed for a fresh install of *Debian Linux* (version *Jessie*), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
 
 `auto url=http://gto76.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 

@@ -47,7 +47,7 @@ Installer will automatically partition the hard disk, and hence erase all data (
 
 After installation
 ------------------
-1. Go to tty (ctrl + alt + F1)
+1. Go to tty (ctrl+alt F1)
 2. Login as root:  
 	`debian login: root`  
 	`Password: r00tme`
@@ -61,7 +61,7 @@ After installation
 	`$ adduser <your-login-name> sudo`
 7. Log out  
 	`$ exit`
-8. Go to login screen (alt + ctrl + F7), click on _'not listed'_ and login to _GNOME_ as yourself
+8. Go to login screen (alt+ctrl F7), click on _'not listed'_ and login to _GNOME_ as yourself
 9. Open terminal window (press win key and type terminal)
 10. Download "_install_" script and "_install.cfg_" conf file.  
 	`$ wget http://gto76.github.io/my-linux-setup/conf-files/debian/install`  
@@ -71,7 +71,7 @@ After installation
 12. Run install  
 	`$ bash install`
 13. If you chose to generate ssh key for git:  
-	- Copy it from the terminal (ctrl + alt + c)  
+	- Copy it from the terminal (ctrl+alt c)  
 	- Go to GitHub: `$ iceweasel github.com`  
 	- Sign in and go to 'account settings' > 'ssh keys' > 'add ssh key'  
 13. Clone my-linux-setup git project (change 'gto76' with your Git username, if you already forked the project)

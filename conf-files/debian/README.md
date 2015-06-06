@@ -32,12 +32,12 @@ Installer will automatically partition the hard disk, and hence erase all data (
 #### Main features
 - Will upgrade to testing suite (eternal updates)
 - Will create user named "debian" with password "insecure" and set roots password to "r00tme"
-- Beside the standard GNOME desktop, the _Awesome_ windows manager will be installed
+- Beside the standard *GNOME* desktop, the _Awesome_ windows manager will be installed
 - Will automatically install and upgrade following packages: vim, sudo, mc, git, ssh, nrss, nmap, openjdk-7-jdk, vlc, htop, tree, gpm, fbi, tmux, awesome, lynx, curl, tcpdump, apt-file, gcc, make, konsole, pm-utils, strace, rfkill, mplayer2, youtube-dl, build-essential, module-assistant
 
 #### If you want to modify the _preseed.cfg_...
 1. Log in to www.github.com (or create acount)
-2. Go to https://github.com/gto76/my-linux-setup and clisk '_fork_'
+2. Go to https://github.com/gto76/my-linux-setup and click '_fork_'
 3. Descent to '_conf-files_' > '_debian_' > '_preseed.cfg_'
 4. Edit the file by clicking on pencil button.
 5. Click '_Commit changes_'
@@ -99,7 +99,7 @@ Set up remaining things with mouse
  * Disable menubar (Edit > Preferences > General)
  	- Uncheck '_Show menubar by default in new terminals_'
 
-2. Download Chrome:  
+2. Download *Chrome*:  
 	- `$ iceweasel google.com/chrome`
 	- Select the right version and download (select save file)
 	- Open containing folder, right click, open with > Package Install
@@ -109,7 +109,7 @@ Set up remaining things with mouse
 Check out [Awesome Window Manager](/conf-files/linux/awesome)
 -----------------
 1. Restart computer (System menu > power button icon > restart)
-2. Log in to Awesome (select your username and click the options button by the 'Sign In' and select Awesome from the list)
+2. Log in to *Awesome* (select your username and click the options button by the 'Sign In' and select Awesome from the list)
 
 
 Check out [**Terminal Commands**](/conf-files/linux/bash)	

@@ -27,7 +27,6 @@ General
 >`h [PATTERN]` ⇾ `history` - Displays past commands, or only ones that contain pattern, if specified  
 >`df1` ⇾ `disk fullnes` - Prints disks space usage in human readable format  
 >`o FILE` ⇾ `xdg-open` - Open file with default application for the file type  
-
 >`du1 [FILE...]` ⇾ `du ...` - Shows file space usage of all files in and under current folder or specified folder if passed.  
 >`na` ⇾ `nautilus` - Opens File explorer in background  
 >`te` ⇾ `terminal`  - Starts new terminal in background  

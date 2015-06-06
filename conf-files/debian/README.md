@@ -27,7 +27,7 @@ The preseed.cfg file contains all the data needed for a fresh install of Debian 
 `auto url=http://gto76.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 
 **!!! WARNING !!!**  
-Installer will automatically partition the hard disk, and hence erase all data. Check the "_preseed.cfg_", line 149 for details. 
+Installer will automatically partition the hard disk, and hence erase all data (this is OK if you're installing on VirtualBox and have created a **virutal hard drive**). Check the "_preseed.cfg_", line 149 for details. 
 
 #### Main features
 - Will upgrade to testing suite (eternal updates)

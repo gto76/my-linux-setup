@@ -14,9 +14,9 @@ If you're installing Debian on VirtualBox
 6. Increase '_Display_' > '_Video_' > '_Video Memory_' (~40MB)
 7. If you want Debian to be seen on the network by the host, then set '_Network_' > '_Adapter 1_' > '_Attached to:_' to '_Bridged Adapter_'
 8. Add folders that you would like to share with Debian with '_Shared Folders_' > '_+_', and check '_Auto-mount_' for all.
+9. Start the created virtual machine by double clicking on it. When prompted with '_Select start-up disk_', click the folder button and select the Debian ISO file. 
 9. Select '_View_' > '_Auto resize guest display_'
-9. Start the created virtual machine by double clicking on it, and select the Debian ISO file when prompted with '_Select start-up disk_'  
-10. (optional) Change guest clock synchronization to 1 second:   
+10. (optional) Change guest clock synchronization to 1 second (in Command Prompt):   
 ```
 	$ cd "c:\Program Files\Oracle\VirtualBox"
 	$ VBoxManage.exe guestproperty set <vm-name> "/VirtualBox/GuestAdd/VBoxService/--timesync-set-treshold" 1000
@@ -24,7 +24,7 @@ If you're installing Debian on VirtualBox
 
 Automatic installation using preseed.cfg
 ----------------------------------------
-The *preseed.cfg* file contains all the data needed for a fresh install of *Debian Linux* (version *Jessie*), so that it can be installed unattended. To use it pres '*Esc*' when the first menu (grub) shows up and specify its location, in this case:
+The *preseed.cfg* file contains all the data needed for a fresh install of *Debian Linux* (version *Jessie*), so that it can be installed unattended. To use it pres '*Esc*' when the '*installer boot menu*' shows up and enter this line:
 
 `auto url=http://gto76.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 

@@ -1,9 +1,11 @@
 Debian Linux - How to Install and Configure 
 =====================================
 
+Download ISO image from [**HERE**](http://cdimage.debian.org/debian-cd/8.0.0/i386/iso-cd/debian-8.0.0-i386-CD-1.iso)
+
 If you're installing Debian on VirtualBox
 -----------------------------------------
-1. Download and install *VirtualBox* form [here](https://www.virtualbox.org/wiki/Downloads)
+1. Download and install [**VirtualBox**](http://download.virtualbox.org/virtualbox/4.3.28/VirtualBox-4.3.28-100309-Win.exe)  
 2. Click on '_New_', set type to '_Linux_' and version to '_Debian_'. Choose enough ram (~800MB).
 3. Select '_Create a virutal hard drive now_' > '_VDI_' > '_Dynamically allocated_'
 4. Select big enough size (~1TB), because it will be very hard to enlarge later (even with *GParted*), and since it is dynamically allocated, it will only take as much space as it needs to store the files, that is around 7GB when freshly installed. If this is too much, you can deselect few packages by changing *preseed.cfg* file (see next section)  
@@ -12,9 +14,9 @@ If you're installing Debian on VirtualBox
 6. Increase '_Display_' > '_Video_' > '_Video Memory_' (~40MB)
 7. If you want Debian to be seen on the network by the host, then set '_Network_' > '_Adapter 1_' > '_Attached to:_' to '_Bridged Adapter_'
 8. Add folders that you would like to share with Debian with '_Shared Folders_' > '_+_', and check '_Auto-mount_' for all.
+9. Start the created virtual machine by double clicking on it. When prompted with '_Select start-up disk_', click the folder button and select the Debian ISO file. 
 9. Select '_View_' > '_Auto resize guest display_'
-9. Start the created virtual machine by double clicking on it, and select the Debian ISO file when prompted with '_Select start-up disk_'  
-10. (optional) Change guest clock synchronization to 1 second:   
+10. (optional) Change guest clock synchronization to 1 second (in Command Prompt):   
 ```
 	$ cd "c:\Program Files\Oracle\VirtualBox"
 	$ VBoxManage.exe guestproperty set <vm-name> "/VirtualBox/GuestAdd/VBoxService/--timesync-set-treshold" 1000
@@ -22,12 +24,12 @@ If you're installing Debian on VirtualBox
 
 Automatic installation using preseed.cfg
 ----------------------------------------
-The preseed.cfg file contains all the data needed for a fresh install of Debian Linux (version [jessie](http://cdimage.debian.org/debian-cd/8.0.0/i386/iso-cd/debian-8.0.0-i386-CD-1.iso)), so that it can be installed unattended. To use it pres ESC when the first menu (grub) shows up and specify its location, in this case:
+The *preseed.cfg* file contains all the answers to the questions that you would get asked during installation of *Debian Linux* (version *Jessie*). To use it pres '*Esc*' when the '*installer boot menu*' shows up and enter this line:
 
 `auto url=http://gto76.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 
 **!!! WARNING !!!**  
-Installer will automatically partition the hard disk, and hence erase all data (this is OK if you're installing on VirtualBox and have created a **virutal hard drive**). Check the "_preseed.cfg_", line 149 for details. 
+If you use this *preseed.cfg* file, installer will automatically partition the hard disk, and hence erase all data. (this is OK if you're installing on VirtualBox because you're using '*virutal hard drive*', which is just an ordinary file in your filesystem, so this will have no effect on your actual hard drive). Check the "_preseed.cfg_", line 149 for details. 
 
 #### Main features
 - Will upgrade to testing suite (eternal updates)
@@ -41,7 +43,7 @@ Installer will automatically partition the hard disk, and hence erase all data (
 3. Descent to '_conf-files_' > '_debian_' > '_preseed.cfg_'
 4. Edit the file by clicking on pencil button.
 5. Click '_Commit changes_'
-6. At the start of Debian instalation press _ESC_ and type:
+6. At the start of Debian instalation press '*Esc*' and type:
 	`auto url=http://<YOUR-GITHUB-USERNAME>.github.io/my-linux-setup/conf-files/debian/preseed.cfg`
 
 
@@ -114,5 +116,5 @@ Check out [Awesome Window Manager](/conf-files/linux/awesome)
 
 Check out [**Terminal Commands**](/conf-files/linux/bash)	
 -----------------
-By installing *my-linux-setup* project you get a ton of additional terminal commands, most of which are a standard command with abbreviated name or a *1* added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesn't fit the screen.
+By installing *my-linux-setup* project you get a ton of additional terminal commands, most of which are a standard command with abbreviated name or number '*1*' added to the name. This commands most often call the standard command with some sensible set of options and send output to the pager if it doesn't fit the screen.
 

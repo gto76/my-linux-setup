@@ -27,7 +27,7 @@ $ tce-load -wi git
 $ tce-load -wi compiletc
 ```
 
-If You want a proper Linux distribution instead…
+If You Want a Proper Linux Distribution Instead…
 ------------------------------------------------
 Check out this [**INSTRUCTIONS**](/conf-files/debian) on how to install and configure Debian Linux on VirtualBox or on the hardware.
 

@@ -252,6 +252,7 @@ alias tma='tmux attach'
 alias tml='tmux ls'
 alias clr='clear'
 alias cl='clear'
+alias re='reset'
 alias k='clear'
 # Greps the history, or just shows it if no argument is passed
 his() {
@@ -840,14 +841,14 @@ alias wi='whatIs'
 #######
 
 commit() {
-  if [ $# -eq 0 ]
-  then
+  if [ $# -eq 0 ]; then
     message="regular commit"
   else
   	message="$*"
   fi
   git commit -am "$message"
 }
+alias commitm='git commit -a'
 alias init='git init'
 alias push='git push'
 alias pull='git pull'

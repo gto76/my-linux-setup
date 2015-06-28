@@ -383,9 +383,9 @@ join - join lines of two files on a common field
 colrm <from <to>> - removes columns
 seq <number> - output numbers from 1 to number
 ispell/aspell - interactive spell checker
-basename <path> [suffix] - strip directory from path
-		-s <.suffix> - also strip suffix ?
-		-a - process multiple filenames ?
+basename [-s .suffix] <path> - strip directory from path
+		-s <.suffix> - also strip suffix
+		-a - process multiple filenames
 dirname <path> - strip last component from path
 fmt - produce roughly uniform line lengths
 fold - wrap each input line to fit in specified width
@@ -811,8 +811,9 @@ fbi - display images inside tty
 
 VIDEO:
 
-ffmpeg -i <file-in> <file-out> - video and audio format converter. Has been replaced by:
-avconv - video and audio format converter (libav-tools)
+ffmpeg -i <file-in> <file-out> - video and audio format converter. Has been replaced by avconv
+avconv -i <file-in> <file-out> - video and audio format converter (libav-tools)
+
 openshot - gui movie editor 
 openmovieeditor - gui movie editor 
 aview, asciiview - ASCII art image viewer and video player

@@ -276,7 +276,8 @@ alias to='touch'
 alias rm1='rm -f'
 # Console calculator with float.
 alias bc1='gcalccmd'
-alias ma="make"
+alias make1='make 2>&1 | less'
+alias ma="make1"
 # Report disk space of main partitions in human readable form.
 alias df1='df -h | grep "sd\|Size" | cat'
 # Open pdf file

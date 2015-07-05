@@ -98,7 +98,7 @@ _system() {
 	# Disables beeps 
 	param=$(getParam "system" "diable-pc-speaker")
 	if [ "$param" == "true" ]; then
-		sudo rmmod pcspkr
+		sudo sh -c 'echo "blacklist pcspkr" >> /etc/modprobe.d/nobeep.conf'
 	fi
 	# Changes the shade of blue in tty
 	param=$(getParam "system" "change-blue-in-tty")

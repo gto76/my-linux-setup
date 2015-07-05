@@ -138,7 +138,7 @@ bash - run bash command interpreter (shell)
 	-c - read commands from arguments instead of stdin
 	-n <script> - check script for errors
 	-x - oputputs lines before execution, good for debuging
-sudo sh -c 'echo "bla bla bla" >> <file>' - append lines to system configuration file
+sudo sh -c 'echo "bla bla bla" >> <file>' - append lines to system configuration file (sudo write)
 gcc - gnu c compiler
 	-w - supress warnings (only print errors) 
 	-a shows all sections

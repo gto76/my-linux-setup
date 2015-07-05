@@ -81,9 +81,9 @@ After installation
 	- If you don't have it, use: `$ git clone https://github.com/gto76/my-linux-setup`
 14. Install it  
 	`$ cd my-linux-setup`  
-	`$ ./install`
+	`$ ./install-linux`
 15. Install Awesome config files  
-	`$ cd dotfiles/awesome`  
+	`$ cd conf-files/linux/awesome`  
 	`$ ./install`
 16. If you're installing Linux on VirtualBox, you can make links to shared folders inside your home folder with:  
 	`$ cd`  

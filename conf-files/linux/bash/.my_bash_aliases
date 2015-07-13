@@ -533,7 +533,15 @@ createExecutable() {
 		echo "# Usage: $1 " >> "$1"
 		echo '# ' >> "$1"
 		echo >> "$1"
-		echo '# set -e' >> "$1"
+		echo '# Exit if any command has non-zero status (-e), if referencing' >> "$1"
+		echo '# undefined variable (-u) and if any command in a pipeline ' >> "$1"
+		echo '# fails, its return code is used as the return code of the' >> "$1"
+		echo '# whole pipeline (-o pipefail).' >> "$1"
+		echo 'set -euo pipefail' >> "$1"
+		echo >> "$1"
+		echo '# Remove space from Internal Field Separator.' >> "$1"
+		echo "IFS=$'\n\t'" >> "$1"
+		echo >> "$1"
 		echo >> "$1"
 	fi
 	chmod u+x "$1"        
@@ -594,19 +602,13 @@ find1() {
 # Print all directories recursively.
 alias findd='find . -name .git -prune -o -type d | catOrLess'
 
-# Make directory and descend into.
+# Make directory and its subdirectories and descend into.
 mkdir1() {
-	mkdir "$1"
-	cd "$1"
-}
-# Make directory and its subdirectories
-alias mkdir2="mkdir -p"
-# Make directory and its subdirectories, and descend into.
-mkdir3() {
 	mkdir -p "$1"
 	cd "$1"
 }
-alias mk='mkdir3'
+alias mkd='mkdir1'
+alias mk='mkdir1'
 
 # Simplified sed command. Usage: cat file | sed1 <change this>
 # <to this>. Warning: I don't guarantee all the quotations and

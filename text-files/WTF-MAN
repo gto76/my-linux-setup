@@ -210,6 +210,7 @@ cmp - compares two files, similar to diff but also for binaries
 stat -c%X <file> - time of last modification of the file 
 readlink -f - follow link recursively and print files path
 xdg-open <file> - open file with default aplication for the file type
+dialog - display dialog box from shell script
 
 
 ARCHIVES:

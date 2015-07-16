@@ -946,15 +946,16 @@ TAGS:
 git push --tags - push tags
 git fetch --tags - pulling tags (automaticaly if on the same branch and there is a new commit?)
 
+UNDO:
+git reset --hard HEAD~1 - delete last commit and all of its changes
+git reset HEAD~1 - delete last commit but keep your changes
+
 ALSO USEFUL:
 git checkout HEAD^ <file> - retrieve deleted file
 git rm --cached <file> - untrack file without deleting it
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
 chown -R <user>:<group> * - in .git/objects (sudo)
-git reset --hard HEAD~1 - delete last commit
-git reset --hard <sha> - trash the changes
-git reset HEAD^
 git format-patch -1 <sha> - generate patch file
 git rev-parse HEAD - get sha of head
 git revert

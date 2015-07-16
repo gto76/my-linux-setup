@@ -212,6 +212,7 @@ stat -c%X <file> - time of last modification of the file
 readlink -f - follow link recursively and print files path
 xdg-open <file> - open file with default aplication for the file type
 dialog - display dialog box from shell script
+watch - execute command periodically
 
 
 ARCHIVES:

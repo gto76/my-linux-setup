@@ -264,6 +264,7 @@ his() {
 alias h='his'
 alias xx='exit'
 alias x='exit'
+alias q='exit'
 alias he='head'
 alias he1='head -n1'
 alias ta='tail'
@@ -313,7 +314,10 @@ alias na='rb nautilus .'
 # Get name of first file in directory
 alias first='ls | head -1'
 # Get name of random file in directory
-alias random-file='ls | sort -R | head -1'
+# $@ - all arguments get send to ls
+random-file() {
+	ls "$@" | sort -R | head -1
+}
 alias rf='random-file'
 # Run profile script
 alias profile='source /etc/profile'
@@ -1434,19 +1438,19 @@ vol() {
 	amixer set Master playback "$1"
 }
 # Volume up 6dB.
-q() {
+a() {
 	vol "6%+" | tail -n 1
 }
 # Volume down 6dB.
-a() {
+z() {
 	vol "6%-" | tail -n 1
 }
 # Volume up 2 dB.
-qq() {
+aa() {
 	vol "2%+" | tail -n 1
 }
 # Volume down 2 dB.
-aa() {
+zz() {
 	vol "2%-" | tail -n 1
 }
 

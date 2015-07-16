@@ -103,7 +103,8 @@ update-alternatives - maintain symbolic links determining default commands
 
 unattended-upgrade - automatic installation of upgrades
 
-apropos -a - all keywords
+apropos - search the manual page names and descriptions (use quotes for phrases)
+	-a - all keywords
 whatis - short description of app
 whereis - locates where command resides 
 which - similar only executable

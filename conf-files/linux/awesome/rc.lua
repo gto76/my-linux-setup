@@ -261,6 +261,7 @@ globalkeys = awful.util.table.join(
     awful.key({ "Mod1", "Control" }, "c", function () awful.util.spawn("google-chrome --touch-devices=123") end),
     awful.key({ "Mod1", "Control" }, "t", function () awful.util.spawn(terminal) end),
     awful.key({ "Mod1", "Control" }, "g", function () awful.util.spawn("gedit") end),
+    awful.key({ "Mod1", "Control" }, "s", function () awful.util.spawn("subl") end),
 
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),

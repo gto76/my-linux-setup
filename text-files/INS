@@ -18,6 +18,8 @@ usermod <username> -a -G wheel
 # UPDATE
 sudo apt-get update
 sudo apt-get -u dist-upgrade
+* UBUNTU first run:
+sudo apt-get install -f
 * FEDORA:
 sudo yum update
 
@@ -35,8 +37,8 @@ sudo cp /tmp/bash.bashrc.tmp /etc/bash.bashrc
 
 # INSTALL MY CONF FILES
 cd ~
-git clone https://github.com/gto76/my-aliases.git
-cd my-aliases
+git clone https://github.com/gto76/my-linux-setup.git
+cd my-linux-setup
 ./install
 bash
 
@@ -52,9 +54,9 @@ cat ~/.ssh/id_rsa.pub
 // Copy contents of the key and paste them into key field at 
 // Acount settings > SSH Keys > Add SSH key on your Github page.
 
-# USE SSH KEY FOR PUSHING MY-ALIASES (you need to fork the repo to your github account)
-cd ~/my-aliases
-git remote set-url origin git@github.com:<user>/my-aliases.git
+# USE SSH KEY FOR PUSHING MY-LINUX-SETUP (you need to fork the repo to your github account)
+cd ~/my-linux-setup
+git remote set-url origin git@github.com:<user>/my-linux-setup.git
 
 # MOUNT OTHER DRIVES
 mkdir /media/data
@@ -246,7 +248,7 @@ and change Preferences>General>Apperance>Theme to Classic.
 
 # REAPER: 
 download and install reaper 32
-import key shortcuts from my-aliases/reaper, 
+import key shortcuts from my-linux-setup/reaper, 
 import licence,
 make VstPlugins folder in program files (x68)
 install plugins (lexicon PCM native, BaxterEQ, dirthead, dlM sixtyfive, sumo, Volume Eleven II, VoxengoMSED)

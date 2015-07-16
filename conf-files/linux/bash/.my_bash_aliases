@@ -252,6 +252,7 @@ alias tma='tmux attach'
 alias tml='tmux ls'
 alias clr='clear'
 alias cl='clear'
+alias re='reset'
 alias k='clear'
 # Greps the history, or just shows it if no argument is passed
 his() {
@@ -276,7 +277,8 @@ alias to='touch'
 alias rm1='rm -f'
 # Console calculator with float.
 alias bc1='gcalccmd'
-alias ma="make"
+alias make1='make 2>&1 | less'
+alias ma="make1"
 # Report disk space of main partitions in human readable form.
 alias df1='df -h | grep "sd\|Size" | cat'
 # Open pdf file
@@ -343,6 +345,9 @@ o() {
 	rb xdg-open "$@"
 }
 alias ty='type'
+diff1() {
+	colordiff "$@" | catOrLess
+}
 
 ########
 # SUDO #
@@ -419,7 +424,9 @@ alias psa='ps -e | catOrLess'
 alias ps1='ps -e | catOrLess'
 
 # Print matching processes and their pids.
-alias pgrep1='pgrep --list-name'
+pgrep1() {
+	pgrep --list-name "$@" | catOrLess
+}
 
 
 ########
@@ -529,7 +536,15 @@ createExecutable() {
 		echo "# Usage: $1 " >> "$1"
 		echo '# ' >> "$1"
 		echo >> "$1"
-		echo '# set -e' >> "$1"
+		echo '# Exit if any command has non-zero status (-e), if referencing' >> "$1"
+		echo '# undefined variable (-u) and if any command in a pipeline ' >> "$1"
+		echo '# fails, its return code is used as the return code of the' >> "$1"
+		echo '# whole pipeline (-o pipefail).' >> "$1"
+		echo 'set -euo pipefail' >> "$1"
+		echo >> "$1"
+		echo '# Remove space from Internal Field Separator.' >> "$1"
+		echo "IFS=$'\n\t'" >> "$1"
+		echo >> "$1"
 		echo >> "$1"
 	fi
 	chmod u+x "$1"        
@@ -590,19 +605,13 @@ find1() {
 # Print all directories recursively.
 alias findd='find . -name .git -prune -o -type d | catOrLess'
 
-# Make directory and descend into.
+# Make directory and its subdirectories and descend into.
 mkdir1() {
-	mkdir "$1"
-	cd "$1"
-}
-# Make directory and its subdirectories
-alias mkdir2="mkdir -p"
-# Make directory and its subdirectories, and descend into.
-mkdir3() {
 	mkdir -p "$1"
 	cd "$1"
 }
-alias mk='mkdir3'
+alias mkd='mkdir1'
+alias mk='mkdir1'
 
 # Simplified sed command. Usage: cat file | sed1 <change this>
 # <to this>. Warning: I don't guarantee all the quotations and
@@ -791,7 +800,7 @@ manSection() {
 # whatis, then apt-cache show, then type and finally apt-file.
 # When one of them succeeds in finding the description the
 # function returns.
-wi() {
+whatIs() {
 	call1=`whatis "$@" 2> /dev/null`
 	if [ "$?" == "0" ]; then
 		while IFS= read -r line; do
@@ -831,6 +840,7 @@ wi() {
 		echo  "$call6" | catOrLess
 	fi
 }
+alias wi='whatIs'
 
 
 #######
@@ -838,14 +848,14 @@ wi() {
 #######
 
 commit() {
-  if [ $# -eq 0 ]
-  then
+  if [ $# -eq 0 ]; then
     message="regular commit"
   else
   	message="$*"
   fi
   git commit -am "$message"
 }
+alias commitm='git commit -a'
 alias init='git init'
 alias push='git push'
 alias pull='git pull'
@@ -857,7 +867,7 @@ clone() {
 	git clone git@github.com:/"$1".git
 }
 
-alias gs='git status -sb'
+alias gs='git -c color.status=always status -sb | catOrLess'
 # Nicely decorated graph of commits
 alias gl='git log --decorate --graph --all'
 alias gl1="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"

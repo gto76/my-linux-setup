@@ -74,7 +74,7 @@ PACKAGES:
 ========
 
 dpkg -l - lists installed packages
-	-i <package> - install package from a package file (sudo)
+	-i <package> (sudo) - install package from a package file 
 apt - 'skin' for dpkg
 apt-get	- top level package manager
 		--yes - answer with 'yes' to most questions (except the ones that can have potentialy harmful consequeces)
@@ -155,7 +155,7 @@ mkisofs - create a DVD/CD image
 genisoimage - create a DVD/CD image (debian)
 cdrecord - write to a CD/DVD
 acpi - check battery
-fdisk -l - show partitions (sudo)
+fdisk -l (sudo) - show partitions 
 shutdown now - take you to single user mode
 	-h now -  begins the shutdown procedure (OR halt OR poweroff)
 	-h 11:50 - when
@@ -194,7 +194,7 @@ find <dir> -name <file> - search by name
 	-exec <command> {} + - find files and execute command with all filenames in place of {}
 	-atime +/-n - find files that were last acessed less or more than n days.
 locate <word>  - same as find but using index
-updatedb - update database for locate (sudo)
+updatedb (sudo) - update database for locate 
 locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
 md5sum - checks md5 sum hash
 read - reads from file line by line
@@ -465,7 +465,7 @@ arp - manipulate the system ARP cache (IP -> mac)
 route - tool used to display or modify the routing table
 	add default gw 192.168.1.10 - change the default gateway
 	should DNS not be configured correctly on your machine, you need to edit "/etc/resolv.conf" to make things work
-ifconfig eth0	down/up - turn network interface on/off (sudo)
+ifconfig eth0	down/up (sudo) - turn network interface on/off 
 	192.168.1.4 netmask 255.255.255.0 up - set ip and mask
 ifup eth0 - Will bring eth0 up if it is currently down.
 ip	link show - list network interfaces
@@ -493,14 +493,14 @@ WIRELESS:
 
 iwconfig - sets the wireless configuration options basic to most wireless devices
 iwlist wlan0	<option> - displays current status information of a device, more detailed then iwconfig
-				scan - list wireless networks in range (sudo)
+				scan (sudo) - list wireless networks in range 
 iwspy - sets the list of IP addresses in a wireless network and checks the quality of their connections
 iwpriv - accesses configuration options specific to a particular device
 rfkill 	list - show wireless adapters (wifi and bluetooth)
 		block/unblock <dev-num> - block/unblock wireless device
 iw dev wlan0	link - show link status of wlan0
 				set biterates <standard> - manually set interface speed
-				scan - list wireless networks in range (sudo)
+				scan (sudo) - list wireless networks in range 
 wavemon - monitor wireless connection link quality
 	
 ========
@@ -510,8 +510,8 @@ INTERNET:
 mutt - mail client
 sftp - secure ftp
 sshd - (openssh-server) ssh server deamon, on Windows service is named 'CYGWIN sshd'
-/etc/init.d/ssh	restart - restart sshd (ssh deamon) (sudo)
-/usr/local/etc/init.d/openssh start - start openssh deamon (sudo)
+/etc/init.d/ssh	restart (sudo) - restart sshd (ssh deamon) 
+/usr/local/etc/init.d/openssh start (sudo) - start openssh deamon 
 ssh-keygen -t rsa -C <email> - generate rsa key pair, keys are stored in ~/.ssh
 ssh - SSH client
 	<user>@<address> "mpg321 -" < <file>.mp3 - stream audio over ssh
@@ -553,8 +553,8 @@ HACKING:
 
 nmap -sP 192.168.1.1-3 - network scanning
 	192.168.1.3 -p100-139 - port scanning
-	-O 192.168.0.3 - scanning os (sudo)
-tcpdump - sniffer (show network traffic) (sudo)
+	-O 192.168.0.3 (sudo) - scanning os 
+tcpdump (sudo) - sniffer (show network traffic) 
 ettercap - multipurpose sniffer/interceptor/logger for switched LAN (can detect man in the middle, denial of service, DNS spoofing)
 driftnet - picks out and displays images from network traffic
 kismet - Wireless 802.11b monitoring tool
@@ -615,16 +615,16 @@ mkfs - build a Linux filesystem
 mke2fs - create a ext filesystem
 mkswap - set up a swap area
 parted - partition manipulation program
-	-l - list partitions (sudo)
+	-l (sudo) - list partitions 
 fdisk - manipulate disk partition table
-	-l - list partitions (sudo)
+	-l (sudo) - list partitions 
 disks - nice gui partition tool
 mount - list all mounted devices
 	<device> <path> - for example mount /dev/hdc2 to /mymedia
 lsattr - list file attributes
 chattr - change file attributes
 rkhunter -c - checks if it can find any rootkits under the system
-ntfsundelete <HD name> - undelete files on ntfs partition (sudo)
+ntfsundelete <HD name> (sudo) - undelete files on ntfs partition 
 
 LOGGING:
 last - when various users have logged in or out. This includes information on when the computer was rebooted.
@@ -668,7 +668,7 @@ lsmod - show which kernel modules (drivers) are loaded
 modinfo <module> - get more information about kernel module
 
 HARDWARE:
-lshw - list all hardware (sudo)
+lshw (sudo) - list all hardware 
 lspci [-tv] - show pci info
 lsusb [-tv] - show usb info
 lscpu - print CPU information
@@ -781,7 +781,7 @@ AUDIO:
 
 alsamixer - set audio level (curses)
 amixer - set audio levels (command line)
-rmmod pcspkr - disable pc-speaker, beep (sudo)
+rmmod pcspkr (sudo) - disable pc-speaker, beep 
 
 cmus - music player (can be controlled from outside)
 mplayer - movie/music player
@@ -960,7 +960,7 @@ git checkout HEAD^ <file> - retrieve deleted file
 git rm --cached <file> - untrack file without deleting it
 git tag -a 0.9.1 -m "Version 0.9.1 release" - tag latest commit
 git tag - list local tags
-chown -R <user>:<group> * - in .git/objects (sudo)
+chown -R <user>:<group> * (sudo) - in .git/objects 
 git format-patch -1 <sha> - generate patch file
 git rev-parse HEAD - get sha of head
 git revert
@@ -970,6 +970,8 @@ git log <file> - print files history
 git ls-files - list files
 git show <revision>:<file> - show file
 git diff <commit> <commit> - compare two commits
+git stash - if you want to switch branches, but you don't want to commit your changes yet, you can 'stash' them
+git stash apply - apply the changes you stashed
 
 CHECKOUT:
 git log > ../gitLog - first save log to file
@@ -1285,3 +1287,5 @@ COREDUMP:
 ulimit -c unlimited - set core file limit to unlimited
 gdb <command> core - debug core file with gdb
 
+CHROME:
+F6, ctrl+l, alt+d - go to address bar

@@ -73,9 +73,9 @@ alias mEnd='catOrLessG'
 # directories before files.
 alias ls1='ls --classify -X -C --color=auto --group-directories-first'
 
-# Calls ls1 with: assumes screen width to be 80, so there aren't
+# Calls ls1 with: assumes screen width to be 69, so there aren't
 # too many columns.
-alias listShort='ls1 --width=69'
+alias listShort='ls1 --width=$(widthLimit=69; if [[ "$COLUMNS" -lt "$widthLimit" ]]; then echo "$COLUMNS"; else echo "$widthLimit"; fi)'
 # Calls ls1 with: use long listing format, do not print groups,
 # do not list owner, print sizes in human readable format, print
 # date as: 'month by word, day of month, year, hour:minute'.
@@ -161,7 +161,6 @@ alias rmdir='rm -rI'
 alias rmd='rmdir'
 alias cpdir='cp -arv'
 alias rm='rm -i'
-alias rm1='rm'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias mvdir='mv'
@@ -279,8 +278,6 @@ alias ta1='tail -n1'
 alias wcl='wc -l'
 alias wcw='wc -w'
 alias to='touch'
-# Force remove
-alias rm1='rm -f'
 # Console calculator with float.
 alias bc1='gcalccmd'
 alias make1='make 2>&1 | less'

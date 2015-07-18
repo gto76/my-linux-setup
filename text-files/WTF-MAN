@@ -307,7 +307,12 @@ getopts - parse parameters/arguments, builtin
 getopt - GNU version is even better then getopts, not a builtin
 while read line; do <commands>; done < <file> - read from file line by line
 	-r - do not treat backslashes as escape characters
+
+SAFETY:
 set -e - exit if any command fails
+	-u - exit if referencing undefined variable
+	-o pipefail - if any command in a pipeline fails, its return code is used as the return code of the whole pipeline
+IFS=$'\n\t' - remove space from the default Internal Field Separator
 
 HISTORY:
 

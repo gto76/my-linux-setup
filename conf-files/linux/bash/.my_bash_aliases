@@ -196,11 +196,50 @@ p() {
 
 alias ba='bash'
 alias s='sudo'
-alias e='echo'
-# Echo with backslash escapes (\n,...)
-alias ee='echo -e'
+
+########
+# ECHO #
+########
+
+echoPosix() {
+  if [ "$#" -gt 0 ]; then
+     printf %s "$1"
+     shift
+  fi
+  if [ "$#" -gt 0 ]; then
+     printf ' %s' "$@"
+  fi
+  printf '\n'
+}
+alias e='echoPosix'
+
 # Echo withouth new line at the end.
-alias en='echo -n'
+echoPosixN() {
+  if [ "$#" -gt 0 ]; then
+     printf %s "$1"
+     shift
+  fi
+  if [ "$#" -gt 0 ]; then
+     printf ' %s' "$@"
+  fi
+}
+alias en='echoPosixN'
+
+# Echo with backslash escapes (\n,...)
+echoPosixE() {
+  if [ "$#" -gt 0 ]; then
+     printf %b "$1"
+     shift
+  fi
+  if [ "$#" -gt 0 ]; then
+     printf ' %b' "$@"
+  fi
+  printf '\n'
+}
+alias ee='echoPosixE'
+
+
+
 alias c='cat'
 # Vim - open one tab per file
 alias v='vim -p'
@@ -338,9 +377,8 @@ alias cd-iso='mount-iso'
 alias ht='htop'
 alias u='htop'
 # Open file with default aplication for the file type
-o() {
-	rb xdg-open "$@"
-}
+alias o='rb xdg-open'
+
 alias ty='type'
 diff1() {
 	colordiff "$@" | catOrLess
@@ -416,7 +454,7 @@ psM() {
 alias ps='psM'
 
 # Print every process on the system.
-alias pse='ps -e | catOrLess'
+alias pse='psM -e'
 alias psa='ps -e | catOrLess'
 alias ps1='ps -e | catOrLess'
 

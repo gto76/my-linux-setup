@@ -73,9 +73,9 @@ alias mEnd='catOrLessG'
 # directories before files.
 alias ls1='ls --classify -X -C --color=auto --group-directories-first'
 
-# Calls ls1 with: assumes screen width to be 80, so there aren't
+# Calls ls1 with: assumes screen width to be 69, so there aren't
 # too many columns.
-alias listShort='ls1 --width=80'
+alias listShort='ls1 --width=$(widthLimit=69; if [[ "$COLUMNS" -lt "$widthLimit" ]]; then echo "$COLUMNS"; else echo "$widthLimit"; fi)'
 # Calls ls1 with: use long listing format, do not print groups,
 # do not list owner, print sizes in human readable format, print
 # date as: 'month by word, day of month, year, hour:minute'.
@@ -161,7 +161,6 @@ alias rmdir='rm -rI'
 alias rmd='rmdir'
 alias cpdir='cp -arv'
 alias rm='rm -i'
-alias rm1='rm'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias mvdir='mv'
@@ -261,11 +260,17 @@ runInBackground() {
 }
 alias rb='runInBackground'
 alias r='runInBackground'
+# print exit code of last command
+alias ?='echo $?'
 
 # open file in gedit
 g() { 
 	rb gedit "$@" 
 }
+
+# run konsole withouth menu and tab bar
+alias konsole1="rb konsole --workdir "$PWD" --hide-menubar --hide-tabbar"
+alias ko='konsole1'
 
 # open vim in konsole with light theme
 vvv() { 
@@ -312,8 +317,6 @@ alias ta1='tail -n1'
 alias wcl='wc -l'
 alias wcw='wc -w'
 alias to='touch'
-# Force remove
-alias rm1='rm -f'
 # Console calculator with float.
 alias bc1='gcalccmd'
 alias make1='make 2>&1 | less'
@@ -355,7 +358,10 @@ alias na='rb nautilus .'
 # Get name of first file in directory
 alias first='ls | head -1'
 # Get name of random file in directory
-alias random-file='ls | sort -R | head -1'
+# $@ - all arguments get send to ls
+random-file() {
+	ls "$@" | sort -R | head -1
+}
 alias rf='random-file'
 # Run profile script
 alias profile='source /etc/profile'
@@ -380,6 +386,7 @@ alias u='htop'
 alias o='rb xdg-open'
 
 alias ty='type'
+alias da='date'
 diff1() {
 	colordiff "$@" | catOrLess
 }
@@ -572,15 +579,10 @@ createExecutable() {
 		echo "# Usage: $1 " >> "$1"
 		echo '# ' >> "$1"
 		echo >> "$1"
-		echo '# Exit if any command has non-zero status (-e), if referencing' >> "$1"
-		echo '# undefined variable (-u) and if any command in a pipeline ' >> "$1"
-		echo '# fails, its return code is used as the return code of the' >> "$1"
-		echo '# whole pipeline (-o pipefail).' >> "$1"
+		echo '# Strict mode:' >> "$1"
+		echo '# http://redsymbol.net/articles/unofficial-bash-strict-mode' >> "$1"
 		echo 'set -euo pipefail' >> "$1"
-		echo >> "$1"
-		echo '# Remove space from Internal Field Separator.' >> "$1"
 		echo "IFS=$'\n\t'" >> "$1"
-		echo >> "$1"
 		echo >> "$1"
 	fi
 	chmod u+x "$1"        

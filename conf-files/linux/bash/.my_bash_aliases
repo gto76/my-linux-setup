@@ -187,10 +187,10 @@ alias .='echo $PWD'
 
 # If no file specified, print PWD, else full path of the file.
 p() {
-	if [ $# -eq 0 ]; then
+	if [[ $# -eq 0 ]]; then
 		echo "$PWD"
 	else
-		echo `echo "$PWD"`/"$@"
+		echo "$PWD"/"$@"
 	fi		
 }
 
@@ -383,6 +383,7 @@ alias ty='type'
 diff1() {
 	colordiff "$@" | catOrLess
 }
+alias da='date'
 
 ########
 # SUDO #
@@ -554,7 +555,7 @@ vga() {
 # and exclude grepping through .svn and .git folders.
 alias grep1='grep --color=auto --exclude-dir=\.svn --exclude-dir=\.git'
 gr() {
-	grep1 "$@" --ignore-case --perl-regexp --color=always | catOrLess
+	grep1 --ignore-case --perl-regexp --color=always "$@" | catOrLess
 }
 gr1() {
 	gr "$@" --ignore-case --perl-regexp --only-matching | catOrLess
@@ -616,6 +617,39 @@ alias tar1='tar --extract --verbose --file'
 alias tarz='tar --extract --verbose -gunzip --file'
 alias untar='tarz'
 
+# Extracts archive of any type.
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+ else
+    if [ -f "$1" ] ; then
+        NAME=${1%.*}
+        #mkdir $NAME && cd $NAME
+        case "$1" in
+          *.tar.bz2)   tar xvjf ./"$1"    ;;
+          *.tar.gz)    tar xvzf ./"$1"    ;;
+          *.tar.xz)    tar xvJf ./"$1"    ;;
+          *.lzma)      unlzma ./"$1"      ;;
+          *.bz2)       bunzip2 ./"$1"     ;;
+          *.rar)       unrar x -ad ./"$1" ;;
+          *.gz)        gunzip ./"$1"      ;;
+          *.tar)       tar xvf ./"$1"     ;;
+          *.tbz2)      tar xvjf ./"$1"    ;;
+          *.tgz)       tar xvzf ./"$1"    ;;
+          *.zip)       unzip ./"$1"       ;;
+          *.Z)         uncompress ./"$1"  ;;
+          *.7z)        7z x ./"$1"        ;;
+          *.xz)        unxz ./"$1"        ;;
+          *.exe)       cabextract ./"$1"  ;;
+          *)           echo "extract: '$1' - unknown archive method" ;;
+        esac
+    else
+        echo "'$1' - file does not exist"
+    fi
+fi
+}
+
 # Hexadecimal dump.
 hd1() {
 	hd "$*" | catOrLess
@@ -630,10 +664,8 @@ locate1() {
 
 #FIND
 # Recursively search for files containing pattern in their
-# names.
-# Use filesistem regexes for search (aka *.*), and always
-# suround them
-# with quotation marks
+# names.  Use filesistem regexes for search (aka *.*), and
+# always suround them with quotation marks.
 find1() {
 	find . -name "$1" | gr $(echo "$1" | tr -d "\*")
 }
@@ -733,7 +765,9 @@ alias search='apropos1G'
 # Same, but only search for packages containing string in their
 # name
 apropos2G() {
-	apt-cache search "$@" | gr "^[^ ]*$@[^ ]*" 
+	apt-cache search "$1" \
+		| grep1 "^[^ ]*$1[^ ]*" \
+		| gr "$1" 
 }
 alias ap2g='apropos2G'
 
@@ -747,7 +781,7 @@ y() {
 	echo -e "\nPACKAGES CONTAINING \"$@\" IN THEIR NAMES"	
 	echo -n   "====================================="
 	echo "$1" | sed 's/./=/g'
-	apropos2G "$@") | less 
+	apropos2G "$@") | catOrLess 
 }
 
 # Find to which of the installed packages passed command belongs
@@ -758,12 +792,13 @@ package() {
 		return
 	fi	
 	resolved=$(readlink -f "$file")
-	dpkg -S "$resolved" 
+	# dpkg -S "$resolved" | gr "^.*:"
+	dpkg -S "$resolved" | grep1 "^.*:"
 }
 
 # Find to which of all the packages the command belongs to
 apt-file1() {
-	apt-file search "$1" | grep \/"$1"$ | catOrLess 
+	apt-file search "$1" | grep \/bin\/"$1"$ | gr "^.*:"
 }
 
 
@@ -831,6 +866,19 @@ manSection() {
 	esac
 }
 
+whatisTest() {
+	call1=`whatis "$@" 2> /dev/null`
+	if [ "$?" == "0" ]; then
+		while IFS= read -r line; do
+			commandType=$(manSection $(echo "$line" | sed 's/.*(\([1-9]\)).*/\1/'))
+			echo "$line" "($commandType)"
+		done <<< "$call1"
+		echo -n "package:  "
+		package "$@" | sed 's/: /\nlocation: /'
+		return
+	fi
+}
+
 # Universal command description search function. First tries
 # whatis, then apt-cache show, then type and finally apt-file.
 # When one of them succeeds in finding the description the
@@ -865,15 +913,15 @@ whatIs() {
 		return
 	fi
 
-	call5=`apt-file1 "$@" | gr "^.*:"`
+	(call5=`apt-file1 "$@" | gr "^.*:"`
 	if [ "$call5" != "" ]; then
-		echo -e "You need to install one of the following packages to get the command:\n$call5" | catOrLess
+		echo -e "You need to install one of the following packages to get the command:\n$call5" #| catOrLess
 	fi
 
 	call6=`search "$@"`
 	if [ "$call6" != "" ]; then
-		echo  "$call6" | catOrLess
-	fi
+		echo  "$call6" #| catOrLess
+    fi) | catOrLess
 }
 alias wi='whatIs'
 

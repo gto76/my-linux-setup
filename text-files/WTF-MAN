@@ -203,7 +203,7 @@ tree - ls in a tree-like (hierarchical) format
 install - copy files and set attributes
 gpg <file> - decrypt file with password
 	-c <file> - encrypt
-mktemp - create a temporary file or directory
+mktemp - create a temporary file or directory in /tmp and returns it's name.
 rename - renames multiple files using sed syntax
 rsync - a fast, versatile, remote (and local) file-copying tool
 cmp - compares two files, similar to diff but also for binaries
@@ -399,6 +399,7 @@ sed	's///g' - substitute every occurrence in line, not just the first one
 	-u - unbuffered mode (processes input immediately)
 expand - convert tabs to spaces
 	-t <number> - set number of spaces (default is 8)
+	-i - do not convert tabs after non blanks
 
 DIFF:
 diff -u <files> - unified format

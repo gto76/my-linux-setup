@@ -307,6 +307,10 @@ getopts - parse parameters/arguments, builtin
 getopt - GNU version is even better then getopts, not a builtin
 while read line; do <commands>; done < <file> - read from file line by line
 	-r - do not treat backslashes as escape characters
+complete -F <completion-function> <command> - set completion function for command
+complete -p <command> - print the completion function for command
+compgen -c <pattern> - print all completions for pattern
+help <builtin> - display information about builtin command
 
 SAFETY:
 set -e - exit if any command fails
@@ -903,6 +907,7 @@ PROC (various information about the system):
 USR - "Unix System Resources":
 /usr/lib/jvm - java jres and jdks
 /usr/share/man - man pages
+/usr/share/bash-completion - bash completion functions
 
 SBIN - the "system-administrator's bin file":
 	Hosts programs that would be in /bin if they didn't have "root-only" access permissions.
@@ -1039,6 +1044,8 @@ ge - end of previous word
 {, } - paragraph
 ]], [[ - section
 :<num> - goto line number
+ctrl+o - go to previous locaton
+ctrl+i - go to next locaton
 
 LINES:
 0 - start of line

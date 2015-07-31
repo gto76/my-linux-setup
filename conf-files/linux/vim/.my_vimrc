@@ -62,6 +62,12 @@ set guifont=Consolas:h11:cEASTEUROPE
 set softtabstop=0
 set smarttab
 
+" Specific tab setting (when you press tab you get 4 spaces, all
+" actual tabs are displayed as 8 spaces)
+set tabstop=8 
+set shiftwidth=4 
+set expandtab
+
 " Show line numbers
 set number
 
@@ -84,14 +90,16 @@ set smartcase
 " set mouse mode
 set mouse=a
 
-" Treat long lines as break lines (useful when moving around in them)
+" Treat long lines as break lines (useful when moving around in
+" them)
 map j gj
 map k gk
 
 " Do not highlight mattching parentheses
 let loaded_matchparen = 1
 
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
+" Turn backup off, since most stuff is in SVN, git et.c
+" anyway...
 set nobackup
 set nowb
 set noswapfile
@@ -110,10 +118,12 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set tw=64
 " Disable automatic line rewraping
 set fo-=t
-" Disable screen width from overriding tw when being narrower then tw
+" Disable screen width from overriding tw when being narrower
+" then tw
 set wm=0
 
-" Correct the spelling mistakes highlighting (otherwise it can happen to be red on red
+" Correct the spelling mistakes highlighting (otherwise it can
+" happen to be red on red
 hi SpellBad ctermfg=000 ctermbg=001 
 
 " Set lines to break on whitespaces
@@ -128,6 +138,24 @@ hi SpellBad ctermfg=000 ctermbg=001
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
+
+" F6 to toggle bettween different identation/tab settings.
+function TabToggle()
+    if &expandtab
+        " When you press tab you get tab, all tabs are dispaled
+        " as 4 spaces.
+        set tabstop=4 
+	set shiftwidth=4
+	set noexpandtab 
+    else
+        " When you press tab you get 4 spaces, all actual tabs
+        " are displayed as 8 spaces.
+	set tabstop=8 
+	set shiftwidth=4 
+	set expandtab
+    endif
+endfunction
+nmap <F6> mz:execute TabToggle()<CR>'z
 
 " F7 to switch to light background
 nmap <F7> :highlight Normal ctermfg=black ctermbg=grey<CR>
@@ -145,27 +173,5 @@ set pastetoggle=<F10>
 " F11, F12  go to next/previous tab
 map <F11> gT<CR>
 map <F12> gt<CR>
-
-" F6 to toggle bettween different identation/tab settings
-" Set widht of the tabs
-"set tabstop=4
-"set shiftwidth=4
-"set noexpandtab
-set tabstop=8 
-set shiftwidth=4 
-set expandtab
-" allow toggling between local and default mode
-function TabToggle()
-  if &expandtab
-	set tabstop=4 
-	set shiftwidth=4
-	set noexpandtab 
-  else
-	set tabstop=8 
-	set shiftwidth=4 
-	set expandtab
-  endif
-endfunction
-nmap <F6> mz:execute TabToggle()<CR>'z
 
 set fo-=t

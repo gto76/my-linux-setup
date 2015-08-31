@@ -18,14 +18,24 @@
 #	. ~/.my_bash_aliases
 #fi
 
-set -o vi
+#if [ -f ~/.standard_aliases ]; then
+#    (cd ~/$(dirname $(readlink ~/.standard_aliases)) && make --silent)
+#fi
 
 # Loads standard aliases.
-if [ -f ~/.standard_aliases ]; then
-	. ~/.standard_aliases
-fi
+#if [ -f ~/.standard_aliases ]; then
+#	. ~/.standard_aliases
+#fi
 
-# Sets default editor to vim
+# Loads generated standardshortcuts file.
+#if [ -f ~/.standardshortcuts ]; then
+#	. ~/.standardshortcuts
+#fi
+
+# Sets bash line editing to vi mode.
+set -o vi
+
+# Sets default editor to vim.
 export VISUAL=vim
 export EDITOR="$VISUAL"
 

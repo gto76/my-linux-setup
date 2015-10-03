@@ -65,7 +65,7 @@ set smarttab
 " Specific tab setting (when you press tab you get 4 spaces, all
 " actual tabs are displayed as 8 spaces)
 set tabstop=8 
-set shiftwidth=4 
+set shiftwidth=2 
 set expandtab
 
 " Show line numbers
@@ -151,7 +151,7 @@ function TabToggle()
         " When you press tab you get 4 spaces, all actual tabs
         " are displayed as 8 spaces.
 	set tabstop=8 
-	set shiftwidth=4 
+	set shiftwidth=2 
 	set expandtab
     endif
 endfunction

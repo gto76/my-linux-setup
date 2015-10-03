@@ -10,6 +10,20 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
+-- Wait a few milis on startup
+io.popen("sleep 1.00"):read("*a")
+
+-- untested
+-- awesome.connect_signal("exit", function(restart)
+--     if not restart then return end
+--     local var = "LAST_AWESOME_RESTART"
+--     local last_restart = os.getenv(var)
+--     if last_restart and tonumber(last_restart) + 5 >= os.time() then
+--         io.popen("sleep 1"):read("*a")
+--     end
+--     require("lgi").GLib.setenv(var, tostring(os.time()))
+-- end)
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -58,6 +72,7 @@ modkey = "Mod4"
 layouts =
 {
    -- awful.layout.suit.floating,
+    awful.layout.suit.max,
     awful.layout.suit.tile,
    -- awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
@@ -66,7 +81,6 @@ layouts =
    -- awful.layout.suit.fair.horizontal,
    -- awful.layout.suit.spiral,
    -- awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
    -- awful.layout.suit.max.fullscreen,
    -- awful.layout.suit.magnifier
 }

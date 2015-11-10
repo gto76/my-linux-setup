@@ -2,6 +2,17 @@ My Linux Setup
 ==============
 My Linux configuration files, three handy text files, and an install script to put them all in a right place.
 
+How to install
+--------------
+
+```bash
+cd
+git clone https://github.com/gto76/my-linux-setup.git
+cd my-linux-setup 
+./install-linux
+bash
+```
+
 Configuration Files
 ------------
 They are grouped by the target operating system.
@@ -29,17 +40,6 @@ Text Files
 ----------
 Textfiles with notes about various Linux commands, configurations, tools, etc.  
 For details see [**README**](text-files).
-
-How to install
---------------
-
-```bash
-cd
-git clone https://github.com/gto76/my-linux-setup.git
-cd my-linux-setup 
-./install-linux
-bash
-```
 
 Install script
 --------------

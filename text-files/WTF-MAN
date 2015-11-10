@@ -992,6 +992,9 @@ git stash - if you want to switch branches, but you don't want to commit your ch
 git stash apply - apply the changes you stashed
 git stash list - list all the stashes
 git stash show -p stash@{0} - show the diff of most recent stash
+git update-index --chmod=+x <file> - change files permissions
+git config -l - print repos configuration settings
+git config core.filemode false - ignores executable bit of the files
 
 CHECKOUT:
 git log > ../gitLog - first save log to file
@@ -1145,8 +1148,8 @@ x,X - delete character/delete back
 . - repeat last change
 ctrl+a, ctrl+x - increment/decrement number under cursor
 
-AUTOMATIC LINEBRAKE:
-gq - formats selected text 
+AUTOMATIC LINEBRAKE (WRAP):
+gq - formats (wraps) selected text 
 gqq - format current line
 :set tw=72 - set text width
 ADVANCED:

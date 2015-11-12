@@ -5,12 +5,12 @@ My Linux configuration files, three handy text files, and an install script to p
 How to install
 --------------
 
-```bash
-cd
-git clone https://github.com/gto76/my-linux-setup.git
-cd my-linux-setup 
-./install-linux
-bash
+```
+$ cd
+$ git clone https://github.com/gto76/my-linux-setup.git
+$ cd my-linux-setup 
+$ ./install-linux
+$ bash
 ```
 
 Configuration Files

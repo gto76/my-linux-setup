@@ -206,7 +206,7 @@ install - copy files and set attributes
 gpg <file> - decrypt file with password
 	-c <file> - encrypt
 mktemp - create a temporary file or directory in /tmp and returns it's name.
-rename - renames multiple files using sed syntax
+rename s/<from>/<to> <files> - renames multiple files using sed syntax
 rsync - a fast, versatile, remote (and local) file-copying tool
 cmp - compares two files, similar to diff but also for binaries
 stat -c%X <file> - time of last modification of the file 
@@ -312,6 +312,7 @@ complete -F <completion-function> <command> - set completion function for comman
 complete -p <command> - print the completion function for command
 compgen -c <pattern> - print all completions for pattern
 help <builtin> - display information about builtin command
+wait - wait for all background processes to end
 
 SAFETY:
 set -e - exit if any command fails
@@ -819,7 +820,7 @@ BITMAP:
 display - displays an image
 montage - creates a montage from images
 	<input-file/s> -set label '%t' <output-file/s> - labels images
-convert - converts file format
+convert <old> <new> - converts file format (imagemagick)
 import - captures screen-shots from the X server
 mogrify - edit image
 gocr - command line text recognition tool

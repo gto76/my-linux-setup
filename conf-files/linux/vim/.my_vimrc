@@ -139,7 +139,6 @@ hi SpellBad ctermfg=000 ctermbg=001
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" F6 to toggle bettween different identation/tab settings.
 nmap <F6> mz:execute TabToggle()<CR>'z
 
 " F7 to switch to light background

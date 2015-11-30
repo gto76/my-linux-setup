@@ -198,7 +198,9 @@ locate <word>  - same as find but using index
 updatedb (sudo) - update database for locate 
 locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
 md5sum - checks md5 sum hash
-read - reads from file line by line
+read - read single line from standard input 
+  -n 1 - print after reading one character
+  -s - do not echo input comming from terminal
 shred - securely remove files
 file <file> - determine file type
 tree - ls in a tree-like (hierarchical) format
@@ -413,10 +415,10 @@ sed	's///g' - substitute every occurrence in line, not just the first one
 	-r 's###e' - execute match as a command
 	-i <file> - will make changes directly to the file (in place)
 	-u - unbuffered mode (processes input immediately)
+        -n l - print escape sequence (keycode) of a pressed key
 expand - convert tabs to spaces
 	-t <number> - set number of spaces (default is 8)
 	-i - do not convert tabs after non blanks
-        -n l - get keycode of pressed key
 
 DIFF:
 diff -u <files> - unified format
@@ -1019,6 +1021,9 @@ gitg - a bit nicer version
 tig - text based repo explorer
 gitstats - generates stats for git repo, outputs HTML
 
+VIRTUAL BOX:
+git config core.filemode false - Ignores the filemode changes made by the host system
+git config --global --unset https.proxy - If problem pulling
 
 ###########
 ##  VIM  ##
@@ -1126,6 +1131,7 @@ tabstop, ts		- tab width (8)
 wrap			- wrap lines (wrap)
 wrapscan, ws	- search wraps around file (ws)
 mouse=a			- mouse mode (use shift when selecting to copy to clipboard)
+linebreak - do not break words
 
 :set iskeyword-=. - remove dot from words part (two words if separated with dot)
 

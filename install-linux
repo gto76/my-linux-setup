@@ -39,7 +39,9 @@ createLink ~ .my_bashrc_personal)
 createLink ~ .my_vimrc
 cd .vim/colors
 createLink ~/.vim/colors github.vim
-createLink ~/.vim/colors diner.vim)
+createLink ~/.vim/colors diner.vim
+cd ../after/ftplugin
+createLink ~/.vim/after/ftplugin python.vim)
 (cd tmux
 createLink ~ .tmux.conf)
 (cd xmodmap

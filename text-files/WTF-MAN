@@ -208,7 +208,7 @@ install - copy files and set attributes
 gpg <file> - decrypt file with password
 	-c <file> - encrypt
 mktemp - create a temporary file or directory in /tmp and returns it's name.
-rename - renames multiple files using sed syntax
+rename s/<from>/<to> <files> - renames multiple files using sed syntax
 rsync - a fast, versatile, remote (and local) file-copying tool
 cmp - compares two files, similar to diff but also for binaries
 stat -c%X <file> - time of last modification of the file 
@@ -314,6 +314,7 @@ complete -F <completion-function> <command> - set completion function for comman
 complete -p <command> - print the completion function for command
 compgen -c <pattern> - print all completions for pattern
 help <builtin> - display information about builtin command
+wait - wait for all background processes to end
 
 SAFETY:
 set -e - exit if any command fails
@@ -414,10 +415,10 @@ sed	's///g' - substitute every occurrence in line, not just the first one
 	-r 's###e' - execute match as a command
 	-i <file> - will make changes directly to the file (in place)
 	-u - unbuffered mode (processes input immediately)
+        -n l - print escape sequence (keycode) of a pressed key
 expand - convert tabs to spaces
 	-t <number> - set number of spaces (default is 8)
 	-i - do not convert tabs after non blanks
-        -n l - print escape sequence of a pressed key
 
 DIFF:
 diff -u <files> - unified format
@@ -821,7 +822,7 @@ BITMAP:
 display - displays an image
 montage - creates a montage from images
 	<input-file/s> -set label '%t' <output-file/s> - labels images
-convert - converts file format
+convert <old> <new> - converts file format (imagemagick)
 import - captures screen-shots from the X server
 mogrify - edit image
 gocr - command line text recognition tool
@@ -965,6 +966,7 @@ git remote show origin - print address of the origin
 git remote set-url origin git@github.com:<user>/<repo>.git - change the url of origin, ssh key needed
 git remote set-url origin https://www.github.com/<user>/<repo>.git - same, but withouth key
 git status -uno - check if everything up-to-date
+git fetch; git checkout <branch> - checkout remote branch
 
 TAGS:
 git push --tags - push tags
@@ -993,6 +995,9 @@ git stash - if you want to switch branches, but you don't want to commit your ch
 git stash apply - apply the changes you stashed
 git stash list - list all the stashes
 git stash show -p stash@{0} - show the diff of most recent stash
+git update-index --chmod=+x <file> - change files permissions
+git config -l - print repos configuration settings
+git config core.filemode false - ignores executable bit of the files
 
 CHECKOUT:
 git log > ../gitLog - first save log to file
@@ -1150,8 +1155,8 @@ x,X - delete character/delete back
 . - repeat last change
 ctrl+a, ctrl+x - increment/decrement number under cursor
 
-AUTOMATIC LINEBRAKE:
-gq - formats selected text 
+AUTOMATIC LINEBRAKE (WRAP):
+gq - formats (wraps) selected text 
 gqq - format current line
 :set tw=72 - set text width
 ADVANCED:

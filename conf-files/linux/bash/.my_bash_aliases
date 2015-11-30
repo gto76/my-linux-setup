@@ -74,6 +74,7 @@ alias asci='asciiview'
 alias resetkey='setxkbmap -layout us; xmodmap ~/.Xmodmap'
 alias resetkeys='resetkey'
 
+
 ########
 # TEXT #
 ########
@@ -95,17 +96,10 @@ toCamel() {
 	cat | tr [A-Z] [a-z] | sed 's/[_-]\([a-z]\)/\U\1/g'
 }
 
+
 ##########
 # SYSTEM #
 ##########
-
-# Reset computer
-alias restart='sudo shutdown -r now'
-alias poweroff='sudo shutdown now'
-
-# Hibernate, suspend
-alias hib='sudo pm-hibernate'
-alias sus='sudo pm-suspend'
 
 # Turn off laptop monitor if external is connected.
 vga() {
@@ -116,6 +110,7 @@ vga() {
 		nautilus -n &
 	fi
 }
+
 
 ##########
 # USEFUL #
@@ -139,6 +134,7 @@ sed2() {
 alias xo='xclip -o'
 # Put in clipboard
 alias xi='xclip -i'
+
 
 ############
 # PACKAGES #

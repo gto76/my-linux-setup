@@ -8,28 +8,9 @@
 #
 
 
-# Loads my personal aliases.
-#if [ -f ~/.my_bashrc_personal ]; then
-#	. ~/.my_bashrc_personal
-#fi
-
 # Loads useful public aliases.
 #if [ -f ~/.my_bash_aliases ]; then
 #	. ~/.my_bash_aliases
-#fi
-
-#if [ -f ~/.standard_aliases ]; then
-#    (cd ~/$(dirname $(readlink ~/.standard_aliases)) && make --silent)
-#fi
-
-# Loads standard aliases.
-#if [ -f ~/.standard_aliases ]; then
-#	. ~/.standard_aliases
-#fi
-
-# Loads generated standardshortcuts file.
-#if [ -f ~/.standardshortcuts ]; then
-#	. ~/.standardshortcuts
 #fi
 
 # Sets bash line editing to vi mode.

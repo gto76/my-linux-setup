@@ -198,7 +198,9 @@ locate <word>  - same as find but using index
 updatedb (sudo) - update database for locate 
 locate -0 | xargs -0 - uses NUL character as separator, necessary for filenames with spaces	
 md5sum - checks md5 sum hash
-read - reads from file line by line
+read - read single line from standard input 
+  -n 1 - print after reading one character
+  -s - do not echo input comming from terminal
 shred - securely remove files
 file <file> - determine file type
 tree - ls in a tree-like (hierarchical) format
@@ -415,6 +417,7 @@ sed	's///g' - substitute every occurrence in line, not just the first one
 expand - convert tabs to spaces
 	-t <number> - set number of spaces (default is 8)
 	-i - do not convert tabs after non blanks
+        -n l - print escape sequence of a pressed key
 
 DIFF:
 diff -u <files> - unified format
@@ -984,10 +987,12 @@ git describe - print version and hash of HEAD
 git log --name-only --author=<name> - print changed files by commit
 git log <file> - print files history
 git ls-files - list files
-git show <revision>:<file> - show file
+git show <revision>:<file> - take a peek at the older revision of the file
 git diff <commit> <commit> - compare two commits
 git stash - if you want to switch branches, but you don't want to commit your changes yet, you can 'stash' them
 git stash apply - apply the changes you stashed
+git stash list - list all the stashes
+git stash show -p stash@{0} - show the diff of most recent stash
 
 CHECKOUT:
 git log > ../gitLog - first save log to file
@@ -1011,6 +1016,9 @@ gitg - a bit nicer version
 tig - text based repo explorer
 gitstats - generates stats for git repo, outputs HTML
 
+VIRTUAL BOX:
+git config core.filemode false - Ignores the filemode changes made by the host system
+git config --global --unset https.proxy - If problem pulling
 
 ###########
 ##  VIM  ##
@@ -1118,6 +1126,7 @@ tabstop, ts		- tab width (8)
 wrap			- wrap lines (wrap)
 wrapscan, ws	- search wraps around file (ws)
 mouse=a			- mouse mode (use shift when selecting to copy to clipboard)
+linebreak - do not break words
 
 :set iskeyword-=. - remove dot from words part (two words if separated with dot)
 
@@ -1297,7 +1306,8 @@ mkisofs -o ../your-new.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emu
 
 GDB:
 gdb <command> - start gdb
-run - start debugging
+run <arguments>  - start debugging
+run < <file> - run with piped input
 up - follow trace
 print <variable> - print variable
 

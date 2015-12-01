@@ -91,23 +91,24 @@ IFS="$SAVE_IFS"
 # Searches WTF-MAN for command
 # $1 - command name
 cc1() {
-	text=$(cat "$MAN"  | grep -A 30 "^$1 ")
-	PRINT_LINE="false"
-
-	while IFS= read -r line; do
-		match=$(echo "$line" | grep "^$1 ")
-		if [[ "$match" != "" ]]; then
-			PRINT_LINE="true"
-                elif [[ "$PRINT_LINE" == "true" ]]; then
-			startsWithTab=$(echo "$line" | grep -P "^\t")
-			if [[ "$startsWithTab" == "" ]]; then
-				PRINT_LINE="false"
-			fi
-		fi  
-
-		if [[ "$PRINT_LINE" == "true" ]]; then
-			echo "$line" | expand -t 4
-		fi  
-	done <<< "$text" | m
+        ./cc1.py "$1"
+#	text=$(cat "$MAN"  | grep -A 30 "^$1 ")
+#	PRINT_LINE="false"
+#
+#	while IFS= read -r line; do
+#		match=$(echo "$line" | grep "^$1 ")
+#		if [[ "$match" != "" ]]; then
+#			PRINT_LINE="true"
+#                elif [[ "$PRINT_LINE" == "true" ]]; then
+#			startsWithTab=$(echo "$line" | grep -P "^\t")
+#			if [[ "$startsWithTab" == "" ]]; then
+#                            return
+#			fi
+#		fi  
+#
+#		if [[ "$PRINT_LINE" == "true" ]]; then
+#			echo "$line" | expand -t 4
+#		fi  
+#	done <<< "$text" | m
 }
 

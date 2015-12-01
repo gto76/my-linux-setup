@@ -96,16 +96,16 @@ cc1() {
 
 	while IFS= read -r line; do
 		match=$(echo "$line" | grep "^$1 ")
-		if [ "$match" != "" ]; then
+		if [[ "$match" != "" ]]; then
 			PRINT_LINE="true"
-		else
+                elif [[ "$PRINT_LINE" == "true" ]]; then
 			startsWithTab=$(echo "$line" | grep -P "^\t")
-			if [ "$startsWithTab" == "" ]; then
+			if [[ "$startsWithTab" == "" ]]; then
 				PRINT_LINE="false"
 			fi
 		fi  
 
-		if [ "$PRINT_LINE" == "true" ]; then
+		if [[ "$PRINT_LINE" == "true" ]]; then
 			echo "$line" | expand -t 4
 		fi  
 	done <<< "$text" | m

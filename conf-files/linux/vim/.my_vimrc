@@ -172,8 +172,8 @@ function! SetupPython()
   " fixup any settings you don't like.
   setlocal softtabstop=0
   setlocal smarttab
-  setlocal tabstop=8 
-  setlocal shiftwidth=2 
+  setlocal tabstop=4 
+  setlocal shiftwidth=4 
   setlocal expandtab
 endfunction
 command! -bar SetupPython call SetupPython()

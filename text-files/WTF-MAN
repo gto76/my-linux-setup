@@ -1064,6 +1064,7 @@ ge - end of previous word
 :<num> - goto line number
 ctrl+o - go to previous locaton
 ctrl+i - go to next locaton
+% - jump to matching bracket
 
 LINES:
 0 - start of line
@@ -1198,6 +1199,9 @@ HEXDUMP:
 
 VUNDLE:
 :PluginInstall - install plugins
+
+REFORMAT CODE:
+= - fix identation
 
 ##########
 ## MISC ##

@@ -210,7 +210,7 @@ gpg <file> - decrypt file with password
 mktemp - create a temporary file or directory in /tmp and returns it's name.
 rename s/<from>/<to> <files> - renames multiple files using sed syntax
 rsync - a fast, versatile, remote (and local) file-copying tool
-cmp - compares two files, similar to diff but also for binaries
+        -Hbaz -e ssh <src-dir> <usrnm>@<host>:<dest-dir> - backs up the src-dircmp - compares two files, similar to diff but also for binaries
 stat -c%X <file> - time of last modification of the file 
 readlink -f - follow link recursively and print files path
 xdg-open <file> - open file with default aplication for the file type
@@ -638,7 +638,7 @@ parted - partition manipulation program
 fdisk - manipulate disk partition table
 	-l (sudo) - list partitions 
 disks - nice gui partition tool
-mount - list all mounted devices
+mount - list all mounted devices (to get list of devices use fdisk -l)
 	<device> <path> - for example mount /dev/hdc2 to /mymedia
 lsattr - list file attributes
 chattr - change file attributes

@@ -1,0 +1,74 @@
+SQLITE
+======
+.tables - List tables
+.schema <table-name> - Describe table
+.quit - Exit
+
+MAC TERMINAL
+============
+shift com [/] - next/previous tab
+
+CHROME
+======
+com . - stop
+com d - bookmark page
+
+PYCHARM
+=======
+shift com [/] - next/previous tab
+alt F12 - go to terminal
+shift esc - hide terminal
+com r - replace
+shift shift - search everywhere
+alt up - expand selection (variable, bracket, line, ident, function…)
+alt enter - quick fix
+com shift u - change case
+com l - go to line
+com , - preferences
+com d - duplicate line or selection
+com b - go to definition
+alt d - do refacture
+tab - select first option in dropdown
+cmd home/end - go to start/end of the file
+cmd alt l - reformat code
+
+R
+=
+names(<obj>) - print column names
+head(<obj>,4) - print first 4 rows
+
+SUBLIME
+=======
+com alt left/right - switch tab
+ctrl shift m - expand selection to brackets
+
+MAC OS
+======
+ctrl F2 - go to menu bar
+ctrl F3 - go to dock
+alt com - esc - force quit menu
+
+TMUX
+====
+ctrl b - d - detach session
+ctrl b - [ - scroll (press q to quit)
+
+D3
+==
+("div”) - select by tag
+(".awesome") - select by class
+("#foo") - select by unique identifier
+("[color=red]") - select by attribute
+("parent child") - select by containment
+
+BASH
+====
+ctrl r - search history
+
+GREP
+====
+pcregrep -M - multiline grep
+
+MACINIZATION TODO
+=================
+gu - gs ne dela

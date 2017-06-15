@@ -533,6 +533,7 @@ sshd - (openssh-server) ssh server deamon, on Windows service is named 'CYGWIN s
 ssh-keygen -t rsa -C <email> - generate rsa key pair, keys are stored in ~/.ssh
 ssh - SSH client
 	<user>@<address> "mpg321 -" < <file>.mp3 - stream audio over ssh
+        enter ~. - kill unresponsive session
 scp	<local-file> <user>@<host>:~<remote-file> - securely copy files over network
 wget - download files from WWW
 	-O - specify output file
@@ -770,7 +771,11 @@ at - executes command at a particular time
 atq - list jobs currently in 'at' queue
 atrm - remove a job from the 'at' queue
 crontab -e - schedule commands for repeating execution 
-cron - daemon that executes scheduled commands
+cron - daemon that executes scheduled commands 
+	sudo service cron status - print status of cron
+    sudo service cron [stop|start|restart] - stop, start, or restart cron deamon
+    sudo vim /etc/default/cron - set logging lever
+    cat /var/log/cron - print log
 anacron - like cron but it catches up with tasks next time the computer gets turned on
 
 SERVICES:
